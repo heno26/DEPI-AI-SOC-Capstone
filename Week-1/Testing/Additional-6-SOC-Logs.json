@@ -1,0 +1,408 @@
+{
+  "_readme": "Six additional synthetic Week 1 SOC log-analysis cases (TC-08 through TC-13). Standalone supplement ONLY: it does not replace Testing/Test-Cases.json and is not automatically read by the existing benchmark.py. To benchmark these cases, back up Testing/Test-Cases.json and append the six objects in this file's cases array to its cases array, without modifying TC-01..TC-07. All IP addresses are private or documentation-only (RFC 5737); all hostnames are fictional. Ground truth and keyword checks are evaluation aids; manual analyst review is required.",
+  "cases": [
+    {
+      "id": "TC-08",
+      "title": "Nginx WAF blocks repeated SQL injection probes (blocked, no compromise proven)",
+      "task": "log_analysis",
+      "input_lines": [
+        "2026-10-14T11:30:01Z waf01 WAF action=BLOCK rule_id=942100 category=SQLi src_ip=203.0.113.61 dst_host=shop.example uri=\"/products?id=1%27%20OR%201%3D1--\" http_status=403 request_id=WAF-8801",
+        "2026-10-14T11:30:03Z web01 nginx access src_ip=203.0.113.61 method=GET uri=\"/products?id=1%27%20OR%201%3D1--\" status=403 upstream_status=- request_id=WAF-8801",
+        "2026-10-14T11:30:06Z waf01 WAF action=BLOCK rule_id=942100 category=SQLi src_ip=203.0.113.61 dst_host=shop.example uri=\"/products?id=1%20UNION%20SELECT%20NULL\" http_status=403 request_id=WAF-8802",
+        "2026-10-14T11:30:07Z web01 nginx access src_ip=203.0.113.61 method=GET uri=\"/products?id=1%20UNION%20SELECT%20NULL\" status=403 upstream_status=- request_id=WAF-8802",
+        "2026-10-14T11:30:15Z web01 nginx access src_ip=198.51.100.10 method=GET uri=\"/health\" status=200 upstream_status=200 request_id=HEALTH-102",
+        "2026-10-14T11:31:00Z waf01 WAF summary src_ip=203.0.113.61 blocked_requests=2 allowed_requests=0 observation_window=60s"
+      ],
+      "ground_truth": "Two SQL injection-pattern requests from 203.0.113.61 were blocked by WAF rule 942100 and logged as HTTP 403 with no upstream response; unrelated /health GET from another IP succeeded. The provided data do not demonstrate exploitation, data theft, or compromise. Analyst may recommend reviewing WAF coverage and searching for other requests.",
+      "expected_findings": [
+        {
+          "id": "EF1",
+          "description": "SQL injection-pattern requests recognized",
+          "match": "any",
+          "keywords": [
+            "sql injection",
+            "sqli",
+            "union select",
+            "union%20select",
+            "1=1"
+          ]
+        },
+        {
+          "id": "EF2",
+          "description": "Same source recognized",
+          "match": "any",
+          "keywords": [
+            "203.0.113.61"
+          ]
+        },
+        {
+          "id": "EF3",
+          "description": "Correctly notices block decision and HTTP 403",
+          "match": "any",
+          "keywords": [
+            "blocked",
+            "block",
+            "403"
+          ]
+        },
+        {
+          "id": "EF4",
+          "description": "Does not confirm successful exploitation",
+          "match": "any",
+          "keywords": [
+            "not confirmed",
+            "no evidence",
+            "not proven",
+            "blocked",
+            "no successful",
+            "insufficient evidence"
+          ]
+        }
+      ],
+      "must_not_claim": [
+        "confirmed data breach",
+        "data exfiltration confirmed",
+        "ransomware",
+        "lazarus"
+      ]
+    },
+    {
+      "id": "TC-09",
+      "title": "Windows endpoint suspicious LSASS access attempt prevented by EDR",
+      "task": "log_analysis",
+      "input_lines": [
+        "2026-10-14T13:01:07Z WS-HR-04 Sysmon EventID=1 ProcessGuid={aa11-bb22} Image=C:\\Users\\Public\\helper.exe CommandLine=\"C:\\Users\\Public\\helper.exe\" User=CORP\\jlee ParentImage=C:\\Windows\\explorer.exe",
+        "2026-10-14T13:01:12Z WS-HR-04 Sysmon EventID=10 SourceImage=C:\\Users\\Public\\helper.exe TargetImage=C:\\Windows\\System32\\lsass.exe GrantedAccess=0x1fffff SourceProcessGUID={aa11-bb22}",
+        "2026-10-14T13:01:12Z WS-HR-04 EDR alert=CredentialAccessAttempt severity=High process=C:\\Users\\Public\\helper.exe target=lsass.exe action=BLOCK outcome=Prevented alert_id=EDR-4419",
+        "2026-10-14T13:01:13Z WS-HR-04 EDR alert_id=EDR-4419 process_terminated=true file_quarantined=true",
+        "2026-10-14T13:02:20Z WS-HR-04 Security EventID=4624 Account=jlee LogonType=2 result=Success"
+      ],
+      "ground_truth": "The process helper.exe attempted high-privilege access to lsass.exe, triggering an EDR prevention event; EDR indicates it blocked the attempt, terminated and quarantined the process. Logon type 2 for user jlee afterward is recorded but is not evidence that credentials were stolen. Neither an LSASS dump nor exfiltration is shown.",
+      "expected_findings": [
+        {
+          "id": "EF1",
+          "description": "Suspicious LSASS access",
+          "match": "any",
+          "keywords": [
+            "lsass",
+            "credential access"
+          ]
+        },
+        {
+          "id": "EF2",
+          "description": "Identifies suspicious source process",
+          "match": "any",
+          "keywords": [
+            "helper.exe"
+          ]
+        },
+        {
+          "id": "EF3",
+          "description": "Identifies prevention / quarantine",
+          "match": "any",
+          "keywords": [
+            "blocked",
+            "block",
+            "prevented",
+            "quarantined",
+            "terminated"
+          ]
+        },
+        {
+          "id": "EF4",
+          "description": "No proof of credential theft",
+          "match": "any",
+          "keywords": [
+            "not confirmed",
+            "no evidence",
+            "not proven",
+            "cannot confirm",
+            "unknown",
+            "potential"
+          ]
+        }
+      ],
+      "must_not_claim": [
+        "confirmed credential theft",
+        "confirmed exfiltration",
+        "mimikatz",
+        "ransomware"
+      ]
+    },
+    {
+      "id": "TC-10",
+      "title": "DNS long-label query burst suggesting possible tunneling (insufficient proof)",
+      "task": "log_analysis",
+      "input_lines": [
+        "2026-10-14T14:22:00Z dns01 query client=10.30.4.19 qname=ab8f93cd7721e4011f09.sync-data.example qtype=TXT rcode=NOERROR answers=1",
+        "2026-10-14T14:22:02Z dns01 query client=10.30.4.19 qname=aa17ef1098dbd778f1a2.sync-data.example qtype=TXT rcode=NOERROR answers=1",
+        "2026-10-14T14:22:04Z dns01 query client=10.30.4.19 qname=c9fdab0a2ef2140de1ca.sync-data.example qtype=TXT rcode=NOERROR answers=1",
+        "2026-10-14T14:22:06Z dns01 query client=10.30.4.19 qname=7f81aedc5b829a121eaa.sync-data.example qtype=TXT rcode=NOERROR answers=1",
+        "2026-10-14T14:22:09Z dns01 query client=10.30.4.19 qname=1e50aef2bd51af9012ab.sync-data.example qtype=TXT rcode=NOERROR answers=1",
+        "2026-10-14T14:22:11Z dns01 query client=10.30.4.19 qname=c2e950ffaa221cdc0188.sync-data.example qtype=TXT rcode=NOERROR answers=1",
+        "2026-10-14T14:22:12Z dns01 summary client=10.30.4.19 qtype=TXT qname_suffix=sync-data.example count=6 time_window_s=12"
+      ],
+      "ground_truth": "Six TXT queries from internal host 10.30.4.19 to unique, high-entropy-looking subdomains under sync-data.example over 12 seconds. This could warrant investigation for DNS tunneling, but six queries do not prove tunneling or data exfiltration. There is no payload inspection or destination ownership information.",
+      "expected_findings": [
+        {
+          "id": "EF1",
+          "description": "Recognizes multiple TXT queries",
+          "match": "any",
+          "keywords": [
+            "txt",
+            "dns"
+          ]
+        },
+        {
+          "id": "EF2",
+          "description": "Identifies source and queried domain",
+          "match": "all",
+          "keywords": [
+            "10.30.4.19",
+            "sync-data.example"
+          ]
+        },
+        {
+          "id": "EF3",
+          "description": "Notes potential DNS tunneling",
+          "match": "any",
+          "keywords": [
+            "tunnel",
+            "unusual",
+            "suspicious",
+            "encoded",
+            "high entropy",
+            "random",
+            "exfil"
+          ]
+        },
+        {
+          "id": "EF4",
+          "description": "Does not claim exfiltration proved",
+          "match": "any",
+          "keywords": [
+            "not confirmed",
+            "no evidence",
+            "not proven",
+            "possible",
+            "potential",
+            "requires investigation",
+            "unknown"
+          ]
+        }
+      ],
+      "must_not_claim": [
+        "confirmed exfiltration",
+        "confirmed dns tunneling",
+        "ransomware",
+        "apt29"
+      ]
+    },
+    {
+      "id": "TC-11",
+      "title": "AWS CloudTrail console login followed by privileged group and access key changes",
+      "task": "log_analysis",
+      "input_lines": [
+        "2026-10-14T15:10:01Z cloudtrail eventName=ConsoleLogin userIdentity.userName=ops-temp sourceIPAddress=203.0.113.90 additionalEventData.MFAUsed=No responseElements.ConsoleLogin=Success awsRegion=us-east-1",
+        "2026-10-14T15:11:45Z cloudtrail eventName=AddUserToGroup userIdentity.userName=ops-temp sourceIPAddress=203.0.113.90 requestParameters.userName=ops-temp requestParameters.groupName=SecurityAdmins response=Success",
+        "2026-10-14T15:12:03Z cloudtrail eventName=CreateAccessKey userIdentity.userName=ops-temp sourceIPAddress=203.0.113.90 requestParameters.userName=ops-temp response=Success",
+        "2026-10-14T15:12:21Z cloudtrail eventName=ListBuckets userIdentity.userName=ops-temp sourceIPAddress=203.0.113.90 response=Success",
+        "2026-10-14T15:13:10Z cloudtrail context change_ticket=NotProvided account_owner_confirmation=NotProvided known_source_ip=NotProvided"
+      ],
+      "ground_truth": "Successful no-MFA ConsoleLogin for ops-temp from 203.0.113.90, followed by adding that user to SecurityAdmins and creating an access key; bucket listing followed. This is high-risk privilege and credential activity requiring urgent authorization check. No evidence in logs of confirmed compromise or data transfer. Neither account owner nor change ticket is provided.",
+      "expected_findings": [
+        {
+          "id": "EF1",
+          "description": "No MFA on successful login",
+          "match": "any",
+          "keywords": [
+            "mfa",
+            "multi-factor"
+          ]
+        },
+        {
+          "id": "EF2",
+          "description": "Privileged group change",
+          "match": "any",
+          "keywords": [
+            "securityadmins",
+            "addusertogroup",
+            "privilege",
+            "admin"
+          ]
+        },
+        {
+          "id": "EF3",
+          "description": "Access key creation",
+          "match": "any",
+          "keywords": [
+            "createaccesskey",
+            "access key",
+            "new key"
+          ]
+        },
+        {
+          "id": "EF4",
+          "description": "Requests authorization validation, not automatic compromise attribution",
+          "match": "any",
+          "keywords": [
+            "verify",
+            "authorization",
+            "investigate",
+            "approval",
+            "confirm",
+            "change ticket"
+          ]
+        }
+      ],
+      "must_not_claim": [
+        "confirmed breach",
+        "confirmed data theft",
+        "ransomware",
+        "apt28"
+      ]
+    },
+    {
+      "id": "TC-12",
+      "title": "Multiple off-hours RDP logons from jump host to two internal servers",
+      "task": "log_analysis",
+      "input_lines": [
+        "2026-10-14 02:10:10 FS01 Security EventID=4624 Account=CORP\\svc_ops LogonType=10 SourceIP=10.10.5.20 WorkstationName=JUMP-02",
+        "2026-10-14 02:10:45 FS01 Security EventID=4672 Account=CORP\\svc_ops Privileges=SeDebugPrivilege,SeBackupPrivilege",
+        "2026-10-14 02:13:22 APP01 Security EventID=4624 Account=CORP\\svc_ops LogonType=10 SourceIP=10.10.5.20 WorkstationName=JUMP-02",
+        "2026-10-14 02:13:31 APP01 Security EventID=4672 Account=CORP\\svc_ops Privileges=SeDebugPrivilege,SeBackupPrivilege",
+        "2026-10-14 02:15:00 cmdb asset=JUMP-02 ip=10.10.5.20 role=approved_admin_jump_host",
+        "2026-10-14 02:15:01 access_policy account=CORP\\svc_ops permitted_hosts=FS01,APP01 standard_window=09:00-17:00 change_exception=NotProvided"
+      ],
+      "ground_truth": "Two successful RemoteInteractive (LogonType 10) logons using svc_ops from a known, approved jump host to two permitted servers, both outside the standard time window. Privileged logon events follow. This merits verification of an approved exception but is not sufficient to label lateral movement or account compromise as confirmed.",
+      "expected_findings": [
+        {
+          "id": "EF1",
+          "description": "Recognizes successful RDP/logon type 10",
+          "match": "any",
+          "keywords": [
+            "rdp",
+            "remote interactive",
+            "remoteinteractive",
+            "logontype=10",
+            "remote desktop"
+          ]
+        },
+        {
+          "id": "EF2",
+          "description": "Notes both FS01 and APP01",
+          "match": "all",
+          "keywords": [
+            "fs01",
+            "app01"
+          ]
+        },
+        {
+          "id": "EF3",
+          "description": "Notes timing outside window",
+          "match": "any",
+          "keywords": [
+            "off-hours",
+            "outside",
+            "02:10",
+            "02:13",
+            "standard window",
+            "time window"
+          ]
+        },
+        {
+          "id": "EF4",
+          "description": "Accounts for approved jump host / authorized path",
+          "match": "any",
+          "keywords": [
+            "approved",
+            "jump host",
+            "permitted",
+            "not necessarily malicious",
+            "authorized"
+          ]
+        }
+      ],
+      "must_not_claim": [
+        "confirmed lateral movement",
+        "confirmed breach",
+        "ransomware",
+        "mimikatz"
+      ]
+    },
+    {
+      "id": "TC-13",
+      "title": "Benign approved Windows maintenance and patch deployment (false-positive trap)",
+      "task": "log_analysis",
+      "input_lines": [
+        "2026-10-14 02:00:00 change_mgmt ticket=CHG-2048 status=Approved host=APP02 operator=CORP\\patchsvc window=02:00-03:00 purpose=monthly_patch_deployment",
+        "2026-10-14 02:03:14 APP02 Security EventID=4624 Account=CORP\\patchsvc LogonType=3 SourceIP=10.20.4.12",
+        "2026-10-14 02:04:01 APP02 Sysmon EventID=1 Image=C:\\Windows\\System32\\msiexec.exe ParentImage=C:\\Program Files\\CorpPatch\\patchagent.exe User=CORP\\patchsvc",
+        "2026-10-14 02:04:12 APP02 EDR FileExecution file=C:\\Program Files\\CorpPatch\\update.msi signer=CorpPatch-IT SignatureValid=True disposition=Allowed",
+        "2026-10-14 02:09:20 APP02 PatchAgent ticket=CHG-2048 packages_installed=3 result=Success reboot_required=False",
+        "2026-10-14 02:10:05 APP02 ServiceControlManager EventID=7036 ServiceName=AppService new_state=Running"
+      ],
+      "ground_truth": "Approved scheduled maintenance CHG-2048 by patchsvc within 02:00-03:00. MSI execution has an expected patch agent parent and valid signature; patch agent reports success and service running. No evidence of malicious activity; the analyst should not escalate solely because of msiexec or service changes.",
+      "expected_findings": [
+        {
+          "id": "EF1",
+          "description": "References approved change",
+          "match": "any",
+          "keywords": [
+            "chg-2048",
+            "approved",
+            "scheduled",
+            "authorized"
+          ]
+        },
+        {
+          "id": "EF2",
+          "description": "Identifies maintenance rather than attack",
+          "match": "any",
+          "keywords": [
+            "patch",
+            "maintenance",
+            "benign",
+            "routine",
+            "legitimate"
+          ]
+        },
+        {
+          "id": "EF3",
+          "description": "Mentions signature / expected patch agent",
+          "match": "any",
+          "keywords": [
+            "signature",
+            "signed",
+            "patchagent",
+            "corpPatch",
+            "trusted",
+            "valid"
+          ]
+        },
+        {
+          "id": "EF4",
+          "description": "Avoids unjustified escalation",
+          "match": "any",
+          "keywords": [
+            "no evidence",
+            "not suspicious",
+            "no escalation",
+            "normal",
+            "benign",
+            "low risk",
+            "routine",
+            "not malicious",
+            "none identified"
+          ]
+        }
+      ],
+      "must_not_claim": [
+        "confirmed compromise",
+        "ransomware",
+        "malware installed",
+        "backdoor"
+      ]
+    }
+  ]
+}
