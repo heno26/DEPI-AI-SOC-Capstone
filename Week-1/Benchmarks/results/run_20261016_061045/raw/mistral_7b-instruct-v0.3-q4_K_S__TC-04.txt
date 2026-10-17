@@ -1,0 +1,21 @@
+ 1. ALERT SUMMARY: A port scan was detected originating from the authorized vulnerability scanner nessus-scan01, targeting multiple internal servers within the specified timeframe.
+2. VERDICT: Needs Investigation
+3. CONFIDENCE: Medium - The source is an authorized vulnerability scanner, but the rapid scanning of a large number of ports is unusual for scheduled scans.
+4. PRIORITY: P2 High - The activity could potentially disrupt network operations if it continues unchecked.
+5. EVIDENCE SUPPORTING MALICIOUS ACTIVITY:
+   - Unusual speed and scope of the port scan
+6. EVIDENCE SUPPORTING BENIGN ACTIVITY:
+   - The source is an authorized vulnerability scanner
+7. ASSUMPTIONS:
+   - Assumption: The rapid scanning is not a result of a misconfiguration or error in the scanner
+   - Assumption: The scanner is not being used maliciously by an unauthorized user
+8. MISSING INFORMATION:
+   - Whether the scanner's configuration has changed recently
+   - If there are any indications of unauthorized access to the scanner
+9. ESCALATE TO TIER 2: Yes - Further investigation is needed to determine if the scanner's configuration is correct and if the activity is authorized.
+10. NEXT STEPS:
+   - Investigate if there have been any changes to the scanner's configuration
+   - Check if the scanner is being used maliciously by an unauthorized user
+   - Verify if the activity is part of the scheduled vulnerability scan
+   - If the activity is not part of the scheduled scan, determine the cause and take appropriate action
+   - Document the incident for future reference

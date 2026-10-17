@@ -1,0 +1,42 @@
+
+1. SUMMARY:
+
+   - Four users (alice, bob, carol, and dave) were logged on simultaneously at DC01, all with the same source IP and status codes indicating failed logon attempts.
+
+   - An administrative user (admin) and a service (svc_backup) were also logged on, with the service being added to the Administrators group.
+
+2. EVIDENCE:
+
+   - Four users attempted to log on simultaneously:
+
+     - alice: 2026-10-14 09:02:11, EventID=4625, Account=alice, LogonType=3, SourceIP=10.20.5.99, Status=0xC000006D
+
+     - bob: 20260-10-14 09:02:14, EventID=4625, Account=bob, LogonType=3, SourceIP=10.20.5.99, Status=0xC00soft
+
+     - carol: 2026-10-14 09:02:17, EventID=4625, Account=carol, LogonType=3, SourceIP=10.20.5.99, Status=0xC000006D
+
+     - dave: 2026-10-14 09:02:20, EventID=4625, Account=dave, LogonType=3, SourceIP=10.20.5.99, Status=0xC000006D
+
+   - An administrative user and a service were logged on:
+
+     - admin: 2026-10-14 09:02:23, EventID=4625, Account=admin, LogonType=3, SourceIP=10.20.5.99, Status=0xC000006A
+
+     - svc_backup: 2026-10-14 09:02:26, EventID=4625, Account=svc_backup, LogonType=3, SourceIP=10.20.5.99, Status=0xC000006A
+
+   - The service svc_backup was added to the Administrators group:
+
+     - FS02 EventID=4732, MemberAdded=svc_backup, Group=Administrators, ChangedBy=svc_backup, Timestamp=2026-10-14 09:07:02
+
+3. SUSPICIOUS ACTIVITY:
+
+   - Multiple failed logon attempts from the same source IP:
+
+     - alice, bob, carol, and dave all failed to log on simultaneously, which is unusual and may indicate a brute force attack or credential stuffing attempt.
+
+     - The source IP 10.20.5.99 is associated with all these failed logon attempts, which is suspicious.
+
+4. ASSUMPTIONS:
+
+   - Assumption: The simultaneous failed logon attempts from the same source IP could indicate a brute force attack or credential stuffing attempt.
+
+   - Assumption: The

@@ -1,0 +1,31 @@
+1. SUMMARY:
+On October 14, the web server 'web01' experienced a failed SSH login attempt for the 'admin' user from IP address '10.0.0.15' at 08:54:50, followed by a successful SSH login using the public key at 08:55:02. The admin user then executed a command as root to update the package list and upgrade the system at 09:10:31 and 09:11:02, respectively.
+
+2. EVIDENCE:
+- SSH login attempt for 'admin' from '10.0.0.15' at 08:54:50 (failed) [SSHD[1799]].
+- SSH login for 'admin' from '10.00.0.15' at 08:55:02 using public key [SSHD[1801]][1].
+- Admin user executed '/usr/bin/apt update' at 09:10:31 [CRON[1920]][2].
+- Admin user executed '/usr/bin/apt upgrade -y' at 09:11:02 [CRON[1920]][3].
+
+3. SUSPICIOUS ACTIVITY:
+- None identified.
+
+4. ASSUMPTIONS:
+- Assumption: The admin user has legitimate access to the system.
+- Assumption: The IP address '10.0.0.15' is not associated with any known malicious activity.
+- Assumption: The admin user's public key is authorized for SSH access.
+
+5. MISSING INFORMATION:
+- User's public key fingerprints for verification.
+- Logs of previous SSH login attempts for the 'admin' user.
+- Logs of any other system activities performed by the 'admin' user.
+
+6. SEVERITY: Low
+The logs show a normal sequence of events, with a failed SSH login followed by a successful login and subsequent system updates. There is no evidence of malicious activity.
+
+7. RECOMMENDED NEXT STEPS:
+- Verify the legitimacy of the admin user's public key.
+- Review the logs for any previous failed SSH login attempts for the 'admin' user.
+- Monitor the system for any unusual activity.
+- Ensure that the system is up to date with the latest security patches.
+- Educate the admin user on best practices for system security.

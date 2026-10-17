@@ -1,0 +1,29 @@
+ 1. SUMMARY: Service account svc_ops logged in to FS01 and APP01 servers at 02:10 and 02:13, and was granted debug and backup privileges. The account is an approved admin jump host and has no restrictions on permitted hosts or standard work hours.
+
+2. EVIDENCE:
+   - Service account svc_ops logged in to FS01 at 02:10:10 (Log EventID=4624)
+   - Service account svc_ops logged in to FS01 with debug and backup privileges at 02:10:45 (Log EventID=4672)
+   - Service account svc_ops logged in to APP01 at 02:13:22 (Log EventID=4624)
+   - Service account svc_ops logged in to APP01 with debug and backup privileges at 02:13:31 (Log EventID=4672)
+   - JUMP-02 is an approved admin jump host with IP 10.10.5.20 (cmdb asset log)
+   - Account CORP\svc_ops is permitted to access FS01 and APP01 with no standard work hours restriction (access_policy log)
+
+3. SUSPICIOUS ACTIVITY:
+   - None identified based on the provided logs. The service account is an approved admin jump host and has the necessary privileges for its role.
+
+4. ASSUMPTIONS:
+   - The service account svc_ops is performing its intended duties, as it is an approved admin jump host.
+   - The service account svc_ops is not performing any malicious activities, as there are no signs of unauthorized access or unusual behavior.
+
+5. MISSING INFORMATION:
+   - The purpose of the service account svc_ops logging in to FS01 and APP01 servers at those specific times.
+   - The context of the debug and backup privileges granted to the service account svc_ops.
+
+6. SEVERITY: Insufficient evidence - The service account is an approved admin jump host and there are no signs of unauthorized access or unusual behavior.
+
+7. RECOMMENDED NEXT STEPS:
+   - Investigate the purpose of the service account svc_ops logging in to FS01 and APP01 servers at those specific times.
+   - Determine the context of the debug and backup privileges granted to the service account svc_ops.
+   - Monitor the service account's activities for any unusual behavior or deviations from its normal pattern.
+   - Review the access policy for the service account to ensure it is up-to-date and appropriate.
+   - Consult with the system administrator or the service account's owner to understand its intended duties and responsibilities.

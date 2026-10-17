@@ -1,0 +1,36 @@
+**SUMMARY**
+The logs show a user, 'admin', attempting to log in via SSH and successfully authenticating using a public key. The user then runs two 'apt' commands as the root user, which is unusual for a user who is not the root user. The session is closed, and a new session is opened for the root user.
+
+**EVIDENCE**
+* A failed SSH login attempt by 'admin' from '10.0.0.15' port 52008 ssh2: Oct 14 08:54:50 web01 sshd[1799]: Failed password for admin from 10.0.0.15 port 52008 ssh2
+* A successful publickey authentication by 'admin' from '10.0.0.15' port 52011 ssh2: Oct 14 08:55:02 web01 sshd[1801]: Accepted publickey for admin from 10.0.0.15 port 52011 ssh2
+* A session opened for user 'admin' by (uid=0): Oct 14 08:55:02 web01 sshd[1801]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+* Two 'apt' commands run as the root user 'admin': Oct 14 09:10:31 web01 sudo: admin : TTY=pts/0 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt update
+* Two 'apt' commands run as the root user 'admin': Oct 14 09:11:02 web01 sudo: admin : TTY=pts/0 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt upgrade -y
+* A session closed for user 'admin': Oct 14 09:25:44 web01 sshd[1801]: pam_unix(sshd:session): session closed for user admin
+* A new session opened for user 'root' by (uid=0): Oct 14 09:30:00 web01 CRON[1920]: pam_unix(cron:session): session opened for user root by (uid=0)
+* A new session closed for user 'root': Oct 14 09:30:01 web01 CRON[1920]: pam_unix(cron:session): session closed for user root
+
+**SUSPICIOUS ACTIVITY**
+* The user 'admin' runs two 'apt' commands as the root user, which is unusual for a user who is not the root user.
+* The user 'admin' runs two 'apt' commands as the root user, which is unusual for a user who is not the root user.
+* The session is closed for user 'admin', and a new session is opened for user 'root', which could indicate a potential privilege escalation.
+
+**ASSUMPTIONS**
+* The user 'admin' is attempting to gain elevated privileges.
+* The user 'admin' is attempting to install software as the root user.
+* The user 'admin' is attempting to gain control of the system.
+
+**MISSING INFORMATION**
+* The reason for the user 'admin' running 'apt' commands as the root user.
+* The purpose of the 'apt' commands run by the user 'admin'.
+* The reason for the session closure and reopening for user 'root'.
+
+**SEVERITY**
+Low
+The logs do not provide sufficient evidence to conclude that an attack has occurred. However, the unusual behavior of the user 'admin' running 'apt' commands as the root user is worth investigating further.
+
+**RECOMMENDED NEXT STEPS**
+1. Review the 'apt' commands run by the user 'admin' to determine their purpose and potential impact.
+2. Investigate the reason for the user 'admin' running 'apt' commands as the root user.
+3. Verify that the user 'admin

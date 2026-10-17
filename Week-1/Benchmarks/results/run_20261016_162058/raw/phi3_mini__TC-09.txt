@@ -1,0 +1,40 @@
+
+1. SUMMARY:
+
+   - On October 14, 2026, a process named "helper.exe" was executed by user "jlee" from the "C:\Users\Public" directory.
+
+   - The process attempted to access the "lsass.exe" process in the "C:\Windows\System32" directory.
+
+   - An EDR alert was triggered due to a credential access attempt, which was subsequently blocked.
+
+   - The process was terminated, and the file was quarantined.
+
+   - A logon attempt by the same user was recorded shortly after the suspicious activity.
+
+2. EVIDENCE:
+
+   - Sysmon EventID=1: "2026-10-14T13:01:07Z WS-HR-04 Sysmon EventID=1 ProcessGuid={aa11-bb22} Image=C:\Users\Public\helper.exe CommandLine="C:\Users\Public\helper.exe" User=CORP\jlee ParentImage=C:\Windows\explorer.exe"
+
+   - Sysmon EventID=10: "2026-10-14T13:01:12Z WS-HR-04 Sysmon EventID=10 SourceImage=C:\Users\Public\helper.exe TargetImage=C:\Windows\System32\lsass.exe GrantedAccess=0x1fffff SourceProcessGuid={aa11-bb22}"
+
+   - EDR alert: "2026-10-14T13:01:12Z WS-HR-04 EDR alert=CredentialAccessAttempt severity=High process=C:\Users\Public\helper.exe target=lsass.exe action=BLOCK outcome=Prevented alert_id=EDR-4419"
+
+   - EDR alert outcome: "2026-10-14T13:01:13Z WS-HR-04 EDR alert_id=EDR-4419 process_terminated=true file_quarantined=true"
+
+   - Logon attempt: "2026-10-14T13:02:20Z WS-HR-04 Security EventID=4624 Account=jlee LogonType=2 result=Success"
+
+3. SUSPICIOUS ACTIVITY:
+
+   - Assumption: The execution of "helper.exe" and its attempt to access "lsass.exe" could be suspicious, as it is not a common interaction between these processes.
+
+   - Assumption: The EDR alert for credential access attempt and its subsequent blocking could indicate suspicious behavior, as it suggests an attempt to gain unauthorized access to sensitive system components.
+
+   - Assumption: The termination of the process and quarantining of the file shortly after the EDR alert could be suspicious, as it may indicate an automated response to the detected threat.
+
+4. ASSUMPTIONS:
+
+   - Assumption: The process "helper.exe" is not a standard or expected part of the system's operation, based on its interaction with "lsass.exe".
+
+   - Assumption: The credential access attempt was not a legitimate user action, as it was blocked by the EDR system.
+
+   - Assumption: The process termination and file quarantining

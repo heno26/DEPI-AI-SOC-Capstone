@@ -1,0 +1,36 @@
+ 1. SUMMARY: A credential harvesting campaign targeted finance staff at several mid-sized companies between 8-12 October 2026. The attackers sent emails with an HTML attachment named invoice_2026.html, which redirected victims to a fake Microsoft 365 login page to capture credentials. No malware was dropped.
+
+2. THREAT TYPE: Phishing
+
+3. INDICATORS OF COMPROMISE:
+   - Type | Value | Where stated in report
+   - Sender address | billing@invoices-portal[.]example
+   - Sender IP | 192.0.2.88
+   - Phishing URL | hxxps://secure-login-portal[.]example/auth
+   - Attachment filename | invoice_2026.html
+
+4. TECHNIQUES DESCRIBED:
+   - Phishing with attachment (MITRE ATT&CK T1566.001)
+
+5. TARGETS / AFFECTED SYSTEMS: Finance staff at mid-sized companies.
+
+6. ATTRIBUTION: Not stated
+
+7. RECOMMENDED DEFENSIVE ACTIONS:
+   - Block the listed domains and sender
+   - Enable Multi-Factor Authentication (MFA)
+   - Warn finance staff
+
+8. ASSUMPTIONS AND GAPS:
+   - Assumption: The attack was targeted at finance staff due to their access to sensitive financial information.
+   - Assumption: The attack was carried out via email due to the mention of an email with an attachment.
+   - Assumption: The attack was successful in capturing credentials, as stated in the report. However, the report does not provide information on the number of victims or the extent of the compromise.
+   - Assumption: The attack was carried out between 8-12 October 2026, as stated in the report. However, the report does not provide information on whether the attack is still ongoing.
+   - Assumption: The attack was carried out using a fake Microsoft 365 login page, as stated in the report. However, the report does not provide information on whether other login pages were used.
+   - Assumption: The attack was carried out using a phishing email, as stated in the report. However, the report does not provide information on whether other attack vectors were used.
+   - Assumption: The attack was carried out by an unidentified threat actor, as stated in the report. However, the report does not provide information on the motivation or capabilities of the threat actor.
+   - Assumption: The attack was carried out using the specified indicators, as listed in the report. However, the report does not provide information on whether other indicators were used.
+   - Assumption: The attack was carried out using the specified technique, as listed in the report. However, the report does not provide information on whether other techniques were used.
+   - Assumption: The attack was carried out against mid-sized companies, as stated in the report. However, the report does not provide information on the number of companies targeted or the geographical location of the companies.
+   - Assumption: The attack was carried out using the specified time frame, as stated in the report. However, the report does not provide information on whether the attack started or ended outside of the specified time frame.
+   - Assumption: The attack was carried out using the specified domain and IP address, as listed in the report. However, the report does not provide information on whether other domains and IP addresses

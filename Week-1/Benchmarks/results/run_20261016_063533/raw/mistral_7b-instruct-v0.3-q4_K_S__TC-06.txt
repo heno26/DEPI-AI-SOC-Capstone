@@ -1,0 +1,34 @@
+ 1. INCIDENT TITLE: IR-2026-014 - Suspicious Email Leads to Credential Phishing
+
+2. EXECUTIVE SUMMARY: A user reported a suspicious email containing a link to a credential phishing page, and the SOC confirmed this. The user submitted their credentials to the phishing page, and an inbox rule was created forwarding all mail to an external address. The SOC took actions to secure the account and remove the forwarding rule. However, it is unknown whether any sensitive data was contained in the forwarded emails or if other users received the same email.
+
+3. TIMELINE:
+   | Time       | Event                                |
+   |------------|-------------------------------------|
+   | 09:14      | User jdoe reported a suspicious email |
+   | 09:20      | SOC confirmed the email was phishing  |
+   | 09:32      | Proxy logs show jdoe submitted credentials to the phishing page |
+   | 09:48      | Mailbox audit log shows a new inbox rule created on jdoe's mailbox forwarding all mail to an external address |
+   | 10:05      | SOC reset jdoe’s password and revoked active sessions |
+   | 10:20      | SOC removed the forwarding rule |
+
+4. IMPACT: Suspected (forwarded emails potentially contained sensitive data)
+
+5. ROOT CAUSE: Suspected (user likely clicked on a malicious link in the email)
+
+6. ACTIONS TAKEN:
+   - Confirmed the suspicious nature of the email
+   - Reset user's password and revoked active sessions
+   - Removed the forwarding rule from the mailbox
+
+7. RECOMMENDATIONS:
+   - Investigate if any sensitive data was contained in the forwarded emails
+   - Notify other potentially affected users about the phishing email
+   - Implement user training on recognizing and handling suspicious emails
+
+8. OPEN QUESTIONS:
+   - Whether any forwarded email contained sensitive data (Unknown)
+   - How many emails were forwarded (Unknown)
+   - Whether other users received the same email (Unknown)
+
+9. REVIEW STATUS: DRAFT - AI-generated, requires human analyst validation before use.

@@ -1,0 +1,29 @@
+1. SUMMARY:
+On October 14, 2026, a monthly patch deployment was approved for host APP02, with the patch installation being successful and no reboot required. However, there are suspicious activities related to the use of msiexec.exe and the installation of updates.
+
+2. EVIDENCE:
+- Log entry 2026-10-14 02:03:14 shows a Security EventID 4624 for account CORP\patchsvc with a logon type 3, indicating a network logon.
+- Log entry 2026-10-14 02:04:01 shows Sysmon EventID 1 for image C:\Windows\System32\msiexec.exe with a parent image of C:\Program Files\CorpPatch\patchagent.exe, and user CORP\patchsvc.
+- Log entry 20260-10-14 02:04:12 shows EDR FileExecution for file C:\Program Files\CorpPatch\update.msi, signed by CorpPatch-IT with a valid signature.
+
+3. SUSPICIOUS ACTIVITY:
+- Log entry 2026-10-14 02:04:01 shows Sysmon EventID 1 for image C:\Windows\System32\msiexec.exe with a parent image of C:\Program Files\CorpPatch\patchagent.exe, and user CORP\patchsvc. This is suspicious because the use of msiexec.exe, which is typically used for installing Windows updates, is not a common activity during regular operations.
+- Log entry 2026-100-14 02:04:12 shows EDR FileExecution for file C:\Program Files\CorpPatch\update.msi, signed by CorpPatch-IT with a valid signature. This is suspicious because it indicates the installation of an update, which is not a typical activity during regular operations.
+
+4. ASSUMPTIONS:
+- Assumption: The use of msiexec.exe and the installation of updates are not common activities during regular operations.
+- Assumption: The approval of the monthly patch deployment is not suspicious.
+
+5. MISSING INFORMATION:
+- The analyst should collect more information about the normal behavior of the system, including typical activities during regular operations.
+- The analyst should investigate the source of the msiexec.exe and update.msi files, including their origin and purpose.
+
+6. SEVERITY: Low
+The suspicious activities identified in the logs are not indicative of a severe security incident, but they warrant further investigation.
+
+7. RECOMMENDED NEXT STEPS:
+- Collect more information about the normal behavior of the system, including typical activities during regular operations.
+- Investigate the source of the msiexec.exe and update.msi files, including their origin and purpose.
+- Monitor the system for any further suspicious activities.
+- Review the approval process for the monthly patch deployment to ensure it is secure and follows best practices.
+- Conduct a thorough investigation of the suspicious activities identified in the logs to determine if they are indicative of a security incident.

@@ -1,0 +1,16 @@
+ 1. SUMMARY: Multiple user accounts, including administrative accounts, have logged in from the IP address 10.20.5.99 on DC01. The last two logs indicate a user (svc_backup) added themselves to the Administrators group on FS02.
+
+2. EVIDENCE:
+   - Multiple logon events for various user accounts from the IP address 10.20.5.99 on DC01:
+     - 2026-10-14 09:02:11 DC01 EventID=4625 Account=alice LogonType=3 SourceIP=10.20.5.99 Status=0xC000006D
+     - 2026-10-14 09:02:14 DC01 EventID=4625 Account=bob LogonType=3 SourceIP=10.20.5.99 Status=0xC000006D
+     - 2026-10-14 09:02:17 DC01 EventID=4625 Account=carol LogonType=3 SourceIP=10.20.5.99 Status=0xC000006D
+     - 2026-10-14 09:02:20 DC01 EventID=4625 Account=dave LogonType=3 SourceIP=10.20.5.99 Status=0xC000006D
+     - 2026-10-14 09:02:23 DC01 EventID=4625 Account=admin LogonType=3 SourceIP=10.20.5.99 Status=0xC000006A
+     - 2026-10-14 09:02:26 DC01 EventID=4625 Account=svc_backup LogonType=3 SourceIP=10.20.5.99 Status=0xC000006A
+   - Logon event for svc_backup with a successful logoff on DC01: 2026-10-14 09:02:26 DC01 EventID=4625 Account=svc_backup LogonType=3 SourceIP=10.20.5.99 Status=0xC000006A
+   - Logon event for svc_backup on DC01 with a different status (0xC000006A instead of 0xC000006D): 2026-10-14 09:02:23 DC01 EventID=4625 Account=svc_backup LogonType=3 SourceIP=10.20.5.99 Status=0xC000006A
+   - Group membership change event on FS02: 2026-10-14 09:07:02 FS02 EventID=4732 MemberAdded=svc_backup Group=Administrators ChangedBy=svc_backup
+
+3. SUSPICIOUS ACTIVITY:
+   - Multiple user accounts, including administrative accounts, logging in from the same IP address within a short time frame is unusual

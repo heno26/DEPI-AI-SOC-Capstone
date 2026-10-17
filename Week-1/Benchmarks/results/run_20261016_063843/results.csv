@@ -1,0 +1,2 @@
+model,case_id,task,model_load_s,wall_time_s,total_time_s,prompt_tokens,output_tokens,tokens_per_sec,done_reason,model_size_gb,vram_gb,gpu_offload_pct,gpu_mem_used_mb,expected_found,expected_total,recall,missed_ids,flagged_claims,unsupported_indicators,manual_quality_1to5,manual_hallucination_0to3,manual_notes,error
+phi3:mini,TC-05,threat_intel,1.76,15.76,13.69,737,548,41.6,stop,3.81,3.81,100.0,3923,5,6,0.83,EF4,,192.008.0.34,2,3,Retry only: fabricates 192.008.0.34 as sender IP while using correct 192.0.2.88 elsewhere; inconsistent IOC extraction.,

@@ -1,0 +1,39 @@
+INCIDENT TITLE
+IR-2026-014
+
+EXECUTIVE SUMMARY:
+A suspicious email was reported to the SOC, which contained a link to a credential phishing page. The user's credentials were compromised, and a new inbox rule was set up to forward all mail to an external address. The SOC took action to reset the user's password, revoke active sessions, and remove the forwarding rule.
+
+TIMELINE
+| Time | Event |
+| --- | --- |
+| 09:14 | User jdoe reported a suspicious email to the SOC. |
+| 09:20 | SOC confirmed the email contained a link to a credential phishing page. |
+| 09:32 | Proxy logs show jdoe submitted credentials to the phishing page. |
+| 09:48 | Mailbox audit log shows a new inbox rule on jdoe's mailbox forwarding all mail to an external address. |
+| 10:05 | SOC reset jdoe's password and revoked active sessions. |
+| 10:20 | SOC removed the forwarding rule. |
+
+IMPACT
+Confirmed
+
+ROOT CAUSE
+Confirmed
+
+ACTIONS TAKEN
+• Reset jdoe's password
+• Revoked active sessions
+• Removed the forwarding rule
+
+RECOMMENDATIONS
+• Monitor the user's account activity for any suspicious activity
+• Review the email content to determine if any sensitive data was forwarded
+• Investigate the number of emails forwarded and if other users received the same email
+
+OPEN QUESTIONS
+• Whether any forwarded email contained sensitive data
+• How many emails were forwarded
+• Whether other users received the same email
+
+REVIEW STATUS
+DRAFT - AI-generated, requires human analyst validation before use.

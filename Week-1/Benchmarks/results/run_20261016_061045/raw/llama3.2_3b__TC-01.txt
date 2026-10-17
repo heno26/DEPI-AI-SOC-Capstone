@@ -1,0 +1,33 @@
+**SUMMARY**
+The log data shows multiple failed SSH login attempts from the same IP address (203.0.113.45) to various users, including 'admin', 'test', 'root', and 'deploy'. The login attempts were made using different ports (51122, 51124, 51126, 51128, 51130, 51132) and timestamps. One successful login attempt was also recorded for the user 'deploy'.
+
+**EVIDENCE**
+* Failed password for invalid user admin from 203.0.113.45 port 51122 ssh2
+* Failed password for invalid user test from 203.0.113.45 port 51124 ssh2
+* Failed password for root from 203.0.113.45 port 51126 ssh2
+* Failed password for root from 203.0.113.45 port 51128 ssh2
+* Failed password for invalid user ubuntu from 203.0.113.45 port 51130 ssh2
+* Failed password for deploy from 203.0.113.45 port 51132 ssh2
+* Accepted password for deploy from 203.0.113.45 port 51190 ssh2
+* pam_unix(sshd:session): session opened for user deploy by (uid=0)
+
+**SUSPICIOUS ACTIVITY**
+* None identified
+
+**ASSUMPTIONS**
+* Assumption: The IP address 203.0.113.45 is a legitimate IP address used by an authorized user.
+* Assumption: The user 'deploy' is a legitimate user with a valid account on the system.
+
+**MISSING INFORMATION**
+* The analyst should collect more information about the user 'deploy' and their account to confirm their legitimacy.
+* The analyst should also collect more information about the IP address 203.0.113.45 to determine its legitimacy.
+
+**SEVERITY**
+Low
+
+**RECOMMENDED NEXT STEPS**
+1. Investigate the user 'deploy' and their account to confirm their legitimacy.
+2. Verify the IP address 203.0.113.45 to determine its legitimacy.
+3. Check the system logs for any other suspicious activity.
+4. Review the system's SSH configuration to ensure it is secure.
+5. Consider implementing additional security measures, such as IP blocking or rate limiting, to prevent similar login attempts in the future.

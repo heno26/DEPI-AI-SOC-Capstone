@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "date": "2026-10-16T06:39:07",
+    "python": "3.14.6",
+    "os": "Windows-11-10.0.26300-SP0",
+    "options": {
+      "temperature": 0.2,
+      "seed": 42,
+      "repeat_penalty": 1.15,
+      "num_ctx": 4096,
+      "num_predict": 800
+    },
+    "skipped_models": []
+  },
+  "summary": [
+    {
+      "model": "phi3:mini",
+      "runs": 1,
+      "avg_wall_time_s": 15.76,
+      "avg_tokens_per_sec": 41.6,
+      "avg_auto_recall": 0.83,
+      "total_flagged_claims": 0,
+      "total_unsupported_indicators": 1,
+      "model_size_gb": 3.81,
+      "vram_gb": 3.81,
+      "gpu_offload_pct": 100.0
+    }
+  ],
+  "runs": [
+    {
+      "model": "phi3:mini",
+      "case_id": "TC-05",
+      "task": "threat_intel",
+      "model_load_s": 1.76,
+      "wall_time_s": 15.76,
+      "total_time_s": 13.69,
+      "prompt_tokens": 737,
+      "output_tokens": 548,
+      "tokens_per_sec": 41.6,
+      "done_reason": "stop",
+      "model_size_gb": 3.81,
+      "vram_gb": 3.81,
+      "gpu_offload_pct": 100.0,
+      "gpu_mem_used_mb": 3923,
+      "expected_found": 5,
+      "expected_total": 6,
+      "recall": 0.83,
+      "missed_ids": "EF4",
+      "flagged_claims": "",
+      "unsupported_indicators": "192.008.0.34",
+      "manual_quality_1to5": "",
+      "manual_hallucination_0to3": "",
+      "manual_notes": ""
+    }
+  ]
+}

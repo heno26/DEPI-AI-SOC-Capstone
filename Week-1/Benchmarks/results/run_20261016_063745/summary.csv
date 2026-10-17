@@ -1,0 +1,1 @@
+model,runs,avg_wall_time_s,avg_tokens_per_sec,avg_auto_recall,total_flagged_claims,total_unsupported_indicators,model_size_gb,vram_gb,gpu_offload_pct

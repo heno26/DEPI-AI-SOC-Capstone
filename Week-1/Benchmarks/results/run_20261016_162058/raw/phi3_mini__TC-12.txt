@@ -1,0 +1,53 @@
+
+1. SUMMARY:
+
+   - On October 14, 2026, at 02:10:10, a successful login was recorded for the account CORP\svc_ops on the workstation JUMP-02 from the IP address 10.10.5.20.
+
+   - Shortly after, at 02:10:45, the same account was granted SeDebugPrivilege and SeBackupPrivilege on the same workstation.
+
+   - The account was also logged into the application server APP01 at 02:13:22 and 02:13:31, respectively.
+
+   - The asset JUMP-02 was marked as an approved_admin_jump_host at 02:15:00.
+
+   - An access policy was set for the account CORP\svc_ops at 02:15:01, allowing access to FS01 and APP01 during standard working hours with no change exceptions.
+
+
+2. EVIDENCE:
+
+   - Successful login for CORP\svc_ops on JUMP-02 at 2026-10-14 02:10:10 (FS01 Security EventID=4624).
+
+   - Privilege escalation for CORP\svc_ops on JUMP-02 at 20260-10-14 02:10:45 (FS01 Security EventID=4672).
+
+   - Logon to APP01 by CORP\svc_ops at 2026-10-14 02:13:22 (APP01 Security EventID=4624).
+
+   - Privilege escalation for CORP\svc_ops on APP01 at 2026-10-14 02:13:31 (APP01 Security EventID=4672).
+
+   - Asset JUMP-02 marked as approved_admin_jump_host at 2026-10-14 02:15:00 (cmdb asset=JUMP-02).
+
+   - Access policy for CORP\svc_ops at 2026-10-14 02:15:01 (access_policy).
+
+
+3. SUSPICIOUS ACTIVITY:
+
+   - None identified.
+
+
+4. ASSUMPTIONS:
+
+   - Assumption: The privileges granted to CORP\svc_ops may indicate a potential privilege escalation attempt.
+
+   - Assumption: The simultaneous logins to FS01 and APP01 by CORP\svc_ops could suggest lateral movement within the network.
+
+
+5. MISSING INFORMATION:
+
+   - User activity logs or system changes made by CORP\svc_ops after the privilege escalation.
+
+   - Network traffic data between JUMP-02 and other assets or external IPs.
+
+   - Details of the access policy change for CORP\svc_ops.
+
+
+6. SEVERITY: Low
+
+   - The activities recorded in the logs are routine and do not indicate an immediate threat

@@ -1,0 +1,38 @@
+1. INCIDENT TITLE: Credential Phishing Incident - IR-2026-014 (Draft)
+
+2. EXECUTIVE SUMMARY:
+A user, identified as jdoe, reported a suspicious email at 09:14. The SOC confirmed the email was a credential phishing attempt at 09:20. The user submitted credentials to the phishing page at 09:32. The SOC took immediate action to secure the user's account and mailbox by resetting the password and revoking active sessions at 10:05. The forwarding rule that directed all incoming emails to an external address was removed at 10:20.
+
+3. TIMELINE:
+
+| Time  | Event                                                                                   |
+|-------|-----------------------------------------------------------------------------------------|
+| 09:14 | User jdoe reported a suspicious email to the SOC.                                      |
+| 09:20 | SOC confirmed the email contained a link to a credential phishing page.                  |
+| 09:32 | Proxy logs show jdoe submitted credentials to the phishing page.                         |
+| 09:48 | Mailbox audit log shows a new inbox rule on jdoe's mailbox forwarding all mail to an external address. |
+| 10:05 | SOC reset jdoe's password and revoked active sessions.                                 |
+| 10:20 | SOC removed the forwarding rule.                                                       |
+
+4. IMPACT: Confirmed
+
+5. ROOT CAUSE: Confirmed
+
+6. ACTIONS TAKEN:
+- User jdoe reported a suspicious email to the SOC.
+- SOC confirmed the email contained a credential phishing page.
+- User jdoe submitted credentials to the phishing page.
+- SOC reset jdoe's password and revoked active sessions.
+- SOC removed the forwarding rule from jdoe's mailbox.
+
+7. RECOMMENDATIONS:
+- Continuously monitor and educate users on identifying and reporting phishing attempts.
+- Review and update email filtering rules to prevent similar incidents.
+- Regularly audit mailbox forwarding rules to ensure they are not misused.
+
+8. OPEN QUESTIONS:
+- Whether any forwarded email contained sensitive data.
+- How many emails were forwarded.
+- Whether other users received the same email.
+
+9. REVIEW STATUS: DRAFT - AI-generated, requires human analyst validation before use.

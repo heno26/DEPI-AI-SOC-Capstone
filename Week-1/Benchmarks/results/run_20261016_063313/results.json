@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "date": "2026-10-16T06:33:32",
+    "python": "3.14.6",
+    "os": "Windows-11-10.0.26300-SP0",
+    "options": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 2048,
+      "num_predict": 400
+    },
+    "skipped_models": []
+  },
+  "summary": [],
+  "runs": [
+    {
+      "model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "case_id": "TC-06",
+      "task": "incident_report",
+      "model_load_s": 2.69,
+      "error": "Ollama HTTP 500: {\"error\":\"prediction aborted, token repeat limit reached\"}",
+      "manual_quality_1to5": "",
+      "manual_hallucination_0to3": "",
+      "manual_notes": ""
+    }
+  ]
+}

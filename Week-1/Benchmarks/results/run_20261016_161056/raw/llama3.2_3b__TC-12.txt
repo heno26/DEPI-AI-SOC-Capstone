@@ -1,0 +1,33 @@
+**SUMMARY**
+The log data shows multiple security events related to a user logging in to the system with elevated privileges. The user's workstation and IP address are consistent across the events.
+
+**EVIDENCE**
+* A user logged in to the system with LogonType=10 (normal logon) at 02:10:10 FS01.
+* The user's account is CORP\svc_ops.
+* The user's workstation is JUMP-02.
+* The user's IP address is 10.10.5.20.
+* The user has elevated privileges (SeDebugPrivilege, SeBackupPrivilege) at 02:10:45 FS01 and 02:13:31 APP01.
+* The user's workstation is assigned the role approved_admin_jump_host at 02:15:00.
+* The user's account is permitted to access hosts FS01 and APP01 during standard window 09:00-17:00.
+
+**SUSPICIOUS ACTIVITY**
+* None identified
+
+**ASSUMPTIONS**
+* Assumption: The user's elevated privileges may indicate a need for additional review or investigation.
+* Assumption: The user's workstation is assigned a specific role, which may indicate a specific set of permissions or access levels.
+
+**MISSING INFORMATION**
+* The analyst should collect information on the user's actual role and permissions to confirm or reject the findings.
+* The analyst should also investigate the user's access to other systems or resources.
+
+**SEVERITY**
+Low
+The analyst should continue to monitor the user's activity to determine if any suspicious behavior is occurring.
+
+**RECOMMENDED NEXT STEPS**
+1. Investigate the user's actual role and permissions to confirm or reject the findings.
+2. Monitor the user's access to other systems or resources.
+3. Review the user's workstation and IP address to ensure they are consistent across all events.
+4. Check the access policy for any exceptions or anomalies.
+5. Consider escalating the investigation to a senior analyst or security team for further review.

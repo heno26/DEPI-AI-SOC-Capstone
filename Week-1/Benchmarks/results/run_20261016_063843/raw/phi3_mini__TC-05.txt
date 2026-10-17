@@ -1,0 +1,19 @@
+**Summary:** A credential harvesting campaign targeted mid-sized company's financial employees between October 8th to 12th with emails containing an HTML attachment that leads victims through a phishing process on what appears as Microsoft login pages, without any malware being dropped. **Threat Type:** Phishing (MITRE ATT&CK T1566.001)
+
+| Indicator of Compromise | Value                    | Where stated in report   | 
+|-------------------------|--------------------------|--------------------------|
+| Sender address          | billing@invoices-portal[.]example     | Summary and Report       |
+| Sender IP               | 192.008.0.34             | Indicators              |
+| Phishing URL            | hxxps://secure-login-portal[.]example/auth   | Observed technique      |
+| Attachment filename     | invoice_2026.html        | Summary and Report       | 
+
+**Techniques Described:** [Phishing with attachment (MITRE ATT&CK T1566.001)]  
+
+**Targets / Affected Systems:** Finance employees at several mid-sized companies **Attribution:** Not stated   
+
+**Recommended Defensive Actions:** - Block the listed domains and sender IP address (hxxps://secure-login-portal[.]example/auth)  
+                               [192.0.2.88] 
+                            - Enable multi-factor authentication for Microsoft services   
+                            - Warn finance staff about phishing attempts **Assumptions and Gaps:** Assumption: The sender IP address (hxxps://secure-login-portal[.]example/auth) is directly associated with the credential harvesting campaign.  
+                              Assumption: All invoices from 'billing@invoices-portal[.]example' are malicious and should be blocked without further investigation, which may not always yield accurate results as legitimate emails can sometimes mimic phishing tactics or come through compromised accounts of the sender.  
+                              Gap: The report does not specify if any specific industry sectors were targeted beyond 'finance' employees at mid-sized companies nor whether there was a geographical focus in these attacks, which could be relevant for broader threat intelligence and defense strategies within an organization or sector.

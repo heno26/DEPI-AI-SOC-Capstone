@@ -1,0 +1,31 @@
+ 1. ALERT SUMMARY: A PowerShell script was executed from Microsoft Word on a finance workstation, with an encoded command and an outbound connection to an external IP.
+
+2. VERDICT: Likely True Positive
+
+3. CONFIDENCE: High - The use of PowerShell from an unauthorized application, encryption, and outbound connection to an external IP are all indicative of malicious activity.
+
+4. PRIORITY: P1 Critical - The finance workstation and the potential data exfiltration make this a high priority.
+
+5. EVIDENCE SUPPORTING MALICIOUS ACTIVITY:
+   - Execution of PowerShell from an unauthorized application (Microsoft Word)
+   - Use of encryption in the command line
+   - Outbound connection to an external IP
+
+6. EVIDENCE SUPPORTING BENIGN ACTIVITY: None
+
+7. ASSUMPTIONS:
+   - Assumption: The encoded PowerShell command is malicious, as there is no known benign use of encryption in PowerShell commands from Office applications.
+   - Assumption: The outbound connection to 198.51.100.23 is malicious, as it is unusual for finance workstations to have such connections.
+
+8. MISSING INFORMATION:
+   - The content of the decoded PowerShell command
+   - The purpose and owner of the connection to 198.51.100.23
+
+9. ESCALATE TO TIER 2: Yes - The potential for data exfiltration and the need to decipher the PowerShell command warrant further investigation.
+
+10. NEXT STEPS:
+   - Decode the PowerShell command to determine its purpose (Tier 2)
+   - Investigate the connection to 198.51.100.23 (Tier 2)
+   - Review the user's permissions and access to sensitive data (Tier 2)
+   - Implement temporary restrictions on PowerShell execution from Office applications (Tier 1)
+   - Implement network rules to block outbound connections to 198.51.100.23 (Tier 1)

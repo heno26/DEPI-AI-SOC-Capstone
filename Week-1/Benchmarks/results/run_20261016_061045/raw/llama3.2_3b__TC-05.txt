@@ -1,0 +1,32 @@
+Here is the summary of the threat report in the requested format:
+
+**SUMMARY**
+A credential harvesting campaign targeting finance staff was observed from October 8-12, 2026. Finance employees received emails with an HTML attachment that redirected them to a fake Microsoft 365 login page to capture credentials. No malware was dropped on victim systems.
+
+**THREAT TYPE**
+Phishing with attachment
+
+**INDICATORS OF COMPROMISE**
+| Type | Value | Where stated in report |
+| --- | --- | --- |
+| Sender address | billing@invoices-portal.example | Report |
+| Sender IP | 192.0.2.88 | Report |
+| Phishing URL | hxxps://secure-login-portal.example/auth | Report |
+| Attachment filename | invoice_2026.html | Report |
+
+**TECHNIQUES DESCRIBED**
+* Phishing with attachment (MITRE ATT&CK T1566.001)
+
+**TARGETS / AFFECTED SYSTEMS**
+Finance employees at several mid-sized companies
+
+**ATTRIBUTION**
+Not stated
+
+**RECOMMENDED DEFENSIVE ACTIONS**
+* Block the listed domains and sender
+* Enable MFA
+* Warn finance staff
+
+**ASSUMPTIONS AND GAPS**
+* None stated

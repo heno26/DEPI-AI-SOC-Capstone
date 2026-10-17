@@ -1,0 +1,26 @@
+1. SUMMARY:
+The logs indicate a potential SQL injection attempt targeting the 'shop.example' host, with two blocked requests on the same day.
+
+2. EVIDENCE:
+- Log line: 2026-10-14T11:30:01Z waf01 WAF action=BLOCK rule_id=942100 category=SQLi src_ip=203.0.113.61 dst_host=shop.example uri="/products?id=1%27%20OR%201%3D1--" http_status=403 request_id=WAF-8801
+- Log line: 2026-10-14T11:30:06Z waf01 WAF action=BLOCK rule_id=942100 category=SQLi src_ip=203.0.113.61 dst_host=shop.example uri="/products?id=1%20UNION%20SELECT%20NULL" http_status=403 request_id=WAF-8802
+
+3. SUSPICIOUS ACTIVITY:
+- Log line: 2026-10-14T11:30:01Z waf01 WAF action=BLOCK rule_id=942100 category=SQLi src_ip=203.0.113.61 dst_host=shop.example uri="/products?id=1%27%20OR%201%3D1--" http_status=403 request_id=WAF-8801
+  - This request contains a potential SQL injection payload ('1%27%20OR%201%3D1--'), which is suspicious as it attempts to manipulate SQL queries.
+- Log line: 2026-10-14T11:30:06Z waf01 WAF action=BLOCK rule_id=942100 category=SQLi src_ip=203.0.113.61 dst_host=shop.example uri="/products?id=1%20UNION%20SELECT%20NULL" http_status=403 request_id=WAF-8802
+  - This request also contains a potential SQL injection payload ('1%20UNION%20SELECT%20NULL'), which is suspicious as it attempts to manipulate SQL queries.
+
+4. ASSUMPTIONS:
+- Assumption: The source IP address 203.0.113.61 is associated with malicious activity.
+- Assumption: The blocked requests are related to the same attacker or attackers.
+
+5. MISSING INFORMATION:
+- The analyst should collect more data on the source IP address 203.00.113.61, including its geolocation and historical activity.
+- The analyst should investigate the rule_id=942100 to understand its purpose and whether it is effectively blocking malicious requests.
+
+6. SEVERITY: Medium
+The logs show a potential SQL injection attempt, which is a serious security concern, but there is not enough evidence to confirm an ongoing attack.
+
+7. RECOMMENDED NEXT STEPS:
+- Collect more data on the source IP address 

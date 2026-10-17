@@ -1,0 +1,30 @@
+ 1. SUMMARY: A user named jlee launched an executable named helper.exe from the Public folder, which attempted to access lsass.exe with high severity, resulting in an EDR alert. The process was blocked, terminated, and the file was quarantined. jlee later successfully logged in with LogonType 2.
+
+2. EVIDENCE:
+   - A user named CORP\jlee launched the process C:\Users\Public\helper.exe at 2026-10-14T13:01:07Z (Log 1)
+   - The process C:\Users\Public\helper.exe attempted to access C:\Windows\System32\lsass.exe at 2026-10-14T13:01:12Z (Log 2)
+   - The access attempt was a CredentialAccessAttempt with a high severity at 2026-10-14T13:01:12Z (Log 3)
+   - The access attempt was blocked at 2026-10-14T13:01:12Z (Log 3)
+   - The process C:\Users\Public\helper.exe was terminated at 2026-10-14T13:01:13Z (Log 4)
+   - The file C:\Users\Public\helper.exe was quarantined at 2026-10-14T13:01:13Z (Log 4)
+   - jlee successfully logged in with LogonType 2 at 2026-10-14T13:02:20Z (Log 5)
+
+3. SUSPICIOUS ACTIVITY:
+   - The user jlee launched an executable from the Public folder, which is unusual but not necessarily malicious (Suspicious: Unusual behavior, Evidence: Log 1)
+   - The executable attempted to access lsass.exe, a critical system process, which is suspicious (Suspicious: Attempt to access critical system process, Evidence: Log 2)
+   - The EDR system blocked the access attempt, indicating potential malicious intent (Suspicious: Blocked access attempt, Evidence: Log 3)
+   - The process was terminated and the file was quarantined, further indicating potential malicious intent (Suspicious: Process terminated and file quarantined, Evidence: Log 4)
+
+4. ASSUMPTIONS:
+   - The executable helper.exe is malicious (Assumption: Malicious intent, Reason: EDR alert and process termination)
+   - The user jlee's successful logon is unrelated to the suspicious activity (Assumption: Unrelated logon, Reason: Temporal separation and no evidence of connection)
+
+5. MISSING INFORMATION:
+   - The purpose of the helper.exe executable
+   - The origin of the helper.exe executable
+   - The reason for the access attempt to lsass.exe
+   - Whether the helper.exe executable was part of a larger attack
+
+6. SEVERITY: High - The logs show a high severity EDR alert, a blocked access attempt to a critical system process, and the termination and quarantine of the executable.
+
+7. RECOMMENDED NEXT STEPS:
