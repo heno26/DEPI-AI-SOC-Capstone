@@ -1,0 +1,161 @@
+{
+  "replayed_utc": "2026-10-18T16:01:00.938441+00:00",
+  "purpose": "Review flags only; not a false-positive rate or benign certification",
+  "original_reports_unchanged": true,
+  "no_llm_calls": true,
+  "cases": [
+    {
+      "case": "BT-01",
+      "analysis_id": "AN-20261018-031118-23a5",
+      "human_review_status": "Corrected",
+      "original_flag_count": 0,
+      "replay_flag_count": 5,
+      "new_checks": [
+        "process_image_path_mismatch",
+        "process_termination_not_observed"
+      ],
+      "original_check_counts": {},
+      "replay_check_counts": {
+        "process_image_path_mismatch": 2,
+        "process_termination_not_observed": 3
+      },
+      "replayed_flags": [
+        {
+          "check": "process_termination_not_observed",
+          "severity": "medium",
+          "section": "EXECUTIVE SUMMARY",
+          "value": "The activity observed in the log data appears to be benign. It consists of multiple instances of the .NET Runtime Optimization Service (mscorsvw.exe) starting and stopping, which i",
+          "message": "The selected Sysmon 1 events show process creation only; no termination (Sysmon 5) for these processes appears in the input.",
+          "analyst_disposition": "Unreviewed",
+          "id": "F001"
+        },
+        {
+          "check": "process_image_path_mismatch",
+          "severity": "medium",
+          "section": "EXECUTIVE SUMMARY",
+          "value": "The activity observed in the log data appears to be benign. It consists of multiple instances of the .NET Runtime Optimization Service (mscorsvw.exe) starting and stopping, which i",
+          "message": "The process Image fields point to the .NET Framework directory, not C:\\Windows\\System32. Confirm the claimed process path against the input.",
+          "analyst_disposition": "Unreviewed",
+          "id": "F002"
+        },
+        {
+          "check": "process_termination_not_observed",
+          "severity": "medium",
+          "section": "POTENTIAL ATTACK INDICATORS",
+          "value": "- Possible NGen Worker Processes starting and stopping multiple times ([E001], [E002], [E003], [E004], [E005], [E006])",
+          "message": "The selected Sysmon 1 events show process creation only; no termination (Sysmon 5) for these processes appears in the input.",
+          "analyst_disposition": "Unreviewed",
+          "id": "F003"
+        },
+        {
+          "check": "process_termination_not_observed",
+          "severity": "medium",
+          "section": "CONFIDENCE AND UNCERTAINTY",
+          "value": "Low: The activity observed is common for the .NET Runtime Optimization Service, but multiple instances starting and stopping could be unusual. More context is needed to confirm if ",
+          "message": "The selected Sysmon 1 events show process creation only; no termination (Sysmon 5) for these processes appears in the input.",
+          "analyst_disposition": "Unreviewed",
+          "id": "F004"
+        },
+        {
+          "check": "process_image_path_mismatch",
+          "severity": "medium",
+          "section": "CONFIDENCE AND UNCERTAINTY",
+          "value": "Medium: The processes are initiated by a system user (NT AUTHORITY\\SYSTEM) and run from the expected directory C:\\Windows\\system32\\.",
+          "message": "The process Image fields point to the .NET Framework directory, not C:\\Windows\\System32. Confirm the claimed process path against the input.",
+          "analyst_disposition": "Unreviewed",
+          "id": "F005"
+        }
+      ]
+    },
+    {
+      "case": "BT-02",
+      "analysis_id": "AN-20261018-031219-895a",
+      "human_review_status": "Corrected",
+      "original_flag_count": 3,
+      "replay_flag_count": 4,
+      "new_checks": [
+        "service_logon_type_mismatch"
+      ],
+      "original_check_counts": {
+        "finding_without_evidence_ref": 2,
+        "none_claim_vs_signals": 1
+      },
+      "replay_check_counts": {
+        "finding_without_evidence_ref": 2,
+        "service_logon_type_mismatch": 2
+      },
+      "replayed_flags": [
+        {
+          "check": "finding_without_evidence_ref",
+          "severity": "medium",
+          "section": "POTENTIAL ATTACK INDICATORS",
+          "value": "- Possible assignment of unnecessary or excessive privileges to a service account.",
+          "message": "Finding has no [E###] evidence reference.",
+          "analyst_disposition": "Unreviewed",
+          "id": "F001"
+        },
+        {
+          "check": "finding_without_evidence_ref",
+          "severity": "medium",
+          "section": "POTENTIAL ATTACK INDICATORS",
+          "value": "- Potential for misuse if these privileges are exploited by an attacker.",
+          "message": "Finding has no [E###] evidence reference.",
+          "analyst_disposition": "Unreviewed",
+          "id": "F002"
+        },
+        {
+          "check": "service_logon_type_mismatch",
+          "severity": "high",
+          "section": "EVIDENCE REFERENCES",
+          "value": "- [E001] Shows a successful interactive logon by the service account.",
+          "message": "Cited Event ID 4624 has LogonType 5 (Service), not Interactive (2) or Network (3).",
+          "analyst_disposition": "Unreviewed",
+          "id": "F003"
+        },
+        {
+          "check": "service_logon_type_mismatch",
+          "severity": "high",
+          "section": "EVIDENCE REFERENCES",
+          "value": "- [E003] Indicates another successful network logon by the service account.",
+          "message": "Cited Event ID 4624 has LogonType 5 (Service), not Interactive (2) or Network (3).",
+          "analyst_disposition": "Unreviewed",
+          "id": "F004"
+        }
+      ]
+    },
+    {
+      "case": "BT-03",
+      "analysis_id": "AN-20261018-031340-9773",
+      "human_review_status": "Corrected",
+      "original_flag_count": 0,
+      "replay_flag_count": 2,
+      "new_checks": [
+        "service_start_stop_overgeneralization"
+      ],
+      "original_check_counts": {},
+      "replay_check_counts": {
+        "service_start_stop_overgeneralization": 2
+      },
+      "replayed_flags": [
+        {
+          "check": "service_start_stop_overgeneralization",
+          "severity": "low",
+          "section": "SUSPICIOUS ACTIVITIES",
+          "value": "- The repeated stopping and starting of services could potentially indicate an attempt to hide malicious activity, but the context provided does not clearly support this assumption",
+          "message": "Selected records contain only one Running transition. Repeated starts and stops across multiple services are not established.",
+          "analyst_disposition": "Unreviewed",
+          "id": "F001"
+        },
+        {
+          "check": "service_start_stop_overgeneralization",
+          "severity": "low",
+          "section": "POTENTIAL ATTACK INDICATORS",
+          "value": "Possible: Repeated service stops and starts could be an attempt to hide malicious activity. [E001], [E002], [E003], [E005]",
+          "message": "Selected records contain only one Running transition. Repeated starts and stops across multiple services are not established.",
+          "analyst_disposition": "Unreviewed",
+          "id": "F002"
+        }
+      ]
+    }
+  ]
+}
