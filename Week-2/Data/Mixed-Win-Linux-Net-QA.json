@@ -1,0 +1,1031 @@
+{
+  "schema_version": "depi-p5-mixed-v1",
+  "notice": "Sanitized replay / mixed-file QA only. Not a live incident.",
+  "sources": [
+    {
+      "file": "RT-01-C2-plink-focused.json",
+      "sha256": "1a5bee30293a99830627fd128d7aa003e4b6268bd722bdc3256c10f989cd62b7",
+      "events": 4,
+      "evidence_class": "user_supplied_unverified"
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "events": 21,
+      "evidence_class": "user_supplied_unverified"
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "events": 31,
+      "evidence_class": "user_supplied_unverified"
+    }
+  ],
+  "source_map": [
+    {
+      "file": "RT-01-C2-plink-focused.json",
+      "sha256": "1a5bee30293a99830627fd128d7aa003e4b6268bd722bdc3256c10f989cd62b7",
+      "ref": "E001",
+      "line_no": 1
+    },
+    {
+      "file": "RT-01-C2-plink-focused.json",
+      "sha256": "1a5bee30293a99830627fd128d7aa003e4b6268bd722bdc3256c10f989cd62b7",
+      "ref": "E002",
+      "line_no": 2
+    },
+    {
+      "file": "RT-01-C2-plink-focused.json",
+      "sha256": "1a5bee30293a99830627fd128d7aa003e4b6268bd722bdc3256c10f989cd62b7",
+      "ref": "E003",
+      "line_no": 3
+    },
+    {
+      "file": "RT-01-C2-plink-focused.json",
+      "sha256": "1a5bee30293a99830627fd128d7aa003e4b6268bd722bdc3256c10f989cd62b7",
+      "ref": "E004",
+      "line_no": 4
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E001",
+      "line_no": 1
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E002",
+      "line_no": 2
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E003",
+      "line_no": 3
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E004",
+      "line_no": 4
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E005",
+      "line_no": 5
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E006",
+      "line_no": 6
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E007",
+      "line_no": 7
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E008",
+      "line_no": 8
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E009",
+      "line_no": 9
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E010",
+      "line_no": 10
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E011",
+      "line_no": 11
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E012",
+      "line_no": 12
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E013",
+      "line_no": 13
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E014",
+      "line_no": 14
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E015",
+      "line_no": 15
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E016",
+      "line_no": 16
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E017",
+      "line_no": 17
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E018",
+      "line_no": 18
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E019",
+      "line_no": 19
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E020",
+      "line_no": 20
+    },
+    {
+      "file": "LT-02-normalized-focused.log",
+      "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+      "ref": "E021",
+      "line_no": 21
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E001",
+      "line_no": 1
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E002",
+      "line_no": 2
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E003",
+      "line_no": 3
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E004",
+      "line_no": 4
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E005",
+      "line_no": 5
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E006",
+      "line_no": 6
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E007",
+      "line_no": 7
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E008",
+      "line_no": 8
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E009",
+      "line_no": 9
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E010",
+      "line_no": 10
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E011",
+      "line_no": 11
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E012",
+      "line_no": 12
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E013",
+      "line_no": 13
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E014",
+      "line_no": 14
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E015",
+      "line_no": 15
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E016",
+      "line_no": 16
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E017",
+      "line_no": 17
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E018",
+      "line_no": 18
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E019",
+      "line_no": 19
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E020",
+      "line_no": 20
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E021",
+      "line_no": 21
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E022",
+      "line_no": 22
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E023",
+      "line_no": 23
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E024",
+      "line_no": 24
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E025",
+      "line_no": 25
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E026",
+      "line_no": 26
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E027",
+      "line_no": 27
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E028",
+      "line_no": 28
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E029",
+      "line_no": 29
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E030",
+      "line_no": 30
+    },
+    {
+      "file": "NT-01-focused.json",
+      "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+      "ref": "E031",
+      "line_no": 31
+    }
+  ],
+  "events": [
+    {
+      "evidence_id": "E003",
+      "timestamp": "2019-02-16T10:02:21.9344384Z",
+      "event_id": 1,
+      "record_id": 1940899,
+      "provider": "Microsoft-Windows-Sysmon",
+      "computer": "PC01.example.corp",
+      "event_data": {
+        "RuleName": "",
+        "UtcTime": "2019-02-16 10:02:21.934",
+        "ProcessGuid": "{365abb72-dfad-5c67-0000-0010e0811500}",
+        "ProcessId": "2312",
+        "Image": "C:\\Users\\IEUser\\Desktop\\plink.exe",
+        "FileVersion": "Release 0.70",
+        "Description": "Command-line SSH, Telnet, and Rlogin client",
+        "Product": "PuTTY suite",
+        "Company": "Simon Tatham",
+        "CommandLine": "plink.exe  10.0.2.18 -P 80 -C -R 127.0.0.3:4444:127.0.0.2:3389 -l test -pw [REDACTED]",
+        "CurrentDirectory": "C:\\Users\\IEUser\\Desktop\\",
+        "User": "PC01\\IEUser",
+        "LogonGuid": "{365abb72-d6ab-5c67-0000-002056660200}",
+        "LogonId": "0x26656",
+        "TerminalSessionId": "1",
+        "IntegrityLevel": "High",
+        "Hashes": "SHA1=7806AD24F669CD8BB9EBE16F87E90173047F8EE4",
+        "ParentProcessGuid": "{365abb72-d92a-5c67-0000-0010cb580900}",
+        "ParentProcessId": "3904",
+        "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "ParentCommandLine": "\"C:\\Windows\\system32\\cmd.exe\" "
+      }
+    },
+    {
+      "evidence_id": "E004",
+      "timestamp": "2019-02-16T10:02:22.9659216Z",
+      "event_id": 3,
+      "record_id": 1940900,
+      "provider": "Microsoft-Windows-Sysmon",
+      "computer": "PC01.example.corp",
+      "event_data": {
+        "RuleName": "",
+        "UtcTime": "2019-02-16 10:02:21.995",
+        "ProcessGuid": "{365abb72-dfad-5c67-0000-0010e0811500}",
+        "ProcessId": "2312",
+        "Image": "C:\\Users\\IEUser\\Desktop\\plink.exe",
+        "User": "PC01\\IEUser",
+        "Protocol": "tcp",
+        "Initiated": "true",
+        "SourceIsIpv6": "false",
+        "SourceIp": "10.0.2.17",
+        "SourceHostname": "PC01.example.corp",
+        "SourcePort": "49185",
+        "SourcePortName": "",
+        "DestinationIsIpv6": "false",
+        "DestinationIp": "10.0.2.18",
+        "DestinationHostname": "PC02",
+        "DestinationPort": "80",
+        "DestinationPortName": "http"
+      }
+    },
+    {
+      "evidence_id": "E005",
+      "timestamp": "2019-02-16T10:02:48.5026416Z",
+      "event_id": 3,
+      "record_id": 1940901,
+      "provider": "Microsoft-Windows-Sysmon",
+      "computer": "PC01.example.corp",
+      "event_data": {
+        "RuleName": "",
+        "UtcTime": "2019-02-16 10:02:46.454",
+        "ProcessGuid": "{365abb72-dfad-5c67-0000-0010e0811500}",
+        "ProcessId": "2312",
+        "Image": "C:\\Users\\IEUser\\Desktop\\plink.exe",
+        "User": "PC01\\IEUser",
+        "Protocol": "tcp",
+        "Initiated": "true",
+        "SourceIsIpv6": "false",
+        "SourceIp": "127.0.0.1",
+        "SourceHostname": "PC01.example.corp",
+        "SourcePort": "49186",
+        "SourcePortName": "",
+        "DestinationIsIpv6": "false",
+        "DestinationIp": "127.0.0.2",
+        "DestinationHostname": "",
+        "DestinationPort": "3389",
+        "DestinationPortName": "ms-wbt-server"
+      }
+    },
+    {
+      "evidence_id": "E023",
+      "timestamp": "2019-02-16T10:04:05.0927728Z",
+      "event_id": 3,
+      "record_id": 1940919,
+      "provider": "Microsoft-Windows-Sysmon",
+      "computer": "PC01.example.corp",
+      "event_data": {
+        "RuleName": "",
+        "UtcTime": "2019-02-16 10:04:04.122",
+        "ProcessGuid": "{365abb72-dfad-5c67-0000-0010e0811500}",
+        "ProcessId": "2312",
+        "Image": "C:\\Users\\IEUser\\Desktop\\plink.exe",
+        "User": "PC01\\IEUser",
+        "Protocol": "tcp",
+        "Initiated": "true",
+        "SourceIsIpv6": "false",
+        "SourceIp": "127.0.0.1",
+        "SourceHostname": "PC01.example.corp",
+        "SourcePort": "49187",
+        "SourcePortName": "",
+        "DestinationIsIpv6": "false",
+        "DestinationIp": "127.0.0.2",
+        "DestinationHostname": "",
+        "DestinationPort": "3389",
+        "DestinationPortName": "ms-wbt-server"
+      }
+    },
+    "2024-08-06T14:01:04.626000Z auditd PROCTITLE ref=E001 audit_serial=1311 source_line=108 category=service_status_context argv=[\"sudo\",\"systemctl\",\"status\",\"auditd.service\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:01:04.646000Z auditd PROCTITLE ref=E002 audit_serial=1321 source_line=102 category=service_status_context argv=[\"sudo\",\"systemctl\",\"status\",\"auditd.service\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:01:04.974000Z auditd PROCTITLE ref=E003 audit_serial=1337 source_line=97 category=service_status_context argv=[\"sudo\",\"systemctl\",\"status\",\"auditd.service\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:01:13.666000Z auditd PROCTITLE ref=E004 audit_serial=1344 source_line=96 category=service_status_context argv=[\"sudo\",\"systemctl\",\"status\",\"SplunkForwarder.service\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:01:26.582000Z auditd PROCTITLE ref=E005 audit_serial=1375 source_line=84 category=service_restart_context argv=[\"sudo\",\"/opt/splunkforwarder/bin/splunk\",\"restart\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:01:26.590000Z auditd PROCTITLE ref=E006 audit_serial=1385 source_line=78 category=service_restart_context argv=[\"sudo\",\"/opt/splunkforwarder/bin/splunk\",\"restart\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:01:40.430000Z auditd PROCTITLE ref=E007 audit_serial=2327 source_line=73 category=service_restart_context argv=[\"sudo\",\"/opt/splunkforwarder/bin/splunk\",\"restart\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:01:43.646000Z auditd PROCTITLE ref=E008 audit_serial=2376 source_line=66 category=service_status_context argv=[\"sudo\",\"systemctl\",\"status\",\"SplunkForwarder.service\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:01:48.742000Z auditd PROCTITLE ref=E009 audit_serial=2422 source_line=49 category=service_status_context argv=[\"sudo\",\"systemctl\",\"status\",\"SplunkForwarder.service\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:02:19.626000Z auditd PROCTITLE ref=E010 audit_serial=2435 source_line=48 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\"vuln\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:02:19.634000Z auditd PROCTITLE ref=E011 audit_serial=2437 source_line=46 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\"vuln\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:02:19.634000Z auditd PROCTITLE ref=E012 audit_serial=2443 source_line=44 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\"vuln\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:02:19.634000Z auditd PROCTITLE ref=E013 audit_serial=2446 source_line=41 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\"vuln\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:02:19.642000Z auditd PROCTITLE ref=E014 audit_serial=2450 source_line=39 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\"vuln\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:02:19.646000Z auditd PROCTITLE ref=E015 audit_serial=2456 source_line=37 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\"vuln\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:18:20.217000Z auditd PROCTITLE ref=E016 audit_serial=3118 source_line=36 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:18:20.221000Z auditd PROCTITLE ref=E017 audit_serial=3129 source_line=29 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:20:36.405000Z auditd PROCTITLE ref=E018 audit_serial=3257 source_line=22 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:20:36.413000Z auditd PROCTITLE ref=E019 audit_serial=3270 source_line=15 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:36:57.368000Z auditd PROCTITLE ref=E020 audit_serial=3769 source_line=8 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    "2024-08-06T14:36:57.376000Z auditd PROCTITLE ref=E021 audit_serial=3782 source_line=1 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+    {
+      "record_kind": "VERIFIED_FULL_SOURCE_AGGREGATE_NOT_RAW_ZEEK_EVENT",
+      "timestamp": "2026-05-26T06:07:27.414749Z",
+      "log_source": "Zeek conn.log",
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.130",
+      "source_sha256": "f9282d987047ef37a807a575a353ff601ddbb1b389aa76e92214c302de2fbda9",
+      "source_connection_record_count": 65895,
+      "source_tcp_records": 65747,
+      "source_udp_records": 148,
+      "scan_pair_tcp_records": 65747,
+      "scan_pair_distinct_destination_ports": 65535,
+      "scan_pair_conn_states": {
+        "REJ": 65620,
+        "RSTO": 15,
+        "S0": 112
+      },
+      "scan_pair_first_utc": "2026-05-26T06:07:27.414749Z",
+      "scan_pair_last_utc": "2026-05-26T06:19:45.683665Z",
+      "interpretation_limit": "Strong vertical port-scan pattern; authorization, actor intent, and compromise NOT established. Aggregate is computed, not a raw log event."
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:05:07.694185Z",
+      "zeek_ts_exact": "1779775507.694185",
+      "zeek_uid": "CtW7w119a6TDQ4liZ4",
+      "src_ip": "192.168.16.130",
+      "src_port": "49949",
+      "dst_ip": "192.168.16.1",
+      "dst_port": "53",
+      "proto": "udp",
+      "service": "dns",
+      "conn_state": "S0",
+      "history": "D",
+      "source_line": 9,
+      "source_line_sha256": "e8d99e74d87061eb5f669efc50120b43da179385d062c62b225902205a142eb2",
+      "sampling_category": "unlabelled_udp_context"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:07:27.414749Z",
+      "zeek_ts_exact": "1779775647.414749",
+      "zeek_uid": "CXX7bx1Vxeoa3Ryxqf",
+      "src_ip": "192.168.16.132",
+      "src_port": "44834",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "80",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 34,
+      "source_line_sha256": "b2ca9882bd1377bad22d77a9681aa1c0a45ff2c5f2d374ea2465b52e7d6a55f0",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:07:28.502707Z",
+      "zeek_ts_exact": "1779775648.502707",
+      "zeek_uid": "C8Lyev3X9q3IV7Px6c",
+      "src_ip": "192.168.16.132",
+      "src_port": "44836",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "2000",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 175,
+      "source_line_sha256": "8e17ec05fd17d8c00c20d03e494dd0734718849aa0a170b907450f5774485cac",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:08:35.524432Z",
+      "zeek_ts_exact": "1779775715.524432",
+      "zeek_uid": "COsR2uUmaUrSmJKbk",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "8888",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 189,
+      "source_line_sha256": "1238576db063935b4389e0aa6b61005b9972c30174125be92b64f4776ea11a22",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:08:59.998968Z",
+      "zeek_ts_exact": "1779775739.998968",
+      "zeek_uid": "CWUmui1WreJ7aWgTS5",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "62479",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 2663,
+      "source_line_sha256": "088fafed2188d17b8b517821b191baf7c06e4d5984f5fe0a331bb1650fffbf7b",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:09:00.009124Z",
+      "zeek_ts_exact": "1779775740.009124",
+      "zeek_uid": "CXgWCb1hmo47r9YDn8",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "31871",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 2664,
+      "source_line_sha256": "96cef1cfc3fa8f79f423ffa3cc7c49ae6ebc5156740c5a4e55d08a04066a6a07",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:09:59.998569Z",
+      "zeek_ts_exact": "1779775799.998569",
+      "zeek_uid": "Cr45st2DsENn0a3Ed8",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "52121",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 8527,
+      "source_line_sha256": "86727959c737d4f6041376c8d28b892c82d6c0dd95eb9b1131388803d038559f",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:10:00.008689Z",
+      "zeek_ts_exact": "1779775800.008689",
+      "zeek_uid": "Ci5eM8sMaHEp1N414",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "3953",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 8528,
+      "source_line_sha256": "e64d660b33afa75c9fe08f54ecdf7cbfc103f7ffb1e07c42ae1f18c36808c643",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:10:59.996012Z",
+      "zeek_ts_exact": "1779775859.996012",
+      "zeek_uid": "CHdIbJ3whoX4heluTf",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "17578",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 14406,
+      "source_line_sha256": "cfffc7f594329a9843f21816a86a3c7fb6f878cfe13c9d9b8d0f1675f0a8ff32",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:11:00.006167Z",
+      "zeek_ts_exact": "1779775860.006167",
+      "zeek_uid": "CkDyzl173x9JOnULr2",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "64112",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 14407,
+      "source_line_sha256": "805011389620c2f10ab896c38af0712d2a182d1d0a807466d53f57258d6b8740",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:11:59.995460Z",
+      "zeek_ts_exact": "1779775919.995460",
+      "zeek_uid": "CFyqif2Xtpg4S1Rvgj",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "43583",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 20272,
+      "source_line_sha256": "322b8c525f06f56c32803a0ede980c0261f175e2fc07673376bb0cbe8d31ab04",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:12:00.005674Z",
+      "zeek_ts_exact": "1779775920.005674",
+      "zeek_uid": "Cc6lfT2ZVKdXQfjdqd",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "31639",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 20273,
+      "source_line_sha256": "f85fc68e3f202cb603a62aa15eb090f8d0fdea45d175c78f233cfcac1c566cc2",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:12:59.998727Z",
+      "zeek_ts_exact": "1779775979.998727",
+      "zeek_uid": "CzqdvLULEtfFzWYDf",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "47929",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 26168,
+      "source_line_sha256": "e3b1c51fff971e98d4d7db1345b67c964aefd5041252885e993ee2048be79d4f",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:13:00.008771Z",
+      "zeek_ts_exact": "1779775980.008771",
+      "zeek_uid": "CPpega38RMKHzDoor",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "29631",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 26169,
+      "source_line_sha256": "c21f6dcf18bae5e4faeb21f7cc00947e2b4de3acef79d61a8bbe7861e2571c4e",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:13:59.989944Z",
+      "zeek_ts_exact": "1779776039.989944",
+      "zeek_uid": "C9yZ3344T8xB9uFUC2",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "40091",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 32061,
+      "source_line_sha256": "97e9c0b8173c4f407b73963b7f063826c5bdec7da5af85272d24d1e3256d94e4",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:14:00.000197Z",
+      "zeek_ts_exact": "1779776040.000197",
+      "zeek_uid": "CfDSbR2E0PRcjDfEP",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "30246",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 32062,
+      "source_line_sha256": "e81ac3e309ee72e1212b2e286c662b1d1648d61b9f624b6077a3e1a645f34e07",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:14:59.990955Z",
+      "zeek_ts_exact": "1779776099.990955",
+      "zeek_uid": "C8btNq3juxUJx9I82b",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "47096",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 37924,
+      "source_line_sha256": "6a2a0750aaae35bc4a2f1dd95f42be0222ecb62e349d11c82bab389f3f29c4ef",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:15:00.001059Z",
+      "zeek_ts_exact": "1779776100.001059",
+      "zeek_uid": "Ckt2CH34NmKumZtnIb",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "33129",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 37925,
+      "source_line_sha256": "4fa7df57dab14e657c75da028837d7f0a9e115a33b2223ece5245ec432fdd092",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:15:59.990796Z",
+      "zeek_ts_exact": "1779776159.990796",
+      "zeek_uid": "CyF7Lw1Wn20yvrcxQf",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "58091",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 43818,
+      "source_line_sha256": "48d792c7a1dd79a02968ef790a294f578db61dcb51aad984a41a4d9cd3e5618e",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:16:00.001070Z",
+      "zeek_ts_exact": "1779776160.001070",
+      "zeek_uid": "CQ4lRu2DyVlWXHON82",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "17635",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 43819,
+      "source_line_sha256": "593c010018a77afa7688313f0747bdbeeb3f4f946e63539016aede9fa5d08260",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:16:59.999142Z",
+      "zeek_ts_exact": "1779776219.999142",
+      "zeek_uid": "C4yMbw1at5It5JzDTi",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "50968",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 49681,
+      "source_line_sha256": "175940ff221feabf79d9979c67a27e5978ef9ffb6bdd93b427c45e7b297d9153",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:17:00.009379Z",
+      "zeek_ts_exact": "1779776220.009379",
+      "zeek_uid": "CSkIkj2Jv1SOP5hKva",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "34382",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 49682,
+      "source_line_sha256": "5f364a8a92517770431f1cbea40f06a81e01c6a3d2f44e53ef029cd4410dc778",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:17:27.396836Z",
+      "zeek_ts_exact": "1779776247.396836",
+      "zeek_uid": "CifxX6gQBcBD6OZq",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "65535",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 52371,
+      "source_line_sha256": "af547c4d722558fa67feb5846adb92c9f3a02f7fd4dd97eef3e24e810d6eb1f8",
+      "sampling_category": "scan_port_anchor"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:17:59.993706Z",
+      "zeek_ts_exact": "1779776279.993706",
+      "zeek_uid": "C9YJ452CXmeiQYZYvj",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "38607",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 55558,
+      "source_line_sha256": "592868aa0cbeb4a9e578acc98d97ca8f62aa256dbd7dd4e523b9be796c85ba35",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:18:00.004096Z",
+      "zeek_ts_exact": "1779776280.004096",
+      "zeek_uid": "CV1Boy47OkKygVlkIj",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "25772",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 55559,
+      "source_line_sha256": "0c75429e5a291b41021838fea5d7390ef8259547cf85aaf5533397bc9b1b4154",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:18:59.992923Z",
+      "zeek_ts_exact": "1779776339.992923",
+      "zeek_uid": "CPyJaw2ycd47d1Eix6",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "49145",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 61426,
+      "source_line_sha256": "30315726ff358d9f1d340922e50586e77f9afd9c7f4ddccc9d8352fe22678f3a",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:19:00.002947Z",
+      "zeek_ts_exact": "1779776340.002947",
+      "zeek_uid": "C8sFPT3viKSYknACcl",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "2043",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 61427,
+      "source_line_sha256": "2380a654ca4247ad645b44987e2d2e8e72677ab1ab5a65c36a2e5006a5febd0b",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:19:10.930346Z",
+      "zeek_ts_exact": "1779776350.930346",
+      "zeek_uid": "CKvkF72TYooduiuG2b",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "1",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 62496,
+      "source_line_sha256": "d24af1d5a76729dd2bf8262d1a6f5f0e76e12be3a3be2e53e59c65f8d29b7c3b",
+      "sampling_category": "scan_port_anchor"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:19:45.683665Z",
+      "zeek_ts_exact": "1779776385.683665",
+      "zeek_uid": "Ct6H8F6Vs5u621vtl",
+      "src_ip": "192.168.16.132",
+      "src_port": "44372",
+      "dst_ip": "192.168.16.130",
+      "dst_port": "6739",
+      "proto": "tcp",
+      "service": "-",
+      "conn_state": "REJ",
+      "history": "Sr",
+      "source_line": 65893,
+      "source_line_sha256": "7376844cb22240769d6381f2b846f7e276b1b4b263c99632a1f42f9ea672b0f0",
+      "sampling_category": "scan_minute_stratified"
+    },
+    {
+      "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+      "timestamp": "2026-05-26T06:21:12.433434Z",
+      "zeek_ts_exact": "1779776472.433434",
+      "zeek_uid": "CJAaKe2b54bryE2od7",
+      "src_ip": "192.168.16.130",
+      "src_port": "51814",
+      "dst_ip": "192.168.16.1",
+      "dst_port": "53",
+      "proto": "udp",
+      "service": "dns",
+      "conn_state": "S0",
+      "history": "D",
+      "source_line": 65903,
+      "source_line_sha256": "d6b1b7dff3ea6715df8eab83bc99a7403e00c821acbb4e5c9be1a5365a69b8b1",
+      "sampling_category": "unlabelled_udp_context"
+    }
+  ]
+}

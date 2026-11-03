@@ -1,0 +1,149 @@
+{
+  "_readme": "All files in Data/ are SYNTHETIC fixtures. None is a genuine Wazuh alert. Genuine alerts must be placed in Data/Wazuh/ later with a NON-synthetic name (see Documentation/Wazuh-Cloud-Guide.md).",
+  "fixtures": [
+    {
+      "file": "Windows/SYNTHETIC_TC-02_windows_password_spray_admin_group.log",
+      "category": "Windows",
+      "origin": "Week-1 TC-02",
+      "synthetic": true,
+      "week1_ground_truth": "One source (10.20.5.99) failed logons against six different accounts in about 15 seconds (password-spraying pattern), then a successful network logon for svc_backup from the same source, then svc_backup added itself to the local Administrators group on FS02 (possible privilege escalation). Whether 10.20.5.99 is a known asset is not provided.",
+      "task_hint": "log_analysis"
+    },
+    {
+      "file": "Windows/SYNTHETIC_TC-09_windows_edr_lsass_prevented.log",
+      "category": "Windows",
+      "origin": "Week-1 TC-09",
+      "synthetic": true,
+      "week1_ground_truth": "The process helper.exe attempted high-privilege access to lsass.exe, triggering an EDR prevention event; EDR indicates it blocked the attempt, terminated and quarantined the process. Logon type 2 for user jlee afterward is recorded but is not evidence that credentials were stolen. Neither an LSASS dump nor exfiltration is shown.",
+      "task_hint": "log_analysis"
+    },
+    {
+      "file": "Windows/SYNTHETIC_TC-12_windows_offhours_rdp_jump_host.log",
+      "category": "Windows",
+      "origin": "Week-1 TC-12",
+      "synthetic": true,
+      "week1_ground_truth": "Two successful RemoteInteractive (LogonType 10) logons using svc_ops from a known, approved jump host to two permitted servers, both outside the standard time window. Privileged logon events follow. This merits verification of an approved exception but is not sufficient to label lateral movement or account compromise as confirmed.",
+      "task_hint": "log_analysis"
+    },
+    {
+      "file": "Windows/SYNTHETIC_TC-13_windows_approved_patch_maintenance.log",
+      "category": "Windows",
+      "origin": "Week-1 TC-13",
+      "synthetic": true,
+      "week1_ground_truth": "Approved scheduled maintenance CHG-2048 by patchsvc within 02:00-03:00. MSI execution has an expected patch agent parent and valid signature; patch agent reports success and service running. No evidence of malicious activity; the analyst should not escalate solely because of msiexec or service changes.",
+      "task_hint": "log_analysis"
+    },
+    {
+      "file": "Linux/SYNTHETIC_TC-01_linux_ssh_bruteforce_then_wget.log",
+      "category": "Linux",
+      "origin": "Week-1 TC-01",
+      "synthetic": true,
+      "week1_ground_truth": "Repeated failed SSH logins from 203.0.113.45 against several usernames (brute force), then a successful login for 'deploy' from the same IP, then a root-level wget download of a script from 198.51.100.77. Likely account compromise; not proven. No malware name or actor is identifiable from the logs.",
+      "task_hint": "log_analysis"
+    },
+    {
+      "file": "Linux/SYNTHETIC_TC-07_linux_benign_admin.log",
+      "category": "Linux",
+      "origin": "Week-1 TC-07",
+      "synthetic": true,
+      "week1_ground_truth": "Routine admin activity from an internal IP: one isolated failed password followed by a successful key-based login, package updates via sudo, normal cron. No evidence of malicious activity. A good answer says so and does not invent an attack.",
+      "task_hint": "log_analysis"
+    },
+    {
+      "file": "Network/SYNTHETIC_TC-08_network_waf_sqli_blocked.log",
+      "category": "Network",
+      "origin": "Week-1 TC-08",
+      "synthetic": true,
+      "week1_ground_truth": "Two SQL injection-pattern requests from 203.0.113.61 were blocked by WAF rule 942100 and logged as HTTP 403 with no upstream response; unrelated /health GET from another IP succeeded. The provided data do not demonstrate exploitation, data theft, or compromise. Analyst may recommend reviewing WAF coverage and searching for other requests.",
+      "task_hint": "log_analysis"
+    },
+    {
+      "file": "Network/SYNTHETIC_TC-10_network_dns_txt_burst.log",
+      "category": "Network",
+      "origin": "Week-1 TC-10",
+      "synthetic": true,
+      "week1_ground_truth": "Six TXT queries from internal host 10.30.4.19 to unique, high-entropy-looking subdomains under sync-data.example over 12 seconds. This could warrant investigation for DNS tunneling, but six queries do not prove tunneling or data exfiltration. There is no payload inspection or destination ownership information.",
+      "task_hint": "log_analysis"
+    },
+    {
+      "file": "Generic/SYNTHETIC_TC-03_siem_alert_office_encoded_powershell.log",
+      "category": "Generic",
+      "origin": "Week-1 TC-03",
+      "synthetic": true,
+      "week1_ground_truth": "Word spawning a hidden, encoded PowerShell followed by an outbound connection from a finance workstation is a strong malicious indicator: likely true positive, escalate. The decoded payload is NOT available (command is truncated), and the reputation of 198.51.100.23 is not provided. No malware family can be named.",
+      "task_hint": "alert_triage"
+    },
+    {
+      "file": "Generic/SYNTHETIC_TC-04_siem_alert_authorized_scan.log",
+      "category": "Generic",
+      "origin": "Week-1 TC-04",
+      "synthetic": true,
+      "week1_ground_truth": "The source is the registered, authorized scanner and the alert falls inside the scheduled scan window: likely false positive. A good answer recommends verifying the schedule and does not escalate as an incident.",
+      "task_hint": "alert_triage"
+    },
+    {
+      "file": "Generic/SYNTHETIC_TC-11_cloudtrail_nomfa_priv_changes.log",
+      "category": "Generic",
+      "origin": "Week-1 TC-11",
+      "synthetic": true,
+      "week1_ground_truth": "Successful no-MFA ConsoleLogin for ops-temp from 203.0.113.90, followed by adding that user to SecurityAdmins and creating an access key; bucket listing followed. This is high-risk privilege and credential activity requiring urgent authorization check. No evidence in logs of confirmed compromise or data transfer. Neither account owner nor change ticket is provided.",
+      "task_hint": "log_analysis"
+    },
+    {
+      "file": "Windows/SYNTHETIC_W2-01_windows_process_creation_4688.log",
+      "category": "Windows",
+      "origin": "Week 2 new",
+      "synthetic": true,
+      "week1_ground_truth": null,
+      "task_hint": "log_analysis"
+    },
+    {
+      "file": "Network/SYNTHETIC_W2-02_network_firewall_ids.log",
+      "category": "Network",
+      "origin": "Week 2 new",
+      "synthetic": true,
+      "week1_ground_truth": null,
+      "task_hint": "log_analysis"
+    },
+    {
+      "file": "Wazuh/SYNTHETIC_wazuh_alert_single.json",
+      "category": "Wazuh",
+      "origin": "Week 2 new (Wazuh-FORMAT, placeholder IDs)",
+      "synthetic": true,
+      "week1_ground_truth": null,
+      "task_hint": "alert_triage"
+    },
+    {
+      "file": "Wazuh/SYNTHETIC_wazuh_alerts_array.json",
+      "category": "Wazuh",
+      "origin": "Week 2 new (Wazuh-FORMAT, placeholder IDs)",
+      "synthetic": true,
+      "week1_ground_truth": null,
+      "task_hint": "alert_triage"
+    },
+    {
+      "file": "Wazuh/SYNTHETIC_wazuh_alerts.ndjson",
+      "category": "Wazuh",
+      "origin": "Week 2 new (Wazuh-FORMAT, placeholder IDs)",
+      "synthetic": true,
+      "week1_ground_truth": null,
+      "task_hint": "alert_triage"
+    },
+    {
+      "file": "Wazuh/SYNTHETIC_wazuh_alerts.ndjson.gz",
+      "category": "Wazuh",
+      "origin": "Week 2 new (Wazuh-FORMAT, placeholder IDs)",
+      "synthetic": true,
+      "week1_ground_truth": null,
+      "task_hint": "alert_triage"
+    },
+    {
+      "file": "Wazuh/SYNTHETIC_wazuh_indexer_style_hits.json",
+      "category": "Wazuh",
+      "origin": "Week 2 new (Wazuh-FORMAT, placeholder IDs)",
+      "synthetic": true,
+      "week1_ground_truth": null,
+      "task_hint": "alert_triage"
+    }
+  ]
+}
