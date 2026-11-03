@@ -1,0 +1,27 @@
+{
+  "test_id": "LT-01",
+  "analysis_id": "AN-20261018-183730-901f",
+  "generated_utc": "2026-10-18T18:53:13.559256+00:00",
+  "source_url": "https://raw.githubusercontent.com/logpai/loghub/master/OpenSSH/OpenSSH_2k.log",
+  "source_sha256": "1e4912727fa88245113d41b16a0cd25ceadba7f931e1c406542885b91254264f",
+  "focused_sha256": "8b3991a3e08962be1a1686e221d73ef40c6a08e145e618e24f8ca8684f44319b",
+  "mapping_sha256": "ebddfb2d1f0bd20a830090e57f5a02fba1f2ef186bcbab2db86c11ba46ec6ceb",
+  "source_manifest_sha256": "69240b7fba4777a8f483a939e50a8f3bb2181c360ef57cbc4a60c1c85ff72ab6",
+  "selection_manifest_sha256": "58b1059894c245b68c617b73db0a215ea83c41c30ac298a456e09de4658d2a04",
+  "original_event_lines": 2000,
+  "focused_events": 42,
+  "focus_failed_password_lines": 13,
+  "focused_accepted_authentication_lines": 0,
+  "original_dataset_failed_password_lines_from_investigated_ip": 286,
+  "investigated_ip": "183.62.140.253",
+  "review_status": "Corrected (analyst CLI screenshot; not independently read from saved-review schema)",
+  "automated_flags_in_saved_analysis": 6,
+  "model_timeline_mismatches": [
+    "E003",
+    "E009",
+    "E012"
+  ],
+  "timestamp_year_timezone": "Not present; not inferred",
+  "verified_timeline_sha256": "9ed1c4217bdc4090092512e2c65553ed8d3cb70bb7aca24c08995a2529e7eabe",
+  "case_study_sha256": "72bac9880d0a677f6f696909ec225632cdd3b5b09c96ec8ec697bab669ad2e33"
+}

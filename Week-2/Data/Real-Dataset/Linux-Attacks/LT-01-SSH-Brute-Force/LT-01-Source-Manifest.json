@@ -1,0 +1,14 @@
+﻿{
+    "test_id":  "LT-01",
+    "scenario":  "SSH Brute Force Detection",
+    "dataset":  "OpenSSH_2k.log",
+    "source_repository":  "logpai/loghub",
+    "source_url":  "https://raw.githubusercontent.com/logpai/loghub/master/OpenSSH/OpenSSH_2k.log",
+    "source_class":  "Recorded lab OpenSSH logs",
+    "total_lines":  2000,
+    "failed_password_lines":  520,
+    "sha256":  "1E4912727FA88245113D41B16A0CD25CEADBA7F931E1C406542885B91254264F",
+    "timestamp_year":  "Not provided in source",
+    "timestamp_timezone":  "Not provided in source",
+    "downloaded_at_utc":  "2026-10-18T17:49:36.9100367Z"
+}
