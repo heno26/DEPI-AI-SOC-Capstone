@@ -1,0 +1,71 @@
+{
+  "created_utc": "2026-10-18T16:58:11.840989+00:00",
+  "scope": "Windows selected attack and benign candidate cases only",
+  "attack_cases": [
+    "RT-01",
+    "RT-02",
+    "RT-03",
+    "RT-04"
+  ],
+  "benign_candidates": {
+    "BT-01": {
+      "analysis_id": "AN-20261018-160709-eabf",
+      "review": "Corrected",
+      "postfix_flag_count": 2
+    },
+    "BT-02": {
+      "analysis_id": "AN-20261018-160835-f96a",
+      "review": "Corrected",
+      "postfix_flag_count": 1
+    },
+    "BT-03": {
+      "analysis_id": "AN-20261018-160932-6d1c",
+      "review": "Corrected",
+      "postfix_flag_count": 2
+    }
+  },
+  "source_sha256": {
+    "Data\\Real-Datasets\\Windows-Attacks\\RT-01-C2\\RT-01-Case-Study.md": "b0f2bec328fd3aceb0abf14bb07f61c78cf8161fa2e10f57a01bfc31cd1c3c5b",
+    "Data\\Real-Datasets\\Windows-Attacks\\RT-01-C2\\RT-01-Verified-Timeline.csv": "b68d1b22aeff7a2eb0c9e372670b65b0a0a472963019e6bb0a04fb1ab4250d7b",
+    "Data\\Real-Datasets\\Windows-Attacks\\RT-01-C2\\RT-01-C2-evidence-mapping.csv": "344f03c0782bdef50273e1da86512c2f05e95b17cc665c9ef23c588ead9f3ec8",
+    "Data\\Real-Datasets\\Windows-Attacks\\RT-02-Discovery\\RT-02-Case-Study.md": "a22768401b9dfe89112389aa738e68901dca19e31d3c69d7d07e0e3fcfbd5307",
+    "Data\\Real-Datasets\\Windows-Attacks\\RT-02-Discovery\\RT-02-Verified-Timeline.csv": "db745c5366d57d704695d3e642afb8a1309db6756f862a07b320d23c462d8523",
+    "Data\\Real-Datasets\\Windows-Attacks\\RT-02-Discovery\\RT-02-evidence-mapping.csv": "437fc22284620fccbf6b4d17ff0f675600d408c2f368cbe83976a86e9e7775c2",
+    "Data\\Real-Datasets\\Windows-Attacks\\RT-03-Lateral-Movement\\RT-03-Case-Study.md": "d7e6fff23499e5c725b802adb5396eb2e8af689b8c255e807bed98470a4ee85b",
+    "Data\\Real-Datasets\\Windows-Attacks\\RT-03-Lateral-Movement\\RT-03-Verified-Timeline.csv": "68ab39716c3756da1e2a98a47e05049c8ef0a1510ff231d4020b6a543a314e94",
+    "Data\\Real-Datasets\\Windows-Attacks\\RT-03-Lateral-Movement\\RT-03-evidence-mapping.csv": "925cef6276b52a4a2a04b61e4c10debc35da4b9b856725b0b7d48926d3b44f99",
+    "Data\\Real-Datasets\\Windows-Attacks\\RT-04-Persistence\\RT-04-Case-Study.md": "2103bea92ecc23e8436340d50c13c6dddb96cbdbd4cce96fbde004a35b8c72ed",
+    "Data\\Real-Datasets\\Windows-Attacks\\RT-04-Persistence\\RT-04-Verified-Timeline.csv": "3cb94bf61e2c258b1e8c8eecc1b765773a7c23bccbaf2f0d7d27c2f1a72e7f18",
+    "Data\\Real-Datasets\\Windows-Attacks\\RT-04-Persistence\\RT-04-evidence-mapping.csv": "403cba42dafeb227190dd0efa911e733aa40f883ac50b02cb3443cc64e58f5fd",
+    "Data\\Real-Datasets\\Windows-Benign\\BT-01\\BT-01-focused.json": "923489eda20e1644e6dd4fb56292c98a32082f9c6e06dd04150ed4b1800d8312",
+    "Data\\Real-Datasets\\Windows-Benign\\BT-01\\BT-01-evidence-mapping.csv": "5c58f3c0293b4d807385f9e97f0491c9020de4fd0b4d7e1ad6e10ec774cf7026",
+    "Data\\Real-Datasets\\Windows-Benign\\BT-01\\BT-01-source-manifest.json": "733d7ec284fb9df8afc6dbbb9344cf4a58c7df68e3e7164a8a3b55fdcd0adb45",
+    "Results\\AN-20261018-160709-eabf\\analysis.json": "ed78d9364efab6f35a605935a95a146e301e44266cb059e83cb0188ffdefa030",
+    "Data\\Real-Datasets\\Windows-Benign\\Selected-Channels\\win2022-evtx\\Microsoft-Windows-Sysmon%4Operational.evtx": "f97090c569524af4b80fac9cf199b47b046e3525c3043d257bdc2f3e4e2fdbe9",
+    "Data\\Real-Datasets\\Windows-Benign\\win2022-evtx.tgz": "29406757f9761b56372d40550c9bef4eb2bf82ec21ba15115910742b03c4aab2",
+    "Data\\Real-Datasets\\Windows-Benign\\BT-02\\BT-02-focused.json": "847f9aba4e7ac7d5d383a89bb49c4e37c2f848297e8c46a62c36729f0b7f9207",
+    "Data\\Real-Datasets\\Windows-Benign\\BT-02\\BT-02-evidence-mapping.csv": "f69facadbe979098fe5125a1804bf02b04fad4e1ae38201441686541505ee6f1",
+    "Data\\Real-Datasets\\Windows-Benign\\BT-02\\BT-02-source-manifest.json": "8a2688dc0b80fa4c5ab87b68338f576ba92e965b74b32015c69fb7d273f583fa",
+    "Results\\AN-20261018-160835-f96a\\analysis.json": "16508a94c5e349d18b1fc07f93c55134ccdf097b53d8a6ddd5eeb3ed01c38f9f",
+    "Data\\Real-Datasets\\Windows-Benign\\Selected-Channels\\win2022-evtx\\Security.evtx": "38be7f751a5373692aa217eff090041676dcd723301887d82d35ee836e2f21f2",
+    "Data\\Real-Datasets\\Windows-Benign\\BT-03\\BT-03-focused.json": "7d5df07e5ac203141a3f1d8325fa6bdcf06f0caebc1fa7a5c7bfe94dc999f4a8",
+    "Data\\Real-Datasets\\Windows-Benign\\BT-03\\BT-03-evidence-mapping.csv": "6e02e4433729255127cb0dc41d0fe6ad5c80896b64bb92b7f3d53885c8f46c61",
+    "Data\\Real-Datasets\\Windows-Benign\\BT-03\\BT-03-source-manifest.json": "96fe462c08c27cfea35a0b85ed5946dbb363f4bc5d8a272286d2d224e2862458",
+    "Results\\AN-20261018-160932-6d1c\\analysis.json": "8089c46fa9299f9496725dc1ea1f2e752acc2fea70d3619ded722cef044c7714",
+    "Data\\Real-Datasets\\Windows-Benign\\Selected-Channels\\win2022-evtx\\System.evtx": "738333ce654afeb6bb566d1434600865fcbe291209f1aac91b16886ea59b3f4f"
+  },
+  "generated_sha256": {
+    "Data\\Real-Datasets\\Windows-Benign\\BT-01\\BT-01-Case-Study.md": "207a480d3ce7ca9b8e0cbbfeeacd63922445e67382c1e8afa26ebefe680021ac",
+    "Data\\Real-Datasets\\Windows-Benign\\BT-02\\BT-02-Case-Study.md": "0c6ee319d32f63fea9a3794703e318871061b5ccdbb4c5721efe3704cfe5dfb7",
+    "Data\\Real-Datasets\\Windows-Benign\\BT-03\\BT-03-Case-Study.md": "1a0bcf2281711a99105c1e6ec6a9cb7dcf41e33770909db7d49326e73416832c",
+    "Documentation\\Windows\\Windows-Attack-Evaluation.md": "4b7e74197e0718bf3ca2a02e16f8456e18b1eb39758d5c97dd0f2a51337a6a6d",
+    "Documentation\\Windows\\Windows-Benign-Evaluation.md": "5168c6cd52774f5a0efd3e02a55d714a9363baeaa16c3807c924c464ad7782d9",
+    "Documentation\\Windows\\Windows-Testing-Summary.md": "b8fb68d8eb0989da601a5c8ce953862671761999da49285fa9c1af6cc593cebe"
+  },
+  "original_sources_or_ai_reviews_changed": false,
+  "limitations": [
+    "Existing original EVTX SHA-256 hashes verified for benign files, but each benign source EVTX record was not independently re-extracted by this tool.",
+    "Three benign candidates do not establish false-positive rates or absolute benign ground truth.",
+    "Linux and Wazuh are outside the scope of this Windows report."
+  ]
+}

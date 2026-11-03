@@ -1,0 +1,77 @@
+{
+  "purpose": "Generate only RT-01 and RT-02 missing documentation",
+  "generated_utc": "2026-10-18T16:49:14.857926+00:00",
+  "cases": [
+    {
+      "case": "RT-01",
+      "source_files": {
+        "Data\\Real-Datasets\\Windows-Attacks\\RT-01-C2\\DE_sysmon-3-rdp-tun.evtx": "1d1eb55d1b7c785db26e19b0d50b9eb4a7928671e4edeb82ea5182cb834c874a",
+        "Data\\Real-Datasets\\Windows-Attacks\\RT-01-C2\\RT-01-C2-plink-focused.json": "1a5bee30293a99830627fd128d7aa003e4b6268bd722bdc3256c10f989cd62b7",
+        "Data\\Real-Datasets\\Windows-Attacks\\RT-01-C2\\RT-01-C2-evidence-mapping.csv": "344f03c0782bdef50273e1da86512c2f05e95b17cc665c9ef23c588ead9f3ec8",
+        "Results\\AN-20261017-222659-f35b\\analysis.json": "b45599dd66ac623b926110506882c00e35feaab751a8fb458bfa0537baba0c99"
+      },
+      "analysis_id": "AN-20261017-222659-f35b",
+      "review_status": "corrected",
+      "evidence_count": 4,
+      "xml_verification": "PASS: Record ID, Event ID, host, UTC timestamp",
+      "ref_mapping": [
+        {
+          "original": "E003",
+          "parsed": "E001"
+        },
+        {
+          "original": "E004",
+          "parsed": "E002"
+        },
+        {
+          "original": "E005",
+          "parsed": "E003"
+        },
+        {
+          "original": "E023",
+          "parsed": "E004"
+        }
+      ],
+      "note": "Evidence refs can differ between the original and focused data. RT-01 uses original E003/E004/E005/E023 mapped to E001/E002/E003/E004."
+    },
+    {
+      "case": "RT-02",
+      "source_files": {
+        "Data\\Real-Datasets\\Windows-Attacks\\RT-02-Discovery\\discovery_psloggedon.evtx": "aa2f3ad059952502d159ead3225a6dac6f2903d76f2ce8f503933deb46af7f07",
+        "Data\\Real-Datasets\\Windows-Attacks\\RT-02-Discovery\\RT-02-Discovery-focused-v2.json": "ea16f7b875c3425c17d741f295cd8a1b422d0a8bf1dd8978c63774ccf3bd029f",
+        "Data\\Real-Datasets\\Windows-Attacks\\RT-02-Discovery\\RT-02-evidence-mapping.csv": "437fc22284620fccbf6b4d17ff0f675600d408c2f368cbe83976a86e9e7775c2",
+        "Results\\AN-20261018-002643-c097\\analysis.json": "69d23c5e587739f982607b6f4da920bc37579d9a8f20daaea8236fd29b784b0c"
+      },
+      "analysis_id": "AN-20261018-002643-c097",
+      "review_status": "approved",
+      "evidence_count": 4,
+      "xml_verification": "PASS: Record ID, Event ID, host, UTC timestamp",
+      "ref_mapping": [
+        {
+          "original": "E001",
+          "parsed": "E001"
+        },
+        {
+          "original": "E002",
+          "parsed": "E002"
+        },
+        {
+          "original": "E003",
+          "parsed": "E003"
+        },
+        {
+          "original": "E004",
+          "parsed": "E004"
+        }
+      ],
+      "note": "Evidence refs can differ between the original and focused data. RT-01 uses original E003/E004/E005/E023 mapped to E001/E002/E003/E004."
+    }
+  ],
+  "outputs": {
+    "Data\\Real-Datasets\\Windows-Attacks\\RT-01-C2\\RT-01-Verified-Timeline.csv": "b68d1b22aeff7a2eb0c9e372670b65b0a0a472963019e6bb0a04fb1ab4250d7b",
+    "Data\\Real-Datasets\\Windows-Attacks\\RT-02-Discovery\\RT-02-Verified-Timeline.csv": "db745c5366d57d704695d3e642afb8a1309db6756f862a07b320d23c462d8523",
+    "Data\\Real-Datasets\\Windows-Attacks\\RT-02-Discovery\\RT-02-Case-Study.md": "a22768401b9dfe89112389aa738e68901dca19e31d3c69d7d07e0e3fcfbd5307"
+  },
+  "sources_or_prior_results_modified": false,
+  "timestamp_tolerance": "< 1 millisecond"
+}
