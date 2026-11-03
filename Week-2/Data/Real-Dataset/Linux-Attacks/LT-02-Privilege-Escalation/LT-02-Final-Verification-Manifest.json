@@ -1,0 +1,33 @@
+{
+  "test_id": "LT-02",
+  "analysis_id": "AN-20261018-221905-552c",
+  "status": "documentation_complete",
+  "human_review_status": "Corrected (observed in analyst CLI; review storage schema not independently validated)",
+  "human_review_flags": {
+    "F001": "needs_follow_up",
+    "F002": "needs_follow_up"
+  },
+  "original_record_count": 108,
+  "verified_focused_records": 21,
+  "unique_audit_serials_in_focus": 21,
+  "sensitive_records_in_focus": 12,
+  "context_records_in_focus": 9,
+  "timestamp_standard": "UTC derived from original audit epoch; microsecond formatting",
+  "claims_not_established": [
+    "execution success",
+    "authentication success",
+    "actor identity",
+    "authorization",
+    "actual privilege escalation"
+  ],
+  "artifacts_sha256": {
+    "LT-02-Auditd-original.log": "897cd0434f7c13f27b61bebc9bed66545506bee652c06554ebbbe1a7e21303e1",
+    "LT-02-normalized-focused.log": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+    "LT-02-evidence-mapping.csv": "9c7e87fe9aa6c80abc97ca7e5490b719d25b7e4cda6d3c9cdd8d4f5423c0de4a",
+    "LT-02-Verified-Timeline.csv": "d733d95d3d5533dfb6a1697ef2f47b7a34b632c0b3f6d573af4829eba63a2c23",
+    "LT-02-Case-Study.md": "8445889a3618db3425faa7aff0b420fd78e856ff837d4cc2f9882358bf853d8d"
+  },
+  "source_data_modified": false,
+  "ai_results_modified": false,
+  "application_code_modified": false
+}
