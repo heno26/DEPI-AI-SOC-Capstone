@@ -1,0 +1,7 @@
+source_channel,source_record_id,evidence_ref,event_id,timestamp_utc,computer
+Microsoft-Windows-Sysmon%4Operational.evtx,512304,E001,1,2022-04-04T14:05:42.0544347Z,WIN-TKC15D7KHUR
+Microsoft-Windows-Sysmon%4Operational.evtx,512366,E002,1,2022-04-04T14:05:42.1749967Z,WIN-TKC15D7KHUR
+Microsoft-Windows-Sysmon%4Operational.evtx,512447,E003,1,2022-04-04T14:05:42.4217019Z,WIN-TKC15D7KHUR
+Microsoft-Windows-Sysmon%4Operational.evtx,512513,E004,1,2022-04-04T14:05:42.6819078Z,WIN-TKC15D7KHUR
+Microsoft-Windows-Sysmon%4Operational.evtx,512613,E005,1,2022-04-04T14:05:44.2481373Z,WIN-TKC15D7KHUR
+Microsoft-Windows-Sysmon%4Operational.evtx,512678,E006,1,2022-04-04T14:05:44.4604920Z,WIN-TKC15D7KHUR
