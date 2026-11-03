@@ -1,0 +1,2 @@
+# Week 2 uses the Python standard library only (design target: Python 3.10+).
+# No third-party packages are required to run the application or its unit tests.
