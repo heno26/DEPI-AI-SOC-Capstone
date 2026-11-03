@@ -1,0 +1,32 @@
+{
+  "test_id": "LT-03",
+  "verification_script": "LT03_LT04_Finalize.py",
+  "script_version": "1.0",
+  "verification_result": "source_and_mapping_integrity_pass",
+  "no_ai_inference_or_model_execution": true,
+  "existing_original_focused_mapping_selection_core_results_reviews": "unchanged",
+  "human_review_schema_independently_verified": false,
+  "unique_source_records": 1,
+  "original_xml_record_count": 2,
+  "focused_event_count": 1,
+  "evidence_mapping_verified": "2/2",
+  "source_provider": "Linux-Sysmon",
+  "timestamp_policy": "UTC timestamp exact as embedded in source XML",
+  "security_assessment": "suspicious_reverse_shell_command_pattern_connection_outcome_unknown",
+  "analysis_ids": [
+    "AN-20261018-231218-e901",
+    "AN-20261018-234042-ec78"
+  ],
+  "human_review_status": "Corrected (console-observed only; review schema not independently inspected)",
+  "input_sha256": {
+    "source": "9f2fe9e8c2f3e00dc0cadbdba38c3fa791be1dfc026ca8e236682ed1916d8acf",
+    "source_meta": "91d35c33f50d9709ea5f9e2a1cb846368e6aa62f3cfb8e17e06f483aa2b90b0a",
+    "focused": "bca6074cb5656d1c835c3637323efc91979045d4d7de59abc44c909d9f343088",
+    "mapping": "4b93121c340295a22dce7fa3f8b032f35e41f7907bfaabef17f5f0557a8621a8",
+    "selection": "d3e1892fa3125c548a54c97f42b4a42ff163e61fc9f2b25e8ae58031f7beabbb"
+  },
+  "created_document_sha256": {
+    "LT-03-Verified-Timeline.csv": "1ebfe1bb05a52ffeb6422f409d6a077ea80ab134286f7221095dcab237250ff2",
+    "LT-03-Case-Study.md": "a29bbdee45be6f7a4f096c374d1261e308c9d5825e4981893db296e6586341bb"
+  }
+}

