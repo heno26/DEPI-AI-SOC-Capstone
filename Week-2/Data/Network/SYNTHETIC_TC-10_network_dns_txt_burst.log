@@ -1,0 +1,8 @@
+# SYNTHETIC FIXTURE - not real security data. Reused unchanged from Week-1/Testing/Test-Cases.json (TC-10: DNS long-label query burst suggesting possible tunneling (insufficient proof)).
+2026-10-14T14:22:00Z dns01 query client=10.30.4.19 qname=ab8f93cd7721e4011f09.sync-data.example qtype=TXT rcode=NOERROR answers=1
+2026-10-14T14:22:02Z dns01 query client=10.30.4.19 qname=aa17ef1098dbd778f1a2.sync-data.example qtype=TXT rcode=NOERROR answers=1
+2026-10-14T14:22:04Z dns01 query client=10.30.4.19 qname=c9fdab0a2ef2140de1ca.sync-data.example qtype=TXT rcode=NOERROR answers=1
+2026-10-14T14:22:06Z dns01 query client=10.30.4.19 qname=7f81aedc5b829a121eaa.sync-data.example qtype=TXT rcode=NOERROR answers=1
+2026-10-14T14:22:09Z dns01 query client=10.30.4.19 qname=1e50aef2bd51af9012ab.sync-data.example qtype=TXT rcode=NOERROR answers=1
+2026-10-14T14:22:11Z dns01 query client=10.30.4.19 qname=c2e950ffaa221cdc0188.sync-data.example qtype=TXT rcode=NOERROR answers=1
+2026-10-14T14:22:12Z dns01 summary client=10.30.4.19 qtype=TXT qname_suffix=sync-data.example count=6 time_window_s=12

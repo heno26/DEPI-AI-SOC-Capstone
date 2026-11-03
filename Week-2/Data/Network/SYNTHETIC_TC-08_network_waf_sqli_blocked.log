@@ -1,0 +1,7 @@
+# SYNTHETIC FIXTURE - not real security data. Reused unchanged from Week-1/Testing/Test-Cases.json (TC-08: Nginx WAF blocks repeated SQL injection probes (blocked, no compromise proven)).
+2026-10-14T11:30:01Z waf01 WAF action=BLOCK rule_id=942100 category=SQLi src_ip=203.0.113.61 dst_host=shop.example uri="/products?id=1%27%20OR%201%3D1--" http_status=403 request_id=WAF-8801
+2026-10-14T11:30:03Z web01 nginx access src_ip=203.0.113.61 method=GET uri="/products?id=1%27%20OR%201%3D1--" status=403 upstream_status=- request_id=WAF-8801
+2026-10-14T11:30:06Z waf01 WAF action=BLOCK rule_id=942100 category=SQLi src_ip=203.0.113.61 dst_host=shop.example uri="/products?id=1%20UNION%20SELECT%20NULL" http_status=403 request_id=WAF-8802
+2026-10-14T11:30:07Z web01 nginx access src_ip=203.0.113.61 method=GET uri="/products?id=1%20UNION%20SELECT%20NULL" status=403 upstream_status=- request_id=WAF-8802
+2026-10-14T11:30:15Z web01 nginx access src_ip=198.51.100.10 method=GET uri="/health" status=200 upstream_status=200 request_id=HEALTH-102
+2026-10-14T11:31:00Z waf01 WAF summary src_ip=203.0.113.61 blocked_requests=2 allowed_requests=0 observation_window=60s

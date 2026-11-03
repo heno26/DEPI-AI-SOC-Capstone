@@ -1,0 +1,8 @@
+# SYNTHETIC FIXTURE - not real security data. New Week 2 synthetic fixture: firewall DENY scan pattern, one ALLOW outbound, one IDS alert.
+2026-10-15T08:00:01Z fw01 FIREWALL action=DENY proto=TCP src_ip=203.0.113.77 src_port=40122 dst_ip=10.10.1.15 dst_port=22
+2026-10-15T08:00:02Z fw01 FIREWALL action=DENY proto=TCP src_ip=203.0.113.77 src_port=40123 dst_ip=10.10.1.15 dst_port=3389
+2026-10-15T08:00:03Z fw01 FIREWALL action=DENY proto=TCP src_ip=203.0.113.77 src_port=40124 dst_ip=10.10.1.15 dst_port=445
+2026-10-15T08:00:04Z fw01 FIREWALL action=DENY proto=TCP src_ip=203.0.113.77 src_port=40125 dst_ip=10.10.1.16 dst_port=445
+2026-10-15T08:14:30Z fw01 FIREWALL action=ALLOW proto=TCP src_ip=10.10.1.15 src_port=50311 dst_ip=198.51.100.200 dst_port=443 bytes_out=18240
+2026-10-15T08:15:30Z fw01 FIREWALL action=ALLOW proto=TCP src_ip=10.10.1.15 src_port=50312 dst_ip=198.51.100.200 dst_port=443 bytes_out=18310
+2026-10-15T08:15:31Z ids01 IDS signature="SYNTHETIC periodic outbound beacon-like pattern" priority=2 src_ip=10.10.1.15 dst_ip=198.51.100.200 action=ALERT
