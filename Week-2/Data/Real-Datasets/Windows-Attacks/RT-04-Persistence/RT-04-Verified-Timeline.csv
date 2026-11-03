@@ -1,0 +1,8 @@
+﻿Parsed Evidence,Original Evidence,Timestamp (original UTC),Sysmon Event ID,Record ID,Host,Image,ParentImage,TargetFilename,TargetObject,Details
+E001,E001,2019-06-14T22:22:17.9883707Z,1,7530,IEWIN7,C:\Users\IEUser\Downloads\a.exe,C:\Windows\explorer.exe,,,
+E002,E002,2019-06-14T22:22:21.5039957Z,11,7531,IEWIN7,C:\Users\IEUser\Downloads\a.exe,,C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe,,
+E003,E003,2019-06-14T22:22:21.5352457Z,13,7532,IEWIN7,C:\Users\IEUser\Downloads\a.exe,,,HKU\S-1-5-21-3583694148-1414552638-2922671848-1000\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell,"""C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe"",explorer.exe"
+E004,E017,2019-06-14T22:23:13.8946207Z,1,7555,IEWIN7,C:\Windows\System32\userinit.exe,C:\Windows\System32\winlogon.exe,,,
+E005,E018,2019-06-14T22:23:13.9571207Z,1,7556,IEWIN7,C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe,C:\Windows\System32\userinit.exe,,,
+E006,E019,2019-06-14T22:23:13.9727457Z,1,7557,IEWIN7,C:\Windows\explorer.exe,C:\Windows\System32\userinit.exe,,,
+E007,E021,2019-06-14T22:23:16.5928629Z,1,7559,IEWIN7,C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe,C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe,,,

@@ -1,0 +1,24 @@
+## EXECUTIVE SUMMARY
+The log data shows a series of TCP and UDP connections from the IP address 192.168.1.199 to various external destinations, primarily port 80 (HTTP). The activity is unclear as it could be legitimate web browsing or potentially malicious if these connections are part of an attack or botnet communication.
+
+## LOG SOURCE
+Source type: Zeek conn.log, Hosts: [192.168.1.199], Time span: 2019-01-10T20:06:28 - 2019-01-10T22:01:02
+
+## SIGNIFICANT SECURITY EVENTS
+- [E003] Connection from 192.168.1.199 to 46.101.251.172 on port 80 (HTTP)
+- [E004] Connection from 192.168.1.199 to 46.101.251.172 on port 80 (HTTP)
+- [E005] Connection from 192.168.1.199 to 46.101.251.172 on port 80 (HTTP)
+- [E006] Connection from 192.168.1.199 to 46.101.251.172 on port 80 (HTTP)
+- [E007] UDP connection from 192.168.1.199 to 94.124.107.190 on port 123
+- [E008] Connection from 192.168.1.199 to 46.101.251.172 on port 23 (Telnet)
+- [E024] Connection from 192.168.1.199 to 46.101.251.172 on port 80 (HTTP)
+- [E025] UDP connection from 192.168.1.199 to 81.2.248.189 on port 123
+
+## INCIDENTAL FINDINGS
+- [E006, E007, E008] These events might indicate a potential attempt at scanning or exploiting other services beyond HTTP.
+- [E025] The UDP connection to 81.2.248.189 on port 123 is unusual and could be worth further investigation.
+
+## RECOMMENDATIONS
+- Investigate the IP address 192.168.1.199 for any signs of malicious activity or compromised systems.
+- Analyze the destinations of the connections for potential threats, such as known malicious domains or IP addresses.
+- Monitor network traffic for unusual patterns and further investigate any suspicious activities.

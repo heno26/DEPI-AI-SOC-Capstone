@@ -1,0 +1,65 @@
+## EXECUTIVE SUMMARY
+A single IP address (192.168.16.132) is making repeated connection attempts to another IP address (192.168.16.130), using various TCP ports, over a period of several minutes. The connections are all rejected by the destination host. While this activity could be benign, such as a misconfigured application or automated scan tool, it is suspicious due to the high number of attempts and variety of targeted ports.
+
+## LOG SOURCE
+Source type: ZEEK_CONN_ORIGINAL_SOURCE_ROW
+Hosts: 192.168.16.132, 192.168.16.1
+Time span: May 26, 2026 06:14:00 - May 26, 2026 06:21:12
+
+## SIGNIFICANT SECURITY EVENTS
+- [E042] Connection attempt to port 30246 on 192.168.16.130 (TCP) - REJ
+- [E043] Connection attempt to port 47096 on 192.168.16.130 (TCP) - REJ
+- [E044] Connection attempt to port 33129 on 192.168.16.130 (TCP) - REJ
+- [E045] Connection attempt to port 58091 on 192.168.16.130 (TCP) - REJ
+- [E046] Connection attempt to port 17635 on 192.168.16.130 (TCP) - REJ
+- ... (continued for all events, see INCIDENT TIMELINE section)
+
+## SUSPICIOUS ACTIVITIES
+- A single IP address is making repeated connection attempts to another IP address over a short period of time.
+  - [E042] Why suspicious: High number of attempts in a short timespan.
+  - [E043], [E044], ... (continued for all events, see INCIDENT TIMELINE section)
+
+## EVIDENCE REFERENCES
+- [E042] {"record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW", ...}
+- [E043] {"record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW", ...}
+- [E044] {"record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW", ...}
+  - ... (continued for all events, see INCIDENT TIMELINE section)
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2026-05-26T06:14:00.000197Z | Connection attempt to port 30246 on 192.168.16.130 (TCP) - REJ | 192.168.16.132 | None | [E042] |
+| 2026-05-26T06:14:59.990955Z | Connection attempt to port 47096 on 192.168.16.130 (TCP) - REJ | 192.168.16.132 | None | [E043] |
+| ... (continued for all events, see EVIDENCE REFERENCES section) | | | | |
+
+## EXTRACTED IOCS
+- Type: IP address
+  - Value: 192.168.16.132
+    - [E042]
+- Type: IP address
+  - Value: 192.168.16.130
+    - [E042]
+- ... (continued for all events, see EVIDENCE REFERENCES section)
+
+## POTENTIAL ATTACK INDICATORS
+- A single IP address is making repeated connection attempts to another IP address over a short period of time.
+  - [E042]
+- The destination host is rejecting all connection attempts.
+  - [E042], [E043], ... (continued for all events, see EVIDENCE REFERENCES section)
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The source IP address and the destination IP address are known, but the purpose of the connection attempts is unclear.
+Medium: The connections are being rejected by the destination host, indicating an attempt to establish a connection.
+High: The repeated nature of the connection attempts suggests automated activity, but it could also be benign.
+
+## MISSING INFORMATION
+- Purpose of the connection attempts
+- User or application initiating the connection attempts
+- Context surrounding these events (e.g., maintenance windows, approved changes)
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the source IP address to determine if it belongs to a known host or network.
+2. Determine if any authorized tools or changes were scheduled during this time period that could explain these connection attempts.
+3. Examine logs from other security systems (e.g., firewalls, intrusion detection/prevention systems) for related events.
+4. Investigate the destination IP address to determine if it is a known host or network with sensitive data.
+5. Consult with system administrators and application owners to gather more context about these connection attempts.

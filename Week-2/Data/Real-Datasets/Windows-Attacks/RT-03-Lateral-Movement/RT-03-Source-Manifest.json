@@ -1,0 +1,11 @@
+﻿{
+    "test_id":  "RT-03",
+    "category":  "Lateral Movement",
+    "dataset":  "LM_winrm_exec_sysmon_1_winrshost.evtx",
+    "source_url":  "https://raw.githubusercontent.com/sbousseaden/EVTX-ATTACK-SAMPLES/master/Lateral%20Movement/LM_winrm_exec_sysmon_1_winrshost.evtx",
+    "github_blob_sha":  "6728e9e7ab6c86aae4451c8082f8c6b5d5f156d2",
+    "local_sha256":  "7115C48511D18D934D1E63417B7B1D5D2B4FEF903E716852B00EBC481EE5F2E9",
+    "event_count":  3,
+    "events_with_userdata":  0,
+    "source_class":  "Recorded lab EVTX"
+}

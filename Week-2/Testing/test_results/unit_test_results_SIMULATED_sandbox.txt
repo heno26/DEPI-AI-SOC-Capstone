@@ -1,0 +1,58 @@
+SIMULATED / UNIT TEST RUN - build sandbox (Linux, Python 3.12.3), 2026-10-17T03:01:46Z
+A FAKE local HTTP server stood in for Ollama. This is NOT Mistral execution, NOT GPU testing, NOT Wazuh testing.
+Re-run on your own Windows machine and save as unit_test_results_local.txt
+
+test_analyze_then_interactive_review (Testing.test_week2.CliTests.test_analyze_then_interactive_review) ... ok
+test_cannot_approve_with_unreviewed_flags_without_confirmation (Testing.test_week2.CliTests.test_cannot_approve_with_unreviewed_flags_without_confirmation) ... ok
+test_invalid_file_message (Testing.test_week2.CliTests.test_invalid_file_message) ... ok
+test_missing_model_no_silent_switch (Testing.test_week2.CliTests.test_missing_model_no_silent_switch) ... ok
+test_ollama_down_clear_message_and_nothing_saved (Testing.test_week2.CliTests.test_ollama_down_clear_message_and_nothing_saved) ... ok
+test_empty_and_truncated (Testing.test_week2.ClientTests.test_empty_and_truncated) ... ok
+test_model_missing (Testing.test_week2.ClientTests.test_model_missing) ... ok
+test_no_retry_on_other_errors (Testing.test_week2.ClientTests.test_no_retry_on_other_errors) ... ok
+test_not_running (Testing.test_week2.ClientTests.test_not_running) ... ok
+test_options_sent_and_configurable (Testing.test_week2.ClientTests.test_options_sent_and_configurable) ... ok
+test_refuses_remote_host (Testing.test_week2.ClientTests.test_refuses_remote_host) ... ok
+test_repeat_limit_twice_fails_clearly (Testing.test_week2.ClientTests.test_repeat_limit_twice_fails_clearly) ... ok
+test_retry_on_repeat_limit_records_settings (Testing.test_week2.ClientTests.test_retry_on_repeat_limit_records_settings) ... ok
+test_auth_stats_code_computed (Testing.test_week2.ParserTests.test_auth_stats_code_computed) ... ok
+test_injection_scan (Testing.test_week2.ParserTests.test_injection_scan) ... ok
+test_invalid_inputs (Testing.test_week2.ParserTests.test_invalid_inputs) ... ok
+test_linux (Testing.test_week2.ParserTests.test_linux) ... ok
+test_missing_fields_safe (Testing.test_week2.ParserTests.test_missing_fields_safe) ... ok
+test_ndjson_partial_corruption_reported (Testing.test_week2.ParserTests.test_ndjson_partial_corruption_reported) ... ok
+test_network (Testing.test_week2.ParserTests.test_network) ... ok
+test_original_not_modified (Testing.test_week2.ParserTests.test_original_not_modified) ... ok
+test_reference_notes_only_for_present_ids (Testing.test_week2.ParserTests.test_reference_notes_only_for_present_ids) ... ok
+test_sanitize_json_stays_valid (Testing.test_week2.ParserTests.test_sanitize_json_stays_valid) ... ok
+test_sanitize_redacts (Testing.test_week2.ParserTests.test_sanitize_redacts) ... ok
+test_wazuh_formats (Testing.test_week2.ParserTests.test_wazuh_formats) ... ok
+test_windows (Testing.test_week2.ParserTests.test_windows) ... ok
+test_windows_4688 (Testing.test_week2.ParserTests.test_windows_4688) ... ok
+test_attribution_and_certainty (Testing.test_week2.ValidatorTests.test_attribution_and_certainty) ... ok
+test_defang_altered (Testing.test_week2.ValidatorTests.test_defang_altered) ... ok
+test_event_semantics (Testing.test_week2.ValidatorTests.test_event_semantics) ... ok
+test_fabricated_rule_and_agent_id (Testing.test_week2.ValidatorTests.test_fabricated_rule_and_agent_id) ... ok
+test_hash_cve_url_domain_email (Testing.test_week2.ValidatorTests.test_hash_cve_url_domain_email) ... ok
+test_ioc_context_no_reputation (Testing.test_week2.ValidatorTests.test_ioc_context_no_reputation) ... ok
+test_malformed_ip_like (Testing.test_week2.ValidatorTests.test_malformed_ip_like) ... ok
+test_none_claim_vs_signals (Testing.test_week2.ValidatorTests.test_none_claim_vs_signals) ... ok
+test_supported_values_not_flagged (Testing.test_week2.ValidatorTests.test_supported_values_not_flagged) ... ok
+test_timestamp_and_nonexistent_ref (Testing.test_week2.ValidatorTests.test_timestamp_and_nonexistent_ref) ... ok
+test_truncation_and_missing_sections (Testing.test_week2.ValidatorTests.test_truncation_and_missing_sections) ... ok
+test_uncited_finding (Testing.test_week2.ValidatorTests.test_uncited_finding) ... ok
+test_unsupported_and_altered_ip (Testing.test_week2.ValidatorTests.test_unsupported_and_altered_ip) ... ok
+test_detection_end_to_end (Testing.test_week2.WorkflowTests.test_detection_end_to_end) ... ok
+test_input_truncation_reported (Testing.test_week2.WorkflowTests.test_input_truncation_reported) ... ok
+test_log_analysis_end_to_end (Testing.test_week2.WorkflowTests.test_log_analysis_end_to_end) ... ok
+test_parse_sections_tolerant (Testing.test_week2.WorkflowTests.test_parse_sections_tolerant) ... ok
+test_prompt_has_nonce_delimiters_and_untrusted_input (Testing.test_week2.WorkflowTests.test_prompt_has_nonce_delimiters_and_untrusted_input) ... ok
+test_save_review_export (Testing.test_week2.WorkflowTests.test_save_review_export) ... ok
+test_triage_end_to_end (Testing.test_week2.WorkflowTests.test_triage_end_to_end) ... ok
+test_triage_one_wazuh_alert_of_many (Testing.test_week2.WorkflowTests.test_triage_one_wazuh_alert_of_many) ... ok
+test_truncated_output_flagged_high (Testing.test_week2.WorkflowTests.test_truncated_output_flagged_high) ... ok
+
+----------------------------------------------------------------------
+Ran 49 tests in 9.206s
+
+OK

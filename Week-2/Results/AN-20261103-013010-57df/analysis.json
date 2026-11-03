@@ -1,0 +1,1091 @@
+{
+  "analysis_id": "AN-20261103-013010-57df",
+  "schema_version": "week2-1",
+  "task": "log_analysis",
+  "created_utc": "2026-11-03T01:30:10+00:00",
+  "references": {
+    "alert_id": null,
+    "incident_ref": null,
+    "note": "incident_ref is reserved for Week 3/4 correlation"
+  },
+  "input": {
+    "filename": "NT-03-focused.json",
+    "path": "Data\\Real-Datasets\\Network-Attacks\\NT-03-C2-Beaconing\\NT-03-focused.json",
+    "sha256": "ce7f1905335690eaea42f4d299824a057b36153d4747058a7405fbe6b04e67a6",
+    "format": "json",
+    "compressed": false,
+    "source_type": "network",
+    "evidence_class": "user_supplied_unverified",
+    "event_count": 9,
+    "events_analysed": [
+      "E017",
+      "E018",
+      "E019",
+      "E020",
+      "E021",
+      "E022",
+      "E023",
+      "E024",
+      "E025"
+    ],
+    "warnings": [
+      "Input is a subset of the classified file; unknown/conflicting events were withheld from AI."
+    ]
+  },
+  "model": {
+    "name": "mistral:7b-instruct-v0.3-q4_K_S",
+    "options": {
+      "temperature": 0.2,
+      "repeat_penalty": 1.15,
+      "num_ctx": 8192,
+      "num_predict": 2500,
+      "seed": 42
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "options": {
+          "temperature": 0.2,
+          "repeat_penalty": 1.15,
+          "num_ctx": 8192,
+          "num_predict": 2500,
+          "seed": 42
+        },
+        "outcome": "success",
+        "seconds": 113.89
+      }
+    ],
+    "retry_used": false,
+    "done_reason": "stop",
+    "tokens_per_second": 15.15,
+    "wall_seconds": 113.89
+  },
+  "prompt": {
+    "file": "log_analysis.txt",
+    "version": "w2-1.0+unified-v04-canonical-ref",
+    "sha256": "6d9032c9500647a383a9da812c9f74dba41ed4cd6a042fe30870854750b1b9ee",
+    "nonce_delimiter_used": true,
+    "feedback": {
+      "knowledge_base": "Validated-SOC-Lessons.json",
+      "knowledge_base_sha256": "028eccd632c58e22511ccae31c791a9e26b7c8a04c87484340950f66d19a4da7",
+      "applied_reviewed_lesson_ids": [],
+      "general_guardrails_applied": false,
+      "method": "curated case-matched prompt guidance; not model fine-tuning"
+    }
+  },
+  "events": [
+    {
+      "ref": "E017",
+      "line_no": 17,
+      "raw": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T20:07:59.155315Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f\",\"zeek_ts_exact\":\"1547150879.155315\",\"zeek_uid\":\"CvvKOC4SSRmLsXgvRi\",\"src_ip\":\"192.168.1.199\",\"src_port\":\"59236\",\"dst_ip\":\"46.101.251.172\",\"dst_port\":\"80\",\"proto\":\"tcp\",\"service\":\"-\",\"duration\":\"-\",\"orig_bytes\":\"-\",\"resp_bytes\":\"-\",\"conn_state\":\"S0\",\"history\":\"S\",\"orig_pkts\":\"1\",\"resp_pkts\":\"0\",\"orig_ip_bytes\":\"60\",\"resp_ip_bytes\":\"0\",\"source_line\":25,\"source_line_sha256\":\"04f036e69c66aa646502f6f86e8008561c7cd0fecc82ae8ed84bfefe5a6f2501\",\"selection_category\":\"repeated_tcp_source_port\"}",
+      "timestamp_raw": "2019-01-10T20:07:59.155315Z",
+      "timestamp_utc": "2019-01-10T20:07:59.155315+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.1.199",
+      "dst_ip": "46.101.251.172",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic"
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2019-01-10T20:07:59.155315Z",
+        "log_source": "Zeek conn.log",
+        "source_sha256": "12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f",
+        "zeek_ts_exact": "1547150879.155315",
+        "zeek_uid": "CvvKOC4SSRmLsXgvRi",
+        "src_ip": "192.168.1.199",
+        "src_port": "59236",
+        "dst_ip": "46.101.251.172",
+        "dst_port": "80",
+        "proto": "tcp",
+        "service": "-",
+        "duration": "-",
+        "orig_bytes": "-",
+        "resp_bytes": "-",
+        "conn_state": "S0",
+        "history": "S",
+        "orig_pkts": "1",
+        "resp_pkts": "0",
+        "orig_ip_bytes": "60",
+        "resp_ip_bytes": "0",
+        "source_line": 25,
+        "source_line_sha256": "04f036e69c66aa646502f6f86e8008561c7cd0fecc82ae8ed84bfefe5a6f2501",
+        "selection_category": "repeated_tcp_source_port"
+      }
+    },
+    {
+      "ref": "E018",
+      "line_no": 18,
+      "raw": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T20:08:15.795319Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f\",\"zeek_ts_exact\":\"1547150895.795319\",\"zeek_uid\":\"CjBG2u14kmvgWdn7vl\",\"src_ip\":\"192.168.1.199\",\"src_port\":\"59236\",\"dst_ip\":\"46.101.251.172\",\"dst_port\":\"80\",\"proto\":\"tcp\",\"service\":\"-\",\"duration\":\"-\",\"orig_bytes\":\"-\",\"resp_bytes\":\"-\",\"conn_state\":\"S0\",\"history\":\"S\",\"orig_pkts\":\"1\",\"resp_pkts\":\"0\",\"orig_ip_bytes\":\"60\",\"resp_ip_bytes\":\"0\",\"source_line\":26,\"source_line_sha256\":\"0cf516ec1d558c3292ae574e8eabf1e1a47c88e697fb60d970dbb2d620c0e9b5\",\"selection_category\":\"repeated_tcp_source_port\"}",
+      "timestamp_raw": "2019-01-10T20:08:15.795319Z",
+      "timestamp_utc": "2019-01-10T20:08:15.795319+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.1.199",
+      "dst_ip": "46.101.251.172",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic"
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2019-01-10T20:08:15.795319Z",
+        "log_source": "Zeek conn.log",
+        "source_sha256": "12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f",
+        "zeek_ts_exact": "1547150895.795319",
+        "zeek_uid": "CjBG2u14kmvgWdn7vl",
+        "src_ip": "192.168.1.199",
+        "src_port": "59236",
+        "dst_ip": "46.101.251.172",
+        "dst_port": "80",
+        "proto": "tcp",
+        "service": "-",
+        "duration": "-",
+        "orig_bytes": "-",
+        "resp_bytes": "-",
+        "conn_state": "S0",
+        "history": "S",
+        "orig_pkts": "1",
+        "resp_pkts": "0",
+        "orig_ip_bytes": "60",
+        "resp_ip_bytes": "0",
+        "source_line": 26,
+        "source_line_sha256": "0cf516ec1d558c3292ae574e8eabf1e1a47c88e697fb60d970dbb2d620c0e9b5",
+        "selection_category": "repeated_tcp_source_port"
+      }
+    },
+    {
+      "ref": "E019",
+      "line_no": 19,
+      "raw": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T20:08:48.435460Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f\",\"zeek_ts_exact\":\"1547150928.435460\",\"zeek_uid\":\"CVNQP5iuWtYHzOkEj\",\"src_ip\":\"192.168.1.199\",\"src_port\":\"59236\",\"dst_ip\":\"46.101.251.172\",\"dst_port\":\"80\",\"proto\":\"tcp\",\"service\":\"http\",\"duration\":\"1.185313\",\"orig_bytes\":\"149\",\"resp_bytes\":\"137844\",\"conn_state\":\"SF\",\"history\":\"ShADadttfF\",\"orig_pkts\":\"99\",\"resp_pkts\":\"99\",\"orig_ip_bytes\":\"6625\",\"resp_ip_bytes\":\"143000\",\"source_line\":30,\"source_line_sha256\":\"a9191ac47372fdf860b7754b50e3e7fb76dec4f0fbc8d441384627dabcd9c122\",\"selection_category\":\"repeated_tcp_source_port\"}",
+      "timestamp_raw": "2019-01-10T20:08:48.435460Z",
+      "timestamp_utc": "2019-01-10T20:08:48.435460+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.1.199",
+      "dst_ip": "46.101.251.172",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic"
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2019-01-10T20:08:48.435460Z",
+        "log_source": "Zeek conn.log",
+        "source_sha256": "12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f",
+        "zeek_ts_exact": "1547150928.435460",
+        "zeek_uid": "CVNQP5iuWtYHzOkEj",
+        "src_ip": "192.168.1.199",
+        "src_port": "59236",
+        "dst_ip": "46.101.251.172",
+        "dst_port": "80",
+        "proto": "tcp",
+        "service": "http",
+        "duration": "1.185313",
+        "orig_bytes": "149",
+        "resp_bytes": "137844",
+        "conn_state": "SF",
+        "history": "ShADadttfF",
+        "orig_pkts": "99",
+        "resp_pkts": "99",
+        "orig_ip_bytes": "6625",
+        "resp_ip_bytes": "143000",
+        "source_line": 30,
+        "source_line_sha256": "a9191ac47372fdf860b7754b50e3e7fb76dec4f0fbc8d441384627dabcd9c122",
+        "selection_category": "repeated_tcp_source_port"
+      }
+    },
+    {
+      "ref": "E020",
+      "line_no": 20,
+      "raw": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T20:08:51.136166Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f\",\"zeek_ts_exact\":\"1547150931.136166\",\"zeek_uid\":\"ChKK5Z2dBmDIkB32wh\",\"src_ip\":\"192.168.1.199\",\"src_port\":\"59240\",\"dst_ip\":\"46.101.251.172\",\"dst_port\":\"80\",\"proto\":\"tcp\",\"service\":\"-\",\"duration\":\"3.139203\",\"orig_bytes\":\"0\",\"resp_bytes\":\"0\",\"conn_state\":\"S0\",\"history\":\"S\",\"orig_pkts\":\"3\",\"resp_pkts\":\"0\",\"orig_ip_bytes\":\"180\",\"resp_ip_bytes\":\"0\",\"source_line\":32,\"source_line_sha256\":\"c7dad5c4702b0530836d1081308430bb60327ab4a7a15f5e68993eb99e926481\",\"selection_category\":\"repeated_tcp_source_port\"}",
+      "timestamp_raw": "2019-01-10T20:08:51.136166Z",
+      "timestamp_utc": "2019-01-10T20:08:51.136166+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.1.199",
+      "dst_ip": "46.101.251.172",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic"
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2019-01-10T20:08:51.136166Z",
+        "log_source": "Zeek conn.log",
+        "source_sha256": "12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f",
+        "zeek_ts_exact": "1547150931.136166",
+        "zeek_uid": "ChKK5Z2dBmDIkB32wh",
+        "src_ip": "192.168.1.199",
+        "src_port": "59240",
+        "dst_ip": "46.101.251.172",
+        "dst_port": "80",
+        "proto": "tcp",
+        "service": "-",
+        "duration": "3.139203",
+        "orig_bytes": "0",
+        "resp_bytes": "0",
+        "conn_state": "S0",
+        "history": "S",
+        "orig_pkts": "3",
+        "resp_pkts": "0",
+        "orig_ip_bytes": "180",
+        "resp_ip_bytes": "0",
+        "source_line": 32,
+        "source_line_sha256": "c7dad5c4702b0530836d1081308430bb60327ab4a7a15f5e68993eb99e926481",
+        "selection_category": "repeated_tcp_source_port"
+      }
+    },
+    {
+      "ref": "E021",
+      "line_no": 21,
+      "raw": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T20:08:58.355297Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f\",\"zeek_ts_exact\":\"1547150938.355297\",\"zeek_uid\":\"ChLfX7PfQwlTLnwJ3\",\"src_ip\":\"192.168.1.199\",\"src_port\":\"59240\",\"dst_ip\":\"46.101.251.172\",\"dst_port\":\"80\",\"proto\":\"tcp\",\"service\":\"-\",\"duration\":\"-\",\"orig_bytes\":\"-\",\"resp_bytes\":\"-\",\"conn_state\":\"S0\",\"history\":\"S\",\"orig_pkts\":\"1\",\"resp_pkts\":\"0\",\"orig_ip_bytes\":\"60\",\"resp_ip_bytes\":\"0\",\"source_line\":34,\"source_line_sha256\":\"af6aceaf549f2c154fc285504c8a3eb0611802ea8f5160ea284dc85d0f881911\",\"selection_category\":\"repeated_tcp_source_port\"}",
+      "timestamp_raw": "2019-01-10T20:08:58.355297Z",
+      "timestamp_utc": "2019-01-10T20:08:58.355297+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.1.199",
+      "dst_ip": "46.101.251.172",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic"
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2019-01-10T20:08:58.355297Z",
+        "log_source": "Zeek conn.log",
+        "source_sha256": "12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f",
+        "zeek_ts_exact": "1547150938.355297",
+        "zeek_uid": "ChLfX7PfQwlTLnwJ3",
+        "src_ip": "192.168.1.199",
+        "src_port": "59240",
+        "dst_ip": "46.101.251.172",
+        "dst_port": "80",
+        "proto": "tcp",
+        "service": "-",
+        "duration": "-",
+        "orig_bytes": "-",
+        "resp_bytes": "-",
+        "conn_state": "S0",
+        "history": "S",
+        "orig_pkts": "1",
+        "resp_pkts": "0",
+        "orig_ip_bytes": "60",
+        "resp_ip_bytes": "0",
+        "source_line": 34,
+        "source_line_sha256": "af6aceaf549f2c154fc285504c8a3eb0611802ea8f5160ea284dc85d0f881911",
+        "selection_category": "repeated_tcp_source_port"
+      }
+    },
+    {
+      "ref": "E022",
+      "line_no": 22,
+      "raw": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T20:09:06.995369Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f\",\"zeek_ts_exact\":\"1547150946.995369\",\"zeek_uid\":\"Cy5ad04NNP4WoZczA6\",\"src_ip\":\"192.168.1.199\",\"src_port\":\"59240\",\"dst_ip\":\"46.101.251.172\",\"dst_port\":\"80\",\"proto\":\"tcp\",\"service\":\"-\",\"duration\":\"-\",\"orig_bytes\":\"-\",\"resp_bytes\":\"-\",\"conn_state\":\"S0\",\"history\":\"S\",\"orig_pkts\":\"1\",\"resp_pkts\":\"0\",\"orig_ip_bytes\":\"60\",\"resp_ip_bytes\":\"0\",\"source_line\":36,\"source_line_sha256\":\"a6f571c714ed33af1084a0748c0d3fcb8db2614510a832b88d308d044973fb3c\",\"selection_category\":\"repeated_tcp_source_port\"}",
+      "timestamp_raw": "2019-01-10T20:09:06.995369Z",
+      "timestamp_utc": "2019-01-10T20:09:06.995369+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.1.199",
+      "dst_ip": "46.101.251.172",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic"
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2019-01-10T20:09:06.995369Z",
+        "log_source": "Zeek conn.log",
+        "source_sha256": "12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f",
+        "zeek_ts_exact": "1547150946.995369",
+        "zeek_uid": "Cy5ad04NNP4WoZczA6",
+        "src_ip": "192.168.1.199",
+        "src_port": "59240",
+        "dst_ip": "46.101.251.172",
+        "dst_port": "80",
+        "proto": "tcp",
+        "service": "-",
+        "duration": "-",
+        "orig_bytes": "-",
+        "resp_bytes": "-",
+        "conn_state": "S0",
+        "history": "S",
+        "orig_pkts": "1",
+        "resp_pkts": "0",
+        "orig_ip_bytes": "60",
+        "resp_ip_bytes": "0",
+        "source_line": 36,
+        "source_line_sha256": "a6f571c714ed33af1084a0748c0d3fcb8db2614510a832b88d308d044973fb3c",
+        "selection_category": "repeated_tcp_source_port"
+      }
+    },
+    {
+      "ref": "E023",
+      "line_no": 23,
+      "raw": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T20:09:23.635372Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f\",\"zeek_ts_exact\":\"1547150963.635372\",\"zeek_uid\":\"C4S1Kz40sipbEERa76\",\"src_ip\":\"192.168.1.199\",\"src_port\":\"59240\",\"dst_ip\":\"46.101.251.172\",\"dst_port\":\"80\",\"proto\":\"tcp\",\"service\":\"http\",\"duration\":\"1.531888\",\"orig_bytes\":\"149\",\"resp_bytes\":\"139570\",\"conn_state\":\"SF\",\"history\":\"ShADadttfF\",\"orig_pkts\":\"100\",\"resp_pkts\":\"99\",\"orig_ip_bytes\":\"6581\",\"resp_ip_bytes\":\"144726\",\"source_line\":37,\"source_line_sha256\":\"169b294d937091e0091669a6be9f9b77323538eea0920c7d196adff9421f08bd\",\"selection_category\":\"repeated_tcp_source_port\"}",
+      "timestamp_raw": "2019-01-10T20:09:23.635372Z",
+      "timestamp_utc": "2019-01-10T20:09:23.635372+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.1.199",
+      "dst_ip": "46.101.251.172",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic"
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2019-01-10T20:09:23.635372Z",
+        "log_source": "Zeek conn.log",
+        "source_sha256": "12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f",
+        "zeek_ts_exact": "1547150963.635372",
+        "zeek_uid": "C4S1Kz40sipbEERa76",
+        "src_ip": "192.168.1.199",
+        "src_port": "59240",
+        "dst_ip": "46.101.251.172",
+        "dst_port": "80",
+        "proto": "tcp",
+        "service": "http",
+        "duration": "1.531888",
+        "orig_bytes": "149",
+        "resp_bytes": "139570",
+        "conn_state": "SF",
+        "history": "ShADadttfF",
+        "orig_pkts": "100",
+        "resp_pkts": "99",
+        "orig_ip_bytes": "6581",
+        "resp_ip_bytes": "144726",
+        "source_line": 37,
+        "source_line_sha256": "169b294d937091e0091669a6be9f9b77323538eea0920c7d196adff9421f08bd",
+        "selection_category": "repeated_tcp_source_port"
+      }
+    },
+    {
+      "ref": "E024",
+      "line_no": 24,
+      "raw": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T20:09:26.859046Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f\",\"zeek_ts_exact\":\"1547150966.859046\",\"zeek_uid\":\"C0aWOD1sg4rINDNIN7\",\"src_ip\":\"192.168.1.199\",\"src_port\":\"59244\",\"dst_ip\":\"46.101.251.172\",\"dst_port\":\"80\",\"proto\":\"tcp\",\"service\":\"http\",\"duration\":\"2.295936\",\"orig_bytes\":\"150\",\"resp_bytes\":\"149980\",\"conn_state\":\"SF\",\"history\":\"ShADadttfF\",\"orig_pkts\":\"108\",\"resp_pkts\":\"107\",\"orig_ip_bytes\":\"7058\",\"resp_ip_bytes\":\"155552\",\"source_line\":40,\"source_line_sha256\":\"f5f3fe34507c7ade4c9d6fe5b0ed118dcfb9667912db4535ccaf2f87ecc6f1d8\",\"selection_category\":\"tcp_singleton_context\"}",
+      "timestamp_raw": "2019-01-10T20:09:26.859046Z",
+      "timestamp_utc": "2019-01-10T20:09:26.859046+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.1.199",
+      "dst_ip": "46.101.251.172",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic"
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2019-01-10T20:09:26.859046Z",
+        "log_source": "Zeek conn.log",
+        "source_sha256": "12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f",
+        "zeek_ts_exact": "1547150966.859046",
+        "zeek_uid": "C0aWOD1sg4rINDNIN7",
+        "src_ip": "192.168.1.199",
+        "src_port": "59244",
+        "dst_ip": "46.101.251.172",
+        "dst_port": "80",
+        "proto": "tcp",
+        "service": "http",
+        "duration": "2.295936",
+        "orig_bytes": "150",
+        "resp_bytes": "149980",
+        "conn_state": "SF",
+        "history": "ShADadttfF",
+        "orig_pkts": "108",
+        "resp_pkts": "107",
+        "orig_ip_bytes": "7058",
+        "resp_ip_bytes": "155552",
+        "source_line": 40,
+        "source_line_sha256": "f5f3fe34507c7ade4c9d6fe5b0ed118dcfb9667912db4535ccaf2f87ecc6f1d8",
+        "selection_category": "tcp_singleton_context"
+      }
+    },
+    {
+      "ref": "E025",
+      "line_no": 25,
+      "raw": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T22:01:02.953055Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f\",\"zeek_ts_exact\":\"1547157662.953055\",\"zeek_uid\":\"CVhlni1vUjmHbv2XYg\",\"src_ip\":\"192.168.1.199\",\"src_port\":\"123\",\"dst_ip\":\"81.2.248.189\",\"dst_port\":\"123\",\"proto\":\"udp\",\"service\":\"-\",\"duration\":\"-\",\"orig_bytes\":\"-\",\"resp_bytes\":\"-\",\"conn_state\":\"S0\",\"history\":\"D\",\"orig_pkts\":\"1\",\"resp_pkts\":\"0\",\"orig_ip_bytes\":\"76\",\"resp_ip_bytes\":\"0\",\"source_line\":243,\"source_line_sha256\":\"5e908e6b76faccc1f48bf56533beefc063830395cb487fdf0f80b16142d5cfbe\",\"selection_category\":\"udp_service_comparison\"}",
+      "timestamp_raw": "2019-01-10T22:01:02.953055Z",
+      "timestamp_utc": "2019-01-10T22:01:02.953055+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.1.199",
+      "dst_ip": "81.2.248.189",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic"
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2019-01-10T22:01:02.953055Z",
+        "log_source": "Zeek conn.log",
+        "source_sha256": "12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f",
+        "zeek_ts_exact": "1547157662.953055",
+        "zeek_uid": "CVhlni1vUjmHbv2XYg",
+        "src_ip": "192.168.1.199",
+        "src_port": "123",
+        "dst_ip": "81.2.248.189",
+        "dst_port": "123",
+        "proto": "udp",
+        "service": "-",
+        "duration": "-",
+        "orig_bytes": "-",
+        "resp_bytes": "-",
+        "conn_state": "S0",
+        "history": "D",
+        "orig_pkts": "1",
+        "resp_pkts": "0",
+        "orig_ip_bytes": "76",
+        "resp_ip_bytes": "0",
+        "source_line": 243,
+        "source_line_sha256": "5e908e6b76faccc1f48bf56533beefc063830395cb487fdf0f80b16142d5cfbe",
+        "selection_category": "udp_service_comparison"
+      }
+    }
+  ],
+  "facts": [],
+  "ioc_context": [
+    {
+      "type": "ipv4",
+      "value": "192.168.1.199",
+      "refs": [
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024",
+        "E025"
+      ],
+      "count": 9,
+      "scope": "private (RFC 1918)",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "ipv4",
+      "value": "46.101.251.172",
+      "refs": [
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024"
+      ],
+      "count": 8,
+      "scope": "public/other",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "ipv4",
+      "value": "81.2.248.189",
+      "refs": [
+        "E025"
+      ],
+      "count": 1,
+      "scope": "public/other",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "04f036e69c66aa646502f6f86e8008561c7cd0fecc82ae8ed84bfefe5a6f2501",
+      "refs": [
+        "E017"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "0cf516ec1d558c3292ae574e8eabf1e1a47c88e697fb60d970dbb2d620c0e9b5",
+      "refs": [
+        "E018"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f",
+      "refs": [
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024",
+        "E025"
+      ],
+      "count": 9,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "169b294d937091e0091669a6be9f9b77323538eea0920c7d196adff9421f08bd",
+      "refs": [
+        "E023"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "5e908e6b76faccc1f48bf56533beefc063830395cb487fdf0f80b16142d5cfbe",
+      "refs": [
+        "E025"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "a6f571c714ed33af1084a0748c0d3fcb8db2614510a832b88d308d044973fb3c",
+      "refs": [
+        "E022"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "a9191ac47372fdf860b7754b50e3e7fb76dec4f0fbc8d441384627dabcd9c122",
+      "refs": [
+        "E019"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "af6aceaf549f2c154fc285504c8a3eb0611802ea8f5160ea284dc85d0f881911",
+      "refs": [
+        "E021"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "c7dad5c4702b0530836d1081308430bb60327ab4a7a15f5e68993eb99e926481",
+      "refs": [
+        "E020"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "f5f3fe34507c7ade4c9d6fe5b0ed118dcfb9667912db4535ccaf2f87ecc6f1d8",
+      "refs": [
+        "E024"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    }
+  ],
+  "risk_signals": [],
+  "benign_context": [],
+  "evidence_timeline": [
+    {
+      "timestamp": "2019-01-10T20:07:59.155315Z",
+      "timestamp_utc": "2019-01-10T20:07:59.155315+00:00",
+      "event": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T20:07:59.155315Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d ...[truncated 530 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E017"
+    },
+    {
+      "timestamp": "2019-01-10T20:08:15.795319Z",
+      "timestamp_utc": "2019-01-10T20:08:15.795319+00:00",
+      "event": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T20:08:15.795319Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d ...[truncated 530 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E018"
+    },
+    {
+      "timestamp": "2019-01-10T20:08:48.435460Z",
+      "timestamp_utc": "2019-01-10T20:08:48.435460+00:00",
+      "event": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T20:08:48.435460Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d ...[truncated 564 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E019"
+    },
+    {
+      "timestamp": "2019-01-10T20:08:51.136166Z",
+      "timestamp_utc": "2019-01-10T20:08:51.136166+00:00",
+      "event": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T20:08:51.136166Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d ...[truncated 538 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E020"
+    },
+    {
+      "timestamp": "2019-01-10T20:08:58.355297Z",
+      "timestamp_utc": "2019-01-10T20:08:58.355297+00:00",
+      "event": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T20:08:58.355297Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d ...[truncated 529 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E021"
+    },
+    {
+      "timestamp": "2019-01-10T20:09:06.995369Z",
+      "timestamp_utc": "2019-01-10T20:09:06.995369+00:00",
+      "event": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T20:09:06.995369Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d ...[truncated 530 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E022"
+    },
+    {
+      "timestamp": "2019-01-10T20:09:23.635372Z",
+      "timestamp_utc": "2019-01-10T20:09:23.635372+00:00",
+      "event": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T20:09:23.635372Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d ...[truncated 566 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E023"
+    },
+    {
+      "timestamp": "2019-01-10T20:09:26.859046Z",
+      "timestamp_utc": "2019-01-10T20:09:26.859046+00:00",
+      "event": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T20:09:26.859046Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d ...[truncated 564 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E024"
+    },
+    {
+      "timestamp": "2019-01-10T22:01:02.953055Z",
+      "timestamp_utc": "2019-01-10T22:01:02.953055+00:00",
+      "event": "{\"record_kind\":\"ZEEK_CONN_ORIGINAL_SOURCE_ROW\",\"timestamp\":\"2019-01-10T22:01:02.953055Z\",\"log_source\":\"Zeek conn.log\",\"source_sha256\":\"12cd99bcda78140dd5f31cf3d ...[truncated 526 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E025"
+    }
+  ],
+  "ai_output": {
+    "raw_text": "## EXECUTIVE SUMMARY\nA single IP address is making repeated connections to the same destination on port 80, with some successful HTTP responses. The activity looks unclear as it could be benign web browsing or potentially malicious behavior such as scanning or probing.\n\n## LOG SOURCE\nSource type: Zeek conn.log, Hosts: 192.168.1.199, Time span: January 10, 2019 20:07:59 - January 10, 2019 22:01:02\n\n## SIGNIFICANT SECURITY EVENTS\n- [E017]: Repeated TCP connection from source IP to destination IP on port 80 (HTTP)\n- [E018]: Another repeated TCP connection from the same source IP to the same destination IP on port 80 (HTTP)\n- [E019]: Successful HTTP response from the destination IP to the source IP, with data transfer\n- [E024]: Another successful HTTP response from the destination IP to the source IP, with a larger amount of data transferred\n- [E025]: UDP connection from the source IP to another destination on port 123\n\n## SUSPICIOUS ACTIVITIES\n- Frequent connections to the same destination IP and port could indicate scanning or probing activities. However, it could also be benign web browsing. [E017], [E018]\n- Large amounts of data transferred in successful HTTP responses are unusual for typical web browsing but could still be legitimate. [E019], [E024]\n- UDP connection to another destination on port 123 is not directly related to the repeated TCP connections and may require further investigation. [E025]\n\n## EVIDENCE REFERENCES\n- [E017]: src_ip=\"192.168.1.199\", dst_ip=\"46.101.251.172\", dst_port=80, proto=\"tcp\"\n- [E018]: src_ip=\"192.168.1.199\", dst_ip=\"46.101.251.172\", dst_port=80, proto=\"tcp\"\n- [E019]: src_ip=\"192.168.1.199\", dst_ip=\"46.101.251.172\", dst_port=80, proto=\"tcp\", conn_state=\"SF\"\n- [E024]: src_ip=\"192.168.1.199\", dst_ip=\"46.101.251.172\", dst_port=80, proto=\"tcp\", conn_state=\"SF\"\n- [E025]: src_ip=\"192.168.1.199\", dst_ip=\"81.2.248.189\", dst_port=123, proto=\"udp\"\n\n## INCIDENT TIMELINE\n| Timestamp | Event | Source | Host/User | Evidence Ref |\n|---|---|---|---|---|\n| 2019-01-10T20:07:59.155315Z | Repeated TCP connection | 192.168.1.199 | - | [E017] |\n| 2019-01-10T20:08:15.795319Z | Repeated TCP connection | 192.168.1.199 | - | [E018] |\n| 2019-01-10T20:08:48.435460Z | Successful HTTP response | 192.168.1.199 | - | [E019] |\n| 2019-01-10T20:08:51.136166Z | Repeated TCP connection | 192.168.1.199 | - | [E020] |\n| 2019-01-10T20:08:58.355297Z | Repeated TCP connection | 192.168.1.199 | - | [E021] |\n| 2019-01-10T20:09:06.995369Z | Repeated TCP connection | 192.168.1.199 | - | [E022] |\n| 2019-01-10T20:09:23.635372Z | Successful HTTP response | 192.168.1.199 | - | [E023] |\n| 2019-01-10T20:09:26.859046Z | Successful HTTP response | 192.168.1.199 | - | [E024] |\n| 2019-01-10T22:01:02.953055Z | UDP connection | 192.168.1.199 | - | [E025] |\n\n## EXTRACTED IOCS\nNone identified (External reputation not checked.)\n\n## POTENTIAL ATTACK INDICATORS\n- Repeated connections to the same destination IP and port could indicate scanning or probing activities. [E017], [E018]\n- Large amounts of data transferred in successful HTTP responses are unusual for typical web browsing but could still be legitimate. [E019], [E024]\n- UDP connection to another destination on port 123 is not directly related to the repeated TCP connections and may require further investigation. [E025]\n\n## CONFIDENCE AND UNCERTAINTY\nLow: The activity could be benign web browsing or potentially malicious behavior such as scanning or probing. More context and information are needed to confirm or reject findings.\n\n## MISSING INFORMATION\n- Context of the connections (approved changes, registered tools, maintenance windows)\n- Destination IP reputation\n- Source IP reputation\n- Username associated with the source IP\n\n## RECOMMENDED INVESTIGATION STEPS\n1. Investigate the context of the connections: Check for approved changes, registered tools, and maintenance windows that could explain the activity.\n2. Research the destination IP's reputation to determine if it is known for malicious behavior.\n3. Research the source IP's reputation to determine if it has a history of suspicious activity.\n4. Determine the username associated with the source IP, if possible.\n5. Monitor the source IP and destination IP for further unusual activity.",
+    "sections": {
+      "EXECUTIVE SUMMARY": "A single IP address is making repeated connections to the same destination on port 80, with some successful HTTP responses. The activity looks unclear as it could be benign web browsing or potentially malicious behavior such as scanning or probing.",
+      "LOG SOURCE": "Source type: Zeek conn.log, Hosts: 192.168.1.199, Time span: January 10, 2019 20:07:59 - January 10, 2019 22:01:02",
+      "SIGNIFICANT SECURITY EVENTS": "- [E017]: Repeated TCP connection from source IP to destination IP on port 80 (HTTP)\n- [E018]: Another repeated TCP connection from the same source IP to the same destination IP on port 80 (HTTP)\n- [E019]: Successful HTTP response from the destination IP to the source IP, with data transfer\n- [E024]: Another successful HTTP response from the destination IP to the source IP, with a larger amount of data transferred\n- [E025]: UDP connection from the source IP to another destination on port 123",
+      "SUSPICIOUS ACTIVITIES": "- Frequent connections to the same destination IP and port could indicate scanning or probing activities. However, it could also be benign web browsing. [E017], [E018]\n- Large amounts of data transferred in successful HTTP responses are unusual for typical web browsing but could still be legitimate. [E019], [E024]\n- UDP connection to another destination on port 123 is not directly related to the repeated TCP connections and may require further investigation. [E025]",
+      "EVIDENCE REFERENCES": "- [E017]: src_ip=\"192.168.1.199\", dst_ip=\"46.101.251.172\", dst_port=80, proto=\"tcp\"\n- [E018]: src_ip=\"192.168.1.199\", dst_ip=\"46.101.251.172\", dst_port=80, proto=\"tcp\"\n- [E019]: src_ip=\"192.168.1.199\", dst_ip=\"46.101.251.172\", dst_port=80, proto=\"tcp\", conn_state=\"SF\"\n- [E024]: src_ip=\"192.168.1.199\", dst_ip=\"46.101.251.172\", dst_port=80, proto=\"tcp\", conn_state=\"SF\"\n- [E025]: src_ip=\"192.168.1.199\", dst_ip=\"81.2.248.189\", dst_port=123, proto=\"udp\"",
+      "INCIDENT TIMELINE": "| Timestamp | Event | Source | Host/User | Evidence Ref |\n|---|---|---|---|---|\n| 2019-01-10T20:07:59.155315Z | Repeated TCP connection | 192.168.1.199 | - | [E017] |\n| 2019-01-10T20:08:15.795319Z | Repeated TCP connection | 192.168.1.199 | - | [E018] |\n| 2019-01-10T20:08:48.435460Z | Successful HTTP response | 192.168.1.199 | - | [E019] |\n| 2019-01-10T20:08:51.136166Z | Repeated TCP connection | 192.168.1.199 | - | [E020] |\n| 2019-01-10T20:08:58.355297Z | Repeated TCP connection | 192.168.1.199 | - | [E021] |\n| 2019-01-10T20:09:06.995369Z | Repeated TCP connection | 192.168.1.199 | - | [E022] |\n| 2019-01-10T20:09:23.635372Z | Successful HTTP response | 192.168.1.199 | - | [E023] |\n| 2019-01-10T20:09:26.859046Z | Successful HTTP response | 192.168.1.199 | - | [E024] |\n| 2019-01-10T22:01:02.953055Z | UDP connection | 192.168.1.199 | - | [E025] |",
+      "EXTRACTED IOCS": "None identified (External reputation not checked.)",
+      "POTENTIAL ATTACK INDICATORS": "- Repeated connections to the same destination IP and port could indicate scanning or probing activities. [E017], [E018]\n- Large amounts of data transferred in successful HTTP responses are unusual for typical web browsing but could still be legitimate. [E019], [E024]\n- UDP connection to another destination on port 123 is not directly related to the repeated TCP connections and may require further investigation. [E025]",
+      "CONFIDENCE AND UNCERTAINTY": "Low: The activity could be benign web browsing or potentially malicious behavior such as scanning or probing. More context and information are needed to confirm or reject findings.",
+      "MISSING INFORMATION": "- Context of the connections (approved changes, registered tools, maintenance windows)\n- Destination IP reputation\n- Source IP reputation\n- Username associated with the source IP",
+      "RECOMMENDED INVESTIGATION STEPS": "1. Investigate the context of the connections: Check for approved changes, registered tools, and maintenance windows that could explain the activity.\n2. Research the destination IP's reputation to determine if it is known for malicious behavior.\n3. Research the source IP's reputation to determine if it has a history of suspicious activity.\n4. Determine the username associated with the source IP, if possible.\n5. Monitor the source IP and destination IP for further unusual activity."
+    },
+    "truncated": false,
+    "timeline_rows": [
+      {
+        "timestamp": "2019-01-10T20:07:59.155315Z",
+        "event": "Repeated TCP connection",
+        "source": "192.168.1.199",
+        "host_user": "-",
+        "evidence_ref": "[E017]",
+        "refs_found": [
+          "E017"
+        ]
+      },
+      {
+        "timestamp": "2019-01-10T20:08:15.795319Z",
+        "event": "Repeated TCP connection",
+        "source": "192.168.1.199",
+        "host_user": "-",
+        "evidence_ref": "[E018]",
+        "refs_found": [
+          "E018"
+        ]
+      },
+      {
+        "timestamp": "2019-01-10T20:08:48.435460Z",
+        "event": "Successful HTTP response",
+        "source": "192.168.1.199",
+        "host_user": "-",
+        "evidence_ref": "[E019]",
+        "refs_found": [
+          "E019"
+        ]
+      },
+      {
+        "timestamp": "2019-01-10T20:08:51.136166Z",
+        "event": "Repeated TCP connection",
+        "source": "192.168.1.199",
+        "host_user": "-",
+        "evidence_ref": "[E020]",
+        "refs_found": [
+          "E020"
+        ]
+      },
+      {
+        "timestamp": "2019-01-10T20:08:58.355297Z",
+        "event": "Repeated TCP connection",
+        "source": "192.168.1.199",
+        "host_user": "-",
+        "evidence_ref": "[E021]",
+        "refs_found": [
+          "E021"
+        ]
+      },
+      {
+        "timestamp": "2019-01-10T20:09:06.995369Z",
+        "event": "Repeated TCP connection",
+        "source": "192.168.1.199",
+        "host_user": "-",
+        "evidence_ref": "[E022]",
+        "refs_found": [
+          "E022"
+        ]
+      },
+      {
+        "timestamp": "2019-01-10T20:09:23.635372Z",
+        "event": "Successful HTTP response",
+        "source": "192.168.1.199",
+        "host_user": "-",
+        "evidence_ref": "[E023]",
+        "refs_found": [
+          "E023"
+        ]
+      },
+      {
+        "timestamp": "2019-01-10T20:09:26.859046Z",
+        "event": "Successful HTTP response",
+        "source": "192.168.1.199",
+        "host_user": "-",
+        "evidence_ref": "[E024]",
+        "refs_found": [
+          "E024"
+        ]
+      },
+      {
+        "timestamp": "2019-01-10T22:01:02.953055Z",
+        "event": "UDP connection",
+        "source": "192.168.1.199",
+        "host_user": "-",
+        "evidence_ref": "[E025]",
+        "refs_found": [
+          "E025"
+        ]
+      }
+    ]
+  },
+  "grounding": {
+    "version": "grounded-detection-1.0",
+    "scope": "observed_input_events_only",
+    "events_inspected": 9,
+    "behavioral_findings": [
+      {
+        "rule_id": "NETWORK_TCP_REPEATED_FOUR_TUPLE_SEQUENCE",
+        "label": "Repeated Zeek TCP four-tuple rows with S0-before-SF sequences",
+        "confidence_in_observed_pattern": "medium",
+        "evidence_refs": [
+          "E017",
+          "E018",
+          "E019",
+          "E020",
+          "E021",
+          "E022",
+          "E023"
+        ],
+        "observation": "2 repeated TCP source-port groups (7 original conn.log rows) from 192.168.1.199 to 46.101.251.172:80 show at least two S0 rows preceding an SF row per group; observed inter-arrival intervals vary, potentially consistent with retry/retransmission/backoff-like activity.",
+        "outcome": "Repeated same-four-tuple records do NOT prove independent connection attempts, exponential backoff, periodic beaconing, C2, malware, authorization, file-download contents or compromise.",
+        "details": {
+          "src_ip": "192.168.1.199",
+          "dst_ip": "46.101.251.172",
+          "dst_port": 80,
+          "proto": "tcp",
+          "repeated_source_port_groups": 2,
+          "repeated_source_port_rows": 7,
+          "all_intervals_median_seconds": 16.64,
+          "groups": [
+            {
+              "source_port": 59236,
+              "connection_record_count": 3,
+              "sequence": [
+                "S0",
+                "S0",
+                "SF"
+              ],
+              "inter_arrival_seconds": [
+                16.64,
+                32.64
+              ],
+              "evidence_refs": [
+                "E017",
+                "E018",
+                "E019"
+              ]
+            },
+            {
+              "source_port": 59240,
+              "connection_record_count": 4,
+              "sequence": [
+                "S0",
+                "S0",
+                "S0",
+                "SF"
+              ],
+              "inter_arrival_seconds": [
+                7.219,
+                8.64,
+                16.64
+              ],
+              "evidence_refs": [
+                "E020",
+                "E021",
+                "E022",
+                "E023"
+              ]
+            }
+          ],
+          "raw_zeek_row_refs_only": true,
+          "full_source_integrity_checked_in_this_function": false
+        },
+        "status": "investigation_indicator_not_incident_verdict"
+      }
+    ],
+    "context_observations": [],
+    "final_incident_verdict": "human_review_required",
+    "guarantees": [
+      "No LLM inference",
+      "No proof of attack success",
+      "No SOAR actions"
+    ]
+  },
+  "validation": {
+    "flags": [
+      {
+        "check": "network_tcp_retry_pattern_not_identified",
+        "severity": "high",
+        "section": "SUSPICIOUS ACTIVITIES",
+        "value": "A single IP address is making repeated connections to the same destination on port 80, with some successful HTTP responses. The activity looks unclear as it cou",
+        "message": "Supported repeated same-four-tuple S0-before-SF TCP sequences were not identified in the security narrative.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      }
+    ],
+    "severity_counts": {
+      "high": 1,
+      "medium": 0,
+      "low": 0
+    },
+    "automated_checks": [
+      "structure/truncation",
+      "IP/URL/domain/hash/CVE/email/file exact-string support",
+      "defang preservation",
+      "timestamp source-text check; timeline timestamp <1ms tolerance",
+      "entity (key=value, backtick, host-token) support",
+      "evidence-reference existence and presence",
+      "fabricated rule/agent ID",
+      "Event ID semantics (heuristic: Windows 1102/5145/4624/4625/4732)",
+      "unsupported certainty / attribution",
+      "none-claim vs code-detected risk signals",
+      "timeline timestamp vs cited event",
+      "input prompt-injection scan"
+    ],
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review",
+    "analyst": null,
+    "final_classification": null,
+    "final_priority": null,
+    "correct_findings": [],
+    "incorrect_findings": [],
+    "missing_evidence": [],
+    "hallucinations": [],
+    "notes": "",
+    "reviewed_utc": null,
+    "history": []
+  },
+  "unified": {
+    "engine_version": "unified-intake-0.4.0-candidate",
+    "family": "network",
+    "pre_ai_notes": [
+      "UNIFIED ROUTING: 9 event(s) assigned to this source family using per-event signatures. Do not infer that unknown or omitted records were analyzed.",
+      "WHOLE-FILE PYTHON GROUNDING CONTEXT: network has evidence-dependent finding type(s): NETWORK_TCP_REPEATED_FOUR_TUPLE_SEQUENCE. Evidence counts reflect the FULL family subset, not necessarily this AI batch. Do not cite references absent from the current LOG DATA; do not invent events to bridge batches. Use only per-event evidence shown in this call for individual chronology and endpoint attribution. An aggregate is not an individual Zeek flow. This observation is not proof of attacker intent or intrusion. Other source records exist outside this batch and are independently summarized in the unified Python baseline.",
+      "CITATION POLICY: Cite ONLY the canonical [E###] tag immediately preceding each input record. Source-origin E### IDs are withheld from the model and remain in the analyst manifest. Never invent an E### reference or use internal/source-level IDs as citation labels.",
+      "DRAFT COMPLETENESS: Include all required ## headings, one clearly scoped report confidence level. Give at most THREE representative evidence-linked bullets per narrative section, no more than THREE real source-timestamp timeline rows, and at most FOUR evidence explanations. The program adds the COMPLETE evidence timeline independently. Never use \"...\", \"continue for all events\", filler rows or implied missing content. Unknown details must be explicitly called unknown, not guessed.",
+      "ZEEK FACT BOUNDARIES: A raw conn.log row represents an individual flow record; one dst_port=65535 row is NOT evidence that all ports were scanned. Use full-source counts ONLY from the verified-in-input aggregate and distinguish that derived count from sample rows. Zeek REJ is a connection state, not proof of firewall blocking. Never assert all sampled rows use one source port unless verified."
+    ],
+    "baseline_grounding": {
+      "version": "grounded-detection-1.0",
+      "scope": "observed_input_events_only",
+      "events_inspected": 9,
+      "behavioral_findings": [
+        {
+          "rule_id": "NETWORK_TCP_REPEATED_FOUR_TUPLE_SEQUENCE",
+          "label": "Repeated Zeek TCP four-tuple rows with S0-before-SF sequences",
+          "confidence_in_observed_pattern": "medium",
+          "evidence_refs": [
+            "E017",
+            "E018",
+            "E019",
+            "E020",
+            "E021",
+            "E022",
+            "E023"
+          ],
+          "observation": "2 repeated TCP source-port groups (7 original conn.log rows) from 192.168.1.199 to 46.101.251.172:80 show at least two S0 rows preceding an SF row per group; observed inter-arrival intervals vary, potentially consistent with retry/retransmission/backoff-like activity.",
+          "outcome": "Repeated same-four-tuple records do NOT prove independent connection attempts, exponential backoff, periodic beaconing, C2, malware, authorization, file-download contents or compromise.",
+          "details": {
+            "src_ip": "192.168.1.199",
+            "dst_ip": "46.101.251.172",
+            "dst_port": 80,
+            "proto": "tcp",
+            "repeated_source_port_groups": 2,
+            "repeated_source_port_rows": 7,
+            "all_intervals_median_seconds": 16.64,
+            "groups": [
+              {
+                "source_port": 59236,
+                "connection_record_count": 3,
+                "sequence": [
+                  "S0",
+                  "S0",
+                  "SF"
+                ],
+                "inter_arrival_seconds": [
+                  16.64,
+                  32.64
+                ],
+                "evidence_refs": [
+                  "E017",
+                  "E018",
+                  "E019"
+                ]
+              },
+              {
+                "source_port": 59240,
+                "connection_record_count": 4,
+                "sequence": [
+                  "S0",
+                  "S0",
+                  "S0",
+                  "SF"
+                ],
+                "inter_arrival_seconds": [
+                  7.219,
+                  8.64,
+                  16.64
+                ],
+                "evidence_refs": [
+                  "E020",
+                  "E021",
+                  "E022",
+                  "E023"
+                ]
+              }
+            ],
+            "raw_zeek_row_refs_only": true,
+            "full_source_integrity_checked_in_this_function": false
+          },
+          "status": "investigation_indicator_not_incident_verdict"
+        }
+      ],
+      "context_observations": [],
+      "final_incident_verdict": "human_review_required",
+      "guarantees": [
+        "No LLM inference",
+        "No proof of attack success",
+        "No SOAR actions"
+      ]
+    },
+    "windows_plink": [],
+    "input_original_sha256": "ce7f1905335690eaea42f4d299824a057b36153d4747058a7405fbe6b04e67a6",
+    "prompt_source_file_sha256": "7affc781ced6c1a991a75ba465d7aa9c429fac7a7dc3730cf3656342b0650b6d",
+    "whole_family_rules": [
+      "NETWORK_TCP_REPEATED_FOUR_TUPLE_SEQUENCE"
+    ],
+    "qa": {
+      "needs_human_review": true,
+      "missing_or_truncated_output": false,
+      "flag_count": 1,
+      "high_severity_flags": 1,
+      "review_checks": [
+        "network_tcp_retry_pattern_not_identified"
+      ],
+      "status": "REVIEW_REQUIRED"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+## EXECUTIVE SUMMARY
+The log data shows repeated failed login attempts (13 in total) from IP address 183.62.140.253 against three distinct user accounts (zhangyan, dff, and root). The attempts were made using the SSH protocol. While this activity is not necessarily malicious, it could indicate a brute-force attack on the specified user accounts.
+
+## LOG SOURCE
+Source type: sshd logs, Hosts: LabSZ, Time span: Dec 10 10:54:27 - Dec 10 10:54:52
+
+## SIGNIFICANT SECURITY EVENTS
+- [E003] Failed password for invalid user zhangyan from 183.62.140.253
+- [E009] Failed password for invalid user dff from 183.62.140.253
+- [E012] Failed password for root from 183.62.140.253
+- ... (continued for all failed login attempts)
+
+## SUSPICIOUS ACTIVITIES
+- Repeated failed login attempts against multiple user accounts from the same IP address [E003, E009, E012, ...]
+  - Why suspicious: The high number of failed login attempts in a short period could indicate an attempt to guess passwords (brute-force attack).
+
+## EVIDENCE REFERENCES
+- [E003] Dec 10 10:54:29 LabSZ sshd[24868]: Failed password for invalid user zhangyan from 183.62.140.253 port 33521 ssh2
+- ... (continued for all evidence references)
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|-----------|-------|--------|-----------|--------------|
+| Dec 10 10:54:27 | sshd 'Failed password' | LabSZ   | zhangyan    | [E003]        |
+| Dec 10 10:54:29 | sshd 'Failed password' | LabSZ   | dff         | [E009]        |
+| Dec 10 10:54:31 | sshd 'Failed password' | LabSZ   | root        | [E012]        |
+| ... (continued for all timestamps)                                               |
+
+## EXTRACTED IOCS
+- Type: IP address, Value: 183.62.140.253, [E003, E009, E012, ...]
+- External reputation not checked.
+
+## POTENTIAL ATTACK INDICATORS
+- Possible brute-force attack on user accounts (zhangyan, dff, and root) from IP address 183.62.140.253.
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The log data only shows failed login attempts and does not confirm whether the passwords were guessed correctly or if any accounts were compromised.
+Medium: The high number of repeated attempts suggests a brute-force attack, but further investigation is needed to determine the intent and potential impact.
+High: The source IP address 183.62.140.253 was used in all failed login attempts.
+
+## MISSING INFORMATION
+- Password policies for the affected user accounts (e.g., password complexity, lockout policy)
+- Whether any of the attempted passwords were correct
+- If these repeated failed login attempts are part of a larger pattern or campaign
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Review and update password policies for affected user accounts.
+2. Investigate whether the IP address 183.62.140.253 is associated with any known threat actors or malicious activity.
+3. Check system logs for any successful login attempts using these user accounts during the same timeframe.
+4. Determine if there are any other systems that have been targeted by this IP address in the past.
+5. Monitor for similar failed login attempts from this IP address in the future.

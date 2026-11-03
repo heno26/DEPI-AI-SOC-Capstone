@@ -1,0 +1,81 @@
+{
+  "engine_version": "unified-intake-0.1.0-candidate",
+  "source_file": "RT-01-C2-plink-focused.json",
+  "source_sha256": "1a5bee30293a99830627fd128d7aa003e4b6268bd722bdc3256c10f989cd62b7",
+  "evidence_class": "user_supplied_unverified",
+  "input_event_count": 4,
+  "counts_by_family": {
+    "windows": 4
+  },
+  "classification": [
+    {
+      "ref": "E001",
+      "line_no": 1,
+      "family": "windows",
+      "confidence": "high",
+      "reason": "Windows event provider; Structured Windows event; Windows event_data/data.win fields",
+      "transport": "file",
+      "original_evidence_id": "E003",
+      "original_source": null
+    },
+    {
+      "ref": "E002",
+      "line_no": 2,
+      "family": "windows",
+      "confidence": "high",
+      "reason": "Windows event provider; Structured Windows event",
+      "transport": "file",
+      "original_evidence_id": "E004",
+      "original_source": null
+    },
+    {
+      "ref": "E003",
+      "line_no": 3,
+      "family": "windows",
+      "confidence": "high",
+      "reason": "Windows event provider; Structured Windows event",
+      "transport": "file",
+      "original_evidence_id": "E005",
+      "original_source": null
+    },
+    {
+      "ref": "E004",
+      "line_no": 4,
+      "family": "windows",
+      "confidence": "high",
+      "reason": "Windows event provider; Structured Windows event",
+      "transport": "file",
+      "original_evidence_id": "E023",
+      "original_source": null
+    }
+  ],
+  "analysis_runs": [
+    {
+      "family": "windows",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004"
+      ],
+      "analysis_id": "AN-20261024-133457-88cf",
+      "saved": "D:\\Desktop\\w\\Week-2\\Results\\AN-20261024-133457-88cf",
+      "model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "validation_flags": 8,
+      "review_status": "Pending Review",
+      "events_sent_to_ai": [
+        "E001",
+        "E002",
+        "E003",
+        "E004"
+      ]
+    }
+  ],
+  "unknown_refs_not_sent_to_ai": [],
+  "notes": [
+    "AI outputs are drafts requiring human review.",
+    "Mixed sources were grouped; this run does not prove cross-source correlation.",
+    "Source evidence references are mapped in classification; secrets are redacted in analysis copies.",
+    "Context limits may truncate events within an AI call; check events_sent_to_ai vs refs."
+  ]
+}

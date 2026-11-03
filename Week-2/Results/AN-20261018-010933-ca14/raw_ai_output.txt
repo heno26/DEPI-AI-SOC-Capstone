@@ -1,0 +1,48 @@
+## EXECUTIVE SUMMARY
+The activity shows a process chain winrshost.exe -> cmd.exe -> ipconfig.exe on DC1.insecurebank.local, executed by the Administrator account. The event does not provide clear indications of malicious intent, but it is worth investigating further due to the potential for lateral movement or unauthorized activity.
+
+## LOG SOURCE
+Source type: Microsoft-Windows-Sysmon, Hosts: DC1.insecurebank.local, Time span: 2019-05-16T01:31:36.4XXZ (X represents a timestamp digit)
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] Process creation of winrshost.exe by Administrator
+- [E002] Command execution of cmd.exe /C ipconfig
+- [E003] Process creation of ipconfig.exe
+
+## SUSPICIOUS ACTIVITIES
+- A process chain winrshost.exe -> cmd.exe -> ipconfig.exe can be consistent with WinRM-related command execution, but alone does NOT prove a remote client, malicious lateral movement, or a successful compromise (Assumption: Approved changes and maintenance windows are not evident from the data) [E001]
+- The Administrator account was used to execute these processes. While it could be an authorized action, it is worth investigating further due to potential unauthorized activity (Assumption: No approved change or maintenance window is evident from the data) [E002, E003]
+
+## EVIDENCE REFERENCES
+- [E001] Shows process creation of winrshost.exe by Administrator
+- [E002] Shows command execution of cmd.exe /C ipconfig
+- [E003] Shows process creation of ipconfig.exe
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|-----------|-------|--------|-----------|--------------|
+| 2019-05-16T01:31:36.4XXZ | Process creation of winrshost.exe by Administrator | Microsoft-Windows-Sysmon | DC1.insecurebank.local, insecurebank\Administrator | [E001] |
+| 2019-05-16T01:31:36.4XXZ | Command execution of cmd.exe /C ipconfig | Microsoft-Windows-Sysmon | DC1.insecurebank.local, insecurebank\Administrator | [E002] |
+| 2019-05-16T01:31:36.4XXZ | Process creation of ipconfig.exe | Microsoft-Windows-Sysmon | DC1.insecurebank.local, insecurebank\Administrator | [E003] |
+
+## EXTRACTED IOCS
+None identified
+
+## POTENTIAL ATTACK INDICATORS
+- Possible WinRM-related command execution (Assumption: No other evidence of the event is available) [E001]
+- Potential unauthorized use of the Administrator account (Assumption: No approved change or maintenance window is evident from the data) [E002, E003]
+
+## CONFIDENCE AND UNCERTAINTY
+Low | Medium | High
+The event does not provide clear indications of malicious intent. The potential for lateral movement or unauthorized activity requires further investigation. Uncertainty lies in the absence of approved changes and maintenance windows from the data.
+
+## MISSING INFORMATION
+- Approved changes and maintenance windows for DC1.insecurebank.local
+- Additional context about the winrshost.exe process execution
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the Administrator account's activities on DC1.insecurebank.local around 2019-05-16T01:31:36.4XXZ
+2. Examine other logs for evidence of approved changes or maintenance windows on DC1.insecurebank.local
+3. Investigate the purpose and context of winrshost.exe process execution
+4. Determine if any unauthorized lateral movement occurred within the network
+5. Assess the potential impact of these events on the insecurebank infrastructure

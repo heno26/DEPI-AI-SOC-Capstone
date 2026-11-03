@@ -1,0 +1,58 @@
+## EXECUTIVE SUMMARY
+The activity appears to be a remote connection using PuTTY, a command-line SSH client. The connection was established from PC01 to PC02 through port 80 and port 3389. No malicious intent is evident in the provided data.
+
+## LOG SOURCE
+Source type: Microsoft-Windows-Sysmon
+Hosts: PC01.example.corp, PC02
+Time span: February 16, 2019, from 10:02 to 10:04 (UTC)
+
+## SIGNIFICANT SECURITY EVENTS
+- A process named plink.exe with ProcessId 2312 was started by user IEUser on PC01 [E001]
+- The process initiated a TCP connection to PC02 on port 80 [E002]
+- The process established a reverse tunnel from localhost (PC01) to PC02 on ports 4444 and 3389 [E003, E004]
+
+## SUSPICIOUS ACTIVITIES
+- Using a remote desktop protocol over HTTP port is unusual but not necessarily malicious. It may be worth investigating the reason for this choice [E002]
+- The reverse tunnel setup could potentially be used for C&C communication or data exfiltration, but more context is needed to confirm [E003, E004]
+- None identified
+
+## EVIDENCE REFERENCES
+- [E001]: Process start event on PC01
+- [E002]: Connection initiation event on PC01
+- [E003]: Reverse tunnel setup from localhost (PC01) to PC02 on port 4444
+- [E004]: Reverse tunnel setup from localhost (PC01) to PC02 on port 3389
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2019-02-16T10:02:21.934Z | Process start | PC01 | IEUser | [E001] |
+| 2019-02-16T10:02:22.965Z | Connection initiation | PC01 | IEUser | [E002] |
+| 2019-02-16T10:02:48.503Z | Reverse tunnel setup (port 4444) | PC01 | IEUser | [E003] |
+| 2019-02-16T10:04:05.093Z | Reverse tunnel setup (port 3389) | PC01 | IEUser | [E004] |
+
+## EXTRACTED IOCS
+- Type: Process Name
+  - Value: plink.exe
+  - Evidence Ref: [E001, E002, E003, E004]
+- External reputation not checked.
+
+## POTENTIAL ATTACK INDICATORS
+- Use of a reverse tunnel for remote access or data exfiltration
+- Unusual choice of HTTP port for remote desktop protocol
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The provided data does not contain enough context to confirm the intent behind these actions.
+Medium: The use of a reverse tunnel and an unusual choice of HTTP port suggest potential malicious activity, but more information is needed to verify this.
+High: None.
+
+## MISSING INFORMATION
+- Purpose of the remote connection
+- Context surrounding the event (e.g., maintenance window, approved tools)
+- External reputation of the process and IP addresses involved
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Determine the purpose of the remote connection.
+2. Investigate whether the use of HTTP port 80 for remote desktop protocol is authorized.
+3. Verify if the reverse tunnel setup was part of an approved process or tool.
+4. Check the external reputation of IP addresses 10.0.2.17, 10.0.2.18, 127.0.0.1, and 127.0.0.2.
+5. Investigate any other related events or logs that may provide additional context.

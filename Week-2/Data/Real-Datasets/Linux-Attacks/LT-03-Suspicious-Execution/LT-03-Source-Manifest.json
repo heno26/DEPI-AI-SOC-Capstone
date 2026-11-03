@@ -1,0 +1,12 @@
+﻿{
+    "test_id":  "LT-03",
+    "scenario":  "Linux Suspicious Command Execution",
+    "dataset":  "Linux Bash Reverse Shell",
+    "source_repository":  "splunk/attack_data",
+    "source_class":  "Recorded attack-range simulation",
+    "telemetry":  "Linux Sysmon",
+    "source_url":  "https://media.githubusercontent.com/media/splunk/attack_data/master/datasets/attack_techniques/T1059/linux_bash_reverse_shell/snapattack_linux.log",
+    "mitre_attack":  "T1059",
+    "sha256":  "9F2FE9E8C2F3E00DC0CADBDBA38C3FA791BE1DFC026CA8E236682ED1916D8ACF",
+    "file_size_bytes":  3466
+}

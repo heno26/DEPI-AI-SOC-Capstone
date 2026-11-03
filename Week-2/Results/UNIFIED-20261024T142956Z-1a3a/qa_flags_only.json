@@ -1,0 +1,156 @@
+﻿[
+    {
+        "family":  "windows",
+        "analysis_id":  "AN-20261024-142417-00bb",
+        "check":  "nonexistent_evidence_ref",
+        "severity":  "high",
+        "section":  "SIGNIFICANT SECURITY EVENTS"
+    },
+    {
+        "family":  "windows",
+        "analysis_id":  "AN-20261024-142417-00bb",
+        "check":  "nonexistent_evidence_ref",
+        "severity":  "high",
+        "section":  "SIGNIFICANT SECURITY EVENTS"
+    },
+    {
+        "family":  "windows",
+        "analysis_id":  "AN-20261024-142417-00bb",
+        "check":  "unsupported_authorization_status",
+        "severity":  "medium",
+        "section":  "SUSPICIOUS ACTIVITIES"
+    },
+    {
+        "family":  "windows",
+        "analysis_id":  "AN-20261024-142417-00bb",
+        "check":  "unsupported_authorization_status",
+        "severity":  "medium",
+        "section":  "POTENTIAL ATTACK INDICATORS"
+    },
+    {
+        "family":  "windows",
+        "analysis_id":  "AN-20261024-142417-00bb",
+        "check":  "timeline_timestamp_mismatch",
+        "severity":  "high",
+        "section":  "INCIDENT TIMELINE"
+    },
+    {
+        "family":  "windows",
+        "analysis_id":  "AN-20261024-142417-00bb",
+        "check":  "timeline_timestamp_mismatch",
+        "severity":  "high",
+        "section":  "INCIDENT TIMELINE"
+    },
+    {
+        "family":  "linux",
+        "analysis_id":  "AN-20261024-142612-a852",
+        "check":  "nonexistent_evidence_ref",
+        "severity":  "high",
+        "section":  "SIGNIFICANT SECURITY EVENTS"
+    },
+    {
+        "family":  "linux",
+        "analysis_id":  "AN-20261024-142612-a852",
+        "check":  "nonexistent_evidence_ref",
+        "severity":  "high",
+        "section":  "SIGNIFICANT SECURITY EVENTS"
+    },
+    {
+        "family":  "linux",
+        "analysis_id":  "AN-20261024-142612-a852",
+        "check":  "nonexistent_evidence_ref",
+        "severity":  "high",
+        "section":  "SIGNIFICANT SECURITY EVENTS"
+    },
+    {
+        "family":  "linux",
+        "analysis_id":  "AN-20261024-142612-a852",
+        "check":  "nonexistent_evidence_ref",
+        "severity":  "high",
+        "section":  "SIGNIFICANT SECURITY EVENTS"
+    },
+    {
+        "family":  "linux",
+        "analysis_id":  "AN-20261024-142612-a852",
+        "check":  "timeline_row_without_ref",
+        "severity":  "medium",
+        "section":  "INCIDENT TIMELINE"
+    },
+    {
+        "family":  "linux",
+        "analysis_id":  "AN-20261024-142612-a852",
+        "check":  "ai_unfinished_placeholder",
+        "severity":  "high",
+        "section":  "UNIFIED REPORT QA"
+    },
+    {
+        "family":  "linux",
+        "analysis_id":  "AN-20261024-142612-a852",
+        "check":  "multiple_confidence_levels",
+        "severity":  "low",
+        "section":  "UNIFIED REPORT QA"
+    },
+    {
+        "family":  "linux",
+        "analysis_id":  "AN-20261024-142713-bc3b",
+        "check":  "finding_without_evidence_ref",
+        "severity":  "medium",
+        "section":  "POTENTIAL ATTACK INDICATORS"
+    },
+    {
+        "family":  "network",
+        "analysis_id":  "AN-20261024-142817-4e7a",
+        "check":  "finding_without_evidence_ref",
+        "severity":  "medium",
+        "section":  "POTENTIAL ATTACK INDICATORS"
+    },
+    {
+        "family":  "network",
+        "analysis_id":  "AN-20261024-142956-dfd4",
+        "check":  "finding_without_evidence_ref",
+        "severity":  "medium",
+        "section":  "SIGNIFICANT SECURITY EVENTS"
+    },
+    {
+        "family":  "network",
+        "analysis_id":  "AN-20261024-142956-dfd4",
+        "check":  "finding_without_evidence_ref",
+        "severity":  "medium",
+        "section":  "SUSPICIOUS ACTIVITIES"
+    },
+    {
+        "family":  "network",
+        "analysis_id":  "AN-20261024-142956-dfd4",
+        "check":  "finding_without_evidence_ref",
+        "severity":  "medium",
+        "section":  "POTENTIAL ATTACK INDICATORS"
+    },
+    {
+        "family":  "network",
+        "analysis_id":  "AN-20261024-142956-dfd4",
+        "check":  "finding_without_evidence_ref",
+        "severity":  "medium",
+        "section":  "POTENTIAL ATTACK INDICATORS"
+    },
+    {
+        "family":  "network",
+        "analysis_id":  "AN-20261024-142956-dfd4",
+        "check":  "timeline_row_without_ref",
+        "severity":  "medium",
+        "section":  "INCIDENT TIMELINE"
+    },
+    {
+        "family":  "network",
+        "analysis_id":  "AN-20261024-142956-dfd4",
+        "check":  "ai_unfinished_placeholder",
+        "severity":  "high",
+        "section":  "UNIFIED REPORT QA"
+    },
+    {
+        "family":  "network",
+        "analysis_id":  "AN-20261024-142956-dfd4",
+        "check":  "multiple_confidence_levels",
+        "severity":  "low",
+        "section":  "UNIFIED REPORT QA"
+    }
+]

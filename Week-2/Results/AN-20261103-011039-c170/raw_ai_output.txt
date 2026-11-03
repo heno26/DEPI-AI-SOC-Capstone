@@ -1,0 +1,45 @@
+## EXECUTIVE SUMMARY
+The log data shows two network share access checks (EventID 5145) by user 'user01' to the IPC$ share on IP address 10.0.2.17, which is not necessarily malicious but requires investigation due to multiple attempts and unclear purpose. The security audit log was cleared by the Administrator account (EventID 1102), which could be a routine maintenance action or potentially an attempt to hide activity.
+
+## LOG SOURCE
+Source type: Windows Security Event Logs, Host(s): WIN-77LTAPHIQ1R.example.corp, Time span: January 20, 2019 07:29 - January 20, 2019 07:30
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] The security audit log was cleared by the Administrator account.
+- [E002], [E003], [E004] Network share access checks by user 'user01' to IPC$ on IP address 10.0.2.17.
+
+## SUSPICIOUS ACTIVITIES
+- Multiple network share access attempts ([E002], [E003], [E004]) by user 'user01' to the IPC$ share on IP address 10.0.2.17, which could indicate unauthorized activity or misuse of privileges.
+
+## EVIDENCE REFERENCES
+- [E001] The security audit log was cleared by the Administrator account.
+- [E002], [E003], [E004] Network share access checks by user 'user01' to IPC$ on IP address 10.0.2.17.
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2019-01-20T07:29:57.8638931Z | Security audit log cleared | Microsoft-Windows-Eventlog | WIN-77LTAPHIQ1R.example.corp, Administrator | [E001] |
+| 2019-01-20T07:30:10.6451168Z | Network share access check (winreg) | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp, user01 | [E002] |
+| 2019-01-20T07:30:10.6600994Z | Network share access check (lsarpc) | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp, user01 | [E003] |
+| 2019-01-20T07:30:10.6600994Z | Network share access check (srvsvc) | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp, user01 | [E004] |
+
+## EXTRACTED IOCS
+None identified
+
+## POTENTIAL ATTACK INDICATORS
+- Multiple network share access attempts by a single user to the IPC$ share on an unusual IP address ([E002], [E003], [E004]).
+- The security audit log being cleared ([E001]) could potentially indicate an attempt to hide activity.
+
+## CONFIDENCE AND UNCERTAINTY
+Low: Multiple network share access attempts by a single user, unusual IP address and the security audit log being cleared are all potential indicators of unauthorized activity or misuse of privileges but require further investigation for confirmation.
+
+## MISSING INFORMATION
+- The purpose and context behind these network share access attempts and the clearing of the security audit log need to be investigated.
+- Additional logs from other sources may provide more context about user 'user01' and IP address 10.0.2.17.
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the purpose and context behind these network share access attempts by user 'user01'.
+2. Determine if this activity is within approved scope for user 'user01' and IP address 10.0.2.17.
+3. Investigate the clearing of the security audit log by the Administrator account.
+4. Check if there are any other related events or logs that provide more context about these activities.
+5. Consult with system administrators to determine if this activity is normal for this environment and user behavior patterns.

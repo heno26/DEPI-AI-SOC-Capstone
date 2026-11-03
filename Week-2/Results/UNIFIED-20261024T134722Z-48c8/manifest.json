@@ -1,0 +1,417 @@
+{
+  "engine_version": "unified-intake-0.1.0-candidate",
+  "source_file": "NT-01-focused.json",
+  "source_sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+  "evidence_class": "user_supplied_unverified",
+  "input_event_count": 31,
+  "counts_by_family": {
+    "network": 31
+  },
+  "classification": [
+    {
+      "ref": "E001",
+      "line_no": 1,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E002",
+      "line_no": 2,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E003",
+      "line_no": 3,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E004",
+      "line_no": 4,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E005",
+      "line_no": 5,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E006",
+      "line_no": 6,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E007",
+      "line_no": 7,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E008",
+      "line_no": 8,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E009",
+      "line_no": 9,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E010",
+      "line_no": 10,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E011",
+      "line_no": 11,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E012",
+      "line_no": 12,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E013",
+      "line_no": 13,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E014",
+      "line_no": 14,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E015",
+      "line_no": 15,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E016",
+      "line_no": 16,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E017",
+      "line_no": 17,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E018",
+      "line_no": 18,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E019",
+      "line_no": 19,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E020",
+      "line_no": 20,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E021",
+      "line_no": 21,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E022",
+      "line_no": 22,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E023",
+      "line_no": 23,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E024",
+      "line_no": 24,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E025",
+      "line_no": 25,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E026",
+      "line_no": 26,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E027",
+      "line_no": 27,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E028",
+      "line_no": 28,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E029",
+      "line_no": 29,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E030",
+      "line_no": 30,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E031",
+      "line_no": 31,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    }
+  ],
+  "analysis_runs": [
+    {
+      "family": "network",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016"
+      ],
+      "analysis_id": "AN-20261024-134625-cdd2",
+      "saved": "D:\\Desktop\\w\\Week-2\\Results\\AN-20261024-134625-cdd2",
+      "model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "validation_flags": 7,
+      "review_status": "Pending Review",
+      "events_sent_to_ai": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016"
+      ]
+    },
+    {
+      "family": "network",
+      "refs": [
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024",
+        "E025",
+        "E026",
+        "E027",
+        "E028",
+        "E029",
+        "E030",
+        "E031"
+      ],
+      "analysis_id": "AN-20261024-134722-9cb6",
+      "saved": "D:\\Desktop\\w\\Week-2\\Results\\AN-20261024-134722-9cb6",
+      "model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "validation_flags": 6,
+      "review_status": "Pending Review",
+      "events_sent_to_ai": [
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024",
+        "E025",
+        "E026",
+        "E027",
+        "E028",
+        "E029",
+        "E030",
+        "E031"
+      ]
+    }
+  ],
+  "unknown_refs_not_sent_to_ai": [],
+  "notes": [
+    "AI outputs are drafts requiring human review.",
+    "Mixed sources were grouped; this run does not prove cross-source correlation.",
+    "Source evidence references are mapped in classification; secrets are redacted in analysis copies.",
+    "Context limits may truncate events within an AI call; check events_sent_to_ai vs refs."
+  ]
+}

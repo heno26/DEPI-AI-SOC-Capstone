@@ -1,0 +1,54 @@
+{
+  "project": "DEPI-P5",
+  "phase": "Week-2 Exchange 005",
+  "event_id": "21c4515e439a0b3b6a3f",
+  "review_generated_at_utc": "2026-11-02T18:46:36.906959+00:00",
+  "review_type": "analyst_review_draft",
+  "analyst_approval_status": "PENDING_HUMAN_APPROVAL",
+  "source_ai_report": "SIEM_EXCHANGE_005_21c4515e439a0b3b6a3f_AI_Triage.json",
+  "source_ai_report_sha256": "c1a8ccc7d28eeb8d760afdcdda9ccb4d615e4da32818158d033e8e422c75dbad",
+  "original_ai_qa_status": "REVIEW_REQUIRED",
+  "review_qa_status": "REVIEW_REQUIRED",
+  "human_validation_required": true,
+  "severity": "HIGH_PROVISIONAL",
+  "confidence": "MEDIUM",
+  "disposition": "SUSPICIOUS_ACTIVITY_INVESTIGATION_REQUIRED",
+  "semantic_warnings": [
+    "The original AI summary suggests possible unauthorized data exfiltration; no unauthorized access or exfiltration is confirmed.",
+    "The AI omitted the key indicator: ASPX export destinations within the Exchange OWA web directory.",
+    "The source log reports cmdlet success, but actual export completion and file creation are not independently verified.",
+    "The AI incorrectly categorized the original-versus-replay timestamp distinction as an unverified hypothesis.",
+    "The AI repeated missing-evidence items under unverified hypotheses instead of separating hypotheses from verification requirements.",
+    "The original semantic_warnings array was empty despite these review findings."
+  ],
+  "confirmed_facts": [
+    "Two distinct New-MailboxExportRequest command records are present in the verified SIEM evidence.",
+    "Both records identify the Exchange host win-dc-exch01.attackrange.local.",
+    "Both commands reference the Administrator@attackrange.local mailbox and the Drafts folder.",
+    "Both command lines specify ASPX destination paths under the Exchange OWA auth directory.",
+    "The original event timestamps are from 2022-11-21; SIEM replay timestamps are from 2026.",
+    "The source messages report cmdlet success; export completion is not independently established."
+  ],
+  "unverified_hypotheses": [
+    "The export requests were unauthorized.",
+    "The ASPX destination paths were intended for web-shell staging.",
+    "The requested export operations resulted in actual files on disk.",
+    "Any web shell was deployed, accessed, or executed.",
+    "Any mailbox data was successfully exfiltrated."
+  ],
+  "recommended_actions": [
+    "Confirm whether the export requests were authorized and identify the initiating account.",
+    "Review Exchange administrative audit logs and related RBAC role assignments.",
+    "Inspect the specified OWA auth paths for file existence, metadata, and hashes.",
+    "Review IIS access logs for requests to the specified ASPX filenames.",
+    "Correlate host, process, authentication, and network telemetry around the original event times.",
+    "Determine whether export jobs completed and whether any mailbox data left the environment.",
+    "Escalate for incident-response containment only if corroborating evidence justifies it."
+  ],
+  "scope_limitations": [
+    "Historical lab data replayed into OpenObserve; not a live production compromise.",
+    "No independent filesystem or IIS execution evidence is supplied.",
+    "The verified event count describes the correlated alert rows, not all possible historical activity.",
+    "This document is a prepared analyst-review draft, not a signed human approval."
+  ]
+}

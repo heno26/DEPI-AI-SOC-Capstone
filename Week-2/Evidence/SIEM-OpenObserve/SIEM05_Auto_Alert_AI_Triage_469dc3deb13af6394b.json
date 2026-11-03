@@ -1,0 +1,188 @@
+{
+  "generated_at_utc": "2026-10-22T23:41:57.927212+00:00",
+  "project": "DEPI-P5",
+  "phase": "Week-2 SIEM-05",
+  "mode": "authenticated_webhook_real_siem_read_only",
+  "event_id": "469dc3deb13af6394b4f692624bbe87e13c05780836efb320aebabe885b0fc9a",
+  "model": "mistral:7b-instruct-v0.3-q4_K_S",
+  "qa_status": "REVIEW_REQUIRED",
+  "missing_fields": [],
+  "source_trigger": {
+    "_timestamp": 1792712486577619,
+    "key": "SIEM_WEB_001_HIGH_RATE_HTTP_REQUESTS/3L1hr8G47RwjmCKb4MwmUa6SzEs",
+    "status": "firing"
+  },
+  "webhook_group": {
+    "src_ip": "255.102.154.224",
+    "original_minute_utc": "2025-10-07T02:14Z",
+    "request_count": 112
+  },
+  "evidence": {
+    "rule": "SIEM_WEB_001_HIGH_RATE_HTTP_REQUESTS",
+    "stream": "depi_web_access",
+    "trigger_key": "SIEM_WEB_001_HIGH_RATE_HTTP_REQUESTS/3L1hr8G47RwjmCKb4MwmUa6SzEs",
+    "trigger_status": "firing",
+    "correlation_method": "matching structured webhook group + verified log counts + recent firing trigger",
+    "correlation_limitations": "Trigger key has not been shown to identify a specific alert row; group is taken from signed webhook payload",
+    "source_ip": "255.102.154.224",
+    "original_minute_utc": "2025-10-07T02:14Z",
+    "source_ip_quality": {
+      "valid": true,
+      "is_global": false,
+      "is_reserved": true
+    },
+    "verified_request_count": 112,
+    "methods_and_statuses": [
+      {
+        "http_method": "GET",
+        "http_status": 200,
+        "request_count": 88
+      },
+      {
+        "http_method": "POST",
+        "http_status": 200,
+        "request_count": 14
+      },
+      {
+        "http_method": "GET",
+        "http_status": 302,
+        "request_count": 10
+      }
+    ],
+    "top_http_paths": [
+      {
+        "http_path": "/3.php",
+        "request_count": 10
+      },
+      {
+        "http_path": "/1.php",
+        "request_count": 5
+      },
+      {
+        "http_path": "/40.php",
+        "request_count": 5
+      },
+      {
+        "http_path": "/31.php",
+        "request_count": 4
+      },
+      {
+        "http_path": "/images/2.gif",
+        "request_count": 2
+      },
+      {
+        "http_path": "/images/13.gif",
+        "request_count": 2
+      },
+      {
+        "http_path": "/style/2.css",
+        "request_count": 2
+      },
+      {
+        "http_path": "/style/jquery.jdMenu.css",
+        "request_count": 2
+      },
+      {
+        "http_path": "/images/8.gif",
+        "request_count": 2
+      },
+      {
+        "http_path": "/scripts/jquery.jdMenu.js",
+        "request_count": 2
+      }
+    ],
+    "log_sample": [
+      {
+        "original_event_utc": "2025-10-07T02:14:03Z",
+        "http_method": "GET",
+        "http_status": 200,
+        "http_path": "/images/1.gif"
+      },
+      {
+        "original_event_utc": "2025-10-07T02:14:03Z",
+        "http_method": "GET",
+        "http_status": 200,
+        "http_path": "/images/3.gif"
+      },
+      {
+        "original_event_utc": "2025-10-07T02:14:03Z",
+        "http_method": "GET",
+        "http_status": 200,
+        "http_path": "/images/1.ico"
+      },
+      {
+        "original_event_utc": "2025-10-07T02:14:03Z",
+        "http_method": "GET",
+        "http_status": 200,
+        "http_path": "/images/7.gif"
+      },
+      {
+        "original_event_utc": "2025-10-07T02:14:03Z",
+        "http_method": "GET",
+        "http_status": 200,
+        "http_path": "/images/4.gif"
+      },
+      {
+        "original_event_utc": "2025-10-07T02:14:03Z",
+        "http_method": "GET",
+        "http_status": 200,
+        "http_path": "/images/5.gif"
+      },
+      {
+        "original_event_utc": "2025-10-07T02:14:03Z",
+        "http_method": "GET",
+        "http_status": 200,
+        "http_path": "/images/8.gif"
+      },
+      {
+        "original_event_utc": "2025-10-07T02:14:03Z",
+        "http_method": "GET",
+        "http_status": 200,
+        "http_path": "/scripts/jquery.jdMenu.js"
+      }
+    ],
+    "sample_raw_log_sha256": [
+      "a2854c3dc03a82c9698b3bac7f83221f459df2d27d3cdccf74fcc104e5cdc468",
+      "f69d884b495a2182e12f0ec9196335c1b44e26d7220883ad12172f35026f7e39",
+      "fe0634c074aee12d5fb496d44520910588e4f12c890a6ae64e3bfa5285e545cc",
+      "553a9f733e5faf351382562294eb5068eb56baa5bccaf69154d1cf1b8f821fa4",
+      "6bbfe344eca65031d7005790ae9f6b9e7de61f41d0e8fb9225d9f5d29f052e1d",
+      "f25e50be57bef722070fd4531afd114771df71a464eb48cdfcd4ef96444813f3",
+      "2c80010bb90c6947adb39ba44f21bc301034e10435c3b1c4af20503a6370e5f9",
+      "5d6093a943cea1fa8d5c7f1731d9177f3d03c2b68021e0ded31d97da8d0b89a7"
+    ]
+  },
+  "ai_triage": {
+    "summary": "High rate of HTTP requests from an internal IP address",
+    "severity": "Medium",
+    "potential_threat": "Potential web application activity anomaly",
+    "indicators": {
+      "source_ip": "255.102.154.224",
+      "top_http_paths": [
+        "/3.php",
+        "/1.php",
+        "/40.php",
+        "/31.php",
+        "/images/2.gif",
+        "/images/13.gif",
+        "/style/2.css",
+        "/style/jquery.jdMenu.css",
+        "/images/8.gif",
+        "/scripts/jquery.jdMenu.js"
+      ]
+    },
+    "false_positive_possibility": "Moderate, could be legitimate web traffic",
+    "recommended_actions": [
+      "Investigate the source IP address and the identified HTTP paths for any unusual activity or patterns.",
+      "Consider implementing rate limiting rules to mitigate potential abuse."
+    ],
+    "evidence_limitations": "The evidence is based on log data, which may not capture all relevant details. The correlation limitations are due to the trigger key not identifying a specific alert row and the group being taken from a signed webhook payload.",
+    "confidence": "Moderate"
+  },
+  "human_validation_required": true,
+  "limitations": [
+    "A firing trigger is checked within a recent interval but lacks a proven row-level ID join.",
+    "AI findings require human verification.",
+    "Replay dataset is not live production traffic."
+  ]
+}

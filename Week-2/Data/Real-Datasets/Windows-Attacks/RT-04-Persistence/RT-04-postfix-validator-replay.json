@@ -1,0 +1,108 @@
+{
+  "replay_utc": "2026-10-18T02:16:40.820770+00:00",
+  "source_analysis_id": "AN-20261018-015226-37b2",
+  "method": "deterministic_replay_no_llm_call",
+  "original_review_status_unchanged": "Corrected",
+  "before_flag_count": 2,
+  "after_flag_count": 10,
+  "checks": [
+    "sysmon_13_semantic_mismatch",
+    "timeline_timestamp_mismatch",
+    "unsupported_conclusion",
+    "unsupported_download_origin",
+    "unsupported_multiple_sessions"
+  ],
+  "replayed_flags": [
+    {
+      "check": "unsupported_conclusion",
+      "severity": "medium",
+      "section": "EXECUTIVE SUMMARY",
+      "value": "downloaded and executed",
+      "message": "Definitive claim without confirming text in the source; the evidence may only show an attempt or a possibility.",
+      "analyst_disposition": "Unreviewed",
+      "id": "F001"
+    },
+    {
+      "check": "unsupported_download_origin",
+      "severity": "medium",
+      "section": "EXECUTIVE SUMMARY",
+      "value": "A user downloaded and executed an application named 'a.exe' from a suspicious domain, potentially installing a new process 'BRE6BgE2JubB.exe'. The execution of this new process was observed in multipl",
+      "message": "An executable path under Downloads is not download evidence; no URL/Zone.Identifier/browser-origin record is present.",
+      "analyst_disposition": "Unreviewed",
+      "id": "F002"
+    },
+    {
+      "check": "unsupported_multiple_sessions",
+      "severity": "medium",
+      "section": "EXECUTIVE SUMMARY",
+      "value": "A user downloaded and executed an application named 'a.exe' from a suspicious domain, potentially installing a new process 'BRE6BgE2JubB.exe'. The execution of this new process was observed in multipl",
+      "message": "Repeated process execution does not establish distinct logon sessions without distinct LogonIds for the same image.",
+      "analyst_disposition": "Unreviewed",
+      "id": "F003"
+    },
+    {
+      "check": "unsupported_download_origin",
+      "severity": "medium",
+      "section": "SIGNIFICANT SECURITY EVENTS",
+      "value": "- [E001] A user downloaded 'a.exe' from the user's Downloads folder.",
+      "message": "An executable path under Downloads is not download evidence; no URL/Zone.Identifier/browser-origin record is present.",
+      "analyst_disposition": "Unreviewed",
+      "id": "F004"
+    },
+    {
+      "check": "sysmon_13_semantic_mismatch",
+      "severity": "high",
+      "section": "SIGNIFICANT SECURITY EVENTS",
+      "value": "- [E003] The new process 'BRE6BgE2JubB.exe' was created in the AppData\\Roaming directory, with a Winlogon Shell persistence mechanism set.",
+      "message": "Cited Sysmon Event ID 13 records Registry Value Set, not process/file creation; verify Event ID 11/1 evidence.",
+      "analyst_disposition": "Unreviewed",
+      "id": "F005"
+    },
+    {
+      "check": "unsupported_multiple_sessions",
+      "severity": "medium",
+      "section": "SIGNIFICANT SECURITY EVENTS",
+      "value": "- [E007] Multiple executions of 'BRE6BgE2JubB.exe' were observed across different sessions.",
+      "message": "Repeated process execution does not establish distinct logon sessions without distinct LogonIds for the same image.",
+      "analyst_disposition": "Unreviewed",
+      "id": "F006"
+    },
+    {
+      "check": "unsupported_download_origin",
+      "severity": "medium",
+      "section": "SUSPICIOUS ACTIVITIES",
+      "value": "- The domain from which the user downloaded 'a.exe' is suspicious, raising concerns about potential malware distribution [E001].",
+      "message": "An executable path under Downloads is not download evidence; no URL/Zone.Identifier/browser-origin record is present.",
+      "analyst_disposition": "Unreviewed",
+      "id": "F007"
+    },
+    {
+      "check": "unsupported_multiple_sessions",
+      "severity": "medium",
+      "section": "SUSPICIOUS ACTIVITIES",
+      "value": "- Multiple executions of 'BRE6BgE2JubB.exe' across different sessions suggest that the new process may have persisted on the system [E007]",
+      "message": "Repeated process execution does not establish distinct logon sessions without distinct LogonIds for the same image.",
+      "analyst_disposition": "Unreviewed",
+      "id": "F008"
+    },
+    {
+      "check": "sysmon_13_semantic_mismatch",
+      "severity": "high",
+      "section": "INCIDENT TIMELINE",
+      "value": "| 2019-06-14T22:22:21.5039957Z | New process 'BRE6BgE2JubB.exe' created [E003] | Microsoft-Windows-Sysmon | IEWIN7, IEUser | E003 |",
+      "message": "Cited Sysmon Event ID 13 records Registry Value Set, not process/file creation; verify Event ID 11/1 evidence.",
+      "analyst_disposition": "Unreviewed",
+      "id": "F009"
+    },
+    {
+      "check": "timeline_timestamp_mismatch",
+      "severity": "high",
+      "section": "INCIDENT TIMELINE",
+      "value": "2019-06-14T22:22:21.5039957Z",
+      "message": "Timestamp does not appear in the cited event(s) E003, E003.",
+      "analyst_disposition": "Unreviewed",
+      "id": "F010"
+    }
+  ],
+  "caution": "These are analyst review requests, not proof of malicious intent or hallucination."
+}

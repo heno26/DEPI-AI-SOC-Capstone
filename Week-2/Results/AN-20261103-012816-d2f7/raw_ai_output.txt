@@ -1,0 +1,54 @@
+## EXECUTIVE SUMMARY
+A large number of connections were made from the IP address 192.168.1.199 to various external destinations, primarily on port 80 (HTTP). The activity is unclear as it could be legitimate web browsing or potentially malicious if these connections are part of a coordinated attack or botnet communication.
+
+## LOG SOURCE
+Source type: Zeek conn.log, Hosts: [192.168.1.199], Time span: 2019-01-10T20:06:28.860071Z - 2019-01-10T20:07:50.835310Z
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] Verified full source connection aggregate not raw Zeek event with 237 records and 27 TCP connections
+- [E002] Verified TCP connection retry cluster aggregate not raw Zeek event with 24 records and 13 S0 states
+- [E006, E008, E012, ...] Multiple instances of ZeeK conn original source row events indicating individual connections from IP 192.168.1.199 to various external destinations on port 80 (HTTP)
+
+## SUSPICIOUS ACTIVITIES
+- Frequent connection attempts to the same destination (46.101.251.172:80) by the IP address 192.168.1.199 may indicate a coordinated attack or botnet communication, but could also be legitimate web browsing [E006, E008, E012, ...]
+- Multiple connections using different source ports (59222, 59224, 59228, 51834, 59234, 59236) by the IP address 192.168.1.199 may indicate an attempt to evade detection or a coordinated attack [E005, E007, E009, E010, E011, E014, E015]
+- A long duration (6803 seconds) connection from IP 192.168.1.199 to a destination on port 23 may indicate an attempt to access a remote shell or other unauthorized system administration [E013]
+
+## EVIDENCE REFERENCES
+- [E001] Shows a large number of connections from IP 192.168.1.199 to various destinations, primarily on port 80 (HTTP)
+- [E002] Shows repeated connection attempts by the same source IP and destination to port 80 (HTTP)
+- [E006, E008, E012, ...] Show individual connections from IP 192.168.1.199 to various external destinations on port 80 (HTTP)
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2019-01-10T20:06:29.067208Z | ZeeK conn original source row | 192.168.1.199 | - | [E006] |
+| 2019-01-10T20:06:30.793723Z | ZeeK conn original source row | 192.168.1.199 | - | [E004] |
+| 2019-01-10T20:06:50.932733Z | ZeeK conn original source row | 192.168.1.199 | - | [E007] |
+| 2019-01-10T20:07:02.835187Z | ZeeK conn original source row | 192.168.1.199 | - | [E008] |
+| 2019-01-10T20:07:42.092044Z | ZeeK conn original source row | 192.168.1.199 | - | [E013] |
+
+## EXTRACTED IOCS
+- None identified
+
+## POTENTIAL ATTACK INDICATORS
+- Frequent connection attempts to the same destination by the same IP address may indicate a coordinated attack or botnet communication [E006, E008, E012, ...]
+- Multiple connections using different source ports by the same IP address may indicate an attempt to evade detection or a coordinated attack [E005, E007, E009, E010, E011, E014, E015]
+- Long duration connection to non-standard port (23) by the same IP address may indicate an attempt to access a remote shell or other unauthorized system administration [E013]
+
+## CONFIDENCE AND UNCERTAINTY
+Low | Medium | High
+---|---|----
+Uncertainty about the intent of the connections | Connections could be legitimate web browsing but also potentially malicious | Evidence suggests a coordinated attack or botnet communication, but more investigation is needed to confirm
+
+## MISSING INFORMATION
+- Additional context about the network and its authorized traffic patterns
+- Information about any known compromised accounts or systems on the network
+- More detailed information about the destinations of the connections (websites visited, etc.)
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the IP address 192.168.1.199 to determine if it is a known compromised host or part of a botnet
+2. Examine the destinations of the connections for signs of malicious activity (e.g., known command and control servers, suspicious domains)
+3. Determine if there are any patterns in the connection times or source ports that could indicate an automated attack
+4. Investigate any long duration connections to non-standard ports for potential unauthorized system administration
+5. Consult with network administrators to determine authorized traffic patterns and investigate any deviations from those patterns

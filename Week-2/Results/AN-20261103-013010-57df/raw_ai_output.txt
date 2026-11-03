@@ -1,0 +1,61 @@
+## EXECUTIVE SUMMARY
+A single IP address is making repeated connections to the same destination on port 80, with some successful HTTP responses. The activity looks unclear as it could be benign web browsing or potentially malicious behavior such as scanning or probing.
+
+## LOG SOURCE
+Source type: Zeek conn.log, Hosts: 192.168.1.199, Time span: January 10, 2019 20:07:59 - January 10, 2019 22:01:02
+
+## SIGNIFICANT SECURITY EVENTS
+- [E017]: Repeated TCP connection from source IP to destination IP on port 80 (HTTP)
+- [E018]: Another repeated TCP connection from the same source IP to the same destination IP on port 80 (HTTP)
+- [E019]: Successful HTTP response from the destination IP to the source IP, with data transfer
+- [E024]: Another successful HTTP response from the destination IP to the source IP, with a larger amount of data transferred
+- [E025]: UDP connection from the source IP to another destination on port 123
+
+## SUSPICIOUS ACTIVITIES
+- Frequent connections to the same destination IP and port could indicate scanning or probing activities. However, it could also be benign web browsing. [E017], [E018]
+- Large amounts of data transferred in successful HTTP responses are unusual for typical web browsing but could still be legitimate. [E019], [E024]
+- UDP connection to another destination on port 123 is not directly related to the repeated TCP connections and may require further investigation. [E025]
+
+## EVIDENCE REFERENCES
+- [E017]: src_ip="192.168.1.199", dst_ip="46.101.251.172", dst_port=80, proto="tcp"
+- [E018]: src_ip="192.168.1.199", dst_ip="46.101.251.172", dst_port=80, proto="tcp"
+- [E019]: src_ip="192.168.1.199", dst_ip="46.101.251.172", dst_port=80, proto="tcp", conn_state="SF"
+- [E024]: src_ip="192.168.1.199", dst_ip="46.101.251.172", dst_port=80, proto="tcp", conn_state="SF"
+- [E025]: src_ip="192.168.1.199", dst_ip="81.2.248.189", dst_port=123, proto="udp"
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2019-01-10T20:07:59.155315Z | Repeated TCP connection | 192.168.1.199 | - | [E017] |
+| 2019-01-10T20:08:15.795319Z | Repeated TCP connection | 192.168.1.199 | - | [E018] |
+| 2019-01-10T20:08:48.435460Z | Successful HTTP response | 192.168.1.199 | - | [E019] |
+| 2019-01-10T20:08:51.136166Z | Repeated TCP connection | 192.168.1.199 | - | [E020] |
+| 2019-01-10T20:08:58.355297Z | Repeated TCP connection | 192.168.1.199 | - | [E021] |
+| 2019-01-10T20:09:06.995369Z | Repeated TCP connection | 192.168.1.199 | - | [E022] |
+| 2019-01-10T20:09:23.635372Z | Successful HTTP response | 192.168.1.199 | - | [E023] |
+| 2019-01-10T20:09:26.859046Z | Successful HTTP response | 192.168.1.199 | - | [E024] |
+| 2019-01-10T22:01:02.953055Z | UDP connection | 192.168.1.199 | - | [E025] |
+
+## EXTRACTED IOCS
+None identified (External reputation not checked.)
+
+## POTENTIAL ATTACK INDICATORS
+- Repeated connections to the same destination IP and port could indicate scanning or probing activities. [E017], [E018]
+- Large amounts of data transferred in successful HTTP responses are unusual for typical web browsing but could still be legitimate. [E019], [E024]
+- UDP connection to another destination on port 123 is not directly related to the repeated TCP connections and may require further investigation. [E025]
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The activity could be benign web browsing or potentially malicious behavior such as scanning or probing. More context and information are needed to confirm or reject findings.
+
+## MISSING INFORMATION
+- Context of the connections (approved changes, registered tools, maintenance windows)
+- Destination IP reputation
+- Source IP reputation
+- Username associated with the source IP
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the context of the connections: Check for approved changes, registered tools, and maintenance windows that could explain the activity.
+2. Research the destination IP's reputation to determine if it is known for malicious behavior.
+3. Research the source IP's reputation to determine if it has a history of suspicious activity.
+4. Determine the username associated with the source IP, if possible.
+5. Monitor the source IP and destination IP for further unusual activity.

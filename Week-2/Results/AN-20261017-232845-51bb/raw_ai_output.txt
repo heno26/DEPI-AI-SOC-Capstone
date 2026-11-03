@@ -1,0 +1,48 @@
+## EXECUTIVE SUMMARY
+The activity appears unclear as it involves multiple file access attempts from the same user to various services (winreg, lsarpc, srvsvc) over a network share. No malicious behavior is immediately apparent, but further investigation is needed to confirm.
+
+## LOG SOURCE
+Source type: Microsoft-Windows-Eventlog and Microsoft-Windows-Security-Auditing, Host: WIN-77LTAPHIQ1R.example.corp, Time span: 2019-01-20T07:29:57.8638931Z - 2019-01-20T07:30:10.6600994Z
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] Windows event log creation
+- [E002], [E003], [E004] File access attempts from user01 to IPC$ share with various services (winreg, lsarpc, srvsvc)
+
+## SUSPICIOUS ACTIVITIES
+- Multiple file access attempts by the same user within a short time frame could indicate suspicious activity. [E002], [E003], [E004]
+
+## EVIDENCE REFERENCES
+- [E001] Windows event log creation timestamp and record ID
+- [E002] File access attempt by user01 to IPC$ share with winreg service, timestamp and record ID
+- [E003] File access attempt by user01 to IPC$ share with lsarpc service, timestamp and record ID
+- [E004] File access attempt by user01 to IPC$ share with srvsvc service, timestamp and record ID
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2019-01-20T07:29:57.8638931Z | Windows event log creation | Microsoft-Windows-Eventlog | WIN-77LTAPHIQ1R.example.corp | [E001] |
+| 2019-01-20T07:30:10.6451168Z | File access attempt by user01 to IPC$ share with winreg service | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp | [E002] |
+| 2019-01-20T07:30:10.6600994Z | File access attempt by user01 to IPC$ share with lsarpc service | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp | [E003] |
+| 2019-01-20T07:30:10.6600994Z | File access attempt by user01 to IPC$ share with srvsvc service | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp | [E004] |
+
+## EXTRACTED IOCS
+- Type: IP Address, Value: 10.0.2.17, Evidence Ref: [E002], [E003], [E004]
+- External reputation not checked.
+
+## POTENTIAL ATTACK INDICATORS
+- Multiple file access attempts by the same user within a short time frame could indicate suspicious activity.
+- Access to network shares and services (IPC$, winreg, lsarpc, srvsvc) may be used for various purposes, some of which can be malicious. [E002], [E003], [E004]
+
+## CONFIDENCE AND UNCERTAINTY
+- Low: The activity involves multiple file access attempts by the same user to various services over a network share, but no malicious behavior is immediately apparent. Further investigation is needed to confirm.
+
+## MISSING INFORMATION
+- Context of the approved changes, registered tools and maintenance windows in the data.
+- Information about the purpose of these file access attempts.
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the context of these events: check if they are part of an authorized change or tool usage, or outside a maintenance window.
+2. Determine the purpose of these file access attempts by user01 to various services over the network share.
+3. Check if there are any other related events that occurred before or after this sequence.
+4. Investigate the security posture and permissions of the user01 account.
+5. Monitor for similar activities in the future.

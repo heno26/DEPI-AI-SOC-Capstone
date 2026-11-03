@@ -1,0 +1,47 @@
+## EXECUTIVE SUMMARY
+A user (user01) accessed multiple system files (winreg, lsarpc, srvsvc) from an internal IP address (10.0.2.17). The activity is unclear as it does not appear to be malicious or benign without additional context.
+
+## LOG SOURCE
+Source type: Microsoft-Windows-Eventlog and Microsoft-Windows-Security-Auditing, Hosts: WIN-77LTAPHIQ1R.example.corp, Time span: 2019-01-20T07:29:57.8638931Z - 2019-01-20T07:30:10.6600994Z
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] Administrator logged on (Event ID 1102)
+- [E002], [E003], [E004] User user01 accessed system files from IP address 10.0.2.17 (Event ID 5145)
+
+## SUSPICIOUS ACTIVITIES
+- User user01 accessing multiple system files from an internal IP address outside of approved maintenance windows is suspicious, as it may indicate unauthorized activity or misuse [E002], [E003], [E004]
+
+## EVIDENCE REFERENCES
+- [E001] Administrator logged on
+- [E002], [E003], [E004] User user01 accessed system files from IP address 10.0.2.17
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2019-01-20T07:29:57.8638931Z | Administrator logged on | Microsoft-Windows-Eventlog | WIN-77LTAPHIQ1R.example.corp, Administrator | [E001] |
+| 2019-01-20T07:30:10.6451168Z | User user01 accessed winreg from IP address 10.0.2.17 | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp, user01 | [E002] |
+| 2019-01-20T07:30:10.6600994Z | User user01 accessed lsarpc from IP address 10.0.2.17 | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp, user01 | [E003] |
+| 2019-01-20T07:30:10.6600994Z | User user01 accessed srvsvc from IP address 10.0.2.17 | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp, user01 | [E004] |
+
+## EXTRACTED IOCS
+- Type: IP Address, Value: 10.0.2.17, Evidence Ref: [E002], [E003], [E004]
+- External reputation not checked.
+
+## POTENTIAL ATTACK INDICATORS
+- Unauthorized access to system files from an internal IP address [E002], [E003], [E004]
+- None
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The activity is unclear and may indicate unauthorized or malicious behavior. More context, such as the purpose of the access and whether it was authorized, is needed to increase confidence in the findings.
+
+## MISSING INFORMATION
+- Purpose of the access
+- Whether the access was authorized
+- Additional logs from other sources that may provide more context about the activity
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the purpose and authorization for the user01's access to system files from IP address 10.0.2.17.
+2. Review the logs of other security systems, such as firewalls or intrusion detection/prevention systems, for related activity.
+3. Determine if any changes were made to the accessed files and investigate their impact on the system.
+4. Investigate the user01's account and privileges to determine if they have been compromised or misused.
+5. Consult with relevant teams (e.g., network, systems administration) to gather more context about the activity and potential mitigations.

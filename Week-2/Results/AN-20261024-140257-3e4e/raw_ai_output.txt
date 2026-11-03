@@ -1,0 +1,47 @@
+## EXECUTIVE SUMMARY
+A large number of TCP connection attempts from IP address 192.168.16.132 to IP address 192.168.16.130 were rejected, suggesting a potential port scan. The source IP is using a single high-numbered source port (44372) for all attempts, which could indicate automated scanning tools. However, the context provided does not allow for definitive conclusions about malicious intent.
+
+## LOG SOURCE
+Source type: Zeek logs, hosts: 192.168.16.130 and 192.168.16.132, time span: May 26, 2026 06:14:00 - May 26, 2026 06:21:12
+
+## SIGNIFICANT SECURITY EVENTS
+- [E024] Scan of all ports on IP address 192.168.16.130 from IP address 192.168.16.132 at May 26, 2026 06:17:27
+- [E029] Scan of port 1 on IP address 192.168.16.130 from IP address 192.168.16.132 at May 26, 2026 06:19:10
+
+## SUSPICIOUS ACTIVITIES
+- [E024] Scanning all ports on a single host is unusual and may indicate an attempt to find open services or vulnerabilities. However, the context provided does not allow for definitive conclusions about malicious intent.
+- [E029] Scanning port 1 (usually reserved for the boot protocol) could be an attempt to exploit a specific service or vulnerability associated with that port. However, the context provided does not allow for definitive conclusions about malicious intent.
+
+## EVIDENCE REFERENCES
+- [E024] Scan of all ports on IP address 192.168.16.130 from IP address 192.168.16.132 at May 26, 2026 06:17:27
+- [E029] Scan of port 1 on IP address 192.168.16.130 from IP address 192.168.16.132 at May 26, 2026 06:19:10
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2026-05-26T06:17:27.396836Z | Scan of all ports on IP address 192.168.16.130 from IP address 192.168.16.132 | 192.168.16.130 | - | [E024] |
+| 2026-05-26T06:19:10.930346Z | Scan of port 1 on IP address 192.168.16.130 from IP address 192.168.16.132 | 192.168.16.130 | - | [E029] |
+
+## EXTRACTED IOCS
+- Type: IP addresses
+  - Value: 192.168.16.130, 192.168.16.132
+  - Evidence Reference: [E024], [E029]
+
+## POTENTIAL ATTACK INDICATORS
+- The source IP is using a single high-numbered source port for all connection attempts, which could indicate automated scanning tools or an attempt to evade detection.
+- Scans of all ports and specific ports (such as port 1) may be indicative of an attempt to find open services or vulnerabilities.
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The context provided does not allow for definitive conclusions about malicious intent. High: The source IP is using a single high-numbered source port and scanning specific ports, which are unusual behaviors that could indicate automated tools or an attempt to find open services or vulnerabilities.
+
+## MISSING INFORMATION
+- Additional context about the network environment, such as approved changes, registered authorized tools, and maintenance windows.
+- Information about the user associated with IP address 192.168.16.132.
+- Evidence of execution or exploitation beyond connection attempts.
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the source IP (192.168.16.132) to determine if it is a known host, registered tool, or authorized user.
+2. Determine if there are any approved changes, registered authorized tools, or maintenance windows that could explain these connection attempts.
+3. Investigate the destination IP (192.168.16.130) to determine if it has open services or vulnerabilities that could be exploited.
+4. Monitor for similar connection patterns from the source IP in the future.
+5. If possible, collect additional logs or data to confirm or refute the findings.

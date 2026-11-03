@@ -1,0 +1,20 @@
+## EXECUTIVE SUMMARY
+A large number of repeated TCP connections from the IP address 192.168.1.199 to the destination IP 46.101.251.172 on port 80 were observed over a period of time, with some variations in source ports and no evidence of successful connection or data transfer. The activity is unclear as it could be legitimate web browsing or potentially malicious behavior such as scanning or probing.
+
+## LOG SOURCE
+Source type: Zeek conn.log, Hosts: 192.168.1.199 and 46.101.251.172, Time span: January 10, 2019 20:06 to January 10, 2019 22:01
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] Verified full source connection aggregate event with 237 records and repeated same four-tuple/source-port TCP rows.
+- [E002] Event indicating a cluster of TCP connection retry events between the same IP addresses and ports.
+
+## SUSPICIOUS ACTIVITY
+- Multiple repeated connections from the source IP to the destination IP on port 80, with some variations in source ports (51834, 59234, 59236, 59240, 59244).
+
+## INCIDENTAL FINDINGS
+- [E025] UDP traffic from the same IP address to a different destination on port 123.
+
+## RECOMMENDATIONS
+- Investigate the repeated connections and variations in source ports as they could indicate potential scanning or probing activity.
+- Analyze the user or process associated with the IP address for any signs of malicious behavior.
+- Monitor network traffic for further suspicious activities related to this IP address.

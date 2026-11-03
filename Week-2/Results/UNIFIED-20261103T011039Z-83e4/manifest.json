@@ -1,0 +1,143 @@
+{
+  "engine_version": "unified-intake-0.4.0-candidate",
+  "source_file": "RT-02-Discovery-focused-v2.json",
+  "source_sha256": "ea16f7b875c3425c17d741f295cd8a1b422d0a8bf1dd8978c63774ccf3bd029f",
+  "evidence_class": "user_supplied_unverified",
+  "input_event_count": 4,
+  "counts_by_family": {
+    "windows": 4
+  },
+  "classification": [
+    {
+      "ref": "E001",
+      "line_no": 1,
+      "family": "windows",
+      "confidence": "high",
+      "reason": "Windows event provider; Structured Windows event",
+      "transport": "file",
+      "original_evidence_id": "E001",
+      "original_source": null
+    },
+    {
+      "ref": "E002",
+      "line_no": 2,
+      "family": "windows",
+      "confidence": "high",
+      "reason": "Windows event provider; Structured Windows event",
+      "transport": "file",
+      "original_evidence_id": "E002",
+      "original_source": null
+    },
+    {
+      "ref": "E003",
+      "line_no": 3,
+      "family": "windows",
+      "confidence": "high",
+      "reason": "Windows event provider; Structured Windows event",
+      "transport": "file",
+      "original_evidence_id": "E003",
+      "original_source": null
+    },
+    {
+      "ref": "E004",
+      "line_no": 4,
+      "family": "windows",
+      "confidence": "high",
+      "reason": "Windows event provider; Structured Windows event",
+      "transport": "file",
+      "original_evidence_id": "E004",
+      "original_source": null
+    }
+  ],
+  "analysis_runs": [
+    {
+      "family": "windows",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004"
+      ],
+      "analysis_id": "AN-20261103-011039-c170",
+      "saved": "D:\\Desktop\\w\\Week-2\\Results\\AN-20261103-011039-c170",
+      "model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "validation_flags": 1,
+      "review_status": "Pending Review",
+      "qa": {
+        "needs_human_review": true,
+        "missing_or_truncated_output": false,
+        "flag_count": 1,
+        "high_severity_flags": 0,
+        "review_checks": [
+          "unsupported_authorization_status"
+        ],
+        "status": "REVIEW_REQUIRED"
+      },
+      "events_sent_to_ai": [
+        "E001",
+        "E002",
+        "E003",
+        "E004"
+      ]
+    }
+  ],
+  "whole_family_python_baseline": {
+    "windows": {
+      "event_count": 4,
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004"
+      ],
+      "findings": [],
+      "context": [],
+      "windows_plink": [],
+      "interpretation": "Observed indicators only; authorization, attack success and compromise require external verification."
+    }
+  },
+  "source_evidence_timeline": [
+    {
+      "ref": "E001",
+      "source_timestamp": "2019-01-20T07:29:57.8638931Z",
+      "family": "windows",
+      "observation": "Windows event record (EventID 1102)",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E002",
+      "source_timestamp": "2019-01-20T07:30:10.6451168Z",
+      "family": "windows",
+      "observation": "Windows event record (EventID 5145)",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E003",
+      "source_timestamp": "2019-01-20T07:30:10.6600994Z",
+      "family": "windows",
+      "observation": "Windows event record (EventID 5145)",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E004",
+      "source_timestamp": "2019-01-20T07:30:10.6600994Z",
+      "family": "windows",
+      "observation": "Windows event record (EventID 5145)",
+      "original_record": "Not recorded"
+    }
+  ],
+  "acceptance_gate": {
+    "status": "HUMAN_REVIEW_REQUIRED",
+    "high_severity_flag_count": 0,
+    "incomplete_batch_count": 0,
+    "human_approval_recorded": false,
+    "note": "Operational execution is not an approval of any AI security conclusion."
+  },
+  "unknown_refs_not_sent_to_ai": [],
+  "notes": [
+    "AI outputs are drafts requiring human review.",
+    "Mixed sources were grouped; this run does not prove cross-source correlation.",
+    "Source evidence references are mapped in classification; secrets are redacted in analysis copies.",
+    "Context limits may truncate events within an AI call; check events_sent_to_ai vs refs."
+  ]
+}

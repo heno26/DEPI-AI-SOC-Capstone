@@ -1,0 +1,11 @@
+﻿{
+    "test_id":  "LT-02",
+    "scenario":  "Linux Privilege Escalation Investigation",
+    "source_repository":  "splunk/attack_data",
+    "source_class":  "Recorded attack-range simulation",
+    "source_url":  "https://media.githubusercontent.com/media/splunk/attack_data/master/datasets/attack_techniques/T1548.003/linux_auditd_sudo_su/linux_auditd_sudo_su.log",
+    "mitre_attack":  "T1548.003",
+    "source_type":  "auditd",
+    "sha256":  "897cd0434f7c13f27b61bebc9bed66545506bee652c06554ebbbe1a7e21303e1",
+    "file_size_bytes":  14472
+}

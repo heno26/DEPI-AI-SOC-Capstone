@@ -1,0 +1,59 @@
+## EXECUTIVE SUMMARY
+Four failed login attempts were made by the IP address 183.62.140.253 against three distinct user accounts on host LabSZ, with repeated attempts to access the root account. The activity appears suspicious due to multiple failed logins from a single source within a short time frame.
+
+## LOG SOURCE
+Source type: SSH server logs
+Hosts: LabSZ
+Time span: Dec 10 10:54:27 - Dec 10 10:54:35
+
+## SIGNIFICANT SECURITY EVENTS
+- [E003] Failed password for invalid user zhangyan from 183.62.140.253
+- [E009] Failed password for invalid user dff from 183.62.140.253
+- [E012] Failed password for root from 183.62.140.253
+- [E015] Failed password for root from 183.62.140.253
+
+## SUSPICIOUS ACTIVITIES
+- Multiple failed login attempts against three distinct user accounts within a short time frame, with repeated attempts to access the root account [E003, E009, E012, E015]
+
+## EVIDENCE REFERENCES
+- [E003] Shows a failed password attempt for an invalid user zhangyan from IP 183.62.140.253
+- [E009] Shows a failed password attempt for an invalid user dff from IP 183.62.140.253
+- [E012] Shows a failed password attempt for the root account from IP 183.62.140.253
+- [E015] Shows a failed password attempt for the root account from IP 183.62.140.253
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|-----------|-------|--------|-----------|--------------|
+| Dec 10 10:54:29 | Failed password for invalid user zhangyan from 183.62.140.253 [E003] | sshd[24868] | LabSZ        |
+| Dec 10 10:54:29 | Received disconnect from 183.62.140.253 [preauth] [E004] | sshd[24868] | LabSZ        |
+| Dec 10 10:54:29 | Invalid user dff from 183.62.140.253 [E005] | sshd[24870] | LabSZ        |
+| Dec 10 10:54:29 | input_userauth_request: invalid user dff [preauth] [E006] | sshd[24870] | LabSZ        |
+| Dec 10 10:54:31 | Failed password for invalid user dff from 183.62.140.253 [E009] | sshd[24870] | LabSZ        |
+| Dec 10 10:54:31 | Received disconnect from 183.62.140.253 [preauth] [E010] | sshd[24870] | LabSZ        |
+| Dec 10 10:54:33 | Failed password for root from 183.62.140.253 [E012] | sshd[24872] | LabSZ        |
+| Dec 10 10:54:33 | Received disconnect from 183.62.140.253 [preauth] [E013] | sshd[24872] | LabSZ        |
+| Dec 10 10:54:33 | pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253 user=root [E011] | sshd[24872] | LabSZ        |
+| Dec 10 10:54:35 | Failed password for root from 183.62.140.253 [E015] | sshd[24874] | LabSZ        |
+| Dec 10 10:54:35 | Received disconnect from 183.62.140.253 [preauth] [E016] | sshd[24874] | LabSZ        |
+
+## EXTRACTED IOCS
+- None identified
+
+## POTENTIAL ATTACK INDICATORS
+- Multiple failed login attempts against three distinct user accounts within a short time frame [E003, E009, E012, E015]
+- Repeated attempts to access the root account [E012, E015]
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The activity is suspicious but further investigation is needed to confirm if it represents a targeted attack or just brute force attempts.
+
+## MISSING INFORMATION
+- Additional logs from other sources for context and potential correlation with other events.
+- Information about the user accounts involved, such as their roles and privileges.
+- The purpose of these login attempts.
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Review system logs for any related activity before or after this event.
+2. Investigate the IP address 183.62.140.253 to determine its origin and potential connection to any known threats.
+3. Check if there are any unusual patterns in login attempts from this IP address over time.
+4. Determine if these user accounts have been compromised or if they were targeted due to their roles or privileges.
+5. Implement additional security measures, such as locking out accounts after a certain number of failed login attempts, to prevent brute force attacks.

@@ -1,3 +1,0 @@
-focused_ref,original_line,event_record_id,process_guid,timestamp_utc,raw_line_sha256,relationship
-E001,1,905,{ec227f46-1086-665a-0dcf-bdc908560000},2024-05-31T18:01:42.639983000Z,407c2d460ba854722d0a2260925d27f8f2469d646dfa35803c352639d66ac36a,exact_raw_xml_duplicate
-E001,2,905,{ec227f46-1086-665a-0dcf-bdc908560000},2024-05-31T18:01:42.639983000Z,407c2d460ba854722d0a2260925d27f8f2469d646dfa35803c352639d66ac36a,exact_raw_xml_duplicate

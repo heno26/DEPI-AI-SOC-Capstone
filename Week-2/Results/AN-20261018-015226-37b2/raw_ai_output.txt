@@ -1,0 +1,54 @@
+## EXECUTIVE SUMMARY
+A user downloaded and executed an application named 'a.exe' from a suspicious domain, potentially installing a new process 'BRE6BgE2JubB.exe'. The execution of this new process was observed in multiple sessions, suggesting persistence. However, further investigation is needed to confirm if the activity is malicious.
+
+## LOG SOURCE
+Source type: Microsoft-Windows-Sysmon, Hosts: IEWIN7, Time span: 2019-06-14T22:22:17.9883707Z - 2019-06-14T22:23:16.5928629Z
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] A user downloaded 'a.exe' from the user's Downloads folder.
+- [E003] The new process 'BRE6BgE2JubB.exe' was created in the AppData\Roaming directory, with a Winlogon Shell persistence mechanism set.
+- [E007] Multiple executions of 'BRE6BgE2JubB.exe' were observed across different sessions.
+
+## SUSPICIOUS ACTIVITIES
+- The domain from which the user downloaded 'a.exe' is suspicious, raising concerns about potential malware distribution [E001].
+- Setting a Winlogon Shell persistence mechanism for 'BRE6BgE2JubB.exe' is unusual and could be indicative of malicious activity [E003].
+- Multiple executions of 'BRE6BgE2JubB.exe' across different sessions suggest that the new process may have persisted on the system [E007]
+
+## EVIDENCE REFERENCES
+- [E001] Shows a user downloading 'a.exe'.
+- [E003] Shows the creation of 'BRE6BgE2JubB.exe' and its Winlogon Shell persistence mechanism.
+- [E007] Shows multiple executions of 'BRE6BgE2JubB.exe'.
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2019-06-14T22:22:17.9883707Z | User downloaded 'a.exe' [E001] | Microsoft-Windows-Sysmon | IEWIN7, IEUser | E001 |
+| 2019-06-14T22:22:21.5039957Z | New process 'BRE6BgE2JubB.exe' created [E003] | Microsoft-Windows-Sysmon | IEWIN7, IEUser | E003 |
+| 2019-06-14T22:23:13.8946207Z | Userinit Logon Application [E004] | Microsoft-Windows-Sysmon | IEWIN7, IEUser | E004 |
+| 2019-06-14T22:23:13.9571207Z | Execution of 'BRE6BgE2JubB.exe' [E005] | Microsoft-Windows-Sysmon | IEWIN7, IEUser | E005 |
+| 2019-06-14T22:23:13.9727457Z | Execution of 'explorer.exe' [E006] | Microsoft-Windows-Sysmon | IEWIN7, IEUser | E006 |
+| 2019-06-14T22:23:16.5928629Z | Execution of 'BRE6BgE2JubB.exe' [E007] | Microsoft-Windows-Sysmon | IEWIN7, IEUser | E007 |
+
+## EXTRACTED IOCS
+- Type: File, Value: C:\Users\IEUser\Downloads\a.exe [E001]
+- Type: File, Value: C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe [E003, E005, E007]
+
+## POTENTIAL ATTACK INDICATORS
+- The downloaded file 'a.exe' could potentially be malware or a suspicious application [E001].
+- The creation of 'BRE6BgE2JubB.exe' with a Winlogon Shell persistence mechanism is unusual and may indicate malicious activity [E003].
+- Multiple executions of 'BRE6BgE2JubB.exe' across different sessions could be indicative of a persistent threat [E007]
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The source of the downloaded file is suspicious but not definitively malicious, and multiple executions do not necessarily confirm persistence. Medium: Winlogon Shell persistence mechanism suggests potential malware. High: Multiple executions across different sessions suggest a persistent threat. Uncertainty: Whether the activity is truly malicious or just suspicious behavior.
+
+## MISSING INFORMATION
+- Further analysis of 'a.exe' and 'BRE6BgE2JubB.exe' to confirm if they are malware.
+- Investigation into the source of the downloaded file.
+- Verification of whether the Winlogon Shell persistence mechanism is being used for legitimate purposes or not.
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Analyze 'a.exe' and 'BRE6BgE2JubB.exe' to determine if they are malicious.
+2. Investigate the source of the downloaded file.
+3. Verify whether the Winlogon Shell persistence mechanism is being used for legitimate purposes or not.
+4. Monitor further activity related to 'BRE6BgE2JubB.exe'.
+5. If necessary, contain and isolate any affected systems.

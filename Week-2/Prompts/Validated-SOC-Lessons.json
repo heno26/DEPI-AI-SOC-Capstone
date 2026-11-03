@@ -1,0 +1,41 @@
+{
+  "schema_version": "soc-feedback-1",
+  "description": "Only hardcoded curated lessons are eligible. Human review text is never injected.",
+  "validated_lesson_ids": [
+    "LT01_SSH_TIME",
+    "LT02_AUDITD_OUTCOME",
+    "LT03_REVERSE_SHELL",
+    "LT04_BOOT_BASELINE"
+  ],
+  "pending_lesson_ids": [],
+  "review_provenance": {
+    "LT01_SSH_TIME": {
+      "analysis_id": "AN-20261018-183730-901f",
+      "review_status": "Corrected",
+      "analysis_json_sha256": "19df5740f9425e163a2ff47fc6cb87d6491573c0f569406d0c533ad82cc5c9c7",
+      "reviewed_utc": "2026-10-18T18:42:11+00:00",
+      "human_review_fields_present": true
+    },
+    "LT02_AUDITD_OUTCOME": {
+      "analysis_id": "AN-20261018-221905-552c",
+      "review_status": "Corrected",
+      "analysis_json_sha256": "331fd283a5fa20ef3eba0d824e0286e8bb2afdf25be31a3f77a9e6ab4d261110",
+      "reviewed_utc": "2026-10-18T22:25:26+00:00",
+      "human_review_fields_present": true
+    },
+    "LT03_REVERSE_SHELL": {
+      "analysis_id": "AN-20261018-231218-e901",
+      "review_status": "Corrected",
+      "analysis_json_sha256": "aecdb2841e908bcf9d3a94484e356ab26970d0b811e7f1519cf27ffea5f920e3",
+      "reviewed_utc": "2026-10-18T23:15:56+00:00",
+      "human_review_fields_present": true
+    },
+    "LT04_BOOT_BASELINE": {
+      "analysis_id": "AN-20261019-003000-126d",
+      "review_status": "Corrected",
+      "analysis_json_sha256": "e83d7301c0dacf49693cbebad758623ca3826939c27ee6fcaf31ae7a2e30b862",
+      "reviewed_utc": "2026-10-19T01:22:29+00:00",
+      "human_review_fields_present": true
+    }
+  }
+}

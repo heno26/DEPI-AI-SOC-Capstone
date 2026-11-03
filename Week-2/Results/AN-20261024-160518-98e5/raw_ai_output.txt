@@ -1,0 +1,51 @@
+## EXECUTIVE SUMMARY
+Multiple attempts to set user-defined capabilities on a file named './priv_esc' using the 'sudo' command were observed. The purpose of these actions is unclear, but they could potentially be used for privilege escalation if successful.
+
+## LOG SOURCE
+Source type: auditd, Hosts: not recorded, Time span: 2024-08-06T14:18:20.221000Z - 2024-08-06T14:37:57.376000Z
+
+## SIGNIFICANT SECURITY EVENTS
+- [E021]: Auditd PROCTITLE records a capability change attempt with 'sudo', 'setcap' and './priv_esc'.
+- [E022]: Another auditd PROCTITLE record of a capability change attempt with the same parameters.
+- [E023]: Yet another auditd PROCTITLE record of a capability change attempt with the same parameters.
+- [E024]: A fourth auditd PROCTITLE record of a capability change attempt with the same parameters.
+- [E025]: The fifth and final auditd PROCTITLE record of a capability change attempt with the same parameters.
+
+## SUSPICIOUS ACTIVITIES
+- Frequent attempts to set user-defined capabilities on './priv_esc' using 'sudo'. This could indicate an attempted privilege escalation, but more context is needed to confirm. [E021, E022, E023, E024, E025]
+
+## EVIDENCE REFERENCES
+- [E021]: Shows a capability change attempt with 'sudo', 'setcap' and './priv_esc'.
+- [E022]: Shows another capability change attempt with the same parameters.
+- [E023]: Shows yet another capability change attempt with the same parameters.
+- [E024]: Shows a fourth capability change attempt with the same parameters.
+- [E025]: Shows the fifth and final capability change attempt with the same parameters.
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|-----------|-------|--------|-----------|--------------|
+| 2024-08-06T14:18:20.221000Z | Auditd PROCTITLE | auditd   | not recorded | [E021]       |
+| 2024-08-06T14:20:36.405000Z | Auditd PROCTITLE | auditd   | not recorded | [E022]       |
+| 2024-08-06T14:20:36.413000Z | Auditd PROCTITLE | auditd   | not recorded | [E023]       |
+| 2024-08-06T14:36:57.368000Z | Auditd PROCTITLE | auditd   | not recorded | [E024]       |
+| 2024-08-06T14:36:57.376000Z | Auditd PROCTITLE | auditd   | not recorded | [E025]       |
+
+## EXTRACTED IOCS
+- Type: Command, Value: 'sudo setcap cap_setuid+ep ./priv_esc', [E021, E022, E023, E024, E025]
+
+## POTENTIAL ATTACK INDICATORS
+- Possible privilege escalation attempt. [E021, E022, E023, E024, E025]
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The purpose of these actions is unclear and more context is needed to confirm if they are malicious.
+
+## MISSING INFORMATION
+- Usernames involved in the events.
+- Approval for these changes, registered tools or maintenance windows that could legitimize these actions.
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the user(s) responsible for these actions.
+2. Determine if there is approval for these changes and whether they are part of a registered tool or maintenance window.
+3. Analyze the file './priv_esc' to understand its purpose and potential impact if privileges were escalated.
+4. Investigate any other related events that may provide additional context.
+5. Consult with system administrators for further guidance on these actions.

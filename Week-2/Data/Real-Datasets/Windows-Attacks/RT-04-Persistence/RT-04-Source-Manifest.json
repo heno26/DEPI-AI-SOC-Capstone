@@ -1,0 +1,11 @@
+﻿{
+    "test_id":  "RT-04",
+    "category":  "Persistence",
+    "dataset":  "sysmon_13_1_persistence_via_winlogon_shell.evtx",
+    "source_url":  "https://raw.githubusercontent.com/sbousseaden/EVTX-ATTACK-SAMPLES/master/Persistence/sysmon_13_1_persistence_via_winlogon_shell.evtx",
+    "github_blob_sha":  "1eac3dc52de5cc5088dda0692fa11451f7eb9720",
+    "local_sha256":  "78592AA982A478D1A65F56853BDF3817A3D5C79DB3B1CA64642E1A2E16064423",
+    "event_count":  25,
+    "events_with_userdata":  0,
+    "source_class":  "Recorded lab EVTX"
+}

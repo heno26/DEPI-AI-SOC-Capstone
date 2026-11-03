@@ -1,0 +1,49 @@
+## EXECUTIVE SUMMARY
+A vertical port scan targeting the IP address 192.168.16.130 was detected from the source IP 192.168.16.132 between 06:07 and 06:19 on May 26, 2026. The activity looks suspicious due to the large number of connection attempts and the scan pattern.
+
+## LOG SOURCE
+Source type: Zeek conn.log, Hosts: [192.168.16.130, 192.168.16.132], Time span: May 26, 2026 06:05 - May 26, 2026 06:19
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] Strong vertical port scan pattern detected. Authorization and actor intent not established.
+
+## SUSPICIOUS ACTIVITIES
+- [E003] Connection REJ from 192.168.16.132 to 192.168.16.130 on port 80 is suspicious due to the context of the vertical port scan.
+- [E004] Connection REJ from 192.168.16.132 to 192.168.16.130 on port 2000 is suspicious due to the context of the vertical port scan.
+- [E005] Connection REJ from 192.168.16.132 to 192.168.16.130 on port 8888 is suspicious due to the context of the vertical port scan.
+- ... (Continue for all events with "REJ" state)
+
+## EVIDENCE REFERENCES
+- [E001] Aggregate computed, not a raw log event. Strong vertical port-scan pattern; authorization, actor intent, and compromise NOT established.
+- [E003] Connection REJ from 192.168.16.132 to 192.168.16.130 on port 80.
+- ... (Continue for all events with evidence references)
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+| --- | --- | --- | --- | --- |
+| 2026-05-26T06:05:07.694185Z | Connection from 192.168.16.130 to 192.168.16.1 on port 53 (UDP) | 192.168.16.130 | - | [E002] |
+| 2026-05-26T06:07:27.414749Z | Vertical port scan starts from 192.168.16.132 to 192.168.16.130 | 192.168.16.132 | - | [E001] |
+| ... (Continue for all events with timestamps) |
+
+## EXTRACTED IOCS
+- None identified
+
+## POTENTIAL ATTACK INDICATORS
+- The large number of connection attempts from 192.168.16.132 to various ports on 192.168.16.130 could indicate a port scan or reconnaissance activity.
+- The vertical port scanning pattern is a known technique used by attackers for information gathering and vulnerability scanning.
+
+## CONFIDENCE AND UNCERTAINTY
+Low: Authorization, actor intent, and compromise are not established.
+Medium: Activity looks suspicious due to the large number of connection attempts and the scan pattern.
+High: The activity is a vertical port scan.
+
+## MISSING INFORMATION
+- Information about the user or process initiating the connections from 192.168.16.132.
+- Context about any approved changes, registered tools, or maintenance windows in the data that could explain these activities.
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the user or process initiating the connections from 192.168.16.132.
+2. Check for any approved changes, registered tools, or maintenance windows in the data that could explain these activities.
+3. Analyze network traffic patterns and logs to determine if this activity is part of a larger campaign.
+4. Investigate the target IP address 192.168.16.130 for any signs of compromise or unusual behavior.
+5. Consult with incident response teams and threat intelligence feeds for further analysis and context.

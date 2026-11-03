@@ -1,0 +1,54 @@
+## EXECUTIVE SUMMARY
+Multiple attempts to set a capability on the file './priv_esc' using 'sudo setcap cap_setuid+ep' were observed. The purpose of these actions is unclear, but they could potentially be used for privilege escalation if successful.
+
+## LOG SOURCE
+Source type: Auditd (PROCTITLE) logs, hosts and time span not recorded in the data provided.
+
+## SIGNIFICANT SECURITY EVENTS
+- [E017] Sudo command with setcap to change capabilities on './priv_esc' at 2024-08-06T14:18:20.221000Z
+- [E018] Sudo command with setcap to change capabilities on './priv_esc' at 2024-08-06T14:20:36.405000Z
+- [E019] Sudo command with setcap to change capabilities on './priv_esc' at 2024-08-06T14:20:36.413000Z
+- [E020] Sudo command with setcap to change capabilities on './priv_esc' at 2024-08-06T14:36:57.368000Z
+- [E021] Sudo command with setcap to change capabilities on './priv_esc' at 2024-08-06T14:36:57.376000Z
+
+## SUSPICIOUS ACTIVITIES
+- Multiple attempts to modify the file './priv_esc' with 'sudo setcap cap_setuid+ep', which could potentially be used for privilege escalation [E017, E018, E019, E020, E021]
+
+## EVIDENCE REFERENCES
+- [E017]: Shows the command arguments: "sudo", "setcap", "cap_setuid+ep", "./priv_esc"
+- [E018]: Shows the command arguments: "sudo", "setcap", "cap_setuid+ep", "./priv_esc"
+- [E019]: Shows the command arguments: "sudo", "setcap", "cap_setuid+ep", "./priv_esc"
+- [E020]: Shows the command arguments: "sudo", "setcap", "cap_setuid+ep", "./priv_esc"
+- [E021]: Shows the command arguments: "sudo", "setcap", "cap_setuid+ep", "./priv_esc"
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|-----------|-------|--------|-----------|--------------|
+| 2024-08-06T14:18:20.221000Z | Sudo command with setcap to change capabilities on './priv_esc' | auditd PROCTITLE | not recorded   | [E017] |
+| 2024-08-06T14:20:36.405000Z | Sudo command with setcap to change capabilities on './priv_esc' | auditd PROCTITLE | not recorded   | [E018] |
+| 2024-08-06T14:20:36.413000Z | Sudo command with setcap to change capabilities on './priv_esc' | auditd PROCTITLE | not recorded   | [E019] |
+| 2024-08-06T14:36:57.368000Z | Sudo command with setcap to change capabilities on './priv_esc' | auditd PROCTITLE | not recorded   | [E020] |
+| 2024-08-06T14:36:57.376000Z | Sudo command with setcap to change capabilities on './priv_esc' | auditd PROCTITLE | not recorded   | [E021] |
+
+## EXTRACTED IOCS
+- Type: Command arguments
+  - Value: "sudo", "setcap", "cap_setuid+ep", "./priv_esc"
+  - External reputation not checked.
+
+## POTENTIAL ATTACK INDICATORS
+- Possible privilege escalation attempt using 'sudo setcap cap_setuid+ep' [E017, E018, E019, E020, E021]
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The purpose of these actions is unclear and the execution results are not available.
+
+## MISSING INFORMATION
+- Hostnames for each event
+- Usernames for each event
+- Context surrounding these events (e.g., approved changes, maintenance windows)
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Identify the hostnames and users associated with these events.
+2. Investigate the file './priv_esc' to determine its purpose and if it has been modified since the observed events.
+3. Determine if there are any other related log entries or artifacts that provide additional context.
+4. Verify if the user performing these actions had authorization to modify the file './priv_esc'.
+5. Investigate the user's account for signs of compromise or unusual activity.

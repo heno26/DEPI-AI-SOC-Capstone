@@ -1,0 +1,12 @@
+﻿{
+    "test_id":  "RT-02",
+    "category":  "Discovery",
+    "dataset":  "discovery_psloggedon.evtx",
+    "source_url":  "https://raw.githubusercontent.com/sbousseaden/EVTX-ATTACK-SAMPLES/master/Discovery/discovery_psloggedon.evtx",
+    "github_blob_sha":  "5707c53e5caf19bf9767e215f0d4bfeefc6c48c5",
+    "local_sha256":  "AA2F3AD059952502D159EAD3225A6DAC6F2903D76F2CE8F503933DEB46AF7F07",
+    "file_size":  69632,
+    "event_count":  4,
+    "source_type":  "Recorded lab EVTX",
+    "downloaded_from":  "EVTX-ATTACK-SAMPLES"
+}

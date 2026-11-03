@@ -1,0 +1,1431 @@
+{
+  "analysis_id": "AN-20261024-142817-4e7a",
+  "schema_version": "week2-1",
+  "task": "log_analysis",
+  "created_utc": "2026-10-24T14:28:17+00:00",
+  "references": {
+    "alert_id": null,
+    "incident_ref": null,
+    "note": "incident_ref is reserved for Week 3/4 correlation"
+  },
+  "input": {
+    "filename": "Mixed-Win-Linux-Net-QA.json",
+    "path": "Data\\Mixed-Win-Linux-Net-QA.json",
+    "sha256": "065cca374de2af6ccf70bd718bcc70ddccca8df852149fb98c039e970b64412c",
+    "format": "json",
+    "compressed": false,
+    "source_type": "network",
+    "evidence_class": "user_supplied_unverified",
+    "event_count": 16,
+    "events_analysed": [
+      "E026",
+      "E027",
+      "E028",
+      "E029",
+      "E030",
+      "E031",
+      "E032",
+      "E033",
+      "E034",
+      "E035",
+      "E036",
+      "E037",
+      "E038",
+      "E039",
+      "E040",
+      "E041"
+    ],
+    "warnings": [
+      "Input is a subset of the classified file; unknown/conflicting events were withheld from AI."
+    ]
+  },
+  "model": {
+    "name": "mistral:7b-instruct-v0.3-q4_K_S",
+    "options": {
+      "temperature": 0.2,
+      "repeat_penalty": 1.15,
+      "num_ctx": 8192,
+      "num_predict": 2500,
+      "seed": 42
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "options": {
+          "temperature": 0.2,
+          "repeat_penalty": 1.15,
+          "num_ctx": 8192,
+          "num_predict": 2500,
+          "seed": 42
+        },
+        "outcome": "success",
+        "seconds": 64.08
+      }
+    ],
+    "retry_used": false,
+    "done_reason": "stop",
+    "tokens_per_second": 14.32,
+    "wall_seconds": 64.08
+  },
+  "prompt": {
+    "file": "log_analysis.txt",
+    "version": "w2-1.0",
+    "sha256": "7affc781ced6c1a991a75ba465d7aa9c429fac7a7dc3730cf3656342b0650b6d",
+    "nonce_delimiter_used": true,
+    "feedback": {
+      "knowledge_base": "Validated-SOC-Lessons.json",
+      "knowledge_base_sha256": "028eccd632c58e22511ccae31c791a9e26b7c8a04c87484340950f66d19a4da7",
+      "applied_reviewed_lesson_ids": [],
+      "general_guardrails_applied": false,
+      "method": "curated case-matched prompt guidance; not model fine-tuning"
+    }
+  },
+  "events": [
+    {
+      "ref": "E026",
+      "line_no": 26,
+      "raw": "{\"record_kind\": \"VERIFIED_FULL_SOURCE_AGGREGATE_NOT_RAW_ZEEK_EVENT\", \"timestamp\": \"2026-05-26T06:07:27.414749Z\", \"log_source\": \"Zeek conn.log\", \"src_ip\": \"192.168.16.132\", \"dst_ip\": \"192.168.16.130\", \"source_sha256\": \"f9282d987047ef37a807a575a353ff601ddbb1b389aa76e92214c302de2fbda9\", \"source_connection_record_count\": 65895, \"source_tcp_records\": 65747, \"source_udp_records\": 148, \"scan_pair_tcp_records\": 65747, \"scan_pair_distinct_destination_ports\": 65535, \"scan_pair_conn_states\": {\"REJ\": 65620, \"RSTO\": 15, \"S0\": 112}, \"scan_pair_first_utc\": \"2026-05-26T06:07:27.414749Z\", \"scan_pair_last_utc\": \"2026-05-26T06:19:45.683665Z\", \"interpretation_limit\": \"Strong vertical port-scan pattern; authorization, actor intent, and compromise NOT established. Aggregate is computed, not a raw log event.\"}",
+      "timestamp_raw": "2026-05-26T06:07:27.414749Z",
+      "timestamp_utc": "2026-05-26T06:07:27.414749+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.130",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic",
+        "original_source": {
+          "file": "NT-01-focused.json",
+          "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+          "ref": "E001",
+          "line_no": 1
+        }
+      },
+      "fields": {
+        "record_kind": "VERIFIED_FULL_SOURCE_AGGREGATE_NOT_RAW_ZEEK_EVENT",
+        "timestamp": "2026-05-26T06:07:27.414749Z",
+        "log_source": "Zeek conn.log",
+        "src_ip": "192.168.16.132",
+        "dst_ip": "192.168.16.130",
+        "source_sha256": "f9282d987047ef37a807a575a353ff601ddbb1b389aa76e92214c302de2fbda9",
+        "source_connection_record_count": 65895,
+        "source_tcp_records": 65747,
+        "source_udp_records": 148,
+        "scan_pair_tcp_records": 65747,
+        "scan_pair_distinct_destination_ports": 65535,
+        "scan_pair_conn_states.REJ": 65620,
+        "scan_pair_conn_states.RSTO": 15,
+        "scan_pair_conn_states.S0": 112,
+        "scan_pair_first_utc": "2026-05-26T06:07:27.414749Z",
+        "scan_pair_last_utc": "2026-05-26T06:19:45.683665Z",
+        "interpretation_limit": "Strong vertical port-scan pattern; authorization, actor intent, and compromise NOT established. Aggregate is computed, not a raw log event."
+      }
+    },
+    {
+      "ref": "E027",
+      "line_no": 27,
+      "raw": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:05:07.694185Z\", \"zeek_ts_exact\": \"1779775507.694185\", \"zeek_uid\": \"CtW7w119a6TDQ4liZ4\", \"src_ip\": \"192.168.16.130\", \"src_port\": \"49949\", \"dst_ip\": \"192.168.16.1\", \"dst_port\": \"53\", \"proto\": \"udp\", \"service\": \"dns\", \"conn_state\": \"S0\", \"history\": \"D\", \"source_line\": 9, \"source_line_sha256\": \"e8d99e74d87061eb5f669efc50120b43da179385d062c62b225902205a142eb2\", \"sampling_category\": \"unlabelled_udp_context\"}",
+      "timestamp_raw": "2026-05-26T06:05:07.694185Z",
+      "timestamp_utc": "2026-05-26T06:05:07.694185+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.130",
+      "dst_ip": "192.168.16.1",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic",
+        "original_source": {
+          "file": "NT-01-focused.json",
+          "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+          "ref": "E002",
+          "line_no": 2
+        }
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T06:05:07.694185Z",
+        "zeek_ts_exact": "1779775507.694185",
+        "zeek_uid": "CtW7w119a6TDQ4liZ4",
+        "src_ip": "192.168.16.130",
+        "src_port": "49949",
+        "dst_ip": "192.168.16.1",
+        "dst_port": "53",
+        "proto": "udp",
+        "service": "dns",
+        "conn_state": "S0",
+        "history": "D",
+        "source_line": 9,
+        "source_line_sha256": "e8d99e74d87061eb5f669efc50120b43da179385d062c62b225902205a142eb2",
+        "sampling_category": "unlabelled_udp_context"
+      }
+    },
+    {
+      "ref": "E028",
+      "line_no": 28,
+      "raw": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:07:27.414749Z\", \"zeek_ts_exact\": \"1779775647.414749\", \"zeek_uid\": \"CXX7bx1Vxeoa3Ryxqf\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"44834\", \"dst_ip\": \"192.168.16.130\", \"dst_port\": \"80\", \"proto\": \"tcp\", \"service\": \"-\", \"conn_state\": \"REJ\", \"history\": \"Sr\", \"source_line\": 34, \"source_line_sha256\": \"b2ca9882bd1377bad22d77a9681aa1c0a45ff2c5f2d374ea2465b52e7d6a55f0\", \"sampling_category\": \"scan_minute_stratified\"}",
+      "timestamp_raw": "2026-05-26T06:07:27.414749Z",
+      "timestamp_utc": "2026-05-26T06:07:27.414749+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.130",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic",
+        "original_source": {
+          "file": "NT-01-focused.json",
+          "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+          "ref": "E003",
+          "line_no": 3
+        }
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T06:07:27.414749Z",
+        "zeek_ts_exact": "1779775647.414749",
+        "zeek_uid": "CXX7bx1Vxeoa3Ryxqf",
+        "src_ip": "192.168.16.132",
+        "src_port": "44834",
+        "dst_ip": "192.168.16.130",
+        "dst_port": "80",
+        "proto": "tcp",
+        "service": "-",
+        "conn_state": "REJ",
+        "history": "Sr",
+        "source_line": 34,
+        "source_line_sha256": "b2ca9882bd1377bad22d77a9681aa1c0a45ff2c5f2d374ea2465b52e7d6a55f0",
+        "sampling_category": "scan_minute_stratified"
+      }
+    },
+    {
+      "ref": "E029",
+      "line_no": 29,
+      "raw": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:07:28.502707Z\", \"zeek_ts_exact\": \"1779775648.502707\", \"zeek_uid\": \"C8Lyev3X9q3IV7Px6c\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"44836\", \"dst_ip\": \"192.168.16.130\", \"dst_port\": \"2000\", \"proto\": \"tcp\", \"service\": \"-\", \"conn_state\": \"REJ\", \"history\": \"Sr\", \"source_line\": 175, \"source_line_sha256\": \"8e17ec05fd17d8c00c20d03e494dd0734718849aa0a170b907450f5774485cac\", \"sampling_category\": \"scan_minute_stratified\"}",
+      "timestamp_raw": "2026-05-26T06:07:28.502707Z",
+      "timestamp_utc": "2026-05-26T06:07:28.502707+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.130",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic",
+        "original_source": {
+          "file": "NT-01-focused.json",
+          "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+          "ref": "E004",
+          "line_no": 4
+        }
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T06:07:28.502707Z",
+        "zeek_ts_exact": "1779775648.502707",
+        "zeek_uid": "C8Lyev3X9q3IV7Px6c",
+        "src_ip": "192.168.16.132",
+        "src_port": "44836",
+        "dst_ip": "192.168.16.130",
+        "dst_port": "2000",
+        "proto": "tcp",
+        "service": "-",
+        "conn_state": "REJ",
+        "history": "Sr",
+        "source_line": 175,
+        "source_line_sha256": "8e17ec05fd17d8c00c20d03e494dd0734718849aa0a170b907450f5774485cac",
+        "sampling_category": "scan_minute_stratified"
+      }
+    },
+    {
+      "ref": "E030",
+      "line_no": 30,
+      "raw": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:08:35.524432Z\", \"zeek_ts_exact\": \"1779775715.524432\", \"zeek_uid\": \"COsR2uUmaUrSmJKbk\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"44372\", \"dst_ip\": \"192.168.16.130\", \"dst_port\": \"8888\", \"proto\": \"tcp\", \"service\": \"-\", \"conn_state\": \"REJ\", \"history\": \"Sr\", \"source_line\": 189, \"source_line_sha256\": \"1238576db063935b4389e0aa6b61005b9972c30174125be92b64f4776ea11a22\", \"sampling_category\": \"scan_minute_stratified\"}",
+      "timestamp_raw": "2026-05-26T06:08:35.524432Z",
+      "timestamp_utc": "2026-05-26T06:08:35.524432+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.130",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic",
+        "original_source": {
+          "file": "NT-01-focused.json",
+          "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+          "ref": "E005",
+          "line_no": 5
+        }
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T06:08:35.524432Z",
+        "zeek_ts_exact": "1779775715.524432",
+        "zeek_uid": "COsR2uUmaUrSmJKbk",
+        "src_ip": "192.168.16.132",
+        "src_port": "44372",
+        "dst_ip": "192.168.16.130",
+        "dst_port": "8888",
+        "proto": "tcp",
+        "service": "-",
+        "conn_state": "REJ",
+        "history": "Sr",
+        "source_line": 189,
+        "source_line_sha256": "1238576db063935b4389e0aa6b61005b9972c30174125be92b64f4776ea11a22",
+        "sampling_category": "scan_minute_stratified"
+      }
+    },
+    {
+      "ref": "E031",
+      "line_no": 31,
+      "raw": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:08:59.998968Z\", \"zeek_ts_exact\": \"1779775739.998968\", \"zeek_uid\": \"CWUmui1WreJ7aWgTS5\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"44372\", \"dst_ip\": \"192.168.16.130\", \"dst_port\": \"62479\", \"proto\": \"tcp\", \"service\": \"-\", \"conn_state\": \"REJ\", \"history\": \"Sr\", \"source_line\": 2663, \"source_line_sha256\": \"088fafed2188d17b8b517821b191baf7c06e4d5984f5fe0a331bb1650fffbf7b\", \"sampling_category\": \"scan_minute_stratified\"}",
+      "timestamp_raw": "2026-05-26T06:08:59.998968Z",
+      "timestamp_utc": "2026-05-26T06:08:59.998968+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.130",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic",
+        "original_source": {
+          "file": "NT-01-focused.json",
+          "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+          "ref": "E006",
+          "line_no": 6
+        }
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T06:08:59.998968Z",
+        "zeek_ts_exact": "1779775739.998968",
+        "zeek_uid": "CWUmui1WreJ7aWgTS5",
+        "src_ip": "192.168.16.132",
+        "src_port": "44372",
+        "dst_ip": "192.168.16.130",
+        "dst_port": "62479",
+        "proto": "tcp",
+        "service": "-",
+        "conn_state": "REJ",
+        "history": "Sr",
+        "source_line": 2663,
+        "source_line_sha256": "088fafed2188d17b8b517821b191baf7c06e4d5984f5fe0a331bb1650fffbf7b",
+        "sampling_category": "scan_minute_stratified"
+      }
+    },
+    {
+      "ref": "E032",
+      "line_no": 32,
+      "raw": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:09:00.009124Z\", \"zeek_ts_exact\": \"1779775740.009124\", \"zeek_uid\": \"CXgWCb1hmo47r9YDn8\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"44372\", \"dst_ip\": \"192.168.16.130\", \"dst_port\": \"31871\", \"proto\": \"tcp\", \"service\": \"-\", \"conn_state\": \"REJ\", \"history\": \"Sr\", \"source_line\": 2664, \"source_line_sha256\": \"96cef1cfc3fa8f79f423ffa3cc7c49ae6ebc5156740c5a4e55d08a04066a6a07\", \"sampling_category\": \"scan_minute_stratified\"}",
+      "timestamp_raw": "2026-05-26T06:09:00.009124Z",
+      "timestamp_utc": "2026-05-26T06:09:00.009124+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.130",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic",
+        "original_source": {
+          "file": "NT-01-focused.json",
+          "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+          "ref": "E007",
+          "line_no": 7
+        }
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T06:09:00.009124Z",
+        "zeek_ts_exact": "1779775740.009124",
+        "zeek_uid": "CXgWCb1hmo47r9YDn8",
+        "src_ip": "192.168.16.132",
+        "src_port": "44372",
+        "dst_ip": "192.168.16.130",
+        "dst_port": "31871",
+        "proto": "tcp",
+        "service": "-",
+        "conn_state": "REJ",
+        "history": "Sr",
+        "source_line": 2664,
+        "source_line_sha256": "96cef1cfc3fa8f79f423ffa3cc7c49ae6ebc5156740c5a4e55d08a04066a6a07",
+        "sampling_category": "scan_minute_stratified"
+      }
+    },
+    {
+      "ref": "E033",
+      "line_no": 33,
+      "raw": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:09:59.998569Z\", \"zeek_ts_exact\": \"1779775799.998569\", \"zeek_uid\": \"Cr45st2DsENn0a3Ed8\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"44372\", \"dst_ip\": \"192.168.16.130\", \"dst_port\": \"52121\", \"proto\": \"tcp\", \"service\": \"-\", \"conn_state\": \"REJ\", \"history\": \"Sr\", \"source_line\": 8527, \"source_line_sha256\": \"86727959c737d4f6041376c8d28b892c82d6c0dd95eb9b1131388803d038559f\", \"sampling_category\": \"scan_minute_stratified\"}",
+      "timestamp_raw": "2026-05-26T06:09:59.998569Z",
+      "timestamp_utc": "2026-05-26T06:09:59.998569+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.130",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic",
+        "original_source": {
+          "file": "NT-01-focused.json",
+          "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+          "ref": "E008",
+          "line_no": 8
+        }
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T06:09:59.998569Z",
+        "zeek_ts_exact": "1779775799.998569",
+        "zeek_uid": "Cr45st2DsENn0a3Ed8",
+        "src_ip": "192.168.16.132",
+        "src_port": "44372",
+        "dst_ip": "192.168.16.130",
+        "dst_port": "52121",
+        "proto": "tcp",
+        "service": "-",
+        "conn_state": "REJ",
+        "history": "Sr",
+        "source_line": 8527,
+        "source_line_sha256": "86727959c737d4f6041376c8d28b892c82d6c0dd95eb9b1131388803d038559f",
+        "sampling_category": "scan_minute_stratified"
+      }
+    },
+    {
+      "ref": "E034",
+      "line_no": 34,
+      "raw": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:10:00.008689Z\", \"zeek_ts_exact\": \"1779775800.008689\", \"zeek_uid\": \"Ci5eM8sMaHEp1N414\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"44372\", \"dst_ip\": \"192.168.16.130\", \"dst_port\": \"3953\", \"proto\": \"tcp\", \"service\": \"-\", \"conn_state\": \"REJ\", \"history\": \"Sr\", \"source_line\": 8528, \"source_line_sha256\": \"e64d660b33afa75c9fe08f54ecdf7cbfc103f7ffb1e07c42ae1f18c36808c643\", \"sampling_category\": \"scan_minute_stratified\"}",
+      "timestamp_raw": "2026-05-26T06:10:00.008689Z",
+      "timestamp_utc": "2026-05-26T06:10:00.008689+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.130",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic",
+        "original_source": {
+          "file": "NT-01-focused.json",
+          "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+          "ref": "E009",
+          "line_no": 9
+        }
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T06:10:00.008689Z",
+        "zeek_ts_exact": "1779775800.008689",
+        "zeek_uid": "Ci5eM8sMaHEp1N414",
+        "src_ip": "192.168.16.132",
+        "src_port": "44372",
+        "dst_ip": "192.168.16.130",
+        "dst_port": "3953",
+        "proto": "tcp",
+        "service": "-",
+        "conn_state": "REJ",
+        "history": "Sr",
+        "source_line": 8528,
+        "source_line_sha256": "e64d660b33afa75c9fe08f54ecdf7cbfc103f7ffb1e07c42ae1f18c36808c643",
+        "sampling_category": "scan_minute_stratified"
+      }
+    },
+    {
+      "ref": "E035",
+      "line_no": 35,
+      "raw": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:10:59.996012Z\", \"zeek_ts_exact\": \"1779775859.996012\", \"zeek_uid\": \"CHdIbJ3whoX4heluTf\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"44372\", \"dst_ip\": \"192.168.16.130\", \"dst_port\": \"17578\", \"proto\": \"tcp\", \"service\": \"-\", \"conn_state\": \"REJ\", \"history\": \"Sr\", \"source_line\": 14406, \"source_line_sha256\": \"cfffc7f594329a9843f21816a86a3c7fb6f878cfe13c9d9b8d0f1675f0a8ff32\", \"sampling_category\": \"scan_minute_stratified\"}",
+      "timestamp_raw": "2026-05-26T06:10:59.996012Z",
+      "timestamp_utc": "2026-05-26T06:10:59.996012+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.130",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic",
+        "original_source": {
+          "file": "NT-01-focused.json",
+          "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+          "ref": "E010",
+          "line_no": 10
+        }
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T06:10:59.996012Z",
+        "zeek_ts_exact": "1779775859.996012",
+        "zeek_uid": "CHdIbJ3whoX4heluTf",
+        "src_ip": "192.168.16.132",
+        "src_port": "44372",
+        "dst_ip": "192.168.16.130",
+        "dst_port": "17578",
+        "proto": "tcp",
+        "service": "-",
+        "conn_state": "REJ",
+        "history": "Sr",
+        "source_line": 14406,
+        "source_line_sha256": "cfffc7f594329a9843f21816a86a3c7fb6f878cfe13c9d9b8d0f1675f0a8ff32",
+        "sampling_category": "scan_minute_stratified"
+      }
+    },
+    {
+      "ref": "E036",
+      "line_no": 36,
+      "raw": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:11:00.006167Z\", \"zeek_ts_exact\": \"1779775860.006167\", \"zeek_uid\": \"CkDyzl173x9JOnULr2\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"44372\", \"dst_ip\": \"192.168.16.130\", \"dst_port\": \"64112\", \"proto\": \"tcp\", \"service\": \"-\", \"conn_state\": \"REJ\", \"history\": \"Sr\", \"source_line\": 14407, \"source_line_sha256\": \"805011389620c2f10ab896c38af0712d2a182d1d0a807466d53f57258d6b8740\", \"sampling_category\": \"scan_minute_stratified\"}",
+      "timestamp_raw": "2026-05-26T06:11:00.006167Z",
+      "timestamp_utc": "2026-05-26T06:11:00.006167+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.130",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic",
+        "original_source": {
+          "file": "NT-01-focused.json",
+          "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+          "ref": "E011",
+          "line_no": 11
+        }
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T06:11:00.006167Z",
+        "zeek_ts_exact": "1779775860.006167",
+        "zeek_uid": "CkDyzl173x9JOnULr2",
+        "src_ip": "192.168.16.132",
+        "src_port": "44372",
+        "dst_ip": "192.168.16.130",
+        "dst_port": "64112",
+        "proto": "tcp",
+        "service": "-",
+        "conn_state": "REJ",
+        "history": "Sr",
+        "source_line": 14407,
+        "source_line_sha256": "805011389620c2f10ab896c38af0712d2a182d1d0a807466d53f57258d6b8740",
+        "sampling_category": "scan_minute_stratified"
+      }
+    },
+    {
+      "ref": "E037",
+      "line_no": 37,
+      "raw": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:11:59.995460Z\", \"zeek_ts_exact\": \"1779775919.995460\", \"zeek_uid\": \"CFyqif2Xtpg4S1Rvgj\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"44372\", \"dst_ip\": \"192.168.16.130\", \"dst_port\": \"43583\", \"proto\": \"tcp\", \"service\": \"-\", \"conn_state\": \"REJ\", \"history\": \"Sr\", \"source_line\": 20272, \"source_line_sha256\": \"322b8c525f06f56c32803a0ede980c0261f175e2fc07673376bb0cbe8d31ab04\", \"sampling_category\": \"scan_minute_stratified\"}",
+      "timestamp_raw": "2026-05-26T06:11:59.995460Z",
+      "timestamp_utc": "2026-05-26T06:11:59.995460+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.130",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic",
+        "original_source": {
+          "file": "NT-01-focused.json",
+          "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+          "ref": "E012",
+          "line_no": 12
+        }
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T06:11:59.995460Z",
+        "zeek_ts_exact": "1779775919.995460",
+        "zeek_uid": "CFyqif2Xtpg4S1Rvgj",
+        "src_ip": "192.168.16.132",
+        "src_port": "44372",
+        "dst_ip": "192.168.16.130",
+        "dst_port": "43583",
+        "proto": "tcp",
+        "service": "-",
+        "conn_state": "REJ",
+        "history": "Sr",
+        "source_line": 20272,
+        "source_line_sha256": "322b8c525f06f56c32803a0ede980c0261f175e2fc07673376bb0cbe8d31ab04",
+        "sampling_category": "scan_minute_stratified"
+      }
+    },
+    {
+      "ref": "E038",
+      "line_no": 38,
+      "raw": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:12:00.005674Z\", \"zeek_ts_exact\": \"1779775920.005674\", \"zeek_uid\": \"Cc6lfT2ZVKdXQfjdqd\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"44372\", \"dst_ip\": \"192.168.16.130\", \"dst_port\": \"31639\", \"proto\": \"tcp\", \"service\": \"-\", \"conn_state\": \"REJ\", \"history\": \"Sr\", \"source_line\": 20273, \"source_line_sha256\": \"f85fc68e3f202cb603a62aa15eb090f8d0fdea45d175c78f233cfcac1c566cc2\", \"sampling_category\": \"scan_minute_stratified\"}",
+      "timestamp_raw": "2026-05-26T06:12:00.005674Z",
+      "timestamp_utc": "2026-05-26T06:12:00.005674+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.130",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic",
+        "original_source": {
+          "file": "NT-01-focused.json",
+          "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+          "ref": "E013",
+          "line_no": 13
+        }
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T06:12:00.005674Z",
+        "zeek_ts_exact": "1779775920.005674",
+        "zeek_uid": "Cc6lfT2ZVKdXQfjdqd",
+        "src_ip": "192.168.16.132",
+        "src_port": "44372",
+        "dst_ip": "192.168.16.130",
+        "dst_port": "31639",
+        "proto": "tcp",
+        "service": "-",
+        "conn_state": "REJ",
+        "history": "Sr",
+        "source_line": 20273,
+        "source_line_sha256": "f85fc68e3f202cb603a62aa15eb090f8d0fdea45d175c78f233cfcac1c566cc2",
+        "sampling_category": "scan_minute_stratified"
+      }
+    },
+    {
+      "ref": "E039",
+      "line_no": 39,
+      "raw": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:12:59.998727Z\", \"zeek_ts_exact\": \"1779775979.998727\", \"zeek_uid\": \"CzqdvLULEtfFzWYDf\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"44372\", \"dst_ip\": \"192.168.16.130\", \"dst_port\": \"47929\", \"proto\": \"tcp\", \"service\": \"-\", \"conn_state\": \"REJ\", \"history\": \"Sr\", \"source_line\": 26168, \"source_line_sha256\": \"e3b1c51fff971e98d4d7db1345b67c964aefd5041252885e993ee2048be79d4f\", \"sampling_category\": \"scan_minute_stratified\"}",
+      "timestamp_raw": "2026-05-26T06:12:59.998727Z",
+      "timestamp_utc": "2026-05-26T06:12:59.998727+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.130",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic",
+        "original_source": {
+          "file": "NT-01-focused.json",
+          "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+          "ref": "E014",
+          "line_no": 14
+        }
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T06:12:59.998727Z",
+        "zeek_ts_exact": "1779775979.998727",
+        "zeek_uid": "CzqdvLULEtfFzWYDf",
+        "src_ip": "192.168.16.132",
+        "src_port": "44372",
+        "dst_ip": "192.168.16.130",
+        "dst_port": "47929",
+        "proto": "tcp",
+        "service": "-",
+        "conn_state": "REJ",
+        "history": "Sr",
+        "source_line": 26168,
+        "source_line_sha256": "e3b1c51fff971e98d4d7db1345b67c964aefd5041252885e993ee2048be79d4f",
+        "sampling_category": "scan_minute_stratified"
+      }
+    },
+    {
+      "ref": "E040",
+      "line_no": 40,
+      "raw": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:13:00.008771Z\", \"zeek_ts_exact\": \"1779775980.008771\", \"zeek_uid\": \"CPpega38RMKHzDoor\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"44372\", \"dst_ip\": \"192.168.16.130\", \"dst_port\": \"29631\", \"proto\": \"tcp\", \"service\": \"-\", \"conn_state\": \"REJ\", \"history\": \"Sr\", \"source_line\": 26169, \"source_line_sha256\": \"c21f6dcf18bae5e4faeb21f7cc00947e2b4de3acef79d61a8bbe7861e2571c4e\", \"sampling_category\": \"scan_minute_stratified\"}",
+      "timestamp_raw": "2026-05-26T06:13:00.008771Z",
+      "timestamp_utc": "2026-05-26T06:13:00.008771+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.130",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic",
+        "original_source": {
+          "file": "NT-01-focused.json",
+          "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+          "ref": "E015",
+          "line_no": 15
+        }
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T06:13:00.008771Z",
+        "zeek_ts_exact": "1779775980.008771",
+        "zeek_uid": "CPpega38RMKHzDoor",
+        "src_ip": "192.168.16.132",
+        "src_port": "44372",
+        "dst_ip": "192.168.16.130",
+        "dst_port": "29631",
+        "proto": "tcp",
+        "service": "-",
+        "conn_state": "REJ",
+        "history": "Sr",
+        "source_line": 26169,
+        "source_line_sha256": "c21f6dcf18bae5e4faeb21f7cc00947e2b4de3acef79d61a8bbe7861e2571c4e",
+        "sampling_category": "scan_minute_stratified"
+      }
+    },
+    {
+      "ref": "E041",
+      "line_no": 41,
+      "raw": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:13:59.989944Z\", \"zeek_ts_exact\": \"1779776039.989944\", \"zeek_uid\": \"C9yZ3344T8xB9uFUC2\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"44372\", \"dst_ip\": \"192.168.16.130\", \"dst_port\": \"40091\", \"proto\": \"tcp\", \"service\": \"-\", \"conn_state\": \"REJ\", \"history\": \"Sr\", \"source_line\": 32061, \"source_line_sha256\": \"97e9c0b8173c4f407b73963b7f063826c5bdec7da5af85272d24d1e3256d94e4\", \"sampling_category\": \"scan_minute_stratified\"}",
+      "timestamp_raw": "2026-05-26T06:13:59.989944Z",
+      "timestamp_utc": "2026-05-26T06:13:59.989944+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.130",
+      "event_id": null,
+      "source_kind": "network",
+      "meta": {
+        "unified": {
+          "family": "network",
+          "confidence": "high",
+          "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+          "transport": "file"
+        },
+        "original_source_kind": "generic",
+        "original_source": {
+          "file": "NT-01-focused.json",
+          "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+          "ref": "E016",
+          "line_no": 16
+        }
+      },
+      "fields": {
+        "record_kind": "ZEEK_CONN_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T06:13:59.989944Z",
+        "zeek_ts_exact": "1779776039.989944",
+        "zeek_uid": "C9yZ3344T8xB9uFUC2",
+        "src_ip": "192.168.16.132",
+        "src_port": "44372",
+        "dst_ip": "192.168.16.130",
+        "dst_port": "40091",
+        "proto": "tcp",
+        "service": "-",
+        "conn_state": "REJ",
+        "history": "Sr",
+        "source_line": 32061,
+        "source_line_sha256": "97e9c0b8173c4f407b73963b7f063826c5bdec7da5af85272d24d1e3256d94e4",
+        "sampling_category": "scan_minute_stratified"
+      }
+    }
+  ],
+  "facts": [],
+  "ioc_context": [
+    {
+      "type": "ipv4",
+      "value": "192.168.16.1",
+      "refs": [
+        "E027"
+      ],
+      "count": 1,
+      "scope": "private (RFC 1918)",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "ipv4",
+      "value": "192.168.16.130",
+      "refs": [
+        "E026",
+        "E027",
+        "E028",
+        "E029",
+        "E030",
+        "E031",
+        "E032",
+        "E033",
+        "E034",
+        "E035",
+        "E036",
+        "E037",
+        "E038",
+        "E039",
+        "E040",
+        "E041"
+      ],
+      "count": 16,
+      "scope": "private (RFC 1918)",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "ipv4",
+      "value": "192.168.16.132",
+      "refs": [
+        "E026",
+        "E028",
+        "E029",
+        "E030",
+        "E031",
+        "E032",
+        "E033",
+        "E034",
+        "E035",
+        "E036",
+        "E037",
+        "E038",
+        "E039",
+        "E040",
+        "E041"
+      ],
+      "count": 15,
+      "scope": "private (RFC 1918)",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "088fafed2188d17b8b517821b191baf7c06e4d5984f5fe0a331bb1650fffbf7b",
+      "refs": [
+        "E031"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "1238576db063935b4389e0aa6b61005b9972c30174125be92b64f4776ea11a22",
+      "refs": [
+        "E030"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "322b8c525f06f56c32803a0ede980c0261f175e2fc07673376bb0cbe8d31ab04",
+      "refs": [
+        "E037"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "805011389620c2f10ab896c38af0712d2a182d1d0a807466d53f57258d6b8740",
+      "refs": [
+        "E036"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "86727959c737d4f6041376c8d28b892c82d6c0dd95eb9b1131388803d038559f",
+      "refs": [
+        "E033"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "8e17ec05fd17d8c00c20d03e494dd0734718849aa0a170b907450f5774485cac",
+      "refs": [
+        "E029"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "96cef1cfc3fa8f79f423ffa3cc7c49ae6ebc5156740c5a4e55d08a04066a6a07",
+      "refs": [
+        "E032"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "97e9c0b8173c4f407b73963b7f063826c5bdec7da5af85272d24d1e3256d94e4",
+      "refs": [
+        "E041"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "b2ca9882bd1377bad22d77a9681aa1c0a45ff2c5f2d374ea2465b52e7d6a55f0",
+      "refs": [
+        "E028"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "c21f6dcf18bae5e4faeb21f7cc00947e2b4de3acef79d61a8bbe7861e2571c4e",
+      "refs": [
+        "E040"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "cfffc7f594329a9843f21816a86a3c7fb6f878cfe13c9d9b8d0f1675f0a8ff32",
+      "refs": [
+        "E035"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "e3b1c51fff971e98d4d7db1345b67c964aefd5041252885e993ee2048be79d4f",
+      "refs": [
+        "E039"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "e64d660b33afa75c9fe08f54ecdf7cbfc103f7ffb1e07c42ae1f18c36808c643",
+      "refs": [
+        "E034"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "e8d99e74d87061eb5f669efc50120b43da179385d062c62b225902205a142eb2",
+      "refs": [
+        "E027"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "f85fc68e3f202cb603a62aa15eb090f8d0fdea45d175c78f233cfcac1c566cc2",
+      "refs": [
+        "E038"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "f9282d987047ef37a807a575a353ff601ddbb1b389aa76e92214c302de2fbda9",
+      "refs": [
+        "E026"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    }
+  ],
+  "risk_signals": [],
+  "benign_context": [],
+  "evidence_timeline": [
+    {
+      "timestamp": "2026-05-26T06:07:27.414749Z",
+      "timestamp_utc": "2026-05-26T06:07:27.414749+00:00",
+      "event": "{\"record_kind\": \"VERIFIED_FULL_SOURCE_AGGREGATE_NOT_RAW_ZEEK_EVENT\", \"timestamp\": \"2026-05-26T06:07:27.414749Z\", \"log_source\": \"Zeek conn.log\", \"src_ip\": \"192.1 ...[truncated 638 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E026"
+    },
+    {
+      "timestamp": "2026-05-26T06:05:07.694185Z",
+      "timestamp_utc": "2026-05-26T06:05:07.694185+00:00",
+      "event": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:05:07.694185Z\", \"zeek_ts_exact\": \"1779775507.694185\", \"zeek_uid\": \"CtW7w119a6TDQ4li ...[truncated 322 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E027"
+    },
+    {
+      "timestamp": "2026-05-26T06:07:27.414749Z",
+      "timestamp_utc": "2026-05-26T06:07:27.414749+00:00",
+      "event": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:07:27.414749Z\", \"zeek_ts_exact\": \"1779775647.414749\", \"zeek_uid\": \"CXX7bx1Vxeoa3Ryx ...[truncated 325 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E028"
+    },
+    {
+      "timestamp": "2026-05-26T06:07:28.502707Z",
+      "timestamp_utc": "2026-05-26T06:07:28.502707+00:00",
+      "event": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:07:28.502707Z\", \"zeek_ts_exact\": \"1779775648.502707\", \"zeek_uid\": \"C8Lyev3X9q3IV7Px ...[truncated 328 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E029"
+    },
+    {
+      "timestamp": "2026-05-26T06:08:35.524432Z",
+      "timestamp_utc": "2026-05-26T06:08:35.524432+00:00",
+      "event": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:08:35.524432Z\", \"zeek_ts_exact\": \"1779775715.524432\", \"zeek_uid\": \"COsR2uUmaUrSmJKb ...[truncated 327 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E030"
+    },
+    {
+      "timestamp": "2026-05-26T06:08:59.998968Z",
+      "timestamp_utc": "2026-05-26T06:08:59.998968+00:00",
+      "event": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:08:59.998968Z\", \"zeek_ts_exact\": \"1779775739.998968\", \"zeek_uid\": \"CWUmui1WreJ7aWgT ...[truncated 330 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E031"
+    },
+    {
+      "timestamp": "2026-05-26T06:09:00.009124Z",
+      "timestamp_utc": "2026-05-26T06:09:00.009124+00:00",
+      "event": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:09:00.009124Z\", \"zeek_ts_exact\": \"1779775740.009124\", \"zeek_uid\": \"CXgWCb1hmo47r9YD ...[truncated 330 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E032"
+    },
+    {
+      "timestamp": "2026-05-26T06:09:59.998569Z",
+      "timestamp_utc": "2026-05-26T06:09:59.998569+00:00",
+      "event": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:09:59.998569Z\", \"zeek_ts_exact\": \"1779775799.998569\", \"zeek_uid\": \"Cr45st2DsENn0a3E ...[truncated 330 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E033"
+    },
+    {
+      "timestamp": "2026-05-26T06:10:00.008689Z",
+      "timestamp_utc": "2026-05-26T06:10:00.008689+00:00",
+      "event": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:10:00.008689Z\", \"zeek_ts_exact\": \"1779775800.008689\", \"zeek_uid\": \"Ci5eM8sMaHEp1N41 ...[truncated 328 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E034"
+    },
+    {
+      "timestamp": "2026-05-26T06:10:59.996012Z",
+      "timestamp_utc": "2026-05-26T06:10:59.996012+00:00",
+      "event": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:10:59.996012Z\", \"zeek_ts_exact\": \"1779775859.996012\", \"zeek_uid\": \"CHdIbJ3whoX4helu ...[truncated 331 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E035"
+    },
+    {
+      "timestamp": "2026-05-26T06:11:00.006167Z",
+      "timestamp_utc": "2026-05-26T06:11:00.006167+00:00",
+      "event": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:11:00.006167Z\", \"zeek_ts_exact\": \"1779775860.006167\", \"zeek_uid\": \"CkDyzl173x9JOnUL ...[truncated 331 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E036"
+    },
+    {
+      "timestamp": "2026-05-26T06:11:59.995460Z",
+      "timestamp_utc": "2026-05-26T06:11:59.995460+00:00",
+      "event": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:11:59.995460Z\", \"zeek_ts_exact\": \"1779775919.995460\", \"zeek_uid\": \"CFyqif2Xtpg4S1Rv ...[truncated 331 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E037"
+    },
+    {
+      "timestamp": "2026-05-26T06:12:00.005674Z",
+      "timestamp_utc": "2026-05-26T06:12:00.005674+00:00",
+      "event": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:12:00.005674Z\", \"zeek_ts_exact\": \"1779775920.005674\", \"zeek_uid\": \"Cc6lfT2ZVKdXQfjd ...[truncated 331 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E038"
+    },
+    {
+      "timestamp": "2026-05-26T06:12:59.998727Z",
+      "timestamp_utc": "2026-05-26T06:12:59.998727+00:00",
+      "event": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:12:59.998727Z\", \"zeek_ts_exact\": \"1779775979.998727\", \"zeek_uid\": \"CzqdvLULEtfFzWYD ...[truncated 330 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E039"
+    },
+    {
+      "timestamp": "2026-05-26T06:13:00.008771Z",
+      "timestamp_utc": "2026-05-26T06:13:00.008771+00:00",
+      "event": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:13:00.008771Z\", \"zeek_ts_exact\": \"1779775980.008771\", \"zeek_uid\": \"CPpega38RMKHzDoo ...[truncated 330 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E040"
+    },
+    {
+      "timestamp": "2026-05-26T06:13:59.989944Z",
+      "timestamp_utc": "2026-05-26T06:13:59.989944+00:00",
+      "event": "{\"record_kind\": \"ZEEK_CONN_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T06:13:59.989944Z\", \"zeek_ts_exact\": \"1779776039.989944\", \"zeek_uid\": \"C9yZ3344T8xB9uFU ...[truncated 331 chars]",
+      "source": "network",
+      "host_user": "Not provided",
+      "evidence_ref": "E041"
+    }
+  ],
+  "ai_output": {
+    "raw_text": "## EXECUTIVE SUMMARY\nA vertical port scan was detected on the network originating from 192.168.16.132 targeting 192.168.16.130 between 06:07 and 06:19 UTC on May 26, 2026. The purpose of the scan is unclear as authorization and actor intent are not established.\n\n## LOG SOURCE\nSource type: Zeek conn.log, Hosts: [192.168.16.130, 192.168.16.132], Time span: May 26, 2026 06:05 - May 26, 2026 06:19\n\n## SIGNIFICANT SECURITY EVENTS\n- [E026] Strong vertical port scan pattern detected on 192.168.16.132 targeting 192.168.16.130 with 65895 connection attempts.\n\n## SUSPICIOUS ACTIVITIES\n- [E026] The large number of connection attempts and the vertical port scan pattern are suspicious, but authorization and actor intent are not established.\n\n## EVIDENCE REFERENCES\n- [E026] A strong vertical port scan pattern was detected on 192.168.16.132 targeting 192.168.16.130 with 65895 connection attempts.\n\n## INCIDENT TIMELINE\n| Timestamp | Event | Source | Host/User | Evidence Ref |\n|-----------|-------|--------|-----------|--------------|\n| 2026-05-26T06:07:27.414749Z | Vertical port scan started | 192.168.16.132 | - | [E026] |\n| 2026-05-26T06:19:45.683665Z | Vertical port scan ended | 192.168.16.132 | - | [E026] |\n\n## EXTRACTED IOCS\nNone identified\n\n## POTENTIAL ATTACK INDICATORS\n- The large number of connection attempts and the vertical port scan pattern could indicate a reconnaissance or vulnerability scanning activity.\n\n## CONFIDENCE AND UNCERTAINTY\nLow: Authorization, actor intent, and compromise are not established.\n\n## MISSING INFORMATION\n- Approval for the detected activities\n- Information about the purpose of the connection attempts\n- Evidence of unauthorized access or data exfiltration\n\n## RECOMMENDED INVESTIGATION STEPS\n1. Investigate the source IP address 192.168.16.132 to determine if it is authorized to perform the detected activities.\n2. Determine if there are any known vulnerabilities on the target host 192.168.16.130 that could have been exploited during the scan.\n3. Review logs for other hosts and networks for similar activity.\n4. Investigate the user account associated with the source IP address, if applicable.\n5. Consult with network administrators to determine if any changes were made to firewall or intrusion detection system rules that could have allowed this activity.",
+    "sections": {
+      "EXECUTIVE SUMMARY": "A vertical port scan was detected on the network originating from 192.168.16.132 targeting 192.168.16.130 between 06:07 and 06:19 UTC on May 26, 2026. The purpose of the scan is unclear as authorization and actor intent are not established.",
+      "LOG SOURCE": "Source type: Zeek conn.log, Hosts: [192.168.16.130, 192.168.16.132], Time span: May 26, 2026 06:05 - May 26, 2026 06:19",
+      "SIGNIFICANT SECURITY EVENTS": "- [E026] Strong vertical port scan pattern detected on 192.168.16.132 targeting 192.168.16.130 with 65895 connection attempts.",
+      "SUSPICIOUS ACTIVITIES": "- [E026] The large number of connection attempts and the vertical port scan pattern are suspicious, but authorization and actor intent are not established.",
+      "EVIDENCE REFERENCES": "- [E026] A strong vertical port scan pattern was detected on 192.168.16.132 targeting 192.168.16.130 with 65895 connection attempts.",
+      "INCIDENT TIMELINE": "| Timestamp | Event | Source | Host/User | Evidence Ref |\n|-----------|-------|--------|-----------|--------------|\n| 2026-05-26T06:07:27.414749Z | Vertical port scan started | 192.168.16.132 | - | [E026] |\n| 2026-05-26T06:19:45.683665Z | Vertical port scan ended | 192.168.16.132 | - | [E026] |",
+      "EXTRACTED IOCS": "None identified",
+      "POTENTIAL ATTACK INDICATORS": "- The large number of connection attempts and the vertical port scan pattern could indicate a reconnaissance or vulnerability scanning activity.",
+      "CONFIDENCE AND UNCERTAINTY": "Low: Authorization, actor intent, and compromise are not established.",
+      "MISSING INFORMATION": "- Approval for the detected activities\n- Information about the purpose of the connection attempts\n- Evidence of unauthorized access or data exfiltration",
+      "RECOMMENDED INVESTIGATION STEPS": "1. Investigate the source IP address 192.168.16.132 to determine if it is authorized to perform the detected activities.\n2. Determine if there are any known vulnerabilities on the target host 192.168.16.130 that could have been exploited during the scan.\n3. Review logs for other hosts and networks for similar activity.\n4. Investigate the user account associated with the source IP address, if applicable.\n5. Consult with network administrators to determine if any changes were made to firewall or intrusion detection system rules that could have allowed this activity."
+    },
+    "truncated": false,
+    "timeline_rows": [
+      {
+        "timestamp": "2026-05-26T06:07:27.414749Z",
+        "event": "Vertical port scan started",
+        "source": "192.168.16.132",
+        "host_user": "-",
+        "evidence_ref": "[E026]",
+        "refs_found": [
+          "E026"
+        ]
+      },
+      {
+        "timestamp": "2026-05-26T06:19:45.683665Z",
+        "event": "Vertical port scan ended",
+        "source": "192.168.16.132",
+        "host_user": "-",
+        "evidence_ref": "[E026]",
+        "refs_found": [
+          "E026"
+        ]
+      }
+    ]
+  },
+  "grounding": {
+    "version": "grounded-detection-1.0",
+    "scope": "observed_input_events_only",
+    "events_inspected": 16,
+    "behavioral_findings": [
+      {
+        "rule_id": "NETWORK_VERTICAL_PORT_SCAN",
+        "label": "Vertical TCP destination-port sweep pattern",
+        "confidence_in_observed_pattern": "high",
+        "evidence_refs": [
+          "E026",
+          "E028",
+          "E029",
+          "E030",
+          "E031",
+          "E032",
+          "E033",
+          "E034",
+          "E035",
+          "E036",
+          "E037",
+          "E038",
+          "E039",
+          "E040",
+          "E041"
+        ],
+        "observation": "Supplied aggregate reports 65747 TCP flow records from 192.168.16.132 to 192.168.16.130 across 65535 distinct destination ports in 738.269s; sampled Zeek rows corroborate endpoints.",
+        "outcome": "Pattern is consistent with vertical TCP port scanning; authorization, attacker intent, port openness and successful compromise NOT established.",
+        "details": {
+          "source_ip": "192.168.16.132",
+          "destination_ip": "192.168.16.130",
+          "tcp_records": 65747,
+          "distinct_destination_ports": 65535,
+          "connection_state_counts": {
+            "REJ": 65620,
+            "RSTO": 15,
+            "S0": 112
+          },
+          "duration_seconds": 738.269,
+          "aggregate_ref": "E026",
+          "sample_source_refs": [
+            "E028",
+            "E029",
+            "E030",
+            "E031",
+            "E032",
+            "E033",
+            "E034",
+            "E035",
+            "E036",
+            "E037",
+            "E038",
+            "E039",
+            "E040",
+            "E041"
+          ],
+          "aggregate_is_raw_connection": false,
+          "full_source_integrity_checked_in_this_function": false,
+          "source_sha256_claimed_by_aggregate": "f9282d987047ef37a807a575a353ff601ddbb1b389aa76e92214c302de2fbda9"
+        },
+        "status": "investigation_indicator_not_incident_verdict"
+      }
+    ],
+    "context_observations": [
+      {
+        "rule_id": "NETWORK_COMPUTED_AGGREGATE_CONTEXT",
+        "evidence_refs": [
+          "E026"
+        ],
+        "observation": "Full-source aggregate supplied; it is NOT a raw Zeek connection.",
+        "security_limit": "Re-verify original capture SHA256 and the aggregate derivation separately."
+      }
+    ],
+    "final_incident_verdict": "human_review_required",
+    "guarantees": [
+      "No LLM inference",
+      "No proof of attack success",
+      "No SOAR actions"
+    ]
+  },
+  "validation": {
+    "flags": [
+      {
+        "check": "finding_without_evidence_ref",
+        "severity": "medium",
+        "section": "POTENTIAL ATTACK INDICATORS",
+        "value": "- The large number of connection attempts and the vertical port scan pattern could indicate a reconnaissance or vulnerability scanning activ",
+        "message": "Finding has no [E###] evidence reference.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      }
+    ],
+    "severity_counts": {
+      "high": 0,
+      "medium": 1,
+      "low": 0
+    },
+    "automated_checks": [
+      "structure/truncation",
+      "IP/URL/domain/hash/CVE/email/file exact-string support",
+      "defang preservation",
+      "timestamp source-text check; timeline timestamp <1ms tolerance",
+      "entity (key=value, backtick, host-token) support",
+      "evidence-reference existence and presence",
+      "fabricated rule/agent ID",
+      "Event ID semantics (heuristic: Windows 1102/5145/4624/4625/4732)",
+      "unsupported certainty / attribution",
+      "none-claim vs code-detected risk signals",
+      "timeline timestamp vs cited event",
+      "input prompt-injection scan"
+    ],
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review",
+    "analyst": null,
+    "final_classification": null,
+    "final_priority": null,
+    "correct_findings": [],
+    "incorrect_findings": [],
+    "missing_evidence": [],
+    "hallucinations": [],
+    "notes": "",
+    "reviewed_utc": null,
+    "history": []
+  },
+  "unified": {
+    "engine_version": "unified-intake-0.3.0-candidate",
+    "family": "network",
+    "pre_ai_notes": [
+      "UNIFIED ROUTING: 16 event(s) assigned to this source family using per-event signatures. Do not infer that unknown or omitted records were analyzed.",
+      "WHOLE-FILE PYTHON GROUNDING CONTEXT: network has evidence-dependent finding type(s): NETWORK_VERTICAL_PORT_SCAN. Evidence counts reflect the FULL family subset, not necessarily this AI batch. Do not cite references absent from the current LOG DATA; do not invent events to bridge batches. Use only per-event evidence shown in this call for individual chronology and endpoint attribution. An aggregate is not an individual Zeek flow. This observation is not proof of attacker intent or intrusion. Other source records exist outside this batch and are independently summarized in the unified Python baseline.",
+      "DRAFT COMPLETENESS: Use every required ## heading, one confidence level, and at most five representative evidence-linked bullets per section. Never use \"...\", \"continue for all events\", filler rows or omitted promised content. Unknown details must be explicitly called unknown, not guessed.",
+      "ZEEK FACT BOUNDARIES: A raw conn.log row represents an individual flow record; one dst_port=65535 row is NOT evidence that all ports were scanned. Use full-source counts ONLY from the verified-in-input aggregate and distinguish that derived count from sample rows. Zeek REJ is a connection state, not proof of firewall blocking. Never assert all sampled rows use one source port unless verified."
+    ],
+    "baseline_grounding": {
+      "version": "grounded-detection-1.0",
+      "scope": "observed_input_events_only",
+      "events_inspected": 16,
+      "behavioral_findings": [
+        {
+          "rule_id": "NETWORK_VERTICAL_PORT_SCAN",
+          "label": "Vertical TCP destination-port sweep pattern",
+          "confidence_in_observed_pattern": "high",
+          "evidence_refs": [
+            "E026",
+            "E028",
+            "E029",
+            "E030",
+            "E031",
+            "E032",
+            "E033",
+            "E034",
+            "E035",
+            "E036",
+            "E037",
+            "E038",
+            "E039",
+            "E040",
+            "E041"
+          ],
+          "observation": "Supplied aggregate reports 65747 TCP flow records from 192.168.16.132 to 192.168.16.130 across 65535 distinct destination ports in 738.269s; sampled Zeek rows corroborate endpoints.",
+          "outcome": "Pattern is consistent with vertical TCP port scanning; authorization, attacker intent, port openness and successful compromise NOT established.",
+          "details": {
+            "source_ip": "192.168.16.132",
+            "destination_ip": "192.168.16.130",
+            "tcp_records": 65747,
+            "distinct_destination_ports": 65535,
+            "connection_state_counts": {
+              "REJ": 65620,
+              "RSTO": 15,
+              "S0": 112
+            },
+            "duration_seconds": 738.269,
+            "aggregate_ref": "E026",
+            "sample_source_refs": [
+              "E028",
+              "E029",
+              "E030",
+              "E031",
+              "E032",
+              "E033",
+              "E034",
+              "E035",
+              "E036",
+              "E037",
+              "E038",
+              "E039",
+              "E040",
+              "E041"
+            ],
+            "aggregate_is_raw_connection": false,
+            "full_source_integrity_checked_in_this_function": false,
+            "source_sha256_claimed_by_aggregate": "f9282d987047ef37a807a575a353ff601ddbb1b389aa76e92214c302de2fbda9"
+          },
+          "status": "investigation_indicator_not_incident_verdict"
+        }
+      ],
+      "context_observations": [
+        {
+          "rule_id": "NETWORK_COMPUTED_AGGREGATE_CONTEXT",
+          "evidence_refs": [
+            "E026"
+          ],
+          "observation": "Full-source aggregate supplied; it is NOT a raw Zeek connection.",
+          "security_limit": "Re-verify original capture SHA256 and the aggregate derivation separately."
+        }
+      ],
+      "final_incident_verdict": "human_review_required",
+      "guarantees": [
+        "No LLM inference",
+        "No proof of attack success",
+        "No SOAR actions"
+      ]
+    },
+    "windows_plink": [],
+    "input_original_sha256": "065cca374de2af6ccf70bd718bcc70ddccca8df852149fb98c039e970b64412c",
+    "whole_family_rules": [
+      "NETWORK_VERTICAL_PORT_SCAN"
+    ],
+    "qa": {
+      "needs_human_review": true,
+      "missing_or_truncated_output": false,
+      "flag_count": 1,
+      "review_checks": [
+        "finding_without_evidence_ref"
+      ],
+      "status": "REVIEW_REQUIRED"
+    }
+  }
+}

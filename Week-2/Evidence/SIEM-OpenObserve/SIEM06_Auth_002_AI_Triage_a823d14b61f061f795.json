@@ -1,0 +1,143 @@
+{
+  "generated_at_utc": "2026-10-26T23:47:13.848833+00:00",
+  "project": "DEPI-P5",
+  "phase": "Week-2 SIEM-06 SSH Brute Force",
+  "mode": "authenticated_webhook_historical_replay",
+  "event_id": "a823d14b61f061f7954e2e3eb7f18d6af6280f53242fe8c711d5cd78bcefdbae",
+  "model": "mistral:7b-instruct-v0.3-q4_K_S",
+  "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+  "missing_fields": [],
+  "semantic_warnings": [],
+  "source_trigger": {
+    "_timestamp": 1793058405206396,
+    "key": "SIEM_AUTH_002_SSH_BRUTE_FORCE/3LFgj2r7wLsZnMKzmAGq58E9FKj",
+    "status": "firing"
+  },
+  "webhook_group": {
+    "src_ip": "183.62.140.253",
+    "original_minute_no_year": "Dec 10 11:01",
+    "failed_attempts": 30
+  },
+  "evidence": {
+    "rule": "SIEM_AUTH_002_SSH_BRUTE_FORCE",
+    "stream": "depi_auth_logs",
+    "source_dataset": "OpenSSH_2k.log",
+    "replay_mode": "historical_log_replay",
+    "source_ip": "183.62.140.253",
+    "source_ip_quality": {
+      "valid": true,
+      "is_global": true,
+      "is_reserved": false
+    },
+    "original_minute_no_year": "Dec 10 11:01",
+    "verified_failed_password_count": 30,
+    "failure_threshold": 5,
+    "top_usernames": [
+      {
+        "username": "root",
+        "failed_attempts": 30
+      }
+    ],
+    "sampled_source_lines": [
+      {
+        "source_line": 1621,
+        "original_datetime_no_year": "Dec 10 11:01:01",
+        "username": "root",
+        "src_port": 51395,
+        "invalid_user": false,
+        "raw_log_sha256": "197fb1b1bb4379f4fb8c70cda99e01883253e9645a902926e8b7f7d2c6c6f575"
+      },
+      {
+        "source_line": 1624,
+        "original_datetime_no_year": "Dec 10 11:01:02",
+        "username": "root",
+        "src_port": 51830,
+        "invalid_user": false,
+        "raw_log_sha256": "411330851efc9225a2f98268e0be54f9d0cc0ef763c6abd6a0b792e8d689a2a9"
+      },
+      {
+        "source_line": 1627,
+        "original_datetime_no_year": "Dec 10 11:01:04",
+        "username": "root",
+        "src_port": 52182,
+        "invalid_user": false,
+        "raw_log_sha256": "a235606397e8e0869048b3be3882e747e8f6de4aa7cec9f72b97df47819e2d70"
+      },
+      {
+        "source_line": 1630,
+        "original_datetime_no_year": "Dec 10 11:01:06",
+        "username": "root",
+        "src_port": 52545,
+        "invalid_user": false,
+        "raw_log_sha256": "46e88525dc20bc1787fadff65d733a6cfb0f7c28ffc92182256569e2cb39fabe"
+      },
+      {
+        "source_line": 1633,
+        "original_datetime_no_year": "Dec 10 11:01:08",
+        "username": "root",
+        "src_port": 52850,
+        "invalid_user": false,
+        "raw_log_sha256": "5b34d08afc64ce12eacc68d2555a5d365dd4318d4eb636bf821ed12ea04cd2d0"
+      },
+      {
+        "source_line": 1636,
+        "original_datetime_no_year": "Dec 10 11:01:10",
+        "username": "root",
+        "src_port": 53160,
+        "invalid_user": false,
+        "raw_log_sha256": "64bd060a4a68c22af474ede08018e94d3fa92a9b39f24ecdc6297ae0ab30e99f"
+      },
+      {
+        "source_line": 1639,
+        "original_datetime_no_year": "Dec 10 11:01:13",
+        "username": "root",
+        "src_port": 53630,
+        "invalid_user": false,
+        "raw_log_sha256": "2edf664e1bd5669692473bfdc2d9a6a857ba84670709d187117213a61927f1bd"
+      },
+      {
+        "source_line": 1642,
+        "original_datetime_no_year": "Dec 10 11:01:14",
+        "username": "root",
+        "src_port": 54049,
+        "invalid_user": false,
+        "raw_log_sha256": "28e64e86d1570611990636bd0a42d5fb9ee9576b45084962706addf0fd2f61b2"
+      }
+    ],
+    "trigger_key": "SIEM_AUTH_002_SSH_BRUTE_FORCE/3LFgj2r7wLsZnMKzmAGq58E9FKj",
+    "trigger_status": "firing",
+    "correlation_method": "structured webhook row + independently verified OpenObserve source log count + recent firing trigger",
+    "correlation_limitations": "No row-level join between trigger key and matched alert row; source timestamps have no year/timezone."
+  },
+  "ai_triage": {
+    "summary": "Potential SSH brute-force attack detected on IP address 183.62.140.253 targeting the 'root' user account.",
+    "severity": "Medium",
+    "potential_threat": "SSH Brute Force",
+    "indicators": {
+      "source_ip": "183.62.140.253",
+      "top_usernames": [
+        {
+          "username": "root"
+        }
+      ]
+    },
+    "false_positive_possibility": "Low",
+    "recommended_actions": [
+      "Increase account lockout policies for the 'root' user.",
+      "Implement rate limiting on SSH connections from IP address 183.62.140.253.",
+      "Monitor logs for further attempts and adjust thresholds as necessary."
+    ],
+    "evidence_limitations": "No row-level join between trigger key and matched alert row; source timestamps have no year/timezone.",
+    "confidence": "High",
+    "verification_count": 30,
+    "correlation_method": "structured webhook row + independently verified OpenObserve source log count + recent firing trigger"
+  },
+  "human_validation_required": true,
+  "limitations": [
+    "Repeated failed SSH password attempts are detected; successful intrusion is not established.",
+    "Original SSH event dates have no year/timezone.",
+    "Trigger-key correlation is rule-level, not proven exact alert-row linkage.",
+    "Historic replay data, not live production traffic.",
+    "AI schema validation does not prove semantic correctness; human review is required."
+  ]
+}

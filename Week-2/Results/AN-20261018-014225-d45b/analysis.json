@@ -1,0 +1,848 @@
+{
+  "analysis_id": "AN-20261018-014225-d45b",
+  "schema_version": "week2-1",
+  "task": "log_analysis",
+  "created_utc": "2026-10-18T01:42:25+00:00",
+  "references": {
+    "alert_id": null,
+    "incident_ref": null,
+    "note": "incident_ref is reserved for Week 3/4 correlation"
+  },
+  "input": {
+    "filename": "RT-04-focused.json",
+    "path": "Data\\Real-Datasets\\Windows-Attacks\\RT-04-Persistence\\RT-04-focused.json",
+    "sha256": "bd208d8033b398d1bebe4122968b4b203af92e806863b1fd794015fff31f550c",
+    "format": "json",
+    "compressed": false,
+    "source_type": "windows",
+    "evidence_class": "user_supplied_unverified",
+    "event_count": 7,
+    "events_analysed": [
+      "E001",
+      "E002",
+      "E003",
+      "E004",
+      "E005",
+      "E006",
+      "E007"
+    ],
+    "warnings": []
+  },
+  "model": {
+    "name": "mistral:7b-instruct-v0.3-q4_K_S",
+    "options": {
+      "temperature": 0.2,
+      "repeat_penalty": 1.15,
+      "num_ctx": 6144,
+      "num_predict": 1500,
+      "seed": 42
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "options": {
+          "temperature": 0.2,
+          "repeat_penalty": 1.15,
+          "num_ctx": 6144,
+          "num_predict": 1500,
+          "seed": 42
+        },
+        "outcome": "success",
+        "seconds": 110.5
+      }
+    ],
+    "retry_used": false,
+    "done_reason": "length",
+    "tokens_per_second": 15.91,
+    "wall_seconds": 110.5
+  },
+  "prompt": {
+    "file": "log_analysis.txt",
+    "version": "w2-1.0",
+    "sha256": "7affc781ced6c1a991a75ba465d7aa9c429fac7a7dc3730cf3656342b0650b6d",
+    "nonce_delimiter_used": true
+  },
+  "events": [
+    {
+      "ref": "E001",
+      "line_no": 1,
+      "raw": "{\"evidence_id\": \"E001\", \"timestamp\": \"2019-06-14T22:22:17.9883707Z\", \"event_id\": 1, \"record_id\": 7530, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"IEWIN7\", \"event_data\": {\"RuleName\": \"\", \"UtcTime\": \"2019-06-14 22:22:17.957\", \"ProcessGuid\": \"{365abb72-1e19-5d04-0000-0010dfc60a00}\", \"ProcessId\": \"4020\", \"Image\": \"C:\\\\Users\\\\IEUser\\\\Downloads\\\\a.exe\", \"FileVersion\": \"1.0.0.0\", \"Description\": \"NpmTaskRunner\", \"Product\": \"NpmTaskRunner\", \"Company\": \"\", \"CommandLine\": \"\\\"C:\\\\Users\\\\IEUser\\\\Downloads\\\\a.exe\\\" \", \"CurrentDirectory\": \"C:\\\\Users\\\\IEUser\\\\Downloads\\\\\", \"User\": \"IEWIN7\\\\IEUser\", \"LogonGuid\": \"{365abb72-1d89-5d04-0000-00206d330100}\", \"LogonId\": \"0x1336d\", \"TerminalSessionId\": \"1\", \"IntegrityLevel\": \"High\", \"Hashes\": \"SHA1=E2286C233467D0E164ED5ED1D07BAC9F90F74D19,MD5=41CE32C0D1D4E5BB8C63674F317450EF,SHA256=5DE788D23B247B29F116CD0583280CE10A429E9F8C1D80C42DEAB20C6F4DBB4E,IMPHASH=F34D5F2D4577ED6D9CEEC516C1F5A744\", \"ParentProcessGuid\": \"{365abb72-1db8-5d04-0000-00109bf60500}\", \"ParentProcessId\": \"2816\", \"ParentImage\": \"C:\\\\Windows\\\\explorer.exe\", \"ParentCommandLine\": \"C:\\\\Windows\\\\Explorer.EXE\"}}",
+      "timestamp_raw": "2019-06-14T22:22:17.9883707Z",
+      "timestamp_utc": "2019-06-14T22:22:17.988370+00:00",
+      "host": "IEWIN7",
+      "user": "IEWIN7\\IEUser",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": "1",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "evidence_id": "E001",
+        "timestamp": "2019-06-14T22:22:17.9883707Z",
+        "event_id": 1,
+        "record_id": 7530,
+        "provider": "Microsoft-Windows-Sysmon",
+        "computer": "IEWIN7",
+        "event_data.RuleName": "",
+        "event_data.UtcTime": "2019-06-14 22:22:17.957",
+        "event_data.ProcessGuid": "{365abb72-1e19-5d04-0000-0010dfc60a00}",
+        "event_data.ProcessId": "4020",
+        "event_data.Image": "C:\\Users\\IEUser\\Downloads\\a.exe",
+        "event_data.FileVersion": "1.0.0.0",
+        "event_data.Description": "NpmTaskRunner",
+        "event_data.Product": "NpmTaskRunner",
+        "event_data.Company": "",
+        "event_data.CommandLine": "\"C:\\Users\\IEUser\\Downloads\\a.exe\" ",
+        "event_data.CurrentDirectory": "C:\\Users\\IEUser\\Downloads\\",
+        "event_data.User": "IEWIN7\\IEUser",
+        "event_data.LogonGuid": "{365abb72-1d89-5d04-0000-00206d330100}",
+        "event_data.LogonId": "0x1336d",
+        "event_data.TerminalSessionId": "1",
+        "event_data.IntegrityLevel": "High",
+        "event_data.Hashes": "SHA1=E2286C233467D0E164ED5ED1D07BAC9F90F74D19,MD5=41CE32C0D1D4E5BB8C63674F317450EF,SHA256=5DE788D23B247B29F116CD0583280CE10A429E9F8C1D80C42DEAB20C6F4DBB4E,IMPHASH=F34D5F2D4577ED6D9CEEC516C1F5A744",
+        "event_data.ParentProcessGuid": "{365abb72-1db8-5d04-0000-00109bf60500}",
+        "event_data.ParentProcessId": "2816",
+        "event_data.ParentImage": "C:\\Windows\\explorer.exe",
+        "event_data.ParentCommandLine": "C:\\Windows\\Explorer.EXE"
+      }
+    },
+    {
+      "ref": "E002",
+      "line_no": 2,
+      "raw": "{\"evidence_id\": \"E002\", \"timestamp\": \"2019-06-14T22:22:21.5039957Z\", \"event_id\": 11, \"record_id\": 7531, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"IEWIN7\", \"event_data\": {\"RuleName\": \"\", \"UtcTime\": \"2019-06-14 22:22:21.503\", \"ProcessGuid\": \"{365abb72-1e19-5d04-0000-0010dfc60a00}\", \"ProcessId\": \"4020\", \"Image\": \"C:\\\\Users\\\\IEUser\\\\Downloads\\\\a.exe\", \"TargetFilename\": \"C:\\\\Users\\\\IEUser\\\\AppData\\\\Roaming\\\\9QxTsAU9w8gyPj4w\\\\BRE6BgE2JubB.exe\", \"CreationUtcTime\": \"2019-06-14 22:22:21.503\"}}",
+      "timestamp_raw": "2019-06-14T22:22:21.5039957Z",
+      "timestamp_utc": "2019-06-14T22:22:21.503995+00:00",
+      "host": "IEWIN7",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": "11",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "evidence_id": "E002",
+        "timestamp": "2019-06-14T22:22:21.5039957Z",
+        "event_id": 11,
+        "record_id": 7531,
+        "provider": "Microsoft-Windows-Sysmon",
+        "computer": "IEWIN7",
+        "event_data.RuleName": "",
+        "event_data.UtcTime": "2019-06-14 22:22:21.503",
+        "event_data.ProcessGuid": "{365abb72-1e19-5d04-0000-0010dfc60a00}",
+        "event_data.ProcessId": "4020",
+        "event_data.Image": "C:\\Users\\IEUser\\Downloads\\a.exe",
+        "event_data.TargetFilename": "C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe",
+        "event_data.CreationUtcTime": "2019-06-14 22:22:21.503"
+      }
+    },
+    {
+      "ref": "E003",
+      "line_no": 3,
+      "raw": "{\"evidence_id\": \"E003\", \"timestamp\": \"2019-06-14T22:22:21.5352457Z\", \"event_id\": 13, \"record_id\": 7532, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"IEWIN7\", \"event_data\": {\"RuleName\": \"Persistence - Winlogon Shell\", \"EventType\": \"SetValue\", \"UtcTime\": \"2019-06-14 22:22:21.519\", \"ProcessGuid\": \"{365abb72-1e19-5d04-0000-0010dfc60a00}\", \"ProcessId\": \"4020\", \"Image\": \"C:\\\\Users\\\\IEUser\\\\Downloads\\\\a.exe\", \"TargetObject\": \"HKU\\\\S-1-5-21-3583694148-1414552638-2922671848-1000\\\\Software\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon\\\\Shell\", \"Details\": \"\\\"C:\\\\Users\\\\IEUser\\\\AppData\\\\Roaming\\\\9QxTsAU9w8gyPj4w\\\\BRE6BgE2JubB.exe\\\",explorer.exe\"}}",
+      "timestamp_raw": "2019-06-14T22:22:21.5352457Z",
+      "timestamp_utc": "2019-06-14T22:22:21.535245+00:00",
+      "host": "IEWIN7",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": "13",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "evidence_id": "E003",
+        "timestamp": "2019-06-14T22:22:21.5352457Z",
+        "event_id": 13,
+        "record_id": 7532,
+        "provider": "Microsoft-Windows-Sysmon",
+        "computer": "IEWIN7",
+        "event_data.RuleName": "Persistence - Winlogon Shell",
+        "event_data.EventType": "SetValue",
+        "event_data.UtcTime": "2019-06-14 22:22:21.519",
+        "event_data.ProcessGuid": "{365abb72-1e19-5d04-0000-0010dfc60a00}",
+        "event_data.ProcessId": "4020",
+        "event_data.Image": "C:\\Users\\IEUser\\Downloads\\a.exe",
+        "event_data.TargetObject": "HKU\\S-1-5-21-3583694148-1414552638-2922671848-1000\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Shell",
+        "event_data.Details": "\"C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe\",explorer.exe"
+      }
+    },
+    {
+      "ref": "E004",
+      "line_no": 4,
+      "raw": "{\"evidence_id\": \"E017\", \"timestamp\": \"2019-06-14T22:23:13.8946207Z\", \"event_id\": 1, \"record_id\": 7555, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"IEWIN7\", \"event_data\": {\"RuleName\": \"\", \"UtcTime\": \"2019-06-14 22:23:13.894\", \"ProcessGuid\": \"{365abb72-1e51-5d04-0000-00104c340c00}\", \"ProcessId\": \"3448\", \"Image\": \"C:\\\\Windows\\\\System32\\\\userinit.exe\", \"FileVersion\": \"6.1.7600.16385 (win7_rtm.090713-1255)\", \"Description\": \"Userinit Logon Application\", \"Product\": \"Microsoft® Windows® Operating System\", \"Company\": \"Microsoft Corporation\", \"CommandLine\": \"C:\\\\Windows\\\\system32\\\\userinit.exe\", \"CurrentDirectory\": \"C:\\\\Windows\\\\system32\\\\\", \"User\": \"IEWIN7\\\\IEUser\", \"LogonGuid\": \"{365abb72-1e4a-5d04-0000-002013c00b00}\", \"LogonId\": \"0xbc013\", \"TerminalSessionId\": \"2\", \"IntegrityLevel\": \"High\", \"Hashes\": \"SHA1=211295CCDA6CF6409189279BF66A212BD53FC650,MD5=61AC3EFDFACFDD3F0F11DD4FD4044223,SHA256=538FE1012FEDC72727A8DE0C2C01944B3D35C29812ECEF88E95AAC07235E0B0B,IMPHASH=DA2666D3347F129193AB91A0EAB85C0C\", \"ParentProcessGuid\": \"{365abb72-1e3f-5d04-0000-0010ff8d0b00}\", \"ParentProcessId\": \"1228\", \"ParentImage\": \"C:\\\\Windows\\\\System32\\\\winlogon.exe\", \"ParentCommandLine\": \"winlogon.exe\"}}",
+      "timestamp_raw": "2019-06-14T22:23:13.8946207Z",
+      "timestamp_utc": "2019-06-14T22:23:13.894620+00:00",
+      "host": "IEWIN7",
+      "user": "IEWIN7\\IEUser",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": "1",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "evidence_id": "E017",
+        "timestamp": "2019-06-14T22:23:13.8946207Z",
+        "event_id": 1,
+        "record_id": 7555,
+        "provider": "Microsoft-Windows-Sysmon",
+        "computer": "IEWIN7",
+        "event_data.RuleName": "",
+        "event_data.UtcTime": "2019-06-14 22:23:13.894",
+        "event_data.ProcessGuid": "{365abb72-1e51-5d04-0000-00104c340c00}",
+        "event_data.ProcessId": "3448",
+        "event_data.Image": "C:\\Windows\\System32\\userinit.exe",
+        "event_data.FileVersion": "6.1.7600.16385 (win7_rtm.090713-1255)",
+        "event_data.Description": "Userinit Logon Application",
+        "event_data.Product": "Microsoft® Windows® Operating System",
+        "event_data.Company": "Microsoft Corporation",
+        "event_data.CommandLine": "C:\\Windows\\system32\\userinit.exe",
+        "event_data.CurrentDirectory": "C:\\Windows\\system32\\",
+        "event_data.User": "IEWIN7\\IEUser",
+        "event_data.LogonGuid": "{365abb72-1e4a-5d04-0000-002013c00b00}",
+        "event_data.LogonId": "0xbc013",
+        "event_data.TerminalSessionId": "2",
+        "event_data.IntegrityLevel": "High",
+        "event_data.Hashes": "SHA1=211295CCDA6CF6409189279BF66A212BD53FC650,MD5=61AC3EFDFACFDD3F0F11DD4FD4044223,SHA256=538FE1012FEDC72727A8DE0C2C01944B3D35C29812ECEF88E95AAC07235E0B0B,IMPHASH=DA2666D3347F129193AB91A0EAB85C0C",
+        "event_data.ParentProcessGuid": "{365abb72-1e3f-5d04-0000-0010ff8d0b00}",
+        "event_data.ParentProcessId": "1228",
+        "event_data.ParentImage": "C:\\Windows\\System32\\winlogon.exe",
+        "event_data.ParentCommandLine": "winlogon.exe"
+      }
+    },
+    {
+      "ref": "E005",
+      "line_no": 5,
+      "raw": "{\"evidence_id\": \"E018\", \"timestamp\": \"2019-06-14T22:23:13.9571207Z\", \"event_id\": 1, \"record_id\": 7556, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"IEWIN7\", \"event_data\": {\"RuleName\": \"\", \"UtcTime\": \"2019-06-14 22:23:13.925\", \"ProcessGuid\": \"{365abb72-1e51-5d04-0000-00107b380c00}\", \"ProcessId\": \"3444\", \"Image\": \"C:\\\\Users\\\\IEUser\\\\AppData\\\\Roaming\\\\9QxTsAU9w8gyPj4w\\\\BRE6BgE2JubB.exe\", \"FileVersion\": \"1.0.0.0\", \"Description\": \"NpmTaskRunner\", \"Product\": \"NpmTaskRunner\", \"Company\": \"\", \"CommandLine\": \"\\\"C:\\\\Users\\\\IEUser\\\\AppData\\\\Roaming\\\\9QxTsAU9w8gyPj4w\\\\BRE6BgE2JubB.exe\\\"\", \"CurrentDirectory\": \"C:\\\\Windows\\\\system32\\\\\", \"User\": \"IEWIN7\\\\IEUser\", \"LogonGuid\": \"{365abb72-1e4a-5d04-0000-002013c00b00}\", \"LogonId\": \"0xbc013\", \"TerminalSessionId\": \"2\", \"IntegrityLevel\": \"High\", \"Hashes\": \"SHA1=E2286C233467D0E164ED5ED1D07BAC9F90F74D19,MD5=41CE32C0D1D4E5BB8C63674F317450EF,SHA256=5DE788D23B247B29F116CD0583280CE10A429E9F8C1D80C42DEAB20C6F4DBB4E,IMPHASH=F34D5F2D4577ED6D9CEEC516C1F5A744\", \"ParentProcessGuid\": \"{365abb72-1e51-5d04-0000-00104c340c00}\", \"ParentProcessId\": \"3448\", \"ParentImage\": \"C:\\\\Windows\\\\System32\\\\userinit.exe\", \"ParentCommandLine\": \"C:\\\\Windows\\\\system32\\\\userinit.exe\"}}",
+      "timestamp_raw": "2019-06-14T22:23:13.9571207Z",
+      "timestamp_utc": "2019-06-14T22:23:13.957120+00:00",
+      "host": "IEWIN7",
+      "user": "IEWIN7\\IEUser",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": "1",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "evidence_id": "E018",
+        "timestamp": "2019-06-14T22:23:13.9571207Z",
+        "event_id": 1,
+        "record_id": 7556,
+        "provider": "Microsoft-Windows-Sysmon",
+        "computer": "IEWIN7",
+        "event_data.RuleName": "",
+        "event_data.UtcTime": "2019-06-14 22:23:13.925",
+        "event_data.ProcessGuid": "{365abb72-1e51-5d04-0000-00107b380c00}",
+        "event_data.ProcessId": "3444",
+        "event_data.Image": "C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe",
+        "event_data.FileVersion": "1.0.0.0",
+        "event_data.Description": "NpmTaskRunner",
+        "event_data.Product": "NpmTaskRunner",
+        "event_data.Company": "",
+        "event_data.CommandLine": "\"C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe\"",
+        "event_data.CurrentDirectory": "C:\\Windows\\system32\\",
+        "event_data.User": "IEWIN7\\IEUser",
+        "event_data.LogonGuid": "{365abb72-1e4a-5d04-0000-002013c00b00}",
+        "event_data.LogonId": "0xbc013",
+        "event_data.TerminalSessionId": "2",
+        "event_data.IntegrityLevel": "High",
+        "event_data.Hashes": "SHA1=E2286C233467D0E164ED5ED1D07BAC9F90F74D19,MD5=41CE32C0D1D4E5BB8C63674F317450EF,SHA256=5DE788D23B247B29F116CD0583280CE10A429E9F8C1D80C42DEAB20C6F4DBB4E,IMPHASH=F34D5F2D4577ED6D9CEEC516C1F5A744",
+        "event_data.ParentProcessGuid": "{365abb72-1e51-5d04-0000-00104c340c00}",
+        "event_data.ParentProcessId": "3448",
+        "event_data.ParentImage": "C:\\Windows\\System32\\userinit.exe",
+        "event_data.ParentCommandLine": "C:\\Windows\\system32\\userinit.exe"
+      }
+    },
+    {
+      "ref": "E006",
+      "line_no": 6,
+      "raw": "{\"evidence_id\": \"E019\", \"timestamp\": \"2019-06-14T22:23:13.9727457Z\", \"event_id\": 1, \"record_id\": 7557, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"IEWIN7\", \"event_data\": {\"RuleName\": \"\", \"UtcTime\": \"2019-06-14 22:23:13.957\", \"ProcessGuid\": \"{365abb72-1e51-5d04-0000-001065390c00}\", \"ProcessId\": \"3620\", \"Image\": \"C:\\\\Windows\\\\explorer.exe\", \"FileVersion\": \"6.1.7600.16385 (win7_rtm.090713-1255)\", \"Description\": \"Windows Explorer\", \"Product\": \"Microsoft® Windows® Operating System\", \"Company\": \"Microsoft Corporation\", \"CommandLine\": \"C:\\\\Windows\\\\Explorer.EXE\", \"CurrentDirectory\": \"C:\\\\Windows\\\\system32\\\\\", \"User\": \"IEWIN7\\\\IEUser\", \"LogonGuid\": \"{365abb72-1e4a-5d04-0000-002013c00b00}\", \"LogonId\": \"0xbc013\", \"TerminalSessionId\": \"2\", \"IntegrityLevel\": \"High\", \"Hashes\": \"SHA1=1643E6D0265EB60B0753CDC9C283D843B988E1D5,MD5=6DDCA324434FFA506CF7DC4E51DB7935,SHA256=11D69FB388FF59E5BA6CA217CA04ECDE6A38FA8FB306AA5F1B72E22BB7C3A25A,IMPHASH=F0EE25FD4D9035DAD1913FAFFD4A4B87\", \"ParentProcessGuid\": \"{365abb72-1e51-5d04-0000-00104c340c00}\", \"ParentProcessId\": \"3448\", \"ParentImage\": \"C:\\\\Windows\\\\System32\\\\userinit.exe\", \"ParentCommandLine\": \"C:\\\\Windows\\\\system32\\\\userinit.exe\"}}",
+      "timestamp_raw": "2019-06-14T22:23:13.9727457Z",
+      "timestamp_utc": "2019-06-14T22:23:13.972745+00:00",
+      "host": "IEWIN7",
+      "user": "IEWIN7\\IEUser",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": "1",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "evidence_id": "E019",
+        "timestamp": "2019-06-14T22:23:13.9727457Z",
+        "event_id": 1,
+        "record_id": 7557,
+        "provider": "Microsoft-Windows-Sysmon",
+        "computer": "IEWIN7",
+        "event_data.RuleName": "",
+        "event_data.UtcTime": "2019-06-14 22:23:13.957",
+        "event_data.ProcessGuid": "{365abb72-1e51-5d04-0000-001065390c00}",
+        "event_data.ProcessId": "3620",
+        "event_data.Image": "C:\\Windows\\explorer.exe",
+        "event_data.FileVersion": "6.1.7600.16385 (win7_rtm.090713-1255)",
+        "event_data.Description": "Windows Explorer",
+        "event_data.Product": "Microsoft® Windows® Operating System",
+        "event_data.Company": "Microsoft Corporation",
+        "event_data.CommandLine": "C:\\Windows\\Explorer.EXE",
+        "event_data.CurrentDirectory": "C:\\Windows\\system32\\",
+        "event_data.User": "IEWIN7\\IEUser",
+        "event_data.LogonGuid": "{365abb72-1e4a-5d04-0000-002013c00b00}",
+        "event_data.LogonId": "0xbc013",
+        "event_data.TerminalSessionId": "2",
+        "event_data.IntegrityLevel": "High",
+        "event_data.Hashes": "SHA1=1643E6D0265EB60B0753CDC9C283D843B988E1D5,MD5=6DDCA324434FFA506CF7DC4E51DB7935,SHA256=11D69FB388FF59E5BA6CA217CA04ECDE6A38FA8FB306AA5F1B72E22BB7C3A25A,IMPHASH=F0EE25FD4D9035DAD1913FAFFD4A4B87",
+        "event_data.ParentProcessGuid": "{365abb72-1e51-5d04-0000-00104c340c00}",
+        "event_data.ParentProcessId": "3448",
+        "event_data.ParentImage": "C:\\Windows\\System32\\userinit.exe",
+        "event_data.ParentCommandLine": "C:\\Windows\\system32\\userinit.exe"
+      }
+    },
+    {
+      "ref": "E007",
+      "line_no": 7,
+      "raw": "{\"evidence_id\": \"E021\", \"timestamp\": \"2019-06-14T22:23:16.5928629Z\", \"event_id\": 1, \"record_id\": 7559, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"IEWIN7\", \"event_data\": {\"RuleName\": \"\", \"UtcTime\": \"2019-06-14 22:23:16.577\", \"ProcessGuid\": \"{365abb72-1e54-5d04-0000-0010b7b30c00}\", \"ProcessId\": \"1724\", \"Image\": \"C:\\\\Users\\\\IEUser\\\\AppData\\\\Roaming\\\\9QxTsAU9w8gyPj4w\\\\BRE6BgE2JubB.exe\", \"FileVersion\": \"1.0.0.0\", \"Description\": \"NpmTaskRunner\", \"Product\": \"NpmTaskRunner\", \"Company\": \"\", \"CommandLine\": \"\\\"C:\\\\Users\\\\IEUser\\\\AppData\\\\Roaming\\\\9QxTsAU9w8gyPj4w\\\\BRE6BgE2JubB.exe\\\"\", \"CurrentDirectory\": \"C:\\\\Windows\\\\system32\\\\\", \"User\": \"IEWIN7\\\\IEUser\", \"LogonGuid\": \"{365abb72-1e4a-5d04-0000-002013c00b00}\", \"LogonId\": \"0xbc013\", \"TerminalSessionId\": \"2\", \"IntegrityLevel\": \"High\", \"Hashes\": \"SHA1=E2286C233467D0E164ED5ED1D07BAC9F90F74D19,MD5=41CE32C0D1D4E5BB8C63674F317450EF,SHA256=5DE788D23B247B29F116CD0583280CE10A429E9F8C1D80C42DEAB20C6F4DBB4E,IMPHASH=F34D5F2D4577ED6D9CEEC516C1F5A744\", \"ParentProcessGuid\": \"{365abb72-1e51-5d04-0000-00107b380c00}\", \"ParentProcessId\": \"3444\", \"ParentImage\": \"C:\\\\Users\\\\IEUser\\\\AppData\\\\Roaming\\\\9QxTsAU9w8gyPj4w\\\\BRE6BgE2JubB.exe\", \"ParentCommandLine\": \"\\\"C:\\\\Users\\\\IEUser\\\\AppData\\\\Roaming\\\\9QxTsAU9w8gyPj4w\\\\BRE6BgE2JubB.exe\\\"\"}}",
+      "timestamp_raw": "2019-06-14T22:23:16.5928629Z",
+      "timestamp_utc": "2019-06-14T22:23:16.592862+00:00",
+      "host": "IEWIN7",
+      "user": "IEWIN7\\IEUser",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": "1",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "evidence_id": "E021",
+        "timestamp": "2019-06-14T22:23:16.5928629Z",
+        "event_id": 1,
+        "record_id": 7559,
+        "provider": "Microsoft-Windows-Sysmon",
+        "computer": "IEWIN7",
+        "event_data.RuleName": "",
+        "event_data.UtcTime": "2019-06-14 22:23:16.577",
+        "event_data.ProcessGuid": "{365abb72-1e54-5d04-0000-0010b7b30c00}",
+        "event_data.ProcessId": "1724",
+        "event_data.Image": "C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe",
+        "event_data.FileVersion": "1.0.0.0",
+        "event_data.Description": "NpmTaskRunner",
+        "event_data.Product": "NpmTaskRunner",
+        "event_data.Company": "",
+        "event_data.CommandLine": "\"C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe\"",
+        "event_data.CurrentDirectory": "C:\\Windows\\system32\\",
+        "event_data.User": "IEWIN7\\IEUser",
+        "event_data.LogonGuid": "{365abb72-1e4a-5d04-0000-002013c00b00}",
+        "event_data.LogonId": "0xbc013",
+        "event_data.TerminalSessionId": "2",
+        "event_data.IntegrityLevel": "High",
+        "event_data.Hashes": "SHA1=E2286C233467D0E164ED5ED1D07BAC9F90F74D19,MD5=41CE32C0D1D4E5BB8C63674F317450EF,SHA256=5DE788D23B247B29F116CD0583280CE10A429E9F8C1D80C42DEAB20C6F4DBB4E,IMPHASH=F34D5F2D4577ED6D9CEEC516C1F5A744",
+        "event_data.ParentProcessGuid": "{365abb72-1e51-5d04-0000-00107b380c00}",
+        "event_data.ParentProcessId": "3444",
+        "event_data.ParentImage": "C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe",
+        "event_data.ParentCommandLine": "\"C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe\""
+      }
+    }
+  ],
+  "facts": [],
+  "ioc_context": [
+    {
+      "type": "ipv4",
+      "value": "1.0.0.0",
+      "refs": [
+        "E001",
+        "E005",
+        "E007"
+      ],
+      "count": 3,
+      "scope": "public/other",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "11d69fb388ff59e5ba6ca217ca04ecde6a38fa8fb306aa5f1b72e22bb7c3a25a",
+      "refs": [
+        "E006"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "1643e6d0265eb60b0753cdc9c283d843b988e1d5",
+      "refs": [
+        "E006"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "211295ccda6cf6409189279bf66a212bd53fc650",
+      "refs": [
+        "E004"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "41ce32c0d1d4e5bb8c63674f317450ef",
+      "refs": [
+        "E001",
+        "E005",
+        "E007"
+      ],
+      "count": 3,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "538fe1012fedc72727a8de0c2c01944b3d35c29812ecef88e95aac07235e0b0b",
+      "refs": [
+        "E004"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "5de788d23b247b29f116cd0583280ce10a429e9f8c1d80c42deab20c6f4dbb4e",
+      "refs": [
+        "E001",
+        "E005",
+        "E007"
+      ],
+      "count": 3,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "61ac3efdfacfdd3f0f11dd4fd4044223",
+      "refs": [
+        "E004"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "6ddca324434ffa506cf7dc4e51db7935",
+      "refs": [
+        "E006"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "da2666d3347f129193ab91a0eab85c0c",
+      "refs": [
+        "E004"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "e2286c233467d0e164ed5ed1d07bac9f90f74d19",
+      "refs": [
+        "E001",
+        "E005",
+        "E007"
+      ],
+      "count": 3,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "f0ee25fd4d9035dad1913faffd4a4b87",
+      "refs": [
+        "E006"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "f34d5f2d4577ed6d9ceec516c1f5a744",
+      "refs": [
+        "E001",
+        "E005",
+        "E007"
+      ],
+      "count": 3,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "filename",
+      "value": "BRE6BgE2JubB.exe",
+      "refs": [
+        "E002",
+        "E003",
+        "E005",
+        "E007"
+      ],
+      "count": 4,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "filename",
+      "value": "Explorer.EXE",
+      "refs": [
+        "E001",
+        "E006"
+      ],
+      "count": 2,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "filename",
+      "value": "a.exe",
+      "refs": [
+        "E001",
+        "E002",
+        "E003"
+      ],
+      "count": 3,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "filename",
+      "value": "explorer.exe",
+      "refs": [
+        "E001",
+        "E003",
+        "E006"
+      ],
+      "count": 3,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "filename",
+      "value": "userinit.exe",
+      "refs": [
+        "E004",
+        "E005",
+        "E006"
+      ],
+      "count": 3,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "filename",
+      "value": "winlogon.exe",
+      "refs": [
+        "E004"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "username",
+      "value": "IEWIN7\\IEUser",
+      "refs": [
+        "E001",
+        "E004",
+        "E005",
+        "E006",
+        "E007"
+      ],
+      "count": 5,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hostname",
+      "value": "IEWIN7",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007"
+      ],
+      "count": 7,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    }
+  ],
+  "risk_signals": [],
+  "benign_context": [],
+  "evidence_timeline": [
+    {
+      "timestamp": "2019-06-14T22:22:17.9883707Z",
+      "timestamp_utc": "2019-06-14T22:22:17.988370+00:00",
+      "event": "{\"evidence_id\": \"E001\", \"timestamp\": \"2019-06-14T22:22:17.9883707Z\", \"event_id\": 1, \"record_id\": 7530, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"IEWI ...[truncated 962 chars]",
+      "source": "windows",
+      "host_user": "IEWIN7 / IEWIN7\\IEUser",
+      "evidence_ref": "E001"
+    },
+    {
+      "timestamp": "2019-06-14T22:22:21.5039957Z",
+      "timestamp_utc": "2019-06-14T22:22:21.503995+00:00",
+      "event": "{\"evidence_id\": \"E002\", \"timestamp\": \"2019-06-14T22:22:21.5039957Z\", \"event_id\": 11, \"record_id\": 7531, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"IEW ...[truncated 340 chars]",
+      "source": "windows",
+      "host_user": "IEWIN7",
+      "evidence_ref": "E002"
+    },
+    {
+      "timestamp": "2019-06-14T22:22:21.5352457Z",
+      "timestamp_utc": "2019-06-14T22:22:21.535245+00:00",
+      "event": "{\"evidence_id\": \"E003\", \"timestamp\": \"2019-06-14T22:22:21.5352457Z\", \"event_id\": 13, \"record_id\": 7532, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"IEW ...[truncated 494 chars]",
+      "source": "windows",
+      "host_user": "IEWIN7",
+      "evidence_ref": "E003"
+    },
+    {
+      "timestamp": "2019-06-14T22:23:13.8946207Z",
+      "timestamp_utc": "2019-06-14T22:23:13.894620+00:00",
+      "event": "{\"evidence_id\": \"E017\", \"timestamp\": \"2019-06-14T22:23:13.8946207Z\", \"event_id\": 1, \"record_id\": 7555, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"IEWI ...[truncated 1034 chars]",
+      "source": "windows",
+      "host_user": "IEWIN7 / IEWIN7\\IEUser",
+      "evidence_ref": "E004"
+    },
+    {
+      "timestamp": "2019-06-14T22:23:13.9571207Z",
+      "timestamp_utc": "2019-06-14T22:23:13.957120+00:00",
+      "event": "{\"evidence_id\": \"E018\", \"timestamp\": \"2019-06-14T22:23:13.9571207Z\", \"event_id\": 1, \"record_id\": 7556, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"IEWI ...[truncated 1046 chars]",
+      "source": "windows",
+      "host_user": "IEWIN7 / IEWIN7\\IEUser",
+      "evidence_ref": "E005"
+    },
+    {
+      "timestamp": "2019-06-14T22:23:13.9727457Z",
+      "timestamp_utc": "2019-06-14T22:23:13.972745+00:00",
+      "event": "{\"evidence_id\": \"E019\", \"timestamp\": \"2019-06-14T22:23:13.9727457Z\", \"event_id\": 1, \"record_id\": 7557, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"IEWI ...[truncated 1027 chars]",
+      "source": "windows",
+      "host_user": "IEWIN7 / IEWIN7\\IEUser",
+      "evidence_ref": "E006"
+    },
+    {
+      "timestamp": "2019-06-14T22:23:16.5928629Z",
+      "timestamp_utc": "2019-06-14T22:23:16.592862+00:00",
+      "event": "{\"evidence_id\": \"E021\", \"timestamp\": \"2019-06-14T22:23:16.5928629Z\", \"event_id\": 1, \"record_id\": 7559, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"IEWI ...[truncated 1122 chars]",
+      "source": "windows",
+      "host_user": "IEWIN7 / IEWIN7\\IEUser",
+      "evidence_ref": "E007"
+    }
+  ],
+  "ai_output": {
+    "raw_text": "## EXECUTIVE SUMMARY\nA user downloaded and executed an application named 'a.exe' from a suspicious domain, potentially installing a new process ('BRE6BgE2JubB.exe'). The execution chain indicates persistence through modifying the Winlogon Shell. The activity appears malicious due to the use of unapproved software and potential for persistent access.\n\n## LOG SOURCE\nSource type: Microsoft-Windows-Sysmon, Hosts: IEWIN7, Time span: 2019-06-14T22:22:17.9883707Z - 2019-06-14T22:23:16.5928629Z\n\n## SIGNIFICANT SECURITY EVENTS\n- [E003] Persistence attempt through Winlogon Shell modification (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe)\n- [E005] Execution of the suspicious process 'BRE6BgE2JubB.exe' (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe)\n- [E007] Execution of 'NpmTaskRunner' with the same suspicious process (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe)\n\n## SUSPICIOUS ACTIVITIES\n- Download and execution of unapproved software 'a.exe' from a suspicious domain ([E001], [E005])\n  - The user downloaded the file to C:\\Users\\IEUser\\Downloads\\ and executed it, leading to the subsequent processes.\n\n## EVIDENCE REFERENCES\n- [E001] Download of 'a.exe' from a suspicious domain\n- [E003] Persistence attempt through Winlogon Shell modification (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe)\n- [E005] Execution of the suspicious process 'BRE6BgE2JubB.exe' (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe)\n- [E007] Execution of 'NpmTaskRunner' with the same suspicious process (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe)\n\n## INCIDENT TIMELINE\n| Timestamp | Event | Source | Host/User | Evidence Ref |\n|---|---|---|---|---|\n| 2019-06-14T22:22:17.9883707Z | Download of 'a.exe' from a suspicious domain | Microsoft-Windows-Sysmon | IEWIN7\\IEUser | [E001] |\n| 2019-06-14T22:22:21.5039957Z | Process 'a.exe' creates 'BRE6BgE2JubB.exe' (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe) | Microsoft-Windows-Sysmon | IEWIN7\\IEUser | [E003] |\n| 2019-06-14T22:22:21.5352457Z | Process 'a.exe' modifies Winlogon Shell (HKU\\\\S-1-5-21-3583694148-1414552638-2922671848-1000\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Shell) | Microsoft-Windows-Sysmon | IEWIN7\\IEUser | [E003] |\n| 2019-06-14T22:22:53.8946207Z | Userinit Logon Application (C:\\Windows\\system32\\userinit.exe) starts | Microsoft-Windows-Sysmon | IEWIN7\\IEUser | [E004] |\n| 2019-06-14T22:23:13.9571207Z | Execution of 'BRE6BgE2JubB.exe' (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe) | Microsoft-Windows-Sysmon | IEWIN7\\IEUser | [E005] |\n| 2019-06-14T22:23:13.9727457Z | Execution of 'explorer.exe' (C:\\Windows\\explorer.exe) starts | Microsoft-Windows-Sysmon | IEWIN7\\IEUser | [E006] |\n| 2019-06-14T22:23:16.5928629Z | Execution of 'NpmTaskRunner' with 'BRE6BgE2JubB.exe' (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe) | Microsoft-Windows-Sysmon | IEWIN7\\IEUser | [E007] |\n\n## EXTRACTED IOCS\n- Type: File, Value: C:\\Users\\IEUser\\Downloads\\a.exe, Evidence Ref: [E001]\n- Type: File, Value: C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyP",
+    "sections": {
+      "EXECUTIVE SUMMARY": "A user downloaded and executed an application named 'a.exe' from a suspicious domain, potentially installing a new process ('BRE6BgE2JubB.exe'). The execution chain indicates persistence through modifying the Winlogon Shell. The activity appears malicious due to the use of unapproved software and potential for persistent access.",
+      "LOG SOURCE": "Source type: Microsoft-Windows-Sysmon, Hosts: IEWIN7, Time span: 2019-06-14T22:22:17.9883707Z - 2019-06-14T22:23:16.5928629Z",
+      "SIGNIFICANT SECURITY EVENTS": "- [E003] Persistence attempt through Winlogon Shell modification (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe)\n- [E005] Execution of the suspicious process 'BRE6BgE2JubB.exe' (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe)\n- [E007] Execution of 'NpmTaskRunner' with the same suspicious process (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe)",
+      "SUSPICIOUS ACTIVITIES": "- Download and execution of unapproved software 'a.exe' from a suspicious domain ([E001], [E005])\n  - The user downloaded the file to C:\\Users\\IEUser\\Downloads\\ and executed it, leading to the subsequent processes.",
+      "EVIDENCE REFERENCES": "- [E001] Download of 'a.exe' from a suspicious domain\n- [E003] Persistence attempt through Winlogon Shell modification (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe)\n- [E005] Execution of the suspicious process 'BRE6BgE2JubB.exe' (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe)\n- [E007] Execution of 'NpmTaskRunner' with the same suspicious process (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe)",
+      "INCIDENT TIMELINE": "| Timestamp | Event | Source | Host/User | Evidence Ref |\n|---|---|---|---|---|\n| 2019-06-14T22:22:17.9883707Z | Download of 'a.exe' from a suspicious domain | Microsoft-Windows-Sysmon | IEWIN7\\IEUser | [E001] |\n| 2019-06-14T22:22:21.5039957Z | Process 'a.exe' creates 'BRE6BgE2JubB.exe' (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe) | Microsoft-Windows-Sysmon | IEWIN7\\IEUser | [E003] |\n| 2019-06-14T22:22:21.5352457Z | Process 'a.exe' modifies Winlogon Shell (HKU\\\\S-1-5-21-3583694148-1414552638-2922671848-1000\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Shell) | Microsoft-Windows-Sysmon | IEWIN7\\IEUser | [E003] |\n| 2019-06-14T22:22:53.8946207Z | Userinit Logon Application (C:\\Windows\\system32\\userinit.exe) starts | Microsoft-Windows-Sysmon | IEWIN7\\IEUser | [E004] |\n| 2019-06-14T22:23:13.9571207Z | Execution of 'BRE6BgE2JubB.exe' (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe) | Microsoft-Windows-Sysmon | IEWIN7\\IEUser | [E005] |\n| 2019-06-14T22:23:13.9727457Z | Execution of 'explorer.exe' (C:\\Windows\\explorer.exe) starts | Microsoft-Windows-Sysmon | IEWIN7\\IEUser | [E006] |\n| 2019-06-14T22:23:16.5928629Z | Execution of 'NpmTaskRunner' with 'BRE6BgE2JubB.exe' (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe) | Microsoft-Windows-Sysmon | IEWIN7\\IEUser | [E007] |",
+      "EXTRACTED IOCS": "- Type: File, Value: C:\\Users\\IEUser\\Downloads\\a.exe, Evidence Ref: [E001]\n- Type: File, Value: C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyP"
+    },
+    "truncated": true,
+    "timeline_rows": [
+      {
+        "timestamp": "2019-06-14T22:22:17.9883707Z",
+        "event": "Download of 'a.exe' from a suspicious domain",
+        "source": "Microsoft-Windows-Sysmon",
+        "host_user": "IEWIN7\\IEUser",
+        "evidence_ref": "[E001]",
+        "refs_found": [
+          "E001"
+        ]
+      },
+      {
+        "timestamp": "2019-06-14T22:22:21.5039957Z",
+        "event": "Process 'a.exe' creates 'BRE6BgE2JubB.exe' (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe)",
+        "source": "Microsoft-Windows-Sysmon",
+        "host_user": "IEWIN7\\IEUser",
+        "evidence_ref": "[E003]",
+        "refs_found": [
+          "E003"
+        ]
+      },
+      {
+        "timestamp": "2019-06-14T22:22:21.5352457Z",
+        "event": "Process 'a.exe' modifies Winlogon Shell (HKU\\\\S-1-5-21-3583694148-1414552638-2922671848-1000\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Shell)",
+        "source": "Microsoft-Windows-Sysmon",
+        "host_user": "IEWIN7\\IEUser",
+        "evidence_ref": "[E003]",
+        "refs_found": [
+          "E003"
+        ]
+      },
+      {
+        "timestamp": "2019-06-14T22:22:53.8946207Z",
+        "event": "Userinit Logon Application (C:\\Windows\\system32\\userinit.exe) starts",
+        "source": "Microsoft-Windows-Sysmon",
+        "host_user": "IEWIN7\\IEUser",
+        "evidence_ref": "[E004]",
+        "refs_found": [
+          "E004"
+        ]
+      },
+      {
+        "timestamp": "2019-06-14T22:23:13.9571207Z",
+        "event": "Execution of 'BRE6BgE2JubB.exe' (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe)",
+        "source": "Microsoft-Windows-Sysmon",
+        "host_user": "IEWIN7\\IEUser",
+        "evidence_ref": "[E005]",
+        "refs_found": [
+          "E005"
+        ]
+      },
+      {
+        "timestamp": "2019-06-14T22:23:13.9727457Z",
+        "event": "Execution of 'explorer.exe' (C:\\Windows\\explorer.exe) starts",
+        "source": "Microsoft-Windows-Sysmon",
+        "host_user": "IEWIN7\\IEUser",
+        "evidence_ref": "[E006]",
+        "refs_found": [
+          "E006"
+        ]
+      },
+      {
+        "timestamp": "2019-06-14T22:23:16.5928629Z",
+        "event": "Execution of 'NpmTaskRunner' with 'BRE6BgE2JubB.exe' (C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe)",
+        "source": "Microsoft-Windows-Sysmon",
+        "host_user": "IEWIN7\\IEUser",
+        "evidence_ref": "[E007]",
+        "refs_found": [
+          "E007"
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "flags": [
+      {
+        "check": "output_truncated",
+        "severity": "high",
+        "section": "(whole output)",
+        "value": "done_reason=length",
+        "message": "Model output hit the token limit and is incomplete; do not rely on missing sections.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "POTENTIAL ATTACK INDICATORS",
+        "message": "Expected section 'POTENTIAL ATTACK INDICATORS' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F002"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "CONFIDENCE AND UNCERTAINTY",
+        "message": "Expected section 'CONFIDENCE AND UNCERTAINTY' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F003"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "MISSING INFORMATION",
+        "message": "Expected section 'MISSING INFORMATION' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F004"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "RECOMMENDED INVESTIGATION STEPS",
+        "message": "Expected section 'RECOMMENDED INVESTIGATION STEPS' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F005"
+      },
+      {
+        "check": "finding_without_evidence_ref",
+        "severity": "medium",
+        "section": "SUSPICIOUS ACTIVITIES",
+        "value": "- The user downloaded the file to C:\\Users\\IEUser\\Downloads\\ and executed it, leading to the subsequent processes.",
+        "message": "Finding has no [E###] evidence reference.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F006"
+      },
+      {
+        "check": "unsupported_conclusion",
+        "severity": "medium",
+        "section": "EXECUTIVE SUMMARY",
+        "value": "downloaded and executed",
+        "message": "Definitive claim without confirming text in the source; the evidence may only show an attempt or a possibility.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F007"
+      },
+      {
+        "check": "timeline_timestamp_mismatch",
+        "severity": "high",
+        "section": "INCIDENT TIMELINE",
+        "value": "2019-06-14T22:22:21.5039957Z",
+        "message": "Timestamp does not appear in the cited event(s) E003.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F008"
+      },
+      {
+        "check": "timeline_timestamp_mismatch",
+        "severity": "high",
+        "section": "INCIDENT TIMELINE",
+        "value": "2019-06-14T22:22:53.8946207Z",
+        "message": "Timestamp does not appear in the cited event(s) E004.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F009"
+      }
+    ],
+    "severity_counts": {
+      "high": 3,
+      "medium": 6,
+      "low": 0
+    },
+    "automated_checks": [
+      "structure/truncation",
+      "IP/URL/domain/hash/CVE/email/file exact-string support",
+      "defang preservation",
+      "timestamp source-text check; timeline timestamp <1ms tolerance",
+      "entity (key=value, backtick, host-token) support",
+      "evidence-reference existence and presence",
+      "fabricated rule/agent ID",
+      "Event ID semantics (heuristic: Windows 1102/5145/4624/4625/4732)",
+      "unsupported certainty / attribution",
+      "none-claim vs code-detected risk signals",
+      "timeline timestamp vs cited event",
+      "input prompt-injection scan"
+    ],
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review",
+    "analyst": null,
+    "final_classification": null,
+    "final_priority": null,
+    "correct_findings": [],
+    "incorrect_findings": [],
+    "missing_evidence": [],
+    "hallucinations": [],
+    "notes": "",
+    "reviewed_utc": null,
+    "history": []
+  }
+}

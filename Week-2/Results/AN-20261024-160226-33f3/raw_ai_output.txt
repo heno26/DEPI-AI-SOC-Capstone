@@ -1,0 +1,46 @@
+## EXECUTIVE SUMMARY
+A user on PC01 executed a plink.exe command with reverse SSH forwarding and RDP port forwarding, which may indicate an attempt to establish a secure connection or potentially a suspicious activity if the purpose is not approved.
+
+## LOG SOURCE
+Source type: Microsoft-Windows-Sysmon, Hosts: PC01.example.corp, Time span: 2019-02-16T10:02:21.9344384Z - 2019-02-16T10:04:05.0927728Z
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] Command line execution of plink.exe with reverse SSH and RDP port forwarding
+- [E003] TCP connection established between PC01 and localhost on port 49186 (RDP)
+- [E004] TCP connection established between PC01 and localhost on port 49187 (RDP)
+
+## SUSPICIOUS ACTIVITIES
+- Unusual use of plink.exe with reverse SSH and RDP port forwarding, potentially indicative of an attempt to establish a secure connection or suspicious activity if the purpose is not approved [E001]
+
+## EVIDENCE REFERENCES
+- [E001] Shows execution of command line for plink.exe with reverse SSH and RDP port forwarding
+- [E003] Shows TCP connection established between PC01 and localhost on port 49186 (RDP)
+- [E004] Shows TCP connection established between PC01 and localhost on port 49187 (RDP)
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2019-02-16T10:02:21.934 | Process creation | PC01.example.corp | PC01\IEUser | [E001] |
+| 2019-02-16T10:02:22.965 | TCP connection initiated | PC01.example.corp | PC01\IEUser | [E003] |
+| 2019-02-16T10:02:48.502 | TCP connection initiated | PC01.example.corp | PC01\IEUser | [E004] |
+
+## EXTRACTED IOCS
+- None identified
+
+## POTENTIAL ATTACK INDICATORS
+- Unusual use of plink.exe with reverse SSH and RDP port forwarding [E001]
+- TCP connection initiated between PC01 and localhost on an unapproved port (49186, 49187) [E003, E004]
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The purpose of the plink.exe command is unknown; it may be a legitimate activity or an attempt to establish unauthorized access.
+
+## MISSING INFORMATION
+- Purpose and approval for the use of plink.exe with reverse SSH and RDP port forwarding
+- Approval for TCP connections initiated between PC01 and localhost on ports 49186 and 49187
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the purpose of the plink.exe command with reverse SSH and RDP port forwarding [E001]
+2. Verify if TCP connections initiated between PC01 and localhost on ports 49186 and 49187 are approved [E003, E004]
+3. Investigate the user account IEUser for any unusual activities or unauthorized access attempts
+4. Review maintenance windows and authorized tools to ensure they cover this activity
+5. Check if there is a related event in other logs that can provide more context about the purpose of the plink.exe command

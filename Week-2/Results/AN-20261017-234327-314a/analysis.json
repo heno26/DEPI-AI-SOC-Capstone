@@ -1,0 +1,402 @@
+{
+  "analysis_id": "AN-20261017-234327-314a",
+  "schema_version": "week2-1",
+  "task": "log_analysis",
+  "created_utc": "2026-10-17T23:43:27+00:00",
+  "references": {
+    "alert_id": null,
+    "incident_ref": null,
+    "note": "incident_ref is reserved for Week 3/4 correlation"
+  },
+  "input": {
+    "filename": "RT-02-Discovery-focused-v2.json",
+    "path": "Data\\Real-Datasets\\Windows-Attacks\\RT-02-Discovery\\RT-02-Discovery-focused-v2.json",
+    "sha256": "ea16f7b875c3425c17d741f295cd8a1b422d0a8bf1dd8978c63774ccf3bd029f",
+    "format": "json",
+    "compressed": false,
+    "source_type": "windows",
+    "evidence_class": "user_supplied_unverified",
+    "event_count": 4,
+    "events_analysed": [
+      "E001",
+      "E002",
+      "E003",
+      "E004"
+    ],
+    "warnings": []
+  },
+  "model": {
+    "name": "mistral:7b-instruct-v0.3-q4_K_S",
+    "options": {
+      "temperature": 0.2,
+      "repeat_penalty": 1.15,
+      "num_ctx": 6144,
+      "num_predict": 1500,
+      "seed": 42
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "options": {
+          "temperature": 0.2,
+          "repeat_penalty": 1.15,
+          "num_ctx": 6144,
+          "num_predict": 1500,
+          "seed": 42
+        },
+        "outcome": "success",
+        "seconds": 75.01
+      }
+    ],
+    "retry_used": false,
+    "done_reason": "stop",
+    "tokens_per_second": 17.2,
+    "wall_seconds": 75.01
+  },
+  "prompt": {
+    "file": "log_analysis.txt",
+    "version": "w2-1.0",
+    "sha256": "7affc781ced6c1a991a75ba465d7aa9c429fac7a7dc3730cf3656342b0650b6d",
+    "nonce_delimiter_used": true
+  },
+  "events": [
+    {
+      "ref": "E001",
+      "line_no": 1,
+      "raw": "{\"evidence_id\": \"E001\", \"timestamp\": \"2019-01-20T07:29:57.8638931Z\", \"event_id\": 1102, \"record_id\": 32950, \"provider\": \"Microsoft-Windows-Eventlog\", \"computer\": \"WIN-77LTAPHIQ1R.example.corp\", \"event_data\": {\"SubjectUserSid\": \"S-1-5-21-1587066498-1489273250-1035260531-500\", \"SubjectUserName\": \"Administrator\", \"SubjectDomainName\": \"EXAMPLE\", \"SubjectLogonId\": \"0x35312\"}}",
+      "timestamp_raw": "2019-01-20T07:29:57.8638931Z",
+      "timestamp_utc": "2019-01-20T07:29:57.863893+00:00",
+      "host": "WIN-77LTAPHIQ1R.example.corp",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": "1102",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "evidence_id": "E001",
+        "timestamp": "2019-01-20T07:29:57.8638931Z",
+        "event_id": 1102,
+        "record_id": 32950,
+        "provider": "Microsoft-Windows-Eventlog",
+        "computer": "WIN-77LTAPHIQ1R.example.corp",
+        "event_data.SubjectUserSid": "S-1-5-21-1587066498-1489273250-1035260531-500",
+        "event_data.SubjectUserName": "Administrator",
+        "event_data.SubjectDomainName": "EXAMPLE",
+        "event_data.SubjectLogonId": "0x35312"
+      }
+    },
+    {
+      "ref": "E002",
+      "line_no": 2,
+      "raw": "{\"evidence_id\": \"E002\", \"timestamp\": \"2019-01-20T07:30:10.6451168Z\", \"event_id\": 5145, \"record_id\": 32951, \"provider\": \"Microsoft-Windows-Security-Auditing\", \"computer\": \"WIN-77LTAPHIQ1R.example.corp\", \"event_data\": {\"SubjectUserSid\": \"S-1-5-21-1587066498-1489273250-1035260531-1106\", \"SubjectUserName\": \"user01\", \"SubjectDomainName\": \"EXAMPLE\", \"SubjectLogonId\": \"0x150133\", \"ObjectType\": \"File\", \"IpAddress\": \"10.0.2.17\", \"IpPort\": \"49381\", \"ShareName\": \"\\\\\\\\*\\\\IPC$\", \"ShareLocalPath\": \"\", \"RelativeTargetName\": \"winreg\", \"AccessMask\": \"0x12019f\", \"AccessList\": \"%%1538\\n\\t\\t\\t\\t%%1541\\n\\t\\t\\t\\t%%4416\\n\\t\\t\\t\\t%%4417\\n\\t\\t\\t\\t%%4418\\n\\t\\t\\t\\t%%4419\\n\\t\\t\\t\\t%%4420\\n\\t\\t\\t\\t%%4423\\n\\t\\t\\t\\t%%4424\\n\\t\\t\\t\\t\", \"AccessReason\": \"-\"}}",
+      "timestamp_raw": "2019-01-20T07:30:10.6451168Z",
+      "timestamp_utc": "2019-01-20T07:30:10.645116+00:00",
+      "host": "WIN-77LTAPHIQ1R.example.corp",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": "5145",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "evidence_id": "E002",
+        "timestamp": "2019-01-20T07:30:10.6451168Z",
+        "event_id": 5145,
+        "record_id": 32951,
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "computer": "WIN-77LTAPHIQ1R.example.corp",
+        "event_data.SubjectUserSid": "S-1-5-21-1587066498-1489273250-1035260531-1106",
+        "event_data.SubjectUserName": "user01",
+        "event_data.SubjectDomainName": "EXAMPLE",
+        "event_data.SubjectLogonId": "0x150133",
+        "event_data.ObjectType": "File",
+        "event_data.IpAddress": "10.0.2.17",
+        "event_data.IpPort": "49381",
+        "event_data.ShareName": "\\\\*\\IPC$",
+        "event_data.ShareLocalPath": "",
+        "event_data.RelativeTargetName": "winreg",
+        "event_data.AccessMask": "0x12019f",
+        "event_data.AccessList": "%%1538\n\t\t\t\t%%1541\n\t\t\t\t%%4416\n\t\t\t\t%%4417\n\t\t\t\t%%4418\n\t\t\t\t%%4419\n\t\t\t\t%%4420\n\t\t\t\t%%4423\n\t\t\t\t%%4424\n\t\t\t\t",
+        "event_data.AccessReason": "-"
+      }
+    },
+    {
+      "ref": "E003",
+      "line_no": 3,
+      "raw": "{\"evidence_id\": \"E003\", \"timestamp\": \"2019-01-20T07:30:10.6600994Z\", \"event_id\": 5145, \"record_id\": 32952, \"provider\": \"Microsoft-Windows-Security-Auditing\", \"computer\": \"WIN-77LTAPHIQ1R.example.corp\", \"event_data\": {\"SubjectUserSid\": \"S-1-5-21-1587066498-1489273250-1035260531-1106\", \"SubjectUserName\": \"user01\", \"SubjectDomainName\": \"EXAMPLE\", \"SubjectLogonId\": \"0x150133\", \"ObjectType\": \"File\", \"IpAddress\": \"10.0.2.17\", \"IpPort\": \"49381\", \"ShareName\": \"\\\\\\\\*\\\\IPC$\", \"ShareLocalPath\": \"\", \"RelativeTargetName\": \"lsarpc\", \"AccessMask\": \"0x12019f\", \"AccessList\": \"%%1538\\n\\t\\t\\t\\t%%1541\\n\\t\\t\\t\\t%%4416\\n\\t\\t\\t\\t%%4417\\n\\t\\t\\t\\t%%4418\\n\\t\\t\\t\\t%%4419\\n\\t\\t\\t\\t%%4420\\n\\t\\t\\t\\t%%4423\\n\\t\\t\\t\\t%%4424\\n\\t\\t\\t\\t\", \"AccessReason\": \"-\"}}",
+      "timestamp_raw": "2019-01-20T07:30:10.6600994Z",
+      "timestamp_utc": "2019-01-20T07:30:10.660099+00:00",
+      "host": "WIN-77LTAPHIQ1R.example.corp",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": "5145",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "evidence_id": "E003",
+        "timestamp": "2019-01-20T07:30:10.6600994Z",
+        "event_id": 5145,
+        "record_id": 32952,
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "computer": "WIN-77LTAPHIQ1R.example.corp",
+        "event_data.SubjectUserSid": "S-1-5-21-1587066498-1489273250-1035260531-1106",
+        "event_data.SubjectUserName": "user01",
+        "event_data.SubjectDomainName": "EXAMPLE",
+        "event_data.SubjectLogonId": "0x150133",
+        "event_data.ObjectType": "File",
+        "event_data.IpAddress": "10.0.2.17",
+        "event_data.IpPort": "49381",
+        "event_data.ShareName": "\\\\*\\IPC$",
+        "event_data.ShareLocalPath": "",
+        "event_data.RelativeTargetName": "lsarpc",
+        "event_data.AccessMask": "0x12019f",
+        "event_data.AccessList": "%%1538\n\t\t\t\t%%1541\n\t\t\t\t%%4416\n\t\t\t\t%%4417\n\t\t\t\t%%4418\n\t\t\t\t%%4419\n\t\t\t\t%%4420\n\t\t\t\t%%4423\n\t\t\t\t%%4424\n\t\t\t\t",
+        "event_data.AccessReason": "-"
+      }
+    },
+    {
+      "ref": "E004",
+      "line_no": 4,
+      "raw": "{\"evidence_id\": \"E004\", \"timestamp\": \"2019-01-20T07:30:10.6600994Z\", \"event_id\": 5145, \"record_id\": 32953, \"provider\": \"Microsoft-Windows-Security-Auditing\", \"computer\": \"WIN-77LTAPHIQ1R.example.corp\", \"event_data\": {\"SubjectUserSid\": \"S-1-5-21-1587066498-1489273250-1035260531-1106\", \"SubjectUserName\": \"user01\", \"SubjectDomainName\": \"EXAMPLE\", \"SubjectLogonId\": \"0x150133\", \"ObjectType\": \"File\", \"IpAddress\": \"10.0.2.17\", \"IpPort\": \"49381\", \"ShareName\": \"\\\\\\\\*\\\\IPC$\", \"ShareLocalPath\": \"\", \"RelativeTargetName\": \"srvsvc\", \"AccessMask\": \"0x12019f\", \"AccessList\": \"%%1538\\n\\t\\t\\t\\t%%1541\\n\\t\\t\\t\\t%%4416\\n\\t\\t\\t\\t%%4417\\n\\t\\t\\t\\t%%4418\\n\\t\\t\\t\\t%%4419\\n\\t\\t\\t\\t%%4420\\n\\t\\t\\t\\t%%4423\\n\\t\\t\\t\\t%%4424\\n\\t\\t\\t\\t\", \"AccessReason\": \"-\"}}",
+      "timestamp_raw": "2019-01-20T07:30:10.6600994Z",
+      "timestamp_utc": "2019-01-20T07:30:10.660099+00:00",
+      "host": "WIN-77LTAPHIQ1R.example.corp",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": "5145",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "evidence_id": "E004",
+        "timestamp": "2019-01-20T07:30:10.6600994Z",
+        "event_id": 5145,
+        "record_id": 32953,
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "computer": "WIN-77LTAPHIQ1R.example.corp",
+        "event_data.SubjectUserSid": "S-1-5-21-1587066498-1489273250-1035260531-1106",
+        "event_data.SubjectUserName": "user01",
+        "event_data.SubjectDomainName": "EXAMPLE",
+        "event_data.SubjectLogonId": "0x150133",
+        "event_data.ObjectType": "File",
+        "event_data.IpAddress": "10.0.2.17",
+        "event_data.IpPort": "49381",
+        "event_data.ShareName": "\\\\*\\IPC$",
+        "event_data.ShareLocalPath": "",
+        "event_data.RelativeTargetName": "srvsvc",
+        "event_data.AccessMask": "0x12019f",
+        "event_data.AccessList": "%%1538\n\t\t\t\t%%1541\n\t\t\t\t%%4416\n\t\t\t\t%%4417\n\t\t\t\t%%4418\n\t\t\t\t%%4419\n\t\t\t\t%%4420\n\t\t\t\t%%4423\n\t\t\t\t%%4424\n\t\t\t\t",
+        "event_data.AccessReason": "-"
+      }
+    }
+  ],
+  "facts": [],
+  "ioc_context": [
+    {
+      "type": "ipv4",
+      "value": "10.0.2.17",
+      "refs": [
+        "E002",
+        "E003",
+        "E004"
+      ],
+      "count": 3,
+      "scope": "private (RFC 1918)",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "win-77ltaphiq1r.example.corp",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004"
+      ],
+      "count": 4,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hostname",
+      "value": "WIN-77LTAPHIQ1R.example.corp",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004"
+      ],
+      "count": 4,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    }
+  ],
+  "risk_signals": [],
+  "benign_context": [],
+  "evidence_timeline": [
+    {
+      "timestamp": "2019-01-20T07:29:57.8638931Z",
+      "timestamp_utc": "2019-01-20T07:29:57.863893+00:00",
+      "event": "{\"evidence_id\": \"E001\", \"timestamp\": \"2019-01-20T07:29:57.8638931Z\", \"event_id\": 1102, \"record_id\": 32950, \"provider\": \"Microsoft-Windows-Eventlog\", \"computer\": ...[truncated 212 chars]",
+      "source": "windows",
+      "host_user": "WIN-77LTAPHIQ1R.example.corp",
+      "evidence_ref": "E001"
+    },
+    {
+      "timestamp": "2019-01-20T07:30:10.6451168Z",
+      "timestamp_utc": "2019-01-20T07:30:10.645116+00:00",
+      "event": "{\"evidence_id\": \"E002\", \"timestamp\": \"2019-01-20T07:30:10.6451168Z\", \"event_id\": 5145, \"record_id\": 32951, \"provider\": \"Microsoft-Windows-Security-Auditing\", \"c ...[truncated 574 chars]",
+      "source": "windows",
+      "host_user": "WIN-77LTAPHIQ1R.example.corp",
+      "evidence_ref": "E002"
+    },
+    {
+      "timestamp": "2019-01-20T07:30:10.6600994Z",
+      "timestamp_utc": "2019-01-20T07:30:10.660099+00:00",
+      "event": "{\"evidence_id\": \"E003\", \"timestamp\": \"2019-01-20T07:30:10.6600994Z\", \"event_id\": 5145, \"record_id\": 32952, \"provider\": \"Microsoft-Windows-Security-Auditing\", \"c ...[truncated 574 chars]",
+      "source": "windows",
+      "host_user": "WIN-77LTAPHIQ1R.example.corp",
+      "evidence_ref": "E003"
+    },
+    {
+      "timestamp": "2019-01-20T07:30:10.6600994Z",
+      "timestamp_utc": "2019-01-20T07:30:10.660099+00:00",
+      "event": "{\"evidence_id\": \"E004\", \"timestamp\": \"2019-01-20T07:30:10.6600994Z\", \"event_id\": 5145, \"record_id\": 32953, \"provider\": \"Microsoft-Windows-Security-Auditing\", \"c ...[truncated 574 chars]",
+      "source": "windows",
+      "host_user": "WIN-77LTAPHIQ1R.example.corp",
+      "evidence_ref": "E004"
+    }
+  ],
+  "ai_output": {
+    "raw_text": "## EXECUTIVE SUMMARY\nA user (user01) accessed multiple system files (winreg, lsarpc, srvsvc) from an internal IP address (10.0.2.17). The activity is unclear as it does not appear to be malicious or benign without additional context.\n\n## LOG SOURCE\nSource type: Microsoft-Windows-Eventlog and Microsoft-Windows-Security-Auditing, Hosts: WIN-77LTAPHIQ1R.example.corp, Time span: 2019-01-20T07:29:57.8638931Z - 2019-01-20T07:30:10.6600994Z\n\n## SIGNIFICANT SECURITY EVENTS\n- [E001] Administrator logged on (Event ID 1102)\n- [E002], [E003], [E004] User user01 accessed system files from IP address 10.0.2.17 (Event ID 5145)\n\n## SUSPICIOUS ACTIVITIES\n- User user01 accessing multiple system files from an internal IP address outside of approved maintenance windows is suspicious, as it may indicate unauthorized activity or misuse [E002], [E003], [E004]\n\n## EVIDENCE REFERENCES\n- [E001] Administrator logged on\n- [E002], [E003], [E004] User user01 accessed system files from IP address 10.0.2.17\n\n## INCIDENT TIMELINE\n| Timestamp | Event | Source | Host/User | Evidence Ref |\n|---|---|---|---|---|\n| 2019-01-20T07:29:57.8638931Z | Administrator logged on | Microsoft-Windows-Eventlog | WIN-77LTAPHIQ1R.example.corp, Administrator | [E001] |\n| 2019-01-20T07:30:10.6451168Z | User user01 accessed winreg from IP address 10.0.2.17 | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp, user01 | [E002] |\n| 2019-01-20T07:30:10.6600994Z | User user01 accessed lsarpc from IP address 10.0.2.17 | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp, user01 | [E003] |\n| 2019-01-20T07:30:10.6600994Z | User user01 accessed srvsvc from IP address 10.0.2.17 | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp, user01 | [E004] |\n\n## EXTRACTED IOCS\n- Type: IP Address, Value: 10.0.2.17, Evidence Ref: [E002], [E003], [E004]\n- External reputation not checked.\n\n## POTENTIAL ATTACK INDICATORS\n- Unauthorized access to system files from an internal IP address [E002], [E003], [E004]\n- None\n\n## CONFIDENCE AND UNCERTAINTY\nLow: The activity is unclear and may indicate unauthorized or malicious behavior. More context, such as the purpose of the access and whether it was authorized, is needed to increase confidence in the findings.\n\n## MISSING INFORMATION\n- Purpose of the access\n- Whether the access was authorized\n- Additional logs from other sources that may provide more context about the activity\n\n## RECOMMENDED INVESTIGATION STEPS\n1. Investigate the purpose and authorization for the user01's access to system files from IP address 10.0.2.17.\n2. Review the logs of other security systems, such as firewalls or intrusion detection/prevention systems, for related activity.\n3. Determine if any changes were made to the accessed files and investigate their impact on the system.\n4. Investigate the user01's account and privileges to determine if they have been compromised or misused.\n5. Consult with relevant teams (e.g., network, systems administration) to gather more context about the activity and potential mitigations.",
+    "sections": {
+      "EXECUTIVE SUMMARY": "A user (user01) accessed multiple system files (winreg, lsarpc, srvsvc) from an internal IP address (10.0.2.17). The activity is unclear as it does not appear to be malicious or benign without additional context.",
+      "LOG SOURCE": "Source type: Microsoft-Windows-Eventlog and Microsoft-Windows-Security-Auditing, Hosts: WIN-77LTAPHIQ1R.example.corp, Time span: 2019-01-20T07:29:57.8638931Z - 2019-01-20T07:30:10.6600994Z",
+      "SIGNIFICANT SECURITY EVENTS": "- [E001] Administrator logged on (Event ID 1102)\n- [E002], [E003], [E004] User user01 accessed system files from IP address 10.0.2.17 (Event ID 5145)",
+      "SUSPICIOUS ACTIVITIES": "- User user01 accessing multiple system files from an internal IP address outside of approved maintenance windows is suspicious, as it may indicate unauthorized activity or misuse [E002], [E003], [E004]",
+      "EVIDENCE REFERENCES": "- [E001] Administrator logged on\n- [E002], [E003], [E004] User user01 accessed system files from IP address 10.0.2.17",
+      "INCIDENT TIMELINE": "| Timestamp | Event | Source | Host/User | Evidence Ref |\n|---|---|---|---|---|\n| 2019-01-20T07:29:57.8638931Z | Administrator logged on | Microsoft-Windows-Eventlog | WIN-77LTAPHIQ1R.example.corp, Administrator | [E001] |\n| 2019-01-20T07:30:10.6451168Z | User user01 accessed winreg from IP address 10.0.2.17 | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp, user01 | [E002] |\n| 2019-01-20T07:30:10.6600994Z | User user01 accessed lsarpc from IP address 10.0.2.17 | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp, user01 | [E003] |\n| 2019-01-20T07:30:10.6600994Z | User user01 accessed srvsvc from IP address 10.0.2.17 | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp, user01 | [E004] |",
+      "EXTRACTED IOCS": "- Type: IP Address, Value: 10.0.2.17, Evidence Ref: [E002], [E003], [E004]\n- External reputation not checked.",
+      "POTENTIAL ATTACK INDICATORS": "- Unauthorized access to system files from an internal IP address [E002], [E003], [E004]\n- None",
+      "CONFIDENCE AND UNCERTAINTY": "Low: The activity is unclear and may indicate unauthorized or malicious behavior. More context, such as the purpose of the access and whether it was authorized, is needed to increase confidence in the findings.",
+      "MISSING INFORMATION": "- Purpose of the access\n- Whether the access was authorized\n- Additional logs from other sources that may provide more context about the activity",
+      "RECOMMENDED INVESTIGATION STEPS": "1. Investigate the purpose and authorization for the user01's access to system files from IP address 10.0.2.17.\n2. Review the logs of other security systems, such as firewalls or intrusion detection/prevention systems, for related activity.\n3. Determine if any changes were made to the accessed files and investigate their impact on the system.\n4. Investigate the user01's account and privileges to determine if they have been compromised or misused.\n5. Consult with relevant teams (e.g., network, systems administration) to gather more context about the activity and potential mitigations."
+    },
+    "truncated": false,
+    "timeline_rows": [
+      {
+        "timestamp": "2019-01-20T07:29:57.8638931Z",
+        "event": "Administrator logged on",
+        "source": "Microsoft-Windows-Eventlog",
+        "host_user": "WIN-77LTAPHIQ1R.example.corp, Administrator",
+        "evidence_ref": "[E001]",
+        "refs_found": [
+          "E001"
+        ]
+      },
+      {
+        "timestamp": "2019-01-20T07:30:10.6451168Z",
+        "event": "User user01 accessed winreg from IP address 10.0.2.17",
+        "source": "Microsoft-Windows-Security-Auditing",
+        "host_user": "WIN-77LTAPHIQ1R.example.corp, user01",
+        "evidence_ref": "[E002]",
+        "refs_found": [
+          "E002"
+        ]
+      },
+      {
+        "timestamp": "2019-01-20T07:30:10.6600994Z",
+        "event": "User user01 accessed lsarpc from IP address 10.0.2.17",
+        "source": "Microsoft-Windows-Security-Auditing",
+        "host_user": "WIN-77LTAPHIQ1R.example.corp, user01",
+        "evidence_ref": "[E003]",
+        "refs_found": [
+          "E003"
+        ]
+      },
+      {
+        "timestamp": "2019-01-20T07:30:10.6600994Z",
+        "event": "User user01 accessed srvsvc from IP address 10.0.2.17",
+        "source": "Microsoft-Windows-Security-Auditing",
+        "host_user": "WIN-77LTAPHIQ1R.example.corp, user01",
+        "evidence_ref": "[E004]",
+        "refs_found": [
+          "E004"
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "flags": [],
+    "severity_counts": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "automated_checks": [
+      "structure/truncation",
+      "IP/URL/domain/hash/CVE/email/file exact-string support",
+      "defang preservation",
+      "timestamp exact-string support",
+      "entity (key=value, backtick, host-token) support",
+      "evidence-reference existence and presence",
+      "fabricated rule/agent ID",
+      "Event ID semantics (heuristic)",
+      "unsupported certainty / attribution",
+      "none-claim vs code-detected risk signals",
+      "timeline timestamp vs cited event",
+      "input prompt-injection scan"
+    ],
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Corrected",
+    "analyst": "Mohammed walid",
+    "final_classification": null,
+    "final_priority": null,
+    "correct_findings": [
+      "Three Windows Security Event ID 5145 records were observed for IPC$ share access checks [E002, E003, E004]",
+      "The events reference the named pipes winreg, lsarpc, and srvsvc [E002, E003, E004]",
+      "The events identify user01 and source IP 10.0.2.17 [E002, E003, E004]",
+      "The available evidence does not establish malicious intent or unauthorized access"
+    ],
+    "incorrect_findings": [
+      "Mistral incorrectly interpreted Event ID 1102 as Administrator logged on, while this event represents Security Audit Log Cleared [E001]",
+      "Mistral described Event ID 5145 records as confirmed access to system files, although these records represent network share access checks involving IPC$ named pipes [E002, E003, E004]",
+      "Mistral claimed activity occurred outside approved maintenance windows without supporting evidence",
+      "Mistral described the activity as unauthorized without evidence establishing authorization status"
+    ],
+    "missing_evidence": [
+      "The AI report omitted the Security Audit Log Cleared interpretation of Event ID 1102 [E001]",
+      "Additional authentication and session logs are required to establish the surrounding activity",
+      "Authorization records and maintenance schedules are required to determine whether the SMB activity was legitimate",
+      "Additional SMB and host telemetry is needed to establish the outcome and purpose of the access checks",
+      "Further correlation is required to determine whether the log clearing event and IPC$ activity are related"
+    ],
+    "hallucinations": [
+      "Unsupported claim that Administrator logged on based on Event ID 1102, which actually indicates Security Audit Log Cleared [E001]",
+      "Unsupported claim that activity occurred outside approved maintenance windows",
+      "Unsupported classification of IPC$ access checks as confirmed unauthorized access [E002, E003, E004]",
+      "Unsupported interpretation of named pipe access checks as confirmed system file access [E002, E003, E004]"
+    ],
+    "notes": "RT-02 Human Review by Mohammed walid: Analysis performed on 4 recorded Windows events using the corrected v2 dataset with recovered Event 1102 UserData. Mistral identified the IPC$ activity involving winreg, lsarpc, and srvsvc, but incorrectly interpreted Event ID 1102 as Administrator logged on instead of Security Audit Log Cleared. The model also overstated the significance of Event ID 5145 and made unsupported assumptions about unauthorized activity and maintenance windows. Automated Validation returned 0 flags despite these semantic errors. Human Review Status: Corrected. This case demonstrates the need for deterministic Windows Event ID semantics validation and human verification of AI-generated security findings. The original and corrected datasets, previous AI analysis, and correction manifest have been preserved. The available evidence does not conclusively establish malicious Discovery activity or a causal relationship between the log clearing event and the IPC$ access checks.",
+    "reviewed_utc": "2026-10-18T00:00:57+00:00",
+    "history": [
+      {
+        "status": "Pending Review",
+        "analyst": null,
+        "final_classification": null,
+        "final_priority": null,
+        "correct_findings": [],
+        "incorrect_findings": [],
+        "missing_evidence": [],
+        "hallucinations": [],
+        "notes": "",
+        "reviewed_utc": null
+      }
+    ]
+  }
+}

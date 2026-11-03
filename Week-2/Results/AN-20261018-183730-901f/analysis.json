@@ -1,0 +1,1555 @@
+{
+  "analysis_id": "AN-20261018-183730-901f",
+  "schema_version": "week2-1",
+  "task": "log_analysis",
+  "created_utc": "2026-10-18T18:37:30+00:00",
+  "references": {
+    "alert_id": null,
+    "incident_ref": null,
+    "note": "incident_ref is reserved for Week 3/4 correlation"
+  },
+  "input": {
+    "filename": "LT-01-focused.log",
+    "path": "Data\\Real-Datasets\\Linux-Attacks\\LT-01-SSH-Brute-Force\\LT-01-focused.log",
+    "sha256": "8b3991a3e08962be1a1686e221d73ef40c6a08e145e618e24f8ca8684f44319b",
+    "format": "text",
+    "compressed": false,
+    "source_type": "linux",
+    "evidence_class": "user_supplied_unverified",
+    "event_count": 42,
+    "events_analysed": [
+      "E001",
+      "E002",
+      "E003",
+      "E004",
+      "E005",
+      "E006",
+      "E007",
+      "E008",
+      "E009",
+      "E010",
+      "E011",
+      "E012",
+      "E013",
+      "E014",
+      "E015",
+      "E016",
+      "E017",
+      "E018",
+      "E019",
+      "E020",
+      "E021",
+      "E022",
+      "E023",
+      "E024",
+      "E025",
+      "E026",
+      "E027",
+      "E028",
+      "E029",
+      "E030",
+      "E031",
+      "E032",
+      "E033",
+      "E034",
+      "E035",
+      "E036",
+      "E037",
+      "E038",
+      "E039",
+      "E040",
+      "E041",
+      "E042"
+    ],
+    "warnings": []
+  },
+  "model": {
+    "name": "mistral:7b-instruct-v0.3-q4_K_S",
+    "options": {
+      "temperature": 0.2,
+      "repeat_penalty": 1.15,
+      "num_ctx": 8192,
+      "num_predict": 2500,
+      "seed": 42
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "options": {
+          "temperature": 0.2,
+          "repeat_penalty": 1.15,
+          "num_ctx": 8192,
+          "num_predict": 2500,
+          "seed": 42
+        },
+        "outcome": "success",
+        "seconds": 79.61
+      }
+    ],
+    "retry_used": false,
+    "done_reason": "stop",
+    "tokens_per_second": 15.62,
+    "wall_seconds": 79.61
+  },
+  "prompt": {
+    "file": "log_analysis.txt",
+    "version": "w2-1.0",
+    "sha256": "7affc781ced6c1a991a75ba465d7aa9c429fac7a7dc3730cf3656342b0650b6d",
+    "nonce_delimiter_used": true
+  },
+  "events": [
+    {
+      "ref": "E001",
+      "line_no": 1,
+      "raw": "Dec 10 10:54:27 LabSZ sshd[24868]: Invalid user zhangyan from 183.62.140.253",
+      "timestamp_raw": "Dec 10 10:54:27",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "zhangyan",
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E002",
+      "line_no": 2,
+      "raw": "Dec 10 10:54:27 LabSZ sshd[24868]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253",
+      "timestamp_raw": "Dec 10 10:54:27",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd",
+        "uid": "0",
+        "euid": "0",
+        "tty": "ssh",
+        "rhost": "183.62.140.253"
+      }
+    },
+    {
+      "ref": "E003",
+      "line_no": 3,
+      "raw": "Dec 10 10:54:29 LabSZ sshd[24868]: Failed password for invalid user zhangyan from 183.62.140.253 port 33521 ssh2",
+      "timestamp_raw": "Dec 10 10:54:29",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "zhangyan",
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E004",
+      "line_no": 4,
+      "raw": "Dec 10 10:54:29 LabSZ sshd[24868]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "timestamp_raw": "Dec 10 10:54:29",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": null,
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E005",
+      "line_no": 5,
+      "raw": "Dec 10 10:54:29 LabSZ sshd[24870]: Invalid user dff from 183.62.140.253",
+      "timestamp_raw": "Dec 10 10:54:29",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "dff",
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E006",
+      "line_no": 6,
+      "raw": "Dec 10 10:54:29 LabSZ sshd[24870]: input_userauth_request: invalid user dff [preauth]",
+      "timestamp_raw": "Dec 10 10:54:29",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E007",
+      "line_no": 7,
+      "raw": "Dec 10 10:54:29 LabSZ sshd[24870]: pam_unix(sshd:auth): check pass; user unknown",
+      "timestamp_raw": "Dec 10 10:54:29",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E008",
+      "line_no": 8,
+      "raw": "Dec 10 10:54:29 LabSZ sshd[24870]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253",
+      "timestamp_raw": "Dec 10 10:54:29",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd",
+        "uid": "0",
+        "euid": "0",
+        "tty": "ssh",
+        "rhost": "183.62.140.253"
+      }
+    },
+    {
+      "ref": "E009",
+      "line_no": 9,
+      "raw": "Dec 10 10:54:31 LabSZ sshd[24870]: Failed password for invalid user dff from 183.62.140.253 port 33902 ssh2",
+      "timestamp_raw": "Dec 10 10:54:31",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "dff",
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E010",
+      "line_no": 10,
+      "raw": "Dec 10 10:54:31 LabSZ sshd[24870]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "timestamp_raw": "Dec 10 10:54:31",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": null,
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E011",
+      "line_no": 11,
+      "raw": "Dec 10 10:54:31 LabSZ sshd[24872]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "timestamp_raw": "Dec 10 10:54:31",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd",
+        "uid": "0",
+        "euid": "0",
+        "tty": "ssh",
+        "rhost": "183.62.140.253",
+        "user": "root"
+      }
+    },
+    {
+      "ref": "E012",
+      "line_no": 12,
+      "raw": "Dec 10 10:54:33 LabSZ sshd[24872]: Failed password for root from 183.62.140.253 port 34263 ssh2",
+      "timestamp_raw": "Dec 10 10:54:33",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E013",
+      "line_no": 13,
+      "raw": "Dec 10 10:54:33 LabSZ sshd[24872]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "timestamp_raw": "Dec 10 10:54:33",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": null,
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E014",
+      "line_no": 14,
+      "raw": "Dec 10 10:54:33 LabSZ sshd[24874]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "timestamp_raw": "Dec 10 10:54:33",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd",
+        "uid": "0",
+        "euid": "0",
+        "tty": "ssh",
+        "rhost": "183.62.140.253",
+        "user": "root"
+      }
+    },
+    {
+      "ref": "E015",
+      "line_no": 15,
+      "raw": "Dec 10 10:54:35 LabSZ sshd[24874]: Failed password for root from 183.62.140.253 port 34712 ssh2",
+      "timestamp_raw": "Dec 10 10:54:35",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E016",
+      "line_no": 16,
+      "raw": "Dec 10 10:54:35 LabSZ sshd[24874]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "timestamp_raw": "Dec 10 10:54:35",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": null,
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E017",
+      "line_no": 17,
+      "raw": "Dec 10 10:54:35 LabSZ sshd[24877]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "timestamp_raw": "Dec 10 10:54:35",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd",
+        "uid": "0",
+        "euid": "0",
+        "tty": "ssh",
+        "rhost": "183.62.140.253",
+        "user": "root"
+      }
+    },
+    {
+      "ref": "E018",
+      "line_no": 18,
+      "raw": "Dec 10 10:54:37 LabSZ sshd[24877]: Failed password for root from 183.62.140.253 port 35013 ssh2",
+      "timestamp_raw": "Dec 10 10:54:37",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E019",
+      "line_no": 19,
+      "raw": "Dec 10 10:54:37 LabSZ sshd[24877]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "timestamp_raw": "Dec 10 10:54:37",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": null,
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E020",
+      "line_no": 20,
+      "raw": "Dec 10 10:54:37 LabSZ sshd[24879]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "timestamp_raw": "Dec 10 10:54:37",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd",
+        "uid": "0",
+        "euid": "0",
+        "tty": "ssh",
+        "rhost": "183.62.140.253",
+        "user": "root"
+      }
+    },
+    {
+      "ref": "E021",
+      "line_no": 21,
+      "raw": "Dec 10 10:54:39 LabSZ sshd[24879]: Failed password for root from 183.62.140.253 port 35457 ssh2",
+      "timestamp_raw": "Dec 10 10:54:39",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E022",
+      "line_no": 22,
+      "raw": "Dec 10 10:54:39 LabSZ sshd[24879]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "timestamp_raw": "Dec 10 10:54:39",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": null,
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E023",
+      "line_no": 23,
+      "raw": "Dec 10 10:54:39 LabSZ sshd[24882]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "timestamp_raw": "Dec 10 10:54:39",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd",
+        "uid": "0",
+        "euid": "0",
+        "tty": "ssh",
+        "rhost": "183.62.140.253",
+        "user": "root"
+      }
+    },
+    {
+      "ref": "E024",
+      "line_no": 24,
+      "raw": "Dec 10 10:54:41 LabSZ sshd[24882]: Failed password for root from 183.62.140.253 port 35825 ssh2",
+      "timestamp_raw": "Dec 10 10:54:41",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E025",
+      "line_no": 25,
+      "raw": "Dec 10 10:54:41 LabSZ sshd[24882]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "timestamp_raw": "Dec 10 10:54:41",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": null,
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E026",
+      "line_no": 26,
+      "raw": "Dec 10 10:54:41 LabSZ sshd[24884]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "timestamp_raw": "Dec 10 10:54:41",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd",
+        "uid": "0",
+        "euid": "0",
+        "tty": "ssh",
+        "rhost": "183.62.140.253",
+        "user": "root"
+      }
+    },
+    {
+      "ref": "E027",
+      "line_no": 27,
+      "raw": "Dec 10 10:54:43 LabSZ sshd[24884]: Failed password for root from 183.62.140.253 port 36196 ssh2",
+      "timestamp_raw": "Dec 10 10:54:43",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E028",
+      "line_no": 28,
+      "raw": "Dec 10 10:54:43 LabSZ sshd[24884]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "timestamp_raw": "Dec 10 10:54:43",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": null,
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E029",
+      "line_no": 29,
+      "raw": "Dec 10 10:54:43 LabSZ sshd[24886]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "timestamp_raw": "Dec 10 10:54:43",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd",
+        "uid": "0",
+        "euid": "0",
+        "tty": "ssh",
+        "rhost": "183.62.140.253",
+        "user": "root"
+      }
+    },
+    {
+      "ref": "E030",
+      "line_no": 30,
+      "raw": "Dec 10 10:54:45 LabSZ sshd[24886]: Failed password for root from 183.62.140.253 port 36525 ssh2",
+      "timestamp_raw": "Dec 10 10:54:45",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E031",
+      "line_no": 31,
+      "raw": "Dec 10 10:54:45 LabSZ sshd[24886]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "timestamp_raw": "Dec 10 10:54:45",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": null,
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E032",
+      "line_no": 32,
+      "raw": "Dec 10 10:54:45 LabSZ sshd[24888]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "timestamp_raw": "Dec 10 10:54:45",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd",
+        "uid": "0",
+        "euid": "0",
+        "tty": "ssh",
+        "rhost": "183.62.140.253",
+        "user": "root"
+      }
+    },
+    {
+      "ref": "E033",
+      "line_no": 33,
+      "raw": "Dec 10 10:54:47 LabSZ sshd[24888]: Failed password for root from 183.62.140.253 port 36961 ssh2",
+      "timestamp_raw": "Dec 10 10:54:47",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E034",
+      "line_no": 34,
+      "raw": "Dec 10 10:54:47 LabSZ sshd[24888]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "timestamp_raw": "Dec 10 10:54:47",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": null,
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E035",
+      "line_no": 35,
+      "raw": "Dec 10 10:54:47 LabSZ sshd[24890]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "timestamp_raw": "Dec 10 10:54:47",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd",
+        "uid": "0",
+        "euid": "0",
+        "tty": "ssh",
+        "rhost": "183.62.140.253",
+        "user": "root"
+      }
+    },
+    {
+      "ref": "E036",
+      "line_no": 36,
+      "raw": "Dec 10 10:54:49 LabSZ sshd[24890]: Failed password for root from 183.62.140.253 port 37270 ssh2",
+      "timestamp_raw": "Dec 10 10:54:49",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E037",
+      "line_no": 37,
+      "raw": "Dec 10 10:54:49 LabSZ sshd[24890]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "timestamp_raw": "Dec 10 10:54:49",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": null,
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E038",
+      "line_no": 38,
+      "raw": "Dec 10 10:54:49 LabSZ sshd[24893]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "timestamp_raw": "Dec 10 10:54:49",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd",
+        "uid": "0",
+        "euid": "0",
+        "tty": "ssh",
+        "rhost": "183.62.140.253",
+        "user": "root"
+      }
+    },
+    {
+      "ref": "E039",
+      "line_no": 39,
+      "raw": "Dec 10 10:54:50 LabSZ sshd[24893]: Failed password for root from 183.62.140.253 port 37652 ssh2",
+      "timestamp_raw": "Dec 10 10:54:50",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E040",
+      "line_no": 40,
+      "raw": "Dec 10 10:54:50 LabSZ sshd[24893]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "timestamp_raw": "Dec 10 10:54:50",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": null,
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    },
+    {
+      "ref": "E041",
+      "line_no": 41,
+      "raw": "Dec 10 10:54:51 LabSZ sshd[24896]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "timestamp_raw": "Dec 10 10:54:51",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd",
+        "uid": "0",
+        "euid": "0",
+        "tty": "ssh",
+        "rhost": "183.62.140.253",
+        "user": "root"
+      }
+    },
+    {
+      "ref": "E042",
+      "line_no": 42,
+      "raw": "Dec 10 10:54:52 LabSZ sshd[24896]: Failed password for root from 183.62.140.253 port 37999 ssh2",
+      "timestamp_raw": "Dec 10 10:54:52",
+      "timestamp_utc": null,
+      "host": "LabSZ",
+      "user": "root",
+      "src_ip": "183.62.140.253",
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {},
+      "fields": {
+        "program": "sshd"
+      }
+    }
+  ],
+  "facts": [
+    "13 failed logons from source 183.62.140.253 against 3 distinct account(s) [E003..E042], first at Dec 10 10:54:29, last at Dec 10 10:54:52."
+  ],
+  "ioc_context": [
+    {
+      "type": "ipv4",
+      "value": "183.62.140.253",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024",
+        "E025",
+        "E026",
+        "E027",
+        "E028",
+        "E029",
+        "E030",
+        "E031",
+        "E032",
+        "E033",
+        "E034",
+        "E035",
+        "E036",
+        "E037",
+        "E038",
+        "E039",
+        "E040",
+        "E041",
+        "E042"
+      ],
+      "count": 40,
+      "scope": "public/other",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "username",
+      "value": "dff",
+      "refs": [
+        "E005",
+        "E009"
+      ],
+      "count": 2,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "username",
+      "value": "root",
+      "refs": [
+        "E011",
+        "E012",
+        "E014",
+        "E015",
+        "E017",
+        "E018",
+        "E020",
+        "E021",
+        "E023",
+        "E024",
+        "E026",
+        "E027",
+        "E029",
+        "E030",
+        "E032",
+        "E033",
+        "E035",
+        "E036",
+        "E038",
+        "E039",
+        "E041",
+        "E042"
+      ],
+      "count": 22,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "username",
+      "value": "zhangyan",
+      "refs": [
+        "E001",
+        "E003"
+      ],
+      "count": 2,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hostname",
+      "value": "LabSZ",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024",
+        "E025",
+        "E026",
+        "E027",
+        "E028",
+        "E029",
+        "E030",
+        "E031",
+        "E032",
+        "E033",
+        "E034",
+        "E035",
+        "E036",
+        "E037",
+        "E038",
+        "E039",
+        "E040",
+        "E041",
+        "E042"
+      ],
+      "count": 42,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    }
+  ],
+  "risk_signals": [],
+  "benign_context": [],
+  "evidence_timeline": [
+    {
+      "timestamp": "Dec 10 10:54:27",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:27 LabSZ sshd[24868]: Invalid user zhangyan from 183.62.140.253",
+      "source": "linux",
+      "host_user": "LabSZ / zhangyan",
+      "evidence_ref": "E001"
+    },
+    {
+      "timestamp": "Dec 10 10:54:27",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:27 LabSZ sshd[24868]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253",
+      "source": "linux",
+      "host_user": "LabSZ",
+      "evidence_ref": "E002"
+    },
+    {
+      "timestamp": "Dec 10 10:54:29",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:29 LabSZ sshd[24868]: Failed password for invalid user zhangyan from 183.62.140.253 port 33521 ssh2",
+      "source": "linux",
+      "host_user": "LabSZ / zhangyan",
+      "evidence_ref": "E003"
+    },
+    {
+      "timestamp": "Dec 10 10:54:29",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:29 LabSZ sshd[24868]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "source": "linux",
+      "host_user": "LabSZ",
+      "evidence_ref": "E004"
+    },
+    {
+      "timestamp": "Dec 10 10:54:29",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:29 LabSZ sshd[24870]: Invalid user dff from 183.62.140.253",
+      "source": "linux",
+      "host_user": "LabSZ / dff",
+      "evidence_ref": "E005"
+    },
+    {
+      "timestamp": "Dec 10 10:54:29",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:29 LabSZ sshd[24870]: input_userauth_request: invalid user dff [preauth]",
+      "source": "linux",
+      "host_user": "LabSZ",
+      "evidence_ref": "E006"
+    },
+    {
+      "timestamp": "Dec 10 10:54:29",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:29 LabSZ sshd[24870]: pam_unix(sshd:auth): check pass; user unknown",
+      "source": "linux",
+      "host_user": "LabSZ",
+      "evidence_ref": "E007"
+    },
+    {
+      "timestamp": "Dec 10 10:54:29",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:29 LabSZ sshd[24870]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253",
+      "source": "linux",
+      "host_user": "LabSZ",
+      "evidence_ref": "E008"
+    },
+    {
+      "timestamp": "Dec 10 10:54:31",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:31 LabSZ sshd[24870]: Failed password for invalid user dff from 183.62.140.253 port 33902 ssh2",
+      "source": "linux",
+      "host_user": "LabSZ / dff",
+      "evidence_ref": "E009"
+    },
+    {
+      "timestamp": "Dec 10 10:54:31",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:31 LabSZ sshd[24870]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "source": "linux",
+      "host_user": "LabSZ",
+      "evidence_ref": "E010"
+    },
+    {
+      "timestamp": "Dec 10 10:54:31",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:31 LabSZ sshd[24872]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E011"
+    },
+    {
+      "timestamp": "Dec 10 10:54:33",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:33 LabSZ sshd[24872]: Failed password for root from 183.62.140.253 port 34263 ssh2",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E012"
+    },
+    {
+      "timestamp": "Dec 10 10:54:33",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:33 LabSZ sshd[24872]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "source": "linux",
+      "host_user": "LabSZ",
+      "evidence_ref": "E013"
+    },
+    {
+      "timestamp": "Dec 10 10:54:33",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:33 LabSZ sshd[24874]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E014"
+    },
+    {
+      "timestamp": "Dec 10 10:54:35",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:35 LabSZ sshd[24874]: Failed password for root from 183.62.140.253 port 34712 ssh2",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E015"
+    },
+    {
+      "timestamp": "Dec 10 10:54:35",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:35 LabSZ sshd[24874]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "source": "linux",
+      "host_user": "LabSZ",
+      "evidence_ref": "E016"
+    },
+    {
+      "timestamp": "Dec 10 10:54:35",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:35 LabSZ sshd[24877]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E017"
+    },
+    {
+      "timestamp": "Dec 10 10:54:37",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:37 LabSZ sshd[24877]: Failed password for root from 183.62.140.253 port 35013 ssh2",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E018"
+    },
+    {
+      "timestamp": "Dec 10 10:54:37",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:37 LabSZ sshd[24877]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "source": "linux",
+      "host_user": "LabSZ",
+      "evidence_ref": "E019"
+    },
+    {
+      "timestamp": "Dec 10 10:54:37",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:37 LabSZ sshd[24879]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E020"
+    },
+    {
+      "timestamp": "Dec 10 10:54:39",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:39 LabSZ sshd[24879]: Failed password for root from 183.62.140.253 port 35457 ssh2",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E021"
+    },
+    {
+      "timestamp": "Dec 10 10:54:39",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:39 LabSZ sshd[24879]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "source": "linux",
+      "host_user": "LabSZ",
+      "evidence_ref": "E022"
+    },
+    {
+      "timestamp": "Dec 10 10:54:39",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:39 LabSZ sshd[24882]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E023"
+    },
+    {
+      "timestamp": "Dec 10 10:54:41",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:41 LabSZ sshd[24882]: Failed password for root from 183.62.140.253 port 35825 ssh2",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E024"
+    },
+    {
+      "timestamp": "Dec 10 10:54:41",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:41 LabSZ sshd[24882]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "source": "linux",
+      "host_user": "LabSZ",
+      "evidence_ref": "E025"
+    },
+    {
+      "timestamp": "Dec 10 10:54:41",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:41 LabSZ sshd[24884]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E026"
+    },
+    {
+      "timestamp": "Dec 10 10:54:43",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:43 LabSZ sshd[24884]: Failed password for root from 183.62.140.253 port 36196 ssh2",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E027"
+    },
+    {
+      "timestamp": "Dec 10 10:54:43",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:43 LabSZ sshd[24884]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "source": "linux",
+      "host_user": "LabSZ",
+      "evidence_ref": "E028"
+    },
+    {
+      "timestamp": "Dec 10 10:54:43",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:43 LabSZ sshd[24886]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E029"
+    },
+    {
+      "timestamp": "Dec 10 10:54:45",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:45 LabSZ sshd[24886]: Failed password for root from 183.62.140.253 port 36525 ssh2",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E030"
+    },
+    {
+      "timestamp": "Dec 10 10:54:45",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:45 LabSZ sshd[24886]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "source": "linux",
+      "host_user": "LabSZ",
+      "evidence_ref": "E031"
+    },
+    {
+      "timestamp": "Dec 10 10:54:45",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:45 LabSZ sshd[24888]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E032"
+    },
+    {
+      "timestamp": "Dec 10 10:54:47",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:47 LabSZ sshd[24888]: Failed password for root from 183.62.140.253 port 36961 ssh2",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E033"
+    },
+    {
+      "timestamp": "Dec 10 10:54:47",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:47 LabSZ sshd[24888]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "source": "linux",
+      "host_user": "LabSZ",
+      "evidence_ref": "E034"
+    },
+    {
+      "timestamp": "Dec 10 10:54:47",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:47 LabSZ sshd[24890]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E035"
+    },
+    {
+      "timestamp": "Dec 10 10:54:49",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:49 LabSZ sshd[24890]: Failed password for root from 183.62.140.253 port 37270 ssh2",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E036"
+    },
+    {
+      "timestamp": "Dec 10 10:54:49",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:49 LabSZ sshd[24890]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "source": "linux",
+      "host_user": "LabSZ",
+      "evidence_ref": "E037"
+    },
+    {
+      "timestamp": "Dec 10 10:54:49",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:49 LabSZ sshd[24893]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E038"
+    },
+    {
+      "timestamp": "Dec 10 10:54:50",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:50 LabSZ sshd[24893]: Failed password for root from 183.62.140.253 port 37652 ssh2",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E039"
+    },
+    {
+      "timestamp": "Dec 10 10:54:50",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:50 LabSZ sshd[24893]: Received disconnect from 183.62.140.253: 11: Bye Bye [preauth]",
+      "source": "linux",
+      "host_user": "LabSZ",
+      "evidence_ref": "E040"
+    },
+    {
+      "timestamp": "Dec 10 10:54:51",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:51 LabSZ sshd[24896]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=183.62.140.253  user=root",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E041"
+    },
+    {
+      "timestamp": "Dec 10 10:54:52",
+      "timestamp_utc": null,
+      "event": "Dec 10 10:54:52 LabSZ sshd[24896]: Failed password for root from 183.62.140.253 port 37999 ssh2",
+      "source": "linux",
+      "host_user": "LabSZ / root",
+      "evidence_ref": "E042"
+    }
+  ],
+  "ai_output": {
+    "raw_text": "## EXECUTIVE SUMMARY\nThe log data shows repeated failed login attempts (13 in total) from IP address 183.62.140.253 against three distinct user accounts (zhangyan, dff, and root). The attempts were made using the SSH protocol. While this activity is not necessarily malicious, it could indicate a brute-force attack on the specified user accounts.\n\n## LOG SOURCE\nSource type: sshd logs, Hosts: LabSZ, Time span: Dec 10 10:54:27 - Dec 10 10:54:52\n\n## SIGNIFICANT SECURITY EVENTS\n- [E003] Failed password for invalid user zhangyan from 183.62.140.253\n- [E009] Failed password for invalid user dff from 183.62.140.253\n- [E012] Failed password for root from 183.62.140.253\n- ... (continued for all failed login attempts)\n\n## SUSPICIOUS ACTIVITIES\n- Repeated failed login attempts against multiple user accounts from the same IP address [E003, E009, E012, ...]\n  - Why suspicious: The high number of failed login attempts in a short period could indicate an attempt to guess passwords (brute-force attack).\n\n## EVIDENCE REFERENCES\n- [E003] Dec 10 10:54:29 LabSZ sshd[24868]: Failed password for invalid user zhangyan from 183.62.140.253 port 33521 ssh2\n- ... (continued for all evidence references)\n\n## INCIDENT TIMELINE\n| Timestamp | Event | Source | Host/User | Evidence Ref |\n|-----------|-------|--------|-----------|--------------|\n| Dec 10 10:54:27 | sshd 'Failed password' | LabSZ   | zhangyan    | [E003]        |\n| Dec 10 10:54:29 | sshd 'Failed password' | LabSZ   | dff         | [E009]        |\n| Dec 10 10:54:31 | sshd 'Failed password' | LabSZ   | root        | [E012]        |\n| ... (continued for all timestamps)                                               |\n\n## EXTRACTED IOCS\n- Type: IP address, Value: 183.62.140.253, [E003, E009, E012, ...]\n- External reputation not checked.\n\n## POTENTIAL ATTACK INDICATORS\n- Possible brute-force attack on user accounts (zhangyan, dff, and root) from IP address 183.62.140.253.\n\n## CONFIDENCE AND UNCERTAINTY\nLow: The log data only shows failed login attempts and does not confirm whether the passwords were guessed correctly or if any accounts were compromised.\nMedium: The high number of repeated attempts suggests a brute-force attack, but further investigation is needed to determine the intent and potential impact.\nHigh: The source IP address 183.62.140.253 was used in all failed login attempts.\n\n## MISSING INFORMATION\n- Password policies for the affected user accounts (e.g., password complexity, lockout policy)\n- Whether any of the attempted passwords were correct\n- If these repeated failed login attempts are part of a larger pattern or campaign\n\n## RECOMMENDED INVESTIGATION STEPS\n1. Review and update password policies for affected user accounts.\n2. Investigate whether the IP address 183.62.140.253 is associated with any known threat actors or malicious activity.\n3. Check system logs for any successful login attempts using these user accounts during the same timeframe.\n4. Determine if there are any other systems that have been targeted by this IP address in the past.\n5. Monitor for similar failed login attempts from this IP address in the future.",
+    "sections": {
+      "EXECUTIVE SUMMARY": "The log data shows repeated failed login attempts (13 in total) from IP address 183.62.140.253 against three distinct user accounts (zhangyan, dff, and root). The attempts were made using the SSH protocol. While this activity is not necessarily malicious, it could indicate a brute-force attack on the specified user accounts.",
+      "LOG SOURCE": "Source type: sshd logs, Hosts: LabSZ, Time span: Dec 10 10:54:27 - Dec 10 10:54:52",
+      "SIGNIFICANT SECURITY EVENTS": "- [E003] Failed password for invalid user zhangyan from 183.62.140.253\n- [E009] Failed password for invalid user dff from 183.62.140.253\n- [E012] Failed password for root from 183.62.140.253\n- ... (continued for all failed login attempts)",
+      "SUSPICIOUS ACTIVITIES": "- Repeated failed login attempts against multiple user accounts from the same IP address [E003, E009, E012, ...]\n  - Why suspicious: The high number of failed login attempts in a short period could indicate an attempt to guess passwords (brute-force attack).",
+      "EVIDENCE REFERENCES": "- [E003] Dec 10 10:54:29 LabSZ sshd[24868]: Failed password for invalid user zhangyan from 183.62.140.253 port 33521 ssh2\n- ... (continued for all evidence references)",
+      "INCIDENT TIMELINE": "| Timestamp | Event | Source | Host/User | Evidence Ref |\n|-----------|-------|--------|-----------|--------------|\n| Dec 10 10:54:27 | sshd 'Failed password' | LabSZ   | zhangyan    | [E003]        |\n| Dec 10 10:54:29 | sshd 'Failed password' | LabSZ   | dff         | [E009]        |\n| Dec 10 10:54:31 | sshd 'Failed password' | LabSZ   | root        | [E012]        |\n| ... (continued for all timestamps)                                               |",
+      "EXTRACTED IOCS": "- Type: IP address, Value: 183.62.140.253, [E003, E009, E012, ...]\n- External reputation not checked.",
+      "POTENTIAL ATTACK INDICATORS": "- Possible brute-force attack on user accounts (zhangyan, dff, and root) from IP address 183.62.140.253.",
+      "CONFIDENCE AND UNCERTAINTY": "Low: The log data only shows failed login attempts and does not confirm whether the passwords were guessed correctly or if any accounts were compromised.\nMedium: The high number of repeated attempts suggests a brute-force attack, but further investigation is needed to determine the intent and potential impact.\nHigh: The source IP address 183.62.140.253 was used in all failed login attempts.",
+      "MISSING INFORMATION": "- Password policies for the affected user accounts (e.g., password complexity, lockout policy)\n- Whether any of the attempted passwords were correct\n- If these repeated failed login attempts are part of a larger pattern or campaign",
+      "RECOMMENDED INVESTIGATION STEPS": "1. Review and update password policies for affected user accounts.\n2. Investigate whether the IP address 183.62.140.253 is associated with any known threat actors or malicious activity.\n3. Check system logs for any successful login attempts using these user accounts during the same timeframe.\n4. Determine if there are any other systems that have been targeted by this IP address in the past.\n5. Monitor for similar failed login attempts from this IP address in the future."
+    },
+    "truncated": false,
+    "timeline_rows": [
+      {
+        "timestamp": "Dec 10 10:54:27",
+        "event": "sshd 'Failed password'",
+        "source": "LabSZ",
+        "host_user": "zhangyan",
+        "evidence_ref": "[E003]",
+        "refs_found": [
+          "E003"
+        ]
+      },
+      {
+        "timestamp": "Dec 10 10:54:29",
+        "event": "sshd 'Failed password'",
+        "source": "LabSZ",
+        "host_user": "dff",
+        "evidence_ref": "[E009]",
+        "refs_found": [
+          "E009"
+        ]
+      },
+      {
+        "timestamp": "Dec 10 10:54:31",
+        "event": "sshd 'Failed password'",
+        "source": "LabSZ",
+        "host_user": "root",
+        "evidence_ref": "[E012]",
+        "refs_found": [
+          "E012"
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "flags": [
+      {
+        "check": "finding_without_evidence_ref",
+        "severity": "medium",
+        "section": "SIGNIFICANT SECURITY EVENTS",
+        "value": "- ... (continued for all failed login attempts)",
+        "message": "Finding has no [E###] evidence reference.",
+        "analyst_disposition": "Needs follow-up",
+        "id": "F001"
+      },
+      {
+        "check": "finding_without_evidence_ref",
+        "severity": "medium",
+        "section": "SUSPICIOUS ACTIVITIES",
+        "value": "- Why suspicious: The high number of failed login attempts in a short period could indicate an attempt to guess passwords (brute-force attac",
+        "message": "Finding has no [E###] evidence reference.",
+        "analyst_disposition": "Needs follow-up",
+        "id": "F002"
+      },
+      {
+        "check": "finding_without_evidence_ref",
+        "severity": "medium",
+        "section": "POTENTIAL ATTACK INDICATORS",
+        "value": "- Possible brute-force attack on user accounts (zhangyan, dff, and root) from IP address 183.62.140.253.",
+        "message": "Finding has no [E###] evidence reference.",
+        "analyst_disposition": "Needs follow-up",
+        "id": "F003"
+      },
+      {
+        "check": "timeline_timestamp_mismatch",
+        "severity": "high",
+        "section": "INCIDENT TIMELINE",
+        "value": "Dec 10 10:54:27",
+        "message": "Timestamp does not appear in the cited event(s) E003.",
+        "analyst_disposition": "Confirmed hallucination",
+        "id": "F004"
+      },
+      {
+        "check": "timeline_timestamp_mismatch",
+        "severity": "high",
+        "section": "INCIDENT TIMELINE",
+        "value": "Dec 10 10:54:29",
+        "message": "Timestamp does not appear in the cited event(s) E009.",
+        "analyst_disposition": "Confirmed hallucination",
+        "id": "F005"
+      },
+      {
+        "check": "timeline_timestamp_mismatch",
+        "severity": "high",
+        "section": "INCIDENT TIMELINE",
+        "value": "Dec 10 10:54:31",
+        "message": "Timestamp does not appear in the cited event(s) E012.",
+        "analyst_disposition": "Confirmed hallucination",
+        "id": "F006"
+      }
+    ],
+    "severity_counts": {
+      "high": 3,
+      "medium": 3,
+      "low": 0
+    },
+    "automated_checks": [
+      "structure/truncation",
+      "IP/URL/domain/hash/CVE/email/file exact-string support",
+      "defang preservation",
+      "timestamp source-text check; timeline timestamp <1ms tolerance",
+      "entity (key=value, backtick, host-token) support",
+      "evidence-reference existence and presence",
+      "fabricated rule/agent ID",
+      "Event ID semantics (heuristic: Windows 1102/5145/4624/4625/4732)",
+      "unsupported certainty / attribution",
+      "none-claim vs code-detected risk signals",
+      "timeline timestamp vs cited event",
+      "input prompt-injection scan"
+    ],
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Corrected",
+    "analyst": "Mohammed WaLid",
+    "final_classification": null,
+    "final_priority": null,
+    "correct_findings": [
+      "The selected Linux dataset contains 42 recorded OpenSSH events from host LabSZ",
+      "13 Failed Password records were identified in the focused dataset",
+      "Repeated SSH authentication failures originated from 183.62.140.253",
+      "The observed authentication attempts targeted zhangyan, dff, and root",
+      "The available evidence supports suspected SSH brute-force or password-guessing activity",
+      "No successful SSH authentication was observed in the selected 42 events."
+    ],
+    "incorrect_findings": [
+      "Mistral assigned incorrect timestamps to evidence E003, E009, and E012",
+      "The correct timestamps are Dec 10 10:54:29 for E003, Dec 10 10:54:31 for E009, and Dec 10 10:54:33 for E012",
+      "Several findings lacked explicit evidence references",
+      "The report used abbreviated evidence descriptions instead of documenting all relevant records."
+    ],
+    "missing_evidence": [
+      "Complete authentication history surrounding the selected events",
+      "Successful authentication records outside the focused dataset",
+      "Account existence and validity information",
+      "Additional SSH session and authentication correlation",
+      "Source IP reputation and threat intelligence",
+      "Full event-by-event evidence references",
+      "Original log timestamps without inferred year or timezone."
+    ],
+    "hallucinations": [
+      "Incorrect timestamp attribution for E003, E009, and E012",
+      "The model used timestamps belonging to other events instead of the timestamps associated with the cited evidence",
+      "No successful compromise has been established by the available records."
+    ],
+    "notes": "LT-01 Human Analyst Review. The Mistral 7B analysis identified repeated SSH authentication failures consistent with suspected brute-force activity. The focused dataset contains 42 events, including 13 Failed Password records, associated with a larger source dataset containing 286 Failed Password lines from 183.62.140.253. Automated validation generated 6 flags: 3 medium-severity missing-reference findings and 3 high-severity timestamp mismatches. The timestamp mismatches were confirmed against the source evidence. No successful authentication was observed in the selected events. The original source files, focused dataset, evidence mapping, and AI output remain unchanged. Human Review Status: Corrected.",
+    "reviewed_utc": "2026-10-18T18:42:11+00:00",
+    "history": [
+      {
+        "status": "Pending Review",
+        "analyst": null,
+        "final_classification": null,
+        "final_priority": null,
+        "correct_findings": [],
+        "incorrect_findings": [],
+        "missing_evidence": [],
+        "hallucinations": [],
+        "notes": "",
+        "reviewed_utc": null
+      }
+    ]
+  }
+}

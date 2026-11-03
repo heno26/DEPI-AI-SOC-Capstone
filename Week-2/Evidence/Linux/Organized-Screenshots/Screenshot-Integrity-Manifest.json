@@ -1,0 +1,283 @@
+{
+  "project": "DEPI P5 Week-2 Linux screenshot evidence",
+  "source_folder": "D:\\Desktop\\w\\Week-2\\Evidence\\Linux\\Screenshots",
+  "destination_folder": "D:\\Desktop\\w\\Week-2\\Evidence\\Linux\\Organized-Screenshots",
+  "originals_changed": false,
+  "method": "byte-for-byte copy with SHA-256 verified; no overwrite",
+  "catalog_entries": 27,
+  "matched_count": 27,
+  "unmatched_catalog": [],
+  "unrecognized_original_files": [],
+  "copies": [
+    {
+      "catalog_id": "LT01-01",
+      "source_name": "LT01-Evidence-Selection-Parser-PASS.png",
+      "copy_relative_path": "01-LT01-SSH-Brute-Force/LT01-Evidence-Selection-Parser-PASS.png",
+      "sha256": "04db995214b91eb253700389b95aabdfb2aa11e7986448718e6326f554109f9d",
+      "bytes": 126928,
+      "category": "01-LT01-SSH-Brute-Force",
+      "evidence_caption_en": "Evidence selection and parser check for 42 SSH log records, including 13 failed-password records.",
+      "review_status": "PASS"
+    },
+    {
+      "catalog_id": "LT01-02",
+      "source_name": "LT01-Mistral-SSH-Analysis.png",
+      "copy_relative_path": "01-LT01-SSH-Brute-Force/LT01-Mistral-SSH-Analysis.png",
+      "sha256": "83628fa7896ddacfc5baa1eb60dd612f1afeb8f6975b379cd85f8bd66ccd5960",
+      "bytes": 163933,
+      "category": "01-LT01-SSH-Brute-Force",
+      "evidence_caption_en": "Local Mistral triage of repeated SSH authentication failures, prior to final human acceptance.",
+      "review_status": "AI OUTPUT"
+    },
+    {
+      "catalog_id": "LT01-03",
+      "source_name": "LT01-Automated-Validation-6Flags-1.png",
+      "copy_relative_path": "01-LT01-SSH-Brute-Force/LT01-Automated-Validation-6Flags-1.png",
+      "sha256": "677a85e35dcaefa5db98d4c93545277a56f92a3aeb936364208fc236afbcae94",
+      "bytes": 182619,
+      "category": "01-LT01-SSH-Brute-Force",
+      "evidence_caption_en": "First capture of six automated validation review flags in the SSH case.",
+      "review_status": "DIAGNOSTIC"
+    },
+    {
+      "catalog_id": "LT01-04",
+      "source_name": "LT01-Automated-Validation-6Flags-2.png",
+      "copy_relative_path": "01-LT01-SSH-Brute-Force/LT01-Automated-Validation-6Flags-2.png",
+      "sha256": "b72604bc65ec1235434b50635326143c90bb41f481625e6ecfbd79859d12d19e",
+      "bytes": 196097,
+      "category": "01-LT01-SSH-Brute-Force",
+      "evidence_caption_en": "Continuation of the six validation flags, documenting reviewable evidence/timeline issues.",
+      "review_status": "DIAGNOSTIC"
+    },
+    {
+      "catalog_id": "LT01-05",
+      "source_name": "LT01-Human-Review-Corrected.png",
+      "copy_relative_path": "01-LT01-SSH-Brute-Force/LT01-Human-Review-Corrected.png",
+      "sha256": "bdbf5fb928dd696802e74e05d7fabbdd51d2a997505fad2782165bf477021182",
+      "bytes": 191914,
+      "category": "01-LT01-SSH-Brute-Force",
+      "evidence_caption_en": "Human analyst correction of the LT-01 AI report after validation review.",
+      "review_status": "REVIEW CORRECTED"
+    },
+    {
+      "catalog_id": "LT01-06",
+      "source_name": "LT01-Final-Verification-PASS.png",
+      "copy_relative_path": "01-LT01-SSH-Brute-Force/LT01-Final-Verification-PASS.png",
+      "sha256": "b8d68a38a5c28d2b63ed0a24a5896aada329cc3c6fea4db487b074e9dd188f04",
+      "bytes": 217428,
+      "category": "01-LT01-SSH-Brute-Force",
+      "evidence_caption_en": "Final source integrity, 42/42 provenance mapping, and final case documentation.",
+      "review_status": "PASS"
+    },
+    {
+      "catalog_id": "LT02-01",
+      "source_name": "LT02-Source-Verification-PASS.png",
+      "copy_relative_path": "02-LT02-Privilege-Sensitive-Commands/LT02-Source-Verification-PASS.png",
+      "sha256": "c216f1ef8d86ee8b188e23f225a5dbe4cdf6b0fa8e9b81230c1a13b8dcd8a49c",
+      "bytes": 139244,
+      "category": "02-LT02-Privilege-Sensitive-Commands",
+      "evidence_caption_en": "Source acquisition and SHA-256 verification of the 108-line auditd original.",
+      "review_status": "PASS"
+    },
+    {
+      "catalog_id": "LT02-02",
+      "source_name": "LT02-Auditd-Normalization-Parser-Verification.png",
+      "copy_relative_path": "02-LT02-Privilege-Sensitive-Commands/LT02-Auditd-Normalization-Parser-Verification.png",
+      "sha256": "b75d51c2c751e02ef440d9dc585d58c7d835f7680d0ca301daa1a94f3d568b75",
+      "bytes": 148668,
+      "category": "02-LT02-Privilege-Sensitive-Commands",
+      "evidence_caption_en": "Detailed normalized Auditd field, serial, timestamp, and source-line verification.",
+      "review_status": "VERIFICATION"
+    },
+    {
+      "catalog_id": "LT02-03",
+      "source_name": "LT02-Auditd-Normalization-Parser-PASS.png",
+      "copy_relative_path": "02-LT02-Privilege-Sensitive-Commands/LT02-Auditd-Normalization-Parser-PASS.png",
+      "sha256": "4964c3e850ce466fa99df24fa816f5d401b78b8eecd0f535b1011ff7abd77823",
+      "bytes": 122939,
+      "category": "02-LT02-Privilege-Sensitive-Commands",
+      "evidence_caption_en": "Auditd PROCTITLE normalization and parser compatibility PASS for 21 focused events.",
+      "review_status": "PASS"
+    },
+    {
+      "catalog_id": "LT02-04",
+      "source_name": "LT02-Human-Review-Corrected.png",
+      "copy_relative_path": "02-LT02-Privilege-Sensitive-Commands/LT02-Human-Review-Corrected.png",
+      "sha256": "753297fddcd3a2af6f6fb77804b07dbe5d5cb9037e866bda0adfaa0c9b3052b2",
+      "bytes": 199328,
+      "category": "02-LT02-Privilege-Sensitive-Commands",
+      "evidence_caption_en": "Corrected analyst review: PROCTITLE records do not by themselves establish authorization, execution success, or privilege escalation.",
+      "review_status": "REVIEW CORRECTED"
+    },
+    {
+      "catalog_id": "LT02-05",
+      "source_name": "LT02-Final-Verification-PASS.png",
+      "copy_relative_path": "02-LT02-Privilege-Sensitive-Commands/LT02-Final-Verification-PASS.png",
+      "sha256": "2a1cfc17d78a006f20607afaa69372136ad9aaa09268f1ab7260277a096f51fc",
+      "bytes": 185802,
+      "category": "02-LT02-Privilege-Sensitive-Commands",
+      "evidence_caption_en": "Final auditd hash/mapping verification and evidence-based final documentation.",
+      "review_status": "PASS"
+    },
+    {
+      "catalog_id": "LT03-01",
+      "source_name": "LT03-Source-Verification-PASS.png",
+      "copy_relative_path": "03-LT03-Bash-Reverse-Shell/LT03-Source-Verification-PASS.png",
+      "sha256": "bf335daf5705023ebf31fad9400b817ba718f9078c5de02a307dc993cf5a40e6",
+      "bytes": 147557,
+      "category": "03-LT03-Bash-Reverse-Shell",
+      "evidence_caption_en": "Splunk Linux Sysmon source acquisition; 3,466-byte dataset checked against Git LFS SHA-256.",
+      "review_status": "PASS"
+    },
+    {
+      "catalog_id": "LT03-02",
+      "source_name": "LT03-Linux-Sysmon-Inspection.png",
+      "copy_relative_path": "03-LT03-Bash-Reverse-Shell/LT03-Linux-Sysmon-Inspection.png",
+      "sha256": "f0232cf8cf33122c7d88626acbc4f427a5832c997c2cd9d0e1ac9187ed7b1b0d",
+      "bytes": 92625,
+      "category": "03-LT03-Bash-Reverse-Shell",
+      "evidence_caption_en": "Linux Sysmon Event ID 1 inspection showing a Bash /dev/tcp command, without separate connection telemetry in the sample.",
+      "review_status": "INSPECTION"
+    },
+    {
+      "catalog_id": "LT03-03",
+      "source_name": "LT03-Duplicate-Evidence-Verification.png",
+      "copy_relative_path": "03-LT03-Bash-Reverse-Shell/LT03-Duplicate-Evidence-Verification.png",
+      "sha256": "d7a058f5de5823c67e7991c5ea88eda3934bc6cbac34417d51614cec8a65e5bf",
+      "bytes": 93965,
+      "category": "03-LT03-Bash-Reverse-Shell",
+      "evidence_caption_en": "Investigation comparing two Linux Sysmon XML records for possible exact duplication.",
+      "review_status": "DIAGNOSTIC"
+    },
+    {
+      "catalog_id": "LT03-04",
+      "source_name": "LT03-Exact-Duplicate-Verification-PASS.png",
+      "copy_relative_path": "03-LT03-Bash-Reverse-Shell/LT03-Exact-Duplicate-Verification-PASS.png",
+      "sha256": "deee4dc39154e21d7998aae6e8b08d52222887d4092a4949329e6c8a001e1095",
+      "bytes": 112115,
+      "category": "03-LT03-Bash-Reverse-Shell",
+      "evidence_caption_en": "Exact XML duplicate verification: two source records, one unique observed process event.",
+      "review_status": "PASS"
+    },
+    {
+      "catalog_id": "LT03-05",
+      "source_name": "LT03-Mistral-Reverse-Shell-Analysis.png",
+      "copy_relative_path": "03-LT03-Bash-Reverse-Shell/LT03-Mistral-Reverse-Shell-Analysis.png",
+      "sha256": "bc1694e84acdcde22dc93f0b4fec592db5df0e700c453c69a2e331a018e0dd88",
+      "bytes": 128222,
+      "category": "03-LT03-Bash-Reverse-Shell",
+      "evidence_caption_en": "Mistral reverse-shell investigation output, interpreted alongside human feedback and validator findings.",
+      "review_status": "AI OUTPUT"
+    },
+    {
+      "catalog_id": "LT03-06",
+      "source_name": "LT03-End-to-End-Grounding-Persistence-PASS.png",
+      "copy_relative_path": "03-LT03-Bash-Reverse-Shell/LT03-End-to-End-Grounding-Persistence-PASS.png",
+      "sha256": "efe6cff0732663b6ddea105ae0d47f1ee36220624687dd8b99058d298525b58d",
+      "bytes": 138644,
+      "category": "03-LT03-Bash-Reverse-Shell",
+      "evidence_caption_en": "End-to-end persisted grounded reverse-shell detection (rule, E001, high pattern confidence), with network outcome unconfirmed.",
+      "review_status": "PASS"
+    },
+    {
+      "catalog_id": "LT04-01",
+      "source_name": "LT04-Source-Verification-PASS.png",
+      "copy_relative_path": "04-LT04-Low-Risk-Linux-Startup/LT04-Source-Verification-PASS.png",
+      "sha256": "085d898bd07d9d1eeeb3e5e4180cf781c33a8af6066223b867a43cc12f5d0915",
+      "bytes": 142985,
+      "category": "04-LT04-Low-Risk-Linux-Startup",
+      "evidence_caption_en": "Pinned Loghub Linux_2k.log acquisition and integrity verification; mixed/unlabeled data, not a fully benign source.",
+      "review_status": "PASS"
+    },
+    {
+      "catalog_id": "LT04-02",
+      "source_name": "LT04-Benign-Candidate-Inspection.png",
+      "copy_relative_path": "04-LT04-Low-Risk-Linux-Startup/LT04-Benign-Candidate-Inspection.png",
+      "sha256": "02950476f3b03c7026cf2406b23f70e2ef35761863e248eb6c52d8aa1d68ba2f",
+      "bytes": 135787,
+      "category": "04-LT04-Low-Risk-Linux-Startup",
+      "evidence_caption_en": "Initial inventory of 2,000 mixed Linux syslog records before low-risk candidate screening.",
+      "review_status": "INSPECTION"
+    },
+    {
+      "catalog_id": "LT04-03",
+      "source_name": "LT04-Safe-Benign-Candidate-Selection.png",
+      "copy_relative_path": "04-LT04-Low-Risk-Linux-Startup/LT04-Safe-Benign-Candidate-Selection.png",
+      "sha256": "ab56dfadd4517fd16b2d677ae037c16a5383796f5438e0691ee5bab1a1a10fd3",
+      "bytes": 94125,
+      "category": "04-LT04-Low-Risk-Linux-Startup",
+      "evidence_caption_en": "Conservative screening of Linux routine-operation candidates (126 candidates) before the final 18-event selection.",
+      "review_status": "SCREENING"
+    },
+    {
+      "catalog_id": "LT04-04",
+      "source_name": "LT04-Focused-Candidate-Verification.png",
+      "copy_relative_path": "04-LT04-Low-Risk-Linux-Startup/LT04-Focused-Candidate-Verification.png",
+      "sha256": "a4c829341164a2763fbb516fa578ccbe5d8746b849e9a2dcf95cc4519c4e10b0",
+      "bytes": 169171,
+      "category": "04-LT04-Low-Risk-Linux-Startup",
+      "evidence_caption_en": "Initial preparation stopped on an E014 parser-versus-source trailing-whitespace difference; preserved as diagnostic evidence.",
+      "review_status": "STOP / DIAGNOSTIC"
+    },
+    {
+      "catalog_id": "LT04-05",
+      "source_name": "LT04-Focused-Candidate-Verification-PASS.png",
+      "copy_relative_path": "04-LT04-Low-Risk-Linux-Startup/LT04-Focused-Candidate-Verification-PASS.png",
+      "sha256": "4486487d5e64ace13fd36a24bec6d5be56089c0061410aefbae74a3aace66fe0",
+      "bytes": 150967,
+      "category": "04-LT04-Low-Risk-Linux-Startup",
+      "evidence_caption_en": "Corrected focused-set preparation: 18/18 mappings and documented whitespace-only parser differences.",
+      "review_status": "PASS"
+    },
+    {
+      "catalog_id": "LT04-06",
+      "source_name": "LT04-Mistral-Benign-Analysis.png",
+      "copy_relative_path": "04-LT04-Low-Risk-Linux-Startup/LT04-Mistral-Benign-Analysis.png",
+      "sha256": "071a53a361f83e91529474d5ed20bd5a93a6e4246eee6bef45483a03cf3f2406",
+      "bytes": 114646,
+      "category": "04-LT04-Low-Risk-Linux-Startup",
+      "evidence_caption_en": "Initial AI analysis of low-risk boot events; shows benign-context recognition plus unsupported BIOS/security speculation.",
+      "review_status": "AI OUTPUT / REVIEW"
+    },
+    {
+      "catalog_id": "LT04-07",
+      "source_name": "LT04-Post-Feedback-V2-Analysis.png",
+      "copy_relative_path": "04-LT04-Low-Risk-Linux-Startup/LT04-Post-Feedback-V2-Analysis.png",
+      "sha256": "377a83195a0642cee41be8db2a8eee66c16e59f24ad910d8bc81cc33d983977b",
+      "bytes": 130010,
+      "category": "04-LT04-Low-Risk-Linux-Startup",
+      "evidence_caption_en": "Post-feedback-v2 Mistral comparison: better attribution but residual BIOS/machine-check speculation and timeline gaps.",
+      "review_status": "COMPARATIVE EVALUATION"
+    },
+    {
+      "catalog_id": "FINAL-01",
+      "source_name": "LT03-LT04-Final-Documentation-PASS.png",
+      "copy_relative_path": "05-Cross-Case-Final-Verification/LT03-LT04-Final-Documentation-PASS.png",
+      "sha256": "695210477c3d82b52a35907ecd2d863bea9f5a0ef6aea75ad1a2cbd48e3e4030",
+      "bytes": 179205,
+      "category": "05-Cross-Case-Final-Verification",
+      "evidence_caption_en": "Joint final verification and generation of six documentation outputs for LT-03 and LT-04.",
+      "review_status": "PASS"
+    },
+    {
+      "catalog_id": "SOC-01",
+      "source_name": "SOC-Feedback-V2-147-Regression-PASS.png",
+      "copy_relative_path": "06-Feedback-and-Validation-Upgrades/SOC-Feedback-V2-147-Regression-PASS.png",
+      "sha256": "0efaeaa3636b1dba56c293c3b6462ccc053e83dd5365ff2b083311d9dcd5afcf",
+      "bytes": 147689,
+      "category": "06-Feedback-and-Validation-Upgrades",
+      "evidence_caption_en": "Feedback v2 guarded upgrade: 137 to 147 passing regression tests and new LT-04 semantic checks.",
+      "review_status": "PASS"
+    },
+    {
+      "catalog_id": "SOC-02",
+      "source_name": "SOC-Negation-Fix-177-Regression-PASS.png",
+      "copy_relative_path": "06-Feedback-and-Validation-Upgrades/SOC-Negation-Fix-177-Regression-PASS.png",
+      "sha256": "19b9998ce907628a0d6ae586441d5f049e840a9b392614dd44c5a597c2b90fb8",
+      "bytes": 128148,
+      "category": "06-Feedback-and-Validation-Upgrades",
+      "evidence_caption_en": "Purported 177-test Netcat-negation fix evidence. The pictured 177-test result has not been independently verified in the provided chat captures.",
+      "review_status": "VERIFY IMAGE CONTENT"
+    }
+  ]
+}

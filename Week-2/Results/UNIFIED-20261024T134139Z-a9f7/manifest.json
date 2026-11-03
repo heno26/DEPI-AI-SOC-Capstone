@@ -1,0 +1,297 @@
+{
+  "engine_version": "unified-intake-0.1.0-candidate",
+  "source_file": "LT-02-normalized-focused.log",
+  "source_sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+  "evidence_class": "user_supplied_unverified",
+  "input_event_count": 21,
+  "counts_by_family": {
+    "linux": 21
+  },
+  "classification": [
+    {
+      "ref": "E001",
+      "line_no": 1,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E002",
+      "line_no": 2,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E003",
+      "line_no": 3,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E004",
+      "line_no": 4,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E005",
+      "line_no": 5,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E006",
+      "line_no": 6,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E007",
+      "line_no": 7,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E008",
+      "line_no": 8,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E009",
+      "line_no": 9,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E010",
+      "line_no": 10,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E011",
+      "line_no": 11,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E012",
+      "line_no": 12,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E013",
+      "line_no": 13,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E014",
+      "line_no": 14,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E015",
+      "line_no": 15,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E016",
+      "line_no": 16,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E017",
+      "line_no": 17,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E018",
+      "line_no": 18,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E019",
+      "line_no": 19,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E020",
+      "line_no": 20,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E021",
+      "line_no": 21,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    }
+  ],
+  "analysis_runs": [
+    {
+      "family": "linux",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016"
+      ],
+      "analysis_id": "AN-20261024-134030-f61c",
+      "saved": "D:\\Desktop\\w\\Week-2\\Results\\AN-20261024-134030-f61c",
+      "model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "validation_flags": 6,
+      "review_status": "Pending Review",
+      "events_sent_to_ai": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016"
+      ]
+    },
+    {
+      "family": "linux",
+      "refs": [
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021"
+      ],
+      "analysis_id": "AN-20261024-134139-cd7f",
+      "saved": "D:\\Desktop\\w\\Week-2\\Results\\AN-20261024-134139-cd7f",
+      "model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "validation_flags": 0,
+      "review_status": "Pending Review",
+      "events_sent_to_ai": [
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021"
+      ]
+    }
+  ],
+  "unknown_refs_not_sent_to_ai": [],
+  "notes": [
+    "AI outputs are drafts requiring human review.",
+    "Mixed sources were grouped; this run does not prove cross-source correlation.",
+    "Source evidence references are mapped in classification; secrets are redacted in analysis copies.",
+    "Context limits may truncate events within an AI call; check events_sent_to_ai vs refs."
+  ]
+}

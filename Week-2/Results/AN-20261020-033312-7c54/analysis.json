@@ -1,0 +1,2042 @@
+{
+  "analysis_id": "AN-20261020-033312-7c54",
+  "schema_version": "week2-1",
+  "task": "log_analysis",
+  "created_utc": "2026-10-20T03:33:12+00:00",
+  "references": {
+    "alert_id": null,
+    "incident_ref": null,
+    "note": "incident_ref is reserved for Week 3/4 correlation"
+  },
+  "input": {
+    "filename": "NT-02-focused.json",
+    "path": "Data\\Real-Datasets\\Network-Attacks\\NT-02-DNS-Anomaly\\NT-02-focused.json",
+    "sha256": "15d82bea320702cc5f00c304618019c043305f749bb732a48cdeda7863ffc466",
+    "format": "json",
+    "compressed": false,
+    "source_type": "network",
+    "evidence_class": "user_supplied_unverified",
+    "event_count": 26,
+    "events_analysed": [
+      "E001",
+      "E002",
+      "E003",
+      "E004",
+      "E005",
+      "E006",
+      "E007",
+      "E008",
+      "E009",
+      "E010",
+      "E011",
+      "E012",
+      "E013",
+      "E014",
+      "E015",
+      "E016",
+      "E017",
+      "E018",
+      "E019",
+      "E020",
+      "E021",
+      "E022",
+      "E023",
+      "E024",
+      "E025",
+      "E026"
+    ],
+    "warnings": []
+  },
+  "model": {
+    "name": "mistral:7b-instruct-v0.3-q4_K_S",
+    "options": {
+      "temperature": 0.2,
+      "repeat_penalty": 1.15,
+      "num_ctx": 8192,
+      "num_predict": 2500,
+      "seed": 42
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "options": {
+          "temperature": 0.2,
+          "repeat_penalty": 1.15,
+          "num_ctx": 8192,
+          "num_predict": 2500,
+          "seed": 42
+        },
+        "outcome": "success",
+        "seconds": 110.19
+      }
+    ],
+    "retry_used": false,
+    "done_reason": "stop",
+    "tokens_per_second": 13.48,
+    "wall_seconds": 110.19
+  },
+  "prompt": {
+    "file": "log_analysis.txt",
+    "version": "w2-1.0",
+    "sha256": "7affc781ced6c1a991a75ba465d7aa9c429fac7a7dc3730cf3656342b0650b6d",
+    "nonce_delimiter_used": true,
+    "feedback": {
+      "knowledge_base": "Validated-SOC-Lessons.json",
+      "knowledge_base_sha256": "028eccd632c58e22511ccae31c791a9e26b7c8a04c87484340950f66d19a4da7",
+      "applied_reviewed_lesson_ids": [],
+      "general_guardrails_applied": false,
+      "method": "curated case-matched prompt guidance; not model fine-tuning"
+    }
+  },
+  "events": [
+    {
+      "ref": "E001",
+      "line_no": 1,
+      "raw": "{\"record_kind\": \"VERIFIED_FULL_SOURCE_DNS_AGGREGATE_NOT_RAW_ZEEK_EVENT\", \"timestamp\": \"2026-05-26T15:56:25.484741Z\", \"log_source\": \"Zeek dns.log\", \"source_sha256\": \"a5a31f5be2a6bfdcce1ab1f2d43e34a2b1ff49bee4d3737560c8b9b6e6775942\", \"total_dns_records\": 581, \"distinct_exact_queries\": 258, \"dns_client_counts\": {\"192.168.16.131\": 326, \"192.168.16.132\": 255}, \"resolver_destination_counts\": {\"192.168.16.1\": 326, \"192.168.16.131\": 255}, \"query_type_counts\": {\"AAAA\": 180, \"A\": 401}, \"response_code_counts\": {\"-\": 326, \"NOERROR\": 255}, \"nxdomain_count\": 0, \"total_udp_records\": 581, \"first_observed_utc\": \"2026-05-26T15:56:25.484741Z\", \"last_observed_utc\": \"2026-05-26T16:11:36.424560Z\", \"interpretation_limit\": \"Verified whole-source statistics, NOT individual DNS query. No exfiltration or attacker intent established.\"}",
+      "timestamp_raw": "2026-05-26T15:56:25.484741Z",
+      "timestamp_utc": "2026-05-26T15:56:25.484741+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "VERIFIED_FULL_SOURCE_DNS_AGGREGATE_NOT_RAW_ZEEK_EVENT",
+        "timestamp": "2026-05-26T15:56:25.484741Z",
+        "log_source": "Zeek dns.log",
+        "source_sha256": "a5a31f5be2a6bfdcce1ab1f2d43e34a2b1ff49bee4d3737560c8b9b6e6775942",
+        "total_dns_records": 581,
+        "distinct_exact_queries": 258,
+        "dns_client_counts.192.168.16.131": 326,
+        "dns_client_counts.192.168.16.132": 255,
+        "resolver_destination_counts.192.168.16.1": 326,
+        "resolver_destination_counts.192.168.16.131": 255,
+        "query_type_counts.AAAA": 180,
+        "query_type_counts.A": 401,
+        "response_code_counts.-": 326,
+        "response_code_counts.NOERROR": 255,
+        "nxdomain_count": 0,
+        "total_udp_records": 581,
+        "first_observed_utc": "2026-05-26T15:56:25.484741Z",
+        "last_observed_utc": "2026-05-26T16:11:36.424560Z",
+        "interpretation_limit": "Verified whole-source statistics, NOT individual DNS query. No exfiltration or attacker intent established."
+      }
+    },
+    {
+      "ref": "E002",
+      "line_no": 2,
+      "raw": "{\"record_kind\": \"VERIFIED_DNS_QUERY_CLUSTER_AGGREGATE_NOT_RAW_ZEEK_EVENT\", \"timestamp\": \"2026-05-26T16:05:30.002227Z\", \"log_source\": \"Zeek dns.log\", \"source_sha256\": \"a5a31f5be2a6bfdcce1ab1f2d43e34a2b1ff49bee4d3737560c8b9b6e6775942\", \"src_ip\": \"192.168.16.132\", \"dst_ip\": \"192.168.16.131\", \"query_pattern\": \"chunkNNN-hex.lab.test\", \"approximate_domain_group\": \"lab.test\", \"matching_dns_records\": 250, \"matching_distinct_exact_queries\": 250, \"matching_query_type_counts\": {\"A\": 250}, \"matching_response_code_counts\": {\"NOERROR\": 250}, \"first_observed_utc\": \"2026-05-26T16:05:30.002227Z\", \"last_observed_utc\": \"2026-05-26T16:05:33.555093Z\", \"duration_seconds\": 3.552866, \"interpretation_limit\": \"Distinct chunk-like DNS labels in a concentrated time interval support review for possible DNS tunneling-like behavior. They do NOT prove payload encoding, DNS tunneling, or exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:30.002227Z",
+      "timestamp_utc": "2026-05-26T16:05:30.002227+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "VERIFIED_DNS_QUERY_CLUSTER_AGGREGATE_NOT_RAW_ZEEK_EVENT",
+        "timestamp": "2026-05-26T16:05:30.002227Z",
+        "log_source": "Zeek dns.log",
+        "source_sha256": "a5a31f5be2a6bfdcce1ab1f2d43e34a2b1ff49bee4d3737560c8b9b6e6775942",
+        "src_ip": "192.168.16.132",
+        "dst_ip": "192.168.16.131",
+        "query_pattern": "chunkNNN-hex.lab.test",
+        "approximate_domain_group": "lab.test",
+        "matching_dns_records": 250,
+        "matching_distinct_exact_queries": 250,
+        "matching_query_type_counts.A": 250,
+        "matching_response_code_counts.NOERROR": 250,
+        "first_observed_utc": "2026-05-26T16:05:30.002227Z",
+        "last_observed_utc": "2026-05-26T16:05:33.555093Z",
+        "duration_seconds": 3.552866,
+        "interpretation_limit": "Distinct chunk-like DNS labels in a concentrated time interval support review for possible DNS tunneling-like behavior. They do NOT prove payload encoding, DNS tunneling, or exfiltration."
+      }
+    },
+    {
+      "ref": "E003",
+      "line_no": 3,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T15:56:25.484741Z\", \"zeek_ts_exact\": \"1779810985.484741\", \"zeek_uid\": \"CF1x4PF9TQMAkLg34\", \"src_ip\": \"192.168.16.131\", \"src_port\": \"37196\", \"dst_ip\": \"192.168.16.1\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"connectivity-check.ubuntu.com\", \"qtype_name\": \"AAAA\", \"rcode_name\": \"-\", \"answers\": \"-\", \"source_line\": 9, \"source_line_sha256\": \"f565ad1ea326a41b150a80c7e3bf480289d0658de8c2ce6a3cfed25f96de69ab\", \"selection_category\": \"other_pair_unlabelled_context\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T15:56:25.484741Z",
+      "timestamp_utc": "2026-05-26T15:56:25.484741+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.131",
+      "dst_ip": "192.168.16.1",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T15:56:25.484741Z",
+        "zeek_ts_exact": "1779810985.484741",
+        "zeek_uid": "CF1x4PF9TQMAkLg34",
+        "src_ip": "192.168.16.131",
+        "src_port": "37196",
+        "dst_ip": "192.168.16.1",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "connectivity-check.ubuntu.com",
+        "qtype_name": "AAAA",
+        "rcode_name": "-",
+        "answers": "-",
+        "source_line": 9,
+        "source_line_sha256": "f565ad1ea326a41b150a80c7e3bf480289d0658de8c2ce6a3cfed25f96de69ab",
+        "selection_category": "other_pair_unlabelled_context",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E004",
+      "line_no": 4,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:01:35.804592Z\", \"zeek_ts_exact\": \"1779811295.804592\", \"zeek_uid\": \"CpSwPf4uVktsSEvUD5\", \"src_ip\": \"192.168.16.131\", \"src_port\": \"48886\", \"dst_ip\": \"192.168.16.1\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"connectivity-check.ubuntu.com\", \"qtype_name\": \"AAAA\", \"rcode_name\": \"-\", \"answers\": \"-\", \"source_line\": 117, \"source_line_sha256\": \"ae4ab3c61335ee6ecf991078077a84c56941e281c45d29d93008f0ef28e2a8a3\", \"selection_category\": \"other_pair_unlabelled_context\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:01:35.804592Z",
+      "timestamp_utc": "2026-05-26T16:01:35.804592+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.131",
+      "dst_ip": "192.168.16.1",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:01:35.804592Z",
+        "zeek_ts_exact": "1779811295.804592",
+        "zeek_uid": "CpSwPf4uVktsSEvUD5",
+        "src_ip": "192.168.16.131",
+        "src_port": "48886",
+        "dst_ip": "192.168.16.1",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "connectivity-check.ubuntu.com",
+        "qtype_name": "AAAA",
+        "rcode_name": "-",
+        "answers": "-",
+        "source_line": 117,
+        "source_line_sha256": "ae4ab3c61335ee6ecf991078077a84c56941e281c45d29d93008f0ef28e2a8a3",
+        "selection_category": "other_pair_unlabelled_context",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E005",
+      "line_no": 5,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:03:49.098070Z\", \"zeek_ts_exact\": \"1779811429.098070\", \"zeek_uid\": \"CsjA8f1KXYKBkIMX9e\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"52748\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"portal.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 152, \"source_line_sha256\": \"554562eb4e1c14e6ba20135d3be7ebd9ef5b0e81d79b4e2c976ca015b039b4d1\", \"selection_category\": \"same_pair_unlabelled_context\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:03:49.098070Z",
+      "timestamp_utc": "2026-05-26T16:03:49.098070+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:03:49.098070Z",
+        "zeek_ts_exact": "1779811429.098070",
+        "zeek_uid": "CsjA8f1KXYKBkIMX9e",
+        "src_ip": "192.168.16.132",
+        "src_port": "52748",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "portal.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 152,
+        "source_line_sha256": "554562eb4e1c14e6ba20135d3be7ebd9ef5b0e81d79b4e2c976ca015b039b4d1",
+        "selection_category": "same_pair_unlabelled_context",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E006",
+      "line_no": 6,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:03:50.113967Z\", \"zeek_ts_exact\": \"1779811430.113967\", \"zeek_uid\": \"ClO0ed3hyI6uk6Kwa1\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"51121\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"mail.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 153, \"source_line_sha256\": \"629a5bacdaef1de4989168468f3b9d4fff43f9b63943d77e70473a217957eb85\", \"selection_category\": \"same_pair_unlabelled_context\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:03:50.113967Z",
+      "timestamp_utc": "2026-05-26T16:03:50.113967+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:03:50.113967Z",
+        "zeek_ts_exact": "1779811430.113967",
+        "zeek_uid": "ClO0ed3hyI6uk6Kwa1",
+        "src_ip": "192.168.16.132",
+        "src_port": "51121",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "mail.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 153,
+        "source_line_sha256": "629a5bacdaef1de4989168468f3b9d4fff43f9b63943d77e70473a217957eb85",
+        "selection_category": "same_pair_unlabelled_context",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E007",
+      "line_no": 7,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:03:51.128566Z\", \"zeek_ts_exact\": \"1779811431.128566\", \"zeek_uid\": \"Cw0rP1NVTaUj2H2Qd\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"60139\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"update.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 154, \"source_line_sha256\": \"0a77908d538217e9e912344f6e855a0d9a7840467565f3f14e9c667318d514cd\", \"selection_category\": \"same_pair_unlabelled_context\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:03:51.128566Z",
+      "timestamp_utc": "2026-05-26T16:03:51.128566+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:03:51.128566Z",
+        "zeek_ts_exact": "1779811431.128566",
+        "zeek_uid": "Cw0rP1NVTaUj2H2Qd",
+        "src_ip": "192.168.16.132",
+        "src_port": "60139",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "update.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 154,
+        "source_line_sha256": "0a77908d538217e9e912344f6e855a0d9a7840467565f3f14e9c667318d514cd",
+        "selection_category": "same_pair_unlabelled_context",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E008",
+      "line_no": 8,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:03:53.158196Z\", \"zeek_ts_exact\": \"1779811433.158196\", \"zeek_uid\": \"Chgd8T31hROAm1Ho99\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"33861\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"mail.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 156, \"source_line_sha256\": \"82090610535d8487b67143f163d1ba045892308289f685da81aeee53029532b7\", \"selection_category\": \"same_pair_unlabelled_context\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:03:53.158196Z",
+      "timestamp_utc": "2026-05-26T16:03:53.158196+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:03:53.158196Z",
+        "zeek_ts_exact": "1779811433.158196",
+        "zeek_uid": "Chgd8T31hROAm1Ho99",
+        "src_ip": "192.168.16.132",
+        "src_port": "33861",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "mail.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 156,
+        "source_line_sha256": "82090610535d8487b67143f163d1ba045892308289f685da81aeee53029532b7",
+        "selection_category": "same_pair_unlabelled_context",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E009",
+      "line_no": 9,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:30.002227Z\", \"zeek_ts_exact\": \"1779811530.002227\", \"zeek_uid\": \"CofC13183Zph1RlRii\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"43443\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"chunk001-f137fa53a835cab9745e769d.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 184, \"source_line_sha256\": \"efc57a8c3bb708d894af537289f288c1f581d30b9b890f654ff1494f7d3660fd\", \"selection_category\": \"chunk_pattern_time_stratified\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:30.002227Z",
+      "timestamp_utc": "2026-05-26T16:05:30.002227+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:05:30.002227Z",
+        "zeek_ts_exact": "1779811530.002227",
+        "zeek_uid": "CofC13183Zph1RlRii",
+        "src_ip": "192.168.16.132",
+        "src_port": "43443",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "chunk001-f137fa53a835cab9745e769d.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 184,
+        "source_line_sha256": "efc57a8c3bb708d894af537289f288c1f581d30b9b890f654ff1494f7d3660fd",
+        "selection_category": "chunk_pattern_time_stratified",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E010",
+      "line_no": 10,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:30.242038Z\", \"zeek_ts_exact\": \"1779811530.242038\", \"zeek_uid\": \"CR0ejK2pCoWKbgFwY1\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"35107\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"chunk017-6814d168efb413495592a30a.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 200, \"source_line_sha256\": \"8218c9be70e719ede166484866521884c4f284ed8d523fdfac1dd555fd13c985\", \"selection_category\": \"chunk_pattern_time_stratified\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:30.242038Z",
+      "timestamp_utc": "2026-05-26T16:05:30.242038+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:05:30.242038Z",
+        "zeek_ts_exact": "1779811530.242038",
+        "zeek_uid": "CR0ejK2pCoWKbgFwY1",
+        "src_ip": "192.168.16.132",
+        "src_port": "35107",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "chunk017-6814d168efb413495592a30a.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 200,
+        "source_line_sha256": "8218c9be70e719ede166484866521884c4f284ed8d523fdfac1dd555fd13c985",
+        "selection_category": "chunk_pattern_time_stratified",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E011",
+      "line_no": 11,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:30.485056Z\", \"zeek_ts_exact\": \"1779811530.485056\", \"zeek_uid\": \"C95fziHYnOSuUlkc2\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"56957\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"chunk034-20ce2c76b69c7c9b9c46dbe9.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 217, \"source_line_sha256\": \"463efbf9e04eb7864c729ffc049c21a2eeb7224d49e8de85593dbdf3f3bbf011\", \"selection_category\": \"chunk_pattern_time_stratified\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:30.485056Z",
+      "timestamp_utc": "2026-05-26T16:05:30.485056+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:05:30.485056Z",
+        "zeek_ts_exact": "1779811530.485056",
+        "zeek_uid": "C95fziHYnOSuUlkc2",
+        "src_ip": "192.168.16.132",
+        "src_port": "56957",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "chunk034-20ce2c76b69c7c9b9c46dbe9.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 217,
+        "source_line_sha256": "463efbf9e04eb7864c729ffc049c21a2eeb7224d49e8de85593dbdf3f3bbf011",
+        "selection_category": "chunk_pattern_time_stratified",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E012",
+      "line_no": 12,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:30.719552Z\", \"zeek_ts_exact\": \"1779811530.719552\", \"zeek_uid\": \"CZ1Mdk4YCNUSZQMhx9\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"51837\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"chunk050-34794a1a92aba55a84b23ab2.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 233, \"source_line_sha256\": \"caa4a65301e8c5e5caa14b488b10acf05a4571d7cb01027fb5974387af532546\", \"selection_category\": \"chunk_pattern_time_stratified\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:30.719552Z",
+      "timestamp_utc": "2026-05-26T16:05:30.719552+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:05:30.719552Z",
+        "zeek_ts_exact": "1779811530.719552",
+        "zeek_uid": "CZ1Mdk4YCNUSZQMhx9",
+        "src_ip": "192.168.16.132",
+        "src_port": "51837",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "chunk050-34794a1a92aba55a84b23ab2.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 233,
+        "source_line_sha256": "caa4a65301e8c5e5caa14b488b10acf05a4571d7cb01027fb5974387af532546",
+        "selection_category": "chunk_pattern_time_stratified",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E013",
+      "line_no": 13,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:30.963652Z\", \"zeek_ts_exact\": \"1779811530.963652\", \"zeek_uid\": \"CjMp9n2yXjVg66z7Y5\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"60720\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"chunk067-300a1a1d12c721a19915c978.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 250, \"source_line_sha256\": \"a3f7df1d22b2f4c3336f9026717f38d5636113b8fe3a5d9d4baf8af53bb2bf3b\", \"selection_category\": \"chunk_pattern_time_stratified\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:30.963652Z",
+      "timestamp_utc": "2026-05-26T16:05:30.963652+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:05:30.963652Z",
+        "zeek_ts_exact": "1779811530.963652",
+        "zeek_uid": "CjMp9n2yXjVg66z7Y5",
+        "src_ip": "192.168.16.132",
+        "src_port": "60720",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "chunk067-300a1a1d12c721a19915c978.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 250,
+        "source_line_sha256": "a3f7df1d22b2f4c3336f9026717f38d5636113b8fe3a5d9d4baf8af53bb2bf3b",
+        "selection_category": "chunk_pattern_time_stratified",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E014",
+      "line_no": 14,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:31.206541Z\", \"zeek_ts_exact\": \"1779811531.206541\", \"zeek_uid\": \"CSVLUH2KEHOJ4hcH4h\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"57483\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"chunk084-0cd8bb7ce828a50395bf5328.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 271, \"source_line_sha256\": \"b1ac8985d4b35cf26156791e6587ef2d4b7de78d0c5c771309a7206a971b9010\", \"selection_category\": \"chunk_pattern_time_stratified\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:31.206541Z",
+      "timestamp_utc": "2026-05-26T16:05:31.206541+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:05:31.206541Z",
+        "zeek_ts_exact": "1779811531.206541",
+        "zeek_uid": "CSVLUH2KEHOJ4hcH4h",
+        "src_ip": "192.168.16.132",
+        "src_port": "57483",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "chunk084-0cd8bb7ce828a50395bf5328.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 271,
+        "source_line_sha256": "b1ac8985d4b35cf26156791e6587ef2d4b7de78d0c5c771309a7206a971b9010",
+        "selection_category": "chunk_pattern_time_stratified",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E015",
+      "line_no": 15,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:31.434751Z\", \"zeek_ts_exact\": \"1779811531.434751\", \"zeek_uid\": \"CO2u4C16lr4KGFmRLb\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"44312\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"chunk100-79e128737488911d9a02ae78.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 287, \"source_line_sha256\": \"0c75152f2b2b0eda1a01f06695f2d9f5fc3adf75010c38f3483ee73a280bcf72\", \"selection_category\": \"chunk_pattern_time_stratified\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:31.434751Z",
+      "timestamp_utc": "2026-05-26T16:05:31.434751+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:05:31.434751Z",
+        "zeek_ts_exact": "1779811531.434751",
+        "zeek_uid": "CO2u4C16lr4KGFmRLb",
+        "src_ip": "192.168.16.132",
+        "src_port": "44312",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "chunk100-79e128737488911d9a02ae78.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 287,
+        "source_line_sha256": "0c75152f2b2b0eda1a01f06695f2d9f5fc3adf75010c38f3483ee73a280bcf72",
+        "selection_category": "chunk_pattern_time_stratified",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E016",
+      "line_no": 16,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:31.673836Z\", \"zeek_ts_exact\": \"1779811531.673836\", \"zeek_uid\": \"CB6KgJ30aLKdT7Owaf\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"40671\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"chunk117-29ce0e62c46f6577e7cdd4cc.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 304, \"source_line_sha256\": \"94f835ba5a5bf4b0fa39706dfa387f032d1ff4b2005c44d743294dd6a810f584\", \"selection_category\": \"chunk_pattern_time_stratified\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:31.673836Z",
+      "timestamp_utc": "2026-05-26T16:05:31.673836+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:05:31.673836Z",
+        "zeek_ts_exact": "1779811531.673836",
+        "zeek_uid": "CB6KgJ30aLKdT7Owaf",
+        "src_ip": "192.168.16.132",
+        "src_port": "40671",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "chunk117-29ce0e62c46f6577e7cdd4cc.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 304,
+        "source_line_sha256": "94f835ba5a5bf4b0fa39706dfa387f032d1ff4b2005c44d743294dd6a810f584",
+        "selection_category": "chunk_pattern_time_stratified",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E017",
+      "line_no": 17,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:31.919584Z\", \"zeek_ts_exact\": \"1779811531.919584\", \"zeek_uid\": \"CXSkqJ3pPcmYjVZ47h\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"33852\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"chunk133-b34657f154de097c7c1b01da.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 320, \"source_line_sha256\": \"9a34ec882a13ce10353937e436c7994fc4e23efc6cd7487867425a36784d8881\", \"selection_category\": \"chunk_pattern_time_stratified\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:31.919584Z",
+      "timestamp_utc": "2026-05-26T16:05:31.919584+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:05:31.919584Z",
+        "zeek_ts_exact": "1779811531.919584",
+        "zeek_uid": "CXSkqJ3pPcmYjVZ47h",
+        "src_ip": "192.168.16.132",
+        "src_port": "33852",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "chunk133-b34657f154de097c7c1b01da.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 320,
+        "source_line_sha256": "9a34ec882a13ce10353937e436c7994fc4e23efc6cd7487867425a36784d8881",
+        "selection_category": "chunk_pattern_time_stratified",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E018",
+      "line_no": 18,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:32.154706Z\", \"zeek_ts_exact\": \"1779811532.154706\", \"zeek_uid\": \"CmQpdh4angPgndYeR5\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"46763\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"chunk150-abe40348a8dd0c1b937adb0c.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 337, \"source_line_sha256\": \"ca7151f4b1da74f23095e6f9dda3c258fb73ec9904d3525bd2383abddcc3f760\", \"selection_category\": \"chunk_pattern_time_stratified\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:32.154706Z",
+      "timestamp_utc": "2026-05-26T16:05:32.154706+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:05:32.154706Z",
+        "zeek_ts_exact": "1779811532.154706",
+        "zeek_uid": "CmQpdh4angPgndYeR5",
+        "src_ip": "192.168.16.132",
+        "src_port": "46763",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "chunk150-abe40348a8dd0c1b937adb0c.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 337,
+        "source_line_sha256": "ca7151f4b1da74f23095e6f9dda3c258fb73ec9904d3525bd2383abddcc3f760",
+        "selection_category": "chunk_pattern_time_stratified",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E019",
+      "line_no": 19,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:32.399095Z\", \"zeek_ts_exact\": \"1779811532.399095\", \"zeek_uid\": \"CQ6GF2h0Ay3iJBgy7\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"56733\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"chunk167-62871f01fd6e9380b53795fb.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 354, \"source_line_sha256\": \"034115c23867eb6ac27a34e5d4fbfbc8a79c34a07e988c4e3c73e238ce7304df\", \"selection_category\": \"chunk_pattern_time_stratified\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:32.399095Z",
+      "timestamp_utc": "2026-05-26T16:05:32.399095+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:05:32.399095Z",
+        "zeek_ts_exact": "1779811532.399095",
+        "zeek_uid": "CQ6GF2h0Ay3iJBgy7",
+        "src_ip": "192.168.16.132",
+        "src_port": "56733",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "chunk167-62871f01fd6e9380b53795fb.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 354,
+        "source_line_sha256": "034115c23867eb6ac27a34e5d4fbfbc8a79c34a07e988c4e3c73e238ce7304df",
+        "selection_category": "chunk_pattern_time_stratified",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E020",
+      "line_no": 20,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:32.623127Z\", \"zeek_ts_exact\": \"1779811532.623127\", \"zeek_uid\": \"CWHGKJ2HSx3KLf1KPk\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"53576\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"chunk183-f4df5747aa53924340bcd561.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 370, \"source_line_sha256\": \"7d1f9d0e55a0ab4de09689ddfec6ac3281c0b25293522ce8ab777b1ae79c1b16\", \"selection_category\": \"chunk_pattern_time_stratified\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:32.623127Z",
+      "timestamp_utc": "2026-05-26T16:05:32.623127+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:05:32.623127Z",
+        "zeek_ts_exact": "1779811532.623127",
+        "zeek_uid": "CWHGKJ2HSx3KLf1KPk",
+        "src_ip": "192.168.16.132",
+        "src_port": "53576",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "chunk183-f4df5747aa53924340bcd561.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 370,
+        "source_line_sha256": "7d1f9d0e55a0ab4de09689ddfec6ac3281c0b25293522ce8ab777b1ae79c1b16",
+        "selection_category": "chunk_pattern_time_stratified",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E021",
+      "line_no": 21,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:32.862667Z\", \"zeek_ts_exact\": \"1779811532.862667\", \"zeek_uid\": \"CTIFgbN843EKjLXpb\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"34878\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"chunk200-859ef48e43462029ecd421ff.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 387, \"source_line_sha256\": \"96b3e3aa314d8ff5d5f15351c71ae2db24d81419fd05414b5cd18a20c498ce03\", \"selection_category\": \"chunk_pattern_time_stratified\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:32.862667Z",
+      "timestamp_utc": "2026-05-26T16:05:32.862667+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:05:32.862667Z",
+        "zeek_ts_exact": "1779811532.862667",
+        "zeek_uid": "CTIFgbN843EKjLXpb",
+        "src_ip": "192.168.16.132",
+        "src_port": "34878",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "chunk200-859ef48e43462029ecd421ff.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 387,
+        "source_line_sha256": "96b3e3aa314d8ff5d5f15351c71ae2db24d81419fd05414b5cd18a20c498ce03",
+        "selection_category": "chunk_pattern_time_stratified",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E022",
+      "line_no": 22,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:33.082000Z\", \"zeek_ts_exact\": \"1779811533.082000\", \"zeek_uid\": \"CSHj533Qe6mrj3hHff\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"41656\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"chunk216-cd05f608e727d855357a48bd.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 403, \"source_line_sha256\": \"f37b9b7f2b1f1ac6aed48b4095fe09f7af865ccf2a13b28ded678bc4a603dc5e\", \"selection_category\": \"chunk_pattern_time_stratified\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:33.082000Z",
+      "timestamp_utc": "2026-05-26T16:05:33.082000+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:05:33.082000Z",
+        "zeek_ts_exact": "1779811533.082000",
+        "zeek_uid": "CSHj533Qe6mrj3hHff",
+        "src_ip": "192.168.16.132",
+        "src_port": "41656",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "chunk216-cd05f608e727d855357a48bd.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 403,
+        "source_line_sha256": "f37b9b7f2b1f1ac6aed48b4095fe09f7af865ccf2a13b28ded678bc4a603dc5e",
+        "selection_category": "chunk_pattern_time_stratified",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E023",
+      "line_no": 23,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:33.320414Z\", \"zeek_ts_exact\": \"1779811533.320414\", \"zeek_uid\": \"CxPw7U3waekuSnQe2a\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"59981\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"chunk233-f001b3344bc99da19a864543.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 420, \"source_line_sha256\": \"1576bc8f9b78d557e9cc11e1625fd0d7c5d075a24508414db4d564e22343e4a8\", \"selection_category\": \"chunk_pattern_time_stratified\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:33.320414Z",
+      "timestamp_utc": "2026-05-26T16:05:33.320414+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:05:33.320414Z",
+        "zeek_ts_exact": "1779811533.320414",
+        "zeek_uid": "CxPw7U3waekuSnQe2a",
+        "src_ip": "192.168.16.132",
+        "src_port": "59981",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "chunk233-f001b3344bc99da19a864543.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 420,
+        "source_line_sha256": "1576bc8f9b78d557e9cc11e1625fd0d7c5d075a24508414db4d564e22343e4a8",
+        "selection_category": "chunk_pattern_time_stratified",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E024",
+      "line_no": 24,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:33.555093Z\", \"zeek_ts_exact\": \"1779811533.555093\", \"zeek_uid\": \"CMpQk1zVIgXCfFZs\", \"src_ip\": \"192.168.16.132\", \"src_port\": \"38177\", \"dst_ip\": \"192.168.16.131\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"chunk250-ef566286fc3a33e1c288d41c.lab.test\", \"qtype_name\": \"A\", \"rcode_name\": \"NOERROR\", \"answers\": \"192.168.16.130\", \"source_line\": 437, \"source_line_sha256\": \"2142523a9fa17a102ea8fb52575b63e44fc026abf863b6761770053db3e37b77\", \"selection_category\": \"chunk_pattern_time_stratified\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:05:33.555093Z",
+      "timestamp_utc": "2026-05-26T16:05:33.555093+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.132",
+      "dst_ip": "192.168.16.131",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:05:33.555093Z",
+        "zeek_ts_exact": "1779811533.555093",
+        "zeek_uid": "CMpQk1zVIgXCfFZs",
+        "src_ip": "192.168.16.132",
+        "src_port": "38177",
+        "dst_ip": "192.168.16.131",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "chunk250-ef566286fc3a33e1c288d41c.lab.test",
+        "qtype_name": "A",
+        "rcode_name": "NOERROR",
+        "answers": "192.168.16.130",
+        "source_line": 437,
+        "source_line_sha256": "2142523a9fa17a102ea8fb52575b63e44fc026abf863b6761770053db3e37b77",
+        "selection_category": "chunk_pattern_time_stratified",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E025",
+      "line_no": 25,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:07:21.154854Z\", \"zeek_ts_exact\": \"1779811641.154854\", \"zeek_uid\": \"CSjgGe5qtZUXDCcNk\", \"src_ip\": \"192.168.16.131\", \"src_port\": \"42117\", \"dst_ip\": \"192.168.16.1\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"ntp.ubuntu.com.localdomain\", \"qtype_name\": \"AAAA\", \"rcode_name\": \"-\", \"answers\": \"-\", \"source_line\": 480, \"source_line_sha256\": \"8dbff72a20a0152a8ce0bd786eaee7408b673157d059bd5ad41a880dc87e59d5\", \"selection_category\": \"other_pair_unlabelled_context\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:07:21.154854Z",
+      "timestamp_utc": "2026-05-26T16:07:21.154854+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.131",
+      "dst_ip": "192.168.16.1",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:07:21.154854Z",
+        "zeek_ts_exact": "1779811641.154854",
+        "zeek_uid": "CSjgGe5qtZUXDCcNk",
+        "src_ip": "192.168.16.131",
+        "src_port": "42117",
+        "dst_ip": "192.168.16.1",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "ntp.ubuntu.com.localdomain",
+        "qtype_name": "AAAA",
+        "rcode_name": "-",
+        "answers": "-",
+        "source_line": 480,
+        "source_line_sha256": "8dbff72a20a0152a8ce0bd786eaee7408b673157d059bd5ad41a880dc87e59d5",
+        "selection_category": "other_pair_unlabelled_context",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    },
+    {
+      "ref": "E026",
+      "line_no": 26,
+      "raw": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:11:36.424560Z\", \"zeek_ts_exact\": \"1779811896.424560\", \"zeek_uid\": \"CCE4My1c12jX0ha8Qg\", \"src_ip\": \"192.168.16.131\", \"src_port\": \"40493\", \"dst_ip\": \"192.168.16.1\", \"dst_port\": \"53\", \"proto\": \"udp\", \"query\": \"connectivity-check.ubuntu.com\", \"qtype_name\": \"A\", \"rcode_name\": \"-\", \"answers\": \"-\", \"source_line\": 589, \"source_line_sha256\": \"0f822c71d0cb86694f481c4c1c59d3e6b171217fecf3e4cb0b2df9e1bf142269\", \"selection_category\": \"other_pair_unlabelled_context\", \"interpretation_limit\": \"One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration.\"}",
+      "timestamp_raw": "2026-05-26T16:11:36.424560Z",
+      "timestamp_utc": "2026-05-26T16:11:36.424560+00:00",
+      "host": null,
+      "user": null,
+      "src_ip": "192.168.16.131",
+      "dst_ip": "192.168.16.1",
+      "event_id": null,
+      "source_kind": "generic",
+      "meta": {},
+      "fields": {
+        "record_kind": "ZEEK_DNS_ORIGINAL_SOURCE_ROW",
+        "timestamp": "2026-05-26T16:11:36.424560Z",
+        "zeek_ts_exact": "1779811896.424560",
+        "zeek_uid": "CCE4My1c12jX0ha8Qg",
+        "src_ip": "192.168.16.131",
+        "src_port": "40493",
+        "dst_ip": "192.168.16.1",
+        "dst_port": "53",
+        "proto": "udp",
+        "query": "connectivity-check.ubuntu.com",
+        "qtype_name": "A",
+        "rcode_name": "-",
+        "answers": "-",
+        "source_line": 589,
+        "source_line_sha256": "0f822c71d0cb86694f481c4c1c59d3e6b171217fecf3e4cb0b2df9e1bf142269",
+        "selection_category": "other_pair_unlabelled_context",
+        "interpretation_limit": "One original Zeek DNS record; rcode - means unrecorded, not NXDOMAIN; NOERROR alone does not prove successful exfiltration."
+      }
+    }
+  ],
+  "facts": [],
+  "ioc_context": [
+    {
+      "type": "ipv4",
+      "value": "192.168.16.1",
+      "refs": [
+        "E001",
+        "E003",
+        "E004",
+        "E025",
+        "E026"
+      ],
+      "count": 5,
+      "scope": "private (RFC 1918)",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "ipv4",
+      "value": "192.168.16.130",
+      "refs": [
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024"
+      ],
+      "count": 20,
+      "scope": "private (RFC 1918)",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "ipv4",
+      "value": "192.168.16.131",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024",
+        "E025",
+        "E026"
+      ],
+      "count": 26,
+      "scope": "private (RFC 1918)",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "ipv4",
+      "value": "192.168.16.132",
+      "refs": [
+        "E001",
+        "E002",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024"
+      ],
+      "count": 22,
+      "scope": "private (RFC 1918)",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunk001-f137fa53a835cab9745e769d.lab.test",
+      "refs": [
+        "E009"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunk017-6814d168efb413495592a30a.lab.test",
+      "refs": [
+        "E010"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunk034-20ce2c76b69c7c9b9c46dbe9.lab.test",
+      "refs": [
+        "E011"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunk050-34794a1a92aba55a84b23ab2.lab.test",
+      "refs": [
+        "E012"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunk067-300a1a1d12c721a19915c978.lab.test",
+      "refs": [
+        "E013"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunk084-0cd8bb7ce828a50395bf5328.lab.test",
+      "refs": [
+        "E014"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunk100-79e128737488911d9a02ae78.lab.test",
+      "refs": [
+        "E015"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunk117-29ce0e62c46f6577e7cdd4cc.lab.test",
+      "refs": [
+        "E016"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunk133-b34657f154de097c7c1b01da.lab.test",
+      "refs": [
+        "E017"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunk150-abe40348a8dd0c1b937adb0c.lab.test",
+      "refs": [
+        "E018"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunk167-62871f01fd6e9380b53795fb.lab.test",
+      "refs": [
+        "E019"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunk183-f4df5747aa53924340bcd561.lab.test",
+      "refs": [
+        "E020"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunk200-859ef48e43462029ecd421ff.lab.test",
+      "refs": [
+        "E021"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunk216-cd05f608e727d855357a48bd.lab.test",
+      "refs": [
+        "E022"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunk233-f001b3344bc99da19a864543.lab.test",
+      "refs": [
+        "E023"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunk250-ef566286fc3a33e1c288d41c.lab.test",
+      "refs": [
+        "E024"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "chunknnn-hex.lab.test",
+      "refs": [
+        "E002"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "connectivity-check.ubuntu.com",
+      "refs": [
+        "E003",
+        "E004",
+        "E026"
+      ],
+      "count": 3,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "lab.test",
+      "refs": [
+        "E002"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "mail.lab.test",
+      "refs": [
+        "E006",
+        "E008"
+      ],
+      "count": 2,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "ntp.ubuntu.com.localdomain",
+      "refs": [
+        "E025"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "portal.lab.test",
+      "refs": [
+        "E005"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "domain",
+      "value": "update.lab.test",
+      "refs": [
+        "E007"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "034115c23867eb6ac27a34e5d4fbfbc8a79c34a07e988c4e3c73e238ce7304df",
+      "refs": [
+        "E019"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "0a77908d538217e9e912344f6e855a0d9a7840467565f3f14e9c667318d514cd",
+      "refs": [
+        "E007"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "0c75152f2b2b0eda1a01f06695f2d9f5fc3adf75010c38f3483ee73a280bcf72",
+      "refs": [
+        "E015"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "0f822c71d0cb86694f481c4c1c59d3e6b171217fecf3e4cb0b2df9e1bf142269",
+      "refs": [
+        "E026"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "1576bc8f9b78d557e9cc11e1625fd0d7c5d075a24508414db4d564e22343e4a8",
+      "refs": [
+        "E023"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "2142523a9fa17a102ea8fb52575b63e44fc026abf863b6761770053db3e37b77",
+      "refs": [
+        "E024"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "463efbf9e04eb7864c729ffc049c21a2eeb7224d49e8de85593dbdf3f3bbf011",
+      "refs": [
+        "E011"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "554562eb4e1c14e6ba20135d3be7ebd9ef5b0e81d79b4e2c976ca015b039b4d1",
+      "refs": [
+        "E005"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "629a5bacdaef1de4989168468f3b9d4fff43f9b63943d77e70473a217957eb85",
+      "refs": [
+        "E006"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "7d1f9d0e55a0ab4de09689ddfec6ac3281c0b25293522ce8ab777b1ae79c1b16",
+      "refs": [
+        "E020"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "82090610535d8487b67143f163d1ba045892308289f685da81aeee53029532b7",
+      "refs": [
+        "E008"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "8218c9be70e719ede166484866521884c4f284ed8d523fdfac1dd555fd13c985",
+      "refs": [
+        "E010"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "8dbff72a20a0152a8ce0bd786eaee7408b673157d059bd5ad41a880dc87e59d5",
+      "refs": [
+        "E025"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "94f835ba5a5bf4b0fa39706dfa387f032d1ff4b2005c44d743294dd6a810f584",
+      "refs": [
+        "E016"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "96b3e3aa314d8ff5d5f15351c71ae2db24d81419fd05414b5cd18a20c498ce03",
+      "refs": [
+        "E021"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "9a34ec882a13ce10353937e436c7994fc4e23efc6cd7487867425a36784d8881",
+      "refs": [
+        "E017"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "a3f7df1d22b2f4c3336f9026717f38d5636113b8fe3a5d9d4baf8af53bb2bf3b",
+      "refs": [
+        "E013"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "a5a31f5be2a6bfdcce1ab1f2d43e34a2b1ff49bee4d3737560c8b9b6e6775942",
+      "refs": [
+        "E001",
+        "E002"
+      ],
+      "count": 2,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "ae4ab3c61335ee6ecf991078077a84c56941e281c45d29d93008f0ef28e2a8a3",
+      "refs": [
+        "E004"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "b1ac8985d4b35cf26156791e6587ef2d4b7de78d0c5c771309a7206a971b9010",
+      "refs": [
+        "E014"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "ca7151f4b1da74f23095e6f9dda3c258fb73ec9904d3525bd2383abddcc3f760",
+      "refs": [
+        "E018"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "caa4a65301e8c5e5caa14b488b10acf05a4571d7cb01027fb5974387af532546",
+      "refs": [
+        "E012"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "efc57a8c3bb708d894af537289f288c1f581d30b9b890f654ff1494f7d3660fd",
+      "refs": [
+        "E009"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "f37b9b7f2b1f1ac6aed48b4095fe09f7af865ccf2a13b28ded678bc4a603dc5e",
+      "refs": [
+        "E022"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hash",
+      "value": "f565ad1ea326a41b150a80c7e3bf480289d0658de8c2ce6a3cfed25f96de69ab",
+      "refs": [
+        "E003"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    }
+  ],
+  "risk_signals": [],
+  "benign_context": [],
+  "evidence_timeline": [
+    {
+      "timestamp": "2026-05-26T15:56:25.484741Z",
+      "timestamp_utc": "2026-05-26T15:56:25.484741+00:00",
+      "event": "{\"record_kind\": \"VERIFIED_FULL_SOURCE_DNS_AGGREGATE_NOT_RAW_ZEEK_EVENT\", \"timestamp\": \"2026-05-26T15:56:25.484741Z\", \"log_source\": \"Zeek dns.log\", \"source_sha25 ...[truncated 659 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E001"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:30.002227Z",
+      "timestamp_utc": "2026-05-26T16:05:30.002227+00:00",
+      "event": "{\"record_kind\": \"VERIFIED_DNS_QUERY_CLUSTER_AGGREGATE_NOT_RAW_ZEEK_EVENT\", \"timestamp\": \"2026-05-26T16:05:30.002227Z\", \"log_source\": \"Zeek dns.log\", \"source_sha ...[truncated 723 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E002"
+    },
+    {
+      "timestamp": "2026-05-26T15:56:25.484741Z",
+      "timestamp_utc": "2026-05-26T15:56:25.484741+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T15:56:25.484741Z\", \"zeek_ts_exact\": \"1779810985.484741\", \"zeek_uid\": \"CF1x4PF9TQMAkLg34 ...[truncated 524 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E003"
+    },
+    {
+      "timestamp": "2026-05-26T16:01:35.804592Z",
+      "timestamp_utc": "2026-05-26T16:01:35.804592+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:01:35.804592Z\", \"zeek_ts_exact\": \"1779811295.804592\", \"zeek_uid\": \"CpSwPf4uVktsSEvUD ...[truncated 527 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E004"
+    },
+    {
+      "timestamp": "2026-05-26T16:03:49.098070Z",
+      "timestamp_utc": "2026-05-26T16:03:49.098070+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:03:49.098070Z\", \"zeek_ts_exact\": \"1779811429.098070\", \"zeek_uid\": \"CsjA8f1KXYKBkIMX9 ...[truncated 530 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E005"
+    },
+    {
+      "timestamp": "2026-05-26T16:03:50.113967Z",
+      "timestamp_utc": "2026-05-26T16:03:50.113967+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:03:50.113967Z\", \"zeek_ts_exact\": \"1779811430.113967\", \"zeek_uid\": \"ClO0ed3hyI6uk6Kwa ...[truncated 528 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E006"
+    },
+    {
+      "timestamp": "2026-05-26T16:03:51.128566Z",
+      "timestamp_utc": "2026-05-26T16:03:51.128566+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:03:51.128566Z\", \"zeek_ts_exact\": \"1779811431.128566\", \"zeek_uid\": \"Cw0rP1NVTaUj2H2Qd ...[truncated 529 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E007"
+    },
+    {
+      "timestamp": "2026-05-26T16:03:53.158196Z",
+      "timestamp_utc": "2026-05-26T16:03:53.158196+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:03:53.158196Z\", \"zeek_ts_exact\": \"1779811433.158196\", \"zeek_uid\": \"Chgd8T31hROAm1Ho9 ...[truncated 528 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E008"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:30.002227Z",
+      "timestamp_utc": "2026-05-26T16:05:30.002227+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:30.002227Z\", \"zeek_ts_exact\": \"1779811530.002227\", \"zeek_uid\": \"CofC13183Zph1RlRi ...[truncated 558 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E009"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:30.242038Z",
+      "timestamp_utc": "2026-05-26T16:05:30.242038+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:30.242038Z\", \"zeek_ts_exact\": \"1779811530.242038\", \"zeek_uid\": \"CR0ejK2pCoWKbgFwY ...[truncated 558 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E010"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:30.485056Z",
+      "timestamp_utc": "2026-05-26T16:05:30.485056+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:30.485056Z\", \"zeek_ts_exact\": \"1779811530.485056\", \"zeek_uid\": \"C95fziHYnOSuUlkc2 ...[truncated 557 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E011"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:30.719552Z",
+      "timestamp_utc": "2026-05-26T16:05:30.719552+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:30.719552Z\", \"zeek_ts_exact\": \"1779811530.719552\", \"zeek_uid\": \"CZ1Mdk4YCNUSZQMhx ...[truncated 558 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E012"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:30.963652Z",
+      "timestamp_utc": "2026-05-26T16:05:30.963652+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:30.963652Z\", \"zeek_ts_exact\": \"1779811530.963652\", \"zeek_uid\": \"CjMp9n2yXjVg66z7Y ...[truncated 558 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E013"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:31.206541Z",
+      "timestamp_utc": "2026-05-26T16:05:31.206541+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:31.206541Z\", \"zeek_ts_exact\": \"1779811531.206541\", \"zeek_uid\": \"CSVLUH2KEHOJ4hcH4 ...[truncated 558 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E014"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:31.434751Z",
+      "timestamp_utc": "2026-05-26T16:05:31.434751+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:31.434751Z\", \"zeek_ts_exact\": \"1779811531.434751\", \"zeek_uid\": \"CO2u4C16lr4KGFmRL ...[truncated 558 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E015"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:31.673836Z",
+      "timestamp_utc": "2026-05-26T16:05:31.673836+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:31.673836Z\", \"zeek_ts_exact\": \"1779811531.673836\", \"zeek_uid\": \"CB6KgJ30aLKdT7Owa ...[truncated 558 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E016"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:31.919584Z",
+      "timestamp_utc": "2026-05-26T16:05:31.919584+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:31.919584Z\", \"zeek_ts_exact\": \"1779811531.919584\", \"zeek_uid\": \"CXSkqJ3pPcmYjVZ47 ...[truncated 558 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E017"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:32.154706Z",
+      "timestamp_utc": "2026-05-26T16:05:32.154706+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:32.154706Z\", \"zeek_ts_exact\": \"1779811532.154706\", \"zeek_uid\": \"CmQpdh4angPgndYeR ...[truncated 558 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E018"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:32.399095Z",
+      "timestamp_utc": "2026-05-26T16:05:32.399095+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:32.399095Z\", \"zeek_ts_exact\": \"1779811532.399095\", \"zeek_uid\": \"CQ6GF2h0Ay3iJBgy7 ...[truncated 557 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E019"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:32.623127Z",
+      "timestamp_utc": "2026-05-26T16:05:32.623127+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:32.623127Z\", \"zeek_ts_exact\": \"1779811532.623127\", \"zeek_uid\": \"CWHGKJ2HSx3KLf1KP ...[truncated 558 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E020"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:32.862667Z",
+      "timestamp_utc": "2026-05-26T16:05:32.862667+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:32.862667Z\", \"zeek_ts_exact\": \"1779811532.862667\", \"zeek_uid\": \"CTIFgbN843EKjLXpb ...[truncated 557 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E021"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:33.082000Z",
+      "timestamp_utc": "2026-05-26T16:05:33.082000+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:33.082000Z\", \"zeek_ts_exact\": \"1779811533.082000\", \"zeek_uid\": \"CSHj533Qe6mrj3hHf ...[truncated 558 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E022"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:33.320414Z",
+      "timestamp_utc": "2026-05-26T16:05:33.320414+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:33.320414Z\", \"zeek_ts_exact\": \"1779811533.320414\", \"zeek_uid\": \"CxPw7U3waekuSnQe2 ...[truncated 558 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E023"
+    },
+    {
+      "timestamp": "2026-05-26T16:05:33.555093Z",
+      "timestamp_utc": "2026-05-26T16:05:33.555093+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:05:33.555093Z\", \"zeek_ts_exact\": \"1779811533.555093\", \"zeek_uid\": \"CMpQk1zVIgXCfFZs\" ...[truncated 556 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E024"
+    },
+    {
+      "timestamp": "2026-05-26T16:07:21.154854Z",
+      "timestamp_utc": "2026-05-26T16:07:21.154854+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:07:21.154854Z\", \"zeek_ts_exact\": \"1779811641.154854\", \"zeek_uid\": \"CSjgGe5qtZUXDCcNk ...[truncated 523 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E025"
+    },
+    {
+      "timestamp": "2026-05-26T16:11:36.424560Z",
+      "timestamp_utc": "2026-05-26T16:11:36.424560+00:00",
+      "event": "{\"record_kind\": \"ZEEK_DNS_ORIGINAL_SOURCE_ROW\", \"timestamp\": \"2026-05-26T16:11:36.424560Z\", \"zeek_ts_exact\": \"1779811896.424560\", \"zeek_uid\": \"CCE4My1c12jX0ha8Q ...[truncated 524 chars]",
+      "source": "generic",
+      "host_user": "Not provided",
+      "evidence_ref": "E026"
+    }
+  ],
+  "ai_output": {
+    "raw_text": "## EXECUTIVE SUMMARY\nA concentrated, high-diversity sequential DNS query burst originating from IP address 192.168.16.132 is observed over a short period of time. The nature and purpose of this activity are unclear as it does not necessarily indicate malicious intent but could be related to network scanning or other legitimate activities.\n\n## LOG SOURCE\nSource type: Zeek dns.log, Hosts: 192.168.16.131, 192.168.16.132, Time span: May 26, 2026 15:56 - May 26, 2026 16:11\n\n## SIGNIFICANT SECURITY EVENTS\n- [E001]: Verified full source DNS aggregate not raw Zeek event\n- [E002]: Verified DNS query cluster aggregate not raw Zeek event\n- Multiple instances of ZEEK_DNS_ORIGINAL_SOURCE_ROW events from IP address 192.168.16.131 and 192.168.16.132\n\n## SUSPICIOUS ACTIVITIES\n- Frequent DNS queries from a single source (IP 192.168.16.132) over a short period of time, which could indicate network scanning or other suspicious activities. [E005, E007, E009, ...]\n- Assumption: The high diversity and sequential nature of the queries suggest that they might be part of a DNS tunneling attempt. However, this is not definitive proof as it could also be legitimate activity.\n\n## EVIDENCE REFERENCES\n- [E001]: Aggregate DNS event with multiple individual queries\n- [E002]: Aggregate DNS query cluster event with multiple individual queries\n- [E003 - E026]: Individual DNS queries from IP addresses 192.168.16.131 and 192.168.16.132\n\n## INCIDENT TIMELINE\n| Timestamp | Event | Source | Host/User | Evidence Ref |\n|---|---|---|---|---|\n| 2026-05-26T15:56:25.484741Z | Verified full source DNS aggregate not raw Zeek event | Zeek dns.log | 192.168.16.131 | [E001] |\n| 2026-05-26T16:01:35.804592Z | ZEEK_DNS_ORIGINAL_SOURCE_ROW event | Zeek dns.log | 192.168.16.131 | [E004] |\n| 2026-05-26T16:03:49.098070Z | ZEEK_DNS_ORIGINAL_SOURCE_ROW event | Zeek dns.log | 192.168.16.132 | [E005] |\n| ... (many more events omitted for brevity) | ... | ... | ... | ... |\n| 2026-05-26T16:07:21.154854Z | ZEEK_DNS_ORIGINAL_SOURCE_ROW event | Zeek dns.log | 192.168.16.131 | [E025] |\n| 2026-05-26T16:11:36.424560Z | ZEEK_DNS_ORIGINAL_SOURCE_ROW event | Zeek dns.log | 192.168.16.131 | [E026] |\n\n## EXTRACTED IOCS\n- None identified (external reputation not checked)\n\n## POTENTIAL ATTACK INDICATORS\n- Possible DNS tunneling attempt due to high diversity and sequential nature of the queries. [E001, E002]\n- Assumption: The source IP address could be a potential indicator if further investigation confirms malicious activity. However, this is not definitive proof as it could also be legitimate activity.\n\n## CONFIDENCE AND UNCERTAINTY\nLow: The nature and purpose of the observed DNS queries are unclear and require further investigation to confirm or rule out potential malicious intent.\n\n## MISSING INFORMATION\n- Context about approved changes, registered tools, and maintenance windows in the data.\n- Information about the destination IP addresses and domains being queried.\n- Evidence of execution or compromise beyond the observed DNS queries.\n\n## RECOMMENDED INVESTIGATION STEPS\n1. Investigate the context surrounding the observed DNS queries to determine if they are part of approved changes, registered tools, or maintenance windows.\n2. Examine the destination IP addresses and domains being queried for potential malicious activity.\n3. Check external reputation databases for any known indicators associated with the source IP address (192.168.16.131, 192.168.16.132).\n4. Analyze network traffic patterns to determine if there are other signs of malicious activity related to this incident.\n5. Consult with relevant teams or threat intelligence sources for additional insights and guidance.",
+    "sections": {
+      "EXECUTIVE SUMMARY": "A concentrated, high-diversity sequential DNS query burst originating from IP address 192.168.16.132 is observed over a short period of time. The nature and purpose of this activity are unclear as it does not necessarily indicate malicious intent but could be related to network scanning or other legitimate activities.",
+      "LOG SOURCE": "Source type: Zeek dns.log, Hosts: 192.168.16.131, 192.168.16.132, Time span: May 26, 2026 15:56 - May 26, 2026 16:11",
+      "SIGNIFICANT SECURITY EVENTS": "- [E001]: Verified full source DNS aggregate not raw Zeek event\n- [E002]: Verified DNS query cluster aggregate not raw Zeek event\n- Multiple instances of ZEEK_DNS_ORIGINAL_SOURCE_ROW events from IP address 192.168.16.131 and 192.168.16.132",
+      "SUSPICIOUS ACTIVITIES": "- Frequent DNS queries from a single source (IP 192.168.16.132) over a short period of time, which could indicate network scanning or other suspicious activities. [E005, E007, E009, ...]\n- Assumption: The high diversity and sequential nature of the queries suggest that they might be part of a DNS tunneling attempt. However, this is not definitive proof as it could also be legitimate activity.",
+      "EVIDENCE REFERENCES": "- [E001]: Aggregate DNS event with multiple individual queries\n- [E002]: Aggregate DNS query cluster event with multiple individual queries\n- [E003 - E026]: Individual DNS queries from IP addresses 192.168.16.131 and 192.168.16.132",
+      "INCIDENT TIMELINE": "| Timestamp | Event | Source | Host/User | Evidence Ref |\n|---|---|---|---|---|\n| 2026-05-26T15:56:25.484741Z | Verified full source DNS aggregate not raw Zeek event | Zeek dns.log | 192.168.16.131 | [E001] |\n| 2026-05-26T16:01:35.804592Z | ZEEK_DNS_ORIGINAL_SOURCE_ROW event | Zeek dns.log | 192.168.16.131 | [E004] |\n| 2026-05-26T16:03:49.098070Z | ZEEK_DNS_ORIGINAL_SOURCE_ROW event | Zeek dns.log | 192.168.16.132 | [E005] |\n| ... (many more events omitted for brevity) | ... | ... | ... | ... |\n| 2026-05-26T16:07:21.154854Z | ZEEK_DNS_ORIGINAL_SOURCE_ROW event | Zeek dns.log | 192.168.16.131 | [E025] |\n| 2026-05-26T16:11:36.424560Z | ZEEK_DNS_ORIGINAL_SOURCE_ROW event | Zeek dns.log | 192.168.16.131 | [E026] |",
+      "EXTRACTED IOCS": "- None identified (external reputation not checked)",
+      "POTENTIAL ATTACK INDICATORS": "- Possible DNS tunneling attempt due to high diversity and sequential nature of the queries. [E001, E002]\n- Assumption: The source IP address could be a potential indicator if further investigation confirms malicious activity. However, this is not definitive proof as it could also be legitimate activity.",
+      "CONFIDENCE AND UNCERTAINTY": "Low: The nature and purpose of the observed DNS queries are unclear and require further investigation to confirm or rule out potential malicious intent.",
+      "MISSING INFORMATION": "- Context about approved changes, registered tools, and maintenance windows in the data.\n- Information about the destination IP addresses and domains being queried.\n- Evidence of execution or compromise beyond the observed DNS queries.",
+      "RECOMMENDED INVESTIGATION STEPS": "1. Investigate the context surrounding the observed DNS queries to determine if they are part of approved changes, registered tools, or maintenance windows.\n2. Examine the destination IP addresses and domains being queried for potential malicious activity.\n3. Check external reputation databases for any known indicators associated with the source IP address (192.168.16.131, 192.168.16.132).\n4. Analyze network traffic patterns to determine if there are other signs of malicious activity related to this incident.\n5. Consult with relevant teams or threat intelligence sources for additional insights and guidance."
+    },
+    "truncated": false,
+    "timeline_rows": [
+      {
+        "timestamp": "2026-05-26T15:56:25.484741Z",
+        "event": "Verified full source DNS aggregate not raw Zeek event",
+        "source": "Zeek dns.log",
+        "host_user": "192.168.16.131",
+        "evidence_ref": "[E001]",
+        "refs_found": [
+          "E001"
+        ]
+      },
+      {
+        "timestamp": "2026-05-26T16:01:35.804592Z",
+        "event": "ZEEK_DNS_ORIGINAL_SOURCE_ROW event",
+        "source": "Zeek dns.log",
+        "host_user": "192.168.16.131",
+        "evidence_ref": "[E004]",
+        "refs_found": [
+          "E004"
+        ]
+      },
+      {
+        "timestamp": "2026-05-26T16:03:49.098070Z",
+        "event": "ZEEK_DNS_ORIGINAL_SOURCE_ROW event",
+        "source": "Zeek dns.log",
+        "host_user": "192.168.16.132",
+        "evidence_ref": "[E005]",
+        "refs_found": [
+          "E005"
+        ]
+      },
+      {
+        "timestamp": "... (many more events omitted for brevity)",
+        "event": "...",
+        "source": "...",
+        "host_user": "...",
+        "evidence_ref": "...",
+        "refs_found": []
+      },
+      {
+        "timestamp": "2026-05-26T16:07:21.154854Z",
+        "event": "ZEEK_DNS_ORIGINAL_SOURCE_ROW event",
+        "source": "Zeek dns.log",
+        "host_user": "192.168.16.131",
+        "evidence_ref": "[E025]",
+        "refs_found": [
+          "E025"
+        ]
+      },
+      {
+        "timestamp": "2026-05-26T16:11:36.424560Z",
+        "event": "ZEEK_DNS_ORIGINAL_SOURCE_ROW event",
+        "source": "Zeek dns.log",
+        "host_user": "192.168.16.131",
+        "evidence_ref": "[E026]",
+        "refs_found": [
+          "E026"
+        ]
+      }
+    ]
+  },
+  "grounding": {
+    "version": "grounded-detection-1.0",
+    "scope": "observed_input_events_only",
+    "events_inspected": 26,
+    "behavioral_findings": [
+      {
+        "rule_id": "NETWORK_DNS_CHUNK_BURST",
+        "label": "Concentrated sequential chunk-style DNS query burst",
+        "confidence_in_observed_pattern": "high",
+        "evidence_refs": [
+          "E002",
+          "E009",
+          "E010",
+          "E011",
+          "E012",
+          "E013",
+          "E014",
+          "E015",
+          "E016",
+          "E017",
+          "E018",
+          "E019",
+          "E020",
+          "E021",
+          "E022",
+          "E023",
+          "E024"
+        ],
+        "observation": "Supplied computed aggregate and corroborating original Zeek DNS rows support 250 queries (250 distinct) from 192.168.16.132 to DNS resolver 192.168.16.131 in 3.552866s with sequential chunk-like names.",
+        "outcome": "DNS tunneling-like indicator requires investigation; successful tunneling, data exfiltration, authorization status and malicious intent NOT established.",
+        "status": "investigation_indicator_not_incident_verdict",
+        "details": {
+          "source_ip": "192.168.16.132",
+          "resolver_ip": "192.168.16.131",
+          "dns_records": 250,
+          "distinct_exact_queries": 250,
+          "duration_seconds": 3.552866,
+          "query_pattern": "chunkNNN-hex.lab.test",
+          "query_type_counts": {
+            "A": 250
+          },
+          "response_code_counts": {
+            "NOERROR": 250
+          },
+          "aggregate_ref": "E002",
+          "sample_source_refs": [
+            "E009",
+            "E010",
+            "E011",
+            "E012",
+            "E013",
+            "E014",
+            "E015",
+            "E016",
+            "E017",
+            "E018",
+            "E019",
+            "E020",
+            "E021",
+            "E022",
+            "E023",
+            "E024"
+          ],
+          "aggregate_is_raw_dns_record": false,
+          "full_source_integrity_checked_in_this_function": false,
+          "source_sha256_claimed_by_aggregate": "a5a31f5be2a6bfdcce1ab1f2d43e34a2b1ff49bee4d3737560c8b9b6e6775942"
+        }
+      }
+    ],
+    "context_observations": [
+      {
+        "rule_id": "NETWORK_DNS_AGGREGATE_CONTEXT",
+        "evidence_refs": [
+          "E002"
+        ],
+        "observation": "A computed DNS cluster aggregate is present, not an individual DNS query.",
+        "security_limit": "The original DNS source and derivation must be independently verified."
+      }
+    ],
+    "final_incident_verdict": "human_review_required",
+    "guarantees": [
+      "No LLM inference",
+      "No proof of attack success",
+      "No SOAR actions"
+    ]
+  },
+  "validation": {
+    "flags": [
+      {
+        "check": "finding_without_evidence_ref",
+        "severity": "medium",
+        "section": "SIGNIFICANT SECURITY EVENTS",
+        "value": "- Multiple instances of ZEEK_DNS_ORIGINAL_SOURCE_ROW events from IP address 192.168.16.131 and 192.168.16.132",
+        "message": "Finding has no [E###] evidence reference.",
+        "analyst_disposition": "Needs follow-up",
+        "id": "F001"
+      },
+      {
+        "check": "finding_without_evidence_ref",
+        "severity": "medium",
+        "section": "SUSPICIOUS ACTIVITIES",
+        "value": "- Assumption: The high diversity and sequential nature of the queries suggest that they might be part of a DNS tunneling attempt. However, t",
+        "message": "Finding has no [E###] evidence reference.",
+        "analyst_disposition": "Needs follow-up",
+        "id": "F002"
+      },
+      {
+        "check": "finding_without_evidence_ref",
+        "severity": "medium",
+        "section": "POTENTIAL ATTACK INDICATORS",
+        "value": "- Assumption: The source IP address could be a potential indicator if further investigation confirms malicious activity. However, this is no",
+        "message": "Finding has no [E###] evidence reference.",
+        "analyst_disposition": "False alarm",
+        "id": "F003"
+      },
+      {
+        "check": "network_vertical_scan_not_identified",
+        "severity": "high",
+        "section": "SUSPICIOUS ACTIVITIES",
+        "value": "A concentrated, high-diversity sequential DNS query burst originating from IP address 192.168.16.132 is observed over a short period of time. The nature and pur",
+        "message": "Verified-in-input aggregate and sampled conn.log rows support a vertical TCP port sweep; report does not identify the pattern.",
+        "analyst_disposition": "False alarm",
+        "id": "F004"
+      },
+      {
+        "check": "network_dns_chunk_burst_not_identified",
+        "severity": "high",
+        "section": "SUSPICIOUS ACTIVITIES",
+        "value": "A concentrated, high-diversity sequential DNS query burst originating from IP address 192.168.16.132 is observed over a short period of time. The nature and pur",
+        "message": "Grounded evidence supports a concentrated chunk-style DNS query burst; AI did not identify it.",
+        "analyst_disposition": "False alarm",
+        "id": "F005"
+      },
+      {
+        "check": "timeline_row_without_ref",
+        "severity": "medium",
+        "section": "INCIDENT TIMELINE",
+        "value": "...",
+        "message": "Timeline row has no evidence reference.",
+        "analyst_disposition": "Needs follow-up",
+        "id": "F006"
+      }
+    ],
+    "severity_counts": {
+      "high": 2,
+      "medium": 4,
+      "low": 0
+    },
+    "automated_checks": [
+      "structure/truncation",
+      "IP/URL/domain/hash/CVE/email/file exact-string support",
+      "defang preservation",
+      "timestamp source-text check; timeline timestamp <1ms tolerance",
+      "entity (key=value, backtick, host-token) support",
+      "evidence-reference existence and presence",
+      "fabricated rule/agent ID",
+      "Event ID semantics (heuristic: Windows 1102/5145/4624/4625/4732)",
+      "unsupported certainty / attribution",
+      "none-claim vs code-detected risk signals",
+      "timeline timestamp vs cited event",
+      "input prompt-injection scan"
+    ],
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Corrected",
+    "analyst": "Mohammed Walid",
+    "final_classification": null,
+    "final_priority": null,
+    "correct_findings": [
+      "The model correctly identified a concentrated sequential DNS query burst originating from 192.168.16.132 and recognized potential DNS tunneling-like behavior. It acknowledged uncertainty regarding malicious intent and did not claim confirmed exfiltration. The report structure improved compared with the baseline, including dedicated suspicious activity, timeline, confidence, and investigation sections."
+    ],
+    "incorrect_findings": [
+      "The model did not quantify the verified DNS burst of 250 distinct queries within 3.552866 seconds. It did not distinguish high confidence in the observed DNS pattern from uncertainty regarding malicious intent. The incident timeline was incomplete and contained placeholder text. E001 is a computed source aggregate and should not be represented as an individual DNS event. The report also suggested network scanning without supporting port-scan evidence from this DNS dataset."
+    ],
+    "missing_evidence": [
+      "Authorization and approved testing context",
+      "Endpoint process attribution",
+      "DNS resolver ownership and configuration",
+      "Payload reconstruction",
+      "Evidence establishing successful data exfiltration",
+      "Independent confirmation of malicious intent",
+      "Complete evidence-linked timeline."
+    ],
+    "hallucinations": [
+      "No confirmed exfiltration or compromise was invented. Network scanning was suggested without supporting scan-specific evidence. The timeline incorrectly treated computed aggregate information as a timestamped event and omitted multiple source records using placeholder text. Validator flag F004 is a cross-rule false positive. Flag F005 incorrectly states that the model did not identify the DNS burst, although the model described the pattern but omitted its verified quantitative characteristics."
+    ],
+    "notes": "NT-02 Post-Grounding Human Review. Analysis AN-20261020-033312-7c54 successfully analyzed 26 focused evidence records derived from 581 original Zeek DNS records. Grounded source verification established 250 distinct sequential chunk-style queries from 192.168.16.132 to resolver 192.168.16.131 within 3.552866 seconds. Mistral identified a suspicious sequential DNS burst and potential DNS tunneling-like behavior but omitted the verified counts and duration. The model did not establish successful exfiltration or malicious intent. Automated validation produced six flags, including a confirmed cross-rule false positive for vertical port scanning and an inaccurate DNS-not-identified flag. Timeline completeness and evidence references require improvement. Human Review Status: Corrected.",
+    "reviewed_utc": "2026-10-20T21:26:16+00:00",
+    "history": [
+      {
+        "status": "Pending Review",
+        "analyst": null,
+        "final_classification": null,
+        "final_priority": null,
+        "correct_findings": [],
+        "incorrect_findings": [],
+        "missing_evidence": [],
+        "hallucinations": [],
+        "notes": "",
+        "reviewed_utc": null
+      }
+    ]
+  }
+}

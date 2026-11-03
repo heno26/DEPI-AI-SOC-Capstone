@@ -1,0 +1,53 @@
+## EXECUTIVE SUMMARY
+The activity appears to be a user running the PuTTY SSH client on PC01.example.corp, establishing connections with another host (PC02) and a local system (127.0.0.2), and setting up reverse SSH tunnels for RDP access. The purpose of these actions is unclear but does not appear malicious at first glance as they could be related to legitimate administrative tasks or remote work.
+
+## LOG SOURCE
+Source type: Microsoft-Windows-Sysmon, Hosts: PC01.example.corp, Time span: 2019-02-16T10:02:21.9344384Z - 2019-02-16T10:04:05.0927728Z
+
+## SIGNIFICANT SECURITY EVENTS
+- A user (IEUser) on PC01 initiated an outgoing TCP connection to another host (PC02) using plink.exe [E002]
+- The same user established a reverse SSH tunnel from localhost (127.0.0.1) to 127.0.0.2 for RDP access [E003]
+- The reverse SSH tunnel was used again by the same user [E004]
+
+## SUSPICIOUS ACTIVITIES
+- A user on PC01 is running plink.exe multiple times in a short period, which could indicate repeated attempts to establish connections or tunnels [E002, E003, E004]
+
+## EVIDENCE REFERENCES
+- [E001]: The command line used by the user running plink.exe
+- [E002]: Details of the outgoing TCP connection from PC01 to another host (PC02)
+- [E003]: Details of a reverse SSH tunnel established between 127.0.0.1 and 127.0.0.2 for RDP access
+- [E004]: Another instance of the reverse SSH tunnel being used
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|-----------|-------|--------|-----------|--------------|
+| 2019-02-16T10:02:21.9344384Z | plink.exe execution | PC01\IEUser | PC01.example.corp | [E001] |
+| 2019-02-16T10:02:22.9659216Z | Outgoing TCP connection from PC01 to PC02 | PC01\IEUser | PC01.example.corp | [E002] |
+| 2019-02-16T10:02:48.5026416Z | Reverse SSH tunnel established between 127.0.0.1 and 127.0.0.2 for RDP access | PC01\IEUser | PC01.example.corp | [E003] |
+| 2019-02-16T10:04:05.0927728Z | Another instance of the reverse SSH tunnel being used | PC01\IEUser | PC01.example.corp | [E004] |
+
+## EXTRACTED IOCS
+- Type: IP address, Value: 10.0.2.17 (Source IP for outgoing connection)
+- Type: IP address, Value: 10.0.2.18 (Destination IP for outgoing connection and local IP for reverse SSH tunnel)
+- Type: IP address, Value: 127.0.0.1 (Local IP for reverse SSH tunnel source)
+- Type: IP address, Value: 127.0.0.2 (Local IP for destination of reverse SSH tunnel and RDP server)
+- External reputation not checked.
+
+## POTENTIAL ATTACK INDICATORS
+- Multiple instances of plink.exe execution by the same user in a short period could indicate repeated attempts to establish connections or tunnels [E002, E003, E004]
+- Using reverse SSH tunnels for RDP access might be an attempt to hide traffic or evade detection [E003, E004]
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The purpose of the actions is unclear and could be legitimate administrative tasks or remote work. More context is needed to determine if this activity is malicious.
+
+## MISSING INFORMATION
+- Context about the user (IEUser) and their usual activities on PC01
+- Purpose of the repeated connections and tunnels
+- Whether these actions are part of an approved change or maintenance window
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the user (IEUser) and their usual activities on PC01 to determine if this behavior is normal for them.
+2. Determine the purpose of the repeated connections and tunnels.
+3. Verify whether these actions are part of an approved change or maintenance window.
+4. If possible, gather more context about the network traffic related to these events (e.g., logs from other systems involved).
+5. Consult with the user or relevant IT personnel for additional information.

@@ -1,0 +1,50 @@
+## EXECUTIVE SUMMARY
+A series of TCP connection attempts from IP address 192.168.16.132 to various ports on IP address 192.168.16.130 were observed, all of which were rejected (REJ). The activity is unclear as it could be a scan or an automated tool testing the network's open ports.
+
+## LOG SOURCE
+Source type: Zeek conn.log
+Hosts: 192.168.16.132, 192.168.16.130
+Time span: May 26, 2026 from 06:14 to 06:21 (UTC)
+
+## SIGNIFICANT SECURITY EVENTS
+- [E042] TCP connection attempt from 192.168.16.132:44372 to 192.168.16.130:30246 (REJ)
+- [E043] TCP connection attempt from 192.168.16.132:44372 to 192.168.16.130:47096 (REJ)
+- [E044] TCP connection attempt from 192.168.16.132:44372 to 192.168.16.130:33129 (REJ)
+- ... (Omitted for brevity, see INCIDENT TIMELINE section below)
+
+## SUSPICIOUS ACTIVITIES
+- Multiple TCP connection attempts from the same source IP to various ports on a single destination IP within a short time frame. This could be an automated tool or a port scan. [E042], [E043], ...
+- A UDP DNS query from 192.168.16.130:51814 to 192.168.16.1:53 (DNS) is not directly related to the TCP connection attempts but could be part of a broader activity. [E056]
+
+## EVIDENCE REFERENCES
+- [E042] Shows a TCP connection attempt from 192.168.16.132:44372 to 192.168.16.130:30246 (REJ)
+- ... (Omitted for brevity, see INCIDENT TIMELINE section below)
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2026-05-26T06:14:00.000197Z | REJ | 192.168.16.132 | - | [E042] |
+| 2026-05-26T06:14:59.990955Z | REJ | 192.168.16.132 | - | [E043] |
+| 2026-05-26T06:15:00.001059Z | REJ | 192.168.16.132 | - | [E044] |
+| ... (Omitted for brevity, see the provided log data) | ... | ... | ... | ... |
+
+## EXTRACTED IOCS
+None identified
+
+## POTENTIAL ATTACK INDICATORS
+- Multiple TCP connection attempts from a single source IP to various ports on a destination IP within a short time frame. [E042], [E043], ...
+- A UDP DNS query could be part of a broader activity. [E056]
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The activity is unclear and could be an automated tool or a port scan. More context, such as the source IP's known behavior, would help determine its intent.
+
+## MISSING INFORMATION
+- Context about the source IP (192.168.16.132) and its usual activities.
+- Information about any maintenance windows or authorized tools that could explain this activity.
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the source IP's behavior to determine if it is known for such activities.
+2. Check if there are any approved changes, registered tools, or maintenance windows that can explain this activity.
+3. If possible, obtain more context about the destination IP (192.168.16.130) and its usual activities.
+4. Monitor for similar activities from the source IP in the future.
+5. Consider implementing additional security measures to protect against port scans or automated tools.

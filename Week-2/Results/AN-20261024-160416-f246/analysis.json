@@ -1,0 +1,1120 @@
+{
+  "analysis_id": "AN-20261024-160416-f246",
+  "schema_version": "week2-1",
+  "task": "log_analysis",
+  "created_utc": "2026-10-24T16:04:16+00:00",
+  "references": {
+    "alert_id": null,
+    "incident_ref": null,
+    "note": "incident_ref is reserved for Week 3/4 correlation"
+  },
+  "input": {
+    "filename": "Mixed-Win-Linux-Net-QA.json",
+    "path": "Data\\Mixed-Win-Linux-Net-QA.json",
+    "sha256": "065cca374de2af6ccf70bd718bcc70ddccca8df852149fb98c039e970b64412c",
+    "format": "json",
+    "compressed": false,
+    "source_type": "linux",
+    "evidence_class": "user_supplied_unverified",
+    "event_count": 16,
+    "events_analysed": [
+      "E005",
+      "E006",
+      "E007",
+      "E008",
+      "E009",
+      "E010",
+      "E011",
+      "E012",
+      "E013",
+      "E014",
+      "E015",
+      "E016",
+      "E017",
+      "E018",
+      "E019",
+      "E020"
+    ],
+    "warnings": [
+      "Input is a subset of the classified file; unknown/conflicting events were withheld from AI."
+    ]
+  },
+  "model": {
+    "name": "mistral:7b-instruct-v0.3-q4_K_S",
+    "options": {
+      "temperature": 0.2,
+      "repeat_penalty": 1.15,
+      "num_ctx": 8192,
+      "num_predict": 2500,
+      "seed": 42
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "options": {
+          "temperature": 0.2,
+          "repeat_penalty": 1.15,
+          "num_ctx": 8192,
+          "num_predict": 2500,
+          "seed": 42
+        },
+        "outcome": "success",
+        "seconds": 109.81
+      }
+    ],
+    "retry_used": false,
+    "done_reason": "stop",
+    "tokens_per_second": 16.29,
+    "wall_seconds": 109.81
+  },
+  "prompt": {
+    "file": "log_analysis.txt",
+    "version": "w2-1.0+unified-v04-canonical-ref",
+    "sha256": "d170e97db569a6fb5c1953bb02359f404e1b7f26cdd8dcdd3551f071181e1237",
+    "nonce_delimiter_used": true,
+    "feedback": {
+      "knowledge_base": "Validated-SOC-Lessons.json",
+      "knowledge_base_sha256": "028eccd632c58e22511ccae31c791a9e26b7c8a04c87484340950f66d19a4da7",
+      "applied_reviewed_lesson_ids": [
+        "LT02_AUDITD_OUTCOME"
+      ],
+      "general_guardrails_applied": true,
+      "method": "curated case-matched prompt guidance; not model fine-tuning"
+    }
+  },
+  "events": [
+    {
+      "ref": "E005",
+      "line_no": 5,
+      "raw": "2024-08-06T14:01:04.626000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=1311 source_line=108 category=service_status_context argv=[\"sudo\",\"systemctl\",\"status\",\"auditd.service\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:01:04.626000Z",
+      "timestamp_utc": "2024-08-06T14:01:04.626000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "SOURCE_ID_WITHHELD",
+        "audit_serial": "1311",
+        "source_line": "108",
+        "category": "service_status_context",
+        "argv": "[\"sudo\",\"systemctl\",\"status\",\"auditd.service\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E006",
+      "line_no": 6,
+      "raw": "2024-08-06T14:01:04.646000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=1321 source_line=102 category=service_status_context argv=[\"sudo\",\"systemctl\",\"status\",\"auditd.service\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:01:04.646000Z",
+      "timestamp_utc": "2024-08-06T14:01:04.646000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "SOURCE_ID_WITHHELD",
+        "audit_serial": "1321",
+        "source_line": "102",
+        "category": "service_status_context",
+        "argv": "[\"sudo\",\"systemctl\",\"status\",\"auditd.service\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E007",
+      "line_no": 7,
+      "raw": "2024-08-06T14:01:04.974000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=1337 source_line=97 category=service_status_context argv=[\"sudo\",\"systemctl\",\"status\",\"auditd.service\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:01:04.974000Z",
+      "timestamp_utc": "2024-08-06T14:01:04.974000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "SOURCE_ID_WITHHELD",
+        "audit_serial": "1337",
+        "source_line": "97",
+        "category": "service_status_context",
+        "argv": "[\"sudo\",\"systemctl\",\"status\",\"auditd.service\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E008",
+      "line_no": 8,
+      "raw": "2024-08-06T14:01:13.666000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=1344 source_line=96 category=service_status_context argv=[\"sudo\",\"systemctl\",\"status\",\"SplunkForwarder.service\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:01:13.666000Z",
+      "timestamp_utc": "2024-08-06T14:01:13.666000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "SOURCE_ID_WITHHELD",
+        "audit_serial": "1344",
+        "source_line": "96",
+        "category": "service_status_context",
+        "argv": "[\"sudo\",\"systemctl\",\"status\",\"SplunkForwarder.service\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E009",
+      "line_no": 9,
+      "raw": "2024-08-06T14:01:26.582000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=1375 source_line=84 category=service_restart_context argv=[\"sudo\",\"/opt/splunkforwarder/bin/splunk\",\"restart\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:01:26.582000Z",
+      "timestamp_utc": "2024-08-06T14:01:26.582000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "SOURCE_ID_WITHHELD",
+        "audit_serial": "1375",
+        "source_line": "84",
+        "category": "service_restart_context",
+        "argv": "[\"sudo\",\"/opt/splunkforwarder/bin/splunk\",\"restart\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E010",
+      "line_no": 10,
+      "raw": "2024-08-06T14:01:26.590000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=1385 source_line=78 category=service_restart_context argv=[\"sudo\",\"/opt/splunkforwarder/bin/splunk\",\"restart\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:01:26.590000Z",
+      "timestamp_utc": "2024-08-06T14:01:26.590000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "SOURCE_ID_WITHHELD",
+        "audit_serial": "1385",
+        "source_line": "78",
+        "category": "service_restart_context",
+        "argv": "[\"sudo\",\"/opt/splunkforwarder/bin/splunk\",\"restart\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E011",
+      "line_no": 11,
+      "raw": "2024-08-06T14:01:40.430000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2327 source_line=73 category=service_restart_context argv=[\"sudo\",\"/opt/splunkforwarder/bin/splunk\",\"restart\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:01:40.430000Z",
+      "timestamp_utc": "2024-08-06T14:01:40.430000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "SOURCE_ID_WITHHELD",
+        "audit_serial": "2327",
+        "source_line": "73",
+        "category": "service_restart_context",
+        "argv": "[\"sudo\",\"/opt/splunkforwarder/bin/splunk\",\"restart\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E012",
+      "line_no": 12,
+      "raw": "2024-08-06T14:01:43.646000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2376 source_line=66 category=service_status_context argv=[\"sudo\",\"systemctl\",\"status\",\"SplunkForwarder.service\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:01:43.646000Z",
+      "timestamp_utc": "2024-08-06T14:01:43.646000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "SOURCE_ID_WITHHELD",
+        "audit_serial": "2376",
+        "source_line": "66",
+        "category": "service_status_context",
+        "argv": "[\"sudo\",\"systemctl\",\"status\",\"SplunkForwarder.service\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E013",
+      "line_no": 13,
+      "raw": "2024-08-06T14:01:48.742000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2422 source_line=49 category=service_status_context argv=[\"sudo\",\"systemctl\",\"status\",\"SplunkForwarder.service\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:01:48.742000Z",
+      "timestamp_utc": "2024-08-06T14:01:48.742000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "SOURCE_ID_WITHHELD",
+        "audit_serial": "2422",
+        "source_line": "49",
+        "category": "service_status_context",
+        "argv": "[\"sudo\",\"systemctl\",\"status\",\"SplunkForwarder.service\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E014",
+      "line_no": 14,
+      "raw": "2024-08-06T14:02:19.626000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2435 source_line=48 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\"vuln\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:02:19.626000Z",
+      "timestamp_utc": "2024-08-06T14:02:19.626000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "SOURCE_ID_WITHHELD",
+        "audit_serial": "2435",
+        "source_line": "48",
+        "category": "suid_change_candidate",
+        "argv": "[\"sudo\",\"chmod\",\"u+s\",\"vuln\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E015",
+      "line_no": 15,
+      "raw": "2024-08-06T14:02:19.634000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2437 source_line=46 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\"vuln\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:02:19.634000Z",
+      "timestamp_utc": "2024-08-06T14:02:19.634000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "SOURCE_ID_WITHHELD",
+        "audit_serial": "2437",
+        "source_line": "46",
+        "category": "suid_change_candidate",
+        "argv": "[\"sudo\",\"chmod\",\"u+s\",\"vuln\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E016",
+      "line_no": 16,
+      "raw": "2024-08-06T14:02:19.634000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2443 source_line=44 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\"vuln\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:02:19.634000Z",
+      "timestamp_utc": "2024-08-06T14:02:19.634000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "SOURCE_ID_WITHHELD",
+        "audit_serial": "2443",
+        "source_line": "44",
+        "category": "suid_change_candidate",
+        "argv": "[\"sudo\",\"chmod\",\"u+s\",\"vuln\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E017",
+      "line_no": 17,
+      "raw": "2024-08-06T14:02:19.634000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2446 source_line=41 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\"vuln\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:02:19.634000Z",
+      "timestamp_utc": "2024-08-06T14:02:19.634000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "SOURCE_ID_WITHHELD",
+        "audit_serial": "2446",
+        "source_line": "41",
+        "category": "suid_change_candidate",
+        "argv": "[\"sudo\",\"chmod\",\"u+s\",\"vuln\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E018",
+      "line_no": 18,
+      "raw": "2024-08-06T14:02:19.642000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2450 source_line=39 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\"vuln\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:02:19.642000Z",
+      "timestamp_utc": "2024-08-06T14:02:19.642000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "SOURCE_ID_WITHHELD",
+        "audit_serial": "2450",
+        "source_line": "39",
+        "category": "suid_change_candidate",
+        "argv": "[\"sudo\",\"chmod\",\"u+s\",\"vuln\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E019",
+      "line_no": 19,
+      "raw": "2024-08-06T14:02:19.646000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2456 source_line=37 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\"vuln\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:02:19.646000Z",
+      "timestamp_utc": "2024-08-06T14:02:19.646000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "SOURCE_ID_WITHHELD",
+        "audit_serial": "2456",
+        "source_line": "37",
+        "category": "suid_change_candidate",
+        "argv": "[\"sudo\",\"chmod\",\"u+s\",\"vuln\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E020",
+      "line_no": 20,
+      "raw": "2024-08-06T14:18:20.217000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=3118 source_line=36 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:18:20.217000Z",
+      "timestamp_utc": "2024-08-06T14:18:20.217000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "SOURCE_ID_WITHHELD",
+        "audit_serial": "3118",
+        "source_line": "36",
+        "category": "capability_change_candidate",
+        "argv": "[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    }
+  ],
+  "facts": [],
+  "ioc_context": [
+    {
+      "type": "hostname",
+      "value": "auditd",
+      "refs": [
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E018",
+        "E019",
+        "E020"
+      ],
+      "count": 16,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    }
+  ],
+  "risk_signals": [
+    {
+      "ref": "E014",
+      "label": "privilege-sensitive setcap/SUID command recorded; execution outcome unknown"
+    },
+    {
+      "ref": "E015",
+      "label": "privilege-sensitive setcap/SUID command recorded; execution outcome unknown"
+    },
+    {
+      "ref": "E016",
+      "label": "privilege-sensitive setcap/SUID command recorded; execution outcome unknown"
+    },
+    {
+      "ref": "E017",
+      "label": "privilege-sensitive setcap/SUID command recorded; execution outcome unknown"
+    },
+    {
+      "ref": "E018",
+      "label": "privilege-sensitive setcap/SUID command recorded; execution outcome unknown"
+    },
+    {
+      "ref": "E019",
+      "label": "privilege-sensitive setcap/SUID command recorded; execution outcome unknown"
+    },
+    {
+      "ref": "E020",
+      "label": "privilege-sensitive setcap/SUID command recorded; execution outcome unknown"
+    }
+  ],
+  "benign_context": [],
+  "evidence_timeline": [
+    {
+      "timestamp": "2024-08-06T14:01:04.626000Z",
+      "timestamp_utc": "2024-08-06T14:01:04.626000+00:00",
+      "event": "2024-08-06T14:01:04.626000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=1311 source_line=108 category=service_status_context argv=[\"sudo\",\"systemctl\",\" ...[truncated 110 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E005"
+    },
+    {
+      "timestamp": "2024-08-06T14:01:04.646000Z",
+      "timestamp_utc": "2024-08-06T14:01:04.646000+00:00",
+      "event": "2024-08-06T14:01:04.646000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=1321 source_line=102 category=service_status_context argv=[\"sudo\",\"systemctl\",\" ...[truncated 110 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E006"
+    },
+    {
+      "timestamp": "2024-08-06T14:01:04.974000Z",
+      "timestamp_utc": "2024-08-06T14:01:04.974000+00:00",
+      "event": "2024-08-06T14:01:04.974000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=1337 source_line=97 category=service_status_context argv=[\"sudo\",\"systemctl\",\"s ...[truncated 109 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E007"
+    },
+    {
+      "timestamp": "2024-08-06T14:01:13.666000Z",
+      "timestamp_utc": "2024-08-06T14:01:13.666000+00:00",
+      "event": "2024-08-06T14:01:13.666000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=1344 source_line=96 category=service_status_context argv=[\"sudo\",\"systemctl\",\"s ...[truncated 118 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E008"
+    },
+    {
+      "timestamp": "2024-08-06T14:01:26.582000Z",
+      "timestamp_utc": "2024-08-06T14:01:26.582000+00:00",
+      "event": "2024-08-06T14:01:26.582000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=1375 source_line=84 category=service_restart_context argv=[\"sudo\",\"/opt/splunkf ...[truncated 116 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E009"
+    },
+    {
+      "timestamp": "2024-08-06T14:01:26.590000Z",
+      "timestamp_utc": "2024-08-06T14:01:26.590000+00:00",
+      "event": "2024-08-06T14:01:26.590000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=1385 source_line=78 category=service_restart_context argv=[\"sudo\",\"/opt/splunkf ...[truncated 116 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E010"
+    },
+    {
+      "timestamp": "2024-08-06T14:01:40.430000Z",
+      "timestamp_utc": "2024-08-06T14:01:40.430000+00:00",
+      "event": "2024-08-06T14:01:40.430000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2327 source_line=73 category=service_restart_context argv=[\"sudo\",\"/opt/splunkf ...[truncated 116 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E011"
+    },
+    {
+      "timestamp": "2024-08-06T14:01:43.646000Z",
+      "timestamp_utc": "2024-08-06T14:01:43.646000+00:00",
+      "event": "2024-08-06T14:01:43.646000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2376 source_line=66 category=service_status_context argv=[\"sudo\",\"systemctl\",\"s ...[truncated 118 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E012"
+    },
+    {
+      "timestamp": "2024-08-06T14:01:48.742000Z",
+      "timestamp_utc": "2024-08-06T14:01:48.742000+00:00",
+      "event": "2024-08-06T14:01:48.742000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2422 source_line=49 category=service_status_context argv=[\"sudo\",\"systemctl\",\"s ...[truncated 118 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E013"
+    },
+    {
+      "timestamp": "2024-08-06T14:02:19.626000Z",
+      "timestamp_utc": "2024-08-06T14:02:19.626000+00:00",
+      "event": "2024-08-06T14:02:19.626000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2435 source_line=48 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\" ...[truncated 91 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E014"
+    },
+    {
+      "timestamp": "2024-08-06T14:02:19.634000Z",
+      "timestamp_utc": "2024-08-06T14:02:19.634000+00:00",
+      "event": "2024-08-06T14:02:19.634000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2437 source_line=46 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\" ...[truncated 91 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E015"
+    },
+    {
+      "timestamp": "2024-08-06T14:02:19.634000Z",
+      "timestamp_utc": "2024-08-06T14:02:19.634000+00:00",
+      "event": "2024-08-06T14:02:19.634000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2443 source_line=44 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\" ...[truncated 91 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E016"
+    },
+    {
+      "timestamp": "2024-08-06T14:02:19.634000Z",
+      "timestamp_utc": "2024-08-06T14:02:19.634000+00:00",
+      "event": "2024-08-06T14:02:19.634000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2446 source_line=41 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\" ...[truncated 91 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E017"
+    },
+    {
+      "timestamp": "2024-08-06T14:02:19.642000Z",
+      "timestamp_utc": "2024-08-06T14:02:19.642000+00:00",
+      "event": "2024-08-06T14:02:19.642000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2450 source_line=39 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\" ...[truncated 91 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E018"
+    },
+    {
+      "timestamp": "2024-08-06T14:02:19.646000Z",
+      "timestamp_utc": "2024-08-06T14:02:19.646000+00:00",
+      "event": "2024-08-06T14:02:19.646000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=2456 source_line=37 category=suid_change_candidate argv=[\"sudo\",\"chmod\",\"u+s\",\" ...[truncated 91 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E019"
+    },
+    {
+      "timestamp": "2024-08-06T14:18:20.217000Z",
+      "timestamp_utc": "2024-08-06T14:18:20.217000+00:00",
+      "event": "2024-08-06T14:18:20.217000Z auditd PROCTITLE ref=SOURCE_ID_WITHHELD audit_serial=3118 source_line=36 category=capability_change_candidate argv=[\"sudo\",\"setcap\", ...[truncated 114 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E020"
+    }
+  ],
+  "ai_output": {
+    "raw_text": "## EXECUTIVE SUMMARY\nThe log data shows multiple service status checks and restart attempts for 'auditd' and 'SplunkForwarder', as well as a series of SUID changes for the file 'vuln'. The activity appears to be related to system maintenance, but the repeated attempts could indicate an issue. No malicious intent is evident in this data.\n\n## LOG SOURCE\nSource type: auditd, Hosts: not_recorded, Time span: 2024-08-06T14:01:04.626000Z - 2024-08-06T14:18:20.217000Z\n\n## SIGNIFICANT SECURITY EVENTS\n- [E014] SUID change candidate for 'vuln'\n- [E020] Capability change candidate for './priv_esc'\n\n## SUSPICIOUS ACTIVITIES\n- Multiple attempts to restart services 'auditd' and 'SplunkForwarder', which could indicate an issue. ([E008], [E009], [E011], [E012], [E013])\n\n## EVIDENCE REFERENCES\n- [E014] Shows a SUID change candidate for 'vuln'\n- [E020] Shows a capability change candidate for './priv_esc'\n\n## INCIDENT TIMELINE\n| Timestamp | Event | Source | Host/User | Evidence Ref |\n|-----------|-------|--------|-----------|--------------|\n| 2024-08-06T14:01:04.626000Z | service_status_context | auditd | not_recorded | [E005] |\n| 2024-08-06T14:01:04.646000Z | service_status_context | auditd | not_recorded | [E006] |\n| 2024-08-06T14:01:04.974000Z | service_status_context | auditd | not_recorded | [E007] |\n| 2024-08-06T14:01:13.666000Z | service_status_context | auditd | not_recorded | [E008] |\n| 2024-08-06T14:01:26.582000Z | service_restart_context | auditd | not_recorded | [E009] |\n| 2024-08-06T14:01:26.590000Z | service_restart_context | auditd | not_recorded | [E010] |\n| 2024-08-06T14:01:40.430000Z | service_restart_context | auditd | not_recorded | [E011] |\n| 2024-08-06T14:01:43.646000Z | service_status_context | auditd | not_recorded | [E012] |\n| 2024-08-06T14:01:48.742000Z | service_status_context | auditd | not_recorded | [E013] |\n| 2024-08-06T14:02:19.626000Z | suid_change_candidate | auditd | not_recorded | [E014] |\n| 2024-08-06T14:02:19.634000Z | suid_change_candidate | auditd | not_recorded | [E015] |\n| 2024-08-06T14:02:19.634000Z | suid_change_candidate | auditd | not_recorded | [E016] |\n| 2024-08-06T14:02:19.634000Z | suid_change_candidate | auditd | not_recorded | [E017] |\n| 2024-08-06T14:02:19.642000Z | suid_change_candidate | auditd | not_recorded | [E018] |\n| 2024-08-06T14:02:19.646000Z | suid_change_candidate | auditd | not_recorded | [E019] |\n| 2024-08-06T14:02:19.646000Z | suid_change_candidate | auditd | not_recorded | [E020] |\n\n## EXTRACTED IOCS\n- Type: SUID change candidate, Value: 'vuln', [E014], [E015], [E016], [E017], [E018], [E019]\n- Type: Capability change candidate, Value: './priv_esc', [E020]\n\n## POTENTIAL ATTACK INDICATORS\n- Multiple failed service restarts could indicate an issue or a potential attack. ([E008], [E009], [E011], [E012], [E013])\n- SUID changes for 'vuln' might be suspicious, but more context is needed to confirm. ([E014], [E015], [E016], [E017], [E018], [E019])\n- Capability change for './priv_esc' could potentially indicate a privilege escalation attempt, but more context is needed to confirm. ([E020])\n\n## CONFIDENCE AND UNCERTAINTY\nLow: The repeated service restarts and SUID changes are unusual but could be explained by system maintenance or errors. More information about the environment and context of these events is required for a higher confidence assessment.\nMedium: The capability change candidate for './priv_esc' might indicate a privilege escalation attempt, but more evidence is needed to confirm this possibility.\nHigh: None identified.\n\n## MISSING INFORMATION\n- Context about the environment and system maintenance schedules\n- Information about the 'vuln' file and its purpose\n- External reputation check for the IOCs\n\n## RECOMMENDED INVESTIGATION STEPS\n1. Investigate the repeated service restarts to determine if they are due to errors or a potential attack.\n2. Investigate the SUID changes for 'vuln' and determine their purpose.\n3. Investigate the capability change candidate for './priv_esc'.\n4. Gather more information about the environment, system maintenance schedules, and any known authorized tools that might explain these events.\n5. Check the external reputation of the identified IOCs to see if they are associated with known threats or malicious activity.",
+    "sections": {
+      "EXECUTIVE SUMMARY": "The log data shows multiple service status checks and restart attempts for 'auditd' and 'SplunkForwarder', as well as a series of SUID changes for the file 'vuln'. The activity appears to be related to system maintenance, but the repeated attempts could indicate an issue. No malicious intent is evident in this data.",
+      "LOG SOURCE": "Source type: auditd, Hosts: not_recorded, Time span: 2024-08-06T14:01:04.626000Z - 2024-08-06T14:18:20.217000Z",
+      "SIGNIFICANT SECURITY EVENTS": "- [E014] SUID change candidate for 'vuln'\n- [E020] Capability change candidate for './priv_esc'",
+      "SUSPICIOUS ACTIVITIES": "- Multiple attempts to restart services 'auditd' and 'SplunkForwarder', which could indicate an issue. ([E008], [E009], [E011], [E012], [E013])",
+      "EVIDENCE REFERENCES": "- [E014] Shows a SUID change candidate for 'vuln'\n- [E020] Shows a capability change candidate for './priv_esc'",
+      "INCIDENT TIMELINE": "| Timestamp | Event | Source | Host/User | Evidence Ref |\n|-----------|-------|--------|-----------|--------------|\n| 2024-08-06T14:01:04.626000Z | service_status_context | auditd | not_recorded | [E005] |\n| 2024-08-06T14:01:04.646000Z | service_status_context | auditd | not_recorded | [E006] |\n| 2024-08-06T14:01:04.974000Z | service_status_context | auditd | not_recorded | [E007] |\n| 2024-08-06T14:01:13.666000Z | service_status_context | auditd | not_recorded | [E008] |\n| 2024-08-06T14:01:26.582000Z | service_restart_context | auditd | not_recorded | [E009] |\n| 2024-08-06T14:01:26.590000Z | service_restart_context | auditd | not_recorded | [E010] |\n| 2024-08-06T14:01:40.430000Z | service_restart_context | auditd | not_recorded | [E011] |\n| 2024-08-06T14:01:43.646000Z | service_status_context | auditd | not_recorded | [E012] |\n| 2024-08-06T14:01:48.742000Z | service_status_context | auditd | not_recorded | [E013] |\n| 2024-08-06T14:02:19.626000Z | suid_change_candidate | auditd | not_recorded | [E014] |\n| 2024-08-06T14:02:19.634000Z | suid_change_candidate | auditd | not_recorded | [E015] |\n| 2024-08-06T14:02:19.634000Z | suid_change_candidate | auditd | not_recorded | [E016] |\n| 2024-08-06T14:02:19.634000Z | suid_change_candidate | auditd | not_recorded | [E017] |\n| 2024-08-06T14:02:19.642000Z | suid_change_candidate | auditd | not_recorded | [E018] |\n| 2024-08-06T14:02:19.646000Z | suid_change_candidate | auditd | not_recorded | [E019] |\n| 2024-08-06T14:02:19.646000Z | suid_change_candidate | auditd | not_recorded | [E020] |",
+      "EXTRACTED IOCS": "- Type: SUID change candidate, Value: 'vuln', [E014], [E015], [E016], [E017], [E018], [E019]\n- Type: Capability change candidate, Value: './priv_esc', [E020]",
+      "POTENTIAL ATTACK INDICATORS": "- Multiple failed service restarts could indicate an issue or a potential attack. ([E008], [E009], [E011], [E012], [E013])\n- SUID changes for 'vuln' might be suspicious, but more context is needed to confirm. ([E014], [E015], [E016], [E017], [E018], [E019])\n- Capability change for './priv_esc' could potentially indicate a privilege escalation attempt, but more context is needed to confirm. ([E020])",
+      "CONFIDENCE AND UNCERTAINTY": "Low: The repeated service restarts and SUID changes are unusual but could be explained by system maintenance or errors. More information about the environment and context of these events is required for a higher confidence assessment.\nMedium: The capability change candidate for './priv_esc' might indicate a privilege escalation attempt, but more evidence is needed to confirm this possibility.\nHigh: None identified.",
+      "MISSING INFORMATION": "- Context about the environment and system maintenance schedules\n- Information about the 'vuln' file and its purpose\n- External reputation check for the IOCs",
+      "RECOMMENDED INVESTIGATION STEPS": "1. Investigate the repeated service restarts to determine if they are due to errors or a potential attack.\n2. Investigate the SUID changes for 'vuln' and determine their purpose.\n3. Investigate the capability change candidate for './priv_esc'.\n4. Gather more information about the environment, system maintenance schedules, and any known authorized tools that might explain these events.\n5. Check the external reputation of the identified IOCs to see if they are associated with known threats or malicious activity."
+    },
+    "truncated": false,
+    "timeline_rows": [
+      {
+        "timestamp": "2024-08-06T14:01:04.626000Z",
+        "event": "service_status_context",
+        "source": "auditd",
+        "host_user": "not_recorded",
+        "evidence_ref": "[E005]",
+        "refs_found": [
+          "E005"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:01:04.646000Z",
+        "event": "service_status_context",
+        "source": "auditd",
+        "host_user": "not_recorded",
+        "evidence_ref": "[E006]",
+        "refs_found": [
+          "E006"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:01:04.974000Z",
+        "event": "service_status_context",
+        "source": "auditd",
+        "host_user": "not_recorded",
+        "evidence_ref": "[E007]",
+        "refs_found": [
+          "E007"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:01:13.666000Z",
+        "event": "service_status_context",
+        "source": "auditd",
+        "host_user": "not_recorded",
+        "evidence_ref": "[E008]",
+        "refs_found": [
+          "E008"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:01:26.582000Z",
+        "event": "service_restart_context",
+        "source": "auditd",
+        "host_user": "not_recorded",
+        "evidence_ref": "[E009]",
+        "refs_found": [
+          "E009"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:01:26.590000Z",
+        "event": "service_restart_context",
+        "source": "auditd",
+        "host_user": "not_recorded",
+        "evidence_ref": "[E010]",
+        "refs_found": [
+          "E010"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:01:40.430000Z",
+        "event": "service_restart_context",
+        "source": "auditd",
+        "host_user": "not_recorded",
+        "evidence_ref": "[E011]",
+        "refs_found": [
+          "E011"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:01:43.646000Z",
+        "event": "service_status_context",
+        "source": "auditd",
+        "host_user": "not_recorded",
+        "evidence_ref": "[E012]",
+        "refs_found": [
+          "E012"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:01:48.742000Z",
+        "event": "service_status_context",
+        "source": "auditd",
+        "host_user": "not_recorded",
+        "evidence_ref": "[E013]",
+        "refs_found": [
+          "E013"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:02:19.626000Z",
+        "event": "suid_change_candidate",
+        "source": "auditd",
+        "host_user": "not_recorded",
+        "evidence_ref": "[E014]",
+        "refs_found": [
+          "E014"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:02:19.634000Z",
+        "event": "suid_change_candidate",
+        "source": "auditd",
+        "host_user": "not_recorded",
+        "evidence_ref": "[E015]",
+        "refs_found": [
+          "E015"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:02:19.634000Z",
+        "event": "suid_change_candidate",
+        "source": "auditd",
+        "host_user": "not_recorded",
+        "evidence_ref": "[E016]",
+        "refs_found": [
+          "E016"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:02:19.634000Z",
+        "event": "suid_change_candidate",
+        "source": "auditd",
+        "host_user": "not_recorded",
+        "evidence_ref": "[E017]",
+        "refs_found": [
+          "E017"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:02:19.642000Z",
+        "event": "suid_change_candidate",
+        "source": "auditd",
+        "host_user": "not_recorded",
+        "evidence_ref": "[E018]",
+        "refs_found": [
+          "E018"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:02:19.646000Z",
+        "event": "suid_change_candidate",
+        "source": "auditd",
+        "host_user": "not_recorded",
+        "evidence_ref": "[E019]",
+        "refs_found": [
+          "E019"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:02:19.646000Z",
+        "event": "suid_change_candidate",
+        "source": "auditd",
+        "host_user": "not_recorded",
+        "evidence_ref": "[E020]",
+        "refs_found": [
+          "E020"
+        ]
+      }
+    ]
+  },
+  "grounding": {
+    "version": "grounded-detection-1.0",
+    "scope": "observed_input_events_only",
+    "events_inspected": 16,
+    "behavioral_findings": [
+      {
+        "rule_id": "LINUX_PRIVILEGE_SENSITIVE_COMMAND",
+        "label": "Privilege-sensitive setcap/SUID arguments",
+        "confidence_in_observed_pattern": "high",
+        "evidence_refs": [
+          "E014",
+          "E015",
+          "E016",
+          "E017",
+          "E018",
+          "E019",
+          "E020"
+        ],
+        "observation": "Recorded setcap cap_setuid+ep and/or chmod u+s command arguments",
+        "outcome": "Execution success, operator identity, authorization, privilege attainment NOT established",
+        "details": {
+          "setcap_records": 1,
+          "chmod_records": 6
+        },
+        "status": "investigation_indicator_not_incident_verdict"
+      }
+    ],
+    "context_observations": [],
+    "final_incident_verdict": "human_review_required",
+    "guarantees": [
+      "No LLM inference",
+      "No proof of attack success",
+      "No SOAR actions"
+    ]
+  },
+  "validation": {
+    "flags": [
+      {
+        "check": "timeline_timestamp_mismatch",
+        "severity": "high",
+        "section": "INCIDENT TIMELINE",
+        "value": "2024-08-06T14:02:19.646000Z",
+        "message": "Timestamp does not appear in the cited event(s) E020.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      },
+      {
+        "check": "multiple_confidence_levels",
+        "severity": "low",
+        "section": "UNIFIED REPORT QA",
+        "value": "Low: The repeated service restarts and SUID changes are unusual but could be explained by system maintenance or errors. More information about the environment a",
+        "message": "Several conflicting report-level confidence headings appear; choose one justified level.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F002"
+      }
+    ],
+    "severity_counts": {
+      "high": 1,
+      "medium": 0,
+      "low": 1
+    },
+    "automated_checks": [
+      "structure/truncation",
+      "IP/URL/domain/hash/CVE/email/file exact-string support",
+      "defang preservation",
+      "timestamp source-text check; timeline timestamp <1ms tolerance",
+      "entity (key=value, backtick, host-token) support",
+      "evidence-reference existence and presence",
+      "fabricated rule/agent ID",
+      "Event ID semantics (heuristic: Windows 1102/5145/4624/4625/4732)",
+      "unsupported certainty / attribution",
+      "none-claim vs code-detected risk signals",
+      "timeline timestamp vs cited event",
+      "input prompt-injection scan"
+    ],
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review",
+    "analyst": null,
+    "final_classification": null,
+    "final_priority": null,
+    "correct_findings": [],
+    "incorrect_findings": [],
+    "missing_evidence": [],
+    "hallucinations": [],
+    "notes": "",
+    "reviewed_utc": null,
+    "history": []
+  },
+  "unified": {
+    "engine_version": "unified-intake-0.4.0-candidate",
+    "family": "linux",
+    "pre_ai_notes": [
+      "UNIFIED ROUTING: 16 event(s) assigned to this source family using per-event signatures. Do not infer that unknown or omitted records were analyzed.",
+      "WHOLE-FILE PYTHON GROUNDING CONTEXT: linux has evidence-dependent finding type(s): LINUX_PRIVILEGE_SENSITIVE_COMMAND. Evidence counts reflect the FULL family subset, not necessarily this AI batch. Do not cite references absent from the current LOG DATA; do not invent events to bridge batches. Use only per-event evidence shown in this call for individual chronology and endpoint attribution. An aggregate is not an individual Zeek flow. This observation is not proof of attacker intent or intrusion. Other source records exist outside this batch and are independently summarized in the unified Python baseline.",
+      "CITATION POLICY: Cite ONLY the canonical [E###] tag immediately preceding each input record. Source-origin E### IDs are withheld from the model and remain in the analyst manifest. Never invent an E### reference or use internal/source-level IDs as citation labels.",
+      "DRAFT COMPLETENESS: Include all required ## headings, one clearly scoped report confidence level. Give at most THREE representative evidence-linked bullets per narrative section, no more than THREE real source-timestamp timeline rows, and at most FOUR evidence explanations. The program adds the COMPLETE evidence timeline independently. Never use \"...\", \"continue for all events\", filler rows or implied missing content. Unknown details must be explicitly called unknown, not guessed."
+    ],
+    "baseline_grounding": {
+      "version": "grounded-detection-1.0",
+      "scope": "observed_input_events_only",
+      "events_inspected": 16,
+      "behavioral_findings": [
+        {
+          "rule_id": "LINUX_PRIVILEGE_SENSITIVE_COMMAND",
+          "label": "Privilege-sensitive setcap/SUID arguments",
+          "confidence_in_observed_pattern": "high",
+          "evidence_refs": [
+            "E014",
+            "E015",
+            "E016",
+            "E017",
+            "E018",
+            "E019",
+            "E020"
+          ],
+          "observation": "Recorded setcap cap_setuid+ep and/or chmod u+s command arguments",
+          "outcome": "Execution success, operator identity, authorization, privilege attainment NOT established",
+          "details": {
+            "setcap_records": 1,
+            "chmod_records": 6
+          },
+          "status": "investigation_indicator_not_incident_verdict"
+        }
+      ],
+      "context_observations": [],
+      "final_incident_verdict": "human_review_required",
+      "guarantees": [
+        "No LLM inference",
+        "No proof of attack success",
+        "No SOAR actions"
+      ]
+    },
+    "windows_plink": [],
+    "input_original_sha256": "065cca374de2af6ccf70bd718bcc70ddccca8df852149fb98c039e970b64412c",
+    "prompt_source_file_sha256": "7affc781ced6c1a991a75ba465d7aa9c429fac7a7dc3730cf3656342b0650b6d",
+    "whole_family_rules": [
+      "LINUX_PRIVILEGE_SENSITIVE_COMMAND"
+    ],
+    "qa": {
+      "needs_human_review": true,
+      "missing_or_truncated_output": false,
+      "flag_count": 2,
+      "high_severity_flags": 1,
+      "review_checks": [
+        "multiple_confidence_levels",
+        "timeline_timestamp_mismatch"
+      ],
+      "status": "REVIEW_REQUIRED"
+    }
+  }
+}

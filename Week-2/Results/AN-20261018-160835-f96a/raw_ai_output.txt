@@ -1,0 +1,48 @@
+## EXECUTIVE SUMMARY
+The activity appears unclear. Two events show the SYSTEM account being granted special privileges (EventID 4672) and logging in as a service (LogonType 5, EventID 4624). These actions can be routine but require further investigation due to the privileges involved.
+
+## LOG SOURCE
+Source type: Microsoft-Windows-Security-Auditing, Hosts: WIN-TKC15D7KHUR, Time span: April 04, 2022 14:06:06 - April 04, 2022 14:06:11
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] Service logon (LogonType 5) by WIN-TKC15D7KHUR$ as services.exe
+- [E002] Special privileges granted to SYSTEM account: SeAssignPrimaryTokenPrivilege, SeTcbPrivilege, SeSecurityPrivilege, SeTakeOwnershipPrivilege, SeLoadDriverPrivilege, SeBackupPrivilege, SeRestorePrivilege, SeDebugPrivilege, SeAuditPrivilege, SeSystemEnvironmentPrivilege, SeImpersonatePrivilege, and SeDelegateSessionUserImpersonatePrivilege
+- [E003] Service logon (LogonType 5) by WIN-TKC15D7KHUR$ as services.exe
+- [E004] Special privileges granted to SYSTEM account: SeAssignPrimaryTokenPrivilege, SeTcbPrivilege, SeSecurityPrivilege, SeTakeOwnershipPrivilege, SeLoadDriverPrivilege, SeBackupPrivilege, SeRestorePrivilege, SeDebugPrivilege, SeAuditPrivilege, SeSystemEnvironmentPrivilege, SeImpersonatePrivilege, and SeDelegateSessionUserImpersonatePrivilege
+
+## SUSPICIOUS ACTIVITIES
+- The SYSTEM account being granted multiple special privileges in a short time frame is unusual but not necessarily malicious. [E002] [E004]
+
+## EVIDENCE REFERENCES
+- [E001] Shows a service logon (LogonType 5) by WIN-TKC15D7KHUR$ as services.exe
+- [E002] Shows special privileges granted to SYSTEM account: SeAssignPrimaryTokenPrivilege, SeTcbPrivilege, SeSecurityPrivilege, SeTakeOwnershipPrivilege, SeLoadDriverPrivilege, SeBackupPrivilege, SeRestorePrivilege, SeDebugPrivilege, SeAuditPrivilege, SeSystemEnvironmentPrivilege, SeImpersonatePrivilege, and SeDelegateSessionUserImpersonatePrivilege
+- [E003] Shows a service logon (LogonType 5) by WIN-TKC15D7KHUR$ as services.exe
+- [E004] Shows special privileges granted to SYSTEM account: SeAssignPrimaryTokenPrivilege, SeTcbPrivilege, SeSecurityPrivilege, SeTakeOwnershipPrivilege, SeLoadDriverPrivilege, SeBackupPrivilege, SeRestorePrivilege, SeDebugPrivilege, SeAuditPrivilege, SeSystemEnvironmentPrivilege, SeImpersonatePrivilege, and SeDelegateSessionUserImpersonatePrivilege
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|-----------|-------|--------|-----------|--------------|
+| 2022-04-04T14:06:06.7223244Z | Service logon (LogonType 5) by WIN-TKC15D7KHUR$ as services.exe | Microsoft-Windows-Security-Auditing | WIN-TKC15D7KHUR, SYSTEM | [E001] |
+| 2022-04-04T14:06:06.7223631Z | Special privileges granted to SYSTEM account | Microsoft-Windows-Security-Auditing | WIN-TKC15D7KHUR, SYSTEM | [E002] |
+| 2022-04-04T14:06:11.2761279Z | Service logon (LogonType 5) by WIN-TKC15D7KHUR$ as services.exe | Microsoft-Windows-Security-Auditing | WIN-TKC15D7KHUR, SYSTEM | [E003] |
+| 2022-04-04T14:06:11.2761733Z | Special privileges granted to SYSTEM account | Microsoft-Windows-Security-Auditing | WIN-TKC15D7KHUR, SYSTEM | [E004] |
+
+## EXTRACTED IOCS
+None identified
+
+## POTENTIAL ATTACK INDICATORS
+- Unusual granting of multiple special privileges to the SYSTEM account in a short time frame.
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The activity is unusual but could be routine. More context and investigation are needed to confirm or rule out malicious intent.
+
+## MISSING INFORMATION
+- Context of these events (approved changes, maintenance windows)
+- Purpose of the service logons and privilege assignments
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the purpose of the service logons and privilege assignments.
+2. Check if these actions are part of approved changes or maintenance activities.
+3. Determine if there is a pattern or anomaly in the SYSTEM account's activity.
+4. Review logs for related events before and after this time frame.
+5. Consult with system administrators to understand routine activities involving the SYSTEM account and special privileges.

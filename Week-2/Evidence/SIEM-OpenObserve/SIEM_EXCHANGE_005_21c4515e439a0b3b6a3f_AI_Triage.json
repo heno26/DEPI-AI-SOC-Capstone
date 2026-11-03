@@ -1,0 +1,84 @@
+{
+  "project": "DEPI-P5",
+  "phase": "Week-2 Exchange 005",
+  "event_id": "21c4515e439a0b3b6a3f",
+  "generated_at_utc": "2026-11-02T18:32:13.521911+00:00",
+  "mode": "authenticated_webhook_verified_exchange_evidence",
+  "alert_rule": "SIEM_EXCHANGE_005_SUSPICIOUS_MAILBOX_EXPORT",
+  "stream": "depi_exchange_events",
+  "correlation": {
+    "alert_rows": 2,
+    "matched_replays": 2,
+    "unique_events": 2,
+    "duplicates_removed": 0,
+    "verified_evidence": [
+      {
+        "_timestamp": 1793629009191000,
+        "timestamp_source": "2022-11-21T20:03:51",
+        "host": "win-dc-exch01.attackrange.local",
+        "command": "New-MailboxExportRequest",
+        "record_number": 1892,
+        "message": "Cmdlet suceeded. Cmdlet New-MailboxExportRequest, parameters -Name \"dYbLTCleBT\" -Mailbox \"Administrator@attackrange.local\" -IncludeFolders (\"#Drafts#\") -ContentFilter \"(Subject -eq 'Fay10dOWecFg')\" -ExcludeDumpster \"True\" -FilePath \"\\\\win-dc-exch01.attackrange.local\\C$\\Program Files\\Microsoft\\Exchange Server\\V15\\FrontEnd\\HttpProxy\\owa\\auth\\43yYO1sP.aspx\".",
+        "suspicious_export": true,
+        "alert_rule": "SIEM_EXCHANGE_005_SUSPICIOUS_MAILBOX_EXPORT"
+      },
+      {
+        "_timestamp": 1793619299191000,
+        "timestamp_source": "2022-11-21T17:22:01",
+        "host": "win-dc-exch01.attackrange.local",
+        "command": "New-MailboxExportRequest",
+        "record_number": 1789,
+        "message": "Cmdlet suceeded. Cmdlet New-MailboxExportRequest, parameters -Name \"OnmrPW8m8Uv\" -Mailbox \"Administrator@attackrange.local\" -IncludeFolders (\"#Drafts#\") -ContentFilter \"(Subject -eq 'AvcMRhPdI')\" -ExcludeDumpster \"True\" -FilePath \"\\\\win-dc-exch01.attackrange.local\\C$\\Program Files\\Microsoft\\Exchange Server\\V15\\FrontEnd\\HttpProxy\\owa\\auth\\ZnTQs2wv.aspx\".",
+        "suspicious_export": true,
+        "alert_rule": "SIEM_EXCHANGE_005_SUSPICIOUS_MAILBOX_EXPORT"
+      }
+    ]
+  },
+  "model": "mistral:7b-instruct-v0.3-q4_K_S",
+  "qa_status": "REVIEW_REQUIRED",
+  "human_validation_required": true,
+  "missing_fields": [],
+  "semantic_warnings": [],
+  "ai_triage": {
+    "executive_summary": "Two suspicious Exchange mailbox export requests were detected on win-dc-exch01.attackrange.local, potentially indicating unauthorized data exfiltration.",
+    "confirmed_observations": [
+      {
+        "timestamp": "2022-11-21T20:03:51",
+        "host": "win-dc-exch01.attackrange.local",
+        "command": "New-MailboxExportRequest",
+        "suspicious_export": true
+      },
+      {
+        "timestamp": "2022-11-21T17:22:01",
+        "host": "win-dc-exch01.attackrange.local",
+        "command": "New-MailboxExportRequest",
+        "suspicious_export": true
+      }
+    ],
+    "suspicious_indicators": [
+      "Multiple suspicious Exchange mailbox export requests",
+      "Potential unauthorized data exfiltration"
+    ],
+    "unverified_hypotheses": [
+      "Successful completion of the export requests",
+      "Filesystem evidence of export file creation",
+      "Web-shell deployment or execution",
+      "Original timestamps vs SIEM replay timestamps"
+    ],
+    "missing_evidence": [
+      "Successful completion of the export requests",
+      "Filesystem evidence of export file creation",
+      "Web-shell deployment or execution",
+      "Original timestamps vs SIEM replay timestamps"
+    ],
+    "recommended_actions": [
+      "Investigate the suspicious Exchange mailbox export requests",
+      "Check for any unusual network traffic related to the exported mailboxes",
+      "Inspect the mailbox contents for any signs of data exfiltration",
+      "Review system logs for any related activities"
+    ],
+    "severity": "High",
+    "confidence": "Medium",
+    "human_validation_required": true
+  }
+}

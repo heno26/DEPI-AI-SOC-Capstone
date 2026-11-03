@@ -1,0 +1,55 @@
+## EXECUTIVE SUMMARY
+The activity observed in the log data shows a user downloading an executable file named 'a.exe' from an unspecified source and running it multiple times, with one instance setting up persistence using Winlogon Shell. The behavior is suspicious due to the repeated execution of the same file and the use of a registry value change for persistence.
+
+## LOG SOURCE
+Source type: Microsoft-Windows-Sysmon, Hosts: IEWIN7, Time span: 2019-06-14T22:22:17.9883707Z - 2019-06-14T22:23:16.5928629Z
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001]: Process creation of 'a.exe' by user IEUser on host IEWIN7 (Image: C:\Users\IEUser\Downloads\a.exe)
+- [E003]: Registry value set for Winlogon Shell, targeting 'explorer.exe', with details referencing 'C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe'
+- [E005]: Process creation of 'BRE6BgE2JubB.exe' by user IEUser on host IEWIN7 (Image: C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe)
+- [E007]: Process creation of 'BRE6BgE2JubB.exe' by user IEUser on host IEWIN7 (Image: C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe)
+
+## SUSPICIOUS ACTIVITIES
+- Multiple executions of the same file 'a.exe' and its derivative 'BRE6BgE2JubB.exe', which may indicate repeated execution or different logon sessions ([E001], [E005], [E007])
+- Use of Winlogon Shell for persistence, potentially allowing the malware to run every time the system logs in ([E003])
+
+## EVIDENCE REFERENCES
+- [E001]: Process creation: 'a.exe' by user IEUser on host IEWIN7
+- [E003]: Registry value set for Winlogon Shell, targeting 'explorer.exe', with details referencing 'BRE6BgE2JubB.exe'
+- [E005], [E007]: Process creation: 'BRE6BgE2JubB.exe' by user IEUser on host IEWIN7
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2019-06-14T22:22:17.9883707Z | Process creation | Microsoft-Windows-Sysmon | IEWIN7, IEUser | [E001] |
+| 2019-06-14T22:22:21.5039957Z | File creation | Microsoft-Windows-Sysmon | IEWIN7 | [E002] |
+| 2019-06-14T22:22:21.5352457Z | Registry value set | Microsoft-Windows-Sysmon | IEWIN7 | [E003] |
+| 2019-06-14T22:23:13.8946207Z | Process creation | Microsoft-Windows-Sysmon | IEWIN7, IEUser | [E004] |
+| 2019-06-14T22:23:13.9571207Z | Process creation | Microsoft-Windows-Sysmon | IEWIN7, IEUser | [E005] |
+| 2019-06-14T22:23:13.9727457Z | Process creation | Microsoft-Windows-Sysmon | IEWIN7, IEUser | [E006] |
+| 2019-06-14T22:23:16.5928629Z | Process creation | Microsoft-Windows-Sysmon | IEWIN7, IEUser | [E007] |
+
+## EXTRACTED IOCS
+- Type: File (Image), Value: C:\Users\IEUser\Downloads\a.exe
+- Type: File (TargetFilename), Value: C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe
+- External reputation not checked.
+
+## POTENTIAL ATTACK INDICATORS
+- Multiple executions of the same file or its derivatives may indicate malicious activity ([E001], [E005], [E007])
+- Use of Winlogon Shell for persistence could potentially allow continued execution after reboots ([E003])
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The behavior is suspicious but further investigation is needed to confirm if the file 'a.exe' and its derivative 'BRE6BgE2JubB.exe' are malicious.
+
+## MISSING INFORMATION
+- Detailed information about the source of the downloaded file 'a.exe'
+- Information about the purpose or intended function of the files 'a.exe' and 'BRE6BgE2JubB.exe'
+- Additional context, such as network traffic or other system events, to help determine if this activity is malicious
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the source of the downloaded file 'a.exe'.
+2. Analyze the behavior and purpose of the files 'a.exe' and 'BRE6BgE2JubB.exe'.
+3. Examine network traffic related to the download and execution of these files.
+4. Investigate the Winlogon Shell registry value change for persistence ([E003]).
+5. Monitor for further occurrences of this activity or similar behavior on the system.

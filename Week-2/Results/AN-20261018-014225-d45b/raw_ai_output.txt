@@ -1,0 +1,35 @@
+## EXECUTIVE SUMMARY
+A user downloaded and executed an application named 'a.exe' from a suspicious domain, potentially installing a new process ('BRE6BgE2JubB.exe'). The execution chain indicates persistence through modifying the Winlogon Shell. The activity appears malicious due to the use of unapproved software and potential for persistent access.
+
+## LOG SOURCE
+Source type: Microsoft-Windows-Sysmon, Hosts: IEWIN7, Time span: 2019-06-14T22:22:17.9883707Z - 2019-06-14T22:23:16.5928629Z
+
+## SIGNIFICANT SECURITY EVENTS
+- [E003] Persistence attempt through Winlogon Shell modification (C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe)
+- [E005] Execution of the suspicious process 'BRE6BgE2JubB.exe' (C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe)
+- [E007] Execution of 'NpmTaskRunner' with the same suspicious process (C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe)
+
+## SUSPICIOUS ACTIVITIES
+- Download and execution of unapproved software 'a.exe' from a suspicious domain ([E001], [E005])
+  - The user downloaded the file to C:\Users\IEUser\Downloads\ and executed it, leading to the subsequent processes.
+
+## EVIDENCE REFERENCES
+- [E001] Download of 'a.exe' from a suspicious domain
+- [E003] Persistence attempt through Winlogon Shell modification (C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe)
+- [E005] Execution of the suspicious process 'BRE6BgE2JubB.exe' (C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe)
+- [E007] Execution of 'NpmTaskRunner' with the same suspicious process (C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe)
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2019-06-14T22:22:17.9883707Z | Download of 'a.exe' from a suspicious domain | Microsoft-Windows-Sysmon | IEWIN7\IEUser | [E001] |
+| 2019-06-14T22:22:21.5039957Z | Process 'a.exe' creates 'BRE6BgE2JubB.exe' (C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe) | Microsoft-Windows-Sysmon | IEWIN7\IEUser | [E003] |
+| 2019-06-14T22:22:21.5352457Z | Process 'a.exe' modifies Winlogon Shell (HKU\\S-1-5-21-3583694148-1414552638-2922671848-1000\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell) | Microsoft-Windows-Sysmon | IEWIN7\IEUser | [E003] |
+| 2019-06-14T22:22:53.8946207Z | Userinit Logon Application (C:\Windows\system32\userinit.exe) starts | Microsoft-Windows-Sysmon | IEWIN7\IEUser | [E004] |
+| 2019-06-14T22:23:13.9571207Z | Execution of 'BRE6BgE2JubB.exe' (C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe) | Microsoft-Windows-Sysmon | IEWIN7\IEUser | [E005] |
+| 2019-06-14T22:23:13.9727457Z | Execution of 'explorer.exe' (C:\Windows\explorer.exe) starts | Microsoft-Windows-Sysmon | IEWIN7\IEUser | [E006] |
+| 2019-06-14T22:23:16.5928629Z | Execution of 'NpmTaskRunner' with 'BRE6BgE2JubB.exe' (C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyPj4w\BRE6BgE2JubB.exe) | Microsoft-Windows-Sysmon | IEWIN7\IEUser | [E007] |
+
+## EXTRACTED IOCS
+- Type: File, Value: C:\Users\IEUser\Downloads\a.exe, Evidence Ref: [E001]
+- Type: File, Value: C:\Users\IEUser\AppData\Roaming\9QxTsAU9w8gyP

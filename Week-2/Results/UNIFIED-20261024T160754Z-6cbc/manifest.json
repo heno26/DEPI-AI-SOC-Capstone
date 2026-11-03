@@ -1,0 +1,1710 @@
+{
+  "engine_version": "unified-intake-0.4.0-candidate",
+  "source_file": "Mixed-Win-Linux-Net-QA.json",
+  "source_sha256": "065cca374de2af6ccf70bd718bcc70ddccca8df852149fb98c039e970b64412c",
+  "evidence_class": "user_supplied_unverified",
+  "input_event_count": 56,
+  "counts_by_family": {
+    "windows": 4,
+    "linux": 21,
+    "network": 31
+  },
+  "classification": [
+    {
+      "ref": "E001",
+      "line_no": 1,
+      "family": "windows",
+      "confidence": "high",
+      "reason": "Windows event provider; Structured Windows event; Windows event_data/data.win fields",
+      "transport": "file",
+      "original_evidence_id": "E003",
+      "original_source": {
+        "file": "RT-01-C2-plink-focused.json",
+        "sha256": "1a5bee30293a99830627fd128d7aa003e4b6268bd722bdc3256c10f989cd62b7",
+        "ref": "E001",
+        "line_no": 1
+      }
+    },
+    {
+      "ref": "E002",
+      "line_no": 2,
+      "family": "windows",
+      "confidence": "high",
+      "reason": "Windows event provider; Structured Windows event",
+      "transport": "file",
+      "original_evidence_id": "E004",
+      "original_source": {
+        "file": "RT-01-C2-plink-focused.json",
+        "sha256": "1a5bee30293a99830627fd128d7aa003e4b6268bd722bdc3256c10f989cd62b7",
+        "ref": "E002",
+        "line_no": 2
+      }
+    },
+    {
+      "ref": "E003",
+      "line_no": 3,
+      "family": "windows",
+      "confidence": "high",
+      "reason": "Windows event provider; Structured Windows event",
+      "transport": "file",
+      "original_evidence_id": "E005",
+      "original_source": {
+        "file": "RT-01-C2-plink-focused.json",
+        "sha256": "1a5bee30293a99830627fd128d7aa003e4b6268bd722bdc3256c10f989cd62b7",
+        "ref": "E003",
+        "line_no": 3
+      }
+    },
+    {
+      "ref": "E004",
+      "line_no": 4,
+      "family": "windows",
+      "confidence": "high",
+      "reason": "Windows event provider; Structured Windows event",
+      "transport": "file",
+      "original_evidence_id": "E023",
+      "original_source": {
+        "file": "RT-01-C2-plink-focused.json",
+        "sha256": "1a5bee30293a99830627fd128d7aa003e4b6268bd722bdc3256c10f989cd62b7",
+        "ref": "E004",
+        "line_no": 4
+      }
+    },
+    {
+      "ref": "E005",
+      "line_no": 5,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E001",
+        "line_no": 1
+      }
+    },
+    {
+      "ref": "E006",
+      "line_no": 6,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E002",
+        "line_no": 2
+      }
+    },
+    {
+      "ref": "E007",
+      "line_no": 7,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E003",
+        "line_no": 3
+      }
+    },
+    {
+      "ref": "E008",
+      "line_no": 8,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E004",
+        "line_no": 4
+      }
+    },
+    {
+      "ref": "E009",
+      "line_no": 9,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E005",
+        "line_no": 5
+      }
+    },
+    {
+      "ref": "E010",
+      "line_no": 10,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E006",
+        "line_no": 6
+      }
+    },
+    {
+      "ref": "E011",
+      "line_no": 11,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E007",
+        "line_no": 7
+      }
+    },
+    {
+      "ref": "E012",
+      "line_no": 12,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E008",
+        "line_no": 8
+      }
+    },
+    {
+      "ref": "E013",
+      "line_no": 13,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E009",
+        "line_no": 9
+      }
+    },
+    {
+      "ref": "E014",
+      "line_no": 14,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E010",
+        "line_no": 10
+      }
+    },
+    {
+      "ref": "E015",
+      "line_no": 15,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E011",
+        "line_no": 11
+      }
+    },
+    {
+      "ref": "E016",
+      "line_no": 16,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E012",
+        "line_no": 12
+      }
+    },
+    {
+      "ref": "E017",
+      "line_no": 17,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E013",
+        "line_no": 13
+      }
+    },
+    {
+      "ref": "E018",
+      "line_no": 18,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E014",
+        "line_no": 14
+      }
+    },
+    {
+      "ref": "E019",
+      "line_no": 19,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E015",
+        "line_no": 15
+      }
+    },
+    {
+      "ref": "E020",
+      "line_no": 20,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E016",
+        "line_no": 16
+      }
+    },
+    {
+      "ref": "E021",
+      "line_no": 21,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E017",
+        "line_no": 17
+      }
+    },
+    {
+      "ref": "E022",
+      "line_no": 22,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E018",
+        "line_no": 18
+      }
+    },
+    {
+      "ref": "E023",
+      "line_no": 23,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E019",
+        "line_no": 19
+      }
+    },
+    {
+      "ref": "E024",
+      "line_no": 24,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E020",
+        "line_no": 20
+      }
+    },
+    {
+      "ref": "E025",
+      "line_no": 25,
+      "family": "linux",
+      "confidence": "high",
+      "reason": "Linux syslog normalization",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "LT-02-normalized-focused.log",
+        "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+        "ref": "E021",
+        "line_no": 21
+      }
+    },
+    {
+      "ref": "E026",
+      "line_no": 26,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E001",
+        "line_no": 1
+      }
+    },
+    {
+      "ref": "E027",
+      "line_no": 27,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E002",
+        "line_no": 2
+      }
+    },
+    {
+      "ref": "E028",
+      "line_no": 28,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E003",
+        "line_no": 3
+      }
+    },
+    {
+      "ref": "E029",
+      "line_no": 29,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E004",
+        "line_no": 4
+      }
+    },
+    {
+      "ref": "E030",
+      "line_no": 30,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E005",
+        "line_no": 5
+      }
+    },
+    {
+      "ref": "E031",
+      "line_no": 31,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E006",
+        "line_no": 6
+      }
+    },
+    {
+      "ref": "E032",
+      "line_no": 32,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E007",
+        "line_no": 7
+      }
+    },
+    {
+      "ref": "E033",
+      "line_no": 33,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E008",
+        "line_no": 8
+      }
+    },
+    {
+      "ref": "E034",
+      "line_no": 34,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E009",
+        "line_no": 9
+      }
+    },
+    {
+      "ref": "E035",
+      "line_no": 35,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E010",
+        "line_no": 10
+      }
+    },
+    {
+      "ref": "E036",
+      "line_no": 36,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E011",
+        "line_no": 11
+      }
+    },
+    {
+      "ref": "E037",
+      "line_no": 37,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E012",
+        "line_no": 12
+      }
+    },
+    {
+      "ref": "E038",
+      "line_no": 38,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E013",
+        "line_no": 13
+      }
+    },
+    {
+      "ref": "E039",
+      "line_no": 39,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E014",
+        "line_no": 14
+      }
+    },
+    {
+      "ref": "E040",
+      "line_no": 40,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E015",
+        "line_no": 15
+      }
+    },
+    {
+      "ref": "E041",
+      "line_no": 41,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E016",
+        "line_no": 16
+      }
+    },
+    {
+      "ref": "E042",
+      "line_no": 42,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E017",
+        "line_no": 17
+      }
+    },
+    {
+      "ref": "E043",
+      "line_no": 43,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E018",
+        "line_no": 18
+      }
+    },
+    {
+      "ref": "E044",
+      "line_no": 44,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E019",
+        "line_no": 19
+      }
+    },
+    {
+      "ref": "E045",
+      "line_no": 45,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E020",
+        "line_no": 20
+      }
+    },
+    {
+      "ref": "E046",
+      "line_no": 46,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E021",
+        "line_no": 21
+      }
+    },
+    {
+      "ref": "E047",
+      "line_no": 47,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E022",
+        "line_no": 22
+      }
+    },
+    {
+      "ref": "E048",
+      "line_no": 48,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E023",
+        "line_no": 23
+      }
+    },
+    {
+      "ref": "E049",
+      "line_no": 49,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E024",
+        "line_no": 24
+      }
+    },
+    {
+      "ref": "E050",
+      "line_no": 50,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E025",
+        "line_no": 25
+      }
+    },
+    {
+      "ref": "E051",
+      "line_no": 51,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E026",
+        "line_no": 26
+      }
+    },
+    {
+      "ref": "E052",
+      "line_no": 52,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E027",
+        "line_no": 27
+      }
+    },
+    {
+      "ref": "E053",
+      "line_no": 53,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E028",
+        "line_no": 28
+      }
+    },
+    {
+      "ref": "E054",
+      "line_no": 54,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E029",
+        "line_no": 29
+      }
+    },
+    {
+      "ref": "E055",
+      "line_no": 55,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E030",
+        "line_no": 30
+      }
+    },
+    {
+      "ref": "E056",
+      "line_no": 56,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": {
+        "file": "NT-01-focused.json",
+        "sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+        "ref": "E031",
+        "line_no": 31
+      }
+    }
+  ],
+  "analysis_runs": [
+    {
+      "family": "windows",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004"
+      ],
+      "analysis_id": "AN-20261024-160226-33f3",
+      "saved": "D:\\Desktop\\w\\Week-2\\Results\\AN-20261024-160226-33f3",
+      "model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "validation_flags": 2,
+      "review_status": "Pending Review",
+      "qa": {
+        "needs_human_review": true,
+        "missing_or_truncated_output": false,
+        "flag_count": 2,
+        "high_severity_flags": 2,
+        "review_checks": [
+          "timeline_timestamp_mismatch"
+        ],
+        "status": "REVIEW_REQUIRED"
+      },
+      "events_sent_to_ai": [
+        "E001",
+        "E002",
+        "E003",
+        "E004"
+      ]
+    },
+    {
+      "family": "linux",
+      "refs": [
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E018",
+        "E019",
+        "E020"
+      ],
+      "analysis_id": "AN-20261024-160416-f246",
+      "saved": "D:\\Desktop\\w\\Week-2\\Results\\AN-20261024-160416-f246",
+      "model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "validation_flags": 2,
+      "review_status": "Pending Review",
+      "qa": {
+        "needs_human_review": true,
+        "missing_or_truncated_output": false,
+        "flag_count": 2,
+        "high_severity_flags": 1,
+        "review_checks": [
+          "multiple_confidence_levels",
+          "timeline_timestamp_mismatch"
+        ],
+        "status": "REVIEW_REQUIRED"
+      },
+      "events_sent_to_ai": [
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E018",
+        "E019",
+        "E020"
+      ]
+    },
+    {
+      "family": "linux",
+      "refs": [
+        "E021",
+        "E022",
+        "E023",
+        "E024",
+        "E025"
+      ],
+      "analysis_id": "AN-20261024-160518-98e5",
+      "saved": "D:\\Desktop\\w\\Week-2\\Results\\AN-20261024-160518-98e5",
+      "model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "validation_flags": 0,
+      "review_status": "Pending Review",
+      "qa": {
+        "needs_human_review": true,
+        "missing_or_truncated_output": false,
+        "flag_count": 0,
+        "high_severity_flags": 0,
+        "review_checks": [],
+        "status": "REVIEW_REQUIRED"
+      },
+      "events_sent_to_ai": [
+        "E021",
+        "E022",
+        "E023",
+        "E024",
+        "E025"
+      ]
+    },
+    {
+      "family": "network",
+      "refs": [
+        "E026",
+        "E027",
+        "E028",
+        "E029",
+        "E030",
+        "E031",
+        "E032",
+        "E033",
+        "E034",
+        "E035",
+        "E036",
+        "E037",
+        "E038",
+        "E039",
+        "E040",
+        "E041"
+      ],
+      "analysis_id": "AN-20261024-160629-05b0",
+      "saved": "D:\\Desktop\\w\\Week-2\\Results\\AN-20261024-160629-05b0",
+      "model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "validation_flags": 2,
+      "review_status": "Pending Review",
+      "qa": {
+        "needs_human_review": true,
+        "missing_or_truncated_output": false,
+        "flag_count": 2,
+        "high_severity_flags": 0,
+        "review_checks": [
+          "timeline_row_without_ref",
+          "unsupported_timestamp"
+        ],
+        "status": "REVIEW_REQUIRED"
+      },
+      "events_sent_to_ai": [
+        "E026",
+        "E027",
+        "E028",
+        "E029",
+        "E030",
+        "E031",
+        "E032",
+        "E033",
+        "E034",
+        "E035",
+        "E036",
+        "E037",
+        "E038",
+        "E039",
+        "E040",
+        "E041"
+      ]
+    },
+    {
+      "family": "network",
+      "refs": [
+        "E042",
+        "E043",
+        "E044",
+        "E045",
+        "E046",
+        "E047",
+        "E048",
+        "E049",
+        "E050",
+        "E051",
+        "E052",
+        "E053",
+        "E054",
+        "E055",
+        "E056"
+      ],
+      "analysis_id": "AN-20261024-160754-2484",
+      "saved": "D:\\Desktop\\w\\Week-2\\Results\\AN-20261024-160754-2484",
+      "model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "validation_flags": 2,
+      "review_status": "Pending Review",
+      "qa": {
+        "needs_human_review": true,
+        "missing_or_truncated_output": false,
+        "flag_count": 2,
+        "high_severity_flags": 0,
+        "review_checks": [
+          "finding_without_evidence_ref",
+          "timeline_row_without_ref"
+        ],
+        "status": "REVIEW_REQUIRED"
+      },
+      "events_sent_to_ai": [
+        "E042",
+        "E043",
+        "E044",
+        "E045",
+        "E046",
+        "E047",
+        "E048",
+        "E049",
+        "E050",
+        "E051",
+        "E052",
+        "E053",
+        "E054",
+        "E055",
+        "E056"
+      ]
+    }
+  ],
+  "whole_family_python_baseline": {
+    "windows": {
+      "event_count": 4,
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004"
+      ],
+      "findings": [],
+      "context": [],
+      "windows_plink": [
+        {
+          "rule_id": "WINDOWS_PLINK_REVERSE_FORWARD",
+          "evidence_refs": [
+            "E001",
+            "E002",
+            "E003",
+            "E004"
+          ],
+          "process_creation_records": 1,
+          "tcp_connection_records": 3,
+          "ssh_port_80_in_command": true,
+          "rdp_target_in_command": true,
+          "command_line_password_present": true,
+          "assessment": "Suspicious reverse-forwarding command pattern; authorization, SSH success, RDP access and C2 not confirmed."
+        }
+      ],
+      "interpretation": "Observed indicators only; authorization, attack success and compromise require external verification."
+    },
+    "linux": {
+      "event_count": 21,
+      "refs": [
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024",
+        "E025"
+      ],
+      "findings": [
+        {
+          "rule_id": "LINUX_PRIVILEGE_SENSITIVE_COMMAND",
+          "label": "Privilege-sensitive setcap/SUID arguments",
+          "confidence_in_observed_pattern": "high",
+          "evidence_refs": [
+            "E014",
+            "E015",
+            "E016",
+            "E017",
+            "E018",
+            "E019",
+            "E020",
+            "E021",
+            "E022",
+            "E023",
+            "E024",
+            "E025"
+          ],
+          "observation": "Recorded setcap cap_setuid+ep and/or chmod u+s command arguments",
+          "outcome": "Execution success, operator identity, authorization, privilege attainment NOT established",
+          "details": {
+            "setcap_records": 6,
+            "chmod_records": 6
+          },
+          "status": "investigation_indicator_not_incident_verdict"
+        }
+      ],
+      "context": [],
+      "windows_plink": [],
+      "interpretation": "Observed indicators only; authorization, attack success and compromise require external verification."
+    },
+    "network": {
+      "event_count": 31,
+      "refs": [
+        "E026",
+        "E027",
+        "E028",
+        "E029",
+        "E030",
+        "E031",
+        "E032",
+        "E033",
+        "E034",
+        "E035",
+        "E036",
+        "E037",
+        "E038",
+        "E039",
+        "E040",
+        "E041",
+        "E042",
+        "E043",
+        "E044",
+        "E045",
+        "E046",
+        "E047",
+        "E048",
+        "E049",
+        "E050",
+        "E051",
+        "E052",
+        "E053",
+        "E054",
+        "E055",
+        "E056"
+      ],
+      "findings": [
+        {
+          "rule_id": "NETWORK_VERTICAL_PORT_SCAN",
+          "label": "Vertical TCP destination-port sweep pattern",
+          "confidence_in_observed_pattern": "high",
+          "evidence_refs": [
+            "E026",
+            "E028",
+            "E029",
+            "E030",
+            "E031",
+            "E032",
+            "E033",
+            "E034",
+            "E035",
+            "E036",
+            "E037",
+            "E038",
+            "E039",
+            "E040",
+            "E041",
+            "E042",
+            "E043",
+            "E044",
+            "E045",
+            "E046",
+            "E047",
+            "E048",
+            "E049",
+            "E050",
+            "E051",
+            "E052",
+            "E053",
+            "E054",
+            "E055"
+          ],
+          "observation": "Supplied aggregate reports 65747 TCP flow records from 192.168.16.132 to 192.168.16.130 across 65535 distinct destination ports in 738.269s; sampled Zeek rows corroborate endpoints.",
+          "outcome": "Pattern is consistent with vertical TCP port scanning; authorization, attacker intent, port openness and successful compromise NOT established.",
+          "details": {
+            "source_ip": "192.168.16.132",
+            "destination_ip": "192.168.16.130",
+            "tcp_records": 65747,
+            "distinct_destination_ports": 65535,
+            "connection_state_counts": {
+              "REJ": 65620,
+              "RSTO": 15,
+              "S0": 112
+            },
+            "duration_seconds": 738.269,
+            "aggregate_ref": "E026",
+            "sample_source_refs": [
+              "E028",
+              "E029",
+              "E030",
+              "E031",
+              "E032",
+              "E033",
+              "E034",
+              "E035",
+              "E036",
+              "E037",
+              "E038",
+              "E039",
+              "E040",
+              "E041",
+              "E042",
+              "E043",
+              "E044",
+              "E045",
+              "E046",
+              "E047",
+              "E048",
+              "E049",
+              "E050",
+              "E051",
+              "E052",
+              "E053",
+              "E054",
+              "E055"
+            ],
+            "aggregate_is_raw_connection": false,
+            "full_source_integrity_checked_in_this_function": false,
+            "source_sha256_claimed_by_aggregate": "f9282d987047ef37a807a575a353ff601ddbb1b389aa76e92214c302de2fbda9"
+          },
+          "status": "investigation_indicator_not_incident_verdict"
+        }
+      ],
+      "context": [
+        {
+          "rule_id": "NETWORK_COMPUTED_AGGREGATE_CONTEXT",
+          "evidence_refs": [
+            "E026"
+          ],
+          "observation": "Full-source aggregate supplied; it is NOT a raw Zeek connection.",
+          "security_limit": "Re-verify original capture SHA256 and the aggregate derivation separately."
+        }
+      ],
+      "windows_plink": [],
+      "interpretation": "Observed indicators only; authorization, attack success and compromise require external verification."
+    }
+  },
+  "source_evidence_timeline": [
+    {
+      "ref": "E001",
+      "source_timestamp": "2019-02-16T10:02:21.9344384Z",
+      "family": "windows",
+      "observation": "Sysmon Windows event record (EventID 1)",
+      "original_record": "RT-01-C2-plink-focused.json:E001"
+    },
+    {
+      "ref": "E002",
+      "source_timestamp": "2019-02-16T10:02:22.9659216Z",
+      "family": "windows",
+      "observation": "Sysmon Windows event record (EventID 3)",
+      "original_record": "RT-01-C2-plink-focused.json:E002"
+    },
+    {
+      "ref": "E003",
+      "source_timestamp": "2019-02-16T10:02:48.5026416Z",
+      "family": "windows",
+      "observation": "Sysmon Windows event record (EventID 3)",
+      "original_record": "RT-01-C2-plink-focused.json:E003"
+    },
+    {
+      "ref": "E004",
+      "source_timestamp": "2019-02-16T10:04:05.0927728Z",
+      "family": "windows",
+      "observation": "Sysmon Windows event record (EventID 3)",
+      "original_record": "RT-01-C2-plink-focused.json:E004"
+    },
+    {
+      "ref": "E005",
+      "source_timestamp": "2024-08-06T14:01:04.626000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E001"
+    },
+    {
+      "ref": "E006",
+      "source_timestamp": "2024-08-06T14:01:04.646000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E002"
+    },
+    {
+      "ref": "E007",
+      "source_timestamp": "2024-08-06T14:01:04.974000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E003"
+    },
+    {
+      "ref": "E008",
+      "source_timestamp": "2024-08-06T14:01:13.666000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E004"
+    },
+    {
+      "ref": "E009",
+      "source_timestamp": "2024-08-06T14:01:26.582000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E005"
+    },
+    {
+      "ref": "E010",
+      "source_timestamp": "2024-08-06T14:01:26.590000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E006"
+    },
+    {
+      "ref": "E011",
+      "source_timestamp": "2024-08-06T14:01:40.430000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E007"
+    },
+    {
+      "ref": "E012",
+      "source_timestamp": "2024-08-06T14:01:43.646000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E008"
+    },
+    {
+      "ref": "E013",
+      "source_timestamp": "2024-08-06T14:01:48.742000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E009"
+    },
+    {
+      "ref": "E014",
+      "source_timestamp": "2024-08-06T14:02:19.626000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E010"
+    },
+    {
+      "ref": "E015",
+      "source_timestamp": "2024-08-06T14:02:19.634000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E011"
+    },
+    {
+      "ref": "E016",
+      "source_timestamp": "2024-08-06T14:02:19.634000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E012"
+    },
+    {
+      "ref": "E017",
+      "source_timestamp": "2024-08-06T14:02:19.634000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E013"
+    },
+    {
+      "ref": "E018",
+      "source_timestamp": "2024-08-06T14:02:19.642000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E014"
+    },
+    {
+      "ref": "E019",
+      "source_timestamp": "2024-08-06T14:02:19.646000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E015"
+    },
+    {
+      "ref": "E020",
+      "source_timestamp": "2024-08-06T14:18:20.217000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E016"
+    },
+    {
+      "ref": "E021",
+      "source_timestamp": "2024-08-06T14:18:20.221000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E017"
+    },
+    {
+      "ref": "E022",
+      "source_timestamp": "2024-08-06T14:20:36.405000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E018"
+    },
+    {
+      "ref": "E023",
+      "source_timestamp": "2024-08-06T14:20:36.413000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E019"
+    },
+    {
+      "ref": "E024",
+      "source_timestamp": "2024-08-06T14:36:57.368000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E020"
+    },
+    {
+      "ref": "E025",
+      "source_timestamp": "2024-08-06T14:36:57.376000Z",
+      "family": "linux",
+      "observation": "Linux audit/process arguments record",
+      "original_record": "LT-02-normalized-focused.log:E021"
+    },
+    {
+      "ref": "E026",
+      "source_timestamp": "2026-05-26T06:07:27.414749Z",
+      "family": "network",
+      "observation": "Derived network aggregate (NOT an individual flow)",
+      "original_record": "NT-01-focused.json:E001"
+    },
+    {
+      "ref": "E027",
+      "source_timestamp": "2026-05-26T06:05:07.694185Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E002"
+    },
+    {
+      "ref": "E028",
+      "source_timestamp": "2026-05-26T06:07:27.414749Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E003"
+    },
+    {
+      "ref": "E029",
+      "source_timestamp": "2026-05-26T06:07:28.502707Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E004"
+    },
+    {
+      "ref": "E030",
+      "source_timestamp": "2026-05-26T06:08:35.524432Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E005"
+    },
+    {
+      "ref": "E031",
+      "source_timestamp": "2026-05-26T06:08:59.998968Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E006"
+    },
+    {
+      "ref": "E032",
+      "source_timestamp": "2026-05-26T06:09:00.009124Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E007"
+    },
+    {
+      "ref": "E033",
+      "source_timestamp": "2026-05-26T06:09:59.998569Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E008"
+    },
+    {
+      "ref": "E034",
+      "source_timestamp": "2026-05-26T06:10:00.008689Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E009"
+    },
+    {
+      "ref": "E035",
+      "source_timestamp": "2026-05-26T06:10:59.996012Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E010"
+    },
+    {
+      "ref": "E036",
+      "source_timestamp": "2026-05-26T06:11:00.006167Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E011"
+    },
+    {
+      "ref": "E037",
+      "source_timestamp": "2026-05-26T06:11:59.995460Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E012"
+    },
+    {
+      "ref": "E038",
+      "source_timestamp": "2026-05-26T06:12:00.005674Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E013"
+    },
+    {
+      "ref": "E039",
+      "source_timestamp": "2026-05-26T06:12:59.998727Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E014"
+    },
+    {
+      "ref": "E040",
+      "source_timestamp": "2026-05-26T06:13:00.008771Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E015"
+    },
+    {
+      "ref": "E041",
+      "source_timestamp": "2026-05-26T06:13:59.989944Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E016"
+    },
+    {
+      "ref": "E042",
+      "source_timestamp": "2026-05-26T06:14:00.000197Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E017"
+    },
+    {
+      "ref": "E043",
+      "source_timestamp": "2026-05-26T06:14:59.990955Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E018"
+    },
+    {
+      "ref": "E044",
+      "source_timestamp": "2026-05-26T06:15:00.001059Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E019"
+    },
+    {
+      "ref": "E045",
+      "source_timestamp": "2026-05-26T06:15:59.990796Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E020"
+    },
+    {
+      "ref": "E046",
+      "source_timestamp": "2026-05-26T06:16:00.001070Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E021"
+    },
+    {
+      "ref": "E047",
+      "source_timestamp": "2026-05-26T06:16:59.999142Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E022"
+    },
+    {
+      "ref": "E048",
+      "source_timestamp": "2026-05-26T06:17:00.009379Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E023"
+    },
+    {
+      "ref": "E049",
+      "source_timestamp": "2026-05-26T06:17:27.396836Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E024"
+    },
+    {
+      "ref": "E050",
+      "source_timestamp": "2026-05-26T06:17:59.993706Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E025"
+    },
+    {
+      "ref": "E051",
+      "source_timestamp": "2026-05-26T06:18:00.004096Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E026"
+    },
+    {
+      "ref": "E052",
+      "source_timestamp": "2026-05-26T06:18:59.992923Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E027"
+    },
+    {
+      "ref": "E053",
+      "source_timestamp": "2026-05-26T06:19:00.002947Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E028"
+    },
+    {
+      "ref": "E054",
+      "source_timestamp": "2026-05-26T06:19:10.930346Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E029"
+    },
+    {
+      "ref": "E055",
+      "source_timestamp": "2026-05-26T06:19:45.683665Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E030"
+    },
+    {
+      "ref": "E056",
+      "source_timestamp": "2026-05-26T06:21:12.433434Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "NT-01-focused.json:E031"
+    }
+  ],
+  "acceptance_gate": {
+    "status": "BLOCKED_PENDING_CORRECTION",
+    "high_severity_flag_count": 3,
+    "incomplete_batch_count": 0,
+    "human_approval_recorded": false,
+    "note": "Operational execution is not an approval of any AI security conclusion."
+  },
+  "unknown_refs_not_sent_to_ai": [],
+  "notes": [
+    "AI outputs are drafts requiring human review.",
+    "Mixed sources were grouped; this run does not prove cross-source correlation.",
+    "Source evidence references are mapped in classification; secrets are redacted in analysis copies.",
+    "Context limits may truncate events within an AI call; check events_sent_to_ai vs refs."
+  ]
+}

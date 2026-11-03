@@ -1,0 +1,57 @@
+## EXECUTIVE SUMMARY
+The activity appears to be a system administrator running commands on the server DC1.insecurebank.local, specifically winrshost.exe, cmd.exe, and ipconfig.exe. The actions are within the approved scope as they were initiated by an authorized user and tools. However, further investigation is needed to ensure these actions align with approved changes or maintenance windows.
+
+## LOG SOURCE
+Source type: Microsoft-Windows-Sysmon
+Hosts: DC1.insecurebank.local
+Time span: 2019-05-16T01:31:36.4xxZ (x represents the varying milliseconds)
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] ProcessGuid, Image, CommandLine, User, LogonGuid, LogonId, TerminalSessionId, IntegrityLevel for winrshost.exe
+- [E002] ProcessGuid, Image, CommandLine, User, LogonGuid, LogonId, TerminalSessionId, IntegrityLevel for cmd.exe
+- [E003] ProcessGuid, Image, CommandLine, User, LogonGuid, LogonId, TerminalSessionId, IntegrityLevel for ipconfig.exe
+
+## SUSPICIOUS ACTIVITIES
+None identified
+
+## EVIDENCE REFERENCES
+- [E001] Shows the execution of winrshost.exe by an administrator with high integrity level.
+- [E002] Shows the execution of cmd.exe by an administrator with high integrity level, running ipconfig command.
+- [E003] Shows the execution of ipconfig.exe by an administrator with high integrity level.
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|-----------|-------|--------|-----------|--------------|
+| 2019-05-16T01:31:36.4268707Z | winrshost.exe execution | Microsoft-Windows-Sysmon | DC1.insecurebank.local, insecurebank\Administrator | [E001] |
+| 2019-05-16T01:31:36.4548923Z | cmd.exe execution with ipconfig command | Microsoft-Windows-Sysmon | DC1.insecurebank.local, insecurebank\Administrator | [E002] |
+| 2019-05-16T01:31:36.4568918Z | ipconfig.exe execution by administrator | Microsoft-Windows-Sysmon | DC1.insecurebank.local, insecurebank\Administrator | [E003] |
+
+## EXTRACTED IOCS
+- Type: SHA1 Hash (winrshost.exe)
+  Value: E25A9835F02E2149 ...[truncated 392 chars]
+  Evidence Ref: [E001]
+- Type: SHA1 Hash (cmd.exe)
+  Value: 7C3D7281E1151FE4127923F4B4C3CD36438E1A12,M ...[truncated 368 chars]
+  Evidence Ref: [E002]
+- Type: SHA1 Hash (ipconfig.exe)
+  Value: 588D711E3D5F141987BF2C1B397C59EF1997C0E1,MD5=BF379376C124B19A7535CBA8EA1 ...[truncated 327 chars]
+  Evidence Ref: [E003]
+(External reputation not checked.)
+
+## POTENTIAL ATTACK INDICATORS
+- Possible execution of remote shell plugin (winrshost.exe) by an administrator
+- CommandLine for cmd.exe suggests running ipconfig command, which could be a part of system maintenance or malicious activity
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The actions are initiated by an authorized user and tools, but the purpose and context need further investigation to confirm if they align with approved changes or maintenance windows.
+
+## MISSING INFORMATION
+- Approval for these actions (winrshost.exe, cmd.exe, ipconfig.exe)
+- Context of these actions within an approved change or maintenance window
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the purpose and context of winrshost.exe execution by checking for any related logs or system documentation.
+2. Verify if cmd.exe execution with ipconfig command is part of an approved change or maintenance activity.
+3. Examine other logs around this time to determine if there are any unusual activities that may provide context for these actions.
+4. Check the system for any signs of unauthorized access or changes in configuration files, registry keys, or installed software.
+5. Consult with the system administrator regarding these events and their purpose within approved change or maintenance windows.

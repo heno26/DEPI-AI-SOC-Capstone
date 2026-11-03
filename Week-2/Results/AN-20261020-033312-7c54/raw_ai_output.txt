@@ -1,0 +1,51 @@
+## EXECUTIVE SUMMARY
+A concentrated, high-diversity sequential DNS query burst originating from IP address 192.168.16.132 is observed over a short period of time. The nature and purpose of this activity are unclear as it does not necessarily indicate malicious intent but could be related to network scanning or other legitimate activities.
+
+## LOG SOURCE
+Source type: Zeek dns.log, Hosts: 192.168.16.131, 192.168.16.132, Time span: May 26, 2026 15:56 - May 26, 2026 16:11
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001]: Verified full source DNS aggregate not raw Zeek event
+- [E002]: Verified DNS query cluster aggregate not raw Zeek event
+- Multiple instances of ZEEK_DNS_ORIGINAL_SOURCE_ROW events from IP address 192.168.16.131 and 192.168.16.132
+
+## SUSPICIOUS ACTIVITIES
+- Frequent DNS queries from a single source (IP 192.168.16.132) over a short period of time, which could indicate network scanning or other suspicious activities. [E005, E007, E009, ...]
+- Assumption: The high diversity and sequential nature of the queries suggest that they might be part of a DNS tunneling attempt. However, this is not definitive proof as it could also be legitimate activity.
+
+## EVIDENCE REFERENCES
+- [E001]: Aggregate DNS event with multiple individual queries
+- [E002]: Aggregate DNS query cluster event with multiple individual queries
+- [E003 - E026]: Individual DNS queries from IP addresses 192.168.16.131 and 192.168.16.132
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2026-05-26T15:56:25.484741Z | Verified full source DNS aggregate not raw Zeek event | Zeek dns.log | 192.168.16.131 | [E001] |
+| 2026-05-26T16:01:35.804592Z | ZEEK_DNS_ORIGINAL_SOURCE_ROW event | Zeek dns.log | 192.168.16.131 | [E004] |
+| 2026-05-26T16:03:49.098070Z | ZEEK_DNS_ORIGINAL_SOURCE_ROW event | Zeek dns.log | 192.168.16.132 | [E005] |
+| ... (many more events omitted for brevity) | ... | ... | ... | ... |
+| 2026-05-26T16:07:21.154854Z | ZEEK_DNS_ORIGINAL_SOURCE_ROW event | Zeek dns.log | 192.168.16.131 | [E025] |
+| 2026-05-26T16:11:36.424560Z | ZEEK_DNS_ORIGINAL_SOURCE_ROW event | Zeek dns.log | 192.168.16.131 | [E026] |
+
+## EXTRACTED IOCS
+- None identified (external reputation not checked)
+
+## POTENTIAL ATTACK INDICATORS
+- Possible DNS tunneling attempt due to high diversity and sequential nature of the queries. [E001, E002]
+- Assumption: The source IP address could be a potential indicator if further investigation confirms malicious activity. However, this is not definitive proof as it could also be legitimate activity.
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The nature and purpose of the observed DNS queries are unclear and require further investigation to confirm or rule out potential malicious intent.
+
+## MISSING INFORMATION
+- Context about approved changes, registered tools, and maintenance windows in the data.
+- Information about the destination IP addresses and domains being queried.
+- Evidence of execution or compromise beyond the observed DNS queries.
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the context surrounding the observed DNS queries to determine if they are part of approved changes, registered tools, or maintenance windows.
+2. Examine the destination IP addresses and domains being queried for potential malicious activity.
+3. Check external reputation databases for any known indicators associated with the source IP address (192.168.16.131, 192.168.16.132).
+4. Analyze network traffic patterns to determine if there are other signs of malicious activity related to this incident.
+5. Consult with relevant teams or threat intelligence sources for additional insights and guidance.

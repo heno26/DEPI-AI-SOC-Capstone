@@ -1,0 +1,225 @@
+{
+  "generated_at_utc": "2026-10-28T03:51:27.454391+00:00",
+  "project": "DEPI-P5",
+  "phase": "Week-2 SIEM-06 Malware 003",
+  "mode": "authenticated_webhook_historical_lab_replay",
+  "event_id": "e05ccfe875e6a53524e7270675a6720d54c7ae95ab4353e906f32f04c14f14b9",
+  "model": "mistral:7b-instruct-v0.3-q4_K_S",
+  "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+  "missing_fields": [],
+  "semantic_warnings": [],
+  "source_trigger": {
+    "_timestamp": 1793159439365462,
+    "key": "SIEM_MAL_003_SUSPICIOUS_MALWARE_BEHAVIOR/3LJ1m1VsUPe9KW6ZPtmCRpyyWgo",
+    "status": "firing"
+  },
+  "webhook_group": {
+    "process_guid": "{6c5fe7fc-482c-684b-1701-000000000200}",
+    "suspicious_executions": 1,
+    "dns_queries": 10,
+    "network_connections": 1
+  },
+  "evidence": {
+    "rule": "SIEM_MAL_003_SUSPICIOUS_MALWARE_BEHAVIOR",
+    "stream": "depi_malware_sysmon",
+    "source_dataset": "9c9aa5_campaign.evtx",
+    "replay_mode": "historical_lab_replay",
+    "process_guid": "{6c5fe7fc-482c-684b-1701-000000000200}",
+    "process_image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe",
+    "parent_process": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP000.TMP\\N1F90.exe",
+    "verified_counts": {
+      "suspicious_executions": 1,
+      "dns_queries": 10,
+      "network_connections": 1
+    },
+    "destination_ip": "104.80.2.104",
+    "destination_port": 443,
+    "destination_ip_quality": {
+      "valid": true,
+      "is_global": true,
+      "is_reserved": false
+    },
+    "source_events": [
+      {
+        "event_id": 1,
+        "record_id": 2611,
+        "source_evidence_id": "SYSMON-R2611",
+        "original_event_time_local": "2025-06-13T00:35:40.5074673+03:00",
+        "image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe",
+        "parent_image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP000.TMP\\N1F90.exe",
+        "query_name": null,
+        "destination_ip": null,
+        "destination_port": null,
+        "hashes": "SHA256=A1A79FEBE636F6AF95CA527BF37321A329F37BC2524414376F2727F4D9BD17C1,IMPHASH=2EABE9054CAD5152567F0699947A2C5B"
+      },
+      {
+        "event_id": 22,
+        "record_id": 2740,
+        "source_evidence_id": "SYSMON-R2740",
+        "original_event_time_local": "2025-06-13T00:35:43.1123186+03:00",
+        "image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe",
+        "parent_image": null,
+        "query_name": "plodnittpw.lat",
+        "destination_ip": null,
+        "destination_port": null,
+        "hashes": null
+      },
+      {
+        "event_id": 22,
+        "record_id": 2741,
+        "source_evidence_id": "SYSMON-R2741",
+        "original_event_time_local": "2025-06-13T00:35:43.1123429+03:00",
+        "image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe",
+        "parent_image": null,
+        "query_name": "bloodyswif.lat",
+        "destination_ip": null,
+        "destination_port": null,
+        "hashes": null
+      },
+      {
+        "event_id": 22,
+        "record_id": 2742,
+        "source_evidence_id": "SYSMON-R2742",
+        "original_event_time_local": "2025-06-13T00:35:43.1123670+03:00",
+        "image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe",
+        "parent_image": null,
+        "query_name": "washyceehsu.lat",
+        "destination_ip": null,
+        "destination_port": null,
+        "hashes": null
+      },
+      {
+        "event_id": 22,
+        "record_id": 2743,
+        "source_evidence_id": "SYSMON-R2743",
+        "original_event_time_local": "2025-06-13T00:35:43.1123867+03:00",
+        "image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe",
+        "parent_image": null,
+        "query_name": "leggelatez.lat",
+        "destination_ip": null,
+        "destination_port": null,
+        "hashes": null
+      },
+      {
+        "event_id": 22,
+        "record_id": 2744,
+        "source_evidence_id": "SYSMON-R2744",
+        "original_event_time_local": "2025-06-13T00:35:43.1124162+03:00",
+        "image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe",
+        "parent_image": null,
+        "query_name": "miniatureyu.lat",
+        "destination_ip": null,
+        "destination_port": null,
+        "hashes": null
+      },
+      {
+        "event_id": 22,
+        "record_id": 2745,
+        "source_evidence_id": "SYSMON-R2745",
+        "original_event_time_local": "2025-06-13T00:35:43.1124353+03:00",
+        "image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe",
+        "parent_image": null,
+        "query_name": "kickykiduz.lat",
+        "destination_ip": null,
+        "destination_port": null,
+        "hashes": null
+      },
+      {
+        "event_id": 3,
+        "record_id": 2789,
+        "source_evidence_id": "SYSMON-R2789",
+        "original_event_time_local": "2025-06-13T00:35:43.9244415+03:00",
+        "image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe",
+        "parent_image": null,
+        "query_name": null,
+        "destination_ip": "104.80.2.104",
+        "destination_port": 443,
+        "hashes": null
+      },
+      {
+        "event_id": 22,
+        "record_id": 2790,
+        "source_evidence_id": "SYSMON-R2790",
+        "original_event_time_local": "2025-06-13T00:35:44.1278660+03:00",
+        "image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe",
+        "parent_image": null,
+        "query_name": "savorraiykj.lat",
+        "destination_ip": null,
+        "destination_port": null,
+        "hashes": null
+      },
+      {
+        "event_id": 22,
+        "record_id": 2791,
+        "source_evidence_id": "SYSMON-R2791",
+        "original_event_time_local": "2025-06-13T00:35:44.1278879+03:00",
+        "image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe",
+        "parent_image": null,
+        "query_name": "shoefeatthe.lat",
+        "destination_ip": null,
+        "destination_port": null,
+        "hashes": null
+      },
+      {
+        "event_id": 22,
+        "record_id": 2792,
+        "source_evidence_id": "SYSMON-R2792",
+        "original_event_time_local": "2025-06-13T00:35:44.1279185+03:00",
+        "image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe",
+        "parent_image": null,
+        "query_name": "finickypwk.lat",
+        "destination_ip": null,
+        "destination_port": null,
+        "hashes": null
+      },
+      {
+        "event_id": 22,
+        "record_id": 2793,
+        "source_evidence_id": "SYSMON-R2793",
+        "original_event_time_local": "2025-06-13T00:35:44.1279330+03:00",
+        "image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe",
+        "parent_image": null,
+        "query_name": "steamcommunity.com",
+        "destination_ip": null,
+        "destination_port": null,
+        "hashes": null
+      }
+    ],
+    "source_events_complete_for_correlated_types": true,
+    "trigger_key": "SIEM_MAL_003_SUSPICIOUS_MALWARE_BEHAVIOR/3LJ1m1VsUPe9KW6ZPtmCRpyyWgo",
+    "trigger_status": "firing",
+    "correlation_method": "authenticated structured alert group + fresh SIEM firing + independent Sysmon ProcessGuid aggregate + source records",
+    "correlation_limitations": "Trigger key is only correlated at rule level; there is no proven exact trigger-to-row join. The dataset is historical replay. Original event time is separate from ingest _timestamp. DNS and network activity do not alone establish C2, exfiltration or compromise."
+  },
+  "ai_triage": {
+    "summary": "Suspicious process creation, DNS queries, and network connection observed",
+    "severity": "High",
+    "potential_threat": "Possible execution of potentially malicious software",
+    "indicators": {
+      "process_guid": "{6c5fe7fc-482c-684b-1701-000000000200}",
+      "process_image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe",
+      "parent_process": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP000.TMP\\N1F90.exe",
+      "destination_ip": "104.80.2.104",
+      "destination_port": 443,
+      "SHA256": "A1A79FEBE636F6AF95CA527BF37321A329F37BC2524414376F2727F4D9BD17C1",
+      "IMPHASH": "2EABE9054CAD5152567F0699947A2C5B"
+    },
+    "false_positive_possibility": "Low",
+    "recommended_actions": [
+      "Investigate the origin and purpose of the observed process",
+      "Analyze network traffic to/from the destination IP for signs of malicious activity",
+      "Check if the SHA256 and IMPHASH have been associated with known threats",
+      "Isolate affected systems from the network as a precautionary measure"
+    ],
+    "evidence_limitations": "The data is from a historical laboratory replay, not real-time monitoring. The exact trigger-to-row mapping is unproven.",
+    "confidence": "Medium"
+  },
+  "human_validation_required": true,
+  "limitations": [
+    "Behavioral correlation indicates suspicious activity; infection is not independently confirmed.",
+    "Original Sysmon events are from historical laboratory replay; _timestamp is ingestion time.",
+    "Trigger key verifies the alert rule, not exact alert-row provenance.",
+    "Network connection and DNS queries alone do not establish C2 or exfiltration.",
+    "AI schema/semantic checks do not replace analyst validation."
+  ]
+}

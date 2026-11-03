@@ -1,0 +1,35 @@
+## EXECUTIVE SUMMARY
+A large number of DNS queries are being made from two hosts (192.168.16.131 and 192.168.16.132) to a domain lab.test, which could indicate legitimate activity or potentially reconnaissance for an attack. The queries seem to be related to chunks of data with specific hashes (e.g., chunkNNN-hex).
+
+## LOG SOURCE
+Source type: Zeek dns.log, Hosts: 192.168.16.131 and 192.168.16.132, Time span: May 26, 2026 from 15:56 to 16:11
+
+## SIGNIFICANT SECURITY EVENTS
+- [E003] Query for connectivity-check.ubuntu.com on host 192.168.16.131
+- [E004] Repeated query for connectivity-check.ubuntu.com on host 192.168.16.131
+- [E005] Query for portal.lab.test on host 192.168.16.132
+- [E006] Query for mail.lab.test on host 192.168.16.132
+- [E007] Query for update.lab.test on host 192.168.16.132
+- [E009] Query for chunk001-f137fa53a835cab9745e769d.lab.test on host 192.168.16.132
+- [E010] Query for chunk017-6814d... (truncated) on host 192.168.16.132
+- [E015] Query for chunk100-79e128737488911d9a02ae78.lab.test on host 192.168.16.132
+- [E016] Query for chunk117-29ce0e62c46f6577e7cdd4cc.lab.test on host 192.168.16.132
+- [E017] Query for chunk133-b34657f154de097c7c1b01da.lab.test on host 192.168.16.132
+- [E018] Query for chunk150-abe40348a8dd0c1b937adb0c.lab.test on host 192.168.16.132
+- [E019] Query for chunk167-62871f01fd6e9380b53795fb.lab.test on host 192.168.16.132
+- [E020] Query for chunk183-f4df5747aa53924340bcd561.lab.test on host 192.168.16.132
+- [E021] Query for chunk200-859ef48e43462029ecd421ff.lab.test on host 192.168.16.132
+- [E022] Query for chunk216-cd05f608e727d855357a48bd.lab.test on host 192.168.16.132
+- [E023] Query for chunk233-f001b3344bc99da19a864543.lab.test on host 192.168.16.132
+- [E024] Query for chunk250-ef566286fc3a33e1c288d41c.lab.test on host 192.168.16.131
+- [E025] Query for ntp.ubuntu.com.localdomain on host 192.168.16.131
+- [E026] Query for connectivity-check.ubuntu.com on host 192.168.16.131
+
+## EXTRACTED IOCs (Indicators of Compromise)
+- IP addresses: 192.168.16.131, 192.168.16.132
+- Domain: lab.test
+
+## RECOMMENDATIONS
+- Investigate the purpose and origin of these DNS queries to determine if they are legitimate or indicative of potential reconnaissance for an attack.
+- Monitor network traffic related to the lab.test domain for any unusual activity.
+- If necessary, implement rate limiting or blocking rules for excessive DNS queries from the identified IP addresses.

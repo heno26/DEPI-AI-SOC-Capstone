@@ -1,0 +1,250 @@
+{
+  "version": "1.0",
+  "catalog_basis": "Windows Explorer listing showing 27 items + prior shared terminal outputs; the 27 individual image files were not provided for visual audit.",
+  "expected_count": 27,
+  "screenshots": [
+    {
+      "id": "LT01-01",
+      "group": "LT01",
+      "category": "01-LT01-SSH-Brute-Force",
+      "stem": "LT01-Evidence-Selection-Parser-PASS",
+      "description_ar": "اختيار 42 سطر SSH من مصدر Loghub، والتحقق من قراءة الـParser وارتباط المراجع بالسجلات؛ شملت العينة 13 Failed password.",
+      "caption_en": "Evidence selection and parser check for 42 SSH log records, including 13 failed-password records.",
+      "status": "PASS"
+    },
+    {
+      "id": "LT01-02",
+      "group": "LT01",
+      "category": "01-LT01-SSH-Brute-Force",
+      "stem": "LT01-Mistral-SSH-Analysis",
+      "description_ar": "تشغيل Mistral محليًا لتحليل محاولات SSH الفاشلة واستخراج ملخص ومؤشرات وتعليمات التحقيق؛ التقرير يحتاج Validation وHuman Review.",
+      "caption_en": "Local Mistral triage of repeated SSH authentication failures, prior to final human acceptance.",
+      "status": "AI OUTPUT"
+    },
+    {
+      "id": "LT01-03",
+      "group": "LT01",
+      "category": "01-LT01-SSH-Brute-Force",
+      "stem": "LT01-Automated-Validation-6Flags-1",
+      "description_ar": "الجزء الأول من تحذيرات التحقق الآلي لتحليل SSH؛ يوضح أن مخرجات Mistral احتاجت مراجعة وليس أن الهجوم نجح.",
+      "caption_en": "First capture of six automated validation review flags in the SSH case.",
+      "status": "DIAGNOSTIC"
+    },
+    {
+      "id": "LT01-04",
+      "group": "LT01",
+      "category": "01-LT01-SSH-Brute-Force",
+      "stem": "LT01-Automated-Validation-6Flags-2",
+      "description_ar": "تكملة الـ6 Flags؛ تستخدم لتوثيق تفاصيل أخطاء إسناد الأدلة والتوقيت التي راجعها المحلل.",
+      "caption_en": "Continuation of the six validation flags, documenting reviewable evidence/timeline issues.",
+      "status": "DIAGNOSTIC"
+    },
+    {
+      "id": "LT01-05",
+      "group": "LT01",
+      "category": "01-LT01-SSH-Brute-Force",
+      "stem": "LT01-Human-Review-Corrected",
+      "description_ar": "حفظ مراجعة المحلل البشري بالحالة Corrected بعد فحص أخطاء التفسير أو التوقيت؛ لا يعني اعتماد تقرير الذكاء الاصطناعي كما هو.",
+      "caption_en": "Human analyst correction of the LT-01 AI report after validation review.",
+      "status": "REVIEW CORRECTED"
+    },
+    {
+      "id": "LT01-06",
+      "group": "LT01",
+      "category": "01-LT01-SSH-Brute-Force",
+      "stem": "LT01-Final-Verification-PASS",
+      "description_ar": "التحقق النهائي من Hash المصدر والـFocused Dataset وربط 42/42 سطر بالمصدر، ثم تجهيز Timeline وCase Study وManifest.",
+      "caption_en": "Final source integrity, 42/42 provenance mapping, and final case documentation.",
+      "status": "PASS"
+    },
+    {
+      "id": "LT02-01",
+      "group": "LT02",
+      "category": "02-LT02-Privilege-Sensitive-Commands",
+      "stem": "LT02-Source-Verification-PASS",
+      "description_ar": "توثيق تنزيل مصدر Auditd الأصلي وقياس الحجم والـSHA-256؛ مصدر LT-02 به 108 سطر ضمن البيانات المختبرة.",
+      "caption_en": "Source acquisition and SHA-256 verification of the 108-line auditd original.",
+      "status": "PASS"
+    },
+    {
+      "id": "LT02-02",
+      "group": "LT02",
+      "category": "02-LT02-Privilege-Sensitive-Commands",
+      "stem": "LT02-Auditd-Normalization-Parser-Verification",
+      "description_ar": "مرحلة التحقق التفصيلي من فك ترميز أوامر Auditd وربط الـSerial والتوقيت وسطر المصدر بالمراجع؛ ليس إثباتًا لنجاح تنفيذ الأوامر.",
+      "caption_en": "Detailed normalized Auditd field, serial, timestamp, and source-line verification.",
+      "status": "VERIFICATION"
+    },
+    {
+      "id": "LT02-03",
+      "group": "LT02",
+      "category": "02-LT02-Privilege-Sensitive-Commands",
+      "stem": "LT02-Auditd-Normalization-Parser-PASS",
+      "description_ar": "نجاح الـNormalization لسجلات Linux Auditd بصيغة PROCTITLE واختبار Parser للعينة المركزة التي تضم 21 حدثًا.",
+      "caption_en": "Auditd PROCTITLE normalization and parser compatibility PASS for 21 focused events.",
+      "status": "PASS"
+    },
+    {
+      "id": "LT02-04",
+      "group": "LT02",
+      "category": "02-LT02-Privilege-Sensitive-Commands",
+      "stem": "LT02-Human-Review-Corrected",
+      "description_ar": "مراجعة بشرية مصححة لاستنتاجات غير مدعومة مثل شرعية الأوامر أو نجاح Privilege Escalation من وجود PROCTITLE فقط.",
+      "caption_en": "Corrected analyst review: PROCTITLE records do not by themselves establish authorization, execution success, or privilege escalation.",
+      "status": "REVIEW CORRECTED"
+    },
+    {
+      "id": "LT02-05",
+      "group": "LT02",
+      "category": "02-LT02-Privilege-Sensitive-Commands",
+      "stem": "LT02-Final-Verification-PASS",
+      "description_ar": "مطابقة SHA-256 للمصدر والملفات المشتقة وربط أحداث LT-02 الـ21 بسجلاتها الأصلية وإنشاء التقرير الزمني وCase Study.",
+      "caption_en": "Final auditd hash/mapping verification and evidence-based final documentation.",
+      "status": "PASS"
+    },
+    {
+      "id": "LT03-01",
+      "group": "LT03",
+      "category": "03-LT03-Bash-Reverse-Shell",
+      "stem": "LT03-Source-Verification-PASS",
+      "description_ar": "التحقق من ملف Splunk Linux Sysmon الأصلي (3466 بايت) بمطابقة Git LFS SHA-256 وحفظ Source Manifest.",
+      "caption_en": "Splunk Linux Sysmon source acquisition; 3,466-byte dataset checked against Git LFS SHA-256.",
+      "status": "PASS"
+    },
+    {
+      "id": "LT03-02",
+      "group": "LT03",
+      "category": "03-LT03-Bash-Reverse-Shell",
+      "stem": "LT03-Linux-Sysmon-Inspection",
+      "description_ar": "فحص Linux-Sysmon Event ID 1: أمر Bash يحتوي /dev/tcp/10.0.255.12/4444 ولا توجد Event ID 3 في هذه العينة؛ التحقق من شكل XML.",
+      "caption_en": "Linux Sysmon Event ID 1 inspection showing a Bash /dev/tcp command, without separate connection telemetry in the sample.",
+      "status": "INSPECTION"
+    },
+    {
+      "id": "LT03-03",
+      "group": "LT03",
+      "category": "03-LT03-Bash-Reverse-Shell",
+      "stem": "LT03-Duplicate-Evidence-Verification",
+      "description_ar": "فحص مقارنة حدثين XML من Linux Sysmon لهما نفس EventRecordID وProcessGuid والتوقيت؛ مرحلة التشخيص قبل إزالة التكرار من العرض.",
+      "caption_en": "Investigation comparing two Linux Sysmon XML records for possible exact duplication.",
+      "status": "DIAGNOSTIC"
+    },
+    {
+      "id": "LT03-04",
+      "group": "LT03",
+      "category": "03-LT03-Bash-Reverse-Shell",
+      "stem": "LT03-Exact-Duplicate-Verification-PASS",
+      "description_ar": "التحقق من التطابق الكامل لـRaw XML وEventRecordID وProcessGuid: سجلان أصليان لكن حدث فريد واحد؛ لا نحسب هجومين.",
+      "caption_en": "Exact XML duplicate verification: two source records, one unique observed process event.",
+      "status": "PASS"
+    },
+    {
+      "id": "LT03-05",
+      "group": "LT03",
+      "category": "03-LT03-Bash-Reverse-Shell",
+      "stem": "LT03-Mistral-Reverse-Shell-Analysis",
+      "description_ar": "تشغيل Mistral لتحليل أمر Reverse Shell وتوثيق الاستنتاجات ومراجع الأدلة؛ بعض التشغيلات السابقة كشفت أخطاء Netcat وPrivate-IP وصححت لاحقًا.",
+      "caption_en": "Mistral reverse-shell investigation output, interpreted alongside human feedback and validator findings.",
+      "status": "AI OUTPUT"
+    },
+    {
+      "id": "LT03-06",
+      "group": "LT03",
+      "category": "03-LT03-Bash-Reverse-Shell",
+      "stem": "LT03-End-to-End-Grounding-Persistence-PASS",
+      "description_ar": "إثبات حفظ قاعدة LINUX_BASH_REVERSE_SHELL_PATTERN داخل analysis.json لتحليل AN-20261019-021336-409d مع المرجع E001 وثقة High؛ دون إثبات نجاح الاتصال.",
+      "caption_en": "End-to-end persisted grounded reverse-shell detection (rule, E001, high pattern confidence), with network outcome unconfirmed.",
+      "status": "PASS"
+    },
+    {
+      "id": "LT04-01",
+      "group": "LT04",
+      "category": "04-LT04-Low-Risk-Linux-Startup",
+      "stem": "LT04-Source-Verification-PASS",
+      "description_ar": "التحقق من Linux_2k.log من Loghub: 2000 سطر، 216485 بايت، Git Blob SHA-1 مطابق وSHA-256 محفوظ؛ ليس مصدرًا Benign معتمدًا بالكامل.",
+      "caption_en": "Pinned Loghub Linux_2k.log acquisition and integrity verification; mixed/unlabeled data, not a fully benign source.",
+      "status": "PASS"
+    },
+    {
+      "id": "LT04-02",
+      "group": "LT04",
+      "category": "04-LT04-Low-Risk-Linux-Startup",
+      "stem": "LT04-Benign-Candidate-Inspection",
+      "description_ar": "فحص 2000 سطر Linux Syslog مختلطة؛ إظهار فشل المصادقة وأحداث FTP وlogrotate قبل استبعادها من تقييم Low-Risk.",
+      "caption_en": "Initial inventory of 2,000 mixed Linux syslog records before low-risk candidate screening.",
+      "status": "INSPECTION"
+    },
+    {
+      "id": "LT04-03",
+      "group": "LT04",
+      "category": "04-LT04-Low-Risk-Linux-Startup",
+      "stem": "LT04-Safe-Benign-Candidate-Selection",
+      "description_ar": "تصفية سجلات SSH/FTP/الأخطاء وظهور 126 مرشحًا منخفض الخطورة؛ الاختيار النهائي يعتمد مراجعة السياق وليس الكلمة وحدها.",
+      "caption_en": "Conservative screening of Linux routine-operation candidates (126 candidates) before the final 18-event selection.",
+      "status": "SCREENING"
+    },
+    {
+      "id": "LT04-04",
+      "group": "LT04",
+      "category": "04-LT04-Low-Risk-Linux-Startup",
+      "stem": "LT04-Focused-Candidate-Verification",
+      "description_ar": "توثيق محاولة التحضير الأولى التي توقفت عند مقارنة Raw Evidence للحدث E014 بسبب المسافات الطرفية؛ هذه Screenshot تشخيص فشل وليست PASS.",
+      "caption_en": "Initial preparation stopped on an E014 parser-versus-source trailing-whitespace difference; preserved as diagnostic evidence.",
+      "status": "STOP / DIAGNOSTIC"
+    },
+    {
+      "id": "LT04-05",
+      "group": "LT04",
+      "category": "04-LT04-Low-Risk-Linux-Startup",
+      "stem": "LT04-Focused-Candidate-Verification-PASS",
+      "description_ar": "نجاح النسخة المصححة في إعداد 18 حدثًا، ربط 18/18 بالمصدر، وتوثيق فرق مسافات طرفية في حدثين دون تعديل المصدر الأصلي.",
+      "caption_en": "Corrected focused-set preparation: 18/18 mappings and documented whitespace-only parser differences.",
+      "status": "PASS"
+    },
+    {
+      "id": "LT04-06",
+      "group": "LT04",
+      "category": "04-LT04-Low-Risk-Linux-Startup",
+      "stem": "LT04-Mistral-Benign-Analysis",
+      "description_ar": "تحليل Mistral الأول لسياق بدء تشغيل Linux؛ تعرف على النشاط العام لكنه أضاف تخمينًا غير مدعوم عن BIOS/Privilege Escalation.",
+      "caption_en": "Initial AI analysis of low-risk boot events; shows benign-context recognition plus unsupported BIOS/security speculation.",
+      "status": "AI OUTPUT / REVIEW"
+    },
+    {
+      "id": "LT04-07",
+      "group": "LT04",
+      "category": "04-LT04-Low-Risk-Linux-Startup",
+      "stem": "LT04-Post-Feedback-V2-Analysis",
+      "description_ar": "إعادة تحليل LT-04 بعد درس LT04_BOOT_BASELINE؛ تحسن Host=combo وتصنيف Syslog، لكن ظلت تخمينات BIOS وCPU Machine Check وجداول غير مكتملة.",
+      "caption_en": "Post-feedback-v2 Mistral comparison: better attribution but residual BIOS/machine-check speculation and timeline gaps.",
+      "status": "COMPARATIVE EVALUATION"
+    },
+    {
+      "id": "FINAL-01",
+      "group": "FINAL",
+      "category": "05-Cross-Case-Final-Verification",
+      "stem": "LT03-LT04-Final-Documentation-PASS",
+      "description_ar": "التحقق النهائي المشترك من LT-03 وLT-04: SHA-256 والـMapping وتوليد Timeline وCase Study وVerification Manifest لكل حالة دون تعديل الملفات القديمة.",
+      "caption_en": "Joint final verification and generation of six documentation outputs for LT-03 and LT-04.",
+      "status": "PASS"
+    },
+    {
+      "id": "SOC-01",
+      "group": "SOC",
+      "category": "06-Feedback-and-Validation-Upgrades",
+      "stem": "SOC-Feedback-V2-147-Regression-PASS",
+      "description_ar": "نجاح ترقية Feedback v2 مع زيادة اختبارات المشروع من 137 إلى 147 وإضافة قواعد مراجعة أخطاء BIOS وHost/Source.",
+      "caption_en": "Feedback v2 guarded upgrade: 137 to 147 passing regression tests and new LT-04 semantic checks.",
+      "status": "PASS"
+    },
+    {
+      "id": "SOC-02",
+      "group": "SOC",
+      "category": "06-Feedback-and-Validation-Upgrades",
+      "stem": "SOC-Negation-Fix-177-Regression-PASS",
+      "description_ar": "لقطة مسماة على أنها نجاح 177 اختبارًا لإصلاح فهم نفي Netcat؛ عدد 177 غير مُثبت من لقطات المخرجات المتاحة هنا ويلزم مراجعة محتوى الصورة نفسها قبل استخدام عبارة PASS في التقرير.",
+      "caption_en": "Purported 177-test Netcat-negation fix evidence. The pictured 177-test result has not been independently verified in the provided chat captures.",
+      "status": "VERIFY IMAGE CONTENT"
+    }
+  ]
+}

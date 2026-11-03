@@ -1,4 +1,0 @@
-﻿Evidence,Timestamp (original UTC),Event ID,Host,Image,Record ID
-E001,2019-05-16T01:31:36.4268707Z,1,DC1.insecurebank.local,winrshost.exe,17984
-E002,2019-05-16T01:31:36.4548923Z,1,DC1.insecurebank.local,cmd.exe,17985
-E003,2019-05-16T01:31:36.4568918Z,1,DC1.insecurebank.local,ipconfig.exe,17986

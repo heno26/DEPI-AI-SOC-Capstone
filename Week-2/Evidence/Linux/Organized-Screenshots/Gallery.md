@@ -1,0 +1,31 @@
+# Linux Evidence Gallery (verified copies)
+
+Refer to [README.md](README.md) for full explanations. Links below point to matched copied images only.
+
+- **LT01-01:** [LT01-Evidence-Selection-Parser-PASS.png](01-LT01-SSH-Brute-Force/LT01-Evidence-Selection-Parser-PASS.png) — Evidence selection and parser check for 42 SSH log records, including 13 failed-password records.
+- **LT01-02:** [LT01-Mistral-SSH-Analysis.png](01-LT01-SSH-Brute-Force/LT01-Mistral-SSH-Analysis.png) — Local Mistral triage of repeated SSH authentication failures, prior to final human acceptance.
+- **LT01-03:** [LT01-Automated-Validation-6Flags-1.png](01-LT01-SSH-Brute-Force/LT01-Automated-Validation-6Flags-1.png) — First capture of six automated validation review flags in the SSH case.
+- **LT01-04:** [LT01-Automated-Validation-6Flags-2.png](01-LT01-SSH-Brute-Force/LT01-Automated-Validation-6Flags-2.png) — Continuation of the six validation flags, documenting reviewable evidence/timeline issues.
+- **LT01-05:** [LT01-Human-Review-Corrected.png](01-LT01-SSH-Brute-Force/LT01-Human-Review-Corrected.png) — Human analyst correction of the LT-01 AI report after validation review.
+- **LT01-06:** [LT01-Final-Verification-PASS.png](01-LT01-SSH-Brute-Force/LT01-Final-Verification-PASS.png) — Final source integrity, 42/42 provenance mapping, and final case documentation.
+- **LT02-01:** [LT02-Source-Verification-PASS.png](02-LT02-Privilege-Sensitive-Commands/LT02-Source-Verification-PASS.png) — Source acquisition and SHA-256 verification of the 108-line auditd original.
+- **LT02-02:** [LT02-Auditd-Normalization-Parser-Verification.png](02-LT02-Privilege-Sensitive-Commands/LT02-Auditd-Normalization-Parser-Verification.png) — Detailed normalized Auditd field, serial, timestamp, and source-line verification.
+- **LT02-03:** [LT02-Auditd-Normalization-Parser-PASS.png](02-LT02-Privilege-Sensitive-Commands/LT02-Auditd-Normalization-Parser-PASS.png) — Auditd PROCTITLE normalization and parser compatibility PASS for 21 focused events.
+- **LT02-04:** [LT02-Human-Review-Corrected.png](02-LT02-Privilege-Sensitive-Commands/LT02-Human-Review-Corrected.png) — Corrected analyst review: PROCTITLE records do not by themselves establish authorization, execution success, or privilege escalation.
+- **LT02-05:** [LT02-Final-Verification-PASS.png](02-LT02-Privilege-Sensitive-Commands/LT02-Final-Verification-PASS.png) — Final auditd hash/mapping verification and evidence-based final documentation.
+- **LT03-01:** [LT03-Source-Verification-PASS.png](03-LT03-Bash-Reverse-Shell/LT03-Source-Verification-PASS.png) — Splunk Linux Sysmon source acquisition; 3,466-byte dataset checked against Git LFS SHA-256.
+- **LT03-02:** [LT03-Linux-Sysmon-Inspection.png](03-LT03-Bash-Reverse-Shell/LT03-Linux-Sysmon-Inspection.png) — Linux Sysmon Event ID 1 inspection showing a Bash /dev/tcp command, without separate connection telemetry in the sample.
+- **LT03-03:** [LT03-Duplicate-Evidence-Verification.png](03-LT03-Bash-Reverse-Shell/LT03-Duplicate-Evidence-Verification.png) — Investigation comparing two Linux Sysmon XML records for possible exact duplication.
+- **LT03-04:** [LT03-Exact-Duplicate-Verification-PASS.png](03-LT03-Bash-Reverse-Shell/LT03-Exact-Duplicate-Verification-PASS.png) — Exact XML duplicate verification: two source records, one unique observed process event.
+- **LT03-05:** [LT03-Mistral-Reverse-Shell-Analysis.png](03-LT03-Bash-Reverse-Shell/LT03-Mistral-Reverse-Shell-Analysis.png) — Mistral reverse-shell investigation output, interpreted alongside human feedback and validator findings.
+- **LT03-06:** [LT03-End-to-End-Grounding-Persistence-PASS.png](03-LT03-Bash-Reverse-Shell/LT03-End-to-End-Grounding-Persistence-PASS.png) — End-to-end persisted grounded reverse-shell detection (rule, E001, high pattern confidence), with network outcome unconfirmed.
+- **LT04-01:** [LT04-Source-Verification-PASS.png](04-LT04-Low-Risk-Linux-Startup/LT04-Source-Verification-PASS.png) — Pinned Loghub Linux_2k.log acquisition and integrity verification; mixed/unlabeled data, not a fully benign source.
+- **LT04-02:** [LT04-Benign-Candidate-Inspection.png](04-LT04-Low-Risk-Linux-Startup/LT04-Benign-Candidate-Inspection.png) — Initial inventory of 2,000 mixed Linux syslog records before low-risk candidate screening.
+- **LT04-03:** [LT04-Safe-Benign-Candidate-Selection.png](04-LT04-Low-Risk-Linux-Startup/LT04-Safe-Benign-Candidate-Selection.png) — Conservative screening of Linux routine-operation candidates (126 candidates) before the final 18-event selection.
+- **LT04-04:** [LT04-Focused-Candidate-Verification.png](04-LT04-Low-Risk-Linux-Startup/LT04-Focused-Candidate-Verification.png) — Initial preparation stopped on an E014 parser-versus-source trailing-whitespace difference; preserved as diagnostic evidence.
+- **LT04-05:** [LT04-Focused-Candidate-Verification-PASS.png](04-LT04-Low-Risk-Linux-Startup/LT04-Focused-Candidate-Verification-PASS.png) — Corrected focused-set preparation: 18/18 mappings and documented whitespace-only parser differences.
+- **LT04-06:** [LT04-Mistral-Benign-Analysis.png](04-LT04-Low-Risk-Linux-Startup/LT04-Mistral-Benign-Analysis.png) — Initial AI analysis of low-risk boot events; shows benign-context recognition plus unsupported BIOS/security speculation.
+- **LT04-07:** [LT04-Post-Feedback-V2-Analysis.png](04-LT04-Low-Risk-Linux-Startup/LT04-Post-Feedback-V2-Analysis.png) — Post-feedback-v2 Mistral comparison: better attribution but residual BIOS/machine-check speculation and timeline gaps.
+- **FINAL-01:** [LT03-LT04-Final-Documentation-PASS.png](05-Cross-Case-Final-Verification/LT03-LT04-Final-Documentation-PASS.png) — Joint final verification and generation of six documentation outputs for LT-03 and LT-04.
+- **SOC-01:** [SOC-Feedback-V2-147-Regression-PASS.png](06-Feedback-and-Validation-Upgrades/SOC-Feedback-V2-147-Regression-PASS.png) — Feedback v2 guarded upgrade: 137 to 147 passing regression tests and new LT-04 semantic checks.
+- **SOC-02:** [SOC-Negation-Fix-177-Regression-PASS.png](06-Feedback-and-Validation-Upgrades/SOC-Negation-Fix-177-Regression-PASS.png) — Purported 177-test Netcat-negation fix evidence. The pictured 177-test result has not been independently verified in the provided chat captures.

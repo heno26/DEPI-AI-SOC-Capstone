@@ -1,0 +1,540 @@
+{
+  "analysis_id": "AN-20261017-171052-2b0a",
+  "schema_version": "week2-1",
+  "task": "log_analysis",
+  "created_utc": "2026-10-17T17:10:52+00:00",
+  "references": {
+    "alert_id": null,
+    "incident_ref": null,
+    "note": "incident_ref is reserved for Week 3/4 correlation"
+  },
+  "input": {
+    "filename": "SYNTHETIC_TC-02_windows_password_spray_admin_group.log",
+    "path": "Data\\Windows\\SYNTHETIC_TC-02_windows_password_spray_admin_group.log",
+    "sha256": "ff51f3c8b99265e6d5573c7b86987b25274727a78fbe8de68b9562ede34c18ef",
+    "format": "text",
+    "compressed": false,
+    "source_type": "windows",
+    "evidence_class": "synthetic_fixture",
+    "event_count": 8,
+    "events_analysed": [
+      "E001",
+      "E002",
+      "E003",
+      "E004",
+      "E005",
+      "E006",
+      "E007",
+      "E008"
+    ],
+    "warnings": [
+      "File header marks this as a SYNTHETIC fixture."
+    ]
+  },
+  "model": {
+    "name": "mistral:7b-instruct-v0.3-q4_K_S",
+    "options": {
+      "temperature": 0.2,
+      "repeat_penalty": 1.15,
+      "num_ctx": 6144,
+      "num_predict": 1500,
+      "seed": 42
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "options": {
+          "temperature": 0.2,
+          "repeat_penalty": 1.15,
+          "num_ctx": 6144,
+          "num_predict": 1500,
+          "seed": 42
+        },
+        "outcome": "success",
+        "seconds": 75.41
+      }
+    ],
+    "retry_used": false,
+    "done_reason": "stop",
+    "tokens_per_second": 17.83,
+    "wall_seconds": 75.41
+  },
+  "prompt": {
+    "file": "log_analysis.txt",
+    "version": "w2-1.0",
+    "sha256": "7affc781ced6c1a991a75ba465d7aa9c429fac7a7dc3730cf3656342b0650b6d",
+    "nonce_delimiter_used": true
+  },
+  "events": [
+    {
+      "ref": "E001",
+      "line_no": 2,
+      "raw": "2026-10-14 09:02:11 DC01 EventID=4625 Account=alice LogonType=3 SourceIP=10.20.5.99 Status=0xC000006D",
+      "timestamp_raw": "2026-10-14 09:02:11",
+      "timestamp_utc": null,
+      "host": "DC01",
+      "user": "alice",
+      "src_ip": "10.20.5.99",
+      "dst_ip": null,
+      "event_id": "4625",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "EventID": "4625",
+        "Account": "alice",
+        "LogonType": "3",
+        "SourceIP": "10.20.5.99",
+        "Status": "0xC000006D"
+      }
+    },
+    {
+      "ref": "E002",
+      "line_no": 3,
+      "raw": "2026-10-14 09:02:14 DC01 EventID=4625 Account=bob LogonType=3 SourceIP=10.20.5.99 Status=0xC000006D",
+      "timestamp_raw": "2026-10-14 09:02:14",
+      "timestamp_utc": null,
+      "host": "DC01",
+      "user": "bob",
+      "src_ip": "10.20.5.99",
+      "dst_ip": null,
+      "event_id": "4625",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "EventID": "4625",
+        "Account": "bob",
+        "LogonType": "3",
+        "SourceIP": "10.20.5.99",
+        "Status": "0xC000006D"
+      }
+    },
+    {
+      "ref": "E003",
+      "line_no": 4,
+      "raw": "2026-10-14 09:02:17 DC01 EventID=4625 Account=carol LogonType=3 SourceIP=10.20.5.99 Status=0xC000006D",
+      "timestamp_raw": "2026-10-14 09:02:17",
+      "timestamp_utc": null,
+      "host": "DC01",
+      "user": "carol",
+      "src_ip": "10.20.5.99",
+      "dst_ip": null,
+      "event_id": "4625",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "EventID": "4625",
+        "Account": "carol",
+        "LogonType": "3",
+        "SourceIP": "10.20.5.99",
+        "Status": "0xC000006D"
+      }
+    },
+    {
+      "ref": "E004",
+      "line_no": 5,
+      "raw": "2026-10-14 09:02:20 DC01 EventID=4625 Account=dave LogonType=3 SourceIP=10.20.5.99 Status=0xC000006D",
+      "timestamp_raw": "2026-10-14 09:02:20",
+      "timestamp_utc": null,
+      "host": "DC01",
+      "user": "dave",
+      "src_ip": "10.20.5.99",
+      "dst_ip": null,
+      "event_id": "4625",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "EventID": "4625",
+        "Account": "dave",
+        "LogonType": "3",
+        "SourceIP": "10.20.5.99",
+        "Status": "0xC000006D"
+      }
+    },
+    {
+      "ref": "E005",
+      "line_no": 6,
+      "raw": "2026-10-14 09:02:23 DC01 EventID=4625 Account=admin LogonType=3 SourceIP=10.20.5.99 Status=0xC000006A",
+      "timestamp_raw": "2026-10-14 09:02:23",
+      "timestamp_utc": null,
+      "host": "DC01",
+      "user": "admin",
+      "src_ip": "10.20.5.99",
+      "dst_ip": null,
+      "event_id": "4625",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "EventID": "4625",
+        "Account": "admin",
+        "LogonType": "3",
+        "SourceIP": "10.20.5.99",
+        "Status": "0xC000006A"
+      }
+    },
+    {
+      "ref": "E006",
+      "line_no": 7,
+      "raw": "2026-10-14 09:02:26 DC01 EventID=4625 Account=svc_backup LogonType=3 SourceIP=10.20.5.99 Status=0xC000006A",
+      "timestamp_raw": "2026-10-14 09:02:26",
+      "timestamp_utc": null,
+      "host": "DC01",
+      "user": "svc_backup",
+      "src_ip": "10.20.5.99",
+      "dst_ip": null,
+      "event_id": "4625",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "EventID": "4625",
+        "Account": "svc_backup",
+        "LogonType": "3",
+        "SourceIP": "10.20.5.99",
+        "Status": "0xC000006A"
+      }
+    },
+    {
+      "ref": "E007",
+      "line_no": 8,
+      "raw": "2026-10-14 09:05:40 DC01 EventID=4624 Account=svc_backup LogonType=3 SourceIP=10.20.5.99",
+      "timestamp_raw": "2026-10-14 09:05:40",
+      "timestamp_utc": null,
+      "host": "DC01",
+      "user": "svc_backup",
+      "src_ip": "10.20.5.99",
+      "dst_ip": null,
+      "event_id": "4624",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "EventID": "4624",
+        "Account": "svc_backup",
+        "LogonType": "3",
+        "SourceIP": "10.20.5.99"
+      }
+    },
+    {
+      "ref": "E008",
+      "line_no": 9,
+      "raw": "2026-10-14 09:07:02 FS02 EventID=4732 MemberAdded=svc_backup Group=Administrators ChangedBy=svc_backup",
+      "timestamp_raw": "2026-10-14 09:07:02",
+      "timestamp_utc": null,
+      "host": "FS02",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": "4732",
+      "source_kind": "windows",
+      "meta": {},
+      "fields": {
+        "EventID": "4732",
+        "MemberAdded": "svc_backup",
+        "Group": "Administrators",
+        "ChangedBy": "svc_backup"
+      }
+    }
+  ],
+  "facts": [
+    "6 failed logons from source 10.20.5.99 against 6 distinct account(s) [E001..E006], first at 2026-10-14 09:02:11, last at 2026-10-14 09:02:26.",
+    "A successful logon for account svc_backup from the same source 10.20.5.99 follows the failures [E007] at 2026-10-14 09:05:40."
+  ],
+  "ioc_context": [
+    {
+      "type": "ipv4",
+      "value": "10.20.5.99",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007"
+      ],
+      "count": 7,
+      "scope": "private (RFC 1918)",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "username",
+      "value": "admin",
+      "refs": [
+        "E005"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "username",
+      "value": "alice",
+      "refs": [
+        "E001"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "username",
+      "value": "bob",
+      "refs": [
+        "E002"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "username",
+      "value": "carol",
+      "refs": [
+        "E003"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "username",
+      "value": "dave",
+      "refs": [
+        "E004"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "username",
+      "value": "svc_backup",
+      "refs": [
+        "E006",
+        "E007"
+      ],
+      "count": 2,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hostname",
+      "value": "DC01",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007"
+      ],
+      "count": 7,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    },
+    {
+      "type": "hostname",
+      "value": "FS02",
+      "refs": [
+        "E008"
+      ],
+      "count": 1,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    }
+  ],
+  "risk_signals": [
+    {
+      "ref": "E008",
+      "label": "group membership change"
+    }
+  ],
+  "benign_context": [],
+  "evidence_timeline": [
+    {
+      "timestamp": "2026-10-14 09:02:11",
+      "timestamp_utc": null,
+      "event": "2026-10-14 09:02:11 DC01 EventID=4625 Account=alice LogonType=3 SourceIP=10.20.5.99 Status=0xC000006D",
+      "source": "windows",
+      "host_user": "DC01 / alice",
+      "evidence_ref": "E001"
+    },
+    {
+      "timestamp": "2026-10-14 09:02:14",
+      "timestamp_utc": null,
+      "event": "2026-10-14 09:02:14 DC01 EventID=4625 Account=bob LogonType=3 SourceIP=10.20.5.99 Status=0xC000006D",
+      "source": "windows",
+      "host_user": "DC01 / bob",
+      "evidence_ref": "E002"
+    },
+    {
+      "timestamp": "2026-10-14 09:02:17",
+      "timestamp_utc": null,
+      "event": "2026-10-14 09:02:17 DC01 EventID=4625 Account=carol LogonType=3 SourceIP=10.20.5.99 Status=0xC000006D",
+      "source": "windows",
+      "host_user": "DC01 / carol",
+      "evidence_ref": "E003"
+    },
+    {
+      "timestamp": "2026-10-14 09:02:20",
+      "timestamp_utc": null,
+      "event": "2026-10-14 09:02:20 DC01 EventID=4625 Account=dave LogonType=3 SourceIP=10.20.5.99 Status=0xC000006D",
+      "source": "windows",
+      "host_user": "DC01 / dave",
+      "evidence_ref": "E004"
+    },
+    {
+      "timestamp": "2026-10-14 09:02:23",
+      "timestamp_utc": null,
+      "event": "2026-10-14 09:02:23 DC01 EventID=4625 Account=admin LogonType=3 SourceIP=10.20.5.99 Status=0xC000006A",
+      "source": "windows",
+      "host_user": "DC01 / admin",
+      "evidence_ref": "E005"
+    },
+    {
+      "timestamp": "2026-10-14 09:02:26",
+      "timestamp_utc": null,
+      "event": "2026-10-14 09:02:26 DC01 EventID=4625 Account=svc_backup LogonType=3 SourceIP=10.20.5.99 Status=0xC000006A",
+      "source": "windows",
+      "host_user": "DC01 / svc_backup",
+      "evidence_ref": "E006"
+    },
+    {
+      "timestamp": "2026-10-14 09:05:40",
+      "timestamp_utc": null,
+      "event": "2026-10-14 09:05:40 DC01 EventID=4624 Account=svc_backup LogonType=3 SourceIP=10.20.5.99",
+      "source": "windows",
+      "host_user": "DC01 / svc_backup",
+      "evidence_ref": "E007"
+    },
+    {
+      "timestamp": "2026-10-14 09:07:02",
+      "timestamp_utc": null,
+      "event": "2026-10-14 09:07:02 FS02 EventID=4732 MemberAdded=svc_backup Group=Administrators ChangedBy=svc_backup",
+      "source": "windows",
+      "host_user": "FS02",
+      "evidence_ref": "E008"
+    }
+  ],
+  "ai_output": {
+    "raw_text": "## EXECUTIVE SUMMARY\nThe log data shows a series of failed logon attempts against multiple accounts from the same source IP (10.20.5.99), followed by a successful logon for the account svc_backup. The repeated failures and the subsequent success raise suspicions, but more context is needed to determine if this activity is malicious or benign.\n\n## LOG SOURCE\nSource type: Security Event Log (DC01). Hosts: DC01. Time span: 2026-10-14 09:02:11 - 2026-10-14 09:07:02.\n\n## SIGNIFICANT SECURITY EVENTS\n- Failed logon attempt for account alice [E001]\n- Failed logon attempt for account bob [E002]\n- Failed logon attempt for account carol [E003]\n- Failed logon attempt for account dave [E004]\n- Failed logon attempt for account admin (wrong password) [E005]\n- Failed logon attempt for account svc_backup (bad user or credentials) [E006]\n- Successful logon for account svc_backup [E007]\n- Member added to Administrators group: svc_backup by svc_backup [E008]\n\n## SUSPICIOUS ACTIVITIES\n- Repeated failed logons from the same source IP against multiple accounts, followed by a successful logon for svc_backup [E001-E006, E007]. This pattern is suspicious and may indicate an attempted brute force attack or credential stuffing attempt.\n\n## EVIDENCE REFERENCES\n[E001] 2026-10-14 09:02:11 DC01 EventID=4625 Account=alice LogonType=3 SourceIP=10.20.5.99 Status=0xC000006D\n[E002] ...\n... (continued for all references)\n\n## INCIDENT TIMELINE\n| Timestamp | Event | Source | Host/User | Evidence Ref |\n|-----------|-------|--------|-----------|--------------|\n| 2026-10-14 09:02:11 | Failed logon | DC01    | alice      | [E001]        |\n| ...         | ...     | ...     | ...        | ...           |\n| 2026-10-14 09:07:02 | Member added to group | FS02    | svc_backup | [E008]        |\n\n## EXTRACTED IOCS\n- IP address: 10.20.5.99\n- External reputation not checked.\n\n## POTENTIAL ATTACK INDICATORS\n- Brute force attack or credential stuffing attempt [E001-E006, E007]\n- Possible account compromise (svc_backup) [E005, E007]\n- Unauthorized group membership change (svc_backup added to Administrators) [E008]\n\n## CONFIDENCE AND UNCERTAINTY\nLow: The repeated failed logons and the subsequent successful logon for svc_backup suggest suspicious activity. However, without more context about the source IP, the accounts involved, and any maintenance windows or authorized tools in use, it is difficult to determine if this is a malicious attack or a benign event.\n\n## MISSING INFORMATION\n- Context about the source IP (10.20.5.99) and its purpose on the network\n- Information about the accounts involved (are they typically used for interactive, network, or RemoteInteractive logons?)\n- Approved changes, registered tools, and maintenance windows in the data that could provide legitimate context\n- Any evidence of execution or compromise beyond failed logons\n\n## RECOMMENDED INVESTIGATION STEPS\n1. Investigate the source IP (10.20.5.99) to determine its purpose on the network and any potential connections to known threat actors or compromised systems.\n2. Review the accounts involved in the failed logons for any unusual activity, such as multiple failures within a short period or from unexpected sources.\n3. Examine maintenance windows, approved changes, and registered tools in the data to determine if the suspicious activity aligns with legitimate events.\n4. Investigate the svc_backup account to determine if it has been compromised or misused.\n5. Monitor for any further failed logons or unusual activity related to the source IP (10.20.5.99) and the accounts involved in the suspicious activity.",
+    "sections": {
+      "EXECUTIVE SUMMARY": "The log data shows a series of failed logon attempts against multiple accounts from the same source IP (10.20.5.99), followed by a successful logon for the account svc_backup. The repeated failures and the subsequent success raise suspicions, but more context is needed to determine if this activity is malicious or benign.",
+      "LOG SOURCE": "Source type: Security Event Log (DC01). Hosts: DC01. Time span: 2026-10-14 09:02:11 - 2026-10-14 09:07:02.",
+      "SIGNIFICANT SECURITY EVENTS": "- Failed logon attempt for account alice [E001]\n- Failed logon attempt for account bob [E002]\n- Failed logon attempt for account carol [E003]\n- Failed logon attempt for account dave [E004]\n- Failed logon attempt for account admin (wrong password) [E005]\n- Failed logon attempt for account svc_backup (bad user or credentials) [E006]\n- Successful logon for account svc_backup [E007]\n- Member added to Administrators group: svc_backup by svc_backup [E008]",
+      "SUSPICIOUS ACTIVITIES": "- Repeated failed logons from the same source IP against multiple accounts, followed by a successful logon for svc_backup [E001-E006, E007]. This pattern is suspicious and may indicate an attempted brute force attack or credential stuffing attempt.",
+      "EVIDENCE REFERENCES": "[E001] 2026-10-14 09:02:11 DC01 EventID=4625 Account=alice LogonType=3 SourceIP=10.20.5.99 Status=0xC000006D\n[E002] ...\n... (continued for all references)",
+      "INCIDENT TIMELINE": "| Timestamp | Event | Source | Host/User | Evidence Ref |\n|-----------|-------|--------|-----------|--------------|\n| 2026-10-14 09:02:11 | Failed logon | DC01    | alice      | [E001]        |\n| ...         | ...     | ...     | ...        | ...           |\n| 2026-10-14 09:07:02 | Member added to group | FS02    | svc_backup | [E008]        |",
+      "EXTRACTED IOCS": "- IP address: 10.20.5.99\n- External reputation not checked.",
+      "POTENTIAL ATTACK INDICATORS": "- Brute force attack or credential stuffing attempt [E001-E006, E007]\n- Possible account compromise (svc_backup) [E005, E007]\n- Unauthorized group membership change (svc_backup added to Administrators) [E008]",
+      "CONFIDENCE AND UNCERTAINTY": "Low: The repeated failed logons and the subsequent successful logon for svc_backup suggest suspicious activity. However, without more context about the source IP, the accounts involved, and any maintenance windows or authorized tools in use, it is difficult to determine if this is a malicious attack or a benign event.",
+      "MISSING INFORMATION": "- Context about the source IP (10.20.5.99) and its purpose on the network\n- Information about the accounts involved (are they typically used for interactive, network, or RemoteInteractive logons?)\n- Approved changes, registered tools, and maintenance windows in the data that could provide legitimate context\n- Any evidence of execution or compromise beyond failed logons",
+      "RECOMMENDED INVESTIGATION STEPS": "1. Investigate the source IP (10.20.5.99) to determine its purpose on the network and any potential connections to known threat actors or compromised systems.\n2. Review the accounts involved in the failed logons for any unusual activity, such as multiple failures within a short period or from unexpected sources.\n3. Examine maintenance windows, approved changes, and registered tools in the data to determine if the suspicious activity aligns with legitimate events.\n4. Investigate the svc_backup account to determine if it has been compromised or misused.\n5. Monitor for any further failed logons or unusual activity related to the source IP (10.20.5.99) and the accounts involved in the suspicious activity."
+    },
+    "truncated": false,
+    "timeline_rows": [
+      {
+        "timestamp": "2026-10-14 09:02:11",
+        "event": "Failed logon",
+        "source": "DC01",
+        "host_user": "alice",
+        "evidence_ref": "[E001]",
+        "refs_found": [
+          "E001"
+        ]
+      },
+      {
+        "timestamp": "...",
+        "event": "...",
+        "source": "...",
+        "host_user": "...",
+        "evidence_ref": "...",
+        "refs_found": []
+      },
+      {
+        "timestamp": "2026-10-14 09:07:02",
+        "event": "Member added to group",
+        "source": "FS02",
+        "host_user": "svc_backup",
+        "evidence_ref": "[E008]",
+        "refs_found": [
+          "E008"
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "flags": [
+      {
+        "check": "timeline_row_without_ref",
+        "severity": "medium",
+        "section": "INCIDENT TIMELINE",
+        "value": "...",
+        "message": "Timeline row has no evidence reference.",
+        "analyst_disposition": "Needs follow-up",
+        "id": "F001"
+      }
+    ],
+    "severity_counts": {
+      "high": 0,
+      "medium": 1,
+      "low": 0
+    },
+    "automated_checks": [
+      "structure/truncation",
+      "IP/URL/domain/hash/CVE/email/file exact-string support",
+      "defang preservation",
+      "timestamp exact-string support",
+      "entity (key=value, backtick, host-token) support",
+      "evidence-reference existence and presence",
+      "fabricated rule/agent ID",
+      "Event ID semantics (heuristic)",
+      "unsupported certainty / attribution",
+      "none-claim vs code-detected risk signals",
+      "timeline timestamp vs cited event",
+      "input prompt-injection scan"
+    ],
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Corrected",
+    "analyst": "DEPI-SOC-Analyst-01",
+    "final_classification": null,
+    "final_priority": null,
+    "correct_findings": [
+      "Correctly identified failed logons across multiple accounts [E001-E006]",
+      "Identified successful svc_backup logon [E007]",
+      "Identified Administrators group membership change [E008]",
+      "Extracted source IP 10.20.5.99"
+    ],
+    "incorrect_findings": [
+      "Did not explicitly identify password spraying as a possible attack pattern",
+      "Described group membership change as unauthorized without sufficient evidence",
+      "Used incomplete evidence references and timeline placeholders"
+    ],
+    "missing_evidence": [
+      "Complete timeline references for E002-E007",
+      "Evidence confirming whether the Administrators group change was authorized",
+      "Correlation between authentication events on DC01 and group membership change on FS02"
+    ],
+    "hallucinations": [
+      "No confirmed fabricated IOC or event. Potential unsupported inference: Mistral described the Administrators group membership change in E008 as unauthorized, although the logs do not establish whether the change was approved. The incident timeline also contains incomplete evidence references."
+    ],
+    "notes": "Human SOC review completed. The AI correctly identified multiple failed logons, a subsequent successful logon for svc_backup, and an Administrators group membership change. The activity is suspicious and may indicate password spraying followed by account misuse or privilege escalation. However, malicious intent and unauthorized access are not confirmed by the available evidence. The AI incorrectly described the group membership change as unauthorized and provided an incomplete incident timeline. Further investigation is required to verify source IP activity, correlate events across DC01 and FS02, and confirm whether the administrative change was approved. Analyst classification: Needs Investigation. No containment action is authorized at this stage. The original AI findings require correction before inclusion in a final incident report.",
+    "reviewed_utc": "2026-10-17T17:36:54+00:00",
+    "history": [
+      {
+        "status": "Pending Review",
+        "analyst": null,
+        "final_classification": null,
+        "final_priority": null,
+        "correct_findings": [],
+        "incorrect_findings": [],
+        "missing_evidence": [],
+        "hallucinations": [],
+        "notes": "",
+        "reviewed_utc": null
+      }
+    ]
+  }
+}

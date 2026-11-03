@@ -1,0 +1,714 @@
+{
+  "engine_version": "unified-intake-0.4.0-candidate",
+  "source_file": "NT-03-focused.json",
+  "source_sha256": "ce7f1905335690eaea42f4d299824a057b36153d4747058a7405fbe6b04e67a6",
+  "evidence_class": "user_supplied_unverified",
+  "input_event_count": 25,
+  "counts_by_family": {
+    "network": 25
+  },
+  "classification": [
+    {
+      "ref": "E001",
+      "line_no": 1,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E002",
+      "line_no": 2,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E003",
+      "line_no": 3,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E004",
+      "line_no": 4,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E005",
+      "line_no": 5,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E006",
+      "line_no": 6,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E007",
+      "line_no": 7,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E008",
+      "line_no": 8,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E009",
+      "line_no": 9,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E010",
+      "line_no": 10,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E011",
+      "line_no": 11,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E012",
+      "line_no": 12,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E013",
+      "line_no": 13,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E014",
+      "line_no": 14,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E015",
+      "line_no": 15,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E016",
+      "line_no": 16,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E017",
+      "line_no": 17,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E018",
+      "line_no": 18,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E019",
+      "line_no": 19,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E020",
+      "line_no": 20,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E021",
+      "line_no": 21,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E022",
+      "line_no": 22,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E023",
+      "line_no": 23,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E024",
+      "line_no": 24,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    },
+    {
+      "ref": "E025",
+      "line_no": 25,
+      "family": "network",
+      "confidence": "high",
+      "reason": "Network evidence record_kind; Network endpoint/protocol fields",
+      "transport": "file",
+      "original_evidence_id": null,
+      "original_source": null
+    }
+  ],
+  "analysis_runs": [
+    {
+      "family": "network",
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016"
+      ],
+      "analysis_id": "AN-20261103-012816-d2f7",
+      "saved": "D:\\Desktop\\w\\Week-2\\Results\\AN-20261103-012816-d2f7",
+      "model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "validation_flags": 2,
+      "review_status": "Pending Review",
+      "qa": {
+        "needs_human_review": true,
+        "missing_or_truncated_output": false,
+        "flag_count": 2,
+        "high_severity_flags": 1,
+        "review_checks": [
+          "network_tcp_retry_missing_quantification",
+          "timeline_timestamp_mismatch"
+        ],
+        "status": "REVIEW_REQUIRED"
+      },
+      "events_sent_to_ai": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016"
+      ]
+    },
+    {
+      "family": "network",
+      "refs": [
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024",
+        "E025"
+      ],
+      "analysis_id": "AN-20261103-013010-57df",
+      "saved": "D:\\Desktop\\w\\Week-2\\Results\\AN-20261103-013010-57df",
+      "model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "validation_flags": 1,
+      "review_status": "Pending Review",
+      "qa": {
+        "needs_human_review": true,
+        "missing_or_truncated_output": false,
+        "flag_count": 1,
+        "high_severity_flags": 1,
+        "review_checks": [
+          "network_tcp_retry_pattern_not_identified"
+        ],
+        "status": "REVIEW_REQUIRED"
+      },
+      "events_sent_to_ai": [
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024",
+        "E025"
+      ]
+    }
+  ],
+  "whole_family_python_baseline": {
+    "network": {
+      "event_count": 25,
+      "refs": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024",
+        "E025"
+      ],
+      "findings": [
+        {
+          "rule_id": "NETWORK_TCP_REPEATED_FOUR_TUPLE_SEQUENCE",
+          "label": "Repeated Zeek TCP four-tuple rows with S0-before-SF sequences",
+          "confidence_in_observed_pattern": "high",
+          "evidence_refs": [
+            "E004",
+            "E005",
+            "E006",
+            "E008",
+            "E009",
+            "E010",
+            "E011",
+            "E012",
+            "E015",
+            "E016",
+            "E017",
+            "E018",
+            "E019",
+            "E020",
+            "E021",
+            "E022",
+            "E023"
+          ],
+          "observation": "4 repeated TCP source-port groups (17 original conn.log rows) from 192.168.1.199 to 46.101.251.172:80 show at least two S0 rows preceding an SF row per group; observed inter-arrival intervals vary, potentially consistent with retry/retransmission/backoff-like activity.",
+          "outcome": "Repeated same-four-tuple records do NOT prove independent connection attempts, exponential backoff, periodic beaconing, C2, malware, authorization, file-download contents or compromise.",
+          "details": {
+            "src_ip": "192.168.1.199",
+            "dst_ip": "46.101.251.172",
+            "dst_port": 80,
+            "proto": "tcp",
+            "repeated_source_port_groups": 4,
+            "repeated_source_port_rows": 17,
+            "all_intervals_median_seconds": 8.56,
+            "groups": [
+              {
+                "source_port": 59224,
+                "connection_record_count": 4,
+                "sequence": [
+                  "S0",
+                  "S0",
+                  "S0",
+                  "SF"
+                ],
+                "inter_arrival_seconds": [
+                  7.161,
+                  8.24,
+                  16.64
+                ],
+                "evidence_refs": [
+                  "E004",
+                  "E005",
+                  "E006",
+                  "E008"
+                ]
+              },
+              {
+                "source_port": 59228,
+                "connection_record_count": 4,
+                "sequence": [
+                  "S0",
+                  "S0",
+                  "S0",
+                  "SF"
+                ],
+                "inter_arrival_seconds": [
+                  7.213,
+                  8.56,
+                  16.64
+                ],
+                "evidence_refs": [
+                  "E009",
+                  "E010",
+                  "E011",
+                  "E012"
+                ]
+              },
+              {
+                "source_port": 59236,
+                "connection_record_count": 5,
+                "sequence": [
+                  "S0",
+                  "S0",
+                  "S0",
+                  "S0",
+                  "SF"
+                ],
+                "inter_arrival_seconds": [
+                  7.236,
+                  8.32,
+                  16.64,
+                  32.64
+                ],
+                "evidence_refs": [
+                  "E015",
+                  "E016",
+                  "E017",
+                  "E018",
+                  "E019"
+                ]
+              },
+              {
+                "source_port": 59240,
+                "connection_record_count": 4,
+                "sequence": [
+                  "S0",
+                  "S0",
+                  "S0",
+                  "SF"
+                ],
+                "inter_arrival_seconds": [
+                  7.219,
+                  8.64,
+                  16.64
+                ],
+                "evidence_refs": [
+                  "E020",
+                  "E021",
+                  "E022",
+                  "E023"
+                ]
+              }
+            ],
+            "raw_zeek_row_refs_only": true,
+            "full_source_integrity_checked_in_this_function": false
+          },
+          "status": "investigation_indicator_not_incident_verdict"
+        }
+      ],
+      "context": [],
+      "windows_plink": [],
+      "interpretation": "Observed indicators only; authorization, attack success and compromise require external verification."
+    }
+  },
+  "source_evidence_timeline": [
+    {
+      "ref": "E001",
+      "source_timestamp": "2019-01-10T20:06:28.860071Z",
+      "family": "network",
+      "observation": "Derived network aggregate (NOT an individual flow)",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E002",
+      "source_timestamp": "2019-01-10T20:06:29.067208Z",
+      "family": "network",
+      "observation": "Derived network aggregate (NOT an individual flow)",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E003",
+      "source_timestamp": "2019-01-10T20:06:29.067208Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E004",
+      "source_timestamp": "2019-01-10T20:06:30.793723Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E005",
+      "source_timestamp": "2019-01-10T20:06:37.954878Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E006",
+      "source_timestamp": "2019-01-10T20:06:46.194937Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E007",
+      "source_timestamp": "2019-01-10T20:06:50.932733Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E008",
+      "source_timestamp": "2019-01-10T20:07:02.835187Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E009",
+      "source_timestamp": "2019-01-10T20:07:06.262236Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E010",
+      "source_timestamp": "2019-01-10T20:07:13.475121Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E011",
+      "source_timestamp": "2019-01-10T20:07:22.035232Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E012",
+      "source_timestamp": "2019-01-10T20:07:38.675241Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E013",
+      "source_timestamp": "2019-01-10T20:07:42.092044Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E014",
+      "source_timestamp": "2019-01-10T20:07:42.115286Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E015",
+      "source_timestamp": "2019-01-10T20:07:43.599438Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E016",
+      "source_timestamp": "2019-01-10T20:07:50.835310Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E017",
+      "source_timestamp": "2019-01-10T20:07:59.155315Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E018",
+      "source_timestamp": "2019-01-10T20:08:15.795319Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E019",
+      "source_timestamp": "2019-01-10T20:08:48.435460Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E020",
+      "source_timestamp": "2019-01-10T20:08:51.136166Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E021",
+      "source_timestamp": "2019-01-10T20:08:58.355297Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E022",
+      "source_timestamp": "2019-01-10T20:09:06.995369Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E023",
+      "source_timestamp": "2019-01-10T20:09:23.635372Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E024",
+      "source_timestamp": "2019-01-10T20:09:26.859046Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    },
+    {
+      "ref": "E025",
+      "source_timestamp": "2019-01-10T22:01:02.953055Z",
+      "family": "network",
+      "observation": "Zeek original connection record",
+      "original_record": "Not recorded"
+    }
+  ],
+  "acceptance_gate": {
+    "status": "BLOCKED_PENDING_CORRECTION",
+    "high_severity_flag_count": 2,
+    "incomplete_batch_count": 0,
+    "human_approval_recorded": false,
+    "note": "Operational execution is not an approval of any AI security conclusion."
+  },
+  "unknown_refs_not_sent_to_ai": [],
+  "notes": [
+    "AI outputs are drafts requiring human review.",
+    "Mixed sources were grouped; this run does not prove cross-source correlation.",
+    "Source evidence references are mapped in classification; secrets are redacted in analysis copies.",
+    "Context limits may truncate events within an AI call; check events_sent_to_ai vs refs."
+  ]
+}

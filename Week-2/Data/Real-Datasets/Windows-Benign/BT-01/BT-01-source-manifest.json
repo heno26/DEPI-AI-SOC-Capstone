@@ -1,0 +1,27 @@
+{
+  "test_id": "BT-01",
+  "classification": "BENIGN CANDIDATE — analyst review needed; not confirmed clean",
+  "scenario": "Candidate normal .NET native-image optimization process execution",
+  "dataset_repository": "NextronSystems/evtx-baseline",
+  "dataset_release": "v0.8.5",
+  "source_archive": "win2022-evtx.tgz",
+  "source_archive_sha256_local": "29406757f9761b56372d40550c9bef4eb2bf82ec21ba15115910742b03c4aab2",
+  "source_evtx_files": {
+    "Microsoft-Windows-Sysmon%4Operational.evtx": {
+      "relative_path": "Data\\Real-Datasets\\Windows-Benign\\Selected-Channels\\win2022-evtx\\Microsoft-Windows-Sysmon%4Operational.evtx",
+      "sha256": "f97090c569524af4b80fac9cf199b47b046e3525c3043d257bdc2f3e4e2fdbe9"
+    }
+  },
+  "focused_json_sha256": "923489eda20e1644e6dd4fb56292c98a32082f9c6e06dd04150ed4b1800d8312",
+  "events": 6,
+  "event_id_distribution": {
+    "1": 6
+  },
+  "parser_check": "PASS",
+  "mapping_file": "BT-01-evidence-mapping.csv",
+  "limitations": [
+    "Baseline source does not prove each event is benign.",
+    "This is a small hand-selected candidate test, not a measured population-level false-positive rate.",
+    "Do not infer authorized activity or absence of malicious behavior without supporting context."
+  ]
+}

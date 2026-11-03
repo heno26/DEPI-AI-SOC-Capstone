@@ -1,0 +1,45 @@
+## EXECUTIVE SUMMARY
+The activity appears unclear. The log shows multiple network share access checks from the user 'user01' to various named-pipe paths on the IPC$ share of WIN-77LTAPHIQ1R.example.corp, but no evidence of successful file reads, changes or malicious intent is present in this data.
+
+## LOG SOURCE
+Source type: Windows Security Event Logs
+Hosts: WIN-77LTAPHIQ1R.example.corp
+Time span: 2019-01-20T07:29:57.8638931Z - 2019-01-20T07:30:10.6600994Z
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] The Security Audit Log was cleared by the Administrator account ([E001])
+- [E002], [E003], [E004] Network share access checks for 'user01' to various named-pipe paths on IPC$ ([E002], [E003], [E004])
+
+## SUSPICIOUS ACTIVITIES
+- Multiple network share access checks by user 'user01' to various named-pipes on the IPC$ share may indicate suspicious activity, but without additional context or evidence of successful file reads, changes or malicious intent it is unclear ([E002], [E003], [E004])
+
+## EVIDENCE REFERENCES
+- [E001] Shows the Security Audit Log was cleared by the Administrator account.
+- [E002], [E003], [E004] Show network share access checks for 'user01' to various named-pipes on the IPC$ share.
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2019-01-20T07:29:57.8638931Z | Security Audit Log Cleared | Microsoft-Windows-Eventlog | WIN-77LTAPHIQ1R.example.corp, Administrator | [E001] |
+| 2019-01-20T07:30:10.6451168Z | Network Share Access Check for 'user01' to winreg on IPC$ | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp, user01 | [E002] |
+| 2019-01-20T07:30:10.6600994Z | Network Share Access Check for 'user01' to lsarpc on IPC$ | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp, user01 | [E003] |
+| 2019-01-20T07:30:10.6600994Z | Network Share Access Check for 'user01' to srvsvc on IPC$ | Microsoft-Windows-Security-Auditing | WIN-77LTAPHIQ1R.example.corp, user01 | [E004] |
+
+## EXTRACTED IOCS
+None identified
+
+## POTENTIAL ATTACK INDICATORS
+- Multiple network share access checks by a single user to various named-pipe paths on the IPC$ share ([E002], [E003], [E004])
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The data does not provide enough context or evidence of successful file reads, changes or malicious intent.
+
+## MISSING INFORMATION
+- Additional logs and context to determine the purpose and outcome of these network share access checks.
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Gather additional logs for further context on these network share access checks.
+2. Investigate user 'user01' and their permissions.
+3. Check if there are any maintenance windows or authorized tools associated with these events.
+4. Examine the IP address 10.0.2.17 for potential threats.
+5. Consult with incident response team or security analysts to further assess the situation.

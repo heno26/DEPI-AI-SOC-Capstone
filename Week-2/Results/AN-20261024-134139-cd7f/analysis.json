@@ -1,0 +1,499 @@
+{
+  "analysis_id": "AN-20261024-134139-cd7f",
+  "schema_version": "week2-1",
+  "task": "log_analysis",
+  "created_utc": "2026-10-24T13:41:39+00:00",
+  "references": {
+    "alert_id": null,
+    "incident_ref": null,
+    "note": "incident_ref is reserved for Week 3/4 correlation"
+  },
+  "input": {
+    "filename": "LT-02-normalized-focused.log",
+    "path": "Data\\Real-Datasets\\Linux-Attacks\\LT-02-Privilege-Escalation\\LT-02-normalized-focused.log",
+    "sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81",
+    "format": "text",
+    "compressed": false,
+    "source_type": "linux",
+    "evidence_class": "user_supplied_unverified",
+    "event_count": 5,
+    "events_analysed": [
+      "E017",
+      "E018",
+      "E019",
+      "E020",
+      "E021"
+    ],
+    "warnings": [
+      "Input is a subset of the classified file; unknown/conflicting events were withheld from AI."
+    ]
+  },
+  "model": {
+    "name": "mistral:7b-instruct-v0.3-q4_K_S",
+    "options": {
+      "temperature": 0.2,
+      "repeat_penalty": 1.15,
+      "num_ctx": 6144,
+      "num_predict": 1500,
+      "seed": 42
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "options": {
+          "temperature": 0.2,
+          "repeat_penalty": 1.15,
+          "num_ctx": 6144,
+          "num_predict": 1500,
+          "seed": 42
+        },
+        "outcome": "success",
+        "seconds": 68.48
+      }
+    ],
+    "retry_used": false,
+    "done_reason": "stop",
+    "tokens_per_second": 19.44,
+    "wall_seconds": 68.48
+  },
+  "prompt": {
+    "file": "log_analysis.txt",
+    "version": "w2-1.0",
+    "sha256": "7affc781ced6c1a991a75ba465d7aa9c429fac7a7dc3730cf3656342b0650b6d",
+    "nonce_delimiter_used": true,
+    "feedback": {
+      "knowledge_base": "Validated-SOC-Lessons.json",
+      "knowledge_base_sha256": "028eccd632c58e22511ccae31c791a9e26b7c8a04c87484340950f66d19a4da7",
+      "applied_reviewed_lesson_ids": [
+        "LT02_AUDITD_OUTCOME"
+      ],
+      "general_guardrails_applied": true,
+      "method": "curated case-matched prompt guidance; not model fine-tuning"
+    }
+  },
+  "events": [
+    {
+      "ref": "E017",
+      "line_no": 17,
+      "raw": "2024-08-06T14:18:20.221000Z auditd PROCTITLE ref=E017 audit_serial=3129 source_line=29 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:18:20.221000Z",
+      "timestamp_utc": "2024-08-06T14:18:20.221000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "E017",
+        "audit_serial": "3129",
+        "source_line": "29",
+        "category": "capability_change_candidate",
+        "argv": "[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E018",
+      "line_no": 18,
+      "raw": "2024-08-06T14:20:36.405000Z auditd PROCTITLE ref=E018 audit_serial=3257 source_line=22 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:20:36.405000Z",
+      "timestamp_utc": "2024-08-06T14:20:36.405000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "E018",
+        "audit_serial": "3257",
+        "source_line": "22",
+        "category": "capability_change_candidate",
+        "argv": "[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E019",
+      "line_no": 19,
+      "raw": "2024-08-06T14:20:36.413000Z auditd PROCTITLE ref=E019 audit_serial=3270 source_line=15 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:20:36.413000Z",
+      "timestamp_utc": "2024-08-06T14:20:36.413000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "E019",
+        "audit_serial": "3270",
+        "source_line": "15",
+        "category": "capability_change_candidate",
+        "argv": "[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E020",
+      "line_no": 20,
+      "raw": "2024-08-06T14:36:57.368000Z auditd PROCTITLE ref=E020 audit_serial=3769 source_line=8 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:36:57.368000Z",
+      "timestamp_utc": "2024-08-06T14:36:57.368000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "E020",
+        "audit_serial": "3769",
+        "source_line": "8",
+        "category": "capability_change_candidate",
+        "argv": "[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    },
+    {
+      "ref": "E021",
+      "line_no": 21,
+      "raw": "2024-08-06T14:36:57.376000Z auditd PROCTITLE ref=E021 audit_serial=3782 source_line=1 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"] execution_result=not_available authentication_result=not_available host=not_recorded",
+      "timestamp_raw": "2024-08-06T14:36:57.376000Z",
+      "timestamp_utc": "2024-08-06T14:36:57.376000+00:00",
+      "host": "auditd",
+      "user": null,
+      "src_ip": null,
+      "dst_ip": null,
+      "event_id": null,
+      "source_kind": "linux",
+      "meta": {
+        "unified": {
+          "family": "linux",
+          "confidence": "high",
+          "reason": "Linux syslog normalization",
+          "transport": "file"
+        },
+        "original_source_kind": "linux"
+      },
+      "fields": {
+        "ref": "E021",
+        "audit_serial": "3782",
+        "source_line": "1",
+        "category": "capability_change_candidate",
+        "argv": "[\"sudo\",\"setcap\",\"cap_setuid+ep\",\"./priv_esc\"]",
+        "execution_result": "not_available",
+        "authentication_result": "not_available",
+        "host": "not_recorded"
+      }
+    }
+  ],
+  "facts": [],
+  "ioc_context": [
+    {
+      "type": "hostname",
+      "value": "auditd",
+      "refs": [
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021"
+      ],
+      "count": 5,
+      "scope": "",
+      "reputation": "External reputation not checked."
+    }
+  ],
+  "risk_signals": [
+    {
+      "ref": "E017",
+      "label": "privilege-sensitive setcap/SUID command recorded; execution outcome unknown"
+    },
+    {
+      "ref": "E018",
+      "label": "privilege-sensitive setcap/SUID command recorded; execution outcome unknown"
+    },
+    {
+      "ref": "E019",
+      "label": "privilege-sensitive setcap/SUID command recorded; execution outcome unknown"
+    },
+    {
+      "ref": "E020",
+      "label": "privilege-sensitive setcap/SUID command recorded; execution outcome unknown"
+    },
+    {
+      "ref": "E021",
+      "label": "privilege-sensitive setcap/SUID command recorded; execution outcome unknown"
+    }
+  ],
+  "benign_context": [],
+  "evidence_timeline": [
+    {
+      "timestamp": "2024-08-06T14:18:20.221000Z",
+      "timestamp_utc": "2024-08-06T14:18:20.221000+00:00",
+      "event": "2024-08-06T14:18:20.221000Z auditd PROCTITLE ref=E017 audit_serial=3129 source_line=29 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep ...[truncated 100 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E017"
+    },
+    {
+      "timestamp": "2024-08-06T14:20:36.405000Z",
+      "timestamp_utc": "2024-08-06T14:20:36.405000+00:00",
+      "event": "2024-08-06T14:20:36.405000Z auditd PROCTITLE ref=E018 audit_serial=3257 source_line=22 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep ...[truncated 100 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E018"
+    },
+    {
+      "timestamp": "2024-08-06T14:20:36.413000Z",
+      "timestamp_utc": "2024-08-06T14:20:36.413000+00:00",
+      "event": "2024-08-06T14:20:36.413000Z auditd PROCTITLE ref=E019 audit_serial=3270 source_line=15 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep ...[truncated 100 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E019"
+    },
+    {
+      "timestamp": "2024-08-06T14:36:57.368000Z",
+      "timestamp_utc": "2024-08-06T14:36:57.368000+00:00",
+      "event": "2024-08-06T14:36:57.368000Z auditd PROCTITLE ref=E020 audit_serial=3769 source_line=8 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep\" ...[truncated 99 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E020"
+    },
+    {
+      "timestamp": "2024-08-06T14:36:57.376000Z",
+      "timestamp_utc": "2024-08-06T14:36:57.376000+00:00",
+      "event": "2024-08-06T14:36:57.376000Z auditd PROCTITLE ref=E021 audit_serial=3782 source_line=1 category=capability_change_candidate argv=[\"sudo\",\"setcap\",\"cap_setuid+ep\" ...[truncated 99 chars]",
+      "source": "linux",
+      "host_user": "auditd",
+      "evidence_ref": "E021"
+    }
+  ],
+  "ai_output": {
+    "raw_text": "## EXECUTIVE SUMMARY\nMultiple attempts to set a capability on the file './priv_esc' using 'sudo setcap cap_setuid+ep' were observed. The purpose of these actions is unclear, but they could potentially be used for privilege escalation if successful.\n\n## LOG SOURCE\nSource type: Auditd (PROCTITLE) logs, hosts and time span not recorded in the data provided.\n\n## SIGNIFICANT SECURITY EVENTS\n- [E017] Sudo command with setcap to change capabilities on './priv_esc' at 2024-08-06T14:18:20.221000Z\n- [E018] Sudo command with setcap to change capabilities on './priv_esc' at 2024-08-06T14:20:36.405000Z\n- [E019] Sudo command with setcap to change capabilities on './priv_esc' at 2024-08-06T14:20:36.413000Z\n- [E020] Sudo command with setcap to change capabilities on './priv_esc' at 2024-08-06T14:36:57.368000Z\n- [E021] Sudo command with setcap to change capabilities on './priv_esc' at 2024-08-06T14:36:57.376000Z\n\n## SUSPICIOUS ACTIVITIES\n- Multiple attempts to modify the file './priv_esc' with 'sudo setcap cap_setuid+ep', which could potentially be used for privilege escalation [E017, E018, E019, E020, E021]\n\n## EVIDENCE REFERENCES\n- [E017]: Shows the command arguments: \"sudo\", \"setcap\", \"cap_setuid+ep\", \"./priv_esc\"\n- [E018]: Shows the command arguments: \"sudo\", \"setcap\", \"cap_setuid+ep\", \"./priv_esc\"\n- [E019]: Shows the command arguments: \"sudo\", \"setcap\", \"cap_setuid+ep\", \"./priv_esc\"\n- [E020]: Shows the command arguments: \"sudo\", \"setcap\", \"cap_setuid+ep\", \"./priv_esc\"\n- [E021]: Shows the command arguments: \"sudo\", \"setcap\", \"cap_setuid+ep\", \"./priv_esc\"\n\n## INCIDENT TIMELINE\n| Timestamp | Event | Source | Host/User | Evidence Ref |\n|-----------|-------|--------|-----------|--------------|\n| 2024-08-06T14:18:20.221000Z | Sudo command with setcap to change capabilities on './priv_esc' | auditd PROCTITLE | not recorded   | [E017] |\n| 2024-08-06T14:20:36.405000Z | Sudo command with setcap to change capabilities on './priv_esc' | auditd PROCTITLE | not recorded   | [E018] |\n| 2024-08-06T14:20:36.413000Z | Sudo command with setcap to change capabilities on './priv_esc' | auditd PROCTITLE | not recorded   | [E019] |\n| 2024-08-06T14:36:57.368000Z | Sudo command with setcap to change capabilities on './priv_esc' | auditd PROCTITLE | not recorded   | [E020] |\n| 2024-08-06T14:36:57.376000Z | Sudo command with setcap to change capabilities on './priv_esc' | auditd PROCTITLE | not recorded   | [E021] |\n\n## EXTRACTED IOCS\n- Type: Command arguments\n  - Value: \"sudo\", \"setcap\", \"cap_setuid+ep\", \"./priv_esc\"\n  - External reputation not checked.\n\n## POTENTIAL ATTACK INDICATORS\n- Possible privilege escalation attempt using 'sudo setcap cap_setuid+ep' [E017, E018, E019, E020, E021]\n\n## CONFIDENCE AND UNCERTAINTY\nLow: The purpose of these actions is unclear and the execution results are not available.\n\n## MISSING INFORMATION\n- Hostnames for each event\n- Usernames for each event\n- Context surrounding these events (e.g., approved changes, maintenance windows)\n\n## RECOMMENDED INVESTIGATION STEPS\n1. Identify the hostnames and users associated with these events.\n2. Investigate the file './priv_esc' to determine its purpose and if it has been modified since the observed events.\n3. Determine if there are any other related log entries or artifacts that provide additional context.\n4. Verify if the user performing these actions had authorization to modify the file './priv_esc'.\n5. Investigate the user's account for signs of compromise or unusual activity.",
+    "sections": {
+      "EXECUTIVE SUMMARY": "Multiple attempts to set a capability on the file './priv_esc' using 'sudo setcap cap_setuid+ep' were observed. The purpose of these actions is unclear, but they could potentially be used for privilege escalation if successful.",
+      "LOG SOURCE": "Source type: Auditd (PROCTITLE) logs, hosts and time span not recorded in the data provided.",
+      "SIGNIFICANT SECURITY EVENTS": "- [E017] Sudo command with setcap to change capabilities on './priv_esc' at 2024-08-06T14:18:20.221000Z\n- [E018] Sudo command with setcap to change capabilities on './priv_esc' at 2024-08-06T14:20:36.405000Z\n- [E019] Sudo command with setcap to change capabilities on './priv_esc' at 2024-08-06T14:20:36.413000Z\n- [E020] Sudo command with setcap to change capabilities on './priv_esc' at 2024-08-06T14:36:57.368000Z\n- [E021] Sudo command with setcap to change capabilities on './priv_esc' at 2024-08-06T14:36:57.376000Z",
+      "SUSPICIOUS ACTIVITIES": "- Multiple attempts to modify the file './priv_esc' with 'sudo setcap cap_setuid+ep', which could potentially be used for privilege escalation [E017, E018, E019, E020, E021]",
+      "EVIDENCE REFERENCES": "- [E017]: Shows the command arguments: \"sudo\", \"setcap\", \"cap_setuid+ep\", \"./priv_esc\"\n- [E018]: Shows the command arguments: \"sudo\", \"setcap\", \"cap_setuid+ep\", \"./priv_esc\"\n- [E019]: Shows the command arguments: \"sudo\", \"setcap\", \"cap_setuid+ep\", \"./priv_esc\"\n- [E020]: Shows the command arguments: \"sudo\", \"setcap\", \"cap_setuid+ep\", \"./priv_esc\"\n- [E021]: Shows the command arguments: \"sudo\", \"setcap\", \"cap_setuid+ep\", \"./priv_esc\"",
+      "INCIDENT TIMELINE": "| Timestamp | Event | Source | Host/User | Evidence Ref |\n|-----------|-------|--------|-----------|--------------|\n| 2024-08-06T14:18:20.221000Z | Sudo command with setcap to change capabilities on './priv_esc' | auditd PROCTITLE | not recorded   | [E017] |\n| 2024-08-06T14:20:36.405000Z | Sudo command with setcap to change capabilities on './priv_esc' | auditd PROCTITLE | not recorded   | [E018] |\n| 2024-08-06T14:20:36.413000Z | Sudo command with setcap to change capabilities on './priv_esc' | auditd PROCTITLE | not recorded   | [E019] |\n| 2024-08-06T14:36:57.368000Z | Sudo command with setcap to change capabilities on './priv_esc' | auditd PROCTITLE | not recorded   | [E020] |\n| 2024-08-06T14:36:57.376000Z | Sudo command with setcap to change capabilities on './priv_esc' | auditd PROCTITLE | not recorded   | [E021] |",
+      "EXTRACTED IOCS": "- Type: Command arguments\n  - Value: \"sudo\", \"setcap\", \"cap_setuid+ep\", \"./priv_esc\"\n  - External reputation not checked.",
+      "POTENTIAL ATTACK INDICATORS": "- Possible privilege escalation attempt using 'sudo setcap cap_setuid+ep' [E017, E018, E019, E020, E021]",
+      "CONFIDENCE AND UNCERTAINTY": "Low: The purpose of these actions is unclear and the execution results are not available.",
+      "MISSING INFORMATION": "- Hostnames for each event\n- Usernames for each event\n- Context surrounding these events (e.g., approved changes, maintenance windows)",
+      "RECOMMENDED INVESTIGATION STEPS": "1. Identify the hostnames and users associated with these events.\n2. Investigate the file './priv_esc' to determine its purpose and if it has been modified since the observed events.\n3. Determine if there are any other related log entries or artifacts that provide additional context.\n4. Verify if the user performing these actions had authorization to modify the file './priv_esc'.\n5. Investigate the user's account for signs of compromise or unusual activity."
+    },
+    "truncated": false,
+    "timeline_rows": [
+      {
+        "timestamp": "2024-08-06T14:18:20.221000Z",
+        "event": "Sudo command with setcap to change capabilities on './priv_esc'",
+        "source": "auditd PROCTITLE",
+        "host_user": "not recorded",
+        "evidence_ref": "[E017]",
+        "refs_found": [
+          "E017"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:20:36.405000Z",
+        "event": "Sudo command with setcap to change capabilities on './priv_esc'",
+        "source": "auditd PROCTITLE",
+        "host_user": "not recorded",
+        "evidence_ref": "[E018]",
+        "refs_found": [
+          "E018"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:20:36.413000Z",
+        "event": "Sudo command with setcap to change capabilities on './priv_esc'",
+        "source": "auditd PROCTITLE",
+        "host_user": "not recorded",
+        "evidence_ref": "[E019]",
+        "refs_found": [
+          "E019"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:36:57.368000Z",
+        "event": "Sudo command with setcap to change capabilities on './priv_esc'",
+        "source": "auditd PROCTITLE",
+        "host_user": "not recorded",
+        "evidence_ref": "[E020]",
+        "refs_found": [
+          "E020"
+        ]
+      },
+      {
+        "timestamp": "2024-08-06T14:36:57.376000Z",
+        "event": "Sudo command with setcap to change capabilities on './priv_esc'",
+        "source": "auditd PROCTITLE",
+        "host_user": "not recorded",
+        "evidence_ref": "[E021]",
+        "refs_found": [
+          "E021"
+        ]
+      }
+    ]
+  },
+  "grounding": {
+    "version": "grounded-detection-1.0",
+    "scope": "observed_input_events_only",
+    "events_inspected": 5,
+    "behavioral_findings": [
+      {
+        "rule_id": "LINUX_PRIVILEGE_SENSITIVE_COMMAND",
+        "label": "Privilege-sensitive setcap/SUID arguments",
+        "confidence_in_observed_pattern": "high",
+        "evidence_refs": [
+          "E017",
+          "E018",
+          "E019",
+          "E020",
+          "E021"
+        ],
+        "observation": "Recorded setcap cap_setuid+ep and/or chmod u+s command arguments",
+        "outcome": "Execution success, operator identity, authorization, privilege attainment NOT established",
+        "details": {
+          "setcap_records": 5,
+          "chmod_records": 0
+        },
+        "status": "investigation_indicator_not_incident_verdict"
+      }
+    ],
+    "context_observations": [],
+    "final_incident_verdict": "human_review_required",
+    "guarantees": [
+      "No LLM inference",
+      "No proof of attack success",
+      "No SOAR actions"
+    ]
+  },
+  "validation": {
+    "flags": [],
+    "severity_counts": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "automated_checks": [
+      "structure/truncation",
+      "IP/URL/domain/hash/CVE/email/file exact-string support",
+      "defang preservation",
+      "timestamp source-text check; timeline timestamp <1ms tolerance",
+      "entity (key=value, backtick, host-token) support",
+      "evidence-reference existence and presence",
+      "fabricated rule/agent ID",
+      "Event ID semantics (heuristic: Windows 1102/5145/4624/4625/4732)",
+      "unsupported certainty / attribution",
+      "none-claim vs code-detected risk signals",
+      "timeline timestamp vs cited event",
+      "input prompt-injection scan"
+    ],
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review",
+    "analyst": null,
+    "final_classification": null,
+    "final_priority": null,
+    "correct_findings": [],
+    "incorrect_findings": [],
+    "missing_evidence": [],
+    "hallucinations": [],
+    "notes": "",
+    "reviewed_utc": null,
+    "history": []
+  },
+  "unified": {
+    "engine_version": "unified-intake-0.1.0-candidate",
+    "family": "linux",
+    "pre_ai_notes": [
+      "UNIFIED ROUTING: 5 event(s) assigned to this source family using per-event signatures. Do not infer that unknown or omitted records were analyzed."
+    ],
+    "baseline_grounding": {
+      "version": "grounded-detection-1.0",
+      "scope": "observed_input_events_only",
+      "events_inspected": 5,
+      "behavioral_findings": [
+        {
+          "rule_id": "LINUX_PRIVILEGE_SENSITIVE_COMMAND",
+          "label": "Privilege-sensitive setcap/SUID arguments",
+          "confidence_in_observed_pattern": "high",
+          "evidence_refs": [
+            "E017",
+            "E018",
+            "E019",
+            "E020",
+            "E021"
+          ],
+          "observation": "Recorded setcap cap_setuid+ep and/or chmod u+s command arguments",
+          "outcome": "Execution success, operator identity, authorization, privilege attainment NOT established",
+          "details": {
+            "setcap_records": 5,
+            "chmod_records": 0
+          },
+          "status": "investigation_indicator_not_incident_verdict"
+        }
+      ],
+      "context_observations": [],
+      "final_incident_verdict": "human_review_required",
+      "guarantees": [
+        "No LLM inference",
+        "No proof of attack success",
+        "No SOAR actions"
+      ]
+    },
+    "windows_plink": [],
+    "input_original_sha256": "c501231ef8a5409016f7db307b334806403f0660e95bf4fa934fb4e0bc9d8c81"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "generated_at_utc": "2026-10-31T22:15:34.967146+00:00",
+  "project": "DEPI-P5",
+  "phase": "Week-2 SIEM-07 XSS 004",
+  "mode": "authenticated_webhook_historical_lab_replay",
+  "event_id": "843425fa737b11ef71fcf6f556f947753101d7825995b79bde68dca70a089769",
+  "model": "mistral:7b-instruct-v0.3-q4_K_S",
+  "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+  "missing_fields": [],
+  "semantic_warnings": [],
+  "source_trigger": {
+    "_timestamp": 1793484887203627,
+    "key": "SIEM_WEB_004_XSS_ATTACK_DETECTED/3LQOtthRb5OozWYlTvYvH58Cmtk",
+    "status": "firing"
+  },
+  "webhook_group": {
+    "transaction_id": "ZwuU-iAtf3OzxrG7aRST3wAAAAU",
+    "source_ip": "192.168.171.129",
+    "request_uri": "/index.php?p=\"`\\'><script>\\xE2\\x80\\xAFjavascript:alert(1)</script>&debug_url=1",
+    "request_body": "",
+    "original_event_time": "13/Oct/2024:09:38:06 +0000",
+    "response_status": "500",
+    "dataset_label": "xss",
+    "replay_mode": "historical_lab_replay"
+  },
+  "evidence": {
+    "alert_rule": "SIEM_WEB_004_XSS_ATTACK_DETECTED",
+    "stream": "depi_web_xss",
+    "source_trigger": {
+      "_timestamp": 1793484887203627,
+      "key": "SIEM_WEB_004_XSS_ATTACK_DETECTED/3LQOtthRb5OozWYlTvYvH58Cmtk",
+      "status": "firing"
+    },
+    "transaction_id": "ZwuU-iAtf3OzxrG7aRST3wAAAAU",
+    "source_ip": "192.168.171.129",
+    "verified_count": 1,
+    "verified_records": [
+      {
+        "_timestamp": 1793370159741550,
+        "transaction_id": "ZwuU-iAtf3OzxrG7aRST3wAAAAU",
+        "source_ip": "192.168.171.129",
+        "request_uri": "/index.php?p=\"`'><script>\\xE2\\x80\\xAFjavascript:alert(1)</script>&debug_url=1",
+        "request_body": "",
+        "response_status": "500",
+        "dataset_label": "xss",
+        "original_event_time": "13/Oct/2024:09:38:06 +0000",
+        "replay_mode": "historical_lab_replay"
+      }
+    ],
+    "historical_replay": true,
+    "limitations": [
+      "HTTP 200 does not prove successful XSS execution.",
+      "Original event timestamps represent historical laboratory data.",
+      "SIEM trigger does not independently prove browser-side execution."
+    ]
+  },
+  "ai_triage": {
+    "summary": "Potential Cross-Site Scripting (XSS) attempt detected",
+    "severity": "High",
+    "potential_threat": "Data exfiltration, session hijacking, or user redirection",
+    "indicators": {
+      "alert_rule": "SIEM_WEB_004_XSS_ATTACK_DETECTED",
+      "stream": "depi_web_xss",
+      "source_trigger": {
+        "_timestamp": 1793484887203627,
+        "key": "SIEM_WEB_004_XSS_ATTACK_DETECTED/3LQOtthRb5OozWYlTvYvH58Cmtk",
+        "status": "firing"
+      },
+      "transaction_id": "ZwuU-iAtf3OzxrG7aRST3wAAAAU",
+      "source_ip": "192.168.171.129"
+    },
+    "false_positive_possibility": "Low",
+    "recommended_actions": [
+      "Investigate the application logic that allowed this potential XSS attempt to bypass existing defenses.",
+      "Review and update input validation rules for the affected application.",
+      "Implement Content Security Policy (CSP) to mitigate potential XSS risks."
+    ],
+    "evidence_limitations": [
+      "HTTP 200 does not prove successful XSS execution.",
+      "Original event timestamps represent historical laboratory data.",
+      "SIEM trigger does not independently prove browser-side execution."
+    ],
+    "confidence": "High"
+  },
+  "human_validation_required": true,
+  "limitations": [
+    "HTTP 200 does not establish successful XSS execution.",
+    "Original events are historical laboratory replay.",
+    "Trigger-to-row provenance is not independently established.",
+    "AI findings require human analyst validation."
+  ]
+}

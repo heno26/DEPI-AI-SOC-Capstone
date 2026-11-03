@@ -1,0 +1,45 @@
+## EXECUTIVE SUMMARY
+A strong vertical port scan pattern was detected on the network, targeting multiple ports. The source IP address is 192.168.16.132 and the scanning occurred between 06:07:27 and 06:13:59 (UTC) on May 26, 2026. It's unclear if this activity is malicious or benign as authorization and compromise are not established.
+
+## LOG SOURCE
+Source type: Zeek conn.log
+Hosts: 192.168.16.130 (destination) and 192.168.16.132 (source)
+Time span: May 26, 2026 from 06:05:07 to 06:14:00 (UTC)
+
+## SIGNIFICANT SECURITY EVENTS
+- [E026] Strong vertical port scan pattern detected.
+
+## SUSPICIOUS ACTIVITIES
+- Multiple attempts to connect to various ports on the destination host, all resulting in REJ responses ([E028], [E029], ..., [E041]). This behavior is suspicious as it could indicate a port scan.
+
+## EVIDENCE REFERENCES
+- [E026] Shows a strong vertical port scan pattern with 65895 connection attempts and targeting 65535 ports.
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2026-05-26T06:07:27.414749Z | Vertical port scan started | 192.168.16.132 | - | [E026] |
+| 2026-05-26T06:07:27.414749Z | Connection attempt to port 80 (HTTP) on destination host | 192.168.16.132 | - | [E028] |
+| 2026-05-26T06:07:28.502707Z | Connection attempt to port 2000 on destination host | 192.168.16.132 | - | [E029] |
+| ... (omitted for brevity) | ... | ... | ... | ... |
+| 2026-05-26T06:13:59.989944Z | Last connection attempt to port 40091 on destination host | 192.168.16.132 | - | [E041] |
+
+## EXTRACTED IOCS
+- None identified
+
+## POTENTIAL ATTACK INDICATORS
+- Multiple connection attempts to various ports on the destination host ([E028], [E029], ..., [E041]). This could indicate a port scan.
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The source IP address and time of scanning are known, but authorization, actor intent, and compromise are not established.
+
+## MISSING INFORMATION
+- Information about the authorized use of these ports on the destination host.
+- Evidence of any successful connections or compromises.
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the purpose for accessing various ports on the destination host.
+2. Check if there are any known vulnerabilities associated with the targeted ports.
+3. Review logs from other security systems to determine if this activity is part of a larger pattern or campaign.
+4. Determine if any firewall rules were violated during this incident.
+5. Investigate the source IP address and its origin, if necessary.

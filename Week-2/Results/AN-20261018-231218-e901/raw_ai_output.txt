@@ -1,0 +1,43 @@
+## EXECUTIVE SUMMARY
+The activity shows a possible attempt to establish a connection from the host 'ip-10-0-255-92' to an external IP address (10.0.255.12) on port 4444, using bash and netcat. The purpose of this connection is unclear and may require further investigation.
+
+## LOG SOURCE
+Source type: Linux Sysmon, Hosts: ip-10-0-255-92, Time Span: 2024-05-31T18:01:42.639983000Z
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] Linux process event with bash and netcat usage
+
+## SUSPICIOUS ACTIVITIES
+- A connection attempt to an external IP address (10.0.255.12) on port 4444 using bash and netcat, which could potentially be used for command and control communication in a compromised system or malware execution [E001]
+
+## EVIDENCE REFERENCES
+- [E001] Shows the Linux process event with bash and netcat usage
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|-----------|-------|--------|-----------|--------------|
+| 2024-05-31T18:01:42.639983000Z | Linux process event | ip-10-0-255-92 | root          | E001           |
+
+## EXTRACTED IOCS
+- Type: IP Address, Value: 10.0.255.12, [E001]
+- Type: Port Number, Value: 4444, [E001]
+
+## POTENTIAL ATTACK INDICATORS
+- Possible use of bash and netcat for command and control communication or malware execution [E001]
+- Unknown network connection outcome [E001]
+
+## CONFIDENCE AND UNCERTAINTY
+Low | Medium | High
+The purpose of the connection attempt is unclear, and further investigation is needed to determine if it's a legitimate activity or an indication of compromise.
+
+## MISSING INFORMATION
+- The nature of the connection (legitimate or malicious)
+- Whether this event is part of an ongoing attack or isolated incident
+- Any additional context about the user, host, or network that could help determine the intent behind the connection attempt
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the purpose and legitimacy of the connection to 10.0.255.12:4444.
+2. Examine the user account's permissions, recent activity, and any unusual behavior.
+3. Check for other instances of similar network connections or process executions on the host.
+4. Investigate if there are any missing or outdated security patches that could have allowed this potential vulnerability.
+5. Consult with incident response team or threat intelligence feeds to determine if IP 10.0.255.12 is known for malicious activity.

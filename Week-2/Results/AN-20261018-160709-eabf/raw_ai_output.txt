@@ -1,0 +1,59 @@
+## EXECUTIVE SUMMARY
+The activity appears to be benign. Multiple instances of the .NET Runtime Optimization Service (mscorsvw.exe) were started on WIN-TKC15D7KHUR, which is expected behavior for this system. The processes are initiated by the NT AUTHORITY\SYSTEM user and run from the C:\Windows\System32 directory as part of Microsoft .NET Framework maintenance.
+
+## LOG SOURCE
+Source type: Microsoft-Windows-Sysmon
+Hosts: WIN-TKC15D7KHUR
+Time span: 2022-04-04T14:05:42.0544347Z - 2022-04-04T14:05:44.4604920Z
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] Process creation event for mscorsvw.exe with PID 4336
+- [E002] Process creation event for mscorsvw.exe with PID 3960
+- [E003] Process creation event for mscorsvw.exe with PID 4996
+- [E004] Process creation event for mscorsvw.exe with PID 4100
+- [E005] Process creation event for mscorsvw.exe with PID 4568
+- [E006] Process creation event for mscorsvw.exe with PID 3720
+
+## SUSPICIOUS ACTIVITIES
+None identified
+
+## EVIDENCE REFERENCES
+- [E001] Event data of process creation for mscorsvw.exe with PID 4336
+- [E002] Event data of process creation for mscorsvw.exe with PID 3960
+- [E003] Event data of process creation for mscorsvw.exe with PID 4996
+- [E004] Event data of process creation for mscorsvw.exe with PID 4100
+- [E005] Event data of process creation for mscorsvw.exe with PID 4568
+- [E006] Event data of process creation for mscorsvw.exe with PID 3720
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2022-04-04T14:05:42.0544347Z | Process creation for mscorsvw.exe with PID 4336 | Microsoft-Windows-Sysmon | WIN-TKC15D7KHUR | [E001] |
+| 2022-04-04T14:05:42.1749967Z | Process creation for mscorsvw.exe with PID 3960 | Microsoft-Windows-Sysmon | WIN-TKC15D7KHUR | [E002] |
+| 2022-04-04T14:05:42.4217019Z | Process creation for mscorsvw.exe with PID 4996 | Microsoft-Windows-Sysmon | WIN-TKC15D7KHUR | [E003] |
+| 2022-04-04T14:05:42.6819078Z | Process creation for mscorsvw.exe with PID 4100 | Microsoft-Windows-Sysmon | WIN-TKC15D7KHUR | [E004] |
+| 2022-04-04T14:05:44.2481373Z | Process creation for mscorsvw.exe with PID 4568 | Microsoft-Windows-Sysmon | WIN-TKC15D7KHUR | [E005] |
+| 2022-04-04T14:05:44.4604920Z | Process creation for mscorsvw.exe with PID 3720 | Microsoft-Windows-Sysmon | WIN-TKC15D7KHUR | [E006] |
+
+## EXTRACTED IOCS
+- Type: File path (Image)
+  - Value: C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorsvw.exe
+    - External reputation not checked.
+
+## POTENTIAL ATTACK INDICATORS
+- None
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The activity is expected behavior for this system, but it could be part of a compromised process chain if other malicious activities are detected in the logs.
+Medium: The processes are initiated by the NT AUTHORITY\SYSTEM user and run from the C:\Windows\System32 directory as part of Microsoft .NET Framework maintenance.
+High: The activity is consistent with expected behavior for this system based on the provided data.
+
+## MISSING INFORMATION
+- Context outside the log data, such as other security events or approved changes, registered tools, and maintenance windows in the environment.
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Verify that these processes are part of Microsoft .NET Framework maintenance by checking for corresponding entries in system logs or consulting with system administrators.
+2. Investigate other security events occurring around the same time to ensure they are also benign.
+3. Check for any unusual patterns or anomalies in process creation, network connections, or user activity that could indicate a compromise.
+4. Review approved changes, registered tools, and maintenance windows in the environment to confirm their legitimacy.
+5. Monitor the system for any further suspicious activities related to mscorsvw.exe or other potential indicators of compromise (IOCs).

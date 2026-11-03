@@ -1,61 +1,23 @@
-# Evidence Repository
+# Evidence and Screenshot Checklist
 
-## Overview
+**No screenshots have been created.** Capture each item yourself on your Windows machine. Mark them as you go. Redact tokens, emails, Cloud IDs and API keys before saving.
+Name files `NN-short-name.png` inside this folder.
 
-This directory contains investigation evidence, reference artifacts, preserved datasets, and supporting materials used throughout the DEPI-P5 AI-Assisted SOC Automation & Incident Response Capstone.
+| # | Screenshot | How to capture it | Done |
+|---|---|---|---|
+| 01 | Week 2 folder structure | File Explorer or `tree /F Week-2` in PowerShell | [ ] |
+| 02 | Ollama and Mistral running | `ollama list`, then `ollama ps` while a run is active, then `python app.py check` | [ ] |
+| 03 | Windows log analysis | `python app.py analyze Data\Windows\SYNTHETIC_TC-02_...log` output incl. flags | [ ] |
+| 04 | Linux log analysis | same with `Data\Linux\SYNTHETIC_TC-01_...log` | [ ] |
+| 05 | Network log analysis | same with `Data\Network\SYNTHETIC_W2-02_...log` | [ ] |
+| 06 | Wazuh JSON alert import | `python app.py triage Data\Wazuh\SYNTHETIC_wazuh_alerts_array.json` showing the loaded summary + SHA-256 (caption it: **synthetic Wazuh-format fixture**) | [ ] |
+| 07 | AI alert triage output | triage result showing original severity vs AI priority | [ ] |
+| 08 | Incident timeline and IOC context | the "Evidence-based timeline" and "IOC context" parts of `report.md` or the console | [ ] |
+| 09 | Hallucination validation | the flag list; ideally a run with a flag + your disposition | [ ] |
+| 10 | Human analyst review | the review prompts and `Review saved. Status: ...` | [ ] |
+| 11 | Detection improvement notes | `python app.py detect ...` output | [ ] |
+| 12 | Saved analysis results | `dir Results` and an opened `report.md`; `Validation\validation_log.csv` | [ ] |
+| 13 | Offline AI demonstration | Wi-Fi off in the taskbar + a successful run | [ ] |
+| 14 | Genuine Wazuh Cloud alerts | **Only after real collection.** Dashboard alert list, redacted | [ ] **NOT YET POSSIBLE** |
 
-The Evidence repository serves as a centralized location for investigation-related data collected from multiple platforms and environments, supporting SOC operations, incident response exercises, validation workflows, and AI-assisted security analysis.
-
-## Repository Structure
-
-| Directory | Purpose |
-|------------|---------|
-| Benign-Analysis | Benign activity analysis datasets and supporting investigation artifacts. |
-| Linux | Linux-based investigation evidence and supporting materials. |
-| Network | Network investigation evidence and related datasets. |
-| OpenObserve | OpenObserve-related evidence, analysis outputs, and supporting data. |
-| Shared | Shared investigation artifacts used across multiple scenarios. |
-| SIEM-OpenObserve | Evidence and datasets associated with SIEM and OpenObserve workflows. |
-| Windows | Windows-based investigation evidence and supporting artifacts. |
-
-## Objectives
-
-This repository supports:
-
-- Evidence preservation and organization.
-- Security investigation workflows.
-- SOC analysis and validation activities.
-- Incident response exercises.
-- Event correlation and timeline reconstruction.
-- AI-assisted threat classification.
-- Human analyst review and reporting.
-
-## Evidence Integrity
-
-Evidence is organized by platform, technology, and investigation purpose to maintain traceability and reproducibility.
-
-Analysts should preserve original evidence sources and maintain clear relationships between source artifacts, derived datasets, and investigation outputs.
-
-## AI-Assisted SOC Integration
-
-Contents within this repository may be used for:
-
-- Security log analysis
-- Threat classification
-- Event correlation
-- Timeline reconstruction
-- False-positive assessment
-- Investigation validation
-- SOC reporting workflows
-
-AI-generated findings should always be reviewed and validated by human analysts before operational use.
-
-## Project Information
-
-**Project:** DEPI-P5 AI-Assisted SOC Automation & Incident Response Capstone
-
-**Directory:** Evidence
-
-**Repository:** DEPI-AI-SOC-Capstone
-
-**Purpose:** Investigation Evidence Management
+Extra evidence worth keeping: unit test output, `week1_replay_validation.md`, `local_llm_run_*.csv`, the lab-activity log and raw-file SHA-256 list (from the Wazuh guide).

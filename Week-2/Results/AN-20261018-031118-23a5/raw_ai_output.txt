@@ -1,0 +1,61 @@
+## EXECUTIVE SUMMARY
+The activity observed in the log data appears to be benign. It consists of multiple instances of the .NET Runtime Optimization Service (mscorsvw.exe) starting and stopping, which is a common behavior for this service. The processes are initiated by the system user NT AUTHORITY\SYSTEM and run from the expected directory C:\Windows\system32\.
+
+## LOG SOURCE
+Source type: Microsoft-Windows-Sysmon
+Hosts: WIN-TKC15D7KHUR
+Time span: 2022-04-04T14:05:42.0544347Z - 2022-04-04T14:05:44.4604920Z
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 4336)
+- [E002] Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 3960)
+- [E003] Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 4996)
+- [E004] Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 4100)
+- [E005] Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 4568)
+- [E006] Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 3720)
+
+## SUSPICIOUS ACTIVITIES
+None identified
+
+## EVIDENCE REFERENCES
+- [E001] Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 4336)
+- [E002] Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 3960)
+- [E003] Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 4996)
+- [E004] Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 4100)
+- [E005] Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 4568)
+- [E006] Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 3720)
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|-----------|-------|--------|-----------|--------------|
+| 2022-04-04T14:05:42.0544347Z | Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 4336) | Microsoft-Windows-Sysmon | WIN-TKC15D7KHUR | [E001] |
+| 2022-04-04T14:05:42.1749967Z | Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 3960) | Microsoft-Windows-Sysmon | WIN-TKC15D7KHUR | [E002] |
+| 2022-04-04T14:05:42.4217019Z | Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 4996) | Microsoft-Windows-Sysmon | WIN-TKC15D7KHUR | [E003] |
+| 2022-04-04T14:05:42.6819078Z | Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 4100) | Microsoft-Windows-Sysmon | WIN-TKC15D7KHUR | [E004] |
+| 2022-04-04T14:05:44.2481373Z | Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 4568) | Microsoft-Windows-Sysmon | WIN-TKC15D7KHUR | [E005] |
+| 2022-04-04T14:05:44.4604920Z | Process start of mscorsvw.exe by NT AUTHORITY\SYSTEM (ProcessId 3720) | Microsoft-Windows-Sysmon | WIN-TKC15D7KHUR | [E006] |
+
+## EXTRACTED IOCS
+- Type: Process Image Name
+Value: C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorsvw.exe
+Reference: Multiple ([E001], [E002], [E003], [E004], [E005], [E006])
+- External reputation not checked.
+
+## POTENTIAL ATTACK INDICATORS
+- Possible NGen Worker Processes starting and stopping multiple times ([E001], [E002], [E003], [E004], [E005], [E006])
+
+## CONFIDENCE AND UNCERTAINTY
+Low: The activity observed is common for the .NET Runtime Optimization Service, but multiple instances starting and stopping could be unusual. More context is needed to confirm if this behavior is expected or not.
+Medium: The processes are initiated by a system user (NT AUTHORITY\SYSTEM) and run from the expected directory C:\Windows\system32\.
+High: The observed activity consists of multiple instances of the same process, which could indicate an unusual workload for the .NET Runtime Optimization Service.
+
+## MISSING INFORMATION
+- Context about whether this behavior is expected or not for the .NET Runtime Optimization Service on this system.
+- Information about the purpose and intended outcome of these processes.
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate if multiple instances of mscorsvw.exe starting and stopping are normal behavior for the .NET Runtime Optimization Service on this system.
+2. Determine the cause of the observed workload increase for the .NET Runtime Optimization Service.
+3. Check logs for any related errors or warnings that may provide additional context.
+4. Investigate if there have been recent changes to the system, such as updates or software installations, which could affect the behavior of the .NET Runtime Optimization Service.
+5. Consult with relevant IT personnel to understand the expected behavior and purpose of these processes.

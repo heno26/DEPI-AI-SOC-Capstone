@@ -1,0 +1,41 @@
+## EXECUTIVE SUMMARY
+A vertical port scan was detected on the network originating from 192.168.16.132 targeting 192.168.16.130 between 06:07 and 06:19 UTC on May 26, 2026. The purpose of the scan is unclear as authorization and actor intent are not established.
+
+## LOG SOURCE
+Source type: Zeek conn.log, Hosts: [192.168.16.130, 192.168.16.132], Time span: May 26, 2026 06:05 - May 26, 2026 06:19
+
+## SIGNIFICANT SECURITY EVENTS
+- [E026] Strong vertical port scan pattern detected on 192.168.16.132 targeting 192.168.16.130 with 65895 connection attempts.
+
+## SUSPICIOUS ACTIVITIES
+- [E026] The large number of connection attempts and the vertical port scan pattern are suspicious, but authorization and actor intent are not established.
+
+## EVIDENCE REFERENCES
+- [E026] A strong vertical port scan pattern was detected on 192.168.16.132 targeting 192.168.16.130 with 65895 connection attempts.
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|-----------|-------|--------|-----------|--------------|
+| 2026-05-26T06:07:27.414749Z | Vertical port scan started | 192.168.16.132 | - | [E026] |
+| 2026-05-26T06:19:45.683665Z | Vertical port scan ended | 192.168.16.132 | - | [E026] |
+
+## EXTRACTED IOCS
+None identified
+
+## POTENTIAL ATTACK INDICATORS
+- The large number of connection attempts and the vertical port scan pattern could indicate a reconnaissance or vulnerability scanning activity.
+
+## CONFIDENCE AND UNCERTAINTY
+Low: Authorization, actor intent, and compromise are not established.
+
+## MISSING INFORMATION
+- Approval for the detected activities
+- Information about the purpose of the connection attempts
+- Evidence of unauthorized access or data exfiltration
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate the source IP address 192.168.16.132 to determine if it is authorized to perform the detected activities.
+2. Determine if there are any known vulnerabilities on the target host 192.168.16.130 that could have been exploited during the scan.
+3. Review logs for other hosts and networks for similar activity.
+4. Investigate the user account associated with the source IP address, if applicable.
+5. Consult with network administrators to determine if any changes were made to firewall or intrusion detection system rules that could have allowed this activity.

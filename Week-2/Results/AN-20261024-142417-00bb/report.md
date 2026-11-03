@@ -1,0 +1,127 @@
+# Log Analysis - AN-20261024-142417-00bb
+
+> **AI-GENERATED DRAFT. Not verified. The human analyst makes the final decision.**
+
+## Run metadata
+
+| Item | Value |
+|---|---|
+| Input file | `Mixed-Win-Linux-Net-QA.json` |
+| SHA-256 | `065cca374de2af6ccf70bd718bcc70ddccca8df852149fb98c039e970b64412c` |
+| Source type | windows |
+| Evidence class | user_supplied_unverified |
+| Events (analysed/total) | 4/4 |
+| Created (UTC) | 2026-10-24T14:24:17+00:00 |
+| Model | `mistral:7b-instruct-v0.3-q4_K_S` |
+| Settings | `{"temperature": 0.2, "repeat_penalty": 1.15, "num_ctx": 8192, "num_predict": 2500, "seed": 42}` |
+| Retry used | False |
+| Output finished normally | True |
+| Speed | 15.93 tok/s, 103.62 s |
+| Prompt | log_analysis.txt (w2-1.0) |
+| Review status | **Pending Review** |
+
+**Input warnings:** Input is a subset of the classified file; unknown/conflicting events were withheld from AI.
+
+## AI output (verbatim)
+
+## EXECUTIVE SUMMARY
+The activity shows a user running plink.exe with reverse SSH forwarding, RDP port 3389 and password authentication on PC01. The connection events suggest that the SSH tunnel or RDP session may have been established, but it is unclear if this was authorized.
+
+## LOG SOURCE
+Source type: Microsoft-Windows-Sysmon, Hosts: [PC01.example.corp], Time span: 2019-02-16T10:02:21.9344384Z - 2019-02-16T10:04:05.0927728Z
+
+## SIGNIFICANT SECURITY EVENTS
+- [E001] Command line execution of plink.exe with reverse SSH forwarding, RDP port 3389 and password authentication on PC01 ([E003])
+- [E002] TCP connection event initiated from PC01 to PC02 on port 80 ([E004])
+- [E003] TCP connection event initiated from localhost (PC01) to localhost (PC01) on ports 49185 and 49186 ([E005])
+- [E004] TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49187 ([E006])
+
+## SUSPICIOUS ACTIVITIES
+- Unauthorized use of plink.exe with reverse SSH forwarding and RDP port 3389 ([E001], [E005], [E006])
+
+## EVIDENCE REFERENCES
+- [E001] Shows command line execution of plink.exe on PC01 with reverse SSH forwarding, RDP port 3389 and password authentication
+- [E002] Shows TCP connection event initiated from PC01 to PC02 on port 80
+- [E003] Shows TCP connection event initiated from localhost (PC01) to localhost (PC01) on ports 49185 and 49186
+- [E004] Shows TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49187
+- [E005] Shows SHA1 hash of plink.exe as 7806AD24F669CD8BB9EBE16F87E90173047F8EE4
+
+## INCIDENT TIMELINE
+| Timestamp | Event | Source | Host/User | Evidence Ref |
+|---|---|---|---|---|
+| 2019-02-16T10:02:21.9344384Z | Command line execution of plink.exe on PC01 with reverse SSH forwarding, RDP port 3389 and password authentication | Microsoft-Windows-Sysmon | PC01\IEUser | [E001] |
+| 2019-02-16T10:02:22.9659216Z | TCP connection event initiated from PC01 to PC02 on port 80 | Microsoft-Windows-Sysmon | PC01\IEUser | [E002] |
+| 2019-02-16T10:02:46.454 | TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49185 | Microsoft-Windows-Sysmon | PC01\IEUser | [E003] |
+| 2019-02-16T10:02:48.5026416Z | TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49186 | Microsoft-Windows-Sysmon | PC01\IEUser | [E005] |
+| 2019-02-16T10:04:04.122 | TCP connection event initiated from localhost (PC01) to localhost (PC01) on port 49187 | Microsoft-Windows-Sysmon | PC01\IEUser | [E004] |
+
+## EXTRACTED IOCS
+- Type: File hash, Value: SHA1=7806AD24F669CD8BB9EBE16F87E90173047F8EE4 ([E005])
+
+## POTENTIAL ATTACK INDICATORS
+- Unauthorized use of plink.exe with reverse SSH forwarding and RDP port 3389 ([E001], [E005], [E006])
+- TCP connection event initiated from PC01 to an external host on port 80 ([E002])
+
+## CONFIDENCE AND UNCERTAINTY
+Low | Medium | High
+---|---|----
+Uncertainty: Authorization for the use of plink.exe with reverse SSH forwarding and RDP port 3389, External reputation not checked.
+
+## MISSING INFORMATION
+- Approval or authorization for the use of plink.exe with reverse SSH forwarding and RDP port 3389 on PC01
+- External reputation of IP addresses involved in the connection events (PC01, PC02)
+
+## RECOMMENDED INVESTIGATION STEPS
+1. Investigate whether the use of plink.exe with reverse SSH forwarding and RDP port 3389 on PC01 was authorized.
+2. Check the external reputation of IP addresses involved in the connection events (PC01, PC02).
+3. Review logs for other instances of unauthorized use of plink.exe or similar tools.
+4. Investigate if there are any related network traffic patterns or anomalies.
+5. Determine if there were any successful connections to external hosts on port 80 from PC01 ([E002]).
+
+## Evidence-based timeline (built by code from the input, not by AI)
+
+| Timestamp (as in source) | Event | Source | Host/User | Ref |
+|---|---|---|---|---|
+| 2019-02-16T10:02:21.9344384Z | {"evidence_id": "E003", "timestamp": "2019-02-16T10:02:21.9344384Z", "event_id": 1, "record_id": 1940899, "provider": "Microsoft-Windows-Sysmon", "computer": "P ...[truncated 927 chars] | windows | PC01.example.corp / PC01\IEUser | E001 |
+| 2019-02-16T10:02:22.9659216Z | {"evidence_id": "E004", "timestamp": "2019-02-16T10:02:22.9659216Z", "event_id": 3, "record_id": 1940900, "provider": "Microsoft-Windows-Sysmon", "computer": "P ...[truncated 561 chars] | windows | PC01.example.corp / PC01\IEUser | E002 |
+| 2019-02-16T10:02:48.5026416Z | {"evidence_id": "E005", "timestamp": "2019-02-16T10:02:48.5026416Z", "event_id": 3, "record_id": 1940901, "provider": "Microsoft-Windows-Sysmon", "computer": "P ...[truncated 568 chars] | windows | PC01.example.corp / PC01\IEUser | E003 |
+| 2019-02-16T10:04:05.0927728Z | {"evidence_id": "E023", "timestamp": "2019-02-16T10:04:05.0927728Z", "event_id": 3, "record_id": 1940919, "provider": "Microsoft-Windows-Sysmon", "computer": "P ...[truncated 568 chars] | windows | PC01.example.corp / PC01\IEUser | E004 |
+
+## IOC context (extracted by code; external reputation not checked)
+
+| Type | Exact value | Scope | Refs | Reputation |
+|---|---|---|---|---|
+| ipv4 | `10.0.2.17` | private (RFC 1918) | E002 | External reputation not checked. |
+| ipv4 | `10.0.2.18` | private (RFC 1918) | E001, E002 | External reputation not checked. |
+| ipv4 | `127.0.0.1` | loopback | E003, E004 | External reputation not checked. |
+| ipv4 | `127.0.0.2` | loopback | E001, E003, E004 | External reputation not checked. |
+| ipv4 | `127.0.0.3` | loopback | E001 | External reputation not checked. |
+| domain | `pc01.example.corp` |  | E001, E002, E003, E004 | External reputation not checked. |
+| hash | `7806ad24f669cd8bb9ebe16f87e90173047f8ee4` |  | E001 | External reputation not checked. |
+| filename | `cmd.exe` |  | E001 | External reputation not checked. |
+| filename | `plink.exe` |  | E001, E002, E003, E004 | External reputation not checked. |
+| username | `PC01\IEUser` |  | E001, E002, E003, E004 | External reputation not checked. |
+| hostname | `PC01.example.corp` |  | E001, E002, E003, E004 | External reputation not checked. |
+
+## Automated validation flags (review requests, not proof)
+
+| ID | Severity | Check | Section | Exact value | Message | Analyst disposition |
+|---|---|---|---|---|---|---|
+| F001 | high | nonexistent_evidence_ref | SIGNIFICANT SECURITY EVENTS | `E005` | Evidence reference does not exist in the input. | Unreviewed |
+| F002 | high | nonexistent_evidence_ref | SIGNIFICANT SECURITY EVENTS | `E006` | Evidence reference does not exist in the input. | Unreviewed |
+| F003 | medium | unsupported_authorization_status | SUSPICIOUS ACTIVITIES | `- Unauthorized use of plink.exe with reverse SSH forwarding and RDP port 3389 ([E001], [E005], [E006])` | The source events do not independently establish that the activity was unauthorized; verify approval and context. | Unreviewed |
+| F004 | medium | unsupported_authorization_status | POTENTIAL ATTACK INDICATORS | `- Unauthorized use of plink.exe with reverse SSH forwarding and RDP port 3389 ([E001], [E005], [E006])` | The source events do not independently establish that the activity was unauthorized; verify approval and context. | Unreviewed |
+| F005 | high | timeline_timestamp_mismatch | INCIDENT TIMELINE | `2019-02-16T10:02:46.454` | Timestamp does not appear in the cited event(s) E003. | Unreviewed |
+| F006 | high | timeline_timestamp_mismatch | INCIDENT TIMELINE | `2019-02-16T10:04:04.122` | Timestamp does not appear in the cited event(s) E004. | Unreviewed |
+
+## Analyst review
+
+Status: **Pending Review**  
+Analyst: None  
+Final classification: None  
+Final priority: None  
+Correct findings: []  
+Incorrect findings: []  
+Missing evidence: []  
+Hallucinations noted: []  
+Notes: 
