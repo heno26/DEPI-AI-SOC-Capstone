@@ -1,0 +1,7 @@
+# SYNTHETIC FIXTURE - not real security data. Reused unchanged from Week-1/Testing/Test-Cases.json (TC-13: Benign approved Windows maintenance and patch deployment (false-positive trap)).
+2026-10-14 02:00:00 change_mgmt ticket=CHG-2048 status=Approved host=APP02 operator=CORP\patchsvc window=02:00-03:00 purpose=monthly_patch_deployment
+2026-10-14 02:03:14 APP02 Security EventID=4624 Account=CORP\patchsvc LogonType=3 SourceIP=10.20.4.12
+2026-10-14 02:04:01 APP02 Sysmon EventID=1 Image=C:\Windows\System32\msiexec.exe ParentImage=C:\Program Files\CorpPatch\patchagent.exe User=CORP\patchsvc
+2026-10-14 02:04:12 APP02 EDR FileExecution file=C:\Program Files\CorpPatch\update.msi signer=CorpPatch-IT SignatureValid=True disposition=Allowed
+2026-10-14 02:09:20 APP02 PatchAgent ticket=CHG-2048 packages_installed=3 result=Success reboot_required=False
+2026-10-14 02:10:05 APP02 ServiceControlManager EventID=7036 ServiceName=AppService new_state=Running

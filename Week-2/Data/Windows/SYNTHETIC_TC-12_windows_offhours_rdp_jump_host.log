@@ -1,0 +1,7 @@
+# SYNTHETIC FIXTURE - not real security data. Reused unchanged from Week-1/Testing/Test-Cases.json (TC-12: Multiple off-hours RDP logons from jump host to two internal servers).
+2026-10-14 02:10:10 FS01 Security EventID=4624 Account=CORP\svc_ops LogonType=10 SourceIP=10.10.5.20 WorkstationName=JUMP-02
+2026-10-14 02:10:45 FS01 Security EventID=4672 Account=CORP\svc_ops Privileges=SeDebugPrivilege,SeBackupPrivilege
+2026-10-14 02:13:22 APP01 Security EventID=4624 Account=CORP\svc_ops LogonType=10 SourceIP=10.10.5.20 WorkstationName=JUMP-02
+2026-10-14 02:13:31 APP01 Security EventID=4672 Account=CORP\svc_ops Privileges=SeDebugPrivilege,SeBackupPrivilege
+2026-10-14 02:15:00 cmdb asset=JUMP-02 ip=10.10.5.20 role=approved_admin_jump_host
+2026-10-14 02:15:01 access_policy account=CORP\svc_ops permitted_hosts=FS01,APP01 standard_window=09:00-17:00 change_exception=NotProvided

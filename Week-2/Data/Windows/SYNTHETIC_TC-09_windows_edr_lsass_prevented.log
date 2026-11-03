@@ -1,0 +1,6 @@
+# SYNTHETIC FIXTURE - not real security data. Reused unchanged from Week-1/Testing/Test-Cases.json (TC-09: Windows endpoint suspicious LSASS access attempt prevented by EDR).
+2026-10-14T13:01:07Z WS-HR-04 Sysmon EventID=1 ProcessGuid={aa11-bb22} Image=C:\Users\Public\helper.exe CommandLine="C:\Users\Public\helper.exe" User=CORP\jlee ParentImage=C:\Windows\explorer.exe
+2026-10-14T13:01:12Z WS-HR-04 Sysmon EventID=10 SourceImage=C:\Users\Public\helper.exe TargetImage=C:\Windows\System32\lsass.exe GrantedAccess=0x1fffff SourceProcessGUID={aa11-bb22}
+2026-10-14T13:01:12Z WS-HR-04 EDR alert=CredentialAccessAttempt severity=High process=C:\Users\Public\helper.exe target=lsass.exe action=BLOCK outcome=Prevented alert_id=EDR-4419
+2026-10-14T13:01:13Z WS-HR-04 EDR alert_id=EDR-4419 process_terminated=true file_quarantined=true
+2026-10-14T13:02:20Z WS-HR-04 Security EventID=4624 Account=jlee LogonType=2 result=Success
