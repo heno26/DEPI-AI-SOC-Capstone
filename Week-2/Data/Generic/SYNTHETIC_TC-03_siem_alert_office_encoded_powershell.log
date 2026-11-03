@@ -1,0 +1,11 @@
+# SYNTHETIC FIXTURE - not real security data. Reused unchanged from Week-1/Testing/Test-Cases.json (TC-03: Alert triage - Office spawning encoded PowerShell (likely true positive)).
+ALERT: Suspicious PowerShell Execution - Encoded Command
+Severity (SIEM): High
+Time: 2026-10-14 10:41:07
+Host: WS-FIN-07
+User: CORP\jdoe
+Parent Process: WINWORD.EXE
+Process: powershell.exe
+Command Line: powershell.exe -nop -w hidden -enc SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQA... [truncated]
+Follow-on event (10:41:12): Outbound TCP 443 from WS-FIN-07 to 198.51.100.23
+Asset note: Finance workstation. No approved admin scripts run from Office applications.

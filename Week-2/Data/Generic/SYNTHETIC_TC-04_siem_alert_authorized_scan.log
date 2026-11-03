@@ -1,0 +1,8 @@
+# SYNTHETIC FIXTURE - not real security data. Reused unchanged from Week-1/Testing/Test-Cases.json (TC-04: Alert triage - authorized vulnerability scan (likely false positive)).
+ALERT: Possible Port Scan Detected
+Severity (SIEM): Medium
+Time: Tuesday 2026-10-13 01:35:20
+Source: 10.10.1.50 (hostname: nessus-scan01)
+Destination: 10.10.2.0/24 (internal server VLAN), 1000+ distinct ports in 3 minutes
+Asset inventory: nessus-scan01 is registered as the authorized vulnerability scanner (owner: IT Security)
+Change calendar: Weekly vulnerability scan scheduled Tuesday 01:00-04:00

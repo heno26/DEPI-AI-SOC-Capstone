@@ -1,0 +1,6 @@
+# SYNTHETIC FIXTURE - not real security data. Reused unchanged from Week-1/Testing/Test-Cases.json (TC-11: AWS CloudTrail console login followed by privileged group and access key changes).
+2026-10-14T15:10:01Z cloudtrail eventName=ConsoleLogin userIdentity.userName=ops-temp sourceIPAddress=203.0.113.90 additionalEventData.MFAUsed=No responseElements.ConsoleLogin=Success awsRegion=us-east-1
+2026-10-14T15:11:45Z cloudtrail eventName=AddUserToGroup userIdentity.userName=ops-temp sourceIPAddress=203.0.113.90 requestParameters.userName=ops-temp requestParameters.groupName=SecurityAdmins response=Success
+2026-10-14T15:12:03Z cloudtrail eventName=CreateAccessKey userIdentity.userName=ops-temp sourceIPAddress=203.0.113.90 requestParameters.userName=ops-temp response=Success
+2026-10-14T15:12:21Z cloudtrail eventName=ListBuckets userIdentity.userName=ops-temp sourceIPAddress=203.0.113.90 response=Success
+2026-10-14T15:13:10Z cloudtrail context change_ticket=NotProvided account_owner_confirmation=NotProvided known_source_ip=NotProvided
