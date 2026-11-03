@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "case_id": "NT-03",
+  "project": "DEPI P5",
+  "dataset": "Stratosphere IPS IoT-23",
+  "capture": "CTU-IoT-Malware-Capture-44-1",
+  "created_utc": "2026-10-21T14:29:40.968428+00:00",
+  "documentation_status": "FINAL_VERIFICATION_MANIFEST_CREATED",
+  "evidence_summary": {
+    "original_connection_records": 237,
+    "focused_events": 25,
+    "computed_aggregates": 2,
+    "verified_original_evidence_rows": 23,
+    "repeated_tcp_groups": 4,
+    "repeated_tcp_group_rows": 17,
+    "target_tcp_connections": 24
+  },
+  "grounding": {
+    "rule_id": "NETWORK_TCP_REPEATED_FOUR_TUPLE_SEQUENCE",
+    "status": "VERIFIED",
+    "interpretation_limit": "Repeated same-four-tuple TCP observations do not independently prove C2, malware, periodic beaconing or compromise."
+  },
+  "semantic_validation": {
+    "version": "v2",
+    "regression_tests_passed": 317,
+    "regression_evidence": "Previously observed operator CLI output",
+    "replay_evidence": "Previously observed read-only replay output",
+    "replay_review_requests": [
+      "network_observed_tcp_data_contradiction",
+      "network_source_port_group_mismatch",
+      "network_tcp_retry_missing_quantification"
+    ]
+  },
+  "historical_analyses": {
+    "AN-20261021-121055-9c32": {
+      "analysis_id": "AN-20261021-121055-9c32",
+      "review_status": "Corrected",
+      "analysis_json_sha256": "8fdf6291c3643dbbc453218d5d03a53072423e5ea594677847e874c538ba253f",
+      "integrity": "READ_ONLY_VERIFIED"
+    },
+    "AN-20261021-132533-02e7": {
+      "analysis_id": "AN-20261021-132533-02e7",
+      "review_status": "Corrected",
+      "analysis_json_sha256": "6277781fa8e30314c77fd20738f4e9d510339650434e71048d695461b49f62c2",
+      "integrity": "READ_ONLY_VERIFIED"
+    }
+  },
+  "verified_artifacts": [
+    {
+      "filename": "NT-03-Zeek-conn-original.labeled.log",
+      "size_bytes": 31179,
+      "sha256": "12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f",
+      "integrity": "MATCH"
+    },
+    {
+      "filename": "NT-03-Source-Manifest.json",
+      "size_bytes": 2212,
+      "sha256": "3aab6c081caa037334dc12c8b98177205f381e2f392097e1ac944e9fe3f11972",
+      "integrity": "MATCH"
+    },
+    {
+      "filename": "NT-03-focused.json",
+      "size_bytes": 25923,
+      "sha256": "ce7f1905335690eaea42f4d299824a057b36153d4747058a7405fbe6b04e67a6",
+      "integrity": "MATCH"
+    },
+    {
+      "filename": "NT-03-evidence-mapping.csv",
+      "size_bytes": 4781,
+      "sha256": "91c2837fe9d9989779bb2643fdf373617dfac7d018305a89fa47e714a86c32c7",
+      "integrity": "MATCH"
+    },
+    {
+      "filename": "NT-03-Verified-Full-Source-Statistics.json",
+      "size_bytes": 3958,
+      "sha256": "6b80909c7115870c61b947e4ec0fa50f45aaf6cf32f842473b7fb11ce63440a0",
+      "integrity": "MATCH"
+    },
+    {
+      "filename": "NT-03-Selection-Manifest.json",
+      "size_bytes": 1382,
+      "sha256": "c048ebfc5e216c926a39bfb29fcb9ae36bf83860b044ebd9cb3b3f6e041eb6de",
+      "integrity": "MATCH"
+    },
+    {
+      "filename": "NT-03-Verified-Timeline.csv",
+      "size_bytes": 4857,
+      "sha256": "026ea56f226ba5e10a729e96ab62ffa6ed1fe82f914e5e561a5a0d96b8352d30",
+      "integrity": "MATCH"
+    },
+    {
+      "filename": "NT-03-Case-Study.md",
+      "size_bytes": 9218,
+      "sha256": "3371ecfe4d56b8e493a2872ece84d6a20a567fdbeac2095859cb62e91a18c735",
+      "integrity": "MATCH"
+    }
+  ],
+  "safety": {
+    "original_logs_modified": false,
+    "core_modified_by_documentation": false,
+    "historical_results_modified": false,
+    "human_reviews_modified": false,
+    "source_supplied_labels_used_for_ai_selection": false
+  }
+}

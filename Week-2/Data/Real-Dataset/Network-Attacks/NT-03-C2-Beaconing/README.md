@@ -1,84 +1,118 @@
-# NT-03 — C2 Beaconing
+# NT-03 ? Network TCP Retry-Like Behavior Investigation
+
+Project: DEPI P5 ? AI-Assisted SOC Log Analysis
+
+Dataset: Stratosphere IPS IoT-23
+
+Capture: CTU-IoT-Malware-Capture-44-1
+
+Status: Technical Investigation and Documentation Complete
 
 ## Overview
 
-This dataset supports the investigation of potential Command-and-Control (C2) beaconing activity using network security logs.
+This investigation examines repeated TCP connections from
+192.168.1.199 to 46.101.251.172 on destination port 80.
 
-The investigation focuses on suspicious communication patterns, repeated outbound connections, timing intervals, and potential indicators of automated communication with external systems.
+Verified observations:
 
-## Dataset Information
+- 237 original Zeek connection records.
+- 24 investigated TCP/80 records.
+- 13 S0 and 11 SF connection states in the target flow.
+- 4 repeated source-port groups.
+- 17 supporting original Zeek records.
+- 25 focused events, including 2 computed aggregates.
+- 23 original records in the verified evidence timeline.
 
-- Case ID: NT-03
-- Scenario: Command-and-Control (C2) Beaconing
-- Category: Network Attack
-- Project: DEPI-P5
-- Phase: Week 2 — AI-Assisted SOC Analysis
-- Classification: Suspicious Network Activity
-- Investigation Status: Requires Evidence-Based Validation
+The observed pattern supports investigation of retry-like
+communication but does not independently prove periodic
+beaconing, malicious C2 activity or compromise.
 
-## Investigation Objectives
+## Evidence and Documentation
 
-1. Identify potential C2 communication patterns.
-2. Examine repeated network connections.
-3. Analyze connection timing and periodicity.
-4. Investigate suspicious source and destination relationships.
-5. Correlate selected events with original network evidence.
-6. Reconstruct the chronological activity timeline.
-7. Support AI-assisted SOC triage and incident reporting.
+- NT-03-Zeek-conn-original.labeled.log
+- NT-03-Source-Manifest.json
+- NT-03-focused.json
+- NT-03-evidence-mapping.csv
+- NT-03-Selection-Manifest.json
+- NT-03-Verified-Full-Source-Statistics.json
+- NT-03-Verified-Timeline.csv
+- NT-03-Case-Study.md
+- NT-03-Final-Verification-Manifest.json
 
-## Evidence Structure
+E001-E002 are computed aggregates, not raw connections.
 
-The investigation dataset may include:
+E003-E025 represent original source-mapped Zeek records.
 
-| Evidence Component | Description |
-|---|---|
-| Original Network Logs | Raw network evidence retained for verification |
-| Focused Dataset | Selected events prepared for AI-assisted analysis |
-| Case Study | Investigation methodology and findings |
-| Evidence Mapping | Relationships between selected events and original evidence |
-| Source Manifest | Original dataset provenance information |
-| Selection Manifest | Documentation of event selection |
-| Verification Manifest | Final evidence validation metadata |
-| Verified Timeline | Chronological reconstruction of network activity |
-| Source Statistics | Statistical summary of original network evidence |
+## AI Evaluation
 
-## Detection Considerations
+Baseline Analysis: AN-20261021-121055-9c32
 
-Potential C2 beaconing indicators include:
+Post-Grounding Analysis: AN-20261021-132533-02e7
 
-- Repeated connections to the same destination.
-- Regular or near-regular communication intervals.
-- Unusual outbound communication patterns.
-- Suspicious destination infrastructure.
-- Automated communication behavior.
+Both human reviews: Corrected
 
-These indicators are not sufficient on their own to confirm malicious activity.
+Model: mistral:7b-instruct-v0.3-q4_K_S
 
-## Evidence Integrity
+## Grounded Detection
 
-Original network evidence must remain unchanged.
+Rule: NETWORK_TCP_REPEATED_FOUR_TUPLE_SEQUENCE
 
-Focused investigation records should be traceable to their original sources through evidence mapping and verification manifests.
+Detected 4 repeated groups supported by 17 original records.
 
-Investigation conclusions must distinguish observed evidence from analytical assumptions.
+The rule identifies the observed behavior without
+automatically concluding malware infection or C2 activity.
 
-## AI-Assisted SOC Integration
+## Semantic Validation V2
 
-This dataset supports the DEPI-P5 AI-assisted SOC analysis pipeline.
+Regression Testing: 317 PASS
 
-The AI component assists with:
+Read-only replay identified three review requests:
 
-- Network behavior interpretation.
-- Potential C2 activity identification.
-- Evidence-based threat classification.
-- False-positive assessment.
-- Incident timeline reconstruction.
-- SOC investigation report generation.
+1. network_observed_tcp_data_contradiction
+2. network_source_port_group_mismatch
+3. network_tcp_retry_missing_quantification
 
-All AI-generated findings require evidence verification and human analyst validation.
+Historical analyses and reviews were preserved.
 
-## Project
+## Reproduction
 
-DEPI-P5 — AI-Assisted SOC Automation & Incident Response
+Run from the Week-2 project root.
 
-Week 2 — AI-Assisted Security Log Analysis
+Semantic replay command:
+
+    python -m SOC_NT03_Semantic_Validation_v2.upgrade --replay AN-20261021-132533-02e7
+
+Regression command:
+
+    python -m unittest discover -s Testing
+
+## Integrity
+
+The Final Verification Manifest contains SHA-256
+fingerprints for the eight preceding case artifacts.
+
+Final Manifest SHA-256:
+
+927b1e879ee955f3303e1bc3855f62bef259ddd1a7c05a967f3ee60ea108ef37
+
+## Documentation References
+
+Case Study: NT-03-Case-Study.md
+
+Timeline: NT-03-Verified-Timeline.csv
+
+Manifest: NT-03-Final-Verification-Manifest.json
+
+## Limitations
+
+Original dataset labels were excluded from the blind AI
+evidence and focused selection.
+
+Repeated connection records do not independently establish
+exponential backoff, periodic beaconing, successful C2,
+malware execution, or system compromise.
+
+Additional endpoint and network telemetry would be needed
+for stronger attribution.
+
+NT-03 Documentation Complete.

@@ -1,0 +1,172 @@
+{
+  "source_sha256": "12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f",
+  "source_format": "Zeek conn.log (source supplied labeled version; classification stripped from AI evidence)",
+  "total_original_connection_records": 237,
+  "total_original_physical_lines": 246,
+  "source_protocol_counts": {
+    "tcp": 27,
+    "udp": 210
+  },
+  "source_conn_state_counts": {
+    "OTH": 1,
+    "S0": 86,
+    "S1": 1,
+    "SF": 149
+  },
+  "first_observed_utc": "2019-01-10T20:06:28.860071Z",
+  "last_observed_utc": "2019-01-10T22:01:02.953055Z",
+  "target_src_ip": "192.168.1.199",
+  "target_dst_ip": "46.101.251.172",
+  "target_dst_port": 80,
+  "target_protocol": "tcp",
+  "target_connection_records": 24,
+  "target_conn_state_counts": {
+    "S0": 13,
+    "SF": 11
+  },
+  "target_source_port_reuse_group_count": 4,
+  "target_source_port_reuse_record_count": 17,
+  "target_source_port_group_statistics": {
+    "59224": {
+      "connection_records": 4,
+      "source_line_numbers": [
+        10,
+        11,
+        12,
+        13
+      ],
+      "connection_states": [
+        "S0",
+        "S0",
+        "S0",
+        "SF"
+      ],
+      "zeek_histories": [
+        "S",
+        "S",
+        "S",
+        "ShADadttfF"
+      ],
+      "intervals_seconds": [
+        7.161155,
+        8.240059,
+        16.64025
+      ],
+      "interval_count": 3,
+      "mean_seconds": 10.680488,
+      "median_seconds": 8.240059,
+      "stddev_seconds": 4.237144,
+      "cv": 0.396718
+    },
+    "59228": {
+      "connection_records": 4,
+      "source_line_numbers": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "connection_states": [
+        "S0",
+        "S0",
+        "S0",
+        "SF"
+      ],
+      "zeek_histories": [
+        "S",
+        "S",
+        "S",
+        "ShADadttfF"
+      ],
+      "intervals_seconds": [
+        7.212885,
+        8.560111,
+        16.640009
+      ],
+      "interval_count": 3,
+      "mean_seconds": 10.804335,
+      "median_seconds": 8.560111,
+      "stddev_seconds": 4.162937,
+      "cv": 0.385303
+    },
+    "59236": {
+      "connection_records": 5,
+      "source_line_numbers": [
+        21,
+        23,
+        25,
+        26,
+        30
+      ],
+      "connection_states": [
+        "S0",
+        "S0",
+        "S0",
+        "S0",
+        "SF"
+      ],
+      "zeek_histories": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "ShADadttfF"
+      ],
+      "intervals_seconds": [
+        7.235872,
+        8.320005,
+        16.640004,
+        32.640141
+      ],
+      "interval_count": 4,
+      "mean_seconds": 16.209005,
+      "median_seconds": 12.480004,
+      "stddev_seconds": 10.160234,
+      "cv": 0.626826
+    },
+    "59240": {
+      "connection_records": 4,
+      "source_line_numbers": [
+        32,
+        34,
+        36,
+        37
+      ],
+      "connection_states": [
+        "S0",
+        "S0",
+        "S0",
+        "SF"
+      ],
+      "zeek_histories": [
+        "S",
+        "S",
+        "S",
+        "ShADadttfF"
+      ],
+      "intervals_seconds": [
+        7.219131,
+        8.640072,
+        16.640003
+      ],
+      "interval_count": 3,
+      "mean_seconds": 10.833069,
+      "median_seconds": 8.640072,
+      "stddev_seconds": 4.146897,
+      "cv": 0.3828
+    }
+  },
+  "target_first_utc": "2019-01-10T20:06:29.067208Z",
+  "target_last_utc": "2019-01-10T20:09:26.859046Z",
+  "target_coverage_seconds": 177.791838,
+  "target_overall_interval_stats": {
+    "interval_count": 23,
+    "mean_seconds": 7.73008,
+    "median_seconds": 7.212885,
+    "stddev_seconds": 7.568119,
+    "cv": 0.979048
+  },
+  "target_periodic_beaconing_confirmed": false,
+  "source_file_lineage_note": "Original SHA256 and source manifest independently verified before computing statistics.",
+  "interpretation_limit": "Observed repeated-connection and same-source-port timing patterns are NOT proof of C2, periodic beaconing, TCP retransmission, unauthorized access or transfer of specific file content."
+}

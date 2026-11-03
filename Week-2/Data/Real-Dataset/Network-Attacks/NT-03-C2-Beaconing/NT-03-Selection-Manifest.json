@@ -1,0 +1,49 @@
+{
+  "case_id": "NT-03",
+  "source_sha256": "12cd99bcda78140dd5f31cf3d786642f150e42e0ebc3599190f35314e406f71f",
+  "original_source_manifest_sha256": "3aab6c081caa037334dc12c8b98177205f381e2f392097e1ac944e9fe3f11972",
+  "source_record_count": 237,
+  "focused_event_count": 25,
+  "computed_aggregate_refs": [
+    "E001",
+    "E002"
+  ],
+  "original_zeek_record_ref_range": "E003-E025",
+  "selected_original_record_count": 23,
+  "selected_source_lines": [
+    9,
+    10,
+    11,
+    12,
+    22,
+    13,
+    15,
+    16,
+    17,
+    18,
+    242,
+    20,
+    21,
+    23,
+    25,
+    26,
+    30,
+    32,
+    34,
+    36,
+    37,
+    40,
+    243
+  ],
+  "selected_category_counts": {
+    "repeated_tcp_source_port": 17,
+    "tcp_other_port_context": 1,
+    "tcp_singleton_context": 3,
+    "udp_service_comparison": 2
+  },
+  "focused_sha256": "ce7f1905335690eaea42f4d299824a057b36153d4747058a7405fbe6b04e67a6",
+  "mapping_sha256": "91c2837fe9d9989779bb2643fdf373617dfac7d018305a89fa47e714a86c32c7",
+  "statistics_sha256": "6b80909c7115870c61b947e4ec0fa50f45aaf6cf32f842473b7fb11ce63440a0",
+  "ground_truth_separation": "Source-supplied class annotations omitted from the focused JSON; all 23 source rows selected only by observable connection fields.",
+  "interpretation_limit": "Timing patterns are NOT confirmed periodic beaconing, command/control success, or malicious actor attribution."
+}
