@@ -1,0 +1,74 @@
+[
+  {
+    "timestamp": "2022-04-04T14:09:49.5384871Z",
+    "event_id": 7036,
+    "record_id": 1858,
+    "provider": "Service Control Manager",
+    "computer": "WIN-TKC15D7KHUR",
+    "event_data": {
+      "param1": "Windows Biometric Service",
+      "param2": "stopped"
+    },
+    "evidence_id": "E001"
+  },
+  {
+    "timestamp": "2022-04-04T14:11:00.1552809Z",
+    "event_id": 7036,
+    "record_id": 1860,
+    "provider": "Service Control Manager",
+    "computer": "WIN-TKC15D7KHUR",
+    "event_data": {
+      "param1": "Background Intelligent Transfer Service",
+      "param2": "stopped"
+    },
+    "evidence_id": "E002"
+  },
+  {
+    "timestamp": "2022-04-04T14:11:28.7125046Z",
+    "event_id": 7036,
+    "record_id": 1861,
+    "provider": "Service Control Manager",
+    "computer": "WIN-TKC15D7KHUR",
+    "event_data": {
+      "param1": "Microsoft Passport",
+      "param2": "stopped"
+    },
+    "evidence_id": "E003"
+  },
+  {
+    "timestamp": "2022-04-04T14:11:47.8527230Z",
+    "event_id": 7036,
+    "record_id": 1862,
+    "provider": "Service Control Manager",
+    "computer": "WIN-TKC15D7KHUR",
+    "event_data": {
+      "param1": "Software Protection",
+      "param2": "running"
+    },
+    "evidence_id": "E004"
+  },
+  {
+    "timestamp": "2022-04-04T14:12:18.3477921Z",
+    "event_id": 7036,
+    "record_id": 1863,
+    "provider": "Service Control Manager",
+    "computer": "WIN-TKC15D7KHUR",
+    "event_data": {
+      "param1": "Software Protection",
+      "param2": "stopped"
+    },
+    "evidence_id": "E005"
+  },
+  {
+    "timestamp": "2022-04-04T14:13:44.1240769Z",
+    "event_id": 7036,
+    "record_id": 1864,
+    "provider": "Service Control Manager",
+    "computer": "WIN-TKC15D7KHUR",
+    "event_data": {
+      "param1": "AppX Deployment Service (AppXSVC)",
+      "param2": "stopped"
+    },
+    "evidence_id": "E006"
+  }
+]
