@@ -1,0 +1,27 @@
+{
+  "test_id": "NT-02",
+  "original_source_sha256": "a5a31f5be2a6bfdcce1ab1f2d43e34a2b1ff49bee4d3737560c8b9b6e6775942",
+  "original_git_blob_sha1": "752daa17b27eb584d8fbedd2da4322c661c30e30",
+  "original_record_count": 581,
+  "computed_aggregates": [
+    "E001",
+    "E002"
+  ],
+  "original_sample_reference_range": "E003-E026",
+  "original_sample_count": 24,
+  "source_line_reference_count": 24,
+  "selection_method": "16 evenly spaced matching chunk-style DNS queries, 4 nonmatching same-pair records, 4 other-pair context records; selected source rows sorted chronologically",
+  "sampling_is_not_prevalence_estimate": true,
+  "focused_sha256": "15d82bea320702cc5f00c304618019c043305f749bb732a48cdeda7863ffc466",
+  "mapping_sha256": "9ba24c099d04b8aa3d1c73cf98f9c4d745b6094b339dc18f09cdf303b005abc3",
+  "statistics_sha256": "d692dad937967d2a1f5484b40d0b64564dcbf4e1f5a3742118e3b7c8ae0be604",
+  "model_input_event_count": 26,
+  "limitations": [
+    "E001/E002 are computed evidence, not captured DNS query events.",
+    "Context rows are unlabelled and NOT confirmed benign.",
+    "High query diversity and speed do not establish tunneling or exfiltration.",
+    "A query response code is not a substitute for payload/network egress investigation.",
+    "Log source may reflect a lab scenario and .test suffix is reserved for testing.",
+    "Per-line SHA256 hashes are provenance hashes, NOT threat/malware IOCs."
+  ]
+}

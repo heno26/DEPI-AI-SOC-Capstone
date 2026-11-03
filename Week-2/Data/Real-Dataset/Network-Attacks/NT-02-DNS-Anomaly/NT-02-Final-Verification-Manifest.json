@@ -1,0 +1,52 @@
+{
+  "case_id": "NT-02",
+  "status": "source_verified_final_documentation",
+  "source_records_verified": 581,
+  "source_distinct_exact_queries": 258,
+  "focused_model_events": 26,
+  "computed_aggregate_refs": [
+    "E001",
+    "E002"
+  ],
+  "source_row_refs": "E003-E026",
+  "verified_source_row_mappings": "24/24",
+  "dns_cluster_query_count": 250,
+  "dns_cluster_distinct_queries": 250,
+  "dns_cluster_duration_seconds": 3.552866,
+  "dns_cluster_client": "192.168.16.132",
+  "dns_cluster_resolver": "192.168.16.131",
+  "dns_detection_rule": "NETWORK_DNS_CHUNK_BURST",
+  "observed_pattern_confidence": "high",
+  "baseline_analysis_id": "AN-20261020-024440-4bee",
+  "post_grounding_analysis_id": "AN-20261020-033312-7c54",
+  "review_status_as_reported_by_cli": "Corrected (both; unverified internal review schema)",
+  "review_storage_schema_independently_checked": false,
+  "network_replay_request_count": 1,
+  "network_replay_request_categories": {
+    "network_dns_chunk_burst_missing_quantification": 1
+  },
+  "full_regression_test_count": 275,
+  "full_regression_certification_by_this_script": false,
+  "verification_scope": "source pin/hash; derivation byte equality; raw line/UID/UTC/client-resolver/port/query mappings; parser; independent grounded rule; saved post-grounding rule; read-only network validator replay",
+  "inputs_sha256": {
+    "Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Zeek-dns-original.log": "a5a31f5be2a6bfdcce1ab1f2d43e34a2b1ff49bee4d3737560c8b9b6e6775942",
+    "Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Source-Manifest.json": "0c53ab3962990c5d7eeda9cbdb54855d16992b719e84d40c5482cc72f349c817",
+    "Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-focused.json": "15d82bea320702cc5f00c304618019c043305f749bb732a48cdeda7863ffc466",
+    "Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-evidence-mapping.csv": "9ba24c099d04b8aa3d1c73cf98f9c4d745b6094b339dc18f09cdf303b005abc3",
+    "Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Full-Source-Statistics.json": "d692dad937967d2a1f5484b40d0b64564dcbf4e1f5a3742118e3b7c8ae0be604",
+    "Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Selection-Manifest.json": "4fbad231f563cc5dc96be51d0f0d6ce96451fda4bc533b016e7540e3ef14b9b9",
+    "Results/AN-20261020-024440-4bee/analysis.json": "09fb6befa929432d9e80137339de1198664790d9f06bbd878f1d5d49395050e3",
+    "Results/AN-20261020-033312-7c54/analysis.json": "3d047905c238532900498c59249743174199e70c851dd63162e0d85f17683fb7"
+  },
+  "outputs_sha256": {
+    "NT-02-Verified-Timeline.csv": "e1ecaa96fddb5d44ada967102cd2f3abf947305a21b0b7868255dde5b22dd783",
+    "NT-02-Case-Study.md": "e65dfbd5902af22b8c4e6ed47cfb7b10c7222fc4362ed64229dcb293232eb5f7"
+  },
+  "safety_and_limits": [
+    "E001 and E002 are computed summaries, not individual DNS events",
+    "24 selected source records are a sample of 581, not all 581",
+    "Pattern indicator is not proof of tunneling/exfiltration/authorization/malicious intent",
+    "CLI-reported human review is not independently validated against review storage schema",
+    "The final manifest cannot include its own SHA-256 without a circular hash"
+  ]
+}

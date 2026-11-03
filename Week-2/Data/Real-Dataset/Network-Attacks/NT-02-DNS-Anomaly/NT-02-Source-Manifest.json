@@ -1,0 +1,58 @@
+{
+  "case_id": "NT-02",
+  "scenario_label": "Suspicious DNS Activity — evidence not yet classified",
+  "provenance": {
+    "repository": "dikshitdhawan/NTA-Zeek-Threat-Detection-Lab",
+    "commit": "bb2817e4a783dd2578383aa6e3f0adab12052904",
+    "path_in_repository": "Zeek-Logs/dns_anomaly/dns.log",
+    "pinned_raw_url": "https://raw.githubusercontent.com/dikshitdhawan/NTA-Zeek-Threat-Detection-Lab/bb2817e4a783dd2578383aa6e3f0adab12052904/Zeek-Logs/dns_anomaly/dns.log",
+    "retrieved_at_utc": "2026-10-20T02:26:33.278136+00:00",
+    "third_party_source": true
+  },
+  "original_filename": "NT-02-Zeek-dns-original.log",
+  "file_size_bytes": 104260,
+  "sha256": "a5a31f5be2a6bfdcce1ab1f2d43e34a2b1ff49bee4d3737560c8b9b6e6775942",
+  "git_blob_sha1": "752daa17b27eb584d8fbedd2da4322c661c30e30",
+  "verified_git_blob_sha1": "752daa17b27eb584d8fbedd2da4322c661c30e30",
+  "zeek_format_inspection": {
+    "physical_lines": 590,
+    "zeek_path": "dns",
+    "columns": 26,
+    "field_names": [
+      "ts",
+      "uid",
+      "id.orig_h",
+      "id.orig_p",
+      "id.resp_h",
+      "id.resp_p",
+      "proto",
+      "trans_id",
+      "rtt",
+      "query",
+      "qclass",
+      "qclass_name",
+      "qtype",
+      "qtype_name",
+      "rcode",
+      "rcode_name",
+      "AA",
+      "TC",
+      "RD",
+      "RA",
+      "Z",
+      "answers",
+      "TTLs",
+      "rejected",
+      "opcode",
+      "opcode_name"
+    ],
+    "data_rows_unvalidated": 581,
+    "first_data_line_number": 9
+  },
+  "limitations": [
+    "Content integrity confirms equivalence to pinned Git object, not absence of tampering before Git publication.",
+    "Source is a third-party repository, not locally generated live telemetry.",
+    "DNS anomaly/tunneling, malicious intent, successful exfiltration and authorization are not established.",
+    "Full event parsing and candidate selection require a separate read-only inspection."
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "test_id": "NT-02",
+  "source_sha256": "a5a31f5be2a6bfdcce1ab1f2d43e34a2b1ff49bee4d3737560c8b9b6e6775942",
+  "source_total_dns_records": 581,
+  "source_distinct_exact_queries": 258,
+  "source_clients": {
+    "192.168.16.131": 326,
+    "192.168.16.132": 255
+  },
+  "source_client_resolver_pairs": {
+    "192.168.16.131 -> 192.168.16.1": 326,
+    "192.168.16.132 -> 192.168.16.131": 255
+  },
+  "source_qtypes": {
+    "AAAA": 180,
+    "A": 401
+  },
+  "source_rcodes": {
+    "-": 326,
+    "NOERROR": 255
+  },
+  "source_nxdomain_count": 0,
+  "source_first_utc": "2026-05-26T15:56:25.484741Z",
+  "source_last_utc": "2026-05-26T16:11:36.424560Z",
+  "cluster_src": "192.168.16.132",
+  "cluster_dst": "192.168.16.131",
+  "cluster_query_pattern": "chunkNNN-hex.lab.test",
+  "cluster_record_count": 250,
+  "cluster_distinct_queries": 250,
+  "cluster_start_utc": "2026-05-26T16:05:30.002227Z",
+  "cluster_end_utc": "2026-05-26T16:05:33.555093Z",
+  "cluster_duration_seconds": 3.552866,
+  "cluster_qtypes": {
+    "A": 250
+  },
+  "cluster_rcodes": {
+    "NOERROR": 250
+  },
+  "interpretation": "DNS query burst with diverse chunk-style labels. Potential DNS tunneling-like indicator, NOT proof of exfiltration or confirmed malware.",
+  "uncertainties": [
+    "authorized lab/test activity unknown",
+    "DNS payload meaning unknown",
+    "NOERROR is not evidence of exfiltration",
+    "Zeek rcode - is not NXDOMAIN",
+    "lab.test is a test-style domain, not confirmed attacker infrastructure"
+  ]
+}
