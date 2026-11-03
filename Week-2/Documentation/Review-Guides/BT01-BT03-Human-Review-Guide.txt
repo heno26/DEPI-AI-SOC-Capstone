@@ -1,0 +1,106 @@
+DEPI Project 5 | Week 2 | BENIGN CANDIDATE HUMAN REVIEW
+Analyst: Mohammed walid
+Source: Recorded Windows baseline logs. These cases are benign CANDIDATES, not proven clean.
+Review only: original input, AI output and analysis records must remain unchanged.
+
+IMPORTANT
+- Do not confuse validator flags with proven hallucinations.
+- An unsupported finding, a heuristic false alarm and a confirmed fabricated fact are separate outcomes.
+- Never interpret the absence of malicious evidence in these short samples as proof of absence of compromise.
+- Run the commands one at a time from D:\Desktop\w\Week-2.
+- For each screen, follow the order: flag dispositions (if any), status, analyst name, correct findings, incorrect findings, missing evidence, hallucinations, review notes.
+
+==================================================================
+BT-01 — NORMAL .NET PROCESS EXECUTION CANDIDATE
+==================================================================
+COMMAND:
+python app.py review AN-20261018-031118-23a5
+
+FLAGS: None (0 automatic flags; this does NOT mean the report has no errors).
+REVIEW STATUS: c (Corrected)
+ANALYST: Mohammed walid
+
+CORRECT FINDINGS (paste as ONE LINE):
+Six Sysmon Event ID 1 records E001-E006 document process creation of mscorsvw.exe under C:\Windows\Microsoft.NET\Framework\v4.0.30319\; ParentImage is ngen.exe in the same .NET Framework directory; the recorded account is NT AUTHORITY\SYSTEM; no selected record directly proves an attack.
+
+INCORRECT FINDINGS (paste as ONE LINE):
+The AI described the processes as starting and stopping even though the six selected Sysmon Event ID 1 records only establish process creation; the AI described the executables as running from C:\Windows\system32 although the recorded image path is C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorsvw.exe; normality remains a contextual assessment rather than a conclusively established security verdict.
+
+MISSING EVIDENCE (paste as ONE LINE):
+Sysmon Event ID 5 or other process termination telemetry if termination is to be claimed; file signature and integrity verification; parent process context and relevant ProcessGuid correlation; host maintenance or .NET optimization context; additional relevant process activity around the selected timestamps.
+
+HALLUCINATIONS (paste as ONE LINE):
+Unsupported assertion that the processes stopped in the sampled records; incorrect executable location C:\Windows\system32 instead of the .NET Framework directory shown by E001-E006.
+
+REVIEW NOTES (paste as ONE LINE):
+BT-01 reviewed by Mohammed walid. All six original events are Sysmon Event ID 1 for mscorsvw.exe launched by ngen.exe under NT AUTHORITY\SYSTEM. This process chain is consistent with routine .NET optimization but alone does not prove the host clean. Two inaccurate assertions escaped automated validation (0 flags): unobserved process termination and an incorrect System32 path. No confirmed malicious activity is supported by the focused evidence. Human review status: Corrected.
+
+==================================================================
+BT-02 — WINDOWS SERVICE LOGON AND PRIVILEGE AUDIT CANDIDATE
+==================================================================
+COMMAND:
+python app.py review AN-20261018-031219-895a
+
+FLAG CHOICES (enter at the corresponding interactive prompts):
+F001: n  (Needs follow-up: missing evidence reference; unnecessary/excessive privilege inference unsubstantiated)
+F002: n  (Needs follow-up: speculative misuse is not an observed attack and lacks supporting evidence citation)
+F003: f  (Validator false alarm: SeDebugPrivilege is listed in 4672 for SYSTEM, which alone does not contradict "None identified" suspicious activity)
+NOTE: If your on-screen flag texts do not match these three descriptions, STOP and inspect before using the choices.
+REVIEW STATUS: c (Corrected)
+ANALYST: Mohammed walid
+
+CORRECT FINDINGS (paste as ONE LINE):
+Windows Security Event ID 4624 records E001 and E003 show successful SYSTEM service logons with LogonType 5 and TargetLogonId 0x3e7; Event ID 4672 records E002 and E004 list special privileges for SYSTEM with SubjectLogonId 0x3e7, including SeDebugPrivilege; these events document service-logon and privilege-audit activity, not verified exploitation, interactive logon, or network logon.
+
+INCORRECT FINDINGS (paste as ONE LINE):
+The AI mislabeled E001 as an interactive logon and E003 as a network logon, although both have LogonType 5 (service); the assertion that the privileges are unnecessary or excessive is not established by the selected records; Event ID 4672 does not by itself establish privilege abuse or compromise.
+
+MISSING EVIDENCE (paste as ONE LINE):
+The corresponding service and process identity; service configuration and normal host baseline; additional authentication or privileged-operation events confirming any unusual usage; administrative authorization context; telemetry showing actual SeDebugPrivilege use, if any.
+
+HALLUCINATIONS (paste as ONE LINE):
+Wrong claim of an interactive logon for E001; wrong claim of a network logon for E003; unsupported implication that the assigned SYSTEM privileges were excessive or misused. No malicious use of SeDebugPrivilege is demonstrated by E002 or E004.
+
+REVIEW NOTES (paste as ONE LINE):
+BT-02 reviewed by Mohammed walid. E001/E003 are Event ID 4624 with LogonType 5 and TargetLogonId 0x3e7. E002/E004 are Event ID 4672 for SYSTEM with SubjectLogonId 0x3e7 and a privilege list including SeDebugPrivilege. The evidence supports service-related privileged logon activity, not interactive or network logons and not privilege exploitation. F001/F002 need follow-up for unsupported speculative findings without references; F003 is a validator false alarm because possession of SeDebugPrivilege by SYSTEM alone is not suspicious activity. Human review status: Corrected.
+
+==================================================================
+BT-03 — WINDOWS SERVICE STATE CHANGE CANDIDATE
+==================================================================
+COMMAND:
+python app.py review AN-20261018-031340-9773
+
+FLAGS: None (0 automatic flags).
+REVIEW STATUS: a (Approved) provided the on-screen stored report is the same one previously inspected.
+ANALYST: Mohammed walid
+
+CORRECT FINDINGS (paste as ONE LINE):
+Six Service Control Manager Event ID 7036 records E001-E006 document state changes: Windows Biometric Service stopped E001; Background Intelligent Transfer Service stopped E002; Microsoft Passport stopped E003; Software Protection running E004 and stopped E005; AppX Deployment Service (AppXSVC) stopped E006. The focused records do not establish a malicious cause.
+
+INCORRECT FINDINGS (paste as ONE LINE):
+None confirmed in the reviewed event-state descriptions; possible malicious concealment is a low-confidence hypothesis, not an observed or proven action.
+
+MISSING EVIDENCE (paste as ONE LINE):
+Service configuration and startup modes; approved maintenance or update records; correlated Event ID 7040/7045 or process-creation telemetry; service-control initiator or user identity; related system and security logs before and after the selected events.
+
+HALLUCINATIONS (paste as ONE LINE):
+None confirmed from the six event-state descriptions; any suggestion of concealment must remain explicitly hypothetical.
+
+REVIEW NOTES (paste as ONE LINE):
+BT-03 reviewed by Mohammed walid. The AI accurately summarized six recorded Event ID 7036 service state changes on WIN-TKC15D7KHUR and did not establish a confirmed compromise. The statement that repeated service changes could possibly hide malicious activity was qualified and not reported as a factual attack. These are baseline candidates and the selected records do not conclusively prove the host clean. Automated validation returned 0 flags; human review status: Approved.
+
+==================================================================
+AFTER SAVING ALL THREE REVIEWS
+==================================================================
+Expected console confirmations:
+BT-01: Review saved. Status: Corrected
+BT-02: Review saved. Status: Corrected
+BT-03: Review saved. Status: Approved
+
+Record the actual saved statuses; do not invent a PASS based on expectation.
+Suggested evidence screenshot names:
+37-BT01-Human-Review.png
+38-BT02-Human-Review.png
+39-BT03-Human-Review.png
+
+Next phase: quantify analyst-verified semantic errors and validator misses; validate corrective checks and create final case studies without overwriting source evidence or AI output. Do not claim a population false-positive rate from these three hand-selected candidate cases.
