@@ -1,0 +1,5 @@
+timestamp_utc,event_id,record_id,host,source_provider,event_summary,original_ref,parsed_ref,timestamp_validation
+2019-02-16T10:02:21.9344384Z,1,1940899,PC01.example.corp,Microsoft-Windows-Sysmon,Sysmon process creation: C:\Users\IEUser\Desktop\plink.exe,E003,E001,MATCH (<1ms)
+2019-02-16T10:02:22.9659216Z,3,1940900,PC01.example.corp,Microsoft-Windows-Sysmon,Sysmon network connection event: destination 10.0.2.18:80,E004,E002,MATCH (<1ms)
+2019-02-16T10:02:48.5026416Z,3,1940901,PC01.example.corp,Microsoft-Windows-Sysmon,Sysmon network connection event: destination 127.0.0.2:3389,E005,E003,MATCH (<1ms)
+2019-02-16T10:04:05.0927728Z,3,1940919,PC01.example.corp,Microsoft-Windows-Sysmon,Sysmon network connection event: destination 127.0.0.2:3389,E023,E004,MATCH (<1ms)
