@@ -1,0 +1,31 @@
+{
+  "test_id": "LT-04",
+  "verification_script": "LT03_LT04_Finalize.py",
+  "script_version": "1.0",
+  "verification_result": "source_and_mapping_integrity_pass",
+  "no_ai_inference_or_model_execution": true,
+  "existing_original_focused_mapping_selection_core_results_reviews": "unchanged",
+  "human_review_schema_independently_verified": false,
+  "original_source_records": 2000,
+  "focused_event_count": 18,
+  "evidence_mapping_verified": "18/18",
+  "source_type": "Linux syslog",
+  "timestamp_policy": "year and timezone absent; recorded Jul 27 clock time only; sort within same day",
+  "assessment": "low_risk_benign_candidate_not_verified_host_ground_truth",
+  "parser_trailing_whitespace_notes_verified": 2,
+  "analysis_ids": [
+    "AN-20261019-003000-126d"
+  ],
+  "human_review_status": "Corrected (console-observed only; review schema not independently inspected)",
+  "input_sha256": {
+    "source": "b3e20bc1afe732ab1bf3ed1de4bf9c809e4194e02f7dea911d918e5342e8e173",
+    "source_meta": "332079d990758b4db60ea934a001ab62d8231a287a9e25f78c7b56cc9c2952f7",
+    "focused": "1eebd6b57e97b8ab72af8f0a109fb683cef99fe2cdb06990cc48c152dc458070",
+    "mapping": "0b9cf6172d8357e2f53ebde52e45265626c2e1540fa4200c0308314f9033ac3a",
+    "selection": "f9309fe42e3f3a0dad94d82ae97578c56feb9eff3ae16baa43185fba98fb96f7"
+  },
+  "created_document_sha256": {
+    "LT-04-Verified-Timeline.csv": "32a7d2870b3057d6c7efeb12bf9aa58af02706d11c9e77ffebe927e20791d482",
+    "LT-04-Case-Study.md": "d63f8eebb32dc01cea129af2f5969455f9b7678e4a2d2c007ced8528fcc36d3e"
+  }
+}

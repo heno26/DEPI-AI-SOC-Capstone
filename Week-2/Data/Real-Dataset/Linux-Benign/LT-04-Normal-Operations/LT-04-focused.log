@@ -1,0 +1,18 @@
+Jul 27 14:41:57 combo syslog: syslogd startup succeeded
+Jul 27 14:41:57 combo kernel: klogd 1.4.1, log source = /proc/kmsg started.
+Jul 27 14:41:57 combo kernel:  BIOS-e820: 00000000ffb00000 - 0000000100000000 (reserved)
+Jul 27 14:41:57 combo syslog: klogd startup succeeded
+Jul 27 14:41:57 combo kernel:   Normal zone: 28334 pages, LIFO batch:6
+Jul 27 14:41:57 combo kernel: mapped 4G/4G trampoline to ffff3000.
+Jul 27 14:41:58 combo kernel: Memory: 125312k/129720k available (1540k kernel code, 3860k reserved, 599k data, 144k init, 0k highmem)
+Jul 27 14:41:58 combo kernel: Capability LSM initialized
+Jul 27 14:41:58 combo kernel: Intel machine check reporting enabled on CPU#0.
+Jul 27 14:41:58 combo kernel: NET: Registered protocol family 16
+Jul 27 14:41:58 combo kernel: usbcore: registered new driver usbfs
+Jul 27 14:41:59 combo kernel: PCI: Using IRQ router PIIX/ICH [8086/2410] at 0000:00:1f.0
+Jul 27 14:41:59 combo bluetooth: hcid startup succeeded
+Jul 27 14:41:54 combo network: Setting network parameters:  succeeded 
+Jul 27 14:41:59 combo bluetooth: sdpd startup succeeded
+Jul 27 14:41:54 combo network: Bringing up loopback interface:  succeeded 
+Jul 27 14:41:59 combo kernel: Dquot-cache hash table entries: 1024 (order 0, 4096 bytes)
+Jul 27 14:42:00 combo kernel: Linux agpgart interface v0.100 (c) Dave Jones

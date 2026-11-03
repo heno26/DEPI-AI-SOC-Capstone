@@ -1,0 +1,91 @@
+{
+  "test_id": "LT-04",
+  "scenario": "Linux low-risk system startup and initialization events",
+  "classification": "benign_candidate_not_ground_truth",
+  "source_verified": true,
+  "source_sha256": "b3e20bc1afe732ab1bf3ed1de4bf9c809e4194e02f7dea911d918e5342e8e173",
+  "source_bytes": 216485,
+  "source_line_count": 2000,
+  "focused_line_count": 18,
+  "original_source_lines": [
+    1909,
+    1910,
+    1917,
+    1921,
+    1924,
+    1932,
+    1942,
+    1950,
+    1958,
+    1965,
+    1973,
+    1980,
+    1985,
+    1987,
+    1988,
+    1991,
+    1993,
+    2000
+  ],
+  "evidence_refs": [
+    "E001",
+    "E002",
+    "E003",
+    "E004",
+    "E005",
+    "E006",
+    "E007",
+    "E008",
+    "E009",
+    "E010",
+    "E011",
+    "E012",
+    "E013",
+    "E014",
+    "E015",
+    "E016",
+    "E017",
+    "E018"
+  ],
+  "selection_program_counts": {
+    "syslog": 2,
+    "kernel": 12,
+    "bluetooth": 2,
+    "network": 2
+  },
+  "focused_sha256": "1eebd6b57e97b8ab72af8f0a109fb683cef99fe2cdb06990cc48c152dc458070",
+  "mapping_sha256": "0b9cf6172d8357e2f53ebde52e45265626c2e1540fa4200c0308314f9033ac3a",
+  "parser_source_type": "linux",
+  "parser_boundary_whitespace_normalization": [
+    {
+      "focused_ref": "E014",
+      "original_source_line": 1987,
+      "trailing_whitespace_chars_trimmed_by_parser": 1,
+      "source_line_sha256_excluding_newline": "15ef1d425c3f89e1480bd81acdbd140c343cedf07d374c992c40904c1183e0d5"
+    },
+    {
+      "focused_ref": "E016",
+      "original_source_line": 1991,
+      "trailing_whitespace_chars_trimmed_by_parser": 1,
+      "source_line_sha256_excluding_newline": "3cbcfa6c6778e4eb0f9a536ffc069592d62f17886f0b0890516522ee9d16be49"
+    }
+  ],
+  "source_context_window": {
+    "first_line": 1909,
+    "last_line": 2000
+  },
+  "risk_keyword_lines_in_context_window": [
+    1947,
+    1948
+  ],
+  "limitations": [
+    "Source syslog timestamps contain no year or timezone; do not fabricate either.",
+    "The project parser strips boundary whitespace when rendering raw text; original/focused source content remains preserved and any trailing-trim is recorded.",
+    "Focused logs preserve source order; that order is not necessarily timestamp order.",
+    "Benign candidate is a local activity assessment, not proof the host is clean.",
+    "Original source contains authentication failures and other potentially risky events that are excluded from this focused sample.",
+    "Absence of attack indicators in the selected sample is not proof of authorization.",
+    "System service startup does not establish why it occurred.",
+    "This single curated sample cannot establish a statistically valid false-positive rate."
+  ]
+}
