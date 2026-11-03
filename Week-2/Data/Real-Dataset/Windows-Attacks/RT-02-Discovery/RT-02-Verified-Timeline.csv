@@ -1,0 +1,5 @@
+timestamp_utc,event_id,record_id,host,source_provider,event_summary,original_ref,parsed_ref,timestamp_validation
+2019-01-20T07:29:57.8638931Z,1102,32950,WIN-77LTAPHIQ1R.example.corp,Microsoft-Windows-Eventlog,Windows Security audit log cleared (Event 1102); account: Administrator,E001,E001,MATCH (<1ms)
+2019-01-20T07:30:10.6451168Z,5145,32951,WIN-77LTAPHIQ1R.example.corp,Microsoft-Windows-Security-Auditing,"Network share access check (Event 5145): winreg, source 10.0.2.17",E002,E002,MATCH (<1ms)
+2019-01-20T07:30:10.6600994Z,5145,32952,WIN-77LTAPHIQ1R.example.corp,Microsoft-Windows-Security-Auditing,"Network share access check (Event 5145): lsarpc, source 10.0.2.17",E003,E003,MATCH (<1ms)
+2019-01-20T07:30:10.6600994Z,5145,32953,WIN-77LTAPHIQ1R.example.corp,Microsoft-Windows-Security-Auditing,"Network share access check (Event 5145): srvsvc, source 10.0.2.17",E004,E004,MATCH (<1ms)
