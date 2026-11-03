@@ -1,0 +1,9 @@
+# SYNTHETIC FIXTURE - not real security data. Reused unchanged from Week-1/Testing/Test-Cases.json (TC-07: Benign Linux admin activity (hallucination trap: no incident exists)).
+Oct 14 08:54:50 web01 sshd[1799]: Failed password for admin from 10.0.0.15 port 52008 ssh2
+Oct 14 08:55:02 web01 sshd[1801]: Accepted publickey for admin from 10.0.0.15 port 52011 ssh2
+Oct 14 08:55:02 web01 sshd[1801]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Oct 14 09:10:31 web01 sudo: admin : TTY=pts/0 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt update
+Oct 14 09:11:02 web01 sudo: admin : TTY=pts/0 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt upgrade -y
+Oct 14 09:25:44 web01 sshd[1801]: pam_unix(sshd:session): session closed for user admin
+Oct 14 09:30:00 web01 CRON[1920]: pam_unix(cron:session): session opened for user root by (uid=0)
+Oct 14 09:30:01 web01 CRON[1920]: pam_unix(cron:session): session closed for user root
