@@ -1,0 +1,20 @@
+{
+  "test_id": "NT-01",
+  "source_sha256": "f9282d987047ef37a807a575a353ff601ddbb1b389aa76e92214c302de2fbda9",
+  "source_git_blob_sha1": "6f967cad3e15891e527d01490840fa3aec26aeed",
+  "sampled_original_connection_count": 30,
+  "total_focused_events_including_aggregate": 31,
+  "aggregate_reference": "E001",
+  "original_connection_references": "E002-E031",
+  "selection_method": "first and last per occupied scan UTC minute, port anchors 80/1/65535 when present, two UDP context records; source-time ordered",
+  "sampling_is_not_prevalence_estimate": true,
+  "focused_sha256": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+  "mapping_sha256": "6041866f0533244d82cb734978ad4332a080c815f38a412687b6dbb0caf231f1",
+  "statistics_sha256": "eae152db9b57ff82382beb5e03373c76ad28b0756a71ba2605d1ea8cee1bf5eb",
+  "warnings": [
+    "E001 is a computed aggregate over the full verified source, not a captured connection record.",
+    "Do not treat the focused sample size as the total scan flows.",
+    "Zeek connection states do not prove malicious intent, exploitation, successful login, or host compromise.",
+    "Outside-pair UDP context rows are not automatically benign."
+  ]
+}

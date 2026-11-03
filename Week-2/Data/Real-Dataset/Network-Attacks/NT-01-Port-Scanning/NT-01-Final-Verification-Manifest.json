@@ -1,0 +1,43 @@
+{
+  "case_id": "NT-01",
+  "status": "source_grounded_documentation",
+  "verification_scope": "source/raw selected lines/derived artifacts/parser/detector/saved grounding/semantic replay",
+  "human_review_schema_checked": false,
+  "cli_reported_human_review_status": "Corrected (not independently verified by this script)",
+  "original_source_line_count": 65904,
+  "original_connection_records": 65895,
+  "focused_events": 31,
+  "computed_aggregates": 1,
+  "original_sampled_zeek_connections": 30,
+  "evidence_to_raw_source_mappings_verified": "30/30",
+  "network_rule": "NETWORK_VERTICAL_PORT_SCAN",
+  "grounded_confidence_in_observed_pattern": "high",
+  "v1_network_semantic_review_requests_replayed": 21,
+  "v2_network_semantic_review_requests_replayed": 20,
+  "v2_request_categories": {
+    "private_network_not_benign": 1,
+    "network_direction_mismatch": 15,
+    "network_port_role_mismatch": 4
+  },
+  "inputs": {
+    "Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Zeek-conn-original.log": "f9282d987047ef37a807a575a353ff601ddbb1b389aa76e92214c302de2fbda9",
+    "Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Source-Manifest.json": "a13f24b81330cd47a85aef18ad1ee0606cf6b8b938c7030c388c613cb7176ec0",
+    "Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-focused.json": "dcaa4d0f7dadf730d5880755db24b98e8fe5689b2af57e95631f8589135beae7",
+    "Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-evidence-mapping.csv": "6041866f0533244d82cb734978ad4332a080c815f38a412687b6dbb0caf231f1",
+    "Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Full-Source-Statistics.json": "eae152db9b57ff82382beb5e03373c76ad28b0756a71ba2605d1ea8cee1bf5eb",
+    "Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Selection-Manifest.json": "8ca348838be1f5835b6266d4cedb546a13ab5f6b529cd134fe9f4373aff89dfa",
+    "Results/AN-20261020-011716-3d22/analysis.json": "8f022cea5f7d3d74282922391d2d6f9cde3f1aa2194417184b854074a015b0d7",
+    "Results/AN-20261020-013537-8c86/analysis.json": "f5dbc1225a3e1aba97d38b8d47bbbcc0950cca42a3559e19748cce75fee7211e"
+  },
+  "outputs": {
+    "NT-01-Verified-Timeline.csv": "dfc6ba445b6e95612feaa093757f591f8c2badb17da2cd922895fbec817c2ce0",
+    "NT-01-Case-Study.md": "12c9ba90c21d75046d1f533f0554e64fe83fe4d83c134563f3d3d2a0e7c2874e"
+  },
+  "limitations": [
+    "E001 is an aggregate, not an individual network flow",
+    "30 sampled Zeek connections are not an exhaustive source timeline",
+    "Evidence establishes port scan pattern, not unauthorized intent or compromise",
+    "Internal review schema not inspected",
+    "The final-verification manifest omits its own SHA256 to avoid circular hashes"
+  ]
+}

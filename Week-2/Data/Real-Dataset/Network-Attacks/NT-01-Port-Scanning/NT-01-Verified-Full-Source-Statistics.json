@@ -1,0 +1,37 @@
+{
+  "test_id": "NT-01",
+  "derived_not_raw": true,
+  "source_sha256": "f9282d987047ef37a807a575a353ff601ddbb1b389aa76e92214c302de2fbda9",
+  "source_physical_lines": 65904,
+  "source_connections": 65895,
+  "source_protocols": {
+    "udp": 148,
+    "tcp": 65747
+  },
+  "global_connection_states": {
+    "S0": 259,
+    "REJ": 65620,
+    "RSTO": 15,
+    "SF": 1
+  },
+  "scan_src_ip": "192.168.16.132",
+  "scan_dst_ip": "192.168.16.130",
+  "scan_pair_tcp_records": 65747,
+  "scan_pair_distinct_destination_ports": 65535,
+  "scan_pair_connection_states": {
+    "REJ": 65620,
+    "RSTO": 15,
+    "S0": 112
+  },
+  "scan_pair_utc_start": "2026-05-26T06:07:27.414749Z",
+  "scan_pair_utc_end": "2026-05-26T06:19:45.683665Z",
+  "scan_utc_minute_count": 13,
+  "source_first_utc": "2026-05-26T06:05:07.694185Z",
+  "source_last_utc": "2026-05-26T06:21:24.469536Z",
+  "labels": {
+    "observed_pattern": "strong_vertical_port_scan",
+    "authorization": "unknown",
+    "compromise": "not_established",
+    "actor_intent": "not_established"
+  }
+}

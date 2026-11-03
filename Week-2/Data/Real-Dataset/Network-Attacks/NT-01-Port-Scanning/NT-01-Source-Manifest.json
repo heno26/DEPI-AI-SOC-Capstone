@@ -1,0 +1,17 @@
+{
+  "test_id": "NT-01",
+  "scenario": "Network Port Scanning",
+  "status": "source_integrity_verified_content_analysis_pending",
+  "provenance": "Public third-party controlled-lab Zeek telemetry; attack labels require independent validation",
+  "repository": "dikshitdhawan/NTA-Zeek-Threat-Detection-Lab",
+  "repository_commit": "bb2817e4a783dd2578383aa6e3f0adab12052904",
+  "source_repository_path": "Zeek-Logs/port_scan/conn.log",
+  "download_url": "https://raw.githubusercontent.com/dikshitdhawan/NTA-Zeek-Threat-Detection-Lab/bb2817e4a783dd2578383aa6e3f0adab12052904/Zeek-Logs/port_scan/conn.log",
+  "git_blob_sha1": "6f967cad3e15891e527d01490840fa3aec26aeed",
+  "sha256": "f9282d987047ef37a807a575a353ff601ddbb1b389aa76e92214c302de2fbda9",
+  "file_size_bytes": 8200705,
+  "source_line_count": 65904,
+  "retrieved_at_utc": "2026-10-20T00:56:01.631495+00:00",
+  "year_timezone_assessment": "Requires inspection of Zeek timestamps and metadata",
+  "notes": "Source unchanged; no attack counts, connection state, or attribution assumed from README."
+}
