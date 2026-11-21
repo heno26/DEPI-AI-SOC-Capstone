@@ -1,0 +1,28 @@
+playbook_id: PB-04
+alert_rule: SIEM_EXCHANGE_005_SUSPICIOUS_MAILBOX_EXPORT
+evidence_adapter: exchange_005
+tier_max: Tier 0
+actions:
+  auto:
+    - parse_evidence
+    - extract_iocs
+    - create_ticket
+    - notify_analyst
+    - write_audit
+  propose: []
+  prohibited:
+    - action: propose_export_revocation
+      reason: "Exchange receiver hard-codes qa_status=REVIEW_REQUIRED; no proposed response actions permitted"
+    - action: execute_isolation
+      reason: "Tier 2 prohibited"
+    - action: disable_account
+      reason: "Exchange report §11: 'Do not automatically isolate hosts or disable accounts'"
+    - action: delete_export_request
+      reason: "Evidence unverified; no filesystem/IIS proof of completion"
+    - action: execute_rate_limit
+      reason: "Tier 2 prohibited"
+decision_gates:
+  - name: qa_gate_always_review
+    condition: "qa_status == REVIEW_REQUIRED (hard-coded by Exchange receiver)"
+  - name: tier0_cap
+    note: "Tier 0 cap is enforced in dispatcher: PB-04 cannot emit propose-tier actions"

@@ -1,0 +1,31 @@
+playbook_id: PB-02
+alert_rule: SIEM_MAL_003_SUSPICIOUS_MALWARE_BEHAVIOR
+evidence_adapter: mal_003
+tier_max: Tier 1
+actions:
+  auto:
+    - parse_evidence
+    - extract_iocs
+    - create_ticket
+    - notify_analyst
+    - write_audit
+  propose:
+    - action: propose_host_isolation
+      requires: analyst_approval
+      template: "Propose isolation of host running {process_image} (NOT executed)"
+      rationale: "Malware report §6: consider containment only after operational-impact evaluation"
+    - action: propose_hash_blocklist
+      requires: analyst_approval
+      template: "Propose blocklisting SHA256 {sha256} (NOT executed)"
+  prohibited:
+    - action: execute_isolation
+      reason: "Tier 2 prohibited; requires recorded analyst decision"
+    - action: execute_rate_limit
+      reason: "Tier 2 prohibited"
+    - action: disable_account
+      reason: "Week-2 reports prohibit automatic account action"
+decision_gates:
+  - name: evidence_verified
+    condition: "evidence.verified_counts == webhook_group counts"
+  - name: qa_gate
+    condition: "qa_status in [SCHEMA_PASS_HUMAN_REVIEW_REQUIRED, REVIEW_REQUIRED]"

@@ -1,0 +1,28 @@
+playbook_id: PB-03
+alert_rule: SIEM_WEB_001_HIGH_RATE_HTTP_REQUESTS + SIEM_WEB_004_XSS_ATTACK_DETECTED
+evidence_adapter: web_xss
+tier_max: Tier 1
+actions:
+  auto:
+    - parse_evidence
+    - extract_iocs
+    - create_ticket
+    - notify_analyst
+    - write_audit
+  propose:
+    - action: propose_waf_rule_review
+      requires: analyst_approval
+      template: "Propose WAF rule review for {request_uri} (NOT executed)"
+      rationale: "Week-2 XSS report §8; HTTP correlation gap means no source-block proposal"
+  prohibited:
+    - action: execute_rate_limit
+      reason: "HTTP correlation gap (Week-2 acceptance gate 2) — cannot block source safely"
+    - action: execute_isolation
+      reason: "Tier 2 prohibited"
+    - action: disable_account
+      reason: "Week-2 reports prohibit automatic account action"
+decision_gates:
+  - name: qa_gate
+    condition: "qa_status in [SCHEMA_PASS_HUMAN_REVIEW_REQUIRED, REVIEW_REQUIRED]"
+  - name: correlation_warning
+    note: "HTTP 001 retains open row-level-join gap; XSS receiver self-checks are weaker than AUTH/MAL"

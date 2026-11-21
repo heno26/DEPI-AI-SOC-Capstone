@@ -1,0 +1,38 @@
+{
+  "ticket_id": "21c4515e439a0b3b6a3f",
+  "created_at_utc": "2026-11-18T00:00:00+00:00",
+  "playbook_id": "PB-04",
+  "alert_rule": "SIEM_EXCHANGE_005_SUSPICIOUS_MAILBOX_EXPORT",
+  "trigger_status": "firing",
+  "evidence_adapter": "exchange_005",
+  "tier": "Tier 0",
+  "qa_status": "REVIEW_REQUIRED",
+  "semantic_warnings": [],
+  "missing_fields": [],
+  "ai_severity": "High",
+  "ai_confidence": "Medium",
+  "enrichment": {
+    "iocs_extracted": [
+      {"type": "verified_unique_events", "value": 2, "source": "week2_evidence"}
+    ],
+    "reputation_lookup": {"performed": false, "reason": "no live threat-intelligence feed in lab; verdict NOT fabricated"},
+    "asset_context": {"lookup_performed": false, "reason": "no asset database in lab"}
+  },
+  "proposed_actions": [],
+  "prohibited_actions": [
+    {"action": "propose_export_revocation", "reason": "Exchange receiver hard-codes qa_status=REVIEW_REQUIRED; no proposed response actions permitted"},
+    {"action": "execute_isolation", "reason": "Tier 2 prohibited"},
+    {"action": "disable_account", "reason": "Exchange report §11: 'Do not automatically isolate hosts or disable accounts'"},
+    {"action": "delete_export_request", "reason": "Evidence unverified; no filesystem/IIS proof of completion"},
+    {"action": "execute_rate_limit", "reason": "Tier 2 prohibited"}
+  ],
+  "review_status": "Pending Review",
+  "analyst_decision": null,
+  "linked_evidence_file": "Evidence/SIEM-OpenObserve/SIEM_EXCHANGE_005_21c4515e439a0b3b6a3f_AI_Triage.json",
+  "limitations": [
+    "Historical lab data replayed into OpenObserve; not a live production compromise.",
+    "No independent filesystem or IIS execution evidence is supplied.",
+    "The verified event count describes the correlated alert rows, not all possible historical activity.",
+    "This document is a prepared analyst-review draft, not a signed human approval."
+  ]
+}

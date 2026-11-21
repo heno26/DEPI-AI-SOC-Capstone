@@ -1,0 +1,28 @@
+playbook_id: PB-01
+alert_rule: SIEM_AUTH_002_SSH_BRUTE_FORCE
+evidence_adapter: auth_002
+tier_max: Tier 1
+actions:
+  auto:
+    - parse_evidence
+    - extract_iocs
+    - create_ticket
+    - notify_analyst
+    - write_audit
+  propose:
+    - action: rate_limit_source_ip
+      requires: analyst_approval
+      template: "Propose 1h edge rate-limit for {source_ip} (NOT executed)"
+      rationale: "Week-2 SSH report §4 model recommended rate-limiting; §5 says success unconfirmed, so propose not execute"
+  prohibited:
+    - action: lock_account
+      reason: "Successful login not established (Week-2 SSH report §5)"
+    - action: execute_rate_limit
+      reason: "Tier 2 prohibited; requires recorded analyst decision"
+    - action: isolate_host
+      reason: "No host evidence in this alert type"
+decision_gates:
+  - name: evidence_verified
+    condition: "evidence.verified_failed_password_count == webhook_group.failed_attempts"
+  - name: qa_gate
+    condition: "qa_status in [SCHEMA_PASS_HUMAN_REVIEW_REQUIRED, REVIEW_REQUIRED]"

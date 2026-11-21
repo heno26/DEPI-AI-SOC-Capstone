@@ -1,0 +1,32 @@
+{
+  "generated_at_utc": "2026-10-27T00:47:13.000000+00:00",
+  "project": "DEPI-P5",
+  "phase": "Week-2 SIEM-06 SSH Brute Force",
+  "mode": "authenticated_webhook_historical_replay",
+  "event_id": "a823d14b61f061f7954e2e3eb7f18d6af6280f53242fe8c711d5cd78bcefdbae",
+  "model": "mistral:7b-instruct-v0.3-q4_K_S",
+  "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+  "missing_fields": [],
+  "semantic_warnings": [],
+  "source_trigger": {"key": "SIEM_AUTH_002_SSH_BRUTE_FORCE", "status": "firing"},
+  "webhook_group": {"src_ip": "183.62.140.253", "original_minute_no_year": "Dec 10 11:01", "failed_attempts": 30},
+  "evidence": {
+    "rule": "SIEM_AUTH_002_SSH_BRUTE_FORCE",
+    "source_ip": "183.62.140.253",
+    "original_minute_no_year": "Dec 10 11:01",
+    "verified_failed_password_count": 30,
+    "top_usernames": [{"username": "root", "failed_attempts": 30}]
+  },
+  "ai_triage": {
+    "summary": "Potential SSH brute-force attack detected",
+    "severity": "Medium",
+    "potential_threat": "SSH Brute Force",
+    "confidence": "High",
+    "false_positive_possibility": "Low",
+    "indicators": ["183.62.140.253", "root"],
+    "recommended_actions": ["Increase account lockout policies"],
+    "evidence_limitations": ["Successful login not established"]
+  },
+  "human_validation_required": true,
+  "limitations": ["Historical replay; not live production"]
+}

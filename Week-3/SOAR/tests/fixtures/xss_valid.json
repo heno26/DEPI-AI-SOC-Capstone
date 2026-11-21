@@ -1,0 +1,31 @@
+{
+  "generated_at_utc": "2026-10-31T22:16:17.324887+00:00",
+  "project": "DEPI-P5",
+  "phase": "Week-2 SIEM-07 XSS 004",
+  "mode": "authenticated_webhook_historical_lab_replay",
+  "event_id": "6ba5792eef667c9cf86fe718978b3c8b2ba892dd0968e5e3d30b66aeec678956",
+  "model": "mistral:7b-instruct-v0.3-q4_K_S",
+  "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+  "missing_fields": [],
+  "semantic_warnings": [],
+  "source_trigger": {"key": "SIEM_WEB_004_XSS_ATTACK_DETECTED", "status": "firing"},
+  "webhook_group": {"transaction_id": "ZwuU-873D9JP20xgx6@OtgAAAAA", "source_ip": "192.168.171.129"},
+  "evidence": {
+    "alert_rule": "SIEM_WEB_004_XSS_ATTACK_DETECTED",
+    "transaction_id": "ZwuU-873D9JP20xgx6@OtgAAAAA",
+    "source_ip": "192.168.171.129",
+    "verified_count": 1
+  },
+  "ai_triage": {
+    "summary": "Potential Cross-Site Scripting attempt detected",
+    "severity": "High",
+    "potential_threat": "XSS",
+    "confidence": "High",
+    "false_positive_possibility": "Low",
+    "indicators": ["192.168.171.129", "<script>", "alert(1)"],
+    "recommended_actions": ["Review output encoding"],
+    "evidence_limitations": ["HTTP 500 does not prove execution"]
+  },
+  "human_validation_required": true,
+  "limitations": ["Historical laboratory replay"]
+}

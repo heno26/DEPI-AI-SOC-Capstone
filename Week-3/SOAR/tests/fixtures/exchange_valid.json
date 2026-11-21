@@ -1,0 +1,30 @@
+{
+  "generated_at_utc": "2026-11-02T18:46:36.906959+00:00",
+  "project": "DEPI-P5",
+  "phase": "Week-2 Exchange 005",
+  "mode": "authenticated_webhook_verified_exchange_evidence",
+  "event_id": "21c4515e439a0b3b6a3f",
+  "model": "mistral:7b-instruct-v0.3-q4_K_S",
+  "qa_status": "REVIEW_REQUIRED",
+  "missing_fields": [],
+  "semantic_warnings": [],
+  "source_trigger": {"key": "SIEM_EXCHANGE_005_SUSPICIOUS_MAILBOX_EXPORT", "status": "firing"},
+  "webhook_group": {"command": "New-MailboxExportRequest"},
+  "evidence": {
+    "rule": "SIEM_EXCHANGE_005_SUSPICIOUS_MAILBOX_EXPORT",
+    "verified_unique_events": 2
+  },
+  "ai_triage": {
+    "executive_summary": "Suspicious Exchange mailbox export activity",
+    "confirmed_observations": ["Two New-MailboxExportRequest records"],
+    "suspicious_indicators": ["ASPX destination paths"],
+    "unverified_hypotheses": ["Possible web-shell staging"],
+    "missing_evidence": ["Filesystem metadata"],
+    "recommended_actions": ["Confirm authorization"],
+    "severity": "High",
+    "confidence": "Medium",
+    "human_validation_required": true
+  },
+  "human_validation_required": true,
+  "limitations": ["Historical lab replay"]
+}

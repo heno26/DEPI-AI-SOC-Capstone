@@ -1,0 +1,33 @@
+{
+  "generated_at_utc": "2026-10-28T03:51:27.454391+00:00",
+  "project": "DEPI-P5",
+  "phase": "Week-2 SIEM-06 Malware 003",
+  "mode": "authenticated_webhook_historical_lab_replay",
+  "event_id": "e05ccfe875e6a53524e7270675a6720d54c7ae95ab4353e906f32f04c14f14b9",
+  "model": "mistral:7b-instruct-v0.3-q4_K_S",
+  "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+  "missing_fields": [],
+  "semantic_warnings": [],
+  "source_trigger": {"key": "SIEM_MAL_003_SUSPICIOUS_MALWARE_BEHAVIOR", "status": "firing"},
+  "webhook_group": {"process_guid": "{6c5fe7fc-482c-684b-1701-000000000200}", "suspicious_executions": 1, "dns_queries": 10, "network_connections": 1},
+  "evidence": {
+    "rule": "SIEM_MAL_003_SUSPICIOUS_MALWARE_BEHAVIOR",
+    "process_guid": "{6c5fe7fc-482c-684b-1701-000000000200}",
+    "process_image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe",
+    "verified_counts": {"suspicious_executions": 1, "dns_queries": 10, "network_connections": 1},
+    "destination_ip": "104.80.2.104",
+    "destination_port": 443
+  },
+  "ai_triage": {
+    "summary": "Suspicious process creation, DNS queries, and network connection observed",
+    "severity": "High",
+    "potential_threat": "Possible execution of potentially malicious software",
+    "confidence": "Medium",
+    "false_positive_possibility": "Low",
+    "indicators": ["A1A79FEBE636F6AF95CA527BF37321A329F37BC2524414376F2727F4D9BD17C1"],
+    "recommended_actions": ["Investigate origin of process"],
+    "evidence_limitations": ["Infection not confirmed"]
+  },
+  "human_validation_required": true,
+  "limitations": ["Historical lab replay"]
+}

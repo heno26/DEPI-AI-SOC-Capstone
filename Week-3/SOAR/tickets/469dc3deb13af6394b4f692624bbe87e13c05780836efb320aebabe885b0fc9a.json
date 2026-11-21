@@ -1,0 +1,61 @@
+{
+  "ticket_id": "469dc3deb13af6394b4f692624bbe87e13c05780836efb320aebabe885b0fc9a",
+  "created_at_utc": "2026-11-18T18:25:49.534811+00:00",
+  "playbook_id": "PB-03",
+  "alert_rule": "SIEM_WEB_001_HIGH_RATE_HTTP_REQUESTS/3L1hr8G47RwjmCKb4MwmUa6SzEs",
+  "trigger_status": "firing",
+  "evidence_adapter": "web_xss",
+  "tier": "Tier 1",
+  "qa_status": "REVIEW_REQUIRED",
+  "semantic_warnings": [],
+  "missing_fields": [],
+  "ai_severity": "Medium",
+  "ai_confidence": "Moderate",
+  "enrichment": {
+    "iocs_extracted": [
+      {
+        "type": "source_ip",
+        "value": "255.102.154.224",
+        "source": "week2_evidence"
+      }
+    ],
+    "reputation_lookup": {
+      "performed": false,
+      "reason": "no live threat-intelligence feed in lab; verdict NOT fabricated"
+    },
+    "asset_context": {
+      "lookup_performed": false,
+      "reason": "no asset database in lab"
+    }
+  },
+  "proposed_actions": [
+    {
+      "action": "propose_waf_rule_review",
+      "requires": "analyst_approval",
+      "template": "Propose WAF rule review for {request_uri} (NOT executed)",
+      "rationale": "Week-2 XSS report §8; HTTP correlation gap means no source-block proposal"
+    }
+  ],
+  "prohibited_actions": [
+    {
+      "action": "execute_rate_limit",
+      "reason": "HTTP correlation gap (Week-2 acceptance gate 2) — cannot block source safely"
+    },
+    {
+      "action": "execute_isolation",
+      "reason": "Tier 2 prohibited"
+    },
+    {
+      "action": "disable_account",
+      "reason": "Week-2 reports prohibit automatic account action"
+    }
+  ],
+  "review_status": "Pending Review",
+  "analyst_decision": null,
+  "linked_evidence_file": "Week-2\\Evidence\\SIEM-OpenObserve\\SIEM05_Auto_Alert_AI_Triage_469dc3deb13af6394b.json",
+  "limitations": [
+    "A firing trigger is checked within a recent interval but lacks a proven row-level ID join.",
+    "AI findings require human verification.",
+    "Replay dataset is not live production traffic."
+  ]
+}

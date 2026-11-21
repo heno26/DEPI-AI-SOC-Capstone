@@ -1,0 +1,53 @@
+{
+  "ticket_id": "e05ccfe875e6a53524e7270675a6720d54c7ae95ab4353e906f32f04c14f14b9",
+  "created_at_utc": "2026-11-18T00:00:00+00:00",
+  "playbook_id": "PB-02",
+  "alert_rule": "SIEM_MAL_003_SUSPICIOUS_MALWARE_BEHAVIOR",
+  "trigger_status": "firing",
+  "evidence_adapter": "mal_003",
+  "tier": "Tier 1",
+  "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+  "semantic_warnings": [],
+  "missing_fields": [],
+  "ai_severity": "High",
+  "ai_confidence": "Medium",
+  "enrichment": {
+    "iocs_extracted": [
+      {"type": "process_guid", "value": "{6c5fe7fc-482c-684b-1701-000000000200}", "source": "week2_evidence"},
+      {"type": "destination_ip", "value": "104.80.2.104", "source": "week2_evidence"},
+      {"type": "suspicious_executions", "value": 1, "source": "week2_evidence"},
+      {"type": "dns_queries", "value": 10, "source": "week2_evidence"},
+      {"type": "network_connections", "value": 1, "source": "week2_evidence"}
+    ],
+    "reputation_lookup": {"performed": false, "reason": "no live threat-intelligence feed in lab; verdict NOT fabricated"},
+    "asset_context": {"lookup_performed": false, "reason": "no asset database in lab"}
+  },
+  "proposed_actions": [
+    {
+      "action": "propose_host_isolation",
+      "requires": "analyst_approval",
+      "template": "Propose isolation of host running C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe (NOT executed)",
+      "rationale": "Malware report §6: consider containment only after operational-impact evaluation"
+    },
+    {
+      "action": "propose_hash_blocklist",
+      "requires": "analyst_approval",
+      "template": "Propose blocklisting SHA256 A1A79FEBE636F6AF95CA527BF37321A329F37BC2524414376F2727F4D9BD17C1 (NOT executed)"
+    }
+  ],
+  "prohibited_actions": [
+    {"action": "execute_isolation", "reason": "Tier 2 prohibited; requires recorded analyst decision"},
+    {"action": "execute_rate_limit", "reason": "Tier 2 prohibited"},
+    {"action": "disable_account", "reason": "Week-2 reports prohibit automatic account action"}
+  ],
+  "review_status": "Pending Review",
+  "analyst_decision": null,
+  "linked_evidence_file": "Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json",
+  "limitations": [
+    "Behavioral correlation indicates suspicious activity; infection is not independently confirmed.",
+    "Original Sysmon events are from historical laboratory replay; _timestamp is ingestion time.",
+    "Trigger key verifies the alert rule, not exact alert-row provenance.",
+    "Network connection and DNS queries alone do not establish C2 or exfiltration.",
+    "AI schema/semantic checks do not replace analyst validation."
+  ]
+}

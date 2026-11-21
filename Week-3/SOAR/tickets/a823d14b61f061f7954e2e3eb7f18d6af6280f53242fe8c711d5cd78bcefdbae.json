@@ -1,0 +1,44 @@
+{
+  "ticket_id": "a823d14b61f061f7954e2e3eb7f18d6af6280f53242fe8c711d5cd78bcefdbae",
+  "created_at_utc": "2026-11-18T00:00:00+00:00",
+  "playbook_id": "PB-01",
+  "alert_rule": "SIEM_AUTH_002_SSH_BRUTE_FORCE",
+  "trigger_status": "firing",
+  "evidence_adapter": "auth_002",
+  "tier": "Tier 1",
+  "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+  "semantic_warnings": [],
+  "missing_fields": [],
+  "ai_severity": "Medium",
+  "ai_confidence": "High",
+  "enrichment": {
+    "iocs_extracted": [
+      {"type": "source_ip", "value": "183.62.140.253", "source": "week2_evidence"}
+    ],
+    "reputation_lookup": {"performed": false, "reason": "no live threat-intelligence feed in lab; verdict NOT fabricated"},
+    "asset_context": {"lookup_performed": false, "reason": "no asset database in lab"}
+  },
+  "proposed_actions": [
+    {
+      "action": "rate_limit_source_ip",
+      "requires": "analyst_approval",
+      "template": "Propose 1h edge rate-limit for 183.62.140.253 (NOT executed)",
+      "rationale": "Week-2 SSH report §4 model recommended rate-limiting; §5 says success unconfirmed, so propose not execute"
+    }
+  ],
+  "prohibited_actions": [
+    {"action": "lock_account", "reason": "Successful login not established (Week-2 SSH report §5)"},
+    {"action": "execute_rate_limit", "reason": "Tier 2 prohibited; requires recorded analyst decision"},
+    {"action": "isolate_host", "reason": "No host evidence in this alert type"}
+  ],
+  "review_status": "Pending Review",
+  "analyst_decision": null,
+  "linked_evidence_file": "Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json",
+  "limitations": [
+    "Repeated failed SSH password attempts are detected; successful intrusion is not established.",
+    "Original SSH event dates have no year/timezone.",
+    "Trigger-key correlation is rule-level, not proven exact alert-row linkage.",
+    "Historic replay data, not live production traffic.",
+    "AI schema validation does not prove semantic correctness; human review is required."
+  ]
+}

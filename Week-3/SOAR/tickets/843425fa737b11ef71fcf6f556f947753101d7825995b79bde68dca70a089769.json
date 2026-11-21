@@ -1,0 +1,67 @@
+{
+  "ticket_id": "843425fa737b11ef71fcf6f556f947753101d7825995b79bde68dca70a089769",
+  "created_at_utc": "2026-11-18T18:25:49.549519+00:00",
+  "playbook_id": "PB-03",
+  "alert_rule": "SIEM_WEB_004_XSS_ATTACK_DETECTED/3LQOtthRb5OozWYlTvYvH58Cmtk",
+  "trigger_status": "firing",
+  "evidence_adapter": "web_xss",
+  "tier": "Tier 1",
+  "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+  "semantic_warnings": [],
+  "missing_fields": [],
+  "ai_severity": "High",
+  "ai_confidence": "High",
+  "enrichment": {
+    "iocs_extracted": [
+      {
+        "type": "source_ip",
+        "value": "192.168.171.129",
+        "source": "week2_evidence"
+      },
+      {
+        "type": "transaction_id",
+        "value": "ZwuU-iAtf3OzxrG7aRST3wAAAAU",
+        "source": "week2_evidence"
+      }
+    ],
+    "reputation_lookup": {
+      "performed": false,
+      "reason": "no live threat-intelligence feed in lab; verdict NOT fabricated"
+    },
+    "asset_context": {
+      "lookup_performed": false,
+      "reason": "no asset database in lab"
+    }
+  },
+  "proposed_actions": [
+    {
+      "action": "propose_waf_rule_review",
+      "requires": "analyst_approval",
+      "template": "Propose WAF rule review for {request_uri} (NOT executed)",
+      "rationale": "Week-2 XSS report §8; HTTP correlation gap means no source-block proposal"
+    }
+  ],
+  "prohibited_actions": [
+    {
+      "action": "execute_rate_limit",
+      "reason": "HTTP correlation gap (Week-2 acceptance gate 2) — cannot block source safely"
+    },
+    {
+      "action": "execute_isolation",
+      "reason": "Tier 2 prohibited"
+    },
+    {
+      "action": "disable_account",
+      "reason": "Week-2 reports prohibit automatic account action"
+    }
+  ],
+  "review_status": "Pending Review",
+  "analyst_decision": null,
+  "linked_evidence_file": "Week-2\\Evidence\\SIEM-OpenObserve\\SIEM07_XSS_004_AI_Triage_843425fa737b11ef71.json",
+  "limitations": [
+    "HTTP 200 does not establish successful XSS execution.",
+    "Original events are historical laboratory replay.",
+    "Trigger-to-row provenance is not independently established.",
+    "AI findings require human analyst validation."
+  ]
+}
