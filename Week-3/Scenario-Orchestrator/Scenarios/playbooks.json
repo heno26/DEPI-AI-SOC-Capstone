@@ -1,0 +1,100 @@
+{
+  "project": "DEPI-P5",
+  "component": "SOAR Playbook Definitions",
+  "version": "1.0.0",
+  "execution_mode": "SIMULATION_ONLY",
+  "human_approval_required": true,
+  "external_actions_enabled": false,
+  "playbooks": {
+    "WEB_HIGH_RATE": {
+      "playbook_id": "PB-001",
+      "name": "Abnormal Web Request Rate",
+      "investigation": [
+        "Review verified request count",
+        "Review source IP and request patterns",
+        "Assess legitimate traffic possibility"
+      ],
+      "proposed_response": [
+        "Recommend source IP review",
+        "Recommend rate limiting assessment",
+        "Recommend continued traffic monitoring"
+      ],
+      "recovery": [
+        "Verify normal request rate",
+        "Document analyst findings"
+      ]
+    },
+    "SSH_BRUTE_FORCE": {
+      "playbook_id": "PB-002",
+      "name": "SSH Brute Force Investigation",
+      "investigation": [
+        "Review failed authentication events",
+        "Verify source IP and targeted accounts",
+        "Check for evidence of successful authentication"
+      ],
+      "proposed_response": [
+        "Recommend source IP containment review",
+        "Recommend targeted account security review",
+        "Recommend SSH authentication hardening"
+      ],
+      "recovery": [
+        "Monitor authentication events",
+        "Document analyst findings"
+      ]
+    },
+    "MALWARE": {
+      "playbook_id": "PB-003",
+      "name": "Suspected Malware Investigation",
+      "investigation": [
+        "Review suspicious process evidence",
+        "Verify available file and process indicators",
+        "Assess affected endpoint and evidence limitations"
+      ],
+      "proposed_response": [
+        "Recommend endpoint isolation assessment",
+        "Recommend malware scanning",
+        "Recommend evidence preservation"
+      ],
+      "recovery": [
+        "Recommend endpoint integrity verification",
+        "Document analyst findings"
+      ]
+    },
+    "XSS": {
+      "playbook_id": "PB-004",
+      "name": "Cross-Site Scripting Investigation",
+      "investigation": [
+        "Review suspicious HTTP request evidence",
+        "Verify source IP and affected endpoint",
+        "Distinguish attempted exploitation from confirmed execution"
+      ],
+      "proposed_response": [
+        "Recommend web application security review",
+        "Recommend input validation assessment",
+        "Recommend WAF policy review"
+      ],
+      "recovery": [
+        "Recommend authorized application security testing",
+        "Document analyst findings"
+      ]
+    },
+    "EXCHANGE": {
+      "playbook_id": "PB-005",
+      "name": "Exchange Security Investigation",
+      "investigation": [
+        "Review correlated security events",
+        "Verify available indicators and affected entities",
+        "Assess evidence of unauthorized activity"
+      ],
+      "proposed_response": [
+        "Recommend affected account review",
+        "Recommend Exchange security configuration assessment",
+        "Recommend evidence preservation"
+      ],
+      "recovery": [
+        "Monitor related security events",
+        "Document analyst findings"
+      ]
+    }
+  }
+}

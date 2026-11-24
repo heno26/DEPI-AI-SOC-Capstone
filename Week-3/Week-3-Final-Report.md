@@ -166,3 +166,83 @@ Week-3/
 │   └── audit/     (4 pre-generated)
 └── Week-3-Final-Report.md
 ```
+
+<!-- SCENARIO-ORCHESTRATOR-V1.2.0 -->
+
+---
+
+## Additional Week 3 implementation report — V1.2.0
+
+The extension adds ten core modules and a unified CLI without replacing the original team SOAR. Week 2 evidence is ingested, normalized, processed through local AI and semantic validation, then routed to incident management and five playbooks.
+
+### Validation results
+
+| Metric | Observed result |
+|---|---:|
+| Week 2 evidence records | 8 |
+| Incidents / response plans | 7 / 7 |
+| Manual review records | 1 |
+| Reused / newly processed AI results | 5 / 2 |
+| Semantic PASS / PASS_WITH_WARNINGS | 3 / 4 |
+| Verified simulations / closed incidents | 1 / 1 |
+| External response actions | 0 |
+
+The development record reports 95 cumulative successful checks across versions, not 95 independent tests executed together on the final build. V1.2.0 security validation passed 22/22; the reported final regression passed 16/16. End-to-end execution and final smoke test passed. Cleanup validated 11 Python files and preserved 255 protected files.
+
+Reference run: `ORCH-20261124T164149Z-0614ef17`; playbooks: `PB-RUN-68e243875bd3`.
+
+| Incident | State | Approval | Response |
+|---|---|---|---|
+| SSH brute force | CLOSED | APPROVED | COMPLETED |
+| Malware | UNDER_INVESTIGATION | REJECTED | CANCELLED |
+| One XSS | PENDING_APPROVAL | PENDING | NOT_STARTED |
+| Four remaining incidents | NEW | PENDING | NOT_STARTED |
+
+The SSH simulation produced eight simulated steps and a verified receipt. The rejected malware response was blocked. Final SOC reporting succeeded.
+
+### Challenges and controls
+
+| Challenge | Resolution |
+|---|---|
+| Missing event identity | Manual review gate |
+| AI inconsistencies | Schema and semantic checks |
+| Premature closure | Receipt and lifecycle enforcement |
+| Modified plan | Approval hash binding |
+| Repeated execution | Persistent receipt and reservation |
+| Concurrent writes | Incident store protection |
+| Duplicate development artifacts | Safe cleanup and Git exclusions |
+
+### Limitations
+
+Historical evidence replay is not live SIEM streaming. All response actions are simulated. Interactive confirmation is not authenticated analyst identity. SHA256 checks depend on trusted reference hashes; replay protection is workspace-scoped. AI findings and warnings require analyst interpretation. Exchange alerts do not establish exfiltration or phishing. Clean-machine portability is not yet verified; historical artifacts may contain absolute paths. Fresh runs may produce different AI results and cache counts.
+
+The extension is functionally validated in the documented lab scope. Original team deliverables remain preserved.
+
+
+<!-- REPRODUCIBILITY-VALIDATION -->
+## Clean Repository Execution Test
+
+| Metric | Result |
+|---|---|
+| Python version | 3.14.6 |
+| Pipeline version | 1.2.0 |
+| Evidence records | 8 |
+| Fresh AI analyses | 7 |
+| Reused AI results | 0 |
+| Semantic PASS | 3 |
+| Semantic PASS_WITH_WARNINGS | 4 |
+| Manual review records | 1 |
+| Incidents created | 7 |
+| SOAR plans generated | 7 |
+| SOC report generation | PASS |
+| External response actions | 0 |
+
+Reference run: ORCH-20261124T172039Z-69be0b57
+
+Reference playbook run: PB-RUN-8c3e261e00f9
+
+The test was conducted from a clean repository working
+copy on the same Windows development machine.
+
+Cross-device and cross-platform execution have not been
+independently verified.

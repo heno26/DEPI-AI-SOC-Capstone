@@ -74,3 +74,57 @@ unverified.
 - That any AI model was re-run in Week 3.
 
 These limitations mirror Week-2's honesty discipline and are stated, not hidden.
+
+<!-- SCENARIO-ORCHESTRATOR-V1.2.0 -->
+
+---
+
+## Scenario Orchestrator V1.2.0 extension
+
+This independent extension preserves the original team SOAR implementation and consumes Week 2 OpenObserve AI-triage JSON evidence.
+
+```mermaid
+flowchart TD
+ A[Week 2 OpenObserve JSON evidence] --> B[Integrity and normalization]
+ B --> C[Ollama AI triage or reuse]
+ C --> D[Semantic validation]
+ D --> E[Incident management]
+ E --> F[SOAR plans]
+ F --> G{Human decision}
+ G -->|Approve| H[Response simulation]
+ G -->|Reject| I[Response blocked]
+ H --> J[Verified receipt and closure]
+ J --> K[SOC report]
+ I --> K
+```
+
+### Demonstrated results
+
+| Metric | Observed result |
+|---|---:|
+| Week 2 evidence records | 8 |
+| Incidents / response plans | 7 / 7 |
+| Manual review records | 1 |
+| Reused / newly processed AI results | 5 / 2 |
+| Semantic PASS / PASS_WITH_WARNINGS | 3 / 4 |
+| Verified simulations / closed incidents | 1 / 1 |
+| External response actions | 0 |
+
+Historical evidence replay is not live SIEM streaming. All response actions are simulated. Interactive confirmation is not authenticated analyst identity. SHA256 checks depend on trusted reference hashes; replay protection is workspace-scoped. AI findings and warnings require analyst interpretation. Exchange alerts do not establish exfiltration or phishing. Clean-machine portability is not yet verified; historical artifacts may contain absolute paths. Fresh runs may produce different AI results and cache counts.
+
+[Technical README](Scenario-Orchestrator/README.md) | [Operational guide](Week-3-Operational-Guide.md) | [Final report](Week-3-Final-Report.md)
+
+
+<!-- REPRODUCIBILITY-VALIDATION -->
+## Reproducibility Validation
+
+Scenario Orchestrator V1.2.0 was successfully executed from
+a clean repository working copy on Windows without cached
+AI results or previous runtime artifacts.
+
+All seven eligible alerts were analyzed using local Ollama.
+Seven incidents and seven SOAR plans were generated.
+Final SOC report generation completed successfully.
+
+No paid service or personal SIEM credentials were required
+for the historical evidence workflow.

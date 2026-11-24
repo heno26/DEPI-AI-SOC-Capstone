@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.log
+*.lock
+*.tmp
+SafetyBackups/
+Runs/
+Logs/
+Reports/
