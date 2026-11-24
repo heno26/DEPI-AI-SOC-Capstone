@@ -1,0 +1,142 @@
+{
+  "suite": "Security Hardening V1.2",
+  "scope": "TEST_FIXTURE",
+  "synthetic_approvals": true,
+  "total": 22,
+  "passed": 22,
+  "failed": 0,
+  "results": [
+    {
+      "test_id": "SH-01",
+      "name": "Unapproved response blocked",
+      "status": "PASS",
+      "details": "ERROR: Human approval is required\n"
+    },
+    {
+      "test_id": "SH-02",
+      "name": "Investigation transition",
+      "status": "PASS",
+      "details": "PASS: Incident status changed to UNDER_INVESTIGATION\n"
+    },
+    {
+      "test_id": "SH-03",
+      "name": "Direct resolution blocked",
+      "status": "PASS",
+      "details": "ERROR: Invalid transition: UNDER_INVESTIGATION -> RESOLVED\n"
+    },
+    {
+      "test_id": "SH-04",
+      "name": "Incident review",
+      "status": "PASS",
+      "details": "PASS: Incident status changed to UNDER_INVESTIGATION\nPASS: Incident status changed to PENDING_APPROVAL\nIncident ready for human decision.\n"
+    },
+    {
+      "test_id": "SH-05",
+      "name": "Approval without plan blocked",
+      "status": "PASS",
+      "details": "ERROR: Explicit playbook approval required.\n"
+    },
+    {
+      "test_id": "SH-06",
+      "name": "Incorrect confirmation blocked",
+      "status": "PASS",
+      "details": "Playbook: SSH Brute Force Investigation\nPlan SHA256: 6d991f1594d1655a6432c9adbce26e5e3086a6e0c38a6ddfbec6e178b7c6a69d\n\\nINVESTIGATION\n  Review failed authentication events\n  Verify source IP and targeted accounts\n  Check for evidence of successful authentication\n\\nPROPOSED_RESPONSE\n  Recommend source IP containment review\n  Recommend targeted account security review\n  Recommend SSH authentication hardening\n\\nRECOVERY\n  Monitor authentication events\n  Document analyst findings\nIncident: INC-20261124-6B4B0C0B\nAlert type: SSH_BRUTE_FORCE\nDecision: APPROVE\nExecution mode: SIMULATION_ONLY\nType APPROVE to confirm: ERROR: Human decision cancelled\n"
+    },
+    {
+      "test_id": "SH-07",
+      "name": "Plan-bound approval",
+      "status": "PASS",
+      "details": "Playbook: SSH Brute Force Investigation\nPlan SHA256: 6d991f1594d1655a6432c9adbce26e5e3086a6e0c38a6ddfbec6e178b7c6a69d\n\\nINVESTIGATION\n  Review failed authentication events\n  Verify source IP and targeted accounts\n  Check for evidence of successful authentication\n\\nPROPOSED_RESPONSE\n  Recommend source IP containment review\n  Recommend targeted account security review\n  Recommend SSH authentication hardening\n\\nRECOVERY\n  Monitor authentication events\n  Document analyst findings\nIncident: INC-20261124-6B4B0C0B\nAlert type: SSH_BRUTE_FORCE\nDecision: APPROVE\nExecution mode: SIMULATION_ONLY\nType APPROVE to confirm: PASS: Approval decision recorded: APPROVE\n"
+    },
+    {
+      "test_id": "SH-08",
+      "name": "Approval hash verified",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "test_id": "SH-09",
+      "name": "Modified approved plan blocked",
+      "status": "PASS",
+      "details": "ERROR: Approved playbook hash mismatch.\n"
+    },
+    {
+      "test_id": "SH-10",
+      "name": "Approved response started",
+      "status": "PASS",
+      "details": "PASS: Response workflow started. No external response action was executed.\n"
+    },
+    {
+      "test_id": "SH-11",
+      "name": "Completion without receipt blocked",
+      "status": "PASS",
+      "details": "ERROR: Execution receipt missing.\n"
+    },
+    {
+      "test_id": "SH-12",
+      "name": "Approved simulation",
+      "status": "PASS",
+      "details": "============================================================\nDEPI P5 - RESPONSE SIMULATOR V1.2\n============================================================\nSIMULATION_COMPLETED: INC-20261124-6B4B0C0B\n\n===== RESPONSE SUMMARY =====\nIncidents: 1\nBlocked: 0\nAuthorized: 0\nSimulated: 1\nExternal actions: 0\nIncident store unchanged: True\nReport: [REDACTED_LOCAL_PATH]\n"
+    },
+    {
+      "test_id": "SH-13",
+      "name": "Simulation safety verified",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "test_id": "SH-14",
+      "name": "Tampered receipt blocked",
+      "status": "PASS",
+      "details": "ERROR: Receipt approved steps mismatch.\n"
+    },
+    {
+      "test_id": "SH-15",
+      "name": "Verified response completion",
+      "status": "PASS",
+      "details": "PASS: Response workflow marked as COMPLETED.\n"
+    },
+    {
+      "test_id": "SH-16",
+      "name": "Duplicate response blocked",
+      "status": "PASS",
+      "details": "ERROR: Response already completed\n"
+    },
+    {
+      "test_id": "SH-17",
+      "name": "Verified incident closure",
+      "status": "PASS",
+      "details": "Type CLOSE to confirm incident closure: PASS: Incident status changed to RESOLVED\nPASS: Incident status changed to CLOSED\nIncident closed successfully.\n"
+    },
+    {
+      "test_id": "SH-18",
+      "name": "Malware incident review",
+      "status": "PASS",
+      "details": "PASS: Incident status changed to UNDER_INVESTIGATION\nPASS: Incident status changed to PENDING_APPROVAL\nIncident ready for human decision.\n"
+    },
+    {
+      "test_id": "SH-19",
+      "name": "Human rejection",
+      "status": "PASS",
+      "details": "Incident: INC-20261124-09AD0650\nAlert type: MALWARE\nDecision: REJECT\nExecution mode: SIMULATION_ONLY\nType REJECT to confirm: PASS: Approval decision recorded: REJECT\n"
+    },
+    {
+      "test_id": "SH-20",
+      "name": "Rejected response blocked",
+      "status": "PASS",
+      "details": "ERROR: Human approval is required\n"
+    },
+    {
+      "test_id": "SH-21",
+      "name": "Original orchestration unchanged",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "test_id": "SH-22",
+      "name": "Original evidence unchanged",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

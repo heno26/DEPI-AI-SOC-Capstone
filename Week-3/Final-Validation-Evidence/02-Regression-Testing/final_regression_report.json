@@ -1,0 +1,106 @@
+{
+  "suite": "Final Regression V1.2",
+  "scope": "TEST_FIXTURE",
+  "synthetic_approvals": true,
+  "total": 16,
+  "passed": 16,
+  "failed": 0,
+  "results": [
+    {
+      "test_id": "FR-01",
+      "name": "Closed SSH lifecycle",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "test_id": "FR-02",
+      "name": "Rejected malware lifecycle",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "test_id": "FR-03",
+      "name": "Pending XSS lifecycle",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "test_id": "FR-04",
+      "name": "Verified receipt integrity",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "test_id": "FR-05",
+      "name": "Final SOC report statistics",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "test_id": "FR-06",
+      "name": "All report deliverables present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "test_id": "FR-07",
+      "name": "Failure fixture review",
+      "status": "PASS",
+      "details": "PASS: Incident status changed to UNDER_INVESTIGATION\nPASS: Incident status changed to PENDING_APPROVAL\nIncident ready for human decision.\n"
+    },
+    {
+      "test_id": "FR-08",
+      "name": "Failure fixture approval",
+      "status": "PASS",
+      "details": "Playbook: Abnormal Web Request Rate\nPlan SHA256: 803a295c99bb8201ab98bf2167d6a2b20baa89d16858f23c4e63ec87b9a79bcd\n\\nINVESTIGATION\n  Review verified request count\n  Review source IP and request patterns\n  Assess legitimate traffic possibility\n\\nPROPOSED_RESPONSE\n  Recommend source IP review\n  Recommend rate limiting assessment\n  Recommend continued traffic monitoring\n\\nRECOVERY\n  Verify normal request rate\n  Document analyst findings\nIncident: INC-20261124-CA6F1F72\nAlert type: WEB_HIGH_RATE\nDecision: APPROVE\nExecution mode: SIMULATION_ONLY\nType APPROVE to confirm: PASS: Approval decision recorded: APPROVE\n"
+    },
+    {
+      "test_id": "FR-09",
+      "name": "Failure fixture response start",
+      "status": "PASS",
+      "details": "PASS: Response workflow started. No external response action was executed.\n"
+    },
+    {
+      "test_id": "FR-10",
+      "name": "Response failure handling",
+      "status": "PASS",
+      "details": "PASS: Response marked as FAILED. Incident returned to UNDER_INVESTIGATION.\n"
+    },
+    {
+      "test_id": "FR-11",
+      "name": "Approval binding reset",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "test_id": "FR-12",
+      "name": "Concurrent store writes",
+      "status": "PASS",
+      "details": "PASS: Incident status changed to UNDER_INVESTIGATION\n\nPASS: Incident status changed to UNDER_INVESTIGATION\n\nPASS: Incident status changed to UNDER_INVESTIGATION\n"
+    },
+    {
+      "test_id": "FR-13",
+      "name": "Store lock released",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "test_id": "FR-14",
+      "name": "Original orchestration unchanged",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "test_id": "FR-15",
+      "name": "Original evidence unchanged",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "test_id": "FR-16",
+      "name": "Final SOC reports unchanged",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

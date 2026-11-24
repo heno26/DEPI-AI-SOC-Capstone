@@ -1,0 +1,120 @@
+{
+  "project": "DEPI-P5",
+  "component": "SOAR Playbook Engine",
+  "version": "1.0.0",
+  "generated_at_utc": "2026-11-24T16:42:29.184591+00:00",
+  "plan_id": "PLAN-CEF23D953218",
+  "incident_id": "INC-20261124-0CB05471",
+  "internal_id": "0bdfc13409c5bd3c68fe5dddf31bcd4bb0a970fc68b5a2c46dbf298e10cf762b",
+  "alert_type": "MALWARE",
+  "playbook_id": "PB-003",
+  "playbook_name": "Suspected Malware Investigation",
+  "playbook_definition_sha256": "66eb0036a0481ba95545a8396d3a882c9fc1f4c6aece2e4b721a6c282470916e",
+  "severity": "Medium",
+  "confidence": "Moderate",
+  "execution_mode": "SIMULATION_ONLY",
+  "plan_status": "PENDING_HUMAN_APPROVAL",
+  "human_approval_required": true,
+  "approval_status": "PENDING",
+  "response_authorized": false,
+  "response_executed": false,
+  "external_actions_enabled": false,
+  "evidence": {
+    "source_filename": "SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json",
+    "source_sha256": "7146c223fec7c139b09da9c062e3d85ee0b8bd2e14476109d504b7e14194684d",
+    "ai_result": "[REDACTED_LOCAL_PATH]",
+    "ai_result_sha256": "e5781042779c95f72bc18b103449411fd81cde15a25f2ffeea00d0117509a79f",
+    "validation_report": "[REDACTED_LOCAL_PATH]",
+    "validation_sha256": "b702b13346f1e042970b78baf3a62deb15ac26d24b5a47ae77d5a3ffde55c089",
+    "validation_status": "PASS",
+    "validation_summary": {
+      "total_checks": 7,
+      "errors": 0,
+      "warnings": 0,
+      "informational": 7
+    },
+    "validation_findings": [
+      {
+        "level": "INFO",
+        "code": "MALWARE_PROCESS_GUID_VERIFIED",
+        "message": "Process Guid matches original evidence."
+      },
+      {
+        "level": "INFO",
+        "code": "MALWARE_PROCESS_IMAGE_VERIFIED",
+        "message": "Process Image matches original evidence."
+      },
+      {
+        "level": "INFO",
+        "code": "MALWARE_DESTINATION_IP_VERIFIED",
+        "message": "Destination Ip matches original evidence."
+      },
+      {
+        "level": "INFO",
+        "code": "MALWARE_DESTINATION_PORT_VERIFIED",
+        "message": "Destination Port matches original evidence."
+      },
+      {
+        "level": "INFO",
+        "code": "AI_COMPARISON_DIFFERENCE",
+        "message": "severity: Week-2=High; Week-3=Medium. Difference requires analyst review, not automatic rejection."
+      },
+      {
+        "level": "INFO",
+        "code": "AI_COMPARISON_DIFFERENCE",
+        "message": "confidence: Week-2=Medium; Week-3=Moderate. Difference requires analyst review, not automatic rejection."
+      },
+      {
+        "level": "INFO",
+        "code": "AI_RECOMMENDATIONS_CHANGED",
+        "message": "Week-2 and Week-3 recommended actions differ; analyst should review safety and evidence alignment."
+      }
+    ]
+  },
+  "investigation": [
+    {
+      "step_id": "INV-01",
+      "description": "Review suspicious process evidence",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "step_id": "INV-02",
+      "description": "Verify available file and process indicators",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "step_id": "INV-03",
+      "description": "Assess affected endpoint and evidence limitations",
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "proposed_response": [
+    {
+      "step_id": "RES-01",
+      "description": "Recommend endpoint isolation assessment",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "step_id": "RES-02",
+      "description": "Recommend malware scanning",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "step_id": "RES-03",
+      "description": "Recommend evidence preservation",
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "recovery": [
+    {
+      "step_id": "REC-01",
+      "description": "Recommend endpoint integrity verification",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "step_id": "REC-02",
+      "description": "Document analyst findings",
+      "status": "NOT_EXECUTED"
+    }
+  ]
+}

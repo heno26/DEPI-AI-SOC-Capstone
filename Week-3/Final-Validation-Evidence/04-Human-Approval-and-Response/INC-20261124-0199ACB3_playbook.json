@@ -1,0 +1,115 @@
+{
+  "project": "DEPI-P5",
+  "component": "SOAR Playbook Engine",
+  "version": "1.0.0",
+  "generated_at_utc": "2026-11-24T16:42:29.158649+00:00",
+  "plan_id": "PLAN-925F85A1B986",
+  "incident_id": "INC-20261124-0199ACB3",
+  "internal_id": "d5c0961e200a702a0d6f65bd13346429c82931e6ce8e879ec8413d6599a88d8a",
+  "alert_type": "SSH_BRUTE_FORCE",
+  "playbook_id": "PB-002",
+  "playbook_name": "SSH Brute Force Investigation",
+  "playbook_definition_sha256": "66eb0036a0481ba95545a8396d3a882c9fc1f4c6aece2e4b721a6c282470916e",
+  "severity": "Medium",
+  "confidence": "Moderate",
+  "execution_mode": "SIMULATION_ONLY",
+  "plan_status": "PENDING_HUMAN_APPROVAL",
+  "human_approval_required": true,
+  "approval_status": "PENDING",
+  "response_authorized": false,
+  "response_executed": false,
+  "external_actions_enabled": false,
+  "evidence": {
+    "source_filename": "SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json",
+    "source_sha256": "cb1ea5fe6e96eb4d67f57fc8727599e638dd6a507e666d4668a29a87c56137db",
+    "ai_result": "[REDACTED_LOCAL_PATH]",
+    "ai_result_sha256": "ecde957998988c993905fa49e51c17e6505a601b427a4eedff8d8115f40dc897",
+    "validation_report": "[REDACTED_LOCAL_PATH]",
+    "validation_sha256": "ee6a74540a1618de5027108d06ff4c8a72f5c91353d8b7a287fd0a9d5f4e5647",
+    "validation_status": "PASS",
+    "validation_summary": {
+      "total_checks": 6,
+      "errors": 0,
+      "warnings": 0,
+      "informational": 6
+    },
+    "validation_findings": [
+      {
+        "level": "INFO",
+        "code": "SOURCE_IP_VERIFIED",
+        "message": "Source IP matches original evidence: 183.62.140.253."
+      },
+      {
+        "level": "INFO",
+        "code": "USERNAME_COUNT_VERIFIED",
+        "message": "root: 30 failed attempts verified."
+      },
+      {
+        "level": "INFO",
+        "code": "TOTAL_COUNT_VERIFIED",
+        "message": "Verified failed-password count: 30."
+      },
+      {
+        "level": "INFO",
+        "code": "SSH_THRESHOLD_CONFIRMED",
+        "message": "Verified failures (30) meet/exceed threshold (5)."
+      },
+      {
+        "level": "INFO",
+        "code": "AI_COMPARISON_DIFFERENCE",
+        "message": "confidence: Week-2=High; Week-3=Moderate. Difference requires analyst review, not automatic rejection."
+      },
+      {
+        "level": "INFO",
+        "code": "AI_RECOMMENDATIONS_CHANGED",
+        "message": "Week-2 and Week-3 recommended actions differ; analyst should review safety and evidence alignment."
+      }
+    ]
+  },
+  "investigation": [
+    {
+      "step_id": "INV-01",
+      "description": "Review failed authentication events",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "step_id": "INV-02",
+      "description": "Verify source IP and targeted accounts",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "step_id": "INV-03",
+      "description": "Check for evidence of successful authentication",
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "proposed_response": [
+    {
+      "step_id": "RES-01",
+      "description": "Recommend source IP containment review",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "step_id": "RES-02",
+      "description": "Recommend targeted account security review",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "step_id": "RES-03",
+      "description": "Recommend SSH authentication hardening",
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "recovery": [
+    {
+      "step_id": "REC-01",
+      "description": "Monitor authentication events",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "step_id": "REC-02",
+      "description": "Document analyst findings",
+      "status": "NOT_EXECUTED"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "project": "DEPI-P5",
+  "component": "Response Hardening Tests",
+  "version": "1.1.0",
+  "generated_at_utc": "2026-11-24T16:01:48.206171+00:00",
+  "execution_mode": "SIMULATION_ONLY",
+  "approval_mode": "TEST_FIXTURE",
+  "tests_passed": 7,
+  "tests_failed": 0,
+  "protected_files_unchanged": true,
+  "protected_files": {
+    "[REDACTED_PRIVATE_DATA]_a6c2f5b98185": "d1f48330be56355a48f2e8803daa111726af3496d9fa205d7b0d409f948e16de",
+    "[REDACTED_PRIVATE_DATA]_bb2da941cb64": "cb1ea5fe6e96eb4d67f57fc8727599e638dd6a507e666d4668a29a87c56137db",
+    "[REDACTED_PRIVATE_DATA]_acca545f89df": "64aeea9b4d7db31fe0a2030bc5ed49bffa60fd875692a12ff86c8662f5db7895",
+    "[REDACTED_PRIVATE_DATA]_3ef950d7f22e": "6d991f1594d1655a6432c9adbce26e5e3086a6e0c38a6ddfbec6e178b7c6a69d",
+    "[REDACTED_PRIVATE_DATA]_1175dbbbb9a9": "ecde957998988c993905fa49e51c17e6505a601b427a4eedff8d8115f40dc897",
+    "[REDACTED_PRIVATE_DATA]_26410e3ee0fe": "55fe8f2715db93fc6349a9972c8bdf686bbff27e06d3b9876c8b13aef4b6da43",
+    "[REDACTED_PRIVATE_DATA]_8b690e57e1aa": "66eb0036a0481ba95545a8396d3a882c9fc1f4c6aece2e4b721a6c282470916e",
+    "[REDACTED_PRIVATE_DATA]_f71bd4ed5b75": "cb7eef9594814351f140ceb9adcdf3b29d773b1f4e6c7328d6612dde81aa003a",
+    "[REDACTED_PRIVATE_DATA]_45a902ec7ca7": "18ac96d600e223d1465fbe49a1f6ce24299674d9f62c88fb64790f7c8cd6571f"
+  },
+  "status": "PASS",
+  "tests": [
+    {
+      "test_id": "RS-14",
+      "description": "First authorized execution",
+      "status": "PASS",
+      "details": {
+        "baseline": {
+          "report": "[REDACTED_LOCAL_PATH]",
+          "status": "AUTHORIZED",
+          "reason": null
+        },
+        "execution": {
+          "report": "[REDACTED_LOCAL_PATH]",
+          "status": "SIMULATION_COMPLETED",
+          "reason": null
+        },
+        "receipt": "[REDACTED_LOCAL_PATH]"
+      }
+    },
+    {
+      "test_id": "RS-15",
+      "description": "Replay during IN_PROGRESS",
+      "status": "PASS",
+      "details": {
+        "report": "[REDACTED_LOCAL_PATH]",
+        "status": "BLOCKED",
+        "reason": "Response execution receipt already exists"
+      }
+    },
+    {
+      "test_id": "RS-16",
+      "description": "Replay after process restart",
+      "status": "PASS",
+      "details": {
+        "separate_process_replays_blocked": 3,
+        "receipt_unchanged": true
+      }
+    },
+    {
+      "test_id": "RS-17",
+      "description": "Concurrent execution protection",
+      "status": "PASS",
+      "details": {
+        "concurrent_requests": 4,
+        "completed": 1,
+        "blocked": 3
+      }
+    },
+    {
+      "test_id": "RS-18",
+      "description": "Original evidence tampering",
+      "status": "PASS",
+      "details": {
+        "report": "[REDACTED_LOCAL_PATH]",
+        "status": "BLOCKED",
+        "reason": "Original evidence integrity mismatch"
+      }
+    },
+    {
+      "test_id": "RS-19",
+      "description": "Missing approval audit",
+      "status": "PASS",
+      "details": {
+        "report": "[REDACTED_LOCAL_PATH]",
+        "status": "BLOCKED",
+        "reason": "Human approval audit record missing"
+      }
+    },
+    {
+      "test_id": "RS-20",
+      "description": "Execution receipt consistency",
+      "status": "PASS",
+      "details": {
+        "receipt": "[REDACTED_LOCAL_PATH]",
+        "receipt_sha256": "79675d26bfdbb6a57248e568507d22aa1fe40f6b695a081a0e08a46ccfe1164d",
+        "steps_verified": 8
+      }
+    }
+  ]
+}

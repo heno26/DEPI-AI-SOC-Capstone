@@ -1,0 +1,180 @@
+{
+  "schema_version": "1.2.0",
+  "incidents": [
+    {
+      "incident_id": "INC-20261124-817E323D",
+      "project": "DEPI-P5",
+      "component": "Incident Manager",
+      "version": "1.2.0",
+      "internal_id": "4fb1a0c5cf545b1133579d4049914eef9ab07b05fe85cbef873dc4b43f522fa0",
+      "alert_type": "WEB_HIGH_RATE",
+      "severity": "High",
+      "confidence": "High",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "evidence_reference": "[REDACTED_LOCAL_PATH]",
+      "validation_reference": "[REDACTED_LOCAL_PATH]",
+      "source_sha256": "b264f37f246d18a5c3e4263d4ff39f78290879ac45efe1051ffa538f7fcbb9de",
+      "created_at_utc": "2026-11-24T17:21:05.643049+00:00",
+      "updated_at_utc": "2026-11-24T17:21:05.643116+00:00",
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T17:21:05.643112+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ]
+    },
+    {
+      "incident_id": "INC-20261124-DB9FC597",
+      "project": "DEPI-P5",
+      "component": "Incident Manager",
+      "version": "1.2.0",
+      "internal_id": "d5c0961e200a702a0d6f65bd13346429c82931e6ce8e879ec8413d6599a88d8a",
+      "alert_type": "SSH_BRUTE_FORCE",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "evidence_reference": "[REDACTED_LOCAL_PATH]",
+      "validation_reference": "[REDACTED_LOCAL_PATH]",
+      "source_sha256": "cb1ea5fe6e96eb4d67f57fc8727599e638dd6a507e666d4668a29a87c56137db",
+      "created_at_utc": "2026-11-24T17:22:13.738565+00:00",
+      "updated_at_utc": "2026-11-24T17:22:13.738623+00:00",
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T17:22:13.738618+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ]
+    },
+    {
+      "incident_id": "INC-20261124-1DEA617B",
+      "project": "DEPI-P5",
+      "component": "Incident Manager",
+      "version": "1.2.0",
+      "internal_id": "0bdfc13409c5bd3c68fe5dddf31bcd4bb0a970fc68b5a2c46dbf298e10cf762b",
+      "alert_type": "MALWARE",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "evidence_reference": "[REDACTED_LOCAL_PATH]",
+      "validation_reference": "[REDACTED_LOCAL_PATH]",
+      "source_sha256": "7146c223fec7c139b09da9c062e3d85ee0b8bd2e14476109d504b7e14194684d",
+      "created_at_utc": "2026-11-24T17:22:43.939882+00:00",
+      "updated_at_utc": "2026-11-24T17:22:43.939941+00:00",
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T17:22:43.939937+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ]
+    },
+    {
+      "incident_id": "INC-20261124-0E154907",
+      "project": "DEPI-P5",
+      "component": "Incident Manager",
+      "version": "1.2.0",
+      "internal_id": "e23c07f9275d6f3e6df41fdcfbc8294fa1b883fc6e9aa3a0546d564dd526874f",
+      "alert_type": "XSS",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "evidence_reference": "[REDACTED_LOCAL_PATH]",
+      "validation_reference": "[REDACTED_LOCAL_PATH]",
+      "source_sha256": "6eaa96bfc2ec8b81d3f27471afd03b15e6935fa4f66e755b9b93f21bb16bd47c",
+      "created_at_utc": "2026-11-24T17:22:56.592277+00:00",
+      "updated_at_utc": "2026-11-24T17:22:56.592333+00:00",
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T17:22:56.592329+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ]
+    },
+    {
+      "incident_id": "INC-20261124-87AF0FC6",
+      "project": "DEPI-P5",
+      "component": "Incident Manager",
+      "version": "1.2.0",
+      "internal_id": "193b741e91c88a01917a29d0794057e2519c8ad3af79e816b7a12303bd739797",
+      "alert_type": "XSS",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "evidence_reference": "[REDACTED_LOCAL_PATH]",
+      "validation_reference": "[REDACTED_LOCAL_PATH]",
+      "source_sha256": "ae56f8fbf252a894563c218b53b616f22444371b91bda6c0fbcb7e57d86e80f0",
+      "created_at_utc": "2026-11-24T17:23:09.695728+00:00",
+      "updated_at_utc": "2026-11-24T17:23:09.695806+00:00",
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T17:23:09.695801+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ]
+    },
+    {
+      "incident_id": "INC-20261124-4CE0BB3F",
+      "project": "DEPI-P5",
+      "component": "Incident Manager",
+      "version": "1.2.0",
+      "internal_id": "3377dd2c8fd2a6740d52fd454048b3aeb37d1181dbdf0e59cfa92c3dc0a46837",
+      "alert_type": "XSS",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "evidence_reference": "[REDACTED_LOCAL_PATH]",
+      "validation_reference": "[REDACTED_LOCAL_PATH]",
+      "source_sha256": "f6830ff7dda1276ff743adb22e814bec5ddf42df4f86dfd36cd7c312931b3bd6",
+      "created_at_utc": "2026-11-24T17:23:22.821913+00:00",
+      "updated_at_utc": "2026-11-24T17:23:22.821975+00:00",
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T17:23:22.821972+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ]
+    },
+    {
+      "incident_id": "INC-20261124-8265625F",
+      "project": "DEPI-P5",
+      "component": "Incident Manager",
+      "version": "1.2.0",
+      "internal_id": "fe1f6c3e839150bcf81fefaaf1f682c842b6ff5aca95de3c137c7f39929c6826",
+      "alert_type": "EXCHANGE",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "evidence_reference": "[REDACTED_LOCAL_PATH]",
+      "validation_reference": "[REDACTED_LOCAL_PATH]",
+      "source_sha256": "c1a8ccc7d28eeb8d760afdcdda9ccb4d615e4da32818158d033e8e422c75dbad",
+      "created_at_utc": "2026-11-24T17:23:46.635730+00:00",
+      "updated_at_utc": "2026-11-24T17:23:46.635801+00:00",
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T17:23:46.635796+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ]
+    }
+  ]
+}

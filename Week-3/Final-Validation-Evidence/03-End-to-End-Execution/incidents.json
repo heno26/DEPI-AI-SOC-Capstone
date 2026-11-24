@@ -1,0 +1,243 @@
+{
+  "schema_version": "1.2.0",
+  "incidents": [
+    {
+      "incident_id": "INC-20261124-CA6F1F72",
+      "project": "DEPI-P5",
+      "component": "Incident Manager",
+      "version": "1.2.0",
+      "internal_id": "4fb1a0c5cf545b1133579d4049914eef9ab07b05fe85cbef873dc4b43f522fa0",
+      "alert_type": "WEB_HIGH_RATE",
+      "severity": "High",
+      "confidence": "High",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "evidence_reference": "[REDACTED_LOCAL_PATH]",
+      "validation_reference": "[REDACTED_LOCAL_PATH]",
+      "source_sha256": "b264f37f246d18a5c3e4263d4ff39f78290879ac45efe1051ffa538f7fcbb9de",
+      "created_at_utc": "2026-11-24T16:41:50.013054+00:00",
+      "updated_at_utc": "2026-11-24T16:41:50.013130+00:00",
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T16:41:50.013125+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ]
+    },
+    {
+      "incident_id": "INC-20261124-0199ACB3",
+      "project": "DEPI-P5",
+      "component": "Incident Manager",
+      "version": "1.2.0",
+      "internal_id": "d5c0961e200a702a0d6f65bd13346429c82931e6ce8e879ec8413d6599a88d8a",
+      "alert_type": "SSH_BRUTE_FORCE",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "CLOSED",
+      "approval_status": "APPROVED",
+      "response_status": "COMPLETED",
+      "evidence_reference": "[REDACTED_LOCAL_PATH]",
+      "validation_reference": "[REDACTED_LOCAL_PATH]",
+      "source_sha256": "cb1ea5fe6e96eb4d67f57fc8727599e638dd6a507e666d4668a29a87c56137db",
+      "created_at_utc": "2026-11-24T16:41:50.474171+00:00",
+      "updated_at_utc": "2026-11-24T16:44:21.068542+00:00",
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T16:41:50.474224+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        },
+        {
+          "timestamp_utc": "2026-11-24T16:43:42.962050+00:00",
+          "action": "INCIDENT_STATUS_CHANGED",
+          "details": "NEW -> UNDER_INVESTIGATION"
+        },
+        {
+          "timestamp_utc": "2026-11-24T16:43:43.252857+00:00",
+          "action": "INCIDENT_STATUS_CHANGED",
+          "details": "UNDER_INVESTIGATION -> PENDING_APPROVAL"
+        },
+        {
+          "timestamp_utc": "2026-11-24T16:44:10.937963+00:00",
+          "action": "HUMAN_APPROVAL_APPROVE",
+          "details": "Approved playbook SHA256: 486a182e01c513dd09cf4dd48bf2165838cfd78c4a99a3a02f7bb2506da7a45a"
+        },
+        {
+          "timestamp_utc": "2026-11-24T16:44:11.257919+00:00",
+          "action": "RESPONSE_STARTED",
+          "details": "Response workflow marked as started. No external action was executed."
+        },
+        {
+          "timestamp_utc": "2026-11-24T16:44:11.631609+00:00",
+          "action": "RESPONSE_COMPLETED",
+          "details": "Response workflow completed successfully. No external response action was executed."
+        },
+        {
+          "timestamp_utc": "2026-11-24T16:44:20.883739+00:00",
+          "action": "INCIDENT_STATUS_CHANGED",
+          "details": "RESPONSE_IN_PROGRESS -> RESOLVED"
+        },
+        {
+          "timestamp_utc": "2026-11-24T16:44:21.068524+00:00",
+          "action": "INCIDENT_STATUS_CHANGED",
+          "details": "RESOLVED -> CLOSED"
+        }
+      ],
+      "approved_plan_path": "[REDACTED_LOCAL_PATH]",
+      "approved_plan_sha256": "486a182e01c513dd09cf4dd48bf2165838cfd78c4a99a3a02f7bb2506da7a45a",
+      "execution_receipt_sha256": "18877b5ded2f7cf4a5c82bc3b072cc75d88300d140dc7ce97fc35abaa327d14a"
+    },
+    {
+      "incident_id": "INC-20261124-0CB05471",
+      "project": "DEPI-P5",
+      "component": "Incident Manager",
+      "version": "1.2.0",
+      "internal_id": "0bdfc13409c5bd3c68fe5dddf31bcd4bb0a970fc68b5a2c46dbf298e10cf762b",
+      "alert_type": "MALWARE",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "UNDER_INVESTIGATION",
+      "approval_status": "REJECTED",
+      "response_status": "CANCELLED",
+      "evidence_reference": "[REDACTED_LOCAL_PATH]",
+      "validation_reference": "[REDACTED_LOCAL_PATH]",
+      "source_sha256": "7146c223fec7c139b09da9c062e3d85ee0b8bd2e14476109d504b7e14194684d",
+      "created_at_utc": "2026-11-24T16:41:50.765166+00:00",
+      "updated_at_utc": "2026-11-24T16:44:29.770949+00:00",
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T16:41:50.765227+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        },
+        {
+          "timestamp_utc": "2026-11-24T16:44:21.486613+00:00",
+          "action": "INCIDENT_STATUS_CHANGED",
+          "details": "NEW -> UNDER_INVESTIGATION"
+        },
+        {
+          "timestamp_utc": "2026-11-24T16:44:21.659220+00:00",
+          "action": "INCIDENT_STATUS_CHANGED",
+          "details": "UNDER_INVESTIGATION -> PENDING_APPROVAL"
+        },
+        {
+          "timestamp_utc": "2026-11-24T16:44:29.770932+00:00",
+          "action": "HUMAN_APPROVAL_REJECT",
+          "details": "Human rejection recorded."
+        }
+      ]
+    },
+    {
+      "incident_id": "INC-20261124-4AD69FFC",
+      "project": "DEPI-P5",
+      "component": "Incident Manager",
+      "version": "1.2.0",
+      "internal_id": "e23c07f9275d6f3e6df41fdcfbc8294fa1b883fc6e9aa3a0546d564dd526874f",
+      "alert_type": "XSS",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "PENDING_APPROVAL",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "evidence_reference": "[REDACTED_LOCAL_PATH]",
+      "validation_reference": "[REDACTED_LOCAL_PATH]",
+      "source_sha256": "6eaa96bfc2ec8b81d3f27471afd03b15e6935fa4f66e755b9b93f21bb16bd47c",
+      "created_at_utc": "2026-11-24T16:41:51.053990+00:00",
+      "updated_at_utc": "2026-11-24T16:44:30.655993+00:00",
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T16:41:51.054045+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        },
+        {
+          "timestamp_utc": "2026-11-24T16:44:30.362050+00:00",
+          "action": "INCIDENT_STATUS_CHANGED",
+          "details": "NEW -> UNDER_INVESTIGATION"
+        },
+        {
+          "timestamp_utc": "2026-11-24T16:44:30.655973+00:00",
+          "action": "INCIDENT_STATUS_CHANGED",
+          "details": "UNDER_INVESTIGATION -> PENDING_APPROVAL"
+        }
+      ]
+    },
+    {
+      "incident_id": "INC-20261124-99086F14",
+      "project": "DEPI-P5",
+      "component": "Incident Manager",
+      "version": "1.2.0",
+      "internal_id": "193b741e91c88a01917a29d0794057e2519c8ad3af79e816b7a12303bd739797",
+      "alert_type": "XSS",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "evidence_reference": "[REDACTED_LOCAL_PATH]",
+      "validation_reference": "[REDACTED_LOCAL_PATH]",
+      "source_sha256": "ae56f8fbf252a894563c218b53b616f22444371b91bda6c0fbcb7e57d86e80f0",
+      "created_at_utc": "2026-11-24T16:42:15.397731+00:00",
+      "updated_at_utc": "2026-11-24T16:42:15.397799+00:00",
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T16:42:15.397796+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ]
+    },
+    {
+      "incident_id": "INC-20261124-6155939D",
+      "project": "DEPI-P5",
+      "component": "Incident Manager",
+      "version": "1.2.0",
+      "internal_id": "3377dd2c8fd2a6740d52fd454048b3aeb37d1181dbdf0e59cfa92c3dc0a46837",
+      "alert_type": "XSS",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "evidence_reference": "[REDACTED_LOCAL_PATH]",
+      "validation_reference": "[REDACTED_LOCAL_PATH]",
+      "source_sha256": "f6830ff7dda1276ff743adb22e814bec5ddf42df4f86dfd36cd7c312931b3bd6",
+      "created_at_utc": "2026-11-24T16:42:28.473153+00:00",
+      "updated_at_utc": "2026-11-24T16:42:28.473219+00:00",
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T16:42:28.473215+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ]
+    },
+    {
+      "incident_id": "INC-20261124-4F9C18DA",
+      "project": "DEPI-P5",
+      "component": "Incident Manager",
+      "version": "1.2.0",
+      "internal_id": "fe1f6c3e839150bcf81fefaaf1f682c842b6ff5aca95de3c137c7f39929c6826",
+      "alert_type": "EXCHANGE",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "evidence_reference": "[REDACTED_LOCAL_PATH]",
+      "validation_reference": "[REDACTED_LOCAL_PATH]",
+      "source_sha256": "c1a8ccc7d28eeb8d760afdcdda9ccb4d615e4da32818158d033e8e422c75dbad",
+      "created_at_utc": "2026-11-24T16:42:28.895027+00:00",
+      "updated_at_utc": "2026-11-24T16:42:28.895087+00:00",
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T16:42:28.895083+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ]
+    }
+  ]
+}

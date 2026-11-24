@@ -1,0 +1,195 @@
+{
+  "project": "DEPI-P5",
+  "component": "Scenario Orchestrator",
+  "version": "1.0.0",
+  "run_id": "ORCH-20261124T172039Z-69be0b57",
+  "mode": "LAB_EXECUTION",
+  "started_at_utc": "2026-11-24T17:20:39.411470+00:00",
+  "status": "COMPLETED",
+  "human_validation_required": true,
+  "external_response_executed": false,
+  "records": [
+    {
+      "source_filename": "SIEM04_Real_Alert_AI_Triage_20261022T012722Z.json",
+      "source_sha256": "fbc0ba32702264166b051a86cdfd8adc11bd53d0261fdaffad8001f1185682c2",
+      "manifest_status": "REVIEW_REQUIRED",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "human_validation_required": true,
+      "ai_mode": null,
+      "validation_status": null,
+      "incident_created": false
+    },
+    {
+      "source_filename": "SIEM05_Auto_Alert_AI_Triage_469dc3deb13af6394b.json",
+      "source_sha256": "b264f37f246d18a5c3e4263d4ff39f78290879ac45efe1051ffa538f7fcbb9de",
+      "manifest_status": "READY_FOR_AI_REPROCESSING",
+      "status": "INCIDENT_PENDING_HUMAN_REVIEW",
+      "human_validation_required": true,
+      "ai_mode": "NEW_PROCESSING",
+      "validation_status": "PASS_WITH_WARNINGS",
+      "incident_created": true,
+      "internal_id": "4fb1a0c5cf545b1133579d4049914eef9ab07b05fe85cbef873dc4b43f522fa0",
+      "alert_type": "WEB_HIGH_RATE",
+      "ai_result": "[REDACTED_LOCAL_PATH]",
+      "ai_result_sha256": "e67d4355fb8db880f3c54d6d503863379c656f4cf679464ddba34132157f43b8",
+      "validation_report": "[REDACTED_LOCAL_PATH]",
+      "validation_summary": {
+        "total_checks": 5,
+        "errors": 0,
+        "warnings": 1,
+        "informational": 4
+      },
+      "validation_sha256": "bf93e515cc59db4cf9b9c5898eedc4eedfa99cfe0798bef42bbee4d6b25d4a04",
+      "incident_id": "INC-20261124-817E323D"
+    },
+    {
+      "source_filename": "SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json",
+      "source_sha256": "cb1ea5fe6e96eb4d67f57fc8727599e638dd6a507e666d4668a29a87c56137db",
+      "manifest_status": "READY_FOR_AI_REPROCESSING",
+      "status": "INCIDENT_PENDING_HUMAN_REVIEW",
+      "human_validation_required": true,
+      "ai_mode": "NEW_PROCESSING",
+      "validation_status": "PASS",
+      "incident_created": true,
+      "internal_id": "d5c0961e200a702a0d6f65bd13346429c82931e6ce8e879ec8413d6599a88d8a",
+      "alert_type": "SSH_BRUTE_FORCE",
+      "ai_result": "[REDACTED_LOCAL_PATH]",
+      "ai_result_sha256": "d9285e394a9e1bb7539804f75076f3c153cb304c313b439bfcc2437f0da557a1",
+      "validation_report": "[REDACTED_LOCAL_PATH]",
+      "validation_summary": {
+        "total_checks": 6,
+        "errors": 0,
+        "warnings": 0,
+        "informational": 6
+      },
+      "validation_sha256": "6e8ed725ff58d7316c0cf86a8c56eeb4c6327fac5036fca16ed23cac7815a66f",
+      "incident_id": "INC-20261124-DB9FC597"
+    },
+    {
+      "source_filename": "SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json",
+      "source_sha256": "7146c223fec7c139b09da9c062e3d85ee0b8bd2e14476109d504b7e14194684d",
+      "manifest_status": "READY_FOR_AI_REPROCESSING",
+      "status": "INCIDENT_PENDING_HUMAN_REVIEW",
+      "human_validation_required": true,
+      "ai_mode": "NEW_PROCESSING",
+      "validation_status": "PASS",
+      "incident_created": true,
+      "internal_id": "0bdfc13409c5bd3c68fe5dddf31bcd4bb0a970fc68b5a2c46dbf298e10cf762b",
+      "alert_type": "MALWARE",
+      "ai_result": "[REDACTED_LOCAL_PATH]",
+      "ai_result_sha256": "171e6c1a7416f3c77b17feea6bc1f81382080b0c62a95c8c829c30da205cc140",
+      "validation_report": "[REDACTED_LOCAL_PATH]",
+      "validation_summary": {
+        "total_checks": 7,
+        "errors": 0,
+        "warnings": 0,
+        "informational": 7
+      },
+      "validation_sha256": "c328950d64ed067d8f12c5d6a2e5268a8fdee88fdbd3823b7d5da0f24bb85663",
+      "incident_id": "INC-20261124-1DEA617B"
+    },
+    {
+      "source_filename": "SIEM07_XSS_004_AI_Triage_6ba5792eef667c9cf8.json",
+      "source_sha256": "6eaa96bfc2ec8b81d3f27471afd03b15e6935fa4f66e755b9b93f21bb16bd47c",
+      "manifest_status": "READY_FOR_AI_REPROCESSING",
+      "status": "INCIDENT_PENDING_HUMAN_REVIEW",
+      "human_validation_required": true,
+      "ai_mode": "NEW_PROCESSING",
+      "validation_status": "PASS_WITH_WARNINGS",
+      "incident_created": true,
+      "internal_id": "e23c07f9275d6f3e6df41fdcfbc8294fa1b883fc6e9aa3a0546d564dd526874f",
+      "alert_type": "XSS",
+      "ai_result": "[REDACTED_LOCAL_PATH]",
+      "ai_result_sha256": "304e63e74c09d5e2ffd246ef77781a8df2ff707fd4d3fb8e957fd41e310e1186",
+      "validation_report": "[REDACTED_LOCAL_PATH]",
+      "validation_summary": {
+        "total_checks": 4,
+        "errors": 0,
+        "warnings": 1,
+        "informational": 3
+      },
+      "validation_sha256": "71995e185ac1c960503b99d87f43e8302413bac2789d24aea63d5ea18ed65d1b",
+      "incident_id": "INC-20261124-0E154907"
+    },
+    {
+      "source_filename": "SIEM07_XSS_004_AI_Triage_843425fa737b11ef71.json",
+      "source_sha256": "ae56f8fbf252a894563c218b53b616f22444371b91bda6c0fbcb7e57d86e80f0",
+      "manifest_status": "READY_FOR_AI_REPROCESSING",
+      "status": "INCIDENT_PENDING_HUMAN_REVIEW",
+      "human_validation_required": true,
+      "ai_mode": "NEW_PROCESSING",
+      "validation_status": "PASS_WITH_WARNINGS",
+      "incident_created": true,
+      "internal_id": "193b741e91c88a01917a29d0794057e2519c8ad3af79e816b7a12303bd739797",
+      "alert_type": "XSS",
+      "ai_result": "[REDACTED_LOCAL_PATH]",
+      "ai_result_sha256": "3446cd9a82b5d0bcfd69433129b80b282458f8ee0b5c72d9677d4685b0e273c2",
+      "validation_report": "[REDACTED_LOCAL_PATH]",
+      "validation_summary": {
+        "total_checks": 4,
+        "errors": 0,
+        "warnings": 1,
+        "informational": 3
+      },
+      "validation_sha256": "ab618b5a1f14871da79e7263716ef9d287be9d46c56c9dc85e186492f7101fbc",
+      "incident_id": "INC-20261124-87AF0FC6"
+    },
+    {
+      "source_filename": "SIEM07_XSS_004_AI_Triage_fad10ea2b71bb2bc09.json",
+      "source_sha256": "f6830ff7dda1276ff743adb22e814bec5ddf42df4f86dfd36cd7c312931b3bd6",
+      "manifest_status": "READY_FOR_AI_REPROCESSING",
+      "status": "INCIDENT_PENDING_HUMAN_REVIEW",
+      "human_validation_required": true,
+      "ai_mode": "NEW_PROCESSING",
+      "validation_status": "PASS_WITH_WARNINGS",
+      "incident_created": true,
+      "internal_id": "3377dd2c8fd2a6740d52fd454048b3aeb37d1181dbdf0e59cfa92c3dc0a46837",
+      "alert_type": "XSS",
+      "ai_result": "[REDACTED_LOCAL_PATH]",
+      "ai_result_sha256": "89a76170ae2297325d42ab7e23518ebe69843a287924525293cbedf19cda63de",
+      "validation_report": "[REDACTED_LOCAL_PATH]",
+      "validation_summary": {
+        "total_checks": 4,
+        "errors": 0,
+        "warnings": 1,
+        "informational": 3
+      },
+      "validation_sha256": "edbc88f27913080121af92b68e403ce944ca79b6f6f5ab1f4e4af3b1a8051f1e",
+      "incident_id": "INC-20261124-4CE0BB3F"
+    },
+    {
+      "source_filename": "SIEM_EXCHANGE_005_21c4515e439a0b3b6a3f_AI_Triage.json",
+      "source_sha256": "c1a8ccc7d28eeb8d760afdcdda9ccb4d615e4da32818158d033e8e422c75dbad",
+      "manifest_status": "READY_FOR_AI_REPROCESSING",
+      "status": "INCIDENT_PENDING_HUMAN_REVIEW",
+      "human_validation_required": true,
+      "ai_mode": "NEW_PROCESSING",
+      "validation_status": "PASS",
+      "incident_created": true,
+      "internal_id": "fe1f6c3e839150bcf81fefaaf1f682c842b6ff5aca95de3c137c7f39929c6826",
+      "alert_type": "EXCHANGE",
+      "ai_result": "[REDACTED_LOCAL_PATH]",
+      "ai_result_sha256": "67f2d7b9e9303e600f47e30d0829bf4a70cf79247df1e45be561b8d24404d3f4",
+      "validation_report": "[REDACTED_LOCAL_PATH]",
+      "validation_summary": {
+        "total_checks": 5,
+        "errors": 0,
+        "warnings": 0,
+        "informational": 5
+      },
+      "validation_sha256": "459195cab9add59c116c653fbde8368bd879abb20530444e79a21470156f1d1a",
+      "incident_id": "INC-20261124-8265625F"
+    }
+  ],
+  "finished_at_utc": "2026-11-24T17:23:46.664510+00:00",
+  "summary": {
+    "total_records": 8,
+    "status_counts": {
+      "MANUAL_REVIEW_REQUIRED": 1,
+      "INCIDENT_PENDING_HUMAN_REVIEW": 7
+    },
+    "ai_reuse_candidates": 0,
+    "new_ai_candidates": 7,
+    "incidents_created": 7
+  }
+}

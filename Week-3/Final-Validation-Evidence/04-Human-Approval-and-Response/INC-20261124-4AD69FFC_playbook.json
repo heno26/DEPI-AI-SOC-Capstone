@@ -1,0 +1,105 @@
+{
+  "project": "DEPI-P5",
+  "component": "SOAR Playbook Engine",
+  "version": "1.0.0",
+  "generated_at_utc": "2026-11-24T16:42:29.213526+00:00",
+  "plan_id": "PLAN-81563F862B3B",
+  "incident_id": "INC-20261124-4AD69FFC",
+  "internal_id": "e23c07f9275d6f3e6df41fdcfbc8294fa1b883fc6e9aa3a0546d564dd526874f",
+  "alert_type": "XSS",
+  "playbook_id": "PB-004",
+  "playbook_name": "Cross-Site Scripting Investigation",
+  "playbook_definition_sha256": "66eb0036a0481ba95545a8396d3a882c9fc1f4c6aece2e4b721a6c282470916e",
+  "severity": "Medium",
+  "confidence": "Moderate",
+  "execution_mode": "SIMULATION_ONLY",
+  "plan_status": "PENDING_HUMAN_APPROVAL",
+  "human_approval_required": true,
+  "approval_status": "PENDING",
+  "response_authorized": false,
+  "response_executed": false,
+  "external_actions_enabled": false,
+  "evidence": {
+    "source_filename": "SIEM07_XSS_004_AI_Triage_6ba5792eef667c9cf8.json",
+    "source_sha256": "6eaa96bfc2ec8b81d3f27471afd03b15e6935fa4f66e755b9b93f21bb16bd47c",
+    "ai_result": "[REDACTED_LOCAL_PATH]",
+    "ai_result_sha256": "81bbb550e271a1730b19d647f44bcf46116b029231e0133c702f79cd2f624915",
+    "validation_report": "[REDACTED_LOCAL_PATH]",
+    "validation_sha256": "ea99ac103fa9b595e5cf205e77fe34f5112a7c84aa64d7899834b03731788469",
+    "validation_status": "PASS_WITH_WARNINGS",
+    "validation_summary": {
+      "total_checks": 4,
+      "errors": 0,
+      "warnings": 1,
+      "informational": 3
+    },
+    "validation_findings": [
+      {
+        "level": "WARNING",
+        "code": "XSS_EXECUTION_OVERCLAIM",
+        "message": "HTTP evidence alone may not establish successful browser-side XSS execution."
+      },
+      {
+        "level": "INFO",
+        "code": "AI_COMPARISON_DIFFERENCE",
+        "message": "severity: Week-2=High; Week-3=Medium. Difference requires analyst review, not automatic rejection."
+      },
+      {
+        "level": "INFO",
+        "code": "AI_COMPARISON_DIFFERENCE",
+        "message": "confidence: Week-2=High; Week-3=Moderate. Difference requires analyst review, not automatic rejection."
+      },
+      {
+        "level": "INFO",
+        "code": "AI_RECOMMENDATIONS_CHANGED",
+        "message": "Week-2 and Week-3 recommended actions differ; analyst should review safety and evidence alignment."
+      }
+    ]
+  },
+  "investigation": [
+    {
+      "step_id": "INV-01",
+      "description": "Review suspicious HTTP request evidence",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "step_id": "INV-02",
+      "description": "Verify source IP and affected endpoint",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "step_id": "INV-03",
+      "description": "Distinguish attempted exploitation from confirmed execution",
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "proposed_response": [
+    {
+      "step_id": "RES-01",
+      "description": "Recommend web application security review",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "step_id": "RES-02",
+      "description": "Recommend input validation assessment",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "step_id": "RES-03",
+      "description": "Recommend WAF policy review",
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "recovery": [
+    {
+      "step_id": "REC-01",
+      "description": "Recommend authorized application security testing",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "step_id": "REC-02",
+      "description": "Document analyst findings",
+      "status": "NOT_EXECUTED"
+    }
+  ]
+}

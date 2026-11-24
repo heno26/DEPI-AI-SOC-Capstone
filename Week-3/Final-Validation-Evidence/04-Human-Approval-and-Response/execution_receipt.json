@@ -1,0 +1,82 @@
+{
+  "project": "DEPI-P5",
+  "component": "Response Execution Receipt",
+  "version": "1.2.0",
+  "execution_id": "db3bc988b5da4af799b7f7eae74bb60f",
+  "incident_id": "INC-20261124-0199ACB3",
+  "internal_id": "d5c0961e200a702a0d6f65bd13346429c82931e6ce8e879ec8413d6599a88d8a",
+  "plan_sha256": "486a182e01c513dd09cf4dd48bf2165838cfd78c4a99a3a02f7bb2506da7a45a",
+  "source_sha256": "cb1ea5fe6e96eb4d67f57fc8727599e638dd6a507e666d4668a29a87c56137db",
+  "execution_mode": "SIMULATION_ONLY",
+  "status": "COMPLETED",
+  "external_actions_executed": 0,
+  "started_at_utc": "2026-11-24T16:44:11.453639+00:00",
+  "steps_count": 8,
+  "steps": [
+    {
+      "phase": "investigation",
+      "step_id": "INV-01",
+      "description": "Review failed authentication events",
+      "status": "SIMULATED",
+      "external_action_executed": false,
+      "timestamp_utc": "2026-11-24T16:44:11.456728+00:00"
+    },
+    {
+      "phase": "investigation",
+      "step_id": "INV-02",
+      "description": "Verify source IP and targeted accounts",
+      "status": "SIMULATED",
+      "external_action_executed": false,
+      "timestamp_utc": "2026-11-24T16:44:11.456742+00:00"
+    },
+    {
+      "phase": "investigation",
+      "step_id": "INV-03",
+      "description": "Check for evidence of successful authentication",
+      "status": "SIMULATED",
+      "external_action_executed": false,
+      "timestamp_utc": "2026-11-24T16:44:11.456746+00:00"
+    },
+    {
+      "phase": "proposed_response",
+      "step_id": "RES-01",
+      "description": "Recommend source IP containment review",
+      "status": "SIMULATED",
+      "external_action_executed": false,
+      "timestamp_utc": "2026-11-24T16:44:11.456749+00:00"
+    },
+    {
+      "phase": "proposed_response",
+      "step_id": "RES-02",
+      "description": "Recommend targeted account security review",
+      "status": "SIMULATED",
+      "external_action_executed": false,
+      "timestamp_utc": "2026-11-24T16:44:11.456751+00:00"
+    },
+    {
+      "phase": "proposed_response",
+      "step_id": "RES-03",
+      "description": "Recommend SSH authentication hardening",
+      "status": "SIMULATED",
+      "external_action_executed": false,
+      "timestamp_utc": "2026-11-24T16:44:11.456753+00:00"
+    },
+    {
+      "phase": "recovery",
+      "step_id": "REC-01",
+      "description": "Monitor authentication events",
+      "status": "SIMULATED",
+      "external_action_executed": false,
+      "timestamp_utc": "2026-11-24T16:44:11.456755+00:00"
+    },
+    {
+      "phase": "recovery",
+      "step_id": "REC-02",
+      "description": "Document analyst findings",
+      "status": "SIMULATED",
+      "external_action_executed": false,
+      "timestamp_utc": "2026-11-24T16:44:11.456756+00:00"
+    }
+  ],
+  "completed_at_utc": "2026-11-24T16:44:11.456766+00:00"
+}

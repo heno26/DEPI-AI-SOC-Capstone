@@ -1,0 +1,1082 @@
+{
+  "project": "DEPI-P5",
+  "component": "SOC Report Generator",
+  "version": "1.0.0",
+  "generated_at_utc": "2026-11-24T17:24:41.983154+00:00",
+  "orchestration_run_id": "ORCH-20261124T172039Z-69be0b57",
+  "playbook_run_id": "PB-RUN-8c3e261e00f9",
+  "report_scope": "HISTORICAL_LAB",
+  "execution_mode": "SIMULATION_ONLY",
+  "status": "GENERATED",
+  "statistics": {
+    "evidence_records": 8,
+    "total_incidents": 7,
+    "manual_review_records": 1,
+    "verified_simulations": 0,
+    "closed_incidents": 0,
+    "lifecycle_review_flags": 0,
+    "alert_types": {
+      "WEB_HIGH_RATE": 1,
+      "SSH_BRUTE_FORCE": 1,
+      "MALWARE": 1,
+      "XSS": 3,
+      "EXCHANGE": 1
+    },
+    "severity_distribution": {
+      "High": 1,
+      "Medium": 6
+    },
+    "validation_distribution": {
+      "PASS_WITH_WARNINGS": 4,
+      "PASS": 3
+    },
+    "incident_status_distribution": {
+      "NEW": 7
+    },
+    "approval_distribution": {
+      "PENDING": 7
+    },
+    "response_distribution": {
+      "NOT_STARTED": 7
+    },
+    "ai_processing_distribution": {
+      "NEW_PROCESSING": 7
+    }
+  },
+  "manual_review_queue": [
+    {
+      "source_filename": "SIEM04_Real_Alert_AI_Triage_20261022T012722Z.json",
+      "manifest_status": "REVIEW_REQUIRED",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "human_validation_required": true
+    }
+  ],
+  "incidents": [
+    {
+      "incident_id": "INC-20261124-817E323D",
+      "internal_id": "4fb1a0c5cf545b1133579d4049914eef9ab07b05fe85cbef873dc4b43f522fa0",
+      "alert_type": "WEB_HIGH_RATE",
+      "severity": "High",
+      "confidence": "High",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "source_filename": "SIEM05_Auto_Alert_AI_Triage_469dc3deb13af6394b.json",
+      "source_sha256": "b264f37f246d18a5c3e4263d4ff39f78290879ac45efe1051ffa538f7fcbb9de",
+      "source_path": "[REDACTED_LOCAL_PATH]",
+      "ai_mode": "NEW_PROCESSING",
+      "ai_model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "ai_analysis": {
+        "summary": "High rate of HTTP requests from a reserved IP address",
+        "severity": "High",
+        "potential_threat": "Possible web scraping or brute force attack",
+        "indicators": {
+          "source_ip": "255.102.154.224"
+        },
+        "false_positive_possibility": "High rate of HTTP requests could be due to legitimate web traffic, web crawlers, or content delivery networks",
+        "recommended_actions": [
+          "Investigate the source IP address and the targeted resources"
+        ],
+        "evidence_limitations": "The trigger key has not been shown to identify a specific alert row; the group is taken from signed webhook payload",
+        "confidence": "High"
+      },
+      "ai_result_sha256": "e67d4355fb8db880f3c54d6d503863379c656f4cf679464ddba34132157f43b8",
+      "validation_status": "PASS_WITH_WARNINGS",
+      "validation_summary": {
+        "total_checks": 5,
+        "errors": 0,
+        "warnings": 1,
+        "informational": 4
+      },
+      "validation_findings": [
+        {
+          "level": "INFO",
+          "code": "IOC_SOURCE_IP_VERIFIED",
+          "message": "Reported source_ip matches original evidence: 255.102.154.224."
+        },
+        {
+          "level": "WARNING",
+          "code": "WEB_VERIFIED_REQUEST_COUNT_NOT_REPORTED",
+          "message": "AI output does not explicitly repeat the verified verified_request_count: 112."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_COMPARISON_DIFFERENCE",
+          "message": "severity: Week-2=Medium; Week-3=High. Difference requires analyst review, not automatic rejection."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_COMPARISON_DIFFERENCE",
+          "message": "confidence: Week-2=Moderate; Week-3=High. Difference requires analyst review, not automatic rejection."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_RECOMMENDATIONS_CHANGED",
+          "message": "Week-2 and Week-3 recommended actions differ; analyst should review safety and evidence alignment."
+        }
+      ],
+      "validation_sha256": "bf93e515cc59db4cf9b9c5898eedc4eedfa99cfe0798bef42bbee4d6b25d4a04",
+      "playbook_id": "PB-001",
+      "playbook_name": "Abnormal Web Request Rate",
+      "playbook_sha256": "f7553af4df2a97401aad3dff948f599efdc94041ee61b9f0df66b8086d835cfe",
+      "investigation": [
+        {
+          "step_id": "INV-01",
+          "description": "Review verified request count",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "INV-02",
+          "description": "Review source IP and request patterns",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "INV-03",
+          "description": "Assess legitimate traffic possibility",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "proposed_response": [
+        {
+          "step_id": "RES-01",
+          "description": "Recommend source IP review",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "RES-02",
+          "description": "Recommend rate limiting assessment",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "RES-03",
+          "description": "Recommend continued traffic monitoring",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "recovery": [
+        {
+          "step_id": "REC-01",
+          "description": "Verify normal request rate",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "REC-02",
+          "description": "Document analyst findings",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "execution_receipt": null,
+      "receipt_verified": false,
+      "receipt_sha256": null,
+      "integrity_checks": {
+        "source_integrity": true,
+        "ai_result_integrity": true,
+        "validation_integrity": true,
+        "playbook_integrity": true
+      },
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T17:21:05.643112+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ],
+      "review_flags": []
+    },
+    {
+      "incident_id": "INC-20261124-DB9FC597",
+      "internal_id": "d5c0961e200a702a0d6f65bd13346429c82931e6ce8e879ec8413d6599a88d8a",
+      "alert_type": "SSH_BRUTE_FORCE",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "source_filename": "SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json",
+      "source_sha256": "cb1ea5fe6e96eb4d67f57fc8727599e638dd6a507e666d4668a29a87c56137db",
+      "source_path": "[REDACTED_LOCAL_PATH]",
+      "ai_mode": "NEW_PROCESSING",
+      "ai_model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "ai_analysis": {
+        "summary": "SSH Brute Force Attempt on IP 183.62.140.253",
+        "severity": "Medium",
+        "potential_threat": "Possible password guessing attack",
+        "indicators": {
+          "source_ip": "183.62.140.253",
+          "username": "root",
+          "failed_password_count": 30,
+          "top_usernames": [
+            {
+              "username": "root",
+              "failed_attempts": 30
+            }
+          ],
+          "sampled_source_lines": [
+            {
+              "source_line": 1621,
+              "original_datetime_no_year": "Dec 10 11:01:01",
+              "username": "root",
+              "src_port": 51395,
+              "raw_log_sha256": "197fb1b1bb4379f4fb8c70cda99e01883253e9645a902926e8b7f7d2c6c6f575"
+            },
+            {
+              "source_line": 1624,
+              "original_datetime_no_year": "Dec 10 11:01:02",
+              "username": "root",
+              "src_port": 51830,
+              "raw_log_sha256": "411330851efc9225a2f98268e0be54f9d0cc0ef763c6abd6a0b792e8d689a2a9"
+            },
+            {
+              "source_line": 1627,
+              "original_datetime_no_year": "Dec 10 11:01:04",
+              "username": "root",
+              "src_port": 52182,
+              "raw_log_sha256": "a235606397e8e0869048b3be3882e747e8f6de4aa7cec9f72b97df47819e2d70"
+            },
+            {
+              "source_line": 1630,
+              "original_datetime_no_year": "Dec 10 11:01:06",
+              "username": "root",
+              "src_port": 52545,
+              "raw_log_sha256": "46e88525dc20bc1787fadff65d733a6cfb0f7c28ffc92182256569e2cb39fabe"
+            },
+            {
+              "source_line": 1633,
+              "original_datetime_no_year": "Dec 10 11:01:08",
+              "username": "root",
+              "src_port": 52850,
+              "raw_log_sha256": "5b34d08afc64ce12eacc68d2555a5d365dd4318d4eb636bf821ed12ea04cd2d0"
+            },
+            {
+              "source_line": 1636,
+              "original_datetime_no_year": "Dec 10 11:01:10",
+              "username": "root",
+              "src_port": 53160,
+              "raw_log_sha256": "64bd060a4a68c22af474ede08018e94d3fa92a9b39f24ecdc6297ae0ab30e99f"
+            },
+            {
+              "source_line": 1639,
+              "original_datetime_no_year": "Dec 10 11:01:13",
+              "username": "root",
+              "src_port": 53630,
+              "raw_log_sha256": "2edf664e1bd5669692473bfdc2d9a6a857ba84670709d187117213a61927f1bd"
+            },
+            {
+              "source_line": 1642,
+              "original_datetime_no_year": "Dec 10 11:01:14",
+              "username": "root",
+              "src_port": 54049,
+              "raw_log_sha256": "28e64e86d1570611990636bd0a42d5fb9ee9576b45084962706addf0fd2f61b2"
+            }
+          ]
+        },
+        "false_positive_possibility": "Misconfigured or automated script activity",
+        "recommended_actions": [
+          "Investigate the source IP for potential malicious activity",
+          "Review system logs for other signs of compromise",
+          "Consider rate limiting or blocking the source IP",
+          "Review SSH configuration for strong password policies"
+        ],
+        "evidence_limitations": "No year/timezone information in timestamps",
+        "confidence": "Moderate"
+      },
+      "ai_result_sha256": "d9285e394a9e1bb7539804f75076f3c153cb304c313b439bfcc2437f0da557a1",
+      "validation_status": "PASS",
+      "validation_summary": {
+        "total_checks": 6,
+        "errors": 0,
+        "warnings": 0,
+        "informational": 6
+      },
+      "validation_findings": [
+        {
+          "level": "INFO",
+          "code": "SOURCE_IP_VERIFIED",
+          "message": "Source IP matches original evidence: 183.62.140.253."
+        },
+        {
+          "level": "INFO",
+          "code": "USERNAME_COUNT_VERIFIED",
+          "message": "root: 30 failed attempts verified."
+        },
+        {
+          "level": "INFO",
+          "code": "TOTAL_COUNT_VERIFIED",
+          "message": "Verified failed-password count: 30."
+        },
+        {
+          "level": "INFO",
+          "code": "SSH_THRESHOLD_CONFIRMED",
+          "message": "Verified failures (30) meet/exceed threshold (5)."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_COMPARISON_DIFFERENCE",
+          "message": "confidence: Week-2=High; Week-3=Moderate. Difference requires analyst review, not automatic rejection."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_RECOMMENDATIONS_CHANGED",
+          "message": "Week-2 and Week-3 recommended actions differ; analyst should review safety and evidence alignment."
+        }
+      ],
+      "validation_sha256": "6e8ed725ff58d7316c0cf86a8c56eeb4c6327fac5036fca16ed23cac7815a66f",
+      "playbook_id": "PB-002",
+      "playbook_name": "SSH Brute Force Investigation",
+      "playbook_sha256": "695075bc1e69d15639e0a213c7d723ba5b82a2da99ac8e65e164643e0d500cf0",
+      "investigation": [
+        {
+          "step_id": "INV-01",
+          "description": "Review failed authentication events",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "INV-02",
+          "description": "Verify source IP and targeted accounts",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "INV-03",
+          "description": "Check for evidence of successful authentication",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "proposed_response": [
+        {
+          "step_id": "RES-01",
+          "description": "Recommend source IP containment review",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "RES-02",
+          "description": "Recommend targeted account security review",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "RES-03",
+          "description": "Recommend SSH authentication hardening",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "recovery": [
+        {
+          "step_id": "REC-01",
+          "description": "Monitor authentication events",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "REC-02",
+          "description": "Document analyst findings",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "execution_receipt": null,
+      "receipt_verified": false,
+      "receipt_sha256": null,
+      "integrity_checks": {
+        "source_integrity": true,
+        "ai_result_integrity": true,
+        "validation_integrity": true,
+        "playbook_integrity": true
+      },
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T17:22:13.738618+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ],
+      "review_flags": []
+    },
+    {
+      "incident_id": "INC-20261124-1DEA617B",
+      "internal_id": "0bdfc13409c5bd3c68fe5dddf31bcd4bb0a970fc68b5a2c46dbf298e10cf762b",
+      "alert_type": "MALWARE",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "source_filename": "SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json",
+      "source_sha256": "7146c223fec7c139b09da9c062e3d85ee0b8bd2e14476109d504b7e14194684d",
+      "source_path": "[REDACTED_LOCAL_PATH]",
+      "ai_mode": "NEW_PROCESSING",
+      "ai_model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "ai_analysis": {
+        "summary": "Alert analysis for SIEM_MAL_003_SUSPICIOUS_MALWARE_BEHAVIOR rule firing",
+        "severity": "Medium",
+        "potential_threat": "Possible malware behavior",
+        "indicators": {
+          "process_guid": "{6c5fe7fc-482c-684b-1701-000000000200}",
+          "process_image": "[REDACTED_LOCAL_PATH]",
+          "parent_process": "[REDACTED_LOCAL_PATH]",
+          "destination_ip": "104.80.2.104",
+          "destination_port": 443,
+          "hashes": {
+            "SHA256": "A1A79FEBE636F6AF95CA527BF37321A329F37BC2524414376F2727F4D9BD17C1",
+            "IMPHASH": "2EABE9054CAD5152567F0699947A2C5B"
+          }
+        },
+        "false_positive_possibility": "Legitimate software with suspicious behavior based on rule criteria",
+        "recommended_actions": [
+          "Investigate the process and its behavior further",
+          "Analyze network traffic to the destination IP",
+          "Check for known malware hashes in threat intelligence databases"
+        ],
+        "evidence_limitations": "The dataset is historical replay. Original event time is separate from ingest _timestamp. DNS and network activity do not alone establish C2, exfiltration or compromise.",
+        "confidence": "Moderate"
+      },
+      "ai_result_sha256": "171e6c1a7416f3c77b17feea6bc1f81382080b0c62a95c8c829c30da205cc140",
+      "validation_status": "PASS",
+      "validation_summary": {
+        "total_checks": 7,
+        "errors": 0,
+        "warnings": 0,
+        "informational": 7
+      },
+      "validation_findings": [
+        {
+          "level": "INFO",
+          "code": "MALWARE_PROCESS_GUID_VERIFIED",
+          "message": "Process Guid matches original evidence."
+        },
+        {
+          "level": "INFO",
+          "code": "MALWARE_PROCESS_IMAGE_VERIFIED",
+          "message": "Process Image matches original evidence."
+        },
+        {
+          "level": "INFO",
+          "code": "MALWARE_DESTINATION_IP_VERIFIED",
+          "message": "Destination Ip matches original evidence."
+        },
+        {
+          "level": "INFO",
+          "code": "MALWARE_DESTINATION_PORT_VERIFIED",
+          "message": "Destination Port matches original evidence."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_COMPARISON_DIFFERENCE",
+          "message": "severity: Week-2=High; Week-3=Medium. Difference requires analyst review, not automatic rejection."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_COMPARISON_DIFFERENCE",
+          "message": "confidence: Week-2=Medium; Week-3=Moderate. Difference requires analyst review, not automatic rejection."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_RECOMMENDATIONS_CHANGED",
+          "message": "Week-2 and Week-3 recommended actions differ; analyst should review safety and evidence alignment."
+        }
+      ],
+      "validation_sha256": "c328950d64ed067d8f12c5d6a2e5268a8fdee88fdbd3823b7d5da0f24bb85663",
+      "playbook_id": "PB-003",
+      "playbook_name": "Suspected Malware Investigation",
+      "playbook_sha256": "bbf4a8fbdef446f4fca48a16feff419bcf0b5abc11bd0959d23fceeb0cf956e7",
+      "investigation": [
+        {
+          "step_id": "INV-01",
+          "description": "Review suspicious process evidence",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "INV-02",
+          "description": "Verify available file and process indicators",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "INV-03",
+          "description": "Assess affected endpoint and evidence limitations",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "proposed_response": [
+        {
+          "step_id": "RES-01",
+          "description": "Recommend endpoint isolation assessment",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "RES-02",
+          "description": "Recommend malware scanning",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "RES-03",
+          "description": "Recommend evidence preservation",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "recovery": [
+        {
+          "step_id": "REC-01",
+          "description": "Recommend endpoint integrity verification",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "REC-02",
+          "description": "Document analyst findings",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "execution_receipt": null,
+      "receipt_verified": false,
+      "receipt_sha256": null,
+      "integrity_checks": {
+        "source_integrity": true,
+        "ai_result_integrity": true,
+        "validation_integrity": true,
+        "playbook_integrity": true
+      },
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T17:22:43.939937+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ],
+      "review_flags": []
+    },
+    {
+      "incident_id": "INC-20261124-0E154907",
+      "internal_id": "e23c07f9275d6f3e6df41fdcfbc8294fa1b883fc6e9aa3a0546d564dd526874f",
+      "alert_type": "XSS",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "source_filename": "SIEM07_XSS_004_AI_Triage_6ba5792eef667c9cf8.json",
+      "source_sha256": "6eaa96bfc2ec8b81d3f27471afd03b15e6935fa4f66e755b9b93f21bb16bd47c",
+      "source_path": "[REDACTED_LOCAL_PATH]",
+      "ai_mode": "NEW_PROCESSING",
+      "ai_model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "ai_analysis": {
+        "summary": "Alert for potential Cross-Site Scripting (XSS) attack",
+        "severity": "Medium",
+        "potential_threat": "XSS",
+        "indicators": {
+          "source_ip": "192.168.171.129"
+        },
+        "false_positive_possibility": "The alert rule may trigger false positives due to the use of certain characters in legitimate requests or URL parameters.",
+        "recommended_actions": [
+          "Further investigation to confirm the validity of the alert and identify any potential impact."
+        ],
+        "evidence_limitations": "The original event timestamps represent historical laboratory data, HTTP 200 does not prove successful XSS execution, and the SIEM trigger does not independently prove browser-side execution.",
+        "confidence": "Moderate"
+      },
+      "ai_result_sha256": "304e63e74c09d5e2ffd246ef77781a8df2ff707fd4d3fb8e957fd41e310e1186",
+      "validation_status": "PASS_WITH_WARNINGS",
+      "validation_summary": {
+        "total_checks": 4,
+        "errors": 0,
+        "warnings": 1,
+        "informational": 3
+      },
+      "validation_findings": [
+        {
+          "level": "WARNING",
+          "code": "XSS_EXECUTION_OVERCLAIM",
+          "message": "HTTP evidence alone may not establish successful browser-side XSS execution."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_COMPARISON_DIFFERENCE",
+          "message": "severity: Week-2=High; Week-3=Medium. Difference requires analyst review, not automatic rejection."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_COMPARISON_DIFFERENCE",
+          "message": "confidence: Week-2=High; Week-3=Moderate. Difference requires analyst review, not automatic rejection."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_RECOMMENDATIONS_CHANGED",
+          "message": "Week-2 and Week-3 recommended actions differ; analyst should review safety and evidence alignment."
+        }
+      ],
+      "validation_sha256": "71995e185ac1c960503b99d87f43e8302413bac2789d24aea63d5ea18ed65d1b",
+      "playbook_id": "PB-004",
+      "playbook_name": "Cross-Site Scripting Investigation",
+      "playbook_sha256": "644f567e6fc14aa9007537666ef8256c7eec54387b9cab2a3e9bbf552ee5d5c5",
+      "investigation": [
+        {
+          "step_id": "INV-01",
+          "description": "Review suspicious HTTP request evidence",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "INV-02",
+          "description": "Verify source IP and affected endpoint",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "INV-03",
+          "description": "Distinguish attempted exploitation from confirmed execution",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "proposed_response": [
+        {
+          "step_id": "RES-01",
+          "description": "Recommend web application security review",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "RES-02",
+          "description": "Recommend input validation assessment",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "RES-03",
+          "description": "Recommend WAF policy review",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "recovery": [
+        {
+          "step_id": "REC-01",
+          "description": "Recommend authorized application security testing",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "REC-02",
+          "description": "Document analyst findings",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "execution_receipt": null,
+      "receipt_verified": false,
+      "receipt_sha256": null,
+      "integrity_checks": {
+        "source_integrity": true,
+        "ai_result_integrity": true,
+        "validation_integrity": true,
+        "playbook_integrity": true
+      },
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T17:22:56.592329+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ],
+      "review_flags": []
+    },
+    {
+      "incident_id": "INC-20261124-87AF0FC6",
+      "internal_id": "193b741e91c88a01917a29d0794057e2519c8ad3af79e816b7a12303bd739797",
+      "alert_type": "XSS",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "source_filename": "SIEM07_XSS_004_AI_Triage_843425fa737b11ef71.json",
+      "source_sha256": "ae56f8fbf252a894563c218b53b616f22444371b91bda6c0fbcb7e57d86e80f0",
+      "source_path": "[REDACTED_LOCAL_PATH]",
+      "ai_mode": "NEW_PROCESSING",
+      "ai_model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "ai_analysis": {
+        "summary": "Alert for potential XSS attack based on SIEM_WEB_004_XSS_ATTACK_DETECTED rule",
+        "severity": "Medium",
+        "potential_threat": "Cross-Site Scripting (XSS) attack",
+        "indicators": {
+          "source_ip": "192.168.171.129"
+        },
+        "false_positive_possibility": "Possible false positive due to the limitations mentioned",
+        "recommended_actions": [
+          "Further investigation to confirm the XSS attack and identify the source of the attack"
+        ],
+        "evidence_limitations": "HTTP 200 does not prove successful XSS execution, original event timestamps represent historical laboratory data, SIEM trigger does not independently prove browser-side execution",
+        "confidence": "Moderate"
+      },
+      "ai_result_sha256": "3446cd9a82b5d0bcfd69433129b80b282458f8ee0b5c72d9677d4685b0e273c2",
+      "validation_status": "PASS_WITH_WARNINGS",
+      "validation_summary": {
+        "total_checks": 4,
+        "errors": 0,
+        "warnings": 1,
+        "informational": 3
+      },
+      "validation_findings": [
+        {
+          "level": "WARNING",
+          "code": "XSS_EXECUTION_OVERCLAIM",
+          "message": "HTTP evidence alone may not establish successful browser-side XSS execution."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_COMPARISON_DIFFERENCE",
+          "message": "severity: Week-2=High; Week-3=Medium. Difference requires analyst review, not automatic rejection."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_COMPARISON_DIFFERENCE",
+          "message": "confidence: Week-2=High; Week-3=Moderate. Difference requires analyst review, not automatic rejection."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_RECOMMENDATIONS_CHANGED",
+          "message": "Week-2 and Week-3 recommended actions differ; analyst should review safety and evidence alignment."
+        }
+      ],
+      "validation_sha256": "ab618b5a1f14871da79e7263716ef9d287be9d46c56c9dc85e186492f7101fbc",
+      "playbook_id": "PB-004",
+      "playbook_name": "Cross-Site Scripting Investigation",
+      "playbook_sha256": "87ad61045eec7fbd0c776ba331bff2e009ff029fa3a4a6bdfd8e09234ddb3b52",
+      "investigation": [
+        {
+          "step_id": "INV-01",
+          "description": "Review suspicious HTTP request evidence",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "INV-02",
+          "description": "Verify source IP and affected endpoint",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "INV-03",
+          "description": "Distinguish attempted exploitation from confirmed execution",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "proposed_response": [
+        {
+          "step_id": "RES-01",
+          "description": "Recommend web application security review",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "RES-02",
+          "description": "Recommend input validation assessment",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "RES-03",
+          "description": "Recommend WAF policy review",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "recovery": [
+        {
+          "step_id": "REC-01",
+          "description": "Recommend authorized application security testing",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "REC-02",
+          "description": "Document analyst findings",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "execution_receipt": null,
+      "receipt_verified": false,
+      "receipt_sha256": null,
+      "integrity_checks": {
+        "source_integrity": true,
+        "ai_result_integrity": true,
+        "validation_integrity": true,
+        "playbook_integrity": true
+      },
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T17:23:09.695801+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ],
+      "review_flags": []
+    },
+    {
+      "incident_id": "INC-20261124-4CE0BB3F",
+      "internal_id": "3377dd2c8fd2a6740d52fd454048b3aeb37d1181dbdf0e59cfa92c3dc0a46837",
+      "alert_type": "XSS",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "source_filename": "SIEM07_XSS_004_AI_Triage_fad10ea2b71bb2bc09.json",
+      "source_sha256": "f6830ff7dda1276ff743adb22e814bec5ddf42df4f86dfd36cd7c312931b3bd6",
+      "source_path": "[REDACTED_LOCAL_PATH]",
+      "ai_mode": "NEW_PROCESSING",
+      "ai_model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "ai_analysis": {
+        "summary": "Alert for potential XSS attack based on SIEM_WEB_004_XSS_ATTACK_DETECTED rule",
+        "severity": "Medium",
+        "potential_threat": "Cross-Site Scripting (XSS) attack",
+        "indicators": {
+          "source_ip": "192.168.171.129"
+        },
+        "false_positive_possibility": "Possible false positive due to the limitations mentioned",
+        "recommended_actions": [
+          "Further investigation to confirm the XSS attack, including analysis of the response content and browser-side behavior."
+        ],
+        "evidence_limitations": "HTTP 200 does not prove successful XSS execution, original event timestamps represent historical laboratory data, SIEM trigger does not independently prove browser-side execution.",
+        "confidence": "Moderate"
+      },
+      "ai_result_sha256": "89a76170ae2297325d42ab7e23518ebe69843a287924525293cbedf19cda63de",
+      "validation_status": "PASS_WITH_WARNINGS",
+      "validation_summary": {
+        "total_checks": 4,
+        "errors": 0,
+        "warnings": 1,
+        "informational": 3
+      },
+      "validation_findings": [
+        {
+          "level": "WARNING",
+          "code": "XSS_EXECUTION_OVERCLAIM",
+          "message": "HTTP evidence alone may not establish successful browser-side XSS execution."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_COMPARISON_DIFFERENCE",
+          "message": "severity: Week-2=High; Week-3=Medium. Difference requires analyst review, not automatic rejection."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_COMPARISON_DIFFERENCE",
+          "message": "confidence: Week-2=Medium; Week-3=Moderate. Difference requires analyst review, not automatic rejection."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_RECOMMENDATIONS_CHANGED",
+          "message": "Week-2 and Week-3 recommended actions differ; analyst should review safety and evidence alignment."
+        }
+      ],
+      "validation_sha256": "edbc88f27913080121af92b68e403ce944ca79b6f6f5ab1f4e4af3b1a8051f1e",
+      "playbook_id": "PB-004",
+      "playbook_name": "Cross-Site Scripting Investigation",
+      "playbook_sha256": "3483f613fc2948cbc919b8dd47ab14f94b9ad28bafed86ff260f1d5fdd731030",
+      "investigation": [
+        {
+          "step_id": "INV-01",
+          "description": "Review suspicious HTTP request evidence",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "INV-02",
+          "description": "Verify source IP and affected endpoint",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "INV-03",
+          "description": "Distinguish attempted exploitation from confirmed execution",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "proposed_response": [
+        {
+          "step_id": "RES-01",
+          "description": "Recommend web application security review",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "RES-02",
+          "description": "Recommend input validation assessment",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "RES-03",
+          "description": "Recommend WAF policy review",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "recovery": [
+        {
+          "step_id": "REC-01",
+          "description": "Recommend authorized application security testing",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "REC-02",
+          "description": "Document analyst findings",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "execution_receipt": null,
+      "receipt_verified": false,
+      "receipt_sha256": null,
+      "integrity_checks": {
+        "source_integrity": true,
+        "ai_result_integrity": true,
+        "validation_integrity": true,
+        "playbook_integrity": true
+      },
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T17:23:22.821972+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ],
+      "review_flags": []
+    },
+    {
+      "incident_id": "INC-20261124-8265625F",
+      "internal_id": "fe1f6c3e839150bcf81fefaaf1f682c842b6ff5aca95de3c137c7f39929c6826",
+      "alert_type": "EXCHANGE",
+      "severity": "Medium",
+      "confidence": "Moderate",
+      "incident_status": "NEW",
+      "approval_status": "PENDING",
+      "response_status": "NOT_STARTED",
+      "source_filename": "SIEM_EXCHANGE_005_21c4515e439a0b3b6a3f_AI_Triage.json",
+      "source_sha256": "c1a8ccc7d28eeb8d760afdcdda9ccb4d615e4da32818158d033e8e422c75dbad",
+      "source_path": "[REDACTED_LOCAL_PATH]",
+      "ai_mode": "NEW_PROCESSING",
+      "ai_model": "mistral:7b-instruct-v0.3-q4_K_S",
+      "ai_analysis": {
+        "executive_summary": "Two suspicious Mailbox Export requests were detected on win-dc-exch01.attackrange.local, both targeting the Administrator account and specific subject lines. The exported draft folders were saved to local files on the server.",
+        "confirmed_observations": [
+          "Two instances of the 'New-MailboxExportRequest' command were executed on win-dc-exch01.attackrange.local.",
+          "The commands targeted the Administrator account.",
+          "The draft folders of the targeted mailboxes were included in the export.",
+          "The exported files were saved to local paths on the server."
+        ],
+        "suspicious_indicators": [
+          "The exported files were saved to local paths on the server, which may indicate unauthorized data exfiltration.",
+          "The specific subject lines ('Fay10dOWecFg' and 'AvcMRhPdI') may be indicative of a targeted attack.",
+          "The 'ExcludeDumpster' parameter was set to 'True', suggesting an attempt to bypass the mailbox recovery database."
+        ],
+        "unverified_hypotheses": [
+          "The purpose and intended recipient of the exported data remain unknown.",
+          "The origin of the commands remains unknown."
+        ],
+        "missing_evidence": [
+          "Evidence of the intended recipient of the exported data.",
+          "Evidence of the origin of the commands.",
+          "Evidence of any data exfiltration beyond the local files.",
+          "Evidence of any malicious intent or compromise."
+        ],
+        "recommended_actions": [
+          "Investigate the purpose and intended recipient of the exported data.",
+          "Investigate the origin of the commands.",
+          "Monitor for any further data exfiltration activities.",
+          "Review logs for any signs of malicious intent or compromise."
+        ],
+        "severity": "Medium",
+        "confidence": "Moderate"
+      },
+      "ai_result_sha256": "67f2d7b9e9303e600f47e30d0829bf4a70cf79247df1e45be561b8d24404d3f4",
+      "validation_status": "PASS",
+      "validation_summary": {
+        "total_checks": 5,
+        "errors": 0,
+        "warnings": 0,
+        "informational": 5
+      },
+      "validation_findings": [
+        {
+          "level": "INFO",
+          "code": "EXCHANGE_DETAIL_NOT_REPEATED",
+          "message": "Verified Exchange detail record_number=1892 is not explicitly repeated in AI output."
+        },
+        {
+          "level": "INFO",
+          "code": "EXCHANGE_DETAIL_NOT_REPEATED",
+          "message": "Verified Exchange detail record_number=1789 is not explicitly repeated in AI output."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_COMPARISON_DIFFERENCE",
+          "message": "severity: Week-2=High; Week-3=Medium. Difference requires analyst review, not automatic rejection."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_COMPARISON_DIFFERENCE",
+          "message": "confidence: Week-2=Medium; Week-3=Moderate. Difference requires analyst review, not automatic rejection."
+        },
+        {
+          "level": "INFO",
+          "code": "AI_RECOMMENDATIONS_CHANGED",
+          "message": "Week-2 and Week-3 recommended actions differ; analyst should review safety and evidence alignment."
+        }
+      ],
+      "validation_sha256": "459195cab9add59c116c653fbde8368bd879abb20530444e79a21470156f1d1a",
+      "playbook_id": "PB-005",
+      "playbook_name": "Exchange Security Investigation",
+      "playbook_sha256": "0e72dbf8baeef095f8525ea60751befdd9b2a7976bb76f0a7bd53725c174d3b3",
+      "investigation": [
+        {
+          "step_id": "INV-01",
+          "description": "Review correlated security events",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "INV-02",
+          "description": "Verify available indicators and affected entities",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "INV-03",
+          "description": "Assess evidence of unauthorized activity",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "proposed_response": [
+        {
+          "step_id": "RES-01",
+          "description": "Recommend affected account review",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "RES-02",
+          "description": "Recommend Exchange security configuration assessment",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "RES-03",
+          "description": "Recommend evidence preservation",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "recovery": [
+        {
+          "step_id": "REC-01",
+          "description": "Monitor related security events",
+          "status": "NOT_EXECUTED"
+        },
+        {
+          "step_id": "REC-02",
+          "description": "Document analyst findings",
+          "status": "NOT_EXECUTED"
+        }
+      ],
+      "execution_receipt": null,
+      "receipt_verified": false,
+      "receipt_sha256": null,
+      "integrity_checks": {
+        "source_integrity": true,
+        "ai_result_integrity": true,
+        "validation_integrity": true,
+        "playbook_integrity": true
+      },
+      "audit_history": [
+        {
+          "timestamp_utc": "2026-11-24T17:23:46.635796+00:00",
+          "action": "INCIDENT_CREATED",
+          "details": "Incident created from an existing SIEM alert."
+        }
+      ],
+      "review_flags": []
+    }
+  ],
+  "limitations": [
+    "Historical laboratory evidence is used.",
+    "AI severity and confidence require analyst validation.",
+    "PASS_WITH_WARNINGS does not establish confirmed compromise.",
+    "Missing evidence identifiers require manual review.",
+    "Response actions are simulated, not live containment.",
+    "Test fixture approvals are not real analyst decisions.",
+    "SHA256 checks depend on trusted reference hashes.",
+    "Replay protection is scoped to a single workspace.",
+    "Direct incident manager calls may bypass receipt checks.",
+    "Interactive confirmation is not analyst authentication."
+  ]
+}

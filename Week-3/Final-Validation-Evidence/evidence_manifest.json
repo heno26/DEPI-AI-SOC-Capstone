@@ -1,0 +1,291 @@
+{
+  "project": "DEPI-P5",
+  "phase": "Week-3",
+  "implementation_version": "1.2.0",
+  "generated_at_utc": "2026-11-24T19:18:22.967967+00:00",
+  "publication_type": "privacy-reviewed historical lab evidence",
+  "original_evidence_preserved": true,
+  "notes": [
+    "Original evidence remains unchanged.",
+    "Publication copies may contain privacy redactions.",
+    "Original report manifests and embedded hashes are historical references.",
+    "Publication hashes verify the published copies only.",
+    "Sanitized evidence is not a replacement for original forensic evidence.",
+    "Privacy redactions may also affect JSON object keys. Unique hash suffixes preserve distinct key identities."
+  ],
+  "files": [
+    {
+      "file": "01-Security-Validation/security_validation_report.json",
+      "original_sha256": "09cf9680513a932f9fccacfbefa1db089f58fb6b1647874d87158796046aca21",
+      "publication_sha256": "e46cd735db81e6795942cbc3b516bedc237b42118e3e522b375bbe1682901ea3",
+      "publication_bytes": 5912,
+      "sanitized": true
+    },
+    {
+      "file": "01-Security-Validation/response_hardening_test_report.json",
+      "original_sha256": "99f7358412b97bdd58072353489c089a293117ff0de7d80787c852bc7bccc7f4",
+      "publication_sha256": "6611902da2f8c491c51b9d4dd38a694349b7d1a4e87e652b14d2d5bf249b34cc",
+      "publication_bytes": 3515,
+      "sanitized": true
+    },
+    {
+      "file": "02-Regression-Testing/final_regression_report.json",
+      "original_sha256": "2efc507240129092069c6ebc8ec43489dd7036df16674f98524bc87827dd5111",
+      "publication_sha256": "2efc507240129092069c6ebc8ec43489dd7036df16674f98524bc87827dd5111",
+      "publication_bytes": 3376,
+      "sanitized": false
+    },
+    {
+      "file": "02-Regression-Testing/report_integration_test.json",
+      "original_sha256": "2ad25db4f47f4234f8c6dc0b4b41ebdbee23596a69c29ee8f96c7e7da610ca58",
+      "publication_sha256": "86f4d3408c2f5eb6e5ef9abbd4f99a4b9f45902e3409adf008efbd3f6f4c7af9",
+      "publication_bytes": 345,
+      "sanitized": true
+    },
+    {
+      "file": "02-Regression-Testing/unified_pipeline_test_report.json",
+      "original_sha256": "dfd1afe7568f7a42e79661fe62ec81dfae62fb94142d080ecb7454b97c02fbe6",
+      "publication_sha256": "960240e0d5424cfec3750bcbb446e23613f875dd6acb065a2725bc76d734c71a",
+      "publication_bytes": 5825,
+      "sanitized": true
+    },
+    {
+      "file": "03-End-to-End-Execution/execution_report.json",
+      "original_sha256": "d47bfee6964f871c615eb80107a0a49af9e513d54de1044c40fb193ef73e33b5",
+      "publication_sha256": "47077a5fb6e3cf84bd67c3fe80e5f5ef9a95a98d61ab666a880178d4686b33ab",
+      "publication_bytes": 9073,
+      "sanitized": true
+    },
+    {
+      "file": "03-End-to-End-Execution/incidents.json",
+      "original_sha256": "a64c8ba42875f445c3ce3a4bf98457ec4d6c3c6b316b4fe2df66feff5f90581d",
+      "publication_sha256": "74db01d4d829bf5da3e63177314261868f2902eeed9b5cc78c73812c4b818006",
+      "publication_bytes": 9821,
+      "sanitized": true
+    },
+    {
+      "file": "03-End-to-End-Execution/playbook_summary.json",
+      "original_sha256": "d7f2a1eb6b4b961a5eea6ecd5b57ae10a7341e66e802d772e879b9572e47095e",
+      "publication_sha256": "50ef13aee4838c2ee424e1e1318e9bf10406a318ee27b704fb9b3237b9f47b6f",
+      "publication_bytes": 2688,
+      "sanitized": true
+    },
+    {
+      "file": "04-Human-Approval-and-Response/INC-20261124-0199ACB3_playbook.json",
+      "original_sha256": "486a182e01c513dd09cf4dd48bf2165838cfd78c4a99a3a02f7bb2506da7a45a",
+      "publication_sha256": "4cc958bc6bdaa96fefc889d51597a8c70dd89c73f5d869d52a70effd5756665c",
+      "publication_bytes": 3733,
+      "sanitized": true
+    },
+    {
+      "file": "04-Human-Approval-and-Response/INC-20261124-0CB05471_playbook.json",
+      "original_sha256": "15ee3162f317086af78e9a841b176097ed4465f6deeb3f2792d56866169ffc79",
+      "publication_sha256": "5bb0096f261ff69cd2e5344eafbd0f4873d7dfe182bb406b060c088949947a78",
+      "publication_bytes": 3968,
+      "sanitized": true
+    },
+    {
+      "file": "04-Human-Approval-and-Response/INC-20261124-4AD69FFC_playbook.json",
+      "original_sha256": "0fbcf2d69fee6fd2585e48a0db863809baf9399a92a60ff80ae5583a905801e7",
+      "publication_sha256": "7aab7efa30ded56f23db4e459f05c8582a826eacc8565247716ba5495fd8f6da",
+      "publication_bytes": 3554,
+      "sanitized": true
+    },
+    {
+      "file": "04-Human-Approval-and-Response/execution_receipt.json",
+      "original_sha256": "18877b5ded2f7cf4a5c82bc3b072cc75d88300d140dc7ce97fc35abaa327d14a",
+      "publication_sha256": "18877b5ded2f7cf4a5c82bc3b072cc75d88300d140dc7ce97fc35abaa327d14a",
+      "publication_bytes": 2870,
+      "sanitized": false
+    },
+    {
+      "file": "04-Human-Approval-and-Response/response_summary.json",
+      "original_sha256": "8f22dac66d557cbef3fd350c89f8537d4ce4093eb5bf0fa8510a0994774e549e",
+      "publication_sha256": "8f22dac66d557cbef3fd350c89f8537d4ce4093eb5bf0fa8510a0994774e549e",
+      "publication_bytes": 3028,
+      "sanitized": false
+    },
+    {
+      "file": "04-Human-Approval-and-Response/incident_response.json",
+      "original_sha256": "a7b7300ae41afc069953ff8323d8437cab65c7a05017376756404f0c2c2a9be1",
+      "publication_sha256": "a7b7300ae41afc069953ff8323d8437cab65c7a05017376756404f0c2c2a9be1",
+      "publication_bytes": 2298,
+      "sanitized": false
+    },
+    {
+      "file": "05-Final-SOC-Report/Executive_Summary.html",
+      "original_sha256": "1a76ae7c3677bf12ed502f375ef04576c7b1719123c019004da25c54ed4a69f0",
+      "publication_sha256": "1a76ae7c3677bf12ed502f375ef04576c7b1719123c019004da25c54ed4a69f0",
+      "publication_bytes": 9183,
+      "sanitized": false
+    },
+    {
+      "file": "05-Final-SOC-Report/Incident_Register.csv",
+      "original_sha256": "30a903dc5fb30b6f5d8d0d77c4849f75731ccd60d0f39bf452d0b3d5b72eb0ae",
+      "publication_sha256": "30a903dc5fb30b6f5d8d0d77c4849f75731ccd60d0f39bf452d0b3d5b72eb0ae",
+      "publication_bytes": 1691,
+      "sanitized": false
+    },
+    {
+      "file": "05-Final-SOC-Report/report_manifest.json",
+      "original_sha256": "41fe320a1d6b63ef160da8fd4c4c8c1ca90d4ad26dc31b6a95039b8b4eeadc84",
+      "publication_sha256": "41fe320a1d6b63ef160da8fd4c4c8c1ca90d4ad26dc31b6a95039b8b4eeadc84",
+      "publication_bytes": 1125,
+      "sanitized": false
+    },
+    {
+      "file": "05-Final-SOC-Report/SOC_Final_Report.json",
+      "original_sha256": "b9b7ff9f780ea83a982df1e9b7f1f9911233a9a6e870122d61572657bec662b1",
+      "publication_sha256": "737dd48daf016fe40a033a92a03f2ee117a9e46aa21900903608d90925ff4d40",
+      "publication_bytes": 45261,
+      "sanitized": true
+    },
+    {
+      "file": "05-Final-SOC-Report/Incident_Reports/INC-20261124-0199ACB3.html",
+      "original_sha256": "1dcc112291d4b1820100edea6436b7b81a6ad5ba05dc8927a67556345623a5fa",
+      "publication_sha256": "1dcc112291d4b1820100edea6436b7b81a6ad5ba05dc8927a67556345623a5fa",
+      "publication_bytes": 12527,
+      "sanitized": false
+    },
+    {
+      "file": "05-Final-SOC-Report/Incident_Reports/INC-20261124-0CB05471.html",
+      "original_sha256": "76b2eeffccfe72e8d07aeaae4aae1e84e45b3e5a177f4b0d91923b63f17d4364",
+      "publication_sha256": "8fde1b92844fbb3f9dad4f1f7275f448daf2c8dc9b0e8bb6745523e4221f5d9f",
+      "publication_bytes": 10444,
+      "sanitized": true
+    },
+    {
+      "file": "05-Final-SOC-Report/Incident_Reports/INC-20261124-4AD69FFC.html",
+      "original_sha256": "2d6f4044af16c0c7f457d60535ed1d2d8711f7dfa13f794e1c70f156bf8fe6b3",
+      "publication_sha256": "2d6f4044af16c0c7f457d60535ed1d2d8711f7dfa13f794e1c70f156bf8fe6b3",
+      "publication_bytes": 9192,
+      "sanitized": false
+    },
+    {
+      "file": "05-Final-SOC-Report/Incident_Reports/INC-20261124-4F9C18DA.html",
+      "original_sha256": "1a356d23dc78cafcfdf094ed212842b6dec72c60c690f34cbd7ded128f3a7da0",
+      "publication_sha256": "b0389ee89bc492700a8459c05452307541173f4ae316fbb9621652ceda73d2f7",
+      "publication_bytes": 10334,
+      "sanitized": true
+    },
+    {
+      "file": "05-Final-SOC-Report/Incident_Reports/INC-20261124-6155939D.html",
+      "original_sha256": "c7b1e3c93f17bedd2b6097cbeae05ff18452794f41e4b2d8d110cb728ba203c6",
+      "publication_sha256": "c7b1e3c93f17bedd2b6097cbeae05ff18452794f41e4b2d8d110cb728ba203c6",
+      "publication_bytes": 8627,
+      "sanitized": false
+    },
+    {
+      "file": "05-Final-SOC-Report/Incident_Reports/INC-20261124-99086F14.html",
+      "original_sha256": "585cc439e46ec2d14f254fca503e4bf7213962e122531c5f8c83a2d44c2da30f",
+      "publication_sha256": "585cc439e46ec2d14f254fca503e4bf7213962e122531c5f8c83a2d44c2da30f",
+      "publication_bytes": 8618,
+      "sanitized": false
+    },
+    {
+      "file": "05-Final-SOC-Report/Incident_Reports/INC-20261124-CA6F1F72.html",
+      "original_sha256": "66c15a58d587fd18c21503015c447c59e40eaa3675e4741a3885830d23906f2c",
+      "publication_sha256": "66c15a58d587fd18c21503015c447c59e40eaa3675e4741a3885830d23906f2c",
+      "publication_bytes": 9005,
+      "sanitized": false
+    },
+    {
+      "file": "06-Reproducibility/execution_report.json",
+      "original_sha256": "60ddef2cf0e25158f21e547f53410eb0c4d43bdec19ea5512947a7577a9bb868",
+      "publication_sha256": "393eef2f39b860552cfa619b95cccd4edacae67dca86331a9f66d1305e2b59e2",
+      "publication_bytes": 8388,
+      "sanitized": true
+    },
+    {
+      "file": "06-Reproducibility/incidents.json",
+      "original_sha256": "0453a28d29e197fc038d640b6c3dbc2d34913c377d6e5b03f16c6c026132662c",
+      "publication_sha256": "e40286476894b8c69422587a6340c1b7ed601dae278f0bafdd91c7df860a5f84",
+      "publication_bytes": 7118,
+      "sanitized": true
+    },
+    {
+      "file": "06-Reproducibility/playbook_summary.json",
+      "original_sha256": "1f2b641947e8a48246ef3314ba22efe7440562a2fc896db155410fc0ca8abdf2",
+      "publication_sha256": "f4691e5ea9c6768bc4c7c69247e9646d649f4d48319a6f515c86eedd4555ff29",
+      "publication_bytes": 2688,
+      "sanitized": true
+    },
+    {
+      "file": "06-Reproducibility/Sample-Report/Executive_Summary.html",
+      "original_sha256": "b873bc40c049d191fae4fdc51b6b742537eaabf8669ed635e21c53f1455b6ecc",
+      "publication_sha256": "b873bc40c049d191fae4fdc51b6b742537eaabf8669ed635e21c53f1455b6ecc",
+      "publication_bytes": 8853,
+      "sanitized": false
+    },
+    {
+      "file": "06-Reproducibility/Sample-Report/Incident_Register.csv",
+      "original_sha256": "736fcd8f627d3e8981f56d6e46eaf04933a4eb7368b892578e4cc7577319525d",
+      "publication_sha256": "736fcd8f627d3e8981f56d6e46eaf04933a4eb7368b892578e4cc7577319525d",
+      "publication_bytes": 1707,
+      "sanitized": false
+    },
+    {
+      "file": "06-Reproducibility/Sample-Report/report_manifest.json",
+      "original_sha256": "64d4d8f155f216c84c3a5a5f3168c09eb1dfac2b75b258d6b091059e60bafa28",
+      "publication_sha256": "64d4d8f155f216c84c3a5a5f3168c09eb1dfac2b75b258d6b091059e60bafa28",
+      "publication_bytes": 1125,
+      "sanitized": false
+    },
+    {
+      "file": "06-Reproducibility/Sample-Report/SOC_Final_Report.json",
+      "original_sha256": "196703cce585d7dc309f0a1e566a0781ce04a00a428e8df640d7b3ebb87ac79c",
+      "publication_sha256": "7bf27574b0f6da60fb7970e42d8ac20f374ae9c8c98ead1d6bb68d48d0e68b8b",
+      "publication_bytes": 41502,
+      "sanitized": true
+    },
+    {
+      "file": "06-Reproducibility/Sample-Report/Incident_Reports/INC-20261124-0E154907.html",
+      "original_sha256": "de5edc3b4255762c752567ed35ebfa610ee920617eac3812295ae77b3cb52ad7",
+      "publication_sha256": "de5edc3b4255762c752567ed35ebfa610ee920617eac3812295ae77b3cb52ad7",
+      "publication_bytes": 8623,
+      "sanitized": false
+    },
+    {
+      "file": "06-Reproducibility/Sample-Report/Incident_Reports/INC-20261124-1DEA617B.html",
+      "original_sha256": "dbcaf4dd32b52a3764f6424620e771a32e9d53aad6aea3b4d043108c8f565a30",
+      "publication_sha256": "f4cc94e8dfffbbb25d2f38aa148610775dcdd02e2bd03150cf37960445d482a7",
+      "publication_bytes": 9827,
+      "sanitized": true
+    },
+    {
+      "file": "06-Reproducibility/Sample-Report/Incident_Reports/INC-20261124-4CE0BB3F.html",
+      "original_sha256": "01d8b28bff9078ef8356882ca619a4c1f366b79db5c09838c6353f1e272632ec",
+      "publication_sha256": "01d8b28bff9078ef8356882ca619a4c1f366b79db5c09838c6353f1e272632ec",
+      "publication_bytes": 8627,
+      "sanitized": false
+    },
+    {
+      "file": "06-Reproducibility/Sample-Report/Incident_Reports/INC-20261124-817E323D.html",
+      "original_sha256": "569bb4c9058f65cede38478390935ef5a93c3a43d15c09cd6f72ea47b355392e",
+      "publication_sha256": "569bb4c9058f65cede38478390935ef5a93c3a43d15c09cd6f72ea47b355392e",
+      "publication_bytes": 8766,
+      "sanitized": false
+    },
+    {
+      "file": "06-Reproducibility/Sample-Report/Incident_Reports/INC-20261124-8265625F.html",
+      "original_sha256": "6513ea587787e06b89b8afc0b102da784705333854aeadd4ef60646296353c70",
+      "publication_sha256": "6513ea587787e06b89b8afc0b102da784705333854aeadd4ef60646296353c70",
+      "publication_bytes": 10104,
+      "sanitized": false
+    },
+    {
+      "file": "06-Reproducibility/Sample-Report/Incident_Reports/INC-20261124-87AF0FC6.html",
+      "original_sha256": "09694d84598df54c3b5b3511f2a149409306c00629775a2a0610de7aa9359e76",
+      "publication_sha256": "09694d84598df54c3b5b3511f2a149409306c00629775a2a0610de7aa9359e76",
+      "publication_bytes": 8591,
+      "sanitized": false
+    },
+    {
+      "file": "06-Reproducibility/Sample-Report/Incident_Reports/INC-20261124-DB9FC597.html",
+      "original_sha256": "a39b120b8ae18a0551df0a1c29d3bbfd8c2e8ad7960d92a05e2231cc08c750d3",
+      "publication_sha256": "a39b120b8ae18a0551df0a1c29d3bbfd8c2e8ad7960d92a05e2231cc08c750d3",
+      "publication_bytes": 11810,
+      "sanitized": false
+    }
+  ]
+}

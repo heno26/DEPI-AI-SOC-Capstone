@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOC Executive &amp; Technical Summary</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    background: #eef2f6;
+    color: #243447;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+}
+
+main {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 35px;
+    background: white;
+}
+
+header {
+    background: #10283f;
+    color: white;
+    padding: 35px;
+    border-left: 8px solid #20b8b0;
+}
+
+h1 { margin: 0; font-size: 30px; }
+
+h2 {
+    color: #10283f;
+    margin-top: 35px;
+    border-bottom: 2px solid #20b8b0;
+    padding-bottom: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 13px;
+}
+
+th {
+    background: #183b56;
+    color: white;
+    text-align: left;
+}
+
+td, th {
+    padding: 11px;
+    border: 1px solid #dce4eb;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    vertical-align: top;
+}
+
+tr:nth-child(even) {
+    background: #f4f7fa;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.card {
+    flex: 1 1 150px;
+    background: #edf5f7;
+    padding: 20px;
+    border-top: 4px solid #20b8b0;
+}
+
+.card strong {
+    font-size: 30px;
+    display: block;
+}
+
+.notice {
+    background: #fff5dc;
+    border-left: 5px solid #e5a62c;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.badge {
+    padding: 5px 9px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.green { background: #d9f4e6; color: #17633d; }
+.red { background: #fde1e1; color: #a32424; }
+.amber { background: #fff0cd; color: #815600; }
+
+a { color: #087c87; }
+
+footer {
+    margin-top: 35px;
+    padding-top: 15px;
+    border-top: 1px solid #dce4eb;
+    font-size: 12px;
+    color: #627387;
+}
+
+@media print {
+    body { background: white; }
+    main { margin: 0; padding: 0; }
+    tr { break-inside: avoid; }
+    h2 { break-after: avoid; }
+    header { print-color-adjust: exact; }
+    th { print-color-adjust: exact; }
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<header>
+<h1>SOC Executive &amp; Technical Summary</h1>
+<p>AI-Assisted SOC Automation and Incident Response</p>
+<p>DEPI P5 | AI-Assisted SOC Automation</p>
+</header>
+
+<div class="notice">Report scope: HISTORICAL_LAB. Historical laboratory evidence and simulated responses. This report does not establish real-world containment.</div><div class="cards"><div class="card"><strong>8</strong>Evidence records</div><div class="card"><strong>7</strong>Incidents</div><div class="card"><strong>1</strong>Manual review</div><div class="card"><strong>1</strong>Verified simulations</div><div class="card"><strong>1</strong>Closed incidents</div></div><h2>1. Executive Summary</h2><p>The SOC pipeline processes historical security evidence through AI-assisted triage, semantic validation, incident management and SOAR planning. Human approval is required before response simulation.</p><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Orchestration run</td><td>ORCH-20261124T164149Z-0614ef17</td></tr><tr><td>Playbook run</td><td>PB-RUN-68e243875bd3</td></tr><tr><td>Generated at UTC</td><td>2026-11-24T16:51:35.785216+00:00</td></tr><tr><td>Report scope</td><td>HISTORICAL_LAB</td></tr><tr><td>Report status</td><td>GENERATED</td></tr></tbody></table><h2>2. Incident Register</h2><table><thead><tr><th>Incident</th><th>Alert Type</th><th>Severity</th><th>Validation</th><th>Incident Status</th><th>Approval</th><th>Response</th></tr></thead><tbody><tr><td><a href="Incident_Reports/INC-20261124-CA6F1F72.html">INC-20261124-CA6F1F72</a></td><td>WEB_HIGH_RATE</td><td><span class="badge amber">High</span></td><td><span class="badge amber">PASS_WITH_WARNINGS</span></td><td><span class="badge amber">NEW</span></td><td><span class="badge amber">PENDING</span></td><td><span class="badge amber">NOT_STARTED</span></td></tr><tr><td><a href="Incident_Reports/INC-20261124-0199ACB3.html">INC-20261124-0199ACB3</a></td><td>SSH_BRUTE_FORCE</td><td><span class="badge amber">Medium</span></td><td><span class="badge green">PASS</span></td><td><span class="badge green">CLOSED</span></td><td><span class="badge green">APPROVED</span></td><td><span class="badge green">COMPLETED</span></td></tr><tr><td><a href="Incident_Reports/INC-20261124-0CB05471.html">INC-20261124-0CB05471</a></td><td>MALWARE</td><td><span class="badge amber">Medium</span></td><td><span class="badge green">PASS</span></td><td><span class="badge amber">UNDER_INVESTIGATION</span></td><td><span class="badge red">REJECTED</span></td><td><span class="badge red">CANCELLED</span></td></tr><tr><td><a href="Incident_Reports/INC-20261124-4AD69FFC.html">INC-20261124-4AD69FFC</a></td><td>XSS</td><td><span class="badge amber">Medium</span></td><td><span class="badge amber">PASS_WITH_WARNINGS</span></td><td><span class="badge amber">PENDING_APPROVAL</span></td><td><span class="badge amber">PENDING</span></td><td><span class="badge amber">NOT_STARTED</span></td></tr><tr><td><a href="Incident_Reports/INC-20261124-99086F14.html">INC-20261124-99086F14</a></td><td>XSS</td><td><span class="badge amber">Medium</span></td><td><span class="badge amber">PASS_WITH_WARNINGS</span></td><td><span class="badge amber">NEW</span></td><td><span class="badge amber">PENDING</span></td><td><span class="badge amber">NOT_STARTED</span></td></tr><tr><td><a href="Incident_Reports/INC-20261124-6155939D.html">INC-20261124-6155939D</a></td><td>XSS</td><td><span class="badge amber">Medium</span></td><td><span class="badge amber">PASS_WITH_WARNINGS</span></td><td><span class="badge amber">NEW</span></td><td><span class="badge amber">PENDING</span></td><td><span class="badge amber">NOT_STARTED</span></td></tr><tr><td><a href="Incident_Reports/INC-20261124-4F9C18DA.html">INC-20261124-4F9C18DA</a></td><td>EXCHANGE</td><td><span class="badge amber">Medium</span></td><td><span class="badge green">PASS</span></td><td><span class="badge amber">NEW</span></td><td><span class="badge amber">PENDING</span></td><td><span class="badge amber">NOT_STARTED</span></td></tr></tbody></table><h2>3. Security Statistics</h2><h3>Alert Types</h3><table><thead><tr><th>Category</th><th>Count</th></tr></thead><tbody><tr><td>WEB_HIGH_RATE</td><td>1</td></tr><tr><td>SSH_BRUTE_FORCE</td><td>1</td></tr><tr><td>MALWARE</td><td>1</td></tr><tr><td>XSS</td><td>3</td></tr><tr><td>EXCHANGE</td><td>1</td></tr></tbody></table><h3>Severity Distribution</h3><table><thead><tr><th>Category</th><th>Count</th></tr></thead><tbody><tr><td>High</td><td>1</td></tr><tr><td>Medium</td><td>6</td></tr></tbody></table><h3>Validation Distribution</h3><table><thead><tr><th>Category</th><th>Count</th></tr></thead><tbody><tr><td>PASS_WITH_WARNINGS</td><td>4</td></tr><tr><td>PASS</td><td>3</td></tr></tbody></table><h3>Incident Status Distribution</h3><table><thead><tr><th>Category</th><th>Count</th></tr></thead><tbody><tr><td>NEW</td><td>4</td></tr><tr><td>CLOSED</td><td>1</td></tr><tr><td>UNDER_INVESTIGATION</td><td>1</td></tr><tr><td>PENDING_APPROVAL</td><td>1</td></tr></tbody></table><h3>Approval Distribution</h3><table><thead><tr><th>Category</th><th>Count</th></tr></thead><tbody><tr><td>PENDING</td><td>5</td></tr><tr><td>APPROVED</td><td>1</td></tr><tr><td>REJECTED</td><td>1</td></tr></tbody></table><h3>Response Distribution</h3><table><thead><tr><th>Category</th><th>Count</th></tr></thead><tbody><tr><td>NOT_STARTED</td><td>5</td></tr><tr><td>COMPLETED</td><td>1</td></tr><tr><td>CANCELLED</td><td>1</td></tr></tbody></table><h3>Ai Processing Distribution</h3><table><thead><tr><th>Category</th><th>Count</th></tr></thead><tbody><tr><td>REUSE</td><td>5</td></tr><tr><td>NEW_PROCESSING</td><td>2</td></tr></tbody></table><h2>4. Manual Review Queue</h2><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>source_filename</td><td>SIEM04_Real_Alert_AI_Triage_20261022T012722Z.json</td></tr><tr><td>manifest_status</td><td>REVIEW_REQUIRED</td></tr><tr><td>status</td><td>MANUAL_REVIEW_REQUIRED</td></tr><tr><td>human_validation_required</td><td>True</td></tr></tbody></table><h2>5. Lifecycle Consistency</h2><p>No additional lifecycle consistency flags were detected.</p><h2>6. Limitations and Human Review</h2><ul><li>Historical laboratory evidence is used.</li><li>AI severity and confidence require analyst validation.</li><li>PASS_WITH_WARNINGS does not establish confirmed compromise.</li><li>Missing evidence identifiers require manual review.</li><li>Response actions are simulated, not live containment.</li><li>Test fixture approvals are not real analyst decisions.</li><li>SHA256 checks depend on trusted reference hashes.</li><li>Replay protection is scoped to a single workspace.</li><li>Direct incident manager calls may bypass receipt checks.</li><li>Interactive confirmation is not analyst authentication.</li></ul>
+
+<footer>
+DEPI P5 - Scenario Orchestrator |
+Automated SOC Reporting |
+Simulation-only laboratory environment
+</footer>
+
+</main>
+</body>
+</html>

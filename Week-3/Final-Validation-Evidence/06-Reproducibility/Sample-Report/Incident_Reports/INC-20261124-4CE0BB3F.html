@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOC Incident Report</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    background: #eef2f6;
+    color: #243447;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+}
+
+main {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 35px;
+    background: white;
+}
+
+header {
+    background: #10283f;
+    color: white;
+    padding: 35px;
+    border-left: 8px solid #20b8b0;
+}
+
+h1 { margin: 0; font-size: 30px; }
+
+h2 {
+    color: #10283f;
+    margin-top: 35px;
+    border-bottom: 2px solid #20b8b0;
+    padding-bottom: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 13px;
+}
+
+th {
+    background: #183b56;
+    color: white;
+    text-align: left;
+}
+
+td, th {
+    padding: 11px;
+    border: 1px solid #dce4eb;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    vertical-align: top;
+}
+
+tr:nth-child(even) {
+    background: #f4f7fa;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.card {
+    flex: 1 1 150px;
+    background: #edf5f7;
+    padding: 20px;
+    border-top: 4px solid #20b8b0;
+}
+
+.card strong {
+    font-size: 30px;
+    display: block;
+}
+
+.notice {
+    background: #fff5dc;
+    border-left: 5px solid #e5a62c;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.badge {
+    padding: 5px 9px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.green { background: #d9f4e6; color: #17633d; }
+.red { background: #fde1e1; color: #a32424; }
+.amber { background: #fff0cd; color: #815600; }
+
+a { color: #087c87; }
+
+footer {
+    margin-top: 35px;
+    padding-top: 15px;
+    border-top: 1px solid #dce4eb;
+    font-size: 12px;
+    color: #627387;
+}
+
+@media print {
+    body { background: white; }
+    main { margin: 0; padding: 0; }
+    tr { break-inside: avoid; }
+    h2 { break-after: avoid; }
+    header { print-color-adjust: exact; }
+    th { print-color-adjust: exact; }
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<header>
+<h1>SOC Incident Report</h1>
+<p>INC-20261124-4CE0BB3F | XSS</p>
+<p>DEPI P5 | AI-Assisted SOC Automation</p>
+</header>
+
+<p><a href="../Executive_Summary.html">Return to executive summary</a></p><div class="notice">Report scope: HISTORICAL_LAB. All response actions are simulated.</div><h2>1. Incident Overview</h2><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>incident_id</td><td>INC-20261124-4CE0BB3F</td></tr><tr><td>alert_type</td><td>XSS</td></tr><tr><td>severity</td><td>Medium</td></tr><tr><td>confidence</td><td>Moderate</td></tr><tr><td>incident_status</td><td>NEW</td></tr><tr><td>approval_status</td><td>PENDING</td></tr><tr><td>response_status</td><td>NOT_STARTED</td></tr></tbody></table><h2>2. Evidence and Provenance</h2><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Source file</td><td>SIEM07_XSS_004_AI_Triage_fad10ea2b71bb2bc09.json</td></tr><tr><td>Source SHA256</td><td>f6830ff7dda1276ff743adb22e814bec5ddf42df4f86dfd36cd7c312931b3bd6</td></tr><tr><td>AI result SHA256</td><td>89a76170ae2297325d42ab7e23518ebe69843a287924525293cbedf19cda63de</td></tr><tr><td>Validation SHA256</td><td>edbc88f27913080121af92b68e403ce944ca79b6f6f5ab1f4e4af3b1a8051f1e</td></tr><tr><td>Playbook SHA256</td><td>3483f613fc2948cbc919b8dd47ab14f94b9ad28bafed86ff260f1d5fdd731030</td></tr><tr><td>Integrity checks</td><td>{
+  &quot;source_integrity&quot;: true,
+  &quot;ai_result_integrity&quot;: true,
+  &quot;validation_integrity&quot;: true,
+  &quot;playbook_integrity&quot;: true
+}</td></tr></tbody></table><h2>3. AI Triage Analysis</h2><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Model</td><td>mistral:7b-instruct-v0.3-q4_K_S</td></tr><tr><td>Processing mode</td><td>NEW_PROCESSING</td></tr><tr><td>Human review required</td><td>True</td></tr></tbody></table><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>summary</td><td>Alert for potential XSS attack based on SIEM_WEB_004_XSS_ATTACK_DETECTED rule</td></tr><tr><td>severity</td><td>Medium</td></tr><tr><td>potential_threat</td><td>Cross-Site Scripting (XSS) attack</td></tr><tr><td>indicators</td><td>{
+  &quot;source_ip&quot;: &quot;192.168.171.129&quot;
+}</td></tr><tr><td>false_positive_possibility</td><td>Possible false positive due to the limitations mentioned</td></tr><tr><td>recommended_actions</td><td>[
+  &quot;Further investigation to confirm the XSS attack, including analysis of the response content and browser-side behavior.&quot;
+]</td></tr><tr><td>evidence_limitations</td><td>HTTP 200 does not prove successful XSS execution, original event timestamps represent historical laboratory data, SIEM trigger does not independently prove browser-side execution.</td></tr><tr><td>confidence</td><td>Moderate</td></tr></tbody></table><h2>4. Semantic Validation</h2><span class="badge amber">PASS_WITH_WARNINGS</span><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>total_checks</td><td>4</td></tr><tr><td>errors</td><td>0</td></tr><tr><td>warnings</td><td>1</td></tr><tr><td>informational</td><td>3</td></tr></tbody></table><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>level</td><td>WARNING</td></tr><tr><td>code</td><td>XSS_EXECUTION_OVERCLAIM</td></tr><tr><td>message</td><td>HTTP evidence alone may not establish successful browser-side XSS execution.</td></tr></tbody></table><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>level</td><td>INFO</td></tr><tr><td>code</td><td>AI_COMPARISON_DIFFERENCE</td></tr><tr><td>message</td><td>severity: Week-2=High; Week-3=Medium. Difference requires analyst review, not automatic rejection.</td></tr></tbody></table><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>level</td><td>INFO</td></tr><tr><td>code</td><td>AI_COMPARISON_DIFFERENCE</td></tr><tr><td>message</td><td>confidence: Week-2=Medium; Week-3=Moderate. Difference requires analyst review, not automatic rejection.</td></tr></tbody></table><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>level</td><td>INFO</td></tr><tr><td>code</td><td>AI_RECOMMENDATIONS_CHANGED</td></tr><tr><td>message</td><td>Week-2 and Week-3 recommended actions differ; analyst should review safety and evidence alignment.</td></tr></tbody></table><h2>5. SOAR Playbook</h2><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Playbook ID</td><td>PB-004</td></tr><tr><td>Playbook name</td><td>Cross-Site Scripting Investigation</td></tr></tbody></table><h3>Investigation</h3><table><thead><tr><th>Step ID</th><th>Planned Action</th><th>Plan Status</th></tr></thead><tbody><tr><td>INV-01</td><td>Review suspicious HTTP request evidence</td><td>NOT_EXECUTED</td></tr><tr><td>INV-02</td><td>Verify source IP and affected endpoint</td><td>NOT_EXECUTED</td></tr><tr><td>INV-03</td><td>Distinguish attempted exploitation from confirmed execution</td><td>NOT_EXECUTED</td></tr></tbody></table><h3>Proposed Response</h3><table><thead><tr><th>Step ID</th><th>Planned Action</th><th>Plan Status</th></tr></thead><tbody><tr><td>RES-01</td><td>Recommend web application security review</td><td>NOT_EXECUTED</td></tr><tr><td>RES-02</td><td>Recommend input validation assessment</td><td>NOT_EXECUTED</td></tr><tr><td>RES-03</td><td>Recommend WAF policy review</td><td>NOT_EXECUTED</td></tr></tbody></table><h3>Recovery</h3><table><thead><tr><th>Step ID</th><th>Planned Action</th><th>Plan Status</th></tr></thead><tbody><tr><td>REC-01</td><td>Recommend authorized application security testing</td><td>NOT_EXECUTED</td></tr><tr><td>REC-02</td><td>Document analyst findings</td><td>NOT_EXECUTED</td></tr></tbody></table><h2>6. Response Execution</h2><p>No execution receipt is available. No completed simulation is claimed.</p><h2>7. Audit History</h2><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>timestamp_utc</td><td>2026-11-24T17:23:22.821972+00:00</td></tr><tr><td>action</td><td>INCIDENT_CREATED</td></tr><tr><td>details</td><td>Incident created from an existing SIEM alert.</td></tr></tbody></table><h2>8. Review Notes</h2><p>No additional lifecycle consistency flags were detected by the report generator.</p>
+
+<footer>
+DEPI P5 - Scenario Orchestrator |
+Automated SOC Reporting |
+Simulation-only laboratory environment
+</footer>
+
+</main>
+</body>
+</html>

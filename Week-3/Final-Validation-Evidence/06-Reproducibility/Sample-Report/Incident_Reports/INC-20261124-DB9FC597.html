@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOC Incident Report</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    background: #eef2f6;
+    color: #243447;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+}
+
+main {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 35px;
+    background: white;
+}
+
+header {
+    background: #10283f;
+    color: white;
+    padding: 35px;
+    border-left: 8px solid #20b8b0;
+}
+
+h1 { margin: 0; font-size: 30px; }
+
+h2 {
+    color: #10283f;
+    margin-top: 35px;
+    border-bottom: 2px solid #20b8b0;
+    padding-bottom: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 13px;
+}
+
+th {
+    background: #183b56;
+    color: white;
+    text-align: left;
+}
+
+td, th {
+    padding: 11px;
+    border: 1px solid #dce4eb;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    vertical-align: top;
+}
+
+tr:nth-child(even) {
+    background: #f4f7fa;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.card {
+    flex: 1 1 150px;
+    background: #edf5f7;
+    padding: 20px;
+    border-top: 4px solid #20b8b0;
+}
+
+.card strong {
+    font-size: 30px;
+    display: block;
+}
+
+.notice {
+    background: #fff5dc;
+    border-left: 5px solid #e5a62c;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.badge {
+    padding: 5px 9px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.green { background: #d9f4e6; color: #17633d; }
+.red { background: #fde1e1; color: #a32424; }
+.amber { background: #fff0cd; color: #815600; }
+
+a { color: #087c87; }
+
+footer {
+    margin-top: 35px;
+    padding-top: 15px;
+    border-top: 1px solid #dce4eb;
+    font-size: 12px;
+    color: #627387;
+}
+
+@media print {
+    body { background: white; }
+    main { margin: 0; padding: 0; }
+    tr { break-inside: avoid; }
+    h2 { break-after: avoid; }
+    header { print-color-adjust: exact; }
+    th { print-color-adjust: exact; }
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<header>
+<h1>SOC Incident Report</h1>
+<p>INC-20261124-DB9FC597 | SSH_BRUTE_FORCE</p>
+<p>DEPI P5 | AI-Assisted SOC Automation</p>
+</header>
+
+<p><a href="../Executive_Summary.html">Return to executive summary</a></p><div class="notice">Report scope: HISTORICAL_LAB. All response actions are simulated.</div><h2>1. Incident Overview</h2><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>incident_id</td><td>INC-20261124-DB9FC597</td></tr><tr><td>alert_type</td><td>SSH_BRUTE_FORCE</td></tr><tr><td>severity</td><td>Medium</td></tr><tr><td>confidence</td><td>Moderate</td></tr><tr><td>incident_status</td><td>NEW</td></tr><tr><td>approval_status</td><td>PENDING</td></tr><tr><td>response_status</td><td>NOT_STARTED</td></tr></tbody></table><h2>2. Evidence and Provenance</h2><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Source file</td><td>SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json</td></tr><tr><td>Source SHA256</td><td>cb1ea5fe6e96eb4d67f57fc8727599e638dd6a507e666d4668a29a87c56137db</td></tr><tr><td>AI result SHA256</td><td>d9285e394a9e1bb7539804f75076f3c153cb304c313b439bfcc2437f0da557a1</td></tr><tr><td>Validation SHA256</td><td>6e8ed725ff58d7316c0cf86a8c56eeb4c6327fac5036fca16ed23cac7815a66f</td></tr><tr><td>Playbook SHA256</td><td>695075bc1e69d15639e0a213c7d723ba5b82a2da99ac8e65e164643e0d500cf0</td></tr><tr><td>Integrity checks</td><td>{
+  &quot;source_integrity&quot;: true,
+  &quot;ai_result_integrity&quot;: true,
+  &quot;validation_integrity&quot;: true,
+  &quot;playbook_integrity&quot;: true
+}</td></tr></tbody></table><h2>3. AI Triage Analysis</h2><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Model</td><td>mistral:7b-instruct-v0.3-q4_K_S</td></tr><tr><td>Processing mode</td><td>NEW_PROCESSING</td></tr><tr><td>Human review required</td><td>True</td></tr></tbody></table><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>summary</td><td>SSH Brute Force Attempt on IP 183.62.140.253</td></tr><tr><td>severity</td><td>Medium</td></tr><tr><td>potential_threat</td><td>Possible password guessing attack</td></tr><tr><td>indicators</td><td>{
+  &quot;source_ip&quot;: &quot;183.62.140.253&quot;,
+  &quot;username&quot;: &quot;root&quot;,
+  &quot;failed_password_count&quot;: 30,
+  &quot;top_usernames&quot;: [
+    {
+      &quot;username&quot;: &quot;root&quot;,
+      &quot;failed_attempts&quot;: 30
+    }
+  ],
+  &quot;sampled_source_lines&quot;: [
+    {
+      &quot;source_line&quot;: 1621,
+      &quot;original_datetime_no_year&quot;: &quot;Dec 10 11:01:01&quot;,
+      &quot;username&quot;: &quot;root&quot;,
+      &quot;src_port&quot;: 51395,
+      &quot;raw_log_sha256&quot;: &quot;197fb1b1bb4379f4fb8c70cda99e01883253e9645a902926e8b7f7d2c6c6f575&quot;
+    },
+    {
+      &quot;source_line&quot;: 1624,
+      &quot;original_datetime_no_year&quot;: &quot;Dec 10 11:01:02&quot;,
+      &quot;username&quot;: &quot;root&quot;,
+      &quot;src_port&quot;: 51830,
+      &quot;raw_log_sha256&quot;: &quot;411330851efc9225a2f98268e0be54f9d0cc0ef763c6abd6a0b792e8d689a2a9&quot;
+    },
+    {
+      &quot;source_line&quot;: 1627,
+      &quot;original_datetime_no_year&quot;: &quot;Dec 10 11:01:04&quot;,
+      &quot;username&quot;: &quot;root&quot;,
+      &quot;src_port&quot;: 52182,
+      &quot;raw_log_sha256&quot;: &quot;a235606397e8e0869048b3be3882e747e8f6de4aa7cec9f72b97df47819e2d70&quot;
+    },
+    {
+      &quot;source_line&quot;: 1630,
+      &quot;original_datetime_no_year&quot;: &quot;Dec 10 11:01:06&quot;,
+      &quot;username&quot;: &quot;root&quot;,
+      &quot;src_port&quot;: 52545,
+      &quot;raw_log_sha256&quot;: &quot;46e88525dc20bc1787fadff65d733a6cfb0f7c28ffc92182256569e2cb39fabe&quot;
+    },
+    {
+      &quot;source_line&quot;: 1633,
+      &quot;original_datetime_no_year&quot;: &quot;Dec 10 11:01:08&quot;,
+      &quot;username&quot;: &quot;root&quot;,
+      &quot;src_port&quot;: 52850,
+      &quot;raw_log_sha256&quot;: &quot;5b34d08afc64ce12eacc68d2555a5d365dd4318d4eb636bf821ed12ea04cd2d0&quot;
+    },
+    {
+      &quot;source_line&quot;: 1636,
+      &quot;original_datetime_no_year&quot;: &quot;Dec 10 11:01:10&quot;,
+      &quot;username&quot;: &quot;root&quot;,
+      &quot;src_port&quot;: 53160,
+      &quot;raw_log_sha256&quot;: &quot;64bd060a4a68c22af474ede08018e94d3fa92a9b39f24ecdc6297ae0ab30e99f&quot;
+    },
+    {
+      &quot;source_line&quot;: 1639,
+      &quot;original_datetime_no_year&quot;: &quot;Dec 10 11:01:13&quot;,
+      &quot;username&quot;: &quot;root&quot;,
+      &quot;src_port&quot;: 53630,
+      &quot;raw_log_sha256&quot;: &quot;2edf664e1bd5669692473bfdc2d9a6a857ba84670709d187117213a61927f1bd&quot;
+    },
+    {
+      &quot;source_line&quot;: 1642,
+      &quot;original_datetime_no_year&quot;: &quot;Dec 10 11:01:14&quot;,
+      &quot;username&quot;: &quot;root&quot;,
+      &quot;src_port&quot;: 54049,
+      &quot;raw_log_sha256&quot;: &quot;28e64e86d1570611990636bd0a42d5fb9ee9576b45084962706addf0fd2f61b2&quot;
+    }
+  ]
+}</td></tr><tr><td>false_positive_possibility</td><td>Misconfigured or automated script activity</td></tr><tr><td>recommended_actions</td><td>[
+  &quot;Investigate the source IP for potential malicious activity&quot;,
+  &quot;Review system logs for other signs of compromise&quot;,
+  &quot;Consider rate limiting or blocking the source IP&quot;,
+  &quot;Review SSH configuration for strong password policies&quot;
+]</td></tr><tr><td>evidence_limitations</td><td>No year/timezone information in timestamps</td></tr><tr><td>confidence</td><td>Moderate</td></tr></tbody></table><h2>4. Semantic Validation</h2><span class="badge green">PASS</span><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>total_checks</td><td>6</td></tr><tr><td>errors</td><td>0</td></tr><tr><td>warnings</td><td>0</td></tr><tr><td>informational</td><td>6</td></tr></tbody></table><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>level</td><td>INFO</td></tr><tr><td>code</td><td>SOURCE_IP_VERIFIED</td></tr><tr><td>message</td><td>Source IP matches original evidence: 183.62.140.253.</td></tr></tbody></table><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>level</td><td>INFO</td></tr><tr><td>code</td><td>USERNAME_COUNT_VERIFIED</td></tr><tr><td>message</td><td>root: 30 failed attempts verified.</td></tr></tbody></table><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>level</td><td>INFO</td></tr><tr><td>code</td><td>TOTAL_COUNT_VERIFIED</td></tr><tr><td>message</td><td>Verified failed-password count: 30.</td></tr></tbody></table><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>level</td><td>INFO</td></tr><tr><td>code</td><td>SSH_THRESHOLD_CONFIRMED</td></tr><tr><td>message</td><td>Verified failures (30) meet/exceed threshold (5).</td></tr></tbody></table><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>level</td><td>INFO</td></tr><tr><td>code</td><td>AI_COMPARISON_DIFFERENCE</td></tr><tr><td>message</td><td>confidence: Week-2=High; Week-3=Moderate. Difference requires analyst review, not automatic rejection.</td></tr></tbody></table><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>level</td><td>INFO</td></tr><tr><td>code</td><td>AI_RECOMMENDATIONS_CHANGED</td></tr><tr><td>message</td><td>Week-2 and Week-3 recommended actions differ; analyst should review safety and evidence alignment.</td></tr></tbody></table><h2>5. SOAR Playbook</h2><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Playbook ID</td><td>PB-002</td></tr><tr><td>Playbook name</td><td>SSH Brute Force Investigation</td></tr></tbody></table><h3>Investigation</h3><table><thead><tr><th>Step ID</th><th>Planned Action</th><th>Plan Status</th></tr></thead><tbody><tr><td>INV-01</td><td>Review failed authentication events</td><td>NOT_EXECUTED</td></tr><tr><td>INV-02</td><td>Verify source IP and targeted accounts</td><td>NOT_EXECUTED</td></tr><tr><td>INV-03</td><td>Check for evidence of successful authentication</td><td>NOT_EXECUTED</td></tr></tbody></table><h3>Proposed Response</h3><table><thead><tr><th>Step ID</th><th>Planned Action</th><th>Plan Status</th></tr></thead><tbody><tr><td>RES-01</td><td>Recommend source IP containment review</td><td>NOT_EXECUTED</td></tr><tr><td>RES-02</td><td>Recommend targeted account security review</td><td>NOT_EXECUTED</td></tr><tr><td>RES-03</td><td>Recommend SSH authentication hardening</td><td>NOT_EXECUTED</td></tr></tbody></table><h3>Recovery</h3><table><thead><tr><th>Step ID</th><th>Planned Action</th><th>Plan Status</th></tr></thead><tbody><tr><td>REC-01</td><td>Monitor authentication events</td><td>NOT_EXECUTED</td></tr><tr><td>REC-02</td><td>Document analyst findings</td><td>NOT_EXECUTED</td></tr></tbody></table><h2>6. Response Execution</h2><p>No execution receipt is available. No completed simulation is claimed.</p><h2>7. Audit History</h2><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>timestamp_utc</td><td>2026-11-24T17:22:13.738618+00:00</td></tr><tr><td>action</td><td>INCIDENT_CREATED</td></tr><tr><td>details</td><td>Incident created from an existing SIEM alert.</td></tr></tbody></table><h2>8. Review Notes</h2><p>No additional lifecycle consistency flags were detected by the report generator.</p>
+
+<footer>
+DEPI P5 - Scenario Orchestrator |
+Automated SOC Reporting |
+Simulation-only laboratory environment
+</footer>
+
+</main>
+</body>
+</html>

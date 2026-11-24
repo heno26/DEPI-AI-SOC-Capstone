@@ -1,0 +1,77 @@
+{
+  "project": "DEPI-P5",
+  "component": "SOAR Playbook Engine",
+  "version": "1.0.0",
+  "generated_at_utc": "2026-11-24T16:42:29.312372+00:00",
+  "orchestration_run_id": "ORCH-20261124T164149Z-0614ef17",
+  "execution_mode": "SIMULATION_ONLY",
+  "status": "COMPLETED",
+  "total_incidents": 7,
+  "plans_created": 7,
+  "blocked_incidents": 0,
+  "human_approval_required": true,
+  "responses_executed": 0,
+  "external_actions_executed": 0,
+  "incident_store_unchanged": true,
+  "status_counts": {
+    "PLAN_PENDING_APPROVAL": 7
+  },
+  "records": [
+    {
+      "incident_id": "INC-20261124-CA6F1F72",
+      "alert_type": "WEB_HIGH_RATE",
+      "status": "PLAN_PENDING_APPROVAL",
+      "playbook_id": "PB-001",
+      "plan_path": "[REDACTED_LOCAL_PATH]",
+      "plan_sha256": "803a295c99bb8201ab98bf2167d6a2b20baa89d16858f23c4e63ec87b9a79bcd"
+    },
+    {
+      "incident_id": "INC-20261124-0199ACB3",
+      "alert_type": "SSH_BRUTE_FORCE",
+      "status": "PLAN_PENDING_APPROVAL",
+      "playbook_id": "PB-002",
+      "plan_path": "[REDACTED_LOCAL_PATH]",
+      "plan_sha256": "486a182e01c513dd09cf4dd48bf2165838cfd78c4a99a3a02f7bb2506da7a45a"
+    },
+    {
+      "incident_id": "INC-20261124-0CB05471",
+      "alert_type": "MALWARE",
+      "status": "PLAN_PENDING_APPROVAL",
+      "playbook_id": "PB-003",
+      "plan_path": "[REDACTED_LOCAL_PATH]",
+      "plan_sha256": "15ee3162f317086af78e9a841b176097ed4465f6deeb3f2792d56866169ffc79"
+    },
+    {
+      "incident_id": "INC-20261124-4AD69FFC",
+      "alert_type": "XSS",
+      "status": "PLAN_PENDING_APPROVAL",
+      "playbook_id": "PB-004",
+      "plan_path": "[REDACTED_LOCAL_PATH]",
+      "plan_sha256": "0fbcf2d69fee6fd2585e48a0db863809baf9399a92a60ff80ae5583a905801e7"
+    },
+    {
+      "incident_id": "INC-20261124-99086F14",
+      "alert_type": "XSS",
+      "status": "PLAN_PENDING_APPROVAL",
+      "playbook_id": "PB-004",
+      "plan_path": "[REDACTED_LOCAL_PATH]",
+      "plan_sha256": "6a237edd9ade076359d35678b5882711a15593ea49532cbfd1e7e19bcf7ef9eb"
+    },
+    {
+      "incident_id": "INC-20261124-6155939D",
+      "alert_type": "XSS",
+      "status": "PLAN_PENDING_APPROVAL",
+      "playbook_id": "PB-004",
+      "plan_path": "[REDACTED_LOCAL_PATH]",
+      "plan_sha256": "dba7480f84da898daafa7c162080167184344db3fc560afafdce687a164d2816"
+    },
+    {
+      "incident_id": "INC-20261124-4F9C18DA",
+      "alert_type": "EXCHANGE",
+      "status": "PLAN_PENDING_APPROVAL",
+      "playbook_id": "PB-005",
+      "plan_path": "[REDACTED_LOCAL_PATH]",
+      "plan_sha256": "654a7cd1842b5de8ad8b0d9b29afed91e2fe8cbd0901288e3ee6b5cd48e7ac79"
+    }
+  ]
+}

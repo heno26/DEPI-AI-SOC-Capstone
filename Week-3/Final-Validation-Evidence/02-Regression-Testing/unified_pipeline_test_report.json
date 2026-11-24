@@ -1,0 +1,145 @@
+{
+  "project": "DEPI-P5",
+  "component": "Unified Pipeline Integration",
+  "version": "1.0.0",
+  "generated_at_utc": "2026-11-24T16:07:31.559876+00:00",
+  "execution_mode": "SIMULATION_ONLY",
+  "approval_mode": "TEST_FIXTURE",
+  "tests_passed": 12,
+  "tests_failed": 0,
+  "status": "PASS",
+  "tests": [
+    {
+      "test_id": "UP-01",
+      "description": "Incident status",
+      "status": "PASS",
+      "details": {
+        "command": "status",
+        "incident_id": null,
+        "exit_code": 0,
+        "output": "\n===== SOC INCIDENT STATUS =====\nINC-20261124-8F28A32D | WEB_HIGH_RATE | NEW | PENDING | NOT_STARTED\nINC-20261124-6B4B0C0B | SSH_BRUTE_FORCE | NEW | PENDING | NOT_STARTED\nINC-20261124-09AD0650 | MALWARE | NEW | PENDING | NOT_STARTED\nINC-20261124-AE730E0D | XSS | NEW | PENDING | NOT_STARTED\nINC-20261124-68206E0B | XSS | NEW | PENDING | NOT_STARTED\nINC-20261124-8F80FD71 | XSS | NEW | PENDING | NOT_STARTED\nINC-20261124-D41C9B8A | EXCHANGE | NEW | PENDING | NOT_STARTED\n\nTotal incidents: 7\n"
+      }
+    },
+    {
+      "test_id": "UP-02",
+      "description": "Response without approval",
+      "status": "PASS",
+      "details": {
+        "command": "respond",
+        "incident_id": "INC-20261124-AE730E0D",
+        "exit_code": 1,
+        "output": "ERROR: Human approval is required\n"
+      }
+    },
+    {
+      "test_id": "UP-03",
+      "description": "Incident review",
+      "status": "PASS",
+      "details": {
+        "command": "review",
+        "incident_id": "INC-20261124-6B4B0C0B",
+        "exit_code": 0,
+        "output": "PASS: Incident status changed to UNDER_INVESTIGATION\nPASS: Incident status changed to PENDING_APPROVAL\nIncident ready for human decision.\n"
+      }
+    },
+    {
+      "test_id": "UP-04",
+      "description": "Invalid confirmation",
+      "status": "PASS",
+      "details": {
+        "command": "approve",
+        "incident_id": "INC-20261124-6B4B0C0B",
+        "exit_code": 1,
+        "output": "Incident: INC-20261124-6B4B0C0B\nAlert type: SSH_BRUTE_FORCE\nDecision: APPROVE\nExecution mode: SIMULATION_ONLY\nType APPROVE to confirm: ERROR: Human decision cancelled\n"
+      }
+    },
+    {
+      "test_id": "UP-05",
+      "description": "Human rejection",
+      "status": "PASS",
+      "details": {
+        "command": "reject",
+        "incident_id": "INC-20261124-09AD0650",
+        "exit_code": 0,
+        "output": "Incident: INC-20261124-09AD0650\nAlert type: MALWARE\nDecision: REJECT\nExecution mode: SIMULATION_ONLY\nType REJECT to confirm: PASS: Approval decision recorded: REJECT\n"
+      }
+    },
+    {
+      "test_id": "UP-06",
+      "description": "Response after rejection",
+      "status": "PASS",
+      "details": {
+        "command": "respond",
+        "incident_id": "INC-20261124-09AD0650",
+        "exit_code": 1,
+        "output": "ERROR: Human approval is required\n"
+      }
+    },
+    {
+      "test_id": "UP-07",
+      "description": "Human approval",
+      "status": "PASS",
+      "details": {
+        "command": "approve",
+        "incident_id": "INC-20261124-6B4B0C0B",
+        "exit_code": 0,
+        "output": "Incident: INC-20261124-6B4B0C0B\nAlert type: SSH_BRUTE_FORCE\nDecision: APPROVE\nExecution mode: SIMULATION_ONLY\nType APPROVE to confirm: PASS: Approval decision recorded: APPROVE\n"
+      }
+    },
+    {
+      "test_id": "UP-08",
+      "description": "Verified response completion",
+      "status": "PASS",
+      "details": {
+        "command": "respond",
+        "incident_id": "INC-20261124-6B4B0C0B",
+        "exit_code": 0,
+        "output": "PASS: Response workflow started. No external response action was executed.\n============================================================\nDEPI P5 - RESPONSE SIMULATOR V1.0\n============================================================\nSIMULATION_COMPLETED: INC-20261124-6B4B0C0B\n\n===== RESPONSE SUMMARY =====\nIncidents: 1\nBlocked: 0\nAuthorized: 0\nSimulated: 1\nExternal actions: 0\nIncident store unchanged: True\nReport: [REDACTED_LOCAL_PATH]\nPASS: Response workflow marked as COMPLETED.\n\n===== VERIFIED RESPONSE =====\nIncident: INC-20261124-6B4B0C0B\nSimulated steps: 8\nReceipt: [REDACTED_LOCAL_PATH]\nReceipt SHA256: ac6940c6abc8e89a25430f73bfb5fd3f29475094d0ef8123241470f18c435eb6\nExternal actions: 0\nResponse status: COMPLETED\n",
+        "receipt": "[REDACTED_LOCAL_PATH]",
+        "receipt_sha256": "ac6940c6abc8e89a25430f73bfb5fd3f29475094d0ef8123241470f18c435eb6"
+      }
+    },
+    {
+      "test_id": "UP-09",
+      "description": "Duplicate response",
+      "status": "PASS",
+      "details": {
+        "command": "respond",
+        "incident_id": "INC-20261124-6B4B0C0B",
+        "exit_code": 1,
+        "output": "ERROR: Response already completed\n"
+      }
+    },
+    {
+      "test_id": "UP-10",
+      "description": "Tampered receipt closure",
+      "status": "PASS",
+      "details": {
+        "command": "close",
+        "incident_id": "INC-20261124-6B4B0C0B",
+        "exit_code": 1,
+        "output": "ERROR: Receipt playbook hash mismatch\n"
+      }
+    },
+    {
+      "test_id": "UP-11",
+      "description": "Valid incident closure",
+      "status": "PASS",
+      "details": {
+        "command": "close",
+        "incident_id": "INC-20261124-6B4B0C0B",
+        "exit_code": 0,
+        "output": "Type CLOSE to confirm incident closure: PASS: Incident status changed to RESOLVED\nPASS: Incident status changed to CLOSED\nIncident closed successfully.\n"
+      }
+    },
+    {
+      "test_id": "UP-12",
+      "description": "Original data integrity",
+      "status": "PASS",
+      "details": {
+        "protected_files": 42,
+        "original_files_unchanged": true
+      }
+    }
+  ]
+}
