@@ -1,0 +1,181 @@
+{
+  "draft_id": "stage_S3",
+  "created_utc": "2026-11-24T13:55:34+00:00",
+  "generator": "Week-4/IR/ai_report_drafter.py",
+  "prompt_file": "Week-4/Prompts/stage_summary.txt",
+  "prompt_sha256": "8db9d6862a1cab9f8d0a61a6dce175ee73522cc8001a295cc0fbcb017b61c619",
+  "facts": [
+    {
+      "ref": "E001",
+      "raw": "[E001] Stage S3 \"Credential attack\" (Credential Access, domain auth) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "text": "Stage S3 \"Credential attack\" (Credential Access, domain auth) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E002",
+      "raw": "[E002] SIEM-AUTH-002 \"SSH brute force against root\" (auth). key facts: source_ip=183.62.140.253; failed_count=30; threshold=5; username=root; minute=Dec 10 11:01; dataset=OpenSSH_2k.log. events: Dec 10 11:01 30 failed passwords for root from 183.62.140.253 within one minute (threshold 5); Dec 10 11:01:01 Failed password for root from 183.62.140.253 port 51395 (source line 1621); Dec 10 11:01:13 Failed password for root from 183.62.140.253 port 53630 (source line 1639); Dec 10 11:01:14 Failed password for root from 183.62.140.253 port 54049 (source line 1642). 30 source records in total. AI severity Medium, confidence High, QA SCHEMA_PASS_HUMAN_REVIEW_REQUIRED. human review: PENDING (Week-2 REVIEW_REQUIRED; Week-3 tickets Pending Review)",
+      "text": "SIEM-AUTH-002 \"SSH brute force against root\" (auth). key facts: source_ip=183.62.140.253; failed_count=30; threshold=5; username=root; minute=Dec 10 11:01; dataset=OpenSSH_2k.log. events: Dec 10 11:01 30 failed passwords for root from 183.62.140.253 within one minute (threshold 5); Dec 10 11:01:01 Failed password for root from 183.62.140.253 port 51395 (source line 1621); Dec 10 11:01:13 Failed password for root from 183.62.140.253 port 53630 (source line 1639); Dec 10 11:01:14 Failed password for root from 183.62.140.253 port 54049 (source line 1642). 30 source records in total. AI severity Medium, confidence High, QA SCHEMA_PASS_HUMAN_REVIEW_REQUIRED. human review: PENDING (Week-2 REVIEW_REQUIRED; Week-3 tickets Pending Review)",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json"
+    },
+    {
+      "ref": "E003",
+      "raw": "[E003] SIEM-AUTH-002 ATT&CK T1110.001 Brute Force: Password Guessing (Credential Access), confidence label: observed_pattern. Basis: 30 failed passwords for root from one source in one minute, threshold 5 (SIEM06 Auth evidence)",
+      "text": "SIEM-AUTH-002 ATT&CK T1110.001 Brute Force: Password Guessing (Credential Access), confidence label: observed_pattern. Basis: 30 failed passwords for root from one source in one minute, threshold 5 (SIEM06 Auth evidence)",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E004",
+      "raw": "[E004] SIEM-AUTH-002 not established / limitation: Repeated failed SSH password attempts are detected; successful intrusion is not established.",
+      "text": "SIEM-AUTH-002 not established / limitation: Repeated failed SSH password attempts are detected; successful intrusion is not established.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json"
+    },
+    {
+      "ref": "E005",
+      "raw": "[E005] SIEM-AUTH-002 not established / limitation: Original SSH event dates have no year/timezone.",
+      "text": "SIEM-AUTH-002 not established / limitation: Original SSH event dates have no year/timezone.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json"
+    },
+    {
+      "ref": "E006",
+      "raw": "[E006] SIEM-AUTH-002 not established / limitation: Trigger-key correlation is rule-level, not proven exact alert-row linkage.",
+      "text": "SIEM-AUTH-002 not established / limitation: Trigger-key correlation is rule-level, not proven exact alert-row linkage.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json"
+    },
+    {
+      "ref": "E007",
+      "raw": "[E007] SIEM-AUTH-002 read-only check result: 2000 log lines searched; 867 lines mention 183.62.140.253; 'Accepted' logins from 183.62.140.253: 0; 'Accepted' logins for root: 0. The whole file contains 1 'Accepted' line(s), from other sources.",
+      "text": "SIEM-AUTH-002 read-only check result: 2000 log lines searched; 867 lines mention 183.62.140.253; 'Accepted' logins from 183.62.140.253: 0; 'Accepted' logins for root: 0. The whole file contains 1 'Accepted' line(s), from other sources.",
+      "source": "Week-2/Data/SIEM-BruteForce-SSH/OpenSSH_2k.log"
+    },
+    {
+      "ref": "E008",
+      "raw": "[E008] SIEM-AUTH-002 proposal (containment, not executed, approved): Propose 1h edge rate-limit for 183.62.140.253 (NOT executed)",
+      "text": "SIEM-AUTH-002 proposal (containment, not executed, approved): Propose 1h edge rate-limit for 183.62.140.253 (NOT executed)",
+      "source": "Week-3/SOAR/tickets/a823d14b61f061f7954e2e3eb7f18d6af6280f53242fe8c711d5cd78bcefdbae.json"
+    },
+    {
+      "ref": "E009",
+      "raw": "[E009] SIEM-AUTH-002 proposal (eradication, not executed, approved): Disable SSH password authentication for root (PermitRootLogin prohibit-password / key-only).",
+      "text": "SIEM-AUTH-002 proposal (eradication, not executed, approved): Disable SSH password authentication for root (PermitRootLogin prohibit-password / key-only).",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E010",
+      "raw": "[E010] LT-01 \"SSH password guessing (verified timeline)\" (auth). key facts: host=LabSZ; source_ip=183.62.140.253; usernames=dff, root, zhangyan. events: Dec 10 10:54:27 invalid_user_reference; Dec 10 10:54:27 pam_authentication_failure; Dec 10 10:54:51 pam_authentication_failure; Dec 10 10:54:52 failed_password user=root from 183.62.140.253. 42 source records in total. human review: Corrected",
+      "text": "LT-01 \"SSH password guessing (verified timeline)\" (auth). key facts: host=LabSZ; source_ip=183.62.140.253; usernames=dff, root, zhangyan. events: Dec 10 10:54:27 invalid_user_reference; Dec 10 10:54:27 pam_authentication_failure; Dec 10 10:54:51 pam_authentication_failure; Dec 10 10:54:52 failed_password user=root from 183.62.140.253. 42 source records in total. human review: Corrected",
+      "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+    },
+    {
+      "ref": "E011",
+      "raw": "[E011] LT-01 ATT&CK T1110.001 Brute Force: Password Guessing (Credential Access), confidence label: observed_pattern. Basis: Repeated failed passwords / invalid users from 183.62.140.253 (LT-01 verified timeline)",
+      "text": "LT-01 ATT&CK T1110.001 Brute Force: Password Guessing (Credential Access), confidence label: observed_pattern. Basis: Repeated failed passwords / invalid users from 183.62.140.253 (LT-01 verified timeline)",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E012",
+      "raw": "[E012] LT-01 read-only check result: 2000 log lines searched; 867 lines mention 183.62.140.253; 'Accepted' logins from 183.62.140.253: 0; 'Accepted' logins for dff, root, zhangyan: 0. The whole file contains 1 'Accepted' line(s), from other sources.",
+      "text": "LT-01 read-only check result: 2000 log lines searched; 867 lines mention 183.62.140.253; 'Accepted' logins from 183.62.140.253: 0; 'Accepted' logins for dff, root, zhangyan: 0. The whole file contains 1 'Accepted' line(s), from other sources.",
+      "source": "Week-2/Data/SIEM-BruteForce-SSH/OpenSSH_2k.log"
+    },
+    {
+      "ref": "E013",
+      "raw": "[E013] LT-01 proposal (containment, not executed, approved): Block SSH from 183.62.140.253 on host LabSZ (same source as SIEM-AUTH-002).",
+      "text": "LT-01 proposal (containment, not executed, approved): Block SSH from 183.62.140.253 on host LabSZ (same source as SIEM-AUTH-002).",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E014",
+      "raw": "[E014] Analyst question for this stage: Did any SSH password guess succeed (Accepted password) for root or another account?",
+      "text": "Analyst question for this stage: Did any SSH password guess succeed (Accepted password) for root or another account?",
+      "source": "Week-4/Config/scenario.json"
+    }
+  ],
+  "status": "generated",
+  "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+  "options": {
+    "temperature": 0.2,
+    "repeat_penalty": 1.15,
+    "num_ctx": 6144,
+    "num_predict": 1500,
+    "seed": 42
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+      "options": {
+        "temperature": 0.2,
+        "repeat_penalty": 1.15,
+        "num_ctx": 6144,
+        "num_predict": 1500,
+        "seed": 42
+      },
+      "outcome": "success",
+      "seconds": 230.39
+    }
+  ],
+  "done_reason": "stop",
+  "truncated": false,
+  "tokens_per_second": 2.03,
+  "wall_seconds": 230.39,
+  "eval_count": 396,
+  "text": "1. STAGE SUMMARY: During Stage S3, an SSH brute force attack against the root account was detected on IP address 183.62.140.253. The attack occurred at Dec 10 11:01 and involved 30 failed password attempts within one minute.\n\n2. EVIDENCE OBSERVED:\n   - SSH brute force against root from IP address 183.62.140.253 [E002]\n   - Repeated failed SSH password attempts for the same IP address in a lab environment [E010]\n\n3. ATTACK TECHNIQUES:\n   - T1110.001 Brute Force: Password Guessing (Credential Access) [E003, E011], confidence label: observed_pattern\n\n4. WHAT IS NOT ESTABLISHED:\n   - Whether any successful intrusion occurred as a result of the SSH brute force attack [E004]\n   - The exact year and timezone for the original SSH event dates [E005]\n   - Exact alert-row linkage between the rule-level trigger and the detected events [E006]\n   - Whether any 'Accepted' logins occurred for root or other accounts from IP address 183.62.140.253 [E007, E012]\n\n5. ANALYST QUESTION: Did any SSH password guess succeed (Accepted password) for root or another account? [E014]\n\n6. REVIEW STATUS: DRAFT - AI-generated, requires human analyst validation before use.",
+  "sections": {
+    "STAGE SUMMARY": "During Stage S3, an SSH brute force attack against the root account was detected on IP address 183.62.140.253. The attack occurred at Dec 10 11:01 and involved 30 failed password attempts within one minute.",
+    "EVIDENCE OBSERVED": "- SSH brute force against root from IP address 183.62.140.253 [E002]\n   - Repeated failed SSH password attempts for the same IP address in a lab environment [E010]",
+    "ATTACK TECHNIQUES": "- T1110.001 Brute Force: Password Guessing (Credential Access) [E003, E011], confidence label: observed_pattern",
+    "WHAT IS NOT ESTABLISHED": "- Whether any successful intrusion occurred as a result of the SSH brute force attack [E004]\n   - The exact year and timezone for the original SSH event dates [E005]\n   - Exact alert-row linkage between the rule-level trigger and the detected events [E006]\n   - Whether any 'Accepted' logins occurred for root or other accounts from IP address 183.62.140.253 [E007, E012]",
+    "ANALYST QUESTION": "Did any SSH password guess succeed (Accepted password) for root or another account? [E014]",
+    "REVIEW STATUS": "DRAFT - AI-generated, requires human analyst validation before use."
+  },
+  "validation": {
+    "flags": [],
+    "severity_counts": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "heading_normalization": "inline 'N. HEADING: text' split before parsing (Week-4)",
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review"
+  },
+  "validation_original": {
+    "flags": [
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "STAGE SUMMARY",
+        "message": "Expected section 'STAGE SUMMARY' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "ANALYST QUESTION",
+        "message": "Expected section 'ANALYST QUESTION' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F002"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "REVIEW STATUS",
+        "message": "Expected section 'REVIEW STATUS' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F003"
+      }
+    ],
+    "severity_counts": {
+      "high": 0,
+      "medium": 3,
+      "low": 0
+    },
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  }
+}

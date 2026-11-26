@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Runtime logs
+*.log
+Week-4/Logs/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Backups
+*.bak
+*.old
+*.BEFORE_FINAL*
+
+# Local secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+# Week-4 obsolete backup and review artifacts
+Week-4/Dashboard-V2/Backend/app.py.bak-20261125-035531
+Week-4/Output/incident_BEFORE_NAME_FIX_20261125-025904.json
+Week-4/Simulation/analyst_decisions_BEFORE_ATTRIBUTION_20261125-024731.jsonl
+Week-4/Simulation/analyst_attribution_review.csv

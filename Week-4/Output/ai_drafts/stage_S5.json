@@ -1,0 +1,157 @@
+{
+  "draft_id": "stage_S5",
+  "created_utc": "2026-11-24T14:05:24+00:00",
+  "generator": "Week-4/IR/ai_report_drafter.py",
+  "prompt_file": "Week-4/Prompts/stage_summary.txt",
+  "prompt_sha256": "8db9d6862a1cab9f8d0a61a6dce175ee73522cc8001a295cc0fbcb017b61c619",
+  "facts": [
+    {
+      "ref": "E001",
+      "raw": "[E001] Stage S5 \"Persistence and privilege-sensitive activity\" (Persistence / Privilege Escalation, domain endpoint) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "text": "Stage S5 \"Persistence and privilege-sensitive activity\" (Persistence / Privilege Escalation, domain endpoint) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E002",
+      "raw": "[E002] RT-04 \"Winlogon Shell persistence\" (endpoint). key facts: host=IEWIN7; payload_path=C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe; registry_key=HKU\\S-1-5-21-3583694148-1414552638-2922671848-1000\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Shell; dropper=C:\\Users\\IEUser\\Downloads\\a.exe. events: 2019-06-14T22:22:17.9883707Z Sysmon 1 process create C:\\Users\\IEUser\\Downloads\\a.exe (parent C:\\Windows\\explorer.exe); 2019-06-14T22:22:21.5039957Z Sysmon 11 file create C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe by C:\\Users\\IEUser\\Downloads\\a.exe; 2019-06-14T22:23:13.9727457Z Sysmon 1 process create C:\\Windows\\explorer.exe (parent C:\\Windows\\System32\\userinit.exe); 2019-06-14T22:23:16.5928629Z Sysmon 1 process create C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe (parent C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe). 7 source records in total. human review: Corrected",
+      "text": "RT-04 \"Winlogon Shell persistence\" (endpoint). key facts: host=IEWIN7; payload_path=C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe; registry_key=HKU\\S-1-5-21-3583694148-1414552638-2922671848-1000\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Shell; dropper=C:\\Users\\IEUser\\Downloads\\a.exe. events: 2019-06-14T22:22:17.9883707Z Sysmon 1 process create C:\\Users\\IEUser\\Downloads\\a.exe (parent C:\\Windows\\explorer.exe); 2019-06-14T22:22:21.5039957Z Sysmon 11 file create C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe by C:\\Users\\IEUser\\Downloads\\a.exe; 2019-06-14T22:23:13.9727457Z Sysmon 1 process create C:\\Windows\\explorer.exe (parent C:\\Windows\\System32\\userinit.exe); 2019-06-14T22:23:16.5928629Z Sysmon 1 process create C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe (parent C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe). 7 source records in total. human review: Corrected",
+      "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-04-Persistence/RT-04-Verified-Timeline.csv"
+    },
+    {
+      "ref": "E003",
+      "raw": "[E003] RT-04 ATT&CK T1547.004 Boot or Logon Autostart Execution: Winlogon Helper DLL (Persistence), confidence label: observed_pattern. Basis: Sysmon ID 13 sets Winlogon\\Shell to include BRE6BgE2JubB.exe; payload later started by userinit.exe (RT-04 case study)",
+      "text": "RT-04 ATT&CK T1547.004 Boot or Logon Autostart Execution: Winlogon Helper DLL (Persistence), confidence label: observed_pattern. Basis: Sysmon ID 13 sets Winlogon\\Shell to include BRE6BgE2JubB.exe; payload later started by userinit.exe (RT-04 case study)",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E004",
+      "raw": "[E004] RT-04 proposal (containment, not executed, approved): Isolate IEWIN7 until the persistence entry is removed.",
+      "text": "RT-04 proposal (containment, not executed, approved): Isolate IEWIN7 until the persistence entry is removed.",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E005",
+      "raw": "[E005] RT-04 proposal (eradication, not executed, approved): Restore HKU\\S-1-5-21-3583694148-1414552638-2922671848-1000\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Shell to explorer.exe only and delete C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe.",
+      "text": "RT-04 proposal (eradication, not executed, approved): Restore HKU\\S-1-5-21-3583694148-1414552638-2922671848-1000\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Shell to explorer.exe only and delete C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe.",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E006",
+      "raw": "[E006] RT-04 proposal (eradication, not executed, approved): Collect and hash C:\\Users\\IEUser\\Downloads\\a.exe before deletion for malware analysis.",
+      "text": "RT-04 proposal (eradication, not executed, approved): Collect and hash C:\\Users\\IEUser\\Downloads\\a.exe before deletion for malware analysis.",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E007",
+      "raw": "[E007] LT-02 \"Privilege-sensitive sudo commands\" (endpoint). key facts: distinct_commands=5. events: 2024-08-06T14:01:04.626000Z PROCTITLE: sudo systemctl status auditd.service (service_status_context); 2024-08-06T14:01:04.646000Z PROCTITLE: sudo systemctl status auditd.service (service_status_context); 2024-08-06T14:36:57.368000Z PROCTITLE: sudo setcap cap_setuid+ep ./priv_esc (capability_change_candidate); 2024-08-06T14:36:57.376000Z PROCTITLE: sudo setcap cap_setuid+ep ./priv_esc (capability_change_candidate). 21 source records in total. human review: Corrected",
+      "text": "LT-02 \"Privilege-sensitive sudo commands\" (endpoint). key facts: distinct_commands=5. events: 2024-08-06T14:01:04.626000Z PROCTITLE: sudo systemctl status auditd.service (service_status_context); 2024-08-06T14:01:04.646000Z PROCTITLE: sudo systemctl status auditd.service (service_status_context); 2024-08-06T14:36:57.368000Z PROCTITLE: sudo setcap cap_setuid+ep ./priv_esc (capability_change_candidate); 2024-08-06T14:36:57.376000Z PROCTITLE: sudo setcap cap_setuid+ep ./priv_esc (capability_change_candidate). 21 source records in total. human review: Corrected",
+      "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+    },
+    {
+      "ref": "E008",
+      "raw": "[E008] LT-02 ATT&CK T1548.003 Abuse Elevation Control Mechanism: Sudo and Sudo Caching (Privilege Escalation), confidence label: candidate. Basis: sudo PROCTITLE records only; execution outcome and authorisation not established (LT-02 case study)",
+      "text": "LT-02 ATT&CK T1548.003 Abuse Elevation Control Mechanism: Sudo and Sudo Caching (Privilege Escalation), confidence label: candidate. Basis: sudo PROCTITLE records only; execution outcome and authorisation not established (LT-02 case study)",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E009",
+      "raw": "[E009] LT-02 not established / limitation: PROCTITLE-only evidence: execution outcome, authorisation and successful escalation not established.",
+      "text": "LT-02 not established / limitation: PROCTITLE-only evidence: execution outcome, authorisation and successful escalation not established.",
+      "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+    },
+    {
+      "ref": "E010",
+      "raw": "[E010] Analyst question for this stage: Is the Winlogon Shell modification authorised, and were the sudo commands approved administration?",
+      "text": "Analyst question for this stage: Is the Winlogon Shell modification authorised, and were the sudo commands approved administration?",
+      "source": "Week-4/Config/scenario.json"
+    }
+  ],
+  "status": "generated",
+  "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+  "options": {
+    "temperature": 0.2,
+    "repeat_penalty": 1.15,
+    "num_ctx": 6144,
+    "num_predict": 1500,
+    "seed": 42
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+      "options": {
+        "temperature": 0.2,
+        "repeat_penalty": 1.15,
+        "num_ctx": 6144,
+        "num_predict": 1500,
+        "seed": 42
+      },
+      "outcome": "success",
+      "seconds": 223.84
+    }
+  ],
+  "done_reason": "stop",
+  "truncated": false,
+  "tokens_per_second": 2.16,
+  "wall_seconds": 223.84,
+  "eval_count": 424,
+  "text": "1. STAGE SUMMARY: During Stage S5 of scenario W4-TT-01, an attacker establishes persistence on host IEWIN7 using a Winlogon Shell technique (RT-04) and attempts privilege escalation through sudo commands (LT-02).\n\n2. EVIDENCE OBSERVED:\n   - Persistent execution of BRE6BgE2JubB.exe on host IEWIN7 [E002]\n   - Creation of Winlogon Shell persistence entry in the registry [E003]\n   - Five distinct sudo commands executed on an unspecified endpoint [E007]\n   - Abuse Elevation Control Mechanism: Sudo and Sudo Caching (Privilege Escalation) candidate technique for LT-02 [E008]\n\n3. ATTACK TECHNIQUES:\n   - T1547.004 (Boot or Logon Autostart Execution: Winlogon Helper DLL, Persistence) observed_pattern [E003]\n   - T1548.003 (Abuse Elevation Control Mechanism: Sudo and Sudo Caching, Privilege Escalation), candidate [E008]\n\n4. WHAT IS NOT ESTABLISHED:\n   - Whether the Winlogon Shell modification was authorized [E010]\n   - The outcome of the sudo commands execution [E009]\n   - Successful privilege escalation through LT-02 [E009]\n\n5. ANALYST QUESTION: Is the Winlogon Shell modification authorised, and were the sudo commands approved administration? [E010]\n\n6. REVIEW STATUS: DRAFT - AI-generated, requires human analyst validation before use.",
+  "sections": {
+    "STAGE SUMMARY": "During Stage S5 of scenario W4-TT-01, an attacker establishes persistence on host IEWIN7 using a Winlogon Shell technique (RT-04) and attempts privilege escalation through sudo commands (LT-02).",
+    "EVIDENCE OBSERVED": "- Persistent execution of BRE6BgE2JubB.exe on host IEWIN7 [E002]\n   - Creation of Winlogon Shell persistence entry in the registry [E003]\n   - Five distinct sudo commands executed on an unspecified endpoint [E007]\n   - Abuse Elevation Control Mechanism: Sudo and Sudo Caching (Privilege Escalation) candidate technique for LT-02 [E008]",
+    "ATTACK TECHNIQUES": "- T1547.004 (Boot or Logon Autostart Execution: Winlogon Helper DLL, Persistence) observed_pattern [E003]\n   - T1548.003 (Abuse Elevation Control Mechanism: Sudo and Sudo Caching, Privilege Escalation), candidate [E008]",
+    "WHAT IS NOT ESTABLISHED": "- Whether the Winlogon Shell modification was authorized [E010]\n   - The outcome of the sudo commands execution [E009]\n   - Successful privilege escalation through LT-02 [E009]",
+    "ANALYST QUESTION": "Is the Winlogon Shell modification authorised, and were the sudo commands approved administration? [E010]",
+    "REVIEW STATUS": "DRAFT - AI-generated, requires human analyst validation before use."
+  },
+  "validation": {
+    "flags": [],
+    "severity_counts": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "heading_normalization": "inline 'N. HEADING: text' split before parsing (Week-4)",
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review"
+  },
+  "validation_original": {
+    "flags": [
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "STAGE SUMMARY",
+        "message": "Expected section 'STAGE SUMMARY' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "ANALYST QUESTION",
+        "message": "Expected section 'ANALYST QUESTION' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F002"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "REVIEW STATUS",
+        "message": "Expected section 'REVIEW STATUS' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F003"
+      }
+    ],
+    "severity_counts": {
+      "high": 0,
+      "medium": 3,
+      "low": 0
+    },
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  }
+}

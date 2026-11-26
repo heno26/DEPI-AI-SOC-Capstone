@@ -1,0 +1,78 @@
+{
+  "generated_at_utc": "2026-11-25T15:52:55.145670+00:00",
+  "generator": "DEPI-P5 Interactive AI Engine",
+  "assessment_id": "SIEM-WEB-001_20261125T155255Z.json",
+  "model": "mistral:7b-instruct-v0.3-q4_K_S",
+  "scenario_id": "W4-TT-01",
+  "case_id": "SIEM-WEB-001",
+  "assessment_type": "NEW_AI_ASSESSMENT",
+  "source_evidence_preserved": true,
+  "evidence_integrity": [
+    {
+      "path": "Week-2/Evidence/SIEM-OpenObserve/SIEM05_Auto_Alert_AI_Triage_469dc3deb13af6394b.json",
+      "expected_sha256": "b264f37f246d18a5c3e4263d4ff39f78290879ac45efe1051ffa538f7fcbb9de",
+      "exists": false,
+      "hash_verified": false
+    },
+    {
+      "path": "Week-2/Evidence/SIEM-OpenObserve/SIEM05_Controlled_AI_Reanalysis_20261023.json",
+      "expected_sha256": "4a6258e99277b52e9bdaa7bcffe60520d1e19c4bcb6a0370b0ae68dcdc37aca2",
+      "exists": false,
+      "hash_verified": false
+    }
+  ],
+  "human_validation_required": true,
+  "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+  "response_execution": false,
+  "assessment": {
+    "case_id": "SIEM-WEB-001",
+    "assessment_type": "NEW_AI_ASSESSMENT",
+    "severity": "Medium",
+    "confidence": "Moderate",
+    "verdict": "Potential high-rate HTTP requests from an internal IP address",
+    "executive_summary": "112 HTTP requests from IP address 255.102.154.224 in one minute, exceeding the threshold of 80. The top paths are /3.php, /1.php, and /40.php.",
+    "observed_facts": [
+      "source_ip: 255.102.154.224",
+      "request_count: 112",
+      "threshold: 80",
+      "minute_utc: 2025-10-07T02:14Z",
+      "top_path: /3.php",
+      "request_uri: /3.php, /1.php, /40.php (top paths)"
+    ],
+    "analytical_findings": [
+      "High rate of HTTP requests from an internal IP address (SIEM05 evidence)"
+    ],
+    "hypotheses": [
+      "Possible active scanning (T1595) based on high rate of HTTP requests"
+    ],
+    "mitre_mapping": [
+      {
+        "technique": "T1595",
+        "name": "Active Scanning",
+        "tactic": "Reconnaissance"
+      }
+    ],
+    "evidence_references": [
+      "W001",
+      "SIEM05_Auto_Alert_AI_Triage_469dc3deb13af6394b.json"
+    ],
+    "evidence_gaps": [
+      "Missing original evidence files",
+      "Lack of proven row-level ID join",
+      "A firing trigger is checked within a recent interval but lacks a proven row-level ID join",
+      "AI findings require human verification",
+      "Replay dataset is not live production traffic"
+    ],
+    "recommended_actions": [
+      "Investigate the source IP address",
+      "Review the WAF rules",
+      "Consider implementing rate limiting for the identified paths"
+    ],
+    "prohibited_assumptions": [
+      "Assumption of successful compromise",
+      "Assumption of malware execution or persistence"
+    ],
+    "human_validation_required": true
+  },
+  "raw_model_response": "{\n  \"case_id\": \"SIEM-WEB-001\",\n  \"assessment_type\": \"NEW_AI_ASSESSMENT\",\n  \"severity\": \"Medium\",\n  \"confidence\": \"Moderate\",\n  \"verdict\": \"Potential high-rate HTTP requests from an internal IP address\",\n  \"executive_summary\": \"112 HTTP requests from IP address 255.102.154.224 in one minute, exceeding the threshold of 80. The top paths are /3.php, /1.php, and /40.php.\",\n  \"observed_facts\": [\n    \"source_ip: 255.102.154.224\",\n    \"request_count: 112\",\n    \"threshold: 80\",\n    \"minute_utc: 2025-10-07T02:14Z\",\n    \"top_path: /3.php\",\n    \"request_uri: /3.php, /1.php, /40.php (top paths)\"\n  ],\n  \"analytical_findings\": [\n    \"High rate of HTTP requests from an internal IP address (SIEM05 evidence)\"\n  ],\n  \"hypotheses\": [\n    \"Possible active scanning (T1595) based on high rate of HTTP requests\"\n  ],\n  \"mitre_mapping\": [\n    {\n      \"technique\": \"T1595\",\n      \"name\": \"Active Scanning\",\n      \"tactic\": \"Reconnaissance\"\n    }\n  ],\n  \"evidence_references\": [\n    \"W001\",\n    \"SIEM05_Auto_Alert_AI_Triage_469dc3deb13af6394b.json\"\n  ],\n  \"evidence_gaps\": [\n    \"Missing original evidence files\",\n    \"Lack of proven row-level ID join\",\n    \"A firing trigger is checked within a recent interval but lacks a proven row-level ID join\",\n    \"AI findings require human verification\",\n    \"Replay dataset is not live production traffic\"\n  ],\n  \"recommended_actions\": [\n    \"Investigate the source IP address\",\n    \"Review the WAF rules\",\n    \"Consider implementing rate limiting for the identified paths\"\n  ],\n  \"prohibited_assumptions\": [\n    \"Assumption of successful compromise\",\n    \"Assumption of malware execution or persistence\"\n  ],\n  \"human_validation_required\": true\n}"
+}

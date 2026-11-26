@@ -1,0 +1,65 @@
+{
+  "generated_at_utc": "2026-11-25T16:52:25.279404+00:00",
+  "generator": "DEPI-P5 Interactive AI Engine",
+  "assessment_id": "LT-01_20261125T165225Z.json",
+  "model": "mistral:7b-instruct-v0.3-q4_K_S",
+  "scenario_id": "W4-TT-01",
+  "case_id": "LT-01",
+  "assessment_type": "NEW_AI_ASSESSMENT",
+  "source_evidence_preserved": true,
+  "evidence_integrity": [
+    {
+      "path": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv",
+      "expected_sha256": "9ed1c4217bdc4090092512e2c65553ed8d3cb70bb7aca24c08995a2529e7eabe",
+      "exists": true,
+      "hash_verified": true,
+      "actual_sha256": "9ed1c4217bdc4090092512e2c65553ed8d3cb70bb7aca24c08995a2529e7eabe"
+    },
+    {
+      "path": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Case-Study.md",
+      "expected_sha256": "72bac9880d0a677f6f696909ec225632cdd3b5b09c96ec8ec697bab669ad2e33",
+      "exists": true,
+      "hash_verified": true,
+      "actual_sha256": "72bac9880d0a677f6f696909ec225632cdd3b5b09c96ec8ec697bab669ad2e33"
+    }
+  ],
+  "human_validation_required": true,
+  "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+  "response_execution": false,
+  "assessment": {
+    "case_id": "LT-01",
+    "assessment_type": "NEW_AI_ASSESSMENT",
+    "severity": "Medium",
+    "confidence": "Moderate",
+    "verdict": "Potential Brute Force Attempt",
+    "executive_summary": "The case involves a series of SSH authentication failures and invalid user references, indicating a potential brute force attack. The source IP is consistent across all events.",
+    "observed_facts": [
+      "Host: LabSZ",
+      "Source IP: 183.62.140.253",
+      "Usernames: dff, root, zhangyan"
+    ],
+    "analytical_findings": [
+      "Repeated failed passwords / invalid users from 183.62.140.253 (LT-01 verified timeline)"
+    ],
+    "hypotheses": [],
+    "mitre_mapping": [
+      {
+        "technique": "T1110.001",
+        "name": "Brute Force: Password Guessing",
+        "tactic": "Credential Access",
+        "confidence": "Observed_Pattern"
+      }
+    ],
+    "evidence_references": [
+      "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+    ],
+    "evidence_gaps": [],
+    "recommended_actions": [
+      "Investigate the source IP for further potential malicious activity",
+      "Review SSH configuration for brute force protection measures"
+    ],
+    "prohibited_assumptions": [],
+    "human_validation_required": true
+  },
+  "raw_model_response": "{\n  \"case_id\": \"LT-01\",\n  \"assessment_type\": \"NEW_AI_ASSESSMENT\",\n  \"severity\": \"Medium\",\n  \"confidence\": \"Observed_Pattern\",\n  \"verdict\": \"Potential Brute Force Attempt\",\n  \"executive_summary\": \"The case involves a series of SSH authentication failures and invalid user references, indicating a potential brute force attack. The source IP is consistent across all events.\",\n  \"observed_facts\": [\n    \"Host: LabSZ\",\n    \"Source IP: 183.62.140.253\",\n    \"Usernames: dff, root, zhangyan\"\n  ],\n  \"analytical_findings\": [\n    \"Repeated failed passwords / invalid users from 183.62.140.253 (LT-01 verified timeline)\"\n  ],\n  \"hypotheses\": [],\n  \"mitre_mapping\": [\n    {\n      \"technique\": \"T1110.001\",\n      \"name\": \"Brute Force: Password Guessing\",\n      \"tactic\": \"Credential Access\",\n      \"confidence\": \"Observed_Pattern\"\n    }\n  ],\n  \"evidence_references\": [\n    \"Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv\"\n  ],\n  \"evidence_gaps\": [],\n  \"recommended_actions\": [\n    \"Investigate the source IP for further potential malicious activity\",\n    \"Review SSH configuration for brute force protection measures\"\n  ],\n  \"prohibited_assumptions\": [],\n  \"human_validation_required\": true\n}"
+}

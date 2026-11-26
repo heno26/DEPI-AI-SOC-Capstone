@@ -1,0 +1,249 @@
+{
+  "draft_id": "lessons_learned",
+  "created_utc": "2026-11-24T15:39:18+00:00",
+  "generator": "Week-4/IR/ai_report_drafter.py",
+  "prompt_file": "Week-4/Prompts/lessons_learned.txt",
+  "prompt_sha256": "d199de1e2a254f4323f8abbdacc7ac0c51af01f70d1dadd244b9d603e7f5baa6",
+  "facts": [
+    {
+      "ref": "E001",
+      "raw": "[E001] Week-1 benchmark llama3.2:3b: manual quality mean 1.77/5 over 13 reviews; automatic keyword recall 0.69 (keyword recall is not accuracy); 48.99 tokens/s.",
+      "text": "Week-1 benchmark llama3.2:3b: manual quality mean 1.77/5 over 13 reviews; automatic keyword recall 0.69 (keyword recall is not accuracy); 48.99 tokens/s.",
+      "source": "Week-1/Benchmarks/results/run_20261016_061045/summary.csv"
+    },
+    {
+      "ref": "E002",
+      "raw": "[E002] Week-1 benchmark mistral:7b-instruct-v0.3-q4_K_S: manual quality mean 2.77/5 over 13 reviews; automatic keyword recall 0.75 (keyword recall is not accuracy); 23.1 tokens/s.",
+      "text": "Week-1 benchmark mistral:7b-instruct-v0.3-q4_K_S: manual quality mean 2.77/5 over 13 reviews; automatic keyword recall 0.75 (keyword recall is not accuracy); 23.1 tokens/s.",
+      "source": "Week-1/Benchmarks/results/run_20261016_061045/summary.csv"
+    },
+    {
+      "ref": "E003",
+      "raw": "[E003] Week-1 benchmark phi3:mini: manual quality mean 2.08/5 over 13 reviews; automatic keyword recall 0.73 (keyword recall is not accuracy); 42.32 tokens/s.",
+      "text": "Week-1 benchmark phi3:mini: manual quality mean 2.08/5 over 13 reviews; automatic keyword recall 0.73 (keyword recall is not accuracy); 42.32 tokens/s.",
+      "source": "Week-1/Benchmarks/results/run_20261016_061045/summary.csv"
+    },
+    {
+      "ref": "E004",
+      "raw": "[E004] Week-2: 53 local Mistral analysis runs; validator raised 158 review flags (46 high, 107 medium).",
+      "text": "Week-2: 53 local Mistral analysis runs; validator raised 158 review flags (46 high, 107 medium).",
+      "source": "Week-2/Results/AN-*/analysis.json"
+    },
+    {
+      "ref": "E005",
+      "raw": "[E005] Week-2: 27 runs have a recorded human review: 26 Corrected, 1 Approved; analysts recorded 109 correct and 68 incorrect AI findings.",
+      "text": "Week-2: 27 runs have a recorded human review: 26 Corrected, 1 Approved; analysts recorded 109 correct and 68 incorrect AI findings.",
+      "source": "Week-2/Results/AN-*/analysis.json"
+    },
+    {
+      "ref": "E006",
+      "raw": "[E006] Most frequent validator checks: missing_section (46), finding_without_evidence_ref (37), timeline_timestamp_mismatch (26), timeline_row_without_ref (12).",
+      "text": "Most frequent validator checks: missing_section (46), finding_without_evidence_ref (37), timeline_timestamp_mismatch (26), timeline_row_without_ref (12).",
+      "source": "Week-2/Results/AN-*/analysis.json"
+    },
+    {
+      "ref": "E007",
+      "raw": "[E007] OpenObserve trigger to AI-triage record: mean 37.0 s over 4 alerts (historical replay).",
+      "text": "OpenObserve trigger to AI-triage record: mean 37.0 s over 4 alerts (historical replay).",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/"
+    },
+    {
+      "ref": "E008",
+      "raw": "[E008] Week-3: 7 tickets created automatically; 7 still Pending Review; Tier-2 actions are hard-blocked in the dispatcher.",
+      "text": "Week-3: 7 tickets created automatically; 7 still Pending Review; Tier-2 actions are hard-blocked in the dispatcher.",
+      "source": "Week-3/SOAR/tickets/"
+    },
+    {
+      "ref": "E009",
+      "raw": "[E009] Week-2 open gate: Human approval pending: AI triage results require SOC analyst validation. REVIEW_REQUIRED and related review states are not final analyst sign-off.",
+      "text": "Week-2 open gate: Human approval pending: AI triage results require SOC analyst validation. REVIEW_REQUIRED and related review states are not final analyst sign-off.",
+      "source": "Week-2/Week-2-Final-Report.md"
+    },
+    {
+      "ref": "E010",
+      "raw": "[E010] Week-2 open gate: HTTP evidence correlation: The HTTP case includes a 112-request source group against a threshold of 80. The exact row-level join between the saved firing trigger and that group has not been proven.",
+      "text": "Week-2 open gate: HTTP evidence correlation: The HTTP case includes a 112-request source group against a threshold of 80. The exact row-level join between the saved firing trigger and that group has not been proven.",
+      "source": "Week-2/Week-2-Final-Report.md"
+    },
+    {
+      "ref": "E011",
+      "raw": "[E011] Week-2 open gate: Updated SIEM05 regression: Controlled Ollama reanalysis does not constitute an updated receiver-to-report end-to-end regression. This acceptance check remains pending.",
+      "text": "Week-2 open gate: Updated SIEM05 regression: Controlled Ollama reanalysis does not constitute an updated receiver-to-report end-to-end regression. This acceptance check remains pending.",
+      "source": "Week-2/Week-2-Final-Report.md"
+    },
+    {
+      "ref": "E012",
+      "raw": "[E012] Week-2 open gate: Replay scope: Historical lab datasets and replay timestamps must not be represented as production monitoring or confirmed incidents.",
+      "text": "Week-2 open gate: Replay scope: Historical lab datasets and replay timestamps must not be represented as production monitoring or confirmed incidents.",
+      "source": "Week-2/Week-2-Final-Report.md"
+    },
+    {
+      "ref": "E013",
+      "raw": "[E013] Week-2 open gate: Unified SOC candidate: The v0.4 QA candidate and its recorded tests do not constitute production approval.",
+      "text": "Week-2 open gate: Unified SOC candidate: The v0.4 QA candidate and its recorded tests do not constitute production approval.",
+      "source": "Week-2/Week-2-Final-Report.md"
+    },
+    {
+      "ref": "E014",
+      "raw": "[E014] Week-2 open gate: No automatic remediation: Week-3 SOAR and Week-4 full incident response have not been implemented in Week-2.",
+      "text": "Week-2 open gate: No automatic remediation: Week-3 SOAR and Week-4 full incident response have not been implemented in Week-2.",
+      "source": "Week-2/Week-2-Final-Report.md"
+    },
+    {
+      "ref": "E015",
+      "raw": "[E015] Week-3 open gate: Week-2 acceptance is PENDING (6 gates). Week 3 automates *triage and enrichment*, not the acceptance-pending conclusions. PB-04 is Tier-0-only for this reason.",
+      "text": "Week-3 open gate: Week-2 acceptance is PENDING (6 gates). Week 3 automates *triage and enrichment*, not the acceptance-pending conclusions. PB-04 is Tier-0-only for this reason.",
+      "source": "Week-3/Week-3-Final-Report.md"
+    },
+    {
+      "ref": "E016",
+      "raw": "[E016] Week-3 open gate: HTTP correlation gap (Week-2 gate 2). PB-03's propose tier is limited to WAF review, not source blocking.",
+      "text": "Week-3 open gate: HTTP correlation gap (Week-2 gate 2). PB-03's propose tier is limited to WAF review, not source blocking.",
+      "source": "Week-3/Week-3-Final-Report.md"
+    },
+    {
+      "ref": "E017",
+      "raw": "[E017] Week-3 open gate: Exchange receiver hard-codes `REVIEW_REQUIRED`. PB-04 cannot propose response actions.",
+      "text": "Week-3 open gate: Exchange receiver hard-codes `REVIEW_REQUIRED`. PB-04 cannot propose response actions.",
+      "source": "Week-3/Week-3-Final-Report.md"
+    },
+    {
+      "ref": "E018",
+      "raw": "[E018] Week-3 open gate: No live TheHive, no live TI, no live Wazuh. All stubs; documented as untested.",
+      "text": "Week-3 open gate: No live TheHive, no live TI, no live Wazuh. All stubs; documented as untested.",
+      "source": "Week-3/Week-3-Final-Report.md"
+    },
+    {
+      "ref": "E019",
+      "raw": "[E019] Week-3 open gate: Exchange `event_id` is replay-time-dependent. Exchange tickets are not stable across replays; documented, not fixed.",
+      "text": "Week-3 open gate: Exchange `event_id` is replay-time-dependent. Exchange tickets are not stable across replays; documented, not fixed.",
+      "source": "Week-3/Week-3-Final-Report.md"
+    },
+    {
+      "ref": "E020",
+      "raw": "[E020] Week-3 open gate: XSS receiver self-checks are weaker than AUTH/MAL. PB-03 gets the strictest human gate.",
+      "text": "Week-3 open gate: XSS receiver self-checks are weaker than AUTH/MAL. PB-03 gets the strictest human gate.",
+      "source": "Week-3/Week-3-Final-Report.md"
+    },
+    {
+      "ref": "E021",
+      "raw": "[E021] Cross-dataset overlap found by Week-4 correlation: 183.62.140.253 in LT-01, SIEM-AUTH-002.",
+      "text": "Cross-dataset overlap found by Week-4 correlation: 183.62.140.253 in LT-01, SIEM-AUTH-002.",
+      "source": "Week-4/Output/observables.csv"
+    },
+    {
+      "ref": "E022",
+      "raw": "[E022] Cross-dataset overlap found by Week-4 correlation: 192.168.16.132 in NT-01, NT-02.",
+      "text": "Cross-dataset overlap found by Week-4 correlation: 192.168.16.132 in NT-01, NT-02.",
+      "source": "Week-4/Output/observables.csv"
+    },
+    {
+      "ref": "E023",
+      "raw": "[E023] Cross-dataset overlap found by Week-4 correlation: 192.168.16.1 in NT-01, NT-02.",
+      "text": "Cross-dataset overlap found by Week-4 correlation: 192.168.16.1 in NT-01, NT-02.",
+      "source": "Week-4/Output/observables.csv"
+    },
+    {
+      "ref": "E024",
+      "raw": "[E024] Week-4 read-only checks: 8 of 16 T0 checks could be answered from repository data; the rest need systems or records that are not in the lab data.",
+      "text": "Week-4 read-only checks: 8 of 16 T0 checks could be answered from repository data; the rest need systems or records that are not in the lab data.",
+      "source": "Week-4/Output/t0_checks.json"
+    },
+    {
+      "ref": "E025",
+      "raw": "[E025] No live threat-intelligence feed: every indicator reputation is 'not checked'.",
+      "text": "No live threat-intelligence feed: every indicator reputation is 'not checked'.",
+      "source": "Week-3/SOAR/enrichment/stub.py"
+    }
+  ],
+  "status": "generated",
+  "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+  "options": {
+    "temperature": 0.2,
+    "repeat_penalty": 1.15,
+    "num_ctx": 6144,
+    "num_predict": 1500,
+    "seed": 42
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+      "options": {
+        "temperature": 0.2,
+        "repeat_penalty": 1.15,
+        "num_ctx": 6144,
+        "num_predict": 1500,
+        "seed": 42
+      },
+      "outcome": "success",
+      "seconds": 462.07
+    }
+  ],
+  "done_reason": "stop",
+  "truncated": false,
+  "tokens_per_second": 2.16,
+  "wall_seconds": 462.08,
+  "eval_count": 935,
+  "text": "1. WHAT WORKED\n   - The AI models, llama3.2:3b, mistral:7b-instruct-v0.3-q4_K_S, and phi3:mini, were able to process a significant number of tokens per second [E001, E002, E003].\n   - Week-2 saw an increase in local Mistral analysis runs with 53 runs conducted [E004].\n   - Human review was effective in correcting and approving the AI findings when performed [E005].\n   - The OpenObserve trigger to AI-triage record showed a mean response time of 37.0 seconds over 4 alerts during historical replay [E007].\n   - Week-3 automated triage and enrichment processes were implemented [E015].\n\n2. WHAT DID NOT WORK\n   - The manual quality scores for all AI models were low, with llama3.2:3b having a mean score of 1.77/5, mistral:7b-instruct-v0.3-q4_K_S scoring 2.77/5, and phi3:mini scoring 2.08/5 [E001, E002, E003].\n   - The automatic keyword recall was not accurate for any of the AI models [E001, E002, E003].\n   - Week-2 open gates such as human approval pending, HTTP evidence correlation, updated SIEM05 regression, replay scope, unified SOC candidate, no automatic remediation, and others remain unresolved [E009, E010, E011, E012, E013, E014, E015, E016, E017].\n   - Cross-dataset overlaps were found in Week-4 correlation for IP addresses 183.62.140.253, 192.168.16.132, and 192.168.16.1 [E021, E022, E023].\n   - Read-only checks in Week-4 revealed that 8 out of 16 T0 checks could not be answered from repository data [E024].\n   - There is no live threat-intelligence feed, resulting in every indicator reputation being 'not checked' [E025].\n\n3. AI ASSISTANCE LESSONS\n   - Improve the accuracy of automatic keyword recall for all AI models.\n   - Continue to monitor and improve the manual quality scores of AI models.\n\n4. DETECTION AND VISIBILITY GAPS\n   - Address the open gates from Week-2, including human approval pending, HTTP evidence correlation, updated SIEM05 regression, replay scope, unified SOC candidate, no automatic remediation, and others to improve detection and visibility.\n   - Investigate and resolve cross-dataset overlaps found in Week-4 correlation.\n   - Ensure all necessary data is available for read-only checks.\n   - Implement a live threat-intelligence feed.\n\n5. PROCESS IMPROVEMENTS\n   - Continue to conduct regular benchmarking of AI models and make improvements based on the results.\n   - Improve the efficiency of human review processes by addressing the open gates from Week-2.\n   - Implement Week-3 SOAR and full incident response in future weeks.\n\n6. OPEN ITEMS\n   - Resolve the open gates from Week-2 as listed: human approval pending, HTTP evidence correlation, updated SIEM05 regression, replay scope, unified SOC candidate, no automatic remediation, and others.\n   - Investigate and resolve cross-dataset overlaps found in Week-4 correlation.\n   - Ensure all necessary data is available for read-only checks.\n   - Implement a live threat-intelligence feed.\n\n7. REVIEW STATUS: DRAFT - AI-generated, requires human analyst validation before use.",
+  "sections": {
+    "WHAT WORKED": "- The AI models, llama3.2:3b, mistral:7b-instruct-v0.3-q4_K_S, and phi3:mini, were able to process a significant number of tokens per second [E001, E002, E003].\n   - Week-2 saw an increase in local Mistral analysis runs with 53 runs conducted [E004].\n   - Human review was effective in correcting and approving the AI findings when performed [E005].\n   - The OpenObserve trigger to AI-triage record showed a mean response time of 37.0 seconds over 4 alerts during historical replay [E007].\n   - Week-3 automated triage and enrichment processes were implemented [E015].",
+    "WHAT DID NOT WORK": "- The manual quality scores for all AI models were low, with llama3.2:3b having a mean score of 1.77/5, mistral:7b-instruct-v0.3-q4_K_S scoring 2.77/5, and phi3:mini scoring 2.08/5 [E001, E002, E003].\n   - The automatic keyword recall was not accurate for any of the AI models [E001, E002, E003].\n   - Week-2 open gates such as human approval pending, HTTP evidence correlation, updated SIEM05 regression, replay scope, unified SOC candidate, no automatic remediation, and others remain unresolved [E009, E010, E011, E012, E013, E014, E015, E016, E017].\n   - Cross-dataset overlaps were found in Week-4 correlation for IP addresses 183.62.140.253, 192.168.16.132, and 192.168.16.1 [E021, E022, E023].\n   - Read-only checks in Week-4 revealed that 8 out of 16 T0 checks could not be answered from repository data [E024].\n   - There is no live threat-intelligence feed, resulting in every indicator reputation being 'not checked' [E025].",
+    "AI ASSISTANCE LESSONS": "- Improve the accuracy of automatic keyword recall for all AI models.\n   - Continue to monitor and improve the manual quality scores of AI models.",
+    "DETECTION AND VISIBILITY GAPS": "- Address the open gates from Week-2, including human approval pending, HTTP evidence correlation, updated SIEM05 regression, replay scope, unified SOC candidate, no automatic remediation, and others to improve detection and visibility.\n   - Investigate and resolve cross-dataset overlaps found in Week-4 correlation.\n   - Ensure all necessary data is available for read-only checks.\n   - Implement a live threat-intelligence feed.",
+    "PROCESS IMPROVEMENTS": "- Continue to conduct regular benchmarking of AI models and make improvements based on the results.\n   - Improve the efficiency of human review processes by addressing the open gates from Week-2.\n   - Implement Week-3 SOAR and full incident response in future weeks.",
+    "OPEN ITEMS": "- Resolve the open gates from Week-2 as listed: human approval pending, HTTP evidence correlation, updated SIEM05 regression, replay scope, unified SOC candidate, no automatic remediation, and others.\n   - Investigate and resolve cross-dataset overlaps found in Week-4 correlation.\n   - Ensure all necessary data is available for read-only checks.\n   - Implement a live threat-intelligence feed.",
+    "REVIEW STATUS": "DRAFT - AI-generated, requires human analyst validation before use."
+  },
+  "validation": {
+    "flags": [
+      {
+        "check": "possible_unsupported_hostname",
+        "severity": "low",
+        "section": "WHAT WORKED",
+        "value": "llama3",
+        "message": "Host-like token not found in the source (heuristic; may be ordinary text such as 'ssh2').",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      }
+    ],
+    "severity_counts": {
+      "high": 0,
+      "medium": 0,
+      "low": 1
+    },
+    "heading_normalization": "inline 'N. HEADING: text' split before parsing (Week-4)",
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review"
+  },
+  "validation_original": {
+    "flags": [
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "OPEN ITEMS",
+        "value": "REVIEW STATUS",
+        "message": "Expected section 'REVIEW STATUS' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      },
+      {
+        "check": "possible_unsupported_hostname",
+        "severity": "low",
+        "section": "WHAT WORKED",
+        "value": "llama3",
+        "message": "Host-like token not found in the source (heuristic; may be ordinary text such as 'ssh2').",
+        "analyst_disposition": "Unreviewed",
+        "id": "F002"
+      }
+    ],
+    "severity_counts": {
+      "high": 0,
+      "medium": 1,
+      "low": 1
+    },
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  }
+}

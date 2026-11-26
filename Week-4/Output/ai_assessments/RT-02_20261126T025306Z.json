@@ -1,0 +1,76 @@
+{
+  "generated_at_utc": "2026-11-26T02:53:06.739139+00:00",
+  "generator": "DEPI-P5 Interactive AI Engine",
+  "assessment_id": "RT-02_20261126T025306Z.json",
+  "model": "mistral:7b-instruct-v0.3-q4_K_S",
+  "scenario_id": "W4-TT-01",
+  "case_id": "RT-02",
+  "assessment_type": "NEW_AI_ASSESSMENT",
+  "source_evidence_preserved": true,
+  "evidence_integrity": [
+    {
+      "path": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-02-Discovery/RT-02-Verified-Timeline.csv",
+      "expected_sha256": "db745c5366d57d704695d3e642afb8a1309db6756f862a07b320d23c462d8523",
+      "exists": true,
+      "hash_verified": true,
+      "actual_sha256": "db745c5366d57d704695d3e642afb8a1309db6756f862a07b320d23c462d8523"
+    },
+    {
+      "path": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-02-Discovery/RT-02-Case-Study.md",
+      "expected_sha256": "a22768401b9dfe89112389aa738e68901dca19e31d3c69d7d07e0e3fcfbd5307",
+      "exists": true,
+      "hash_verified": true,
+      "actual_sha256": "a22768401b9dfe89112389aa738e68901dca19e31d3c69d7d07e0e3fcfbd5307"
+    }
+  ],
+  "human_validation_required": true,
+  "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+  "response_execution": false,
+  "assessment": {
+    "case_id": "RT-02",
+    "assessment_type": "NEW_AI_ASSESSMENT",
+    "severity": "Medium",
+    "confidence": "Moderate",
+    "verdict": "Potential Security Incident",
+    "executive_summary": "The Administrator account on WIN-77LTAPHIQ1R.example.corp cleared the Windows Security audit log (Event 1102). Subsequent network share access checks (Event 5145) were observed from IP 10.0.2.17 for shares winreg, lsarpc, and srvsvc. This sequence of events may indicate a system owner/user discovery attempt (T1033) and a defense evasion technique (T1070.001).",
+    "observed_facts": [
+      "The Administrator account cleared the Windows Security audit log",
+      "Network share access checks were made for winreg, lsarpc, and srvsvc from IP 10.0.2.17"
+    ],
+    "analytical_findings": [
+      "Potential system owner/user discovery attempt (T1033)",
+      "Potential defense evasion technique (T1070.001)"
+    ],
+    "hypotheses": [],
+    "mitre_mapping": [
+      {
+        "technique": "T1070.001",
+        "name": "Indicator Removal: Clear Windows Event Logs",
+        "tactic": "Defense Evasion"
+      },
+      {
+        "technique": "T1033",
+        "name": "System Owner/User Discovery",
+        "tactic": "Discovery"
+      }
+    ],
+    "evidence_references": [
+      "E001",
+      "E002",
+      "E003",
+      "E004"
+    ],
+    "evidence_gaps": [
+      "Motivation for the observed actions",
+      "Evidence of successful data exfiltration"
+    ],
+    "recommended_actions": [
+      "Investigate the reason for the audit log clearance",
+      "Monitor network traffic for unusual activity related to the identified shares",
+      "Review system logs for any related events"
+    ],
+    "prohibited_assumptions": [],
+    "human_validation_required": true
+  },
+  "raw_model_response": "{\n  \"case_id\": \"RT-02\",\n  \"assessment_type\": \"NEW_AI_ASSESSMENT\",\n  \"severity\": \"Medium\",\n  \"confidence\": \"Observed_Pattern\",\n  \"verdict\": \"Potential Security Incident\",\n  \"executive_summary\": \"The Administrator account on WIN-77LTAPHIQ1R.example.corp cleared the Windows Security audit log (Event 1102). Subsequent network share access checks (Event 5145) were observed from IP 10.0.2.17 for shares winreg, lsarpc, and srvsvc. This sequence of events may indicate a system owner/user discovery attempt (T1033) and a defense evasion technique (T1070.001).\",\n  \"observed_facts\": [\n    \"The Administrator account cleared the Windows Security audit log\",\n    \"Network share access checks were made for winreg, lsarpc, and srvsvc from IP 10.0.2.17\"\n  ],\n  \"analytical_findings\": [\n    \"Potential system owner/user discovery attempt (T1033)\",\n    \"Potential defense evasion technique (T1070.001)\"\n  ],\n  \"hypotheses\": [],\n  \"mitre_mapping\": [\n    {\n      \"technique\": \"T1070.001\",\n      \"name\": \"Indicator Removal: Clear Windows Event Logs\",\n      \"tactic\": \"Defense Evasion\"\n    },\n    {\n      \"technique\": \"T1033\",\n      \"name\": \"System Owner/User Discovery\",\n      \"tactic\": \"Discovery\"\n    }\n  ],\n  \"evidence_references\": [\n    \"E001\",\n    \"E002\",\n    \"E003\",\n    \"E004\"\n  ],\n  \"evidence_gaps\": [\n    \"Motivation for the observed actions\",\n    \"Evidence of successful data exfiltration\"\n  ],\n  \"recommended_actions\": [\n    \"Investigate the reason for the audit log clearance\",\n    \"Monitor network traffic for unusual activity related to the identified shares\",\n    \"Review system logs for any related events\"\n  ],\n  \"prohibited_assumptions\": [],\n  \"human_validation_required\": true\n}"
+}

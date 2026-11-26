@@ -1,0 +1,215 @@
+{
+  "draft_id": "exec_briefing",
+  "created_utc": "2026-11-24T13:35:07+00:00",
+  "generator": "Week-4/IR/ai_report_drafter.py",
+  "prompt_file": "Week-4/Prompts/executive_briefing.txt",
+  "prompt_sha256": "308f0f11b51e0122563c12d4197f671d05ba83f23f2eee3a52a4b1e3ea026dff",
+  "facts": [
+    {
+      "ref": "E001",
+      "raw": "[E001] Tabletop exercise W4-TT-01 covered 9 attack stages across network, endpoint, web, authentication and email, using 15 evidence-backed cases from historical lab datasets.",
+      "text": "Tabletop exercise W4-TT-01 covered 9 attack stages across network, endpoint, web, authentication and email, using 15 evidence-backed cases from historical lab datasets.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E002",
+      "raw": "[E002] Stage S1 Reconnaissance: cases NT-01.",
+      "text": "Stage S1 Reconnaissance: cases NT-01.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E003",
+      "raw": "[E003] Stage S2 Web-tier attack: cases SIEM-WEB-001, SIEM-WEB-004.",
+      "text": "Stage S2 Web-tier attack: cases SIEM-WEB-001, SIEM-WEB-004.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E004",
+      "raw": "[E004] Stage S3 Credential attack: cases SIEM-AUTH-002, LT-01.",
+      "text": "Stage S3 Credential attack: cases SIEM-AUTH-002, LT-01.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E005",
+      "raw": "[E005] Stage S4 Execution: cases SIEM-MAL-003, LT-03.",
+      "text": "Stage S4 Execution: cases SIEM-MAL-003, LT-03.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E006",
+      "raw": "[E006] Stage S5 Persistence and privilege-sensitive activity: cases RT-04, LT-02.",
+      "text": "Stage S5 Persistence and privilege-sensitive activity: cases RT-04, LT-02.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E007",
+      "raw": "[E007] Stage S6 Discovery and defense evasion: cases RT-02.",
+      "text": "Stage S6 Discovery and defense evasion: cases RT-02.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E008",
+      "raw": "[E008] Stage S7 Lateral movement: cases RT-03.",
+      "text": "Stage S7 Lateral movement: cases RT-03.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E009",
+      "raw": "[E009] Stage S8 Command and control: cases NT-03, NT-02, RT-01.",
+      "text": "Stage S8 Command and control: cases NT-03, NT-02, RT-01.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E010",
+      "raw": "[E010] Stage S9 Collection / exfiltration (hypothesis): cases SIEM-EXCH-005.",
+      "text": "Stage S9 Collection / exfiltration (hypothesis): cases SIEM-EXCH-005.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E011",
+      "raw": "[E011] 3 SIEM alert cases were rated High by the local AI triage (SIEM-MAL-003, SIEM-WEB-004, SIEM-EXCH-005); AI ratings are not analyst sign-off.",
+      "text": "3 SIEM alert cases were rated High by the local AI triage (SIEM-MAL-003, SIEM-WEB-004, SIEM-EXCH-005); AI ratings are not analyst sign-off.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/"
+    },
+    {
+      "ref": "E012",
+      "raw": "[E012] 29 response proposals exist; 0 are waiting for an analyst decision. Nothing has been executed.",
+      "text": "29 response proposals exist; 0 are waiting for an analyst decision. Nothing has been executed.",
+      "source": "Week-4/Output/ir_lifecycle.json"
+    },
+    {
+      "ref": "E013",
+      "raw": "[E013] SIEM-MAL-003 Suspicious executable with DNS + outbound connection: Behavioral correlation indicates suspicious activity; infection is not independently confirmed.; Original Sysmon events are from historical laboratory replay; _timestamp is ingestion time.",
+      "text": "SIEM-MAL-003 Suspicious executable with DNS + outbound connection: Behavioral correlation indicates suspicious activity; infection is not independently confirmed.; Original Sysmon events are from historical laboratory replay; _timestamp is ingestion time.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+    },
+    {
+      "ref": "E014",
+      "raw": "[E014] SIEM-EXCH-005 Exchange mailbox export to OWA .aspx path: The export requests were unauthorized.; The ASPX destination paths were intended for web-shell staging.",
+      "text": "SIEM-EXCH-005 Exchange mailbox export to OWA .aspx path: The export requests were unauthorized.; The ASPX destination paths were intended for web-shell staging.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM_EXCHANGE_005_21c4515e439a0b3b6a3f_AI_Triage.json"
+    },
+    {
+      "ref": "E015",
+      "raw": "[E015] RT-04 Winlogon Shell persistence: ",
+      "text": "RT-04 Winlogon Shell persistence: ",
+      "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-04-Persistence/RT-04-Verified-Timeline.csv"
+    },
+    {
+      "ref": "E016",
+      "raw": "[E016] Read-only check (SIEM-AUTH-002): 2000 log lines searched; 867 lines mention 183.62.140.253; 'Accepted' logins from 183.62.140.253: 0; 'Accepted' logins for root: 0. The whole file contains 1 'Accepted' line(s), from other sources.",
+      "text": "Read-only check (SIEM-AUTH-002): 2000 log lines searched; 867 lines mention 183.62.140.253; 'Accepted' logins from 183.62.140.253: 0; 'Accepted' logins for root: 0. The whole file contains 1 'Accepted' line(s), from other sources.",
+      "source": "Week-2/Data/SIEM-BruteForce-SSH/OpenSSH_2k.log"
+    },
+    {
+      "ref": "E017",
+      "raw": "[E017] Read-only check (SIEM-EXCH-005): Get-MailboxExportRequest cannot be run (no server), but the Exchange cmdlet audit log answers the status question: RecordNumber 1788 11/21/2022 05:21:55 PM: New-ManagementRoleAssignment; RecordNumber 1789 11/21/2022 05:22:01 PM: New-MailboxExportRequest; RecordNumber 1793 11/21/2022 05:27:25 PM: Remove-MailboxExportRequest; RecordNumber 1794 11/21/2022 05:27:27 PM: Search-Mailbox; RecordNumber 1891 11/21/2022 08:03:50 PM: New-ManagementRoleAssignment; RecordNumber 1892 11/21/2022 08:03:51 PM: New-MailboxExportRequest; RecordNumber 1896 11/21/2022 08:09:02 PM: Remove-MailboxExportRequest; RecordNumber 1897 11/21/2022 08:09:04 PM: Search-Mailbox. Export requests later removed: OnmrPW8m8Uv, dYbLTCleBT. Cmdlet success is logged; export file creation on disk is NOT shown by this log.",
+      "text": "Read-only check (SIEM-EXCH-005): Get-MailboxExportRequest cannot be run (no server), but the Exchange cmdlet audit log answers the status question: RecordNumber 1788 11/21/2022 05:21:55 PM: New-ManagementRoleAssignment; RecordNumber 1789 11/21/2022 05:22:01 PM: New-MailboxExportRequest; RecordNumber 1793 11/21/2022 05:27:25 PM: Remove-MailboxExportRequest; RecordNumber 1794 11/21/2022 05:27:27 PM: Search-Mailbox; RecordNumber 1891 11/21/2022 08:03:50 PM: New-ManagementRoleAssignment; RecordNumber 1892 11/21/2022 08:03:51 PM: New-MailboxExportRequest; RecordNumber 1896 11/21/2022 08:09:02 PM: Remove-MailboxExportRequest; RecordNumber 1897 11/21/2022 08:09:04 PM: Search-Mailbox. Export requests later removed: OnmrPW8m8Uv, dYbLTCleBT. Cmdlet success is logged; export file creation on disk is NOT shown by this log.",
+      "source": "Week-2/Data/Exchange/msexchangemanagement.log"
+    },
+    {
+      "ref": "E018",
+      "raw": "[E018] Business impact, data loss and attacker identity are unknown.",
+      "text": "Business impact, data loss and attacker identity are unknown.",
+      "source": "Week-2 case studies / evidence limitations"
+    }
+  ],
+  "status": "generated",
+  "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+  "options": {
+    "temperature": 0.2,
+    "repeat_penalty": 1.15,
+    "num_ctx": 6144,
+    "num_predict": 1500,
+    "seed": 42
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+      "options": {
+        "temperature": 0.2,
+        "repeat_penalty": 1.15,
+        "num_ctx": 6144,
+        "num_predict": 1500,
+        "seed": 42
+      },
+      "outcome": "success",
+      "seconds": 243.33
+    }
+  ],
+  "done_reason": "stop",
+  "truncated": false,
+  "tokens_per_second": 2.06,
+  "wall_seconds": 243.33,
+  "eval_count": 443,
+  "text": "1. BRIEFING TITLE: Potential Security Incident - W4-TT-01 Tabletop Exercise Analysis\n\n2. SITUATION: A simulated security incident involving multiple stages of an attack has been identified in the W4-TT-01 tabletop exercise, using historical lab datasets.\n\n3. WHAT WE KNOW:\n   - The attack progressed through 9 stages across network, endpoint, web, authentication and email [E001]\n   - Suspicious activity was detected at the Malware (SIEM-MAL-003) and Exchange (SIEM-EXCH-005) stages [E011, E014]\n   - Winlogon Shell persistence (RT-04) and read-only checks for authentication and email (SIEM-AUTH-002, SIEM-EXCH-005) have been identified [E015, E016, E017]\n\n4. WHAT WE DO NOT KNOW:\n   - The business impact of this incident is unknown [E018]\n   - The identity of the attacker remains unverified\n\n5. DECISIONS NEEDED:\n   - Analyst validation of AI triage ratings for SIEM-MAL-003, SIEM-WEB-004 and SIEM-EXCH-005 [E011]\n   - Investigation into the suspicious activity detected at the Malware (SIEM-MAL-003) and Exchange (SIEM-EXCH-005) stages [E011, E014]\n   - Determination of business impact and data loss [E018]\n\n6. RISK IF NO ACTION: Unknown, as this is a tabletop simulation\n\n7. REVIEW STATUS: DRAFT - AI-generated, requires human analyst validation before use.",
+  "sections": {
+    "BRIEFING TITLE": "Potential Security Incident - W4-TT-01 Tabletop Exercise Analysis",
+    "SITUATION": "A simulated security incident involving multiple stages of an attack has been identified in the W4-TT-01 tabletop exercise, using historical lab datasets.",
+    "WHAT WE KNOW": "- The attack progressed through 9 stages across network, endpoint, web, authentication and email [E001]\n   - Suspicious activity was detected at the Malware (SIEM-MAL-003) and Exchange (SIEM-EXCH-005) stages [E011, E014]\n   - Winlogon Shell persistence (RT-04) and read-only checks for authentication and email (SIEM-AUTH-002, SIEM-EXCH-005) have been identified [E015, E016, E017]",
+    "WHAT WE DO NOT KNOW": "- The business impact of this incident is unknown [E018]\n   - The identity of the attacker remains unverified",
+    "DECISIONS NEEDED": "- Analyst validation of AI triage ratings for SIEM-MAL-003, SIEM-WEB-004 and SIEM-EXCH-005 [E011]\n   - Investigation into the suspicious activity detected at the Malware (SIEM-MAL-003) and Exchange (SIEM-EXCH-005) stages [E011, E014]\n   - Determination of business impact and data loss [E018]",
+    "RISK IF NO ACTION": "Unknown, as this is a tabletop simulation",
+    "REVIEW STATUS": "DRAFT - AI-generated, requires human analyst validation before use."
+  },
+  "validation": {
+    "flags": [],
+    "severity_counts": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "heading_normalization": "inline 'N. HEADING: text' split before parsing (Week-4)",
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review"
+  },
+  "validation_original": {
+    "flags": [
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "BRIEFING TITLE",
+        "message": "Expected section 'BRIEFING TITLE' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "SITUATION",
+        "message": "Expected section 'SITUATION' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F002"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "DECISIONS NEEDED",
+        "value": "RISK IF NO ACTION",
+        "message": "Expected section 'RISK IF NO ACTION' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F003"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "DECISIONS NEEDED",
+        "value": "REVIEW STATUS",
+        "message": "Expected section 'REVIEW STATUS' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F004"
+      }
+    ],
+    "severity_counts": {
+      "high": 0,
+      "medium": 4,
+      "low": 0
+    },
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  }
+}

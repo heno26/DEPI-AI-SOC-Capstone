@@ -1,0 +1,202 @@
+{
+  "draft_id": "stage_S2",
+  "created_utc": "2026-11-24T13:51:03+00:00",
+  "generator": "Week-4/IR/ai_report_drafter.py",
+  "prompt_file": "Week-4/Prompts/stage_summary.txt",
+  "prompt_sha256": "8db9d6862a1cab9f8d0a61a6dce175ee73522cc8001a295cc0fbcb017b61c619",
+  "facts": [
+    {
+      "ref": "E001",
+      "raw": "[E001] Stage S2 \"Web-tier attack\" (Initial Access attempt, domain web) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "text": "Stage S2 \"Web-tier attack\" (Initial Access attempt, domain web) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E002",
+      "raw": "[E002] SIEM-WEB-001 \"High-rate HTTP requests from a single source\" (web). key facts: source_ip=255.102.154.224; request_count=112; threshold=80; minute_utc=2025-10-07T02:14Z; top_path=/3.php; request_uri=/3.php, /1.php, /40.php (top paths). events: 2025-10-07T02:14Z 112 HTTP requests from 255.102.154.224 in one minute (threshold 80); GET 200 x88, POST 200 x14, GET 302 x10. 112 source records in total. AI severity Medium, confidence Moderate, QA REVIEW_REQUIRED. human review: PENDING (Week-2 REVIEW_REQUIRED; Week-3 tickets Pending Review)",
+      "text": "SIEM-WEB-001 \"High-rate HTTP requests from a single source\" (web). key facts: source_ip=255.102.154.224; request_count=112; threshold=80; minute_utc=2025-10-07T02:14Z; top_path=/3.php; request_uri=/3.php, /1.php, /40.php (top paths). events: 2025-10-07T02:14Z 112 HTTP requests from 255.102.154.224 in one minute (threshold 80); GET 200 x88, POST 200 x14, GET 302 x10. 112 source records in total. AI severity Medium, confidence Moderate, QA REVIEW_REQUIRED. human review: PENDING (Week-2 REVIEW_REQUIRED; Week-3 tickets Pending Review)",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM05_Auto_Alert_AI_Triage_469dc3deb13af6394b.json"
+    },
+    {
+      "ref": "E003",
+      "raw": "[E003] SIEM-WEB-001 ATT&CK T1595 Active Scanning (Reconnaissance), confidence label: candidate. Basis: 112 requests in one minute from one source against threshold 80 (SIEM05 evidence); intent not established",
+      "text": "SIEM-WEB-001 ATT&CK T1595 Active Scanning (Reconnaissance), confidence label: candidate. Basis: 112 requests in one minute from one source against threshold 80 (SIEM05 evidence); intent not established",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E004",
+      "raw": "[E004] SIEM-WEB-001 not established / limitation: Source IP is in reserved address space (source_ip_quality.is_reserved=true).",
+      "text": "SIEM-WEB-001 not established / limitation: Source IP is in reserved address space (source_ip_quality.is_reserved=true).",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM05_Auto_Alert_AI_Triage_469dc3deb13af6394b.json"
+    },
+    {
+      "ref": "E005",
+      "raw": "[E005] SIEM-WEB-001 not established / limitation: A firing trigger is checked within a recent interval but lacks a proven row-level ID join.",
+      "text": "SIEM-WEB-001 not established / limitation: A firing trigger is checked within a recent interval but lacks a proven row-level ID join.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM05_Auto_Alert_AI_Triage_469dc3deb13af6394b.json"
+    },
+    {
+      "ref": "E006",
+      "raw": "[E006] SIEM-WEB-001 not established / limitation: AI findings require human verification.",
+      "text": "SIEM-WEB-001 not established / limitation: AI findings require human verification.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM05_Auto_Alert_AI_Triage_469dc3deb13af6394b.json"
+    },
+    {
+      "ref": "E007",
+      "raw": "[E007] SIEM-WEB-001 proposal (containment, not executed, approved): Propose WAF rule review for /3.php, /1.php, /40.php (top paths) (NOT executed)",
+      "text": "SIEM-WEB-001 proposal (containment, not executed, approved): Propose WAF rule review for /3.php, /1.php, /40.php (top paths) (NOT executed)",
+      "source": "Week-3/SOAR/tickets/469dc3deb13af6394b4f692624bbe87e13c05780836efb320aebabe885b0fc9a.json"
+    },
+    {
+      "ref": "E008",
+      "raw": "[E008] SIEM-WEB-004 \"Cross-site scripting (XSS) payloads\" (web). key facts: source_ip=192.168.171.129; instances=3; transaction_ids=ZwuU-873D9JP20xgx6@OtgAAAAA, ZwuU-iAtf3OzxrG7aRST3wAAAAU, ZwuU-cU9wzVu0YTv9ijcSwAAAAI; request_path=/index.php; request_uri=/index.php. events: 13/Oct/2024:09:38:07 +0000 HTTP 500 for XSS payload /index.php?p=\"`'><script>\\x7Ejavascript:alert(1)</script>&debug_url=1 from 192.168.171.129 (tx ZwuU-873D9JP20xgx6@OtgAAAAA); 13/Oct/2024:09:38:06 +0000 HTTP 500 for XSS payload /index.php?p=\"`'><script>\\xE2\\x80\\xAFjavascript:alert(1)</script>&debug_url=1 from 192.168.171.129 (tx ZwuU-iAtf3OzxrG7aRST3wAAAAU); 13/Oct/2024:09:38:05 +0000 HTTP 500 for XSS payload /index.php?p=\"`'><script>\\x0Ajavascript:alert(1)</script>&debug_url=1 from 192.168.171.129 (tx ZwuU-cU9wzVu0YTv9ijcSwAAAAI). AI severity High, confidence High, QA SCHEMA_PASS_HUMAN_REVIEW_REQUIRED. human review: PENDING (Week-2 REVIEW_REQUIRED; Week-3 tickets Pending Review)",
+      "text": "SIEM-WEB-004 \"Cross-site scripting (XSS) payloads\" (web). key facts: source_ip=192.168.171.129; instances=3; transaction_ids=ZwuU-873D9JP20xgx6@OtgAAAAA, ZwuU-iAtf3OzxrG7aRST3wAAAAU, ZwuU-cU9wzVu0YTv9ijcSwAAAAI; request_path=/index.php; request_uri=/index.php. events: 13/Oct/2024:09:38:07 +0000 HTTP 500 for XSS payload /index.php?p=\"`'><script>\\x7Ejavascript:alert(1)</script>&debug_url=1 from 192.168.171.129 (tx ZwuU-873D9JP20xgx6@OtgAAAAA); 13/Oct/2024:09:38:06 +0000 HTTP 500 for XSS payload /index.php?p=\"`'><script>\\xE2\\x80\\xAFjavascript:alert(1)</script>&debug_url=1 from 192.168.171.129 (tx ZwuU-iAtf3OzxrG7aRST3wAAAAU); 13/Oct/2024:09:38:05 +0000 HTTP 500 for XSS payload /index.php?p=\"`'><script>\\x0Ajavascript:alert(1)</script>&debug_url=1 from 192.168.171.129 (tx ZwuU-cU9wzVu0YTv9ijcSwAAAAI). AI severity High, confidence High, QA SCHEMA_PASS_HUMAN_REVIEW_REQUIRED. human review: PENDING (Week-2 REVIEW_REQUIRED; Week-3 tickets Pending Review)",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM07_XSS_004_AI_Triage_6ba5792eef667c9cf8.json"
+    },
+    {
+      "ref": "E009",
+      "raw": "[E009] SIEM-WEB-004 ATT&CK T1190 Exploit Public-Facing Application (Initial Access), confidence label: candidate. Basis: Script-injection payload in request_uri (SIEM07 evidence); browser-side execution not established",
+      "text": "SIEM-WEB-004 ATT&CK T1190 Exploit Public-Facing Application (Initial Access), confidence label: candidate. Basis: Script-injection payload in request_uri (SIEM07 evidence); browser-side execution not established",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E010",
+      "raw": "[E010] SIEM-WEB-004 not established / limitation: HTTP 200 does not prove successful XSS execution.",
+      "text": "SIEM-WEB-004 not established / limitation: HTTP 200 does not prove successful XSS execution.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM07_XSS_004_AI_Triage_6ba5792eef667c9cf8.json"
+    },
+    {
+      "ref": "E011",
+      "raw": "[E011] SIEM-WEB-004 not established / limitation: Original event timestamps represent historical laboratory data.",
+      "text": "SIEM-WEB-004 not established / limitation: Original event timestamps represent historical laboratory data.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM07_XSS_004_AI_Triage_6ba5792eef667c9cf8.json"
+    },
+    {
+      "ref": "E012",
+      "raw": "[E012] SIEM-WEB-004 not established / limitation: SIEM trigger does not independently prove browser-side execution.",
+      "text": "SIEM-WEB-004 not established / limitation: SIEM trigger does not independently prove browser-side execution.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM07_XSS_004_AI_Triage_6ba5792eef667c9cf8.json"
+    },
+    {
+      "ref": "E013",
+      "raw": "[E013] SIEM-WEB-004 proposal (containment, not executed, approved): Propose WAF rule review for /index.php?p=... (NOT executed)",
+      "text": "SIEM-WEB-004 proposal (containment, not executed, approved): Propose WAF rule review for /index.php?p=... (NOT executed)",
+      "source": "Week-3/SOAR/tickets/6ba5792eef667c9cf86fe718978b3c8b2ba892dd0968e5e3d30b66aeec678956.json"
+    },
+    {
+      "ref": "E014",
+      "raw": "[E014] SIEM-WEB-004 proposal (containment, not executed, approved): Propose WAF rule review for /index.php (NOT executed)",
+      "text": "SIEM-WEB-004 proposal (containment, not executed, approved): Propose WAF rule review for /index.php (NOT executed)",
+      "source": "Week-3/SOAR/tickets/843425fa737b11ef71fcf6f556f947753101d7825995b79bde68dca70a089769.json"
+    },
+    {
+      "ref": "E015",
+      "raw": "[E015] SIEM-WEB-004 proposal (containment, not executed, approved): Propose WAF rule review for /index.php (NOT executed)",
+      "text": "SIEM-WEB-004 proposal (containment, not executed, approved): Propose WAF rule review for /index.php (NOT executed)",
+      "source": "Week-3/SOAR/tickets/fad10ea2b71bb2bc091d15316bb97d5b5dc213b272c7dc1fa6f1b8feda26140a.json"
+    },
+    {
+      "ref": "E016",
+      "raw": "[E016] Analyst question for this stage: Did any XSS payload execute in a browser, and is the high-rate HTTP source linked to the scan?",
+      "text": "Analyst question for this stage: Did any XSS payload execute in a browser, and is the high-rate HTTP source linked to the scan?",
+      "source": "Week-4/Config/scenario.json"
+    }
+  ],
+  "status": "generated",
+  "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+  "options": {
+    "temperature": 0.2,
+    "repeat_penalty": 1.15,
+    "num_ctx": 6144,
+    "num_predict": 1500,
+    "seed": 42
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+      "options": {
+        "temperature": 0.2,
+        "repeat_penalty": 1.15,
+        "num_ctx": 6144,
+        "num_predict": 1500,
+        "seed": 42
+      },
+      "outcome": "success",
+      "seconds": 270.98
+    }
+  ],
+  "done_reason": "stop",
+  "truncated": false,
+  "tokens_per_second": 1.99,
+  "wall_seconds": 270.98,
+  "eval_count": 460,
+  "text": "1. STAGE SUMMARY: During Stage S2 of scenario W4-TT-01, an Initial Access attempt was made on the web tier through potential Active Scanning (T1595) and Exploit Public-Facing Application (T1190). High-rate HTTP requests from a single source were observed, along with Cross-site scripting (XSS) payloads.\n\n2. EVIDENCE OBSERVED:\n   - 112 HTTP requests from 255.102.154.224 in one minute [E002]\n   - Source IP is in reserved address space [E004]\n   - A firing trigger is checked within a recent interval but lacks a proven row-level ID join [E005]\n   - AI findings require human verification [E006]\n   - 3 XSS payload instances from 192.168.171.129 [E008]\n   - HTTP 500 for XSS payloads on /index.php [E008]\n   - SIEM trigger does not independently prove browser-side execution [E012]\n\n3. ATT&CK TECHNIQUES:\n   - T1595 Active Scanning (Reconnaissance), confidence label: candidate [E003]\n   - T1190 Exploit Public-Facing Application (Initial Access), confidence label: candidate [E009]\n\n4. WHAT IS NOT ESTABLISHED:\n   - Whether any XSS payload executed in a browser [E016]\n   - If the high-rate HTTP source is linked to the scan [E016]\n\n5. ANALYST QUESTION: Did any XSS payload execute in a browser, and is the high-rate HTTP source linked to the scan? [E016]\n\n6. REVIEW STATUS: DRAFT - AI-generated, requires human analyst validation before use.",
+  "sections": {
+    "STAGE SUMMARY": "During Stage S2 of scenario W4-TT-01, an Initial Access attempt was made on the web tier through potential Active Scanning (T1595) and Exploit Public-Facing Application (T1190). High-rate HTTP requests from a single source were observed, along with Cross-site scripting (XSS) payloads.",
+    "EVIDENCE OBSERVED": "- 112 HTTP requests from 255.102.154.224 in one minute [E002]\n   - Source IP is in reserved address space [E004]\n   - A firing trigger is checked within a recent interval but lacks a proven row-level ID join [E005]\n   - AI findings require human verification [E006]\n   - 3 XSS payload instances from 192.168.171.129 [E008]\n   - HTTP 500 for XSS payloads on /index.php [E008]\n   - SIEM trigger does not independently prove browser-side execution [E012]",
+    "ATTACK TECHNIQUES": "- T1595 Active Scanning (Reconnaissance), confidence label: candidate [E003]\n   - T1190 Exploit Public-Facing Application (Initial Access), confidence label: candidate [E009]",
+    "WHAT IS NOT ESTABLISHED": "- Whether any XSS payload executed in a browser [E016]\n   - If the high-rate HTTP source is linked to the scan [E016]",
+    "ANALYST QUESTION": "Did any XSS payload execute in a browser, and is the high-rate HTTP source linked to the scan? [E016]",
+    "REVIEW STATUS": "DRAFT - AI-generated, requires human analyst validation before use."
+  },
+  "validation": {
+    "flags": [],
+    "severity_counts": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "heading_normalization": "inline 'N. HEADING: text' split before parsing (Week-4)",
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review"
+  },
+  "validation_original": {
+    "flags": [
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "STAGE SUMMARY",
+        "message": "Expected section 'STAGE SUMMARY' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "ATTACK TECHNIQUES",
+        "message": "Expected section 'ATTACK TECHNIQUES' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F002"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "ANALYST QUESTION",
+        "message": "Expected section 'ANALYST QUESTION' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F003"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "REVIEW STATUS",
+        "message": "Expected section 'REVIEW STATUS' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F004"
+      }
+    ],
+    "severity_counts": {
+      "high": 0,
+      "medium": 4,
+      "low": 0
+    },
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  }
+}

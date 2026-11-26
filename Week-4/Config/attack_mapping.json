@@ -1,0 +1,182 @@
+{
+  "_note": "Week-4 analyst ATT&CK mapping of behaviour documented in Week-2 evidence. 'observed_pattern' = the behaviour is directly visible in the evidence; 'candidate' = consistent with the evidence but intent/success not established; 'hypothesis' = listed in Week-2 as unverified. Team review required before final sign-off.",
+  "mapping": {
+    "NT-01": [
+      {
+        "technique": "T1046",
+        "name": "Network Service Discovery",
+        "tactic": "Discovery",
+        "confidence": "observed_pattern",
+        "basis": "Grounded detector NETWORK_VERTICAL_PORT_SCAN; REJ connections across many destination ports (NT-01 case study)"
+      }
+    ],
+    "SIEM-WEB-001": [
+      {
+        "technique": "T1595",
+        "name": "Active Scanning",
+        "tactic": "Reconnaissance",
+        "confidence": "candidate",
+        "basis": "112 requests in one minute from one source against threshold 80 (SIEM05 evidence); intent not established"
+      }
+    ],
+    "SIEM-WEB-004": [
+      {
+        "technique": "T1190",
+        "name": "Exploit Public-Facing Application",
+        "tactic": "Initial Access",
+        "confidence": "candidate",
+        "basis": "Script-injection payload in request_uri (SIEM07 evidence); browser-side execution not established"
+      }
+    ],
+    "SIEM-AUTH-002": [
+      {
+        "technique": "T1110.001",
+        "name": "Brute Force: Password Guessing",
+        "tactic": "Credential Access",
+        "confidence": "observed_pattern",
+        "basis": "30 failed passwords for root from one source in one minute, threshold 5 (SIEM06 Auth evidence)"
+      }
+    ],
+    "LT-01": [
+      {
+        "technique": "T1110.001",
+        "name": "Brute Force: Password Guessing",
+        "tactic": "Credential Access",
+        "confidence": "observed_pattern",
+        "basis": "Repeated failed passwords / invalid users from 183.62.140.253 (LT-01 verified timeline)"
+      }
+    ],
+    "SIEM-MAL-003": [
+      {
+        "technique": "T1204.002",
+        "name": "User Execution: Malicious File",
+        "tactic": "Execution",
+        "confidence": "candidate",
+        "basis": "Executable launched from IXP000.TMP/IXP001.TMP temp extraction paths (Sysmon ID 1); maliciousness not verified by hash reputation"
+      },
+      {
+        "technique": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols",
+        "tactic": "Command and Control",
+        "confidence": "candidate",
+        "basis": "10 DNS queries and one outbound connection to 104.80.2.104:443 from the same process; Week-2 states this alone does not establish C2"
+      }
+    ],
+    "LT-03": [
+      {
+        "technique": "T1059.004",
+        "name": "Command and Scripting Interpreter: Unix Shell",
+        "tactic": "Execution",
+        "confidence": "observed_pattern",
+        "basis": "bash -c with /dev/tcp/10.0.255.12/4444 redirection (LT-03 verified timeline); network success unconfirmed"
+      }
+    ],
+    "RT-04": [
+      {
+        "technique": "T1547.004",
+        "name": "Boot or Logon Autostart Execution: Winlogon Helper DLL",
+        "tactic": "Persistence",
+        "confidence": "observed_pattern",
+        "basis": "Sysmon ID 13 sets Winlogon\\Shell to include BRE6BgE2JubB.exe; payload later started by userinit.exe (RT-04 case study)"
+      }
+    ],
+    "LT-02": [
+      {
+        "technique": "T1548.003",
+        "name": "Abuse Elevation Control Mechanism: Sudo and Sudo Caching",
+        "tactic": "Privilege Escalation",
+        "confidence": "candidate",
+        "basis": "sudo PROCTITLE records only; execution outcome and authorisation not established (LT-02 case study)"
+      }
+    ],
+    "RT-02": [
+      {
+        "technique": "T1070.001",
+        "name": "Indicator Removal: Clear Windows Event Logs",
+        "tactic": "Defense Evasion",
+        "confidence": "observed_pattern",
+        "basis": "Event 1102 Security audit log cleared by Administrator (RT-02 verified timeline)"
+      },
+      {
+        "technique": "T1033",
+        "name": "System Owner/User Discovery",
+        "tactic": "Discovery",
+        "confidence": "candidate",
+        "basis": "Event 5145 winreg/lsarpc access checks from 10.0.2.17 in the psloggedon dataset; intent undetermined"
+      }
+    ],
+    "RT-03": [
+      {
+        "technique": "T1021.006",
+        "name": "Remote Services: Windows Remote Management",
+        "tactic": "Lateral Movement",
+        "confidence": "observed_pattern",
+        "basis": "winrshost.exe spawning cmd.exe on DC1 (RT-03 verified timeline); client identity unverified"
+      },
+      {
+        "technique": "T1016",
+        "name": "System Network Configuration Discovery",
+        "tactic": "Discovery",
+        "confidence": "observed_pattern",
+        "basis": "ipconfig.exe child of the WinRM-spawned cmd.exe (RT-03 verified timeline)"
+      }
+    ],
+    "NT-03": [
+      {
+        "technique": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols",
+        "tactic": "Command and Control",
+        "confidence": "candidate",
+        "basis": "Repeated TCP/80 connections to 46.101.251.172 with retry pattern (NT-03 verified timeline); attribution not established"
+      }
+    ],
+    "NT-02": [
+      {
+        "technique": "T1071.004",
+        "name": "Application Layer Protocol: DNS",
+        "tactic": "Command and Control",
+        "confidence": "candidate",
+        "basis": "NETWORK_DNS_CHUNK_BURST: 250 queries in ~3.55 s (NT-02 case study); tunneling/exfiltration NOT established"
+      }
+    ],
+    "RT-01": [
+      {
+        "technique": "T1572",
+        "name": "Protocol Tunneling",
+        "tactic": "Command and Control",
+        "confidence": "observed_pattern",
+        "basis": "plink.exe followed by connections to 10.0.2.18:80 and 127.0.0.2:3389 (RT-01 verified timeline)"
+      }
+    ],
+    "SIEM-EXCH-005": [
+      {
+        "technique": "T1114.002",
+        "name": "Email Collection: Remote Email Collection",
+        "tactic": "Collection",
+        "confidence": "candidate",
+        "basis": "Two New-MailboxExportRequest cmdlets for Administrator@attackrange.local (Exchange 005 evidence); completion unverified"
+      },
+      {
+        "technique": "T1505.003",
+        "name": "Server Software Component: Web Shell",
+        "tactic": "Persistence",
+        "confidence": "hypothesis",
+        "basis": "Export FilePath points to .aspx under OWA auth directory; Week-2 lists web-shell deployment as an unverified hypothesis"
+      },
+      {
+        "technique": "T1098",
+        "name": "Account Manipulation",
+        "tactic": "Persistence",
+        "confidence": "observed_pattern",
+        "basis": "New-ManagementRoleAssignment -Role 'Mailbox Import Export' -User Administrator before each export (msexchangemanagement.log records 1788, 1891); authorisation unknown"
+      },
+      {
+        "technique": "T1070.008",
+        "name": "Indicator Removal: Clear Mailbox Data",
+        "tactic": "Defense Evasion",
+        "confidence": "observed_pattern",
+        "basis": "Remove-MailboxExportRequest and Search-Mailbox -DeleteContent after each export (msexchangemanagement.log records 1793-1794, 1896-1897)"
+      }
+    ]
+  }
+}

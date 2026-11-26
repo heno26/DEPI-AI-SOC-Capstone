@@ -1,0 +1,145 @@
+{
+  "draft_id": "stage_S6",
+  "created_utc": "2026-11-24T14:09:08+00:00",
+  "generator": "Week-4/IR/ai_report_drafter.py",
+  "prompt_file": "Week-4/Prompts/stage_summary.txt",
+  "prompt_sha256": "8db9d6862a1cab9f8d0a61a6dce175ee73522cc8001a295cc0fbcb017b61c619",
+  "facts": [
+    {
+      "ref": "E001",
+      "raw": "[E001] Stage S6 \"Discovery and defense evasion\" (Discovery / Defense Evasion, domain endpoint) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "text": "Stage S6 \"Discovery and defense evasion\" (Discovery / Defense Evasion, domain endpoint) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E002",
+      "raw": "[E002] RT-02 \"Security log cleared + share access checks\" (endpoint). key facts: host=WIN-77LTAPHIQ1R.example.corp; account=Administrator; source_ip=10.0.2.17; shares=winreg, lsarpc, srvsvc. events: 2019-01-20T07:29:57.8638931Z Event 1102 on WIN-77LTAPHIQ1R.example.corp: Windows Security audit log cleared (Event 1102); account: Administrator; 2019-01-20T07:30:10.6451168Z Event 5145 on WIN-77LTAPHIQ1R.example.corp: Network share access check (Event 5145): winreg, source 10.0.2.17; 2019-01-20T07:30:10.6600994Z Event 5145 on WIN-77LTAPHIQ1R.example.corp: Network share access check (Event 5145): lsarpc, source 10.0.2.17; 2019-01-20T07:30:10.6600994Z Event 5145 on WIN-77LTAPHIQ1R.example.corp: Network share access check (Event 5145): srvsvc, source 10.0.2.17. human review: Approved",
+      "text": "RT-02 \"Security log cleared + share access checks\" (endpoint). key facts: host=WIN-77LTAPHIQ1R.example.corp; account=Administrator; source_ip=10.0.2.17; shares=winreg, lsarpc, srvsvc. events: 2019-01-20T07:29:57.8638931Z Event 1102 on WIN-77LTAPHIQ1R.example.corp: Windows Security audit log cleared (Event 1102); account: Administrator; 2019-01-20T07:30:10.6451168Z Event 5145 on WIN-77LTAPHIQ1R.example.corp: Network share access check (Event 5145): winreg, source 10.0.2.17; 2019-01-20T07:30:10.6600994Z Event 5145 on WIN-77LTAPHIQ1R.example.corp: Network share access check (Event 5145): lsarpc, source 10.0.2.17; 2019-01-20T07:30:10.6600994Z Event 5145 on WIN-77LTAPHIQ1R.example.corp: Network share access check (Event 5145): srvsvc, source 10.0.2.17. human review: Approved",
+      "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-02-Discovery/RT-02-Verified-Timeline.csv"
+    },
+    {
+      "ref": "E003",
+      "raw": "[E003] RT-02 ATT&CK T1070.001 Indicator Removal: Clear Windows Event Logs (Defense Evasion), confidence label: observed_pattern. Basis: Event 1102 Security audit log cleared by Administrator (RT-02 verified timeline)",
+      "text": "RT-02 ATT&CK T1070.001 Indicator Removal: Clear Windows Event Logs (Defense Evasion), confidence label: observed_pattern. Basis: Event 1102 Security audit log cleared by Administrator (RT-02 verified timeline)",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E004",
+      "raw": "[E004] RT-02 ATT&CK T1033 System Owner/User Discovery (Discovery), confidence label: candidate. Basis: Event 5145 winreg/lsarpc access checks from 10.0.2.17 in the psloggedon dataset; intent undetermined",
+      "text": "RT-02 ATT&CK T1033 System Owner/User Discovery (Discovery), confidence label: candidate. Basis: Event 5145 winreg/lsarpc access checks from 10.0.2.17 in the psloggedon dataset; intent undetermined",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E005",
+      "raw": "[E005] RT-02 read-only check result: Event 1102 record 32950 at 2019-01-20T07:29:57.8638931Z: the verified timeline records account Administrator; the converted event carries no LogonId/session data (event_data is empty), so the session and approval cannot be established from the repository.",
+      "text": "RT-02 read-only check result: Event 1102 record 32950 at 2019-01-20T07:29:57.8638931Z: the verified timeline records account Administrator; the converted event carries no LogonId/session data (event_data is empty), so the session and approval cannot be established from the repository.",
+      "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-02-Discovery/RT-02-Discovery-converted.json"
+    },
+    {
+      "ref": "E006",
+      "raw": "[E006] RT-02 proposal (containment, not executed, deferred): If unapproved: reset the Administrator password and restrict share access (winreg, lsarpc, srvsvc) from 10.0.2.17.",
+      "text": "RT-02 proposal (containment, not executed, deferred): If unapproved: reset the Administrator password and restrict share access (winreg, lsarpc, srvsvc) from 10.0.2.17.",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E007",
+      "raw": "[E007] RT-02 proposal (recovery, not executed, approved): Forward Security logs from WIN-77LTAPHIQ1R.example.corp to the SIEM so a future log clear cannot remove the only copy.",
+      "text": "RT-02 proposal (recovery, not executed, approved): Forward Security logs from WIN-77LTAPHIQ1R.example.corp to the SIEM so a future log clear cannot remove the only copy.",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E008",
+      "raw": "[E008] Analyst question for this stage: Who cleared the Security log (Event 1102) and was it part of approved maintenance?",
+      "text": "Analyst question for this stage: Who cleared the Security log (Event 1102) and was it part of approved maintenance?",
+      "source": "Week-4/Config/scenario.json"
+    }
+  ],
+  "status": "generated",
+  "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+  "options": {
+    "temperature": 0.2,
+    "repeat_penalty": 1.15,
+    "num_ctx": 6144,
+    "num_predict": 1500,
+    "seed": 42
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+      "options": {
+        "temperature": 0.2,
+        "repeat_penalty": 1.15,
+        "num_ctx": 6144,
+        "num_predict": 1500,
+        "seed": 42
+      },
+      "outcome": "success",
+      "seconds": 234.29
+    }
+  ],
+  "done_reason": "stop",
+  "truncated": false,
+  "tokens_per_second": 2.34,
+  "wall_seconds": 234.29,
+  "eval_count": 506,
+  "text": "1. STAGE SUMMARY: During Stage S6, an incident occurred involving the clearing of Windows Security logs and share access checks on host WIN-77LTAPHIQ1R.example.corp by the Administrator account.\n2. EVIDENCE OBSERVED:\n   - Event 1102 (Security audit log cleared) occurred at 2019-01-20T07:29:57.8638931Z on WIN-77LTAPHIQ1R.example.corp by the Administrator account [E002]\n   - Network share access checks (Event 5145) for winreg, lsarpc, and srvsvc occurred at 2019-01-20T07:30:10.6451168Z on WIN-77LTAPHIQ1R.example.corp from source IP 10.0.2.17 [E002]\n   - The clearing of Windows Event Logs (Defense Evasion, T1070.001) was observed based on the verified timeline [E003]\n   - System Owner/User Discovery (Discovery, T1033) is a candidate technique due to network share access checks from 10.0.2.17 in the psloggedon dataset; intent undetermined [E004]\n   - The session and approval cannot be established from the repository as the Event 1102 record carries no LogonId/session data [E005]\n3. ATTACK TECHNIQUES:\n   - T1070.001 (Clear Windows Event Logs) - observed_pattern\n   - T1033 (System Owner/User Discovery) - candidate\n4. WHAT IS NOT ESTABLISHED:\n   - Whether the clearing of the Security log was part of approved maintenance\n5. ANALYST QUESTION: Who cleared the Security log (Event 1102) and was it part of approved maintenance?\n6. REVIEW STATUS: DRAFT - AI-generated, requires human analyst validation before use.",
+  "sections": {
+    "STAGE SUMMARY": "During Stage S6, an incident occurred involving the clearing of Windows Security logs and share access checks on host WIN-77LTAPHIQ1R.example.corp by the Administrator account.",
+    "EVIDENCE OBSERVED": "- Event 1102 (Security audit log cleared) occurred at 2019-01-20T07:29:57.8638931Z on WIN-77LTAPHIQ1R.example.corp by the Administrator account [E002]\n   - Network share access checks (Event 5145) for winreg, lsarpc, and srvsvc occurred at 2019-01-20T07:30:10.6451168Z on WIN-77LTAPHIQ1R.example.corp from source IP 10.0.2.17 [E002]\n   - The clearing of Windows Event Logs (Defense Evasion, T1070.001) was observed based on the verified timeline [E003]\n   - System Owner/User Discovery (Discovery, T1033) is a candidate technique due to network share access checks from 10.0.2.17 in the psloggedon dataset; intent undetermined [E004]\n   - The session and approval cannot be established from the repository as the Event 1102 record carries no LogonId/session data [E005]",
+    "ATTACK TECHNIQUES": "- T1070.001 (Clear Windows Event Logs) - observed_pattern\n   - T1033 (System Owner/User Discovery) - candidate",
+    "WHAT IS NOT ESTABLISHED": "- Whether the clearing of the Security log was part of approved maintenance",
+    "ANALYST QUESTION": "Who cleared the Security log (Event 1102) and was it part of approved maintenance?",
+    "REVIEW STATUS": "DRAFT - AI-generated, requires human analyst validation before use."
+  },
+  "validation": {
+    "flags": [],
+    "severity_counts": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "heading_normalization": "inline 'N. HEADING: text' split before parsing (Week-4)",
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review"
+  },
+  "validation_original": {
+    "flags": [
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "STAGE SUMMARY",
+        "message": "Expected section 'STAGE SUMMARY' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "ANALYST QUESTION",
+        "message": "Expected section 'ANALYST QUESTION' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F002"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "REVIEW STATUS",
+        "message": "Expected section 'REVIEW STATUS' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F003"
+      }
+    ],
+    "severity_counts": {
+      "high": 0,
+      "medium": 3,
+      "low": 0
+    },
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  }
+}

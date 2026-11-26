@@ -1,0 +1,139 @@
+{
+  "draft_id": "stage_S7",
+  "created_utc": "2026-11-24T14:13:02+00:00",
+  "generator": "Week-4/IR/ai_report_drafter.py",
+  "prompt_file": "Week-4/Prompts/stage_summary.txt",
+  "prompt_sha256": "8db9d6862a1cab9f8d0a61a6dce175ee73522cc8001a295cc0fbcb017b61c619",
+  "facts": [
+    {
+      "ref": "E001",
+      "raw": "[E001] Stage S7 \"Lateral movement\" (Lateral Movement, domain endpoint) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "text": "Stage S7 \"Lateral movement\" (Lateral Movement, domain endpoint) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E002",
+      "raw": "[E002] RT-03 \"WinRM remote command execution on DC\" (endpoint). key facts: host=DC1.insecurebank.local; images=winrshost.exe, cmd.exe, ipconfig.exe. events: 2019-05-16T01:31:36.4268707Z Sysmon 1 on DC1.insecurebank.local: winrshost.exe; 2019-05-16T01:31:36.4548923Z Sysmon 1 on DC1.insecurebank.local: cmd.exe; 2019-05-16T01:31:36.4568918Z Sysmon 1 on DC1.insecurebank.local: ipconfig.exe. human review: Corrected",
+      "text": "RT-03 \"WinRM remote command execution on DC\" (endpoint). key facts: host=DC1.insecurebank.local; images=winrshost.exe, cmd.exe, ipconfig.exe. events: 2019-05-16T01:31:36.4268707Z Sysmon 1 on DC1.insecurebank.local: winrshost.exe; 2019-05-16T01:31:36.4548923Z Sysmon 1 on DC1.insecurebank.local: cmd.exe; 2019-05-16T01:31:36.4568918Z Sysmon 1 on DC1.insecurebank.local: ipconfig.exe. human review: Corrected",
+      "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-03-Lateral-Movement/RT-03-Verified-Timeline.csv"
+    },
+    {
+      "ref": "E003",
+      "raw": "[E003] RT-03 ATT&CK T1021.006 Remote Services: Windows Remote Management (Lateral Movement), confidence label: observed_pattern. Basis: winrshost.exe spawning cmd.exe on DC1 (RT-03 verified timeline); client identity unverified",
+      "text": "RT-03 ATT&CK T1021.006 Remote Services: Windows Remote Management (Lateral Movement), confidence label: observed_pattern. Basis: winrshost.exe spawning cmd.exe on DC1 (RT-03 verified timeline); client identity unverified",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E004",
+      "raw": "[E004] RT-03 ATT&CK T1016 System Network Configuration Discovery (Discovery), confidence label: observed_pattern. Basis: ipconfig.exe child of the WinRM-spawned cmd.exe (RT-03 verified timeline)",
+      "text": "RT-03 ATT&CK T1016 System Network Configuration Discovery (Discovery), confidence label: observed_pattern. Basis: ipconfig.exe child of the WinRM-spawned cmd.exe (RT-03 verified timeline)",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E005",
+      "raw": "[E005] RT-03 read-only check result: winrshost.exe ran as insecurebank\\Administrator (LogonId 0x12fe05, IntegrityLevel High). The remote client address is not in the dataset (no Security 4624 record for that LogonId).",
+      "text": "RT-03 read-only check result: winrshost.exe ran as insecurebank\\Administrator (LogonId 0x12fe05, IntegrityLevel High). The remote client address is not in the dataset (no Security 4624 record for that LogonId).",
+      "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-03-Lateral-Movement/RT-03-converted.json"
+    },
+    {
+      "ref": "E006",
+      "raw": "[E006] RT-03 proposal (containment, not executed, approved): Restrict WinRM on DC1.insecurebank.local to approved administration hosts.",
+      "text": "RT-03 proposal (containment, not executed, approved): Restrict WinRM on DC1.insecurebank.local to approved administration hosts.",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E007",
+      "raw": "[E007] Analyst question for this stage: Which client and account initiated the WinRM command execution on the domain controller?",
+      "text": "Analyst question for this stage: Which client and account initiated the WinRM command execution on the domain controller?",
+      "source": "Week-4/Config/scenario.json"
+    }
+  ],
+  "status": "generated",
+  "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+  "options": {
+    "temperature": 0.2,
+    "repeat_penalty": 1.15,
+    "num_ctx": 6144,
+    "num_predict": 1500,
+    "seed": 42
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+      "options": {
+        "temperature": 0.2,
+        "repeat_penalty": 1.15,
+        "num_ctx": 6144,
+        "num_predict": 1500,
+        "seed": 42
+      },
+      "outcome": "success",
+      "seconds": 144.14
+    }
+  ],
+  "done_reason": "stop",
+  "truncated": false,
+  "tokens_per_second": 2.56,
+  "wall_seconds": 144.14,
+  "eval_count": 337,
+  "text": "1. STAGE SUMMARY: During Stage S7, an instance of Remote Command Execution (T1021) was observed on Domain Controller DC1.insecurebank.local using Windows Remote Management (WinRM). The attacker also performed System Network Configuration Discovery (T1016).\n\n2. EVIDENCE OBSERVED:\n   - WinRM remote command execution occurred on DC1.insecurebank.local [E002]\n   - winrshost.exe, cmd.exe, and ipconfig.exe were involved in the events [E002]\n   - The attacker used the insecurebank\\Administrator account to run winrshost.exe [E005]\n\n3. ATTACK TECHNIQUES:\n   - T1021.006 Remote Services: Windows Remote Management (Lateral Movement) with observed_pattern confidence label [E003]\n   - T1016 System Network Configuration Discovery (Discovery) with observed_pattern confidence label [E004]\n\n4. WHAT IS NOT ESTABLISHED:\n   - The remote client address is not verified in the dataset [E005]\n\n5. ANALYST QUESTION: Which client and account initiated the WinRM command execution on the domain controller? [E007]\n\n6. REVIEW STATUS: DRAFT - AI-generated, requires human analyst validation before use.",
+  "sections": {
+    "STAGE SUMMARY": "During Stage S7, an instance of Remote Command Execution (T1021) was observed on Domain Controller DC1.insecurebank.local using Windows Remote Management (WinRM). The attacker also performed System Network Configuration Discovery (T1016).",
+    "EVIDENCE OBSERVED": "- WinRM remote command execution occurred on DC1.insecurebank.local [E002]\n   - winrshost.exe, cmd.exe, and ipconfig.exe were involved in the events [E002]\n   - The attacker used the insecurebank\\Administrator account to run winrshost.exe [E005]",
+    "ATTACK TECHNIQUES": "- T1021.006 Remote Services: Windows Remote Management (Lateral Movement) with observed_pattern confidence label [E003]\n   - T1016 System Network Configuration Discovery (Discovery) with observed_pattern confidence label [E004]",
+    "WHAT IS NOT ESTABLISHED": "- The remote client address is not verified in the dataset [E005]",
+    "ANALYST QUESTION": "Which client and account initiated the WinRM command execution on the domain controller? [E007]",
+    "REVIEW STATUS": "DRAFT - AI-generated, requires human analyst validation before use."
+  },
+  "validation": {
+    "flags": [],
+    "severity_counts": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "heading_normalization": "inline 'N. HEADING: text' split before parsing (Week-4)",
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review"
+  },
+  "validation_original": {
+    "flags": [
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "STAGE SUMMARY",
+        "message": "Expected section 'STAGE SUMMARY' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "ANALYST QUESTION",
+        "message": "Expected section 'ANALYST QUESTION' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F002"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "REVIEW STATUS",
+        "message": "Expected section 'REVIEW STATUS' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F003"
+      }
+    ],
+    "severity_counts": {
+      "high": 0,
+      "medium": 3,
+      "low": 0
+    },
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  }
+}

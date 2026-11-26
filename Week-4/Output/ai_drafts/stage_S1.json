@@ -1,0 +1,133 @@
+{
+  "draft_id": "stage_S1",
+  "created_utc": "2026-11-24T13:46:11+00:00",
+  "generator": "Week-4/IR/ai_report_drafter.py",
+  "prompt_file": "Week-4/Prompts/stage_summary.txt",
+  "prompt_sha256": "8db9d6862a1cab9f8d0a61a6dce175ee73522cc8001a295cc0fbcb017b61c619",
+  "facts": [
+    {
+      "ref": "E001",
+      "raw": "[E001] Stage S1 \"Reconnaissance\" (Reconnaissance / Discovery, domain network) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "text": "Stage S1 \"Reconnaissance\" (Reconnaissance / Discovery, domain network) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E002",
+      "raw": "[E002] NT-01 \"Vertical TCP port scan\" (network). key facts: scanner_ip=192.168.16.132; target_ip=192.168.16.130; distinct_ports=65535; tcp_records=65747; rej=65620; start_utc=2026-05-26T06:07:27.414749Z; end_utc=2026-05-26T06:19:45.683665Z. events: 2026-05-26T06:05:07.694185Z udp 192.168.16.130:49949 -> 192.168.16.1:53 S0; 2026-05-26T06:07:27.414749Z tcp 192.168.16.132:44834 -> 192.168.16.130:80 REJ; 2026-05-26T06:19:45.683665Z tcp 192.168.16.132:44372 -> 192.168.16.130:6739 REJ; 2026-05-26T06:21:12.433434Z udp 192.168.16.130:51814 -> 192.168.16.1:53 S0. 65895 source records in total. human review: Corrected",
+      "text": "NT-01 \"Vertical TCP port scan\" (network). key facts: scanner_ip=192.168.16.132; target_ip=192.168.16.130; distinct_ports=65535; tcp_records=65747; rej=65620; start_utc=2026-05-26T06:07:27.414749Z; end_utc=2026-05-26T06:19:45.683665Z. events: 2026-05-26T06:05:07.694185Z udp 192.168.16.130:49949 -> 192.168.16.1:53 S0; 2026-05-26T06:07:27.414749Z tcp 192.168.16.132:44834 -> 192.168.16.130:80 REJ; 2026-05-26T06:19:45.683665Z tcp 192.168.16.132:44372 -> 192.168.16.130:6739 REJ; 2026-05-26T06:21:12.433434Z udp 192.168.16.130:51814 -> 192.168.16.1:53 S0. 65895 source records in total. human review: Corrected",
+      "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Verified-Timeline.csv"
+    },
+    {
+      "ref": "E003",
+      "raw": "[E003] NT-01 ATT&CK T1046 Network Service Discovery (Discovery), confidence label: observed_pattern. Basis: Grounded detector NETWORK_VERTICAL_PORT_SCAN; REJ connections across many destination ports (NT-01 case study)",
+      "text": "NT-01 ATT&CK T1046 Network Service Discovery (Discovery), confidence label: observed_pattern. Basis: Grounded detector NETWORK_VERTICAL_PORT_SCAN; REJ connections across many destination ports (NT-01 case study)",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E004",
+      "raw": "[E004] NT-01 read-only check result: Zeek conn_state for 192.168.16.132 -> 192.168.16.130: REJ (closed) on 65524 ports; S0 (no reply) on 112 ports; handshake completed (RSTO/SF) on 11 ports: 22, 135, 139, 445, 5040, 49664, 49665, 49666, 49667, 49668, 49669. These are the candidate open services to review.",
+      "text": "NT-01 read-only check result: Zeek conn_state for 192.168.16.132 -> 192.168.16.130: REJ (closed) on 65524 ports; S0 (no reply) on 112 ports; handshake completed (RSTO/SF) on 11 ports: 22, 135, 139, 445, 5040, 49664, 49665, 49666, 49667, 49668, 49669. These are the candidate open services to review.",
+      "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Zeek-conn-original.log"
+    },
+    {
+      "ref": "E005",
+      "raw": "[E005] NT-01 proposal (containment, not executed, deferred): If unauthorised: block 192.168.16.132 from reaching 192.168.16.130 at the internal firewall.",
+      "text": "NT-01 proposal (containment, not executed, deferred): If unauthorised: block 192.168.16.132 from reaching 192.168.16.130 at the internal firewall.",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E006",
+      "raw": "[E006] Analyst question for this stage: Is the vertical port scan from an authorised scanner, and which hosts/services were exposed?",
+      "text": "Analyst question for this stage: Is the vertical port scan from an authorised scanner, and which hosts/services were exposed?",
+      "source": "Week-4/Config/scenario.json"
+    }
+  ],
+  "status": "generated",
+  "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+  "options": {
+    "temperature": 0.2,
+    "repeat_penalty": 1.15,
+    "num_ctx": 6144,
+    "num_predict": 1500,
+    "seed": 42
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+      "options": {
+        "temperature": 0.2,
+        "repeat_penalty": 1.15,
+        "num_ctx": 6144,
+        "num_predict": 1500,
+        "seed": 42
+      },
+      "outcome": "success",
+      "seconds": 291.86
+    }
+  ],
+  "done_reason": "stop",
+  "truncated": false,
+  "tokens_per_second": 1.99,
+  "wall_seconds": 291.86,
+  "eval_count": 512,
+  "text": "1. STAGE SUMMARY: During Stage S1 of scenario W4-TT-01, a vertical TCP port scan (NT-01) was observed on target host 192.168.16.130 from scanner 192.168.16.132.\n\n2. EVIDENCE OBSERVED:\n   - Scan initiator IP: [E001] 192.168.16.132\n   - Target host IP: [E001] 192.168.16.130\n   - Distinct ports scanned: [E002] 65535\n   - TCP records: [E002] 65747\n   - Rejected connections: [E002] 65620\n   - Start and end timestamps: [E002] 2026-05-26T06:07:27.414749Z to 2026-05-26T06:19:45.683665Z\n   - Events observed during the scan: [E002] provided in the input\n   - Open services identified from read-only check: [E004] 22, 135, 139, 445, 5040, 49664, 49665, 49666, 49667, 49668, 49669\n\n3. ATTACK TECHNIQUES:\n   - T1046 Network Service Discovery (Discovery) [E003]\n\n4. WHAT IS NOT ESTABLISHED:\n   - Whether the vertical port scan is from an authorized scanner\n   - The identity of the host initiating the scan\n\n5. ANALYST QUESTION: Is the vertical port scan from an authorised scanner, and which hosts/services were exposed?\n\n6. REVIEW STATUS: DRAFT - AI-generated, requires human analyst validation before use.",
+  "sections": {
+    "STAGE SUMMARY": "During Stage S1 of scenario W4-TT-01, a vertical TCP port scan (NT-01) was observed on target host 192.168.16.130 from scanner 192.168.16.132.",
+    "EVIDENCE OBSERVED": "- Scan initiator IP: [E001] 192.168.16.132\n   - Target host IP: [E001] 192.168.16.130\n   - Distinct ports scanned: [E002] 65535\n   - TCP records: [E002] 65747\n   - Rejected connections: [E002] 65620\n   - Start and end timestamps: [E002] 2026-05-26T06:07:27.414749Z to 2026-05-26T06:19:45.683665Z\n   - Events observed during the scan: [E002] provided in the input\n   - Open services identified from read-only check: [E004] 22, 135, 139, 445, 5040, 49664, 49665, 49666, 49667, 49668, 49669",
+    "ATTACK TECHNIQUES": "- T1046 Network Service Discovery (Discovery) [E003]",
+    "WHAT IS NOT ESTABLISHED": "- Whether the vertical port scan is from an authorized scanner\n   - The identity of the host initiating the scan",
+    "ANALYST QUESTION": "Is the vertical port scan from an authorised scanner, and which hosts/services were exposed?",
+    "REVIEW STATUS": "DRAFT - AI-generated, requires human analyst validation before use."
+  },
+  "validation": {
+    "flags": [],
+    "severity_counts": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "heading_normalization": "inline 'N. HEADING: text' split before parsing (Week-4)",
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review"
+  },
+  "validation_original": {
+    "flags": [
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "STAGE SUMMARY",
+        "message": "Expected section 'STAGE SUMMARY' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "ANALYST QUESTION",
+        "message": "Expected section 'ANALYST QUESTION' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F002"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "REVIEW STATUS",
+        "message": "Expected section 'REVIEW STATUS' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F003"
+      }
+    ],
+    "severity_counts": {
+      "high": 0,
+      "medium": 3,
+      "low": 0
+    },
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  }
+}

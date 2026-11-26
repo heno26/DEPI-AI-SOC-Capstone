@@ -1,0 +1,158 @@
+{
+  "generated_at_utc": "2026-11-26T02:47:58+00:00",
+  "generator": "Week-4/IR/t0_checks.py",
+  "note": "Read-only checks; results are evidence for the analyst, not decisions.",
+  "checks": {
+    "SIEM-WEB-001:eradication:1-resolve-week-2-gate-2-pr": {
+      "completed_from_repo": false,
+      "result": "Needs the live OpenObserve alert rows to prove the trigger-to-row join (Week-2 gate 2).",
+      "evidence": [],
+      "source": null,
+      "case_id": "SIEM-WEB-001",
+      "action": "Resolve Week-2 gate 2: prove the row-level join between the firing trigger and the 112-request group from 255.102.154.224 before any source block."
+    },
+    "SIEM-WEB-001:recovery:2-re-baseline-the-high-rat": {
+      "completed_from_repo": false,
+      "result": "Needs a baseline of normal web traffic; only the alert group evidence is in the repository.",
+      "evidence": [],
+      "source": null,
+      "case_id": "SIEM-WEB-001",
+      "action": "Re-baseline the high-rate threshold (80 req/min) against normal traffic for /3.php and similar paths."
+    },
+    "SIEM-AUTH-002:recovery:2-search-the-full-dataset-": {
+      "completed_from_repo": true,
+      "result": "2000 log lines searched; 867 lines mention 183.62.140.253; 'Accepted' logins from 183.62.140.253: 0; 'Accepted' logins for root: 0. The whole file contains 1 'Accepted' line(s), from other sources.",
+      "evidence": [
+        "line 956: Dec 10 09:32:20 LabSZ sshd[24680]: Accepted password for fztu from 119.137.62.142 port 49116 ssh2"
+      ],
+      "source": "Week-2/Data/SIEM-BruteForce-SSH/OpenSSH_2k.log",
+      "case_id": "SIEM-AUTH-002",
+      "action": "Search the full OpenSSH_2k.log for 'Accepted password' from 183.62.140.253; reset root credentials only if a success is found."
+    },
+    "SIEM-WEB-004:recovery:2-re-test-request-path-wit": {
+      "completed_from_repo": false,
+      "result": "Needs the fixed web application to re-test; the lab application is not part of the repository.",
+      "evidence": [],
+      "source": null,
+      "case_id": "SIEM-WEB-004",
+      "action": "Re-test /index.php with the 3 recorded payloads after the fix; confirm the WAF rule review outcome."
+    },
+    "SIEM-EXCH-005:containment:1-run-get-mailboxexportreq": {
+      "completed_from_repo": true,
+      "result": "Get-MailboxExportRequest cannot be run (no server), but the Exchange cmdlet audit log answers the status question: RecordNumber 1788 11/21/2022 05:21:55 PM: New-ManagementRoleAssignment; RecordNumber 1789 11/21/2022 05:22:01 PM: New-MailboxExportRequest; RecordNumber 1793 11/21/2022 05:27:25 PM: Remove-MailboxExportRequest; RecordNumber 1794 11/21/2022 05:27:27 PM: Search-Mailbox; RecordNumber 1891 11/21/2022 08:03:50 PM: New-ManagementRoleAssignment; RecordNumber 1892 11/21/2022 08:03:51 PM: New-MailboxExportRequest; RecordNumber 1896 11/21/2022 08:09:02 PM: Remove-MailboxExportRequest; RecordNumber 1897 11/21/2022 08:09:04 PM: Search-Mailbox. Export requests later removed: OnmrPW8m8Uv, dYbLTCleBT. Cmdlet success is logged; export file creation on disk is NOT shown by this log.",
+      "evidence": [
+        "RecordNumber 1788 11/21/2022 05:21:55 PM: Cmdlet suceeded. Cmdlet New-ManagementRoleAssignment, parameters -Role \"Mailbox Import Export\" -User \"Administrator@attackrange.local\".",
+        "RecordNumber 1789 11/21/2022 05:22:01 PM: Cmdlet suceeded. Cmdlet New-MailboxExportRequest, parameters -Name \"OnmrPW8m8Uv\" -Mailbox \"Administrator@attackrange.local\" -IncludeFolders (\"#Drafts#\") -ContentFilter \"(Subject -eq 'AvcMRhPdI')\" -ExcludeDumpster \"True\" ",
+        "RecordNumber 1793 11/21/2022 05:27:25 PM: Cmdlet suceeded. Cmdlet Remove-MailboxExportRequest, parameters -Identity \"Administrator@attackrange.local\\OnmrPW8m8Uv\" -Confirm \"False\".",
+        "RecordNumber 1794 11/21/2022 05:27:27 PM: Cmdlet suceeded. Cmdlet Search-Mailbox, parameters -Identity \"Administrator@attackrange.local\" -SearchQuery \"Subject:\"AvcMRhPdI\"\" -Force \"True\" -DeleteContent \"True\".",
+        "RecordNumber 1891 11/21/2022 08:03:50 PM: Cmdlet suceeded. Cmdlet New-ManagementRoleAssignment, parameters -Role \"Mailbox Import Export\" -User \"Administrator@attackrange.local\".",
+        "RecordNumber 1892 11/21/2022 08:03:51 PM: Cmdlet suceeded. Cmdlet New-MailboxExportRequest, parameters -Name \"dYbLTCleBT\" -Mailbox \"Administrator@attackrange.local\" -IncludeFolders (\"#Drafts#\") -ContentFilter \"(Subject -eq 'Fay10dOWecFg')\" -ExcludeDumpster \"True",
+        "RecordNumber 1896 11/21/2022 08:09:02 PM: Cmdlet suceeded. Cmdlet Remove-MailboxExportRequest, parameters -Identity \"Administrator@attackrange.local\\dYbLTCleBT\" -Confirm \"False\".",
+        "RecordNumber 1897 11/21/2022 08:09:04 PM: Cmdlet suceeded. Cmdlet Search-Mailbox, parameters -Identity \"Administrator@attackrange.local\" -SearchQuery \"Subject:\"Fay10dOWecFg\"\" -Force \"True\" -DeleteContent \"True\"."
+      ],
+      "source": "Week-2/Data/Exchange/msexchangemanagement.log",
+      "case_id": "SIEM-EXCH-005",
+      "action": "Run Get-MailboxExportRequest on win-dc-exch01.attackrange.local to check the status of the export requests (OnmrPW8m8Uv, dYbLTCleBT)."
+    },
+    "SIEM-EXCH-005:containment:2-check-whether-the-export": {
+      "completed_from_repo": false,
+      "result": "No filesystem, IIS or OWA access log for win-dc-exch01 is in the repository (ESI-HttpProxyLogs.json is from a different host/date and contains no request to the .aspx paths).",
+      "evidence": [],
+      "source": "Week-2/Data/Exchange",
+      "case_id": "SIEM-EXCH-005",
+      "action": "Check whether the export target files exist: \\\\win-dc-exch01.attackrange.local\\C$\\Program Files\\Microsoft\\Exchange Server\\V15\\FrontEnd\\HttpProxy\\owa\\auth\\ZnTQs2wv.aspx, \\\\win-dc-exch01.attackrange.local\\C$\\Program Files\\Microsoft\\Exchange Server\\V15\\FrontEnd\\HttpProxy\\owa\\auth\\43yYO1sP.aspx."
+    },
+    "LT-01:recovery:2-confirm-no-successful-lo": {
+      "completed_from_repo": true,
+      "result": "2000 log lines searched; 867 lines mention 183.62.140.253; 'Accepted' logins from 183.62.140.253: 0; 'Accepted' logins for dff, root, zhangyan: 0. The whole file contains 1 'Accepted' line(s), from other sources.",
+      "evidence": [
+        "line 956: Dec 10 09:32:20 LabSZ sshd[24680]: Accepted password for fztu from 119.137.62.142 port 49116 ssh2"
+      ],
+      "source": "Week-2/Data/SIEM-BruteForce-SSH/OpenSSH_2k.log",
+      "case_id": "LT-01",
+      "action": "Confirm no successful login exists for the targeted accounts (dff, root, zhangyan) on LabSZ."
+    },
+    "LT-02:containment:1-match-the-distinct-comma": {
+      "completed_from_repo": false,
+      "result": "No change-management records exist in the repository.",
+      "evidence": [],
+      "source": null,
+      "case_id": "LT-02",
+      "action": "Match the 5 distinct sudo commands against change records; no action unless unauthorised."
+    },
+    "LT-03:recovery:3-confirm-whether-the-conn": {
+      "completed_from_repo": true,
+      "result": "Original Sysmon-for-Linux file has 2 event(s), Event IDs ['1']; no Event ID 3 (network connection) record exists, so connection success cannot be established from this dataset.",
+      "evidence": [
+        "EventIDs: ['1', '1']"
+      ],
+      "source": "Week-2/Data/Real-Datasets/Linux-Attacks/LT-03-Suspicious-Execution/LT-03-Sysmon-original.log",
+      "case_id": "LT-03",
+      "action": "Confirm whether the connection to 10.0.255.12:4444 succeeded (network_outcome is unknown in the evidence)."
+    },
+    "NT-01:containment:1-confirm-whether-scanner-": {
+      "completed_from_repo": false,
+      "result": "Scanner authorisation is recorded as 'unknown' in NT-01 statistics; no scan schedule/change record in the repository.",
+      "evidence": [],
+      "source": null,
+      "case_id": "NT-01",
+      "action": "Confirm whether 192.168.16.132 is an authorised scanner (scan window, change record)."
+    },
+    "NT-01:recovery:3-review-which-of-the-dist": {
+      "completed_from_repo": true,
+      "result": "Zeek conn_state for 192.168.16.132 -> 192.168.16.130: REJ (closed) on 65524 ports; S0 (no reply) on 112 ports; handshake completed (RSTO/SF) on 11 ports: 22, 135, 139, 445, 5040, 49664, 49665, 49666, 49667, 49668, 49669. These are the candidate open services to review.",
+      "evidence": [
+        "RSTO/SF ports: [22, 135, 139, 445, 5040, 49664, 49665, 49666, 49667, 49668, 49669]"
+      ],
+      "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-01-Port-Scanning/NT-01-Zeek-conn-original.log",
+      "case_id": "NT-01",
+      "action": "Review which of the 65535 probed ports on 192.168.16.130 are open and close unneeded services."
+    },
+    "NT-02:eradication:2-decode-the-burst-count-c": {
+      "completed_from_repo": true,
+      "result": "250 distinct chunk labels; hex parts decode to 3000 bytes, of which 38% are printable ASCII. The decoded bytes are not readable text (consistent with encoded/encrypted or random content); payload meaning remains undetermined.",
+      "evidence": [
+        "first label: chunk001-f137fa53a835cab9745e769d"
+      ],
+      "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Zeek-dns-original.log",
+      "case_id": "NT-02",
+      "action": "Decode the 250 chunk labels (chunkNNN-hex.lab.test) to determine whether they carry data."
+    },
+    "NT-03:eradication:2-attribute-the-connection": {
+      "completed_from_repo": false,
+      "result": "No endpoint telemetry for 192.168.1.199 in the dataset.",
+      "evidence": [],
+      "source": null,
+      "case_id": "NT-03",
+      "action": "Attribute the 24 connections on 192.168.1.199 to a process (endpoint telemetry is not in the dataset)."
+    },
+    "RT-02:containment:1-identify-the-session-tha": {
+      "completed_from_repo": true,
+      "result": "Event 1102 record 32950 at 2019-01-20T07:29:57.8638931Z: the verified timeline records account Administrator; the converted event carries no LogonId/session data (event_data is empty), so the session and approval cannot be established from the repository.",
+      "evidence": [
+        "{\"evidence_id\": \"E001\", \"timestamp\": \"2019-01-20T07:29:57.8638931Z\", \"event_id\": 1102, \"record_id\": 32950, \"provider\": \"Microsoft-Windows-Eventlog\", \"computer\": \"WIN-77LTAPHIQ1R.example.corp\", \"event_data\": {}}"
+      ],
+      "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-02-Discovery/RT-02-Discovery-converted.json",
+      "case_id": "RT-02",
+      "action": "Identify the session that cleared the Security log on WIN-77LTAPHIQ1R.example.corp and confirm whether Administrator activity was approved."
+    },
+    "RT-03:recovery:2-identify-the-remote-clie": {
+      "completed_from_repo": true,
+      "result": "winrshost.exe ran as insecurebank\\Administrator (LogonId 0x12fe05, IntegrityLevel High). The remote client address is not in the dataset (no Security 4624 record for that LogonId).",
+      "evidence": [
+        "Sysmon 1 record 17984: User=insecurebank\\Administrator LogonId=0x12fe05"
+      ],
+      "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-03-Lateral-Movement/RT-03-converted.json",
+      "case_id": "RT-03",
+      "action": "Identify the remote client and account behind winrshost.exe on DC1.insecurebank.local from authentication logs."
+    },
+    "RT-04:recovery:4-verify-the-next-logon-on": {
+      "completed_from_repo": false,
+      "result": "Requires a logon after eradication; the dataset ends before that.",
+      "evidence": [],
+      "source": null,
+      "case_id": "RT-04",
+      "action": "Verify the next logon on IEWIN7 starts only userinit.exe -> explorer.exe (no payload child process)."
+    }
+  }
+}

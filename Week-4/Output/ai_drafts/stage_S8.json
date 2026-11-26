@@ -1,0 +1,193 @@
+{
+  "draft_id": "stage_S8",
+  "created_utc": "2026-11-24T14:15:26+00:00",
+  "generator": "Week-4/IR/ai_report_drafter.py",
+  "prompt_file": "Week-4/Prompts/stage_summary.txt",
+  "prompt_sha256": "8db9d6862a1cab9f8d0a61a6dce175ee73522cc8001a295cc0fbcb017b61c619",
+  "facts": [
+    {
+      "ref": "E001",
+      "raw": "[E001] Stage S8 \"Command and control\" (Command and Control, domain network) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "text": "Stage S8 \"Command and control\" (Command and Control, domain network) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E002",
+      "raw": "[E002] NT-03 \"Periodic HTTP connections to external host\" (network). key facts: src_ip=192.168.1.199; dst_ip=46.101.251.172; dst_port=80; connection_records=24; port_reuse_groups=4. events: 2019-01-10T20:06:29.067208Z tcp 192.168.1.199:59222 -> 46.101.251.172:80 SF bytes 149/171750; 2019-01-10T20:06:30.793723Z tcp 192.168.1.199:59224 -> 46.101.251.172:80 S0 bytes 0/0; 2019-01-10T20:09:26.859046Z tcp 192.168.1.199:59244 -> 46.101.251.172:80 SF bytes 150/149980; 2019-01-10T22:01:02.953055Z udp 192.168.1.199:123 -> 81.2.248.189:123 S0 bytes -/-. 237 source records in total. human review: Corrected",
+      "text": "NT-03 \"Periodic HTTP connections to external host\" (network). key facts: src_ip=192.168.1.199; dst_ip=46.101.251.172; dst_port=80; connection_records=24; port_reuse_groups=4. events: 2019-01-10T20:06:29.067208Z tcp 192.168.1.199:59222 -> 46.101.251.172:80 SF bytes 149/171750; 2019-01-10T20:06:30.793723Z tcp 192.168.1.199:59224 -> 46.101.251.172:80 S0 bytes 0/0; 2019-01-10T20:09:26.859046Z tcp 192.168.1.199:59244 -> 46.101.251.172:80 SF bytes 150/149980; 2019-01-10T22:01:02.953055Z udp 192.168.1.199:123 -> 81.2.248.189:123 S0 bytes -/-. 237 source records in total. human review: Corrected",
+      "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-03-C2-Beaconing/NT-03-Verified-Timeline.csv"
+    },
+    {
+      "ref": "E003",
+      "raw": "[E003] NT-03 ATT&CK T1071.001 Application Layer Protocol: Web Protocols (Command and Control), confidence label: candidate. Basis: Repeated TCP/80 connections to 46.101.251.172 with retry pattern (NT-03 verified timeline); attribution not established",
+      "text": "NT-03 ATT&CK T1071.001 Application Layer Protocol: Web Protocols (Command and Control), confidence label: candidate. Basis: Repeated TCP/80 connections to 46.101.251.172 with retry pattern (NT-03 verified timeline); attribution not established",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E004",
+      "raw": "[E004] NT-03 proposal (containment, not executed, deferred): Block egress from 192.168.1.199 to 46.101.251.172:80.",
+      "text": "NT-03 proposal (containment, not executed, deferred): Block egress from 192.168.1.199 to 46.101.251.172:80.",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E005",
+      "raw": "[E005] NT-02 \"DNS chunk-style query burst\" (network). key facts: client_ip=192.168.16.132; resolver_ip=192.168.16.131; pattern=chunkNNN-hex.lab.test; burst_count=250; burst_seconds=3.552866; zone=lab.test. events: 2026-05-26T15:56:25.484741Z DNS AAAA connectivity-check.ubuntu.com 192.168.16.131 -> 192.168.16.1 rcode=-; 2026-05-26T16:01:35.804592Z DNS AAAA connectivity-check.ubuntu.com 192.168.16.131 -> 192.168.16.1 rcode=-; 2026-05-26T16:07:21.154854Z DNS AAAA ntp.ubuntu.com.localdomain 192.168.16.131 -> 192.168.16.1 rcode=-; 2026-05-26T16:11:36.424560Z DNS A connectivity-check.ubuntu.com 192.168.16.131 -> 192.168.16.1 rcode=-. 581 source records in total. human review: Corrected",
+      "text": "NT-02 \"DNS chunk-style query burst\" (network). key facts: client_ip=192.168.16.132; resolver_ip=192.168.16.131; pattern=chunkNNN-hex.lab.test; burst_count=250; burst_seconds=3.552866; zone=lab.test. events: 2026-05-26T15:56:25.484741Z DNS AAAA connectivity-check.ubuntu.com 192.168.16.131 -> 192.168.16.1 rcode=-; 2026-05-26T16:01:35.804592Z DNS AAAA connectivity-check.ubuntu.com 192.168.16.131 -> 192.168.16.1 rcode=-; 2026-05-26T16:07:21.154854Z DNS AAAA ntp.ubuntu.com.localdomain 192.168.16.131 -> 192.168.16.1 rcode=-; 2026-05-26T16:11:36.424560Z DNS A connectivity-check.ubuntu.com 192.168.16.131 -> 192.168.16.1 rcode=-. 581 source records in total. human review: Corrected",
+      "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+    },
+    {
+      "ref": "E006",
+      "raw": "[E006] NT-02 ATT&CK T1071.004 Application Layer Protocol: DNS (Command and Control), confidence label: candidate. Basis: NETWORK_DNS_CHUNK_BURST: 250 queries in ~3.55 s (NT-02 case study); tunneling/exfiltration NOT established",
+      "text": "NT-02 ATT&CK T1071.004 Application Layer Protocol: DNS (Command and Control), confidence label: candidate. Basis: NETWORK_DNS_CHUNK_BURST: 250 queries in ~3.55 s (NT-02 case study); tunneling/exfiltration NOT established",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E007",
+      "raw": "[E007] NT-02 not established / limitation: authorized lab/test activity unknown",
+      "text": "NT-02 not established / limitation: authorized lab/test activity unknown",
+      "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+    },
+    {
+      "ref": "E008",
+      "raw": "[E008] NT-02 not established / limitation: DNS payload meaning unknown",
+      "text": "NT-02 not established / limitation: DNS payload meaning unknown",
+      "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+    },
+    {
+      "ref": "E009",
+      "raw": "[E009] NT-02 not established / limitation: NOERROR is not evidence of exfiltration",
+      "text": "NT-02 not established / limitation: NOERROR is not evidence of exfiltration",
+      "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Verified-Timeline.csv"
+    },
+    {
+      "ref": "E010",
+      "raw": "[E010] NT-02 read-only check result: 250 distinct chunk labels; hex parts decode to 3000 bytes, of which 38% are printable ASCII. The decoded bytes are not readable text (consistent with encoded/encrypted or random content); payload meaning remains undetermined.",
+      "text": "NT-02 read-only check result: 250 distinct chunk labels; hex parts decode to 3000 bytes, of which 38% are printable ASCII. The decoded bytes are not readable text (consistent with encoded/encrypted or random content); payload meaning remains undetermined.",
+      "source": "Week-2/Data/Real-Datasets/Network-Attacks/NT-02-DNS-Anomaly/NT-02-Zeek-dns-original.log"
+    },
+    {
+      "ref": "E011",
+      "raw": "[E011] NT-02 proposal (containment, not executed, approved): Rate-limit / inspect DNS from 192.168.16.132 to 192.168.16.131 for the lab.test zone.",
+      "text": "NT-02 proposal (containment, not executed, approved): Rate-limit / inspect DNS from 192.168.16.132 to 192.168.16.131 for the lab.test zone.",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E012",
+      "raw": "[E012] RT-01 \"plink.exe RDP tunnel\" (network). key facts: host=PC01.example.corp; tool_path=C:\\Users\\IEUser\\Desktop\\plink.exe; destinations=10.0.2.18:80, 127.0.0.2:3389. events: 2019-02-16T10:02:21.9344384Z Event 1 on PC01.example.corp: Sysmon process creation: C:\\Users\\IEUser\\Desktop\\plink.exe; 2019-02-16T10:02:22.9659216Z Event 3 on PC01.example.corp: Sysmon network connection event: destination 10.0.2.18:80; 2019-02-16T10:02:48.5026416Z Event 3 on PC01.example.corp: Sysmon network connection event: destination 127.0.0.2:3389; 2019-02-16T10:04:05.0927728Z Event 3 on PC01.example.corp: Sysmon network connection event: destination 127.0.0.2:3389. human review: Corrected",
+      "text": "RT-01 \"plink.exe RDP tunnel\" (network). key facts: host=PC01.example.corp; tool_path=C:\\Users\\IEUser\\Desktop\\plink.exe; destinations=10.0.2.18:80, 127.0.0.2:3389. events: 2019-02-16T10:02:21.9344384Z Event 1 on PC01.example.corp: Sysmon process creation: C:\\Users\\IEUser\\Desktop\\plink.exe; 2019-02-16T10:02:22.9659216Z Event 3 on PC01.example.corp: Sysmon network connection event: destination 10.0.2.18:80; 2019-02-16T10:02:48.5026416Z Event 3 on PC01.example.corp: Sysmon network connection event: destination 127.0.0.2:3389; 2019-02-16T10:04:05.0927728Z Event 3 on PC01.example.corp: Sysmon network connection event: destination 127.0.0.2:3389. human review: Corrected",
+      "source": "Week-2/Data/Real-Datasets/Windows-Attacks/RT-01-C2/RT-01-Verified-Timeline.csv"
+    },
+    {
+      "ref": "E013",
+      "raw": "[E013] RT-01 ATT&CK T1572 Protocol Tunneling (Command and Control), confidence label: observed_pattern. Basis: plink.exe followed by connections to 10.0.2.18:80 and 127.0.0.2:3389 (RT-01 verified timeline)",
+      "text": "RT-01 ATT&CK T1572 Protocol Tunneling (Command and Control), confidence label: observed_pattern. Basis: plink.exe followed by connections to 10.0.2.18:80 and 127.0.0.2:3389 (RT-01 verified timeline)",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E014",
+      "raw": "[E014] RT-01 proposal (containment, not executed, approved): Block C:\\Users\\IEUser\\Desktop\\plink.exe execution and the tunnel destinations (10.0.2.18:80, 127.0.0.2:3389) on PC01.example.corp.",
+      "text": "RT-01 proposal (containment, not executed, approved): Block C:\\Users\\IEUser\\Desktop\\plink.exe execution and the tunnel destinations (10.0.2.18:80, 127.0.0.2:3389) on PC01.example.corp.",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E015",
+      "raw": "[E015] RT-01 proposal (eradication, not executed, approved): Remove C:\\Users\\IEUser\\Desktop\\plink.exe from PC01.example.corp and review saved PuTTY/plink sessions.",
+      "text": "RT-01 proposal (eradication, not executed, approved): Remove C:\\Users\\IEUser\\Desktop\\plink.exe from PC01.example.corp and review saved PuTTY/plink sessions.",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E016",
+      "raw": "[E016] Analyst question for this stage: Are the periodic connections, DNS chunk burst and plink tunnel C2 channels or approved tooling?",
+      "text": "Analyst question for this stage: Are the periodic connections, DNS chunk burst and plink tunnel C2 channels or approved tooling?",
+      "source": "Week-4/Config/scenario.json"
+    }
+  ],
+  "status": "generated",
+  "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+  "options": {
+    "temperature": 0.2,
+    "repeat_penalty": 1.15,
+    "num_ctx": 6144,
+    "num_predict": 1500,
+    "seed": 42
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+      "options": {
+        "temperature": 0.2,
+        "repeat_penalty": 1.15,
+        "num_ctx": 6144,
+        "num_predict": 1500,
+        "seed": 42
+      },
+      "outcome": "success",
+      "seconds": 394.67
+    }
+  ],
+  "done_reason": "stop",
+  "truncated": false,
+  "tokens_per_second": 1.99,
+  "wall_seconds": 394.67,
+  "eval_count": 707,
+  "text": "1. STAGE SUMMARY: The eighth stage of scenario W4-TT-01 involves repeated HTTP connections from a host (192.168.1.199) to an external IP address (46.101.251.172), which is suspected to be a command and control server based on the observed pattern of TCP/80 connections with retry attempts [E003]. Additionally, there are DNS chunk-style queries from another host (192.168.16.132) to the same resolver (192.168.16.131), potentially for command and control purposes due to a high number of queries within a short time frame [E006]. Lastly, there is evidence of an RDP tunnel using plink.exe on PC01.example.corp, which may also be related to command and control activities [E013].\n\n2. EVIDENCE OBSERVED:\n   - Periodic HTTP connections from 192.168.1.199 to 46.101.251.172:80 [E002]\n   - DNS chunk-style queries from 192.168.16.132 to 192.168.16.131 for the lab.test zone [E005]\n   - plink.exe RDP tunnel activity on PC01.example.corp [E012]\n\n3. ATTACK TECHNIQUES:\n   - T1071.001 Application Layer Protocol: Web Protocols (Command and Control) - candidate [E003]\n   - T1071.004 Application Layer Protocol: DNS (Command and Control) - candidate [E006]\n   - T1572 Protocol Tunneling (Command and Control) - observed_pattern [E013]\n\n4. WHAT IS NOT ESTABLISHED:\n   - The attribution of the command and control activities [E003, E006, E013]\n   - Whether the DNS chunk burst is related to tunneling or exfiltration [E006]\n   - The purpose of authorized lab/test activity in relation to the DNS queries [E007]\n   - The meaning of the DNS payload [E008]\n   - Whether NOERROR responses indicate exfiltration [E009]\n   - The readability or content of the decoded bytes from the DNS queries [E010]\n   - The purpose of plink.exe on PC01.example.corp [E012, E014, E015]\n\n5. ANALYST QUESTION: Are the periodic connections, DNS chunk burst and plink tunnel C2 channels or approved tooling? [E016]\n\n6. REVIEW STATUS: DRAFT - AI-generated, requires human analyst validation before use.",
+  "sections": {
+    "STAGE SUMMARY": "The eighth stage of scenario W4-TT-01 involves repeated HTTP connections from a host (192.168.1.199) to an external IP address (46.101.251.172), which is suspected to be a command and control server based on the observed pattern of TCP/80 connections with retry attempts [E003]. Additionally, there are DNS chunk-style queries from another host (192.168.16.132) to the same resolver (192.168.16.131), potentially for command and control purposes due to a high number of queries within a short time frame [E006]. Lastly, there is evidence of an RDP tunnel using plink.exe on PC01.example.corp, which may also be related to command and control activities [E013].",
+    "EVIDENCE OBSERVED": "- Periodic HTTP connections from 192.168.1.199 to 46.101.251.172:80 [E002]\n   - DNS chunk-style queries from 192.168.16.132 to 192.168.16.131 for the lab.test zone [E005]\n   - plink.exe RDP tunnel activity on PC01.example.corp [E012]",
+    "ATTACK TECHNIQUES": "- T1071.001 Application Layer Protocol: Web Protocols (Command and Control) - candidate [E003]\n   - T1071.004 Application Layer Protocol: DNS (Command and Control) - candidate [E006]\n   - T1572 Protocol Tunneling (Command and Control) - observed_pattern [E013]",
+    "WHAT IS NOT ESTABLISHED": "- The attribution of the command and control activities [E003, E006, E013]\n   - Whether the DNS chunk burst is related to tunneling or exfiltration [E006]\n   - The purpose of authorized lab/test activity in relation to the DNS queries [E007]\n   - The meaning of the DNS payload [E008]\n   - Whether NOERROR responses indicate exfiltration [E009]\n   - The readability or content of the decoded bytes from the DNS queries [E010]\n   - The purpose of plink.exe on PC01.example.corp [E012, E014, E015]",
+    "ANALYST QUESTION": "Are the periodic connections, DNS chunk burst and plink tunnel C2 channels or approved tooling? [E016]",
+    "REVIEW STATUS": "DRAFT - AI-generated, requires human analyst validation before use."
+  },
+  "validation": {
+    "flags": [],
+    "severity_counts": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "heading_normalization": "inline 'N. HEADING: text' split before parsing (Week-4)",
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review"
+  },
+  "validation_original": {
+    "flags": [
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "STAGE SUMMARY",
+        "message": "Expected section 'STAGE SUMMARY' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "ANALYST QUESTION",
+        "message": "Expected section 'ANALYST QUESTION' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F002"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "REVIEW STATUS",
+        "message": "Expected section 'REVIEW STATUS' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F003"
+      }
+    ],
+    "severity_counts": {
+      "high": 0,
+      "medium": 3,
+      "low": 0
+    },
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  }
+}

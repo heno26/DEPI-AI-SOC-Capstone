@@ -1,0 +1,200 @@
+{
+  "draft_id": "stage_S9",
+  "created_utc": "2026-11-24T14:22:01+00:00",
+  "generator": "Week-4/IR/ai_report_drafter.py",
+  "prompt_file": "Week-4/Prompts/stage_summary.txt",
+  "prompt_sha256": "8db9d6862a1cab9f8d0a61a6dce175ee73522cc8001a295cc0fbcb017b61c619",
+  "facts": [
+    {
+      "ref": "E001",
+      "raw": "[E001] Stage S9 \"Collection / exfiltration (hypothesis)\" (Collection / Exfiltration, domain email) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "text": "Stage S9 \"Collection / exfiltration (hypothesis)\" (Collection / Exfiltration, domain email) of tabletop scenario W4-TT-01. This stage is represented by historical lab evidence; the link to other stages is a scenario construct.",
+      "source": "Week-4/Config/scenario.json"
+    },
+    {
+      "ref": "E002",
+      "raw": "[E002] SIEM-EXCH-005 \"Exchange mailbox export to OWA .aspx path\" (email). key facts: host=win-dc-exch01.attackrange.local; export_names=OnmrPW8m8Uv, dYbLTCleBT; mailbox=Administrator@attackrange.local; unique_events=2; removed_exports=OnmrPW8m8Uv, dYbLTCleBT; role_assignments=2; content_deletions=2. events: 11/21/2022 05:21:55 PM [cmdlet audit log] New-ManagementRoleAssignment on win-dc-exch01.attackrange.local (record 1788): Cmdlet suceeded. Cmdlet New-ManagementRoleAssignment, parameters -Role \"Mailbox Import Export\" -User \"Administrator@attackrange.local\".; 2022-11-21T17:22:01 New-MailboxExportRequest on win-dc-exch01.attackrange.local for Administrator@attackrange.local to \\\\win-dc-exch01.attackrange.local\\C$\\Program Files\\Microsoft\\Exchange Server\\V15\\FrontEnd\\HttpProxy\\owa\\auth\\ZnTQs2wv.aspx (record 1789); 11/21/2022 08:09:02 PM [cmdlet audit log] Remove-MailboxExportRequest on win-dc-exch01.attackrange.local (record 1896): Cmdlet suceeded. Cmdlet Remove-MailboxExportRequest, parameters -Identity \"Administrator@attackrange.local\\dYbLTCleBT\" -Confirm \"False\".; 11/21/2022 08:09:04 PM [cmdlet audit log] Search-Mailbox on win-dc-exch01.attackrange.local (record 1897): Cmdlet suceeded. Cmdlet Search-Mailbox, parameters -Identity \"Administrator@attackrange.local\" -SearchQuery \"Subject:\"Fay10dOWecFg\"\" -Force \"True\" -DeleteContent \"True\".. 8 source records in total. AI severity High, confidence Medium, QA REVIEW_REQUIRED. human review: PENDING_HUMAN_APPROVAL",
+      "text": "SIEM-EXCH-005 \"Exchange mailbox export to OWA .aspx path\" (email). key facts: host=win-dc-exch01.attackrange.local; export_names=OnmrPW8m8Uv, dYbLTCleBT; mailbox=Administrator@attackrange.local; unique_events=2; removed_exports=OnmrPW8m8Uv, dYbLTCleBT; role_assignments=2; content_deletions=2. events: 11/21/2022 05:21:55 PM [cmdlet audit log] New-ManagementRoleAssignment on win-dc-exch01.attackrange.local (record 1788): Cmdlet suceeded. Cmdlet New-ManagementRoleAssignment, parameters -Role \"Mailbox Import Export\" -User \"Administrator@attackrange.local\".; 2022-11-21T17:22:01 New-MailboxExportRequest on win-dc-exch01.attackrange.local for Administrator@attackrange.local to \\\\win-dc-exch01.attackrange.local\\C$\\Program Files\\Microsoft\\Exchange Server\\V15\\FrontEnd\\HttpProxy\\owa\\auth\\ZnTQs2wv.aspx (record 1789); 11/21/2022 08:09:02 PM [cmdlet audit log] Remove-MailboxExportRequest on win-dc-exch01.attackrange.local (record 1896): Cmdlet suceeded. Cmdlet Remove-MailboxExportRequest, parameters -Identity \"Administrator@attackrange.local\\dYbLTCleBT\" -Confirm \"False\".; 11/21/2022 08:09:04 PM [cmdlet audit log] Search-Mailbox on win-dc-exch01.attackrange.local (record 1897): Cmdlet suceeded. Cmdlet Search-Mailbox, parameters -Identity \"Administrator@attackrange.local\" -SearchQuery \"Subject:\"Fay10dOWecFg\"\" -Force \"True\" -DeleteContent \"True\".. 8 source records in total. AI severity High, confidence Medium, QA REVIEW_REQUIRED. human review: PENDING_HUMAN_APPROVAL",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM_EXCHANGE_005_21c4515e439a0b3b6a3f_AI_Triage.json"
+    },
+    {
+      "ref": "E003",
+      "raw": "[E003] SIEM-EXCH-005 ATT&CK T1114.002 Email Collection: Remote Email Collection (Collection), confidence label: candidate. Basis: Two New-MailboxExportRequest cmdlets for Administrator@attackrange.local (Exchange 005 evidence); completion unverified",
+      "text": "SIEM-EXCH-005 ATT&CK T1114.002 Email Collection: Remote Email Collection (Collection), confidence label: candidate. Basis: Two New-MailboxExportRequest cmdlets for Administrator@attackrange.local (Exchange 005 evidence); completion unverified",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E004",
+      "raw": "[E004] SIEM-EXCH-005 ATT&CK T1505.003 Server Software Component: Web Shell (Persistence), confidence label: hypothesis. Basis: Export FilePath points to .aspx under OWA auth directory; Week-2 lists web-shell deployment as an unverified hypothesis",
+      "text": "SIEM-EXCH-005 ATT&CK T1505.003 Server Software Component: Web Shell (Persistence), confidence label: hypothesis. Basis: Export FilePath points to .aspx under OWA auth directory; Week-2 lists web-shell deployment as an unverified hypothesis",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E005",
+      "raw": "[E005] SIEM-EXCH-005 ATT&CK T1098 Account Manipulation (Persistence), confidence label: observed_pattern. Basis: New-ManagementRoleAssignment -Role 'Mailbox Import Export' -User Administrator before each export (msexchangemanagement.log records 1788, 1891); authorisation unknown",
+      "text": "SIEM-EXCH-005 ATT&CK T1098 Account Manipulation (Persistence), confidence label: observed_pattern. Basis: New-ManagementRoleAssignment -Role 'Mailbox Import Export' -User Administrator before each export (msexchangemanagement.log records 1788, 1891); authorisation unknown",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E006",
+      "raw": "[E006] SIEM-EXCH-005 ATT&CK T1070.008 Indicator Removal: Clear Mailbox Data (Defense Evasion), confidence label: observed_pattern. Basis: Remove-MailboxExportRequest and Search-Mailbox -DeleteContent after each export (msexchangemanagement.log records 1793-1794, 1896-1897)",
+      "text": "SIEM-EXCH-005 ATT&CK T1070.008 Indicator Removal: Clear Mailbox Data (Defense Evasion), confidence label: observed_pattern. Basis: Remove-MailboxExportRequest and Search-Mailbox -DeleteContent after each export (msexchangemanagement.log records 1793-1794, 1896-1897)",
+      "source": "Week-4/Config/attack_mapping.json"
+    },
+    {
+      "ref": "E007",
+      "raw": "[E007] SIEM-EXCH-005 not established / limitation: The export requests were unauthorized.",
+      "text": "SIEM-EXCH-005 not established / limitation: The export requests were unauthorized.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM_EXCHANGE_005_21c4515e439a0b3b6a3f_AI_Triage.json"
+    },
+    {
+      "ref": "E008",
+      "raw": "[E008] SIEM-EXCH-005 not established / limitation: The ASPX destination paths were intended for web-shell staging.",
+      "text": "SIEM-EXCH-005 not established / limitation: The ASPX destination paths were intended for web-shell staging.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM_EXCHANGE_005_21c4515e439a0b3b6a3f_AI_Triage.json"
+    },
+    {
+      "ref": "E009",
+      "raw": "[E009] SIEM-EXCH-005 not established / limitation: The requested export operations resulted in actual files on disk.",
+      "text": "SIEM-EXCH-005 not established / limitation: The requested export operations resulted in actual files on disk.",
+      "source": "Week-2/Evidence/SIEM-OpenObserve/SIEM_EXCHANGE_005_21c4515e439a0b3b6a3f_AI_Triage.json"
+    },
+    {
+      "ref": "E010",
+      "raw": "[E010] SIEM-EXCH-005 read-only check result: Get-MailboxExportRequest cannot be run (no server), but the Exchange cmdlet audit log answers the status question: RecordNumber 1788 11/21/2022 05:21:55 PM: New-ManagementRoleAssignment; RecordNumber 1789 11/21/2022 05:22:01 PM: New-MailboxExportRequest; RecordNumber 1793 11/21/2022 05:27:25 PM: Remove-MailboxExportRequest; RecordNumber 1794 11/21/2022 05:27:27 PM: Search-Mailbox; RecordNumber 1891 11/21/2022 08:03:50 PM: New-ManagementRoleAssignment; RecordNumber 1892 11/21/2022 08:03:51 PM: New-MailboxExportRequest; RecordNumber 1896 11/21/2022 08:09:02 PM: Remove-MailboxExportRequest; RecordNumber 1897 11/21/2022 08:09:04 PM: Search-Mailbox. Export requests later removed: OnmrPW8m8Uv, dYbLTCleBT. Cmdlet success is logged; export file creation on disk is NOT shown by this log.",
+      "text": "SIEM-EXCH-005 read-only check result: Get-MailboxExportRequest cannot be run (no server), but the Exchange cmdlet audit log answers the status question: RecordNumber 1788 11/21/2022 05:21:55 PM: New-ManagementRoleAssignment; RecordNumber 1789 11/21/2022 05:22:01 PM: New-MailboxExportRequest; RecordNumber 1793 11/21/2022 05:27:25 PM: Remove-MailboxExportRequest; RecordNumber 1794 11/21/2022 05:27:27 PM: Search-Mailbox; RecordNumber 1891 11/21/2022 08:03:50 PM: New-ManagementRoleAssignment; RecordNumber 1892 11/21/2022 08:03:51 PM: New-MailboxExportRequest; RecordNumber 1896 11/21/2022 08:09:02 PM: Remove-MailboxExportRequest; RecordNumber 1897 11/21/2022 08:09:04 PM: Search-Mailbox. Export requests later removed: OnmrPW8m8Uv, dYbLTCleBT. Cmdlet success is logged; export file creation on disk is NOT shown by this log.",
+      "source": "Week-2/Data/Exchange/msexchangemanagement.log"
+    },
+    {
+      "ref": "E011",
+      "raw": "[E011] SIEM-EXCH-005 proposal (eradication, not executed, deferred): Only after verification: remove the export requests and any created .aspx files on win-dc-exch01.attackrange.local (Week-3 lists automatic deletion as prohibited).",
+      "text": "SIEM-EXCH-005 proposal (eradication, not executed, deferred): Only after verification: remove the export requests and any created .aspx files on win-dc-exch01.attackrange.local (Week-3 lists automatic deletion as prohibited).",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E012",
+      "raw": "[E012] SIEM-EXCH-005 proposal (recovery, not executed, approved): Review Exchange RBAC: remove the Mailbox Import Export role assignment made to Administrator@attackrange.local (2 assignments logged) unless it is approved.",
+      "text": "SIEM-EXCH-005 proposal (recovery, not executed, approved): Review Exchange RBAC: remove the Mailbox Import Export role assignment made to Administrator@attackrange.local (2 assignments logged) unless it is approved.",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E013",
+      "raw": "[E013] SIEM-EXCH-005 proposal (recovery, not executed, deferred): Reset Administrator@attackrange.local credentials if misuse of the account is confirmed.",
+      "text": "SIEM-EXCH-005 proposal (recovery, not executed, deferred): Reset Administrator@attackrange.local credentials if misuse of the account is confirmed.",
+      "source": "Week-4/Config/response_catalog.json"
+    },
+    {
+      "ref": "E014",
+      "raw": "[E014] Analyst question for this stage: Did the mailbox export requests complete, and do the exported .aspx files exist on the server?",
+      "text": "Analyst question for this stage: Did the mailbox export requests complete, and do the exported .aspx files exist on the server?",
+      "source": "Week-4/Config/scenario.json"
+    }
+  ],
+  "status": "generated",
+  "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+  "options": {
+    "temperature": 0.2,
+    "repeat_penalty": 1.15,
+    "num_ctx": 6144,
+    "num_predict": 1500,
+    "seed": 42
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "model": "Mistral:7b-instruct-v0.3-q4_K_S",
+      "options": {
+        "temperature": 0.2,
+        "repeat_penalty": 1.15,
+        "num_ctx": 6144,
+        "num_predict": 1500,
+        "seed": 42
+      },
+      "outcome": "success",
+      "seconds": 2556.61
+    }
+  ],
+  "done_reason": "stop",
+  "truncated": false,
+  "tokens_per_second": 0.16,
+  "wall_seconds": 2556.61,
+  "eval_count": 407,
+  "text": "1. STAGE SUMMARY: During Stage S9 of scenario W4-TT-01, an unauthorized email collection attempt was made using Exchange cmdlets, potentially resulting in data exfiltration via web shell deployment and account manipulation.\n2. EVIDENCE OBSERVED:\n   - Two New-MailboxExportRequest cmdlets for Administrator@attackrange.local ([E003])\n   - Export FilePath points to .aspx under OWA auth directory ([E004])\n   - Role assignments and content deletions observed after each export ([E005], [E006])\n   - Unauthorized export requests and unverified web-shell deployment hypotheses ([E007], [E008])\n3. ATTACK TECHNIQUES:\n   - T1114.002 - Email Collection (Collection) - Candidate\n   - T1505.003 - Server Software Component - Web Shell (Persistence) - Hypothesis\n   - T1098.Account Manipulation (Persistence) - Observed Pattern\n   - T1070.008 - Indicator Removal: Clear Mailbox Data (Defense Evasion) - Observed Pattern\n4. WHAT IS NOT ESTABLISHED:\n   - Whether the mailbox export requests completed and .aspx files exist on the server\n   - The intended purpose of the ASPX destination paths\n   - If actual files were created on disk as a result of the requested export operations\n5. ANALYST QUESTION: Did the mailbox export requests complete, and do the exported .aspx files exist on the server?\n6. REVIEW STATUS: DRAFT - AI-generated, requires human analyst validation before use.",
+  "sections": {
+    "STAGE SUMMARY": "During Stage S9 of scenario W4-TT-01, an unauthorized email collection attempt was made using Exchange cmdlets, potentially resulting in data exfiltration via web shell deployment and account manipulation.",
+    "EVIDENCE OBSERVED": "- Two New-MailboxExportRequest cmdlets for Administrator@attackrange.local ([E003])\n   - Export FilePath points to .aspx under OWA auth directory ([E004])\n   - Role assignments and content deletions observed after each export ([E005], [E006])\n   - Unauthorized export requests and unverified web-shell deployment hypotheses ([E007], [E008])",
+    "ATTACK TECHNIQUES": "- T1114.002 - Email Collection (Collection) - Candidate\n   - T1505.003 - Server Software Component - Web Shell (Persistence) - Hypothesis\n   - T1098.Account Manipulation (Persistence) - Observed Pattern\n   - T1070.008 - Indicator Removal: Clear Mailbox Data (Defense Evasion) - Observed Pattern",
+    "WHAT IS NOT ESTABLISHED": "- Whether the mailbox export requests completed and .aspx files exist on the server\n   - The intended purpose of the ASPX destination paths\n   - If actual files were created on disk as a result of the requested export operations",
+    "ANALYST QUESTION": "Did the mailbox export requests complete, and do the exported .aspx files exist on the server?",
+    "REVIEW STATUS": "DRAFT - AI-generated, requires human analyst validation before use."
+  },
+  "validation": {
+    "flags": [
+      {
+        "check": "unsupported_domain",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "t1098.account",
+        "message": "Domain-like value not present in the source (may be ordinary text containing a dot).",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      }
+    ],
+    "severity_counts": {
+      "high": 0,
+      "medium": 1,
+      "low": 0
+    },
+    "heading_normalization": "inline 'N. HEADING: text' split before parsing (Week-4)",
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  },
+  "review": {
+    "status": "Pending Review"
+  },
+  "validation_original": {
+    "flags": [
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "STAGE SUMMARY",
+        "message": "Expected section 'STAGE SUMMARY' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F001"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "ANALYST QUESTION",
+        "message": "Expected section 'ANALYST QUESTION' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F002"
+      },
+      {
+        "check": "missing_section",
+        "severity": "medium",
+        "section": "WHAT IS NOT ESTABLISHED",
+        "value": "REVIEW STATUS",
+        "message": "Expected section 'REVIEW STATUS' not found in the model output.",
+        "analyst_disposition": "Unreviewed",
+        "id": "F003"
+      },
+      {
+        "check": "unsupported_domain",
+        "severity": "medium",
+        "section": "(whole output)",
+        "value": "t1098.account",
+        "message": "Domain-like value not present in the source (may be ordinary text containing a dot).",
+        "analyst_disposition": "Unreviewed",
+        "id": "F004"
+      }
+    ],
+    "severity_counts": {
+      "high": 0,
+      "medium": 4,
+      "low": 0
+    },
+    "disclaimer": "Flags request human review; they are not proof of hallucination. Passing all checks does not prove correctness."
+  }
+}

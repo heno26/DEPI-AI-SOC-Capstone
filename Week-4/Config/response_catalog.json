@@ -1,0 +1,230 @@
+{
+  "_note": "Week-4 response proposals per case. {placeholders} are filled from the case facts that correlate.py reads from Week-2 evidence, so no value is typed by hand. For SIEM cases the containment proposals and prohibited actions come from the Week-3 tickets and are NOT repeated here. Every T1 item is a proposal: it requires a recorded analyst decision (Simulation/analyst_decisions.jsonl) and is never executed by the pipeline. T0 items are read-only investigation steps.",
+  "tiers": {
+    "T0": "Read-only investigation / verification (no state change)",
+    "T1": "Response proposal - requires recorded analyst approval; executed out-of-band by a human",
+    "T2": "Prohibited automation (Week-3 dispatcher hard block) - listed for completeness"
+  },
+  "cases": {
+    "NT-01": [
+      {
+        "phase": "containment",
+        "tier": "T0",
+        "action": "Confirm whether {scanner_ip} is an authorised scanner (scan window, change record)."
+      },
+      {
+        "phase": "containment",
+        "tier": "T1",
+        "action": "If unauthorised: block {scanner_ip} from reaching {target_ip} at the internal firewall."
+      },
+      {
+        "phase": "recovery",
+        "tier": "T0",
+        "action": "Review which of the {distinct_ports} probed ports on {target_ip} are open and close unneeded services."
+      }
+    ],
+    "SIEM-WEB-001": [
+      {
+        "phase": "eradication",
+        "tier": "T0",
+        "action": "Resolve Week-2 gate 2: prove the row-level join between the firing trigger and the {request_count}-request group from {source_ip} before any source block."
+      },
+      {
+        "phase": "recovery",
+        "tier": "T0",
+        "action": "Re-baseline the high-rate threshold ({threshold} req/min) against normal traffic for {top_path} and similar paths."
+      }
+    ],
+    "SIEM-WEB-004": [
+      {
+        "phase": "eradication",
+        "tier": "T1",
+        "action": "Fix output encoding / input validation for the parameter used on {request_path}; add a Content-Security-Policy header."
+      },
+      {
+        "phase": "recovery",
+        "tier": "T0",
+        "action": "Re-test {request_path} with the {instances} recorded payloads after the fix; confirm the WAF rule review outcome."
+      }
+    ],
+    "SIEM-AUTH-002": [
+      {
+        "phase": "eradication",
+        "tier": "T1",
+        "action": "Disable SSH password authentication for {username} (PermitRootLogin prohibit-password / key-only)."
+      },
+      {
+        "phase": "recovery",
+        "tier": "T0",
+        "action": "Search the full {dataset} for 'Accepted password' from {source_ip}; reset {username} credentials only if a success is found."
+      }
+    ],
+    "LT-01": [
+      {
+        "phase": "containment",
+        "tier": "T1",
+        "action": "Block SSH from {source_ip} on host {host} (same source as SIEM-AUTH-002)."
+      },
+      {
+        "phase": "recovery",
+        "tier": "T0",
+        "action": "Confirm no successful login exists for the targeted accounts ({usernames}) on {host}."
+      }
+    ],
+    "SIEM-MAL-003": [
+      {
+        "phase": "eradication",
+        "tier": "T1",
+        "action": "Remove {process_image} and its parent {parent_process} from the affected host after evidence preservation."
+      },
+      {
+        "phase": "eradication",
+        "tier": "T1",
+        "action": "Add SHA256 {sha256} to the endpoint blocklist (Week-3 PB-02 proposal) and sinkhole the queried .lat domains."
+      },
+      {
+        "phase": "recovery",
+        "tier": "T1",
+        "action": "Re-image the affected host if the hash verdict is malicious; monitor for connections to {destination_ip}:{destination_port}."
+      }
+    ],
+    "LT-03": [
+      {
+        "phase": "containment",
+        "tier": "T1",
+        "action": "Isolate {host} from the network and block egress to {target_ip}:{target_port}."
+      },
+      {
+        "phase": "eradication",
+        "tier": "T1",
+        "action": "Terminate the bash process tree (ProcessGuid {process_guid}) and check {user} persistence (cron, shell rc files, authorized_keys)."
+      },
+      {
+        "phase": "recovery",
+        "tier": "T0",
+        "action": "Confirm whether the connection to {target_ip}:{target_port} succeeded (network_outcome is unknown in the evidence)."
+      }
+    ],
+    "RT-04": [
+      {
+        "phase": "containment",
+        "tier": "T1",
+        "action": "Isolate {host} until the persistence entry is removed."
+      },
+      {
+        "phase": "eradication",
+        "tier": "T1",
+        "action": "Restore {registry_key} to explorer.exe only and delete {payload_path}."
+      },
+      {
+        "phase": "eradication",
+        "tier": "T1",
+        "action": "Collect and hash {dropper} before deletion for malware analysis."
+      },
+      {
+        "phase": "recovery",
+        "tier": "T0",
+        "action": "Verify the next logon on {host} starts only userinit.exe -> explorer.exe (no payload child process)."
+      }
+    ],
+    "LT-02": [
+      {
+        "phase": "containment",
+        "tier": "T0",
+        "action": "Match the {distinct_commands} distinct sudo commands against change records; no action unless unauthorised."
+      }
+    ],
+    "RT-02": [
+      {
+        "phase": "containment",
+        "tier": "T0",
+        "action": "Identify the session that cleared the Security log on {host} and confirm whether {account} activity was approved."
+      },
+      {
+        "phase": "containment",
+        "tier": "T1",
+        "action": "If unapproved: reset the {account} password and restrict share access ({shares}) from {source_ip}."
+      },
+      {
+        "phase": "recovery",
+        "tier": "T1",
+        "action": "Forward Security logs from {host} to the SIEM so a future log clear cannot remove the only copy."
+      }
+    ],
+    "RT-03": [
+      {
+        "phase": "containment",
+        "tier": "T1",
+        "action": "Restrict WinRM on {host} to approved administration hosts."
+      },
+      {
+        "phase": "recovery",
+        "tier": "T0",
+        "action": "Identify the remote client and account behind winrshost.exe on {host} from authentication logs."
+      }
+    ],
+    "NT-03": [
+      {
+        "phase": "containment",
+        "tier": "T1",
+        "action": "Block egress from {src_ip} to {dst_ip}:{dst_port}."
+      },
+      {
+        "phase": "eradication",
+        "tier": "T0",
+        "action": "Attribute the {connection_records} connections on {src_ip} to a process (endpoint telemetry is not in the dataset)."
+      }
+    ],
+    "NT-02": [
+      {
+        "phase": "containment",
+        "tier": "T1",
+        "action": "Rate-limit / inspect DNS from {client_ip} to {resolver_ip} for the {zone} zone."
+      },
+      {
+        "phase": "eradication",
+        "tier": "T0",
+        "action": "Decode the {burst_count} chunk labels ({pattern}) to determine whether they carry data."
+      }
+    ],
+    "RT-01": [
+      {
+        "phase": "containment",
+        "tier": "T1",
+        "action": "Block {tool_path} execution and the tunnel destinations ({destinations}) on {host}."
+      },
+      {
+        "phase": "eradication",
+        "tier": "T1",
+        "action": "Remove {tool_path} from {host} and review saved PuTTY/plink sessions."
+      }
+    ],
+    "SIEM-EXCH-005": [
+      {
+        "phase": "containment",
+        "tier": "T0",
+        "action": "Run Get-MailboxExportRequest on {host} to check the status of the export requests ({export_names})."
+      },
+      {
+        "phase": "containment",
+        "tier": "T0",
+        "action": "Check whether the export target files exist: {aspx_paths}."
+      },
+      {
+        "phase": "eradication",
+        "tier": "T1",
+        "action": "Only after verification: remove the export requests and any created .aspx files on {host} (Week-3 lists automatic deletion as prohibited)."
+      },
+      {
+        "phase": "recovery",
+        "tier": "T1",
+        "action": "Review Exchange RBAC: remove the Mailbox Import Export role assignment made to {mailbox} ({role_assignments} assignments logged) unless it is approved."
+      },
+      {
+        "phase": "recovery",
+        "tier": "T1",
+        "action": "Reset {mailbox} credentials if misuse of the account is confirmed."
+      }
+    ]
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "scenario_id": "W4-TT-01",
+  "title": "Composite multi-stage intrusion - tabletop simulation",
+  "simulation_type": "composite_tabletop",
+  "framework": "NIST SP 800-61 Rev.2 incident handling lifecycle / SANS PICERL",
+  "boundary_statement": [
+    "Every stage is represented by real, hash-verifiable evidence that already exists in Week-2 (datasets, OpenObserve alert evidence, verified timelines) and Week-3 (tickets, audit logs).",
+    "The datasets come from different public sources and different years. The chain that links the stages is a scenario construct for the tabletop exercise; causal links between stages are NOT observed in the data.",
+    "Timeline order is the scenario stage order. Timestamps shown are the original dataset timestamps and are never shifted or invented.",
+    "No live SIEM, no live TheHive, no live threat-intelligence feed, no remediation is executed. Containment/eradication/recovery items are proposals that require a recorded analyst decision."
+  ],
+  "stages": [
+    {
+      "stage_id": "S1",
+      "order": 1,
+      "name": "Reconnaissance",
+      "kill_chain": "Reconnaissance / Discovery",
+      "domain": "network",
+      "case_ids": ["NT-01"],
+      "question_for_analysts": "Is the vertical port scan from an authorised scanner, and which hosts/services were exposed?"
+    },
+    {
+      "stage_id": "S2",
+      "order": 2,
+      "name": "Web-tier attack",
+      "kill_chain": "Initial Access attempt",
+      "domain": "web",
+      "case_ids": ["SIEM-WEB-001", "SIEM-WEB-004"],
+      "question_for_analysts": "Did any XSS payload execute in a browser, and is the high-rate HTTP source linked to the scan?"
+    },
+    {
+      "stage_id": "S3",
+      "order": 3,
+      "name": "Credential attack",
+      "kill_chain": "Credential Access",
+      "domain": "auth",
+      "case_ids": ["SIEM-AUTH-002", "LT-01"],
+      "question_for_analysts": "Did any SSH password guess succeed (Accepted password) for root or another account?"
+    },
+    {
+      "stage_id": "S4",
+      "order": 4,
+      "name": "Execution",
+      "kill_chain": "Execution",
+      "domain": "endpoint",
+      "case_ids": ["SIEM-MAL-003", "LT-03"],
+      "question_for_analysts": "Is the dropped executable malicious (hash verdict), and did the reverse-shell connection succeed?"
+    },
+    {
+      "stage_id": "S5",
+      "order": 5,
+      "name": "Persistence and privilege-sensitive activity",
+      "kill_chain": "Persistence / Privilege Escalation",
+      "domain": "endpoint",
+      "case_ids": ["RT-04", "LT-02"],
+      "question_for_analysts": "Is the Winlogon Shell modification authorised, and were the sudo commands approved administration?"
+    },
+    {
+      "stage_id": "S6",
+      "order": 6,
+      "name": "Discovery and defense evasion",
+      "kill_chain": "Discovery / Defense Evasion",
+      "domain": "endpoint",
+      "case_ids": ["RT-02"],
+      "question_for_analysts": "Who cleared the Security log (Event 1102) and was it part of approved maintenance?"
+    },
+    {
+      "stage_id": "S7",
+      "order": 7,
+      "name": "Lateral movement",
+      "kill_chain": "Lateral Movement",
+      "domain": "endpoint",
+      "case_ids": ["RT-03"],
+      "question_for_analysts": "Which client and account initiated the WinRM command execution on the domain controller?"
+    },
+    {
+      "stage_id": "S8",
+      "order": 8,
+      "name": "Command and control",
+      "kill_chain": "Command and Control",
+      "domain": "network",
+      "case_ids": ["NT-03", "NT-02", "RT-01"],
+      "question_for_analysts": "Are the periodic connections, DNS chunk burst and plink tunnel C2 channels or approved tooling?"
+    },
+    {
+      "stage_id": "S9",
+      "order": 9,
+      "name": "Collection / exfiltration (hypothesis)",
+      "kill_chain": "Collection / Exfiltration",
+      "domain": "email",
+      "case_ids": ["SIEM-EXCH-005"],
+      "question_for_analysts": "Did the mailbox export requests complete, and do the exported .aspx files exist on the server?"
+    }
+  ],
+  "false_positive_controls": {
+    "description": "Benign-candidate cases kept in the exercise to show the triage separates routine activity from the attack chain.",
+    "case_ids": ["BT-01", "BT-02", "BT-03", "LT-04"]
+  }
+}
